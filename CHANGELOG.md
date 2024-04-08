@@ -9,22 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Instant answers - Weather, Stopwatch, Calendar
+- Instant answers - Weather, Stopwatch, Calendar, etc.
 - SearXNG region - US
 - PrivateSearch option in settings
 - Shortcuts for home page
-- Multiple search engines
+- Multiple missing search engines
 
 ### Changed
 
-- Rewrite - IA Calculator
+- Rewrite - IACalculator
 - Rewrite - /settings?tab=engines
 - General performance imporvements
 
 ### Fixed
 
 - Clunky settings navigation
-- IA coin flip bugs
+- IACoinFlip bugs
 - Map bugs
 
 ## [0.1.0] - 01.04.2024

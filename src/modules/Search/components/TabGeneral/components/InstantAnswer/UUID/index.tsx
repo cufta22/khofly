@@ -10,12 +10,15 @@ const IAUUID = () => {
   }, []);
 
   return (
-    <IAWrapper>
-      <Text size="md" fw={500}>
+    <IAWrapper
+      label={
+        <Text size="sm" c="dimmed">
+          Random UUID v4
+        </Text>
+      }
+    >
+      <Text size="lg" fw={500}>
         {uuid}
-      </Text>
-      <Text size="xs" c="dimmed">
-        Random UUID v4
       </Text>
     </IAWrapper>
   );

@@ -1,5 +1,3 @@
-"use client";
-
 import { Combobox, InputBase, useCombobox } from "@mantine/core";
 
 import { USFlag, FlagProps, DEFlag } from "mantine-flagpack";

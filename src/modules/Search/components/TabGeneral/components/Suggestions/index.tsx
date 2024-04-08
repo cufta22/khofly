@@ -1,15 +1,17 @@
-import { Button, SimpleGrid, Text } from "@mantine/core";
+import { Button, SimpleGrid, Stack, Text } from "@mantine/core";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { IconSearch } from "@tabler/icons-react";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import React from "react";
+import classes from "./styles.module.scss";
 
 interface Props {
   suggestions: ISearXNGResultsGeneral["suggestions"];
+  type: "infobox" | "search";
 }
 
-const Suggestions: React.FC<Props> = ({ suggestions }) => {
+const Suggestions: React.FC<Props> = ({ suggestions, type }) => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -18,6 +20,30 @@ const Suggestions: React.FC<Props> = ({ suggestions }) => {
   };
 
   const q = searchParams.get("q") || "";
+
+  if (type === "infobox")
+    return (
+      <Stack mt="xl" ml={80} mr={80} className={classes.search_suggestionbox}>
+        <Text size="lg">
+          Searches related to <b>{q}</b>
+        </Text>
+
+        {suggestions.slice(0, 5).map((s, i) => (
+          <Button
+            w="fit-content"
+            key={i}
+            variant="subtle"
+            color="gray"
+            leftSection={<IconSearch style={getIconStyle(18)} color="gray" />}
+            onClick={() => handleSubmitSearch(s)}
+          >
+            <Text truncate ta="left">
+              {s}
+            </Text>
+          </Button>
+        ))}
+      </Stack>
+    );
 
   return (
     <>

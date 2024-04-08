@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import InstantAnswer from "../InstantAnswer";
+import InstantAnswer from "./components/InstantAnswer";
 import SearchResultRow from "./components/SearchResultRow";
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
@@ -11,14 +11,10 @@ import SearchResultSkeleton from "./components/SearchResultSkeleton";
 import Suggestions from "./components/Suggestions";
 import Infobox from "./components/Infobox";
 import Lyricsbox from "./components/Lyricsbox";
-import clsx from "clsx";
 import SearchOptions from "../SearchOptions";
-import { useSearchParams } from "@remix-run/react";
 import { useEnginesStore } from "@store/engines";
 
 const TabGeneral = () => {
-  const [searchParams] = useSearchParams();
-
   const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
@@ -34,14 +30,7 @@ const TabGeneral = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Flex
-      className={clsx(classes.tab_general, {
-        [classes.tab_general_caramelldansen]: searchParams
-          .get("q")
-          ?.includes("caramelldansen"),
-      })}
-      align="flex-start"
-    >
+    <Flex className={classes.tab_general} align="flex-start">
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
         {/* Search Options */}
@@ -76,7 +65,7 @@ const TabGeneral = () => {
         )}
 
         {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
-          <Suggestions suggestions={data?.[0]?.suggestions} />
+          <Suggestions suggestions={data?.[0]?.suggestions} type="search" />
         ) : null}
 
         {isRateLimit && (
@@ -124,6 +113,10 @@ const TabGeneral = () => {
           )}
 
         <Lyricsbox />
+
+        {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
+          <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />
+        ) : null}
       </Flex>
     </Flex>
   );

@@ -32,8 +32,8 @@ const Lyricsbox = () => {
     <Paper
       className={classes.search_lyricsbox}
       mt="xl"
-      ml={60}
-      mr={60}
+      ml={80}
+      mr={80}
       withBorder
       radius="md"
     >

@@ -1,4 +1,3 @@
-import { ICategories } from "@store/general";
 import {
   IGeneralEngines,
   IITEngines,
@@ -6,7 +5,8 @@ import {
   IMusicEngines,
   INewsEngines,
   IVideosEngines,
-} from "@store/search";
+} from "@store/engines";
+import { ICategories } from "@store/settings";
 
 const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
   bing: "!bi",

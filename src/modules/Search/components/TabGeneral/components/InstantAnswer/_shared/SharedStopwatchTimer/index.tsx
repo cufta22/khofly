@@ -13,7 +13,7 @@ interface Props {
 const SharedStopwatchTimer: React.FC<Props> = ({ type }) => {
   return (
     <IAWrapper>
-      <Tabs defaultValue={type}>
+      <Tabs defaultValue={type} mt={-16}>
         <Tabs.List grow mb="lg">
           <Tabs.Tab
             value="stopwatch"

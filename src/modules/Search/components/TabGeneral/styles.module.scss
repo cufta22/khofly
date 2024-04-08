@@ -55,13 +55,6 @@
       gap: var(--mantine-spacing-md);
     }
   }
-
-  // Memes
-  &.tab_general_caramelldansen {
-    box-shadow: inset 0em 0em 1em 1em;
-    color: var(--mantine-color-green-6);
-    animation: cd_shadow 2.5s infinite;
-  }
 }
 
 .search_options_general {

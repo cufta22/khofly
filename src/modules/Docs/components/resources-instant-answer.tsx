@@ -4,15 +4,18 @@ import classes from "./styles.module.scss";
 import WikiTitle from "./common/WikiTitle";
 import WikiSubtitle from "./common/WikiSubtitle";
 
-import IACalculator from "@module/Search/components/InstantAnswer/Calculator";
-import IACoinFlip from "@module/Search/components/InstantAnswer/CoinFilp";
-import IALyrics from "@module/Search/components/InstantAnswer/Lyrics";
-import IATimer from "@module/Search/components/InstantAnswer/Timer";
-import IATranslate from "@module/Search/components/InstantAnswer/Translate";
-import IAUUID from "@module/Search/components/InstantAnswer/UUID";
-import IAWeather from "@module/Search/components/InstantAnswer/Weather";
-import IACalendar from "@module/Search/components/InstantAnswer/Calendar";
-import IAStopwatch from "@module/Search/components/InstantAnswer/Stopwatch";
+import IACalculator from "@module/Search/components/TabGeneral/components/InstantAnswer/Calculator";
+import IACoinFlip from "@module/Search/components/TabGeneral/components/InstantAnswer/CoinFilp";
+import IALyrics from "@module/Search/components/TabGeneral/components/InstantAnswer/Lyrics";
+import IATimer from "@module/Search/components/TabGeneral/components/InstantAnswer/Timer";
+import IATranslate from "@module/Search/components/TabGeneral/components/InstantAnswer/Translate";
+import IAUUID from "@module/Search/components/TabGeneral/components/InstantAnswer/UUID";
+import IAWeather from "@module/Search/components/TabGeneral/components/InstantAnswer/Weather";
+import IACalendar from "@module/Search/components/TabGeneral/components/InstantAnswer/Calendar";
+import IAStopwatch from "@module/Search/components/TabGeneral/components/InstantAnswer/Stopwatch";
+import IACurrency from "@module/Search/components/TabGeneral/components/InstantAnswer/Currency";
+import IAPassword from "@module/Search/components/TabGeneral/components/InstantAnswer/Password";
+import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/Unit";
 
 const DocsResourcesInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
@@ -55,32 +58,47 @@ const DocsResourcesInstantAnswer = () => {
         <IACoinFlip />
       </Box>
 
-      <WikiTitle>4. Lyrics</WikiTitle>
+      <WikiTitle>4. Currency</WikiTitle>
+      <Box className={classes.search_box}>
+        <IACurrency currency1="usd" currency2="eur" withIAWrapper />
+      </Box>
+
+      <WikiTitle>5. Lyrics</WikiTitle>
       <Box className={classes.search_box}>
         <IALyrics initialQ="rick astley never gonna give you up" />
       </Box>
 
-      <WikiTitle>5. Stopwatch</WikiTitle>
+      <WikiTitle>6. Password</WikiTitle>
+      <Box className={classes.search_box}>
+        <IAPassword />
+      </Box>
+
+      <WikiTitle>7. Stopwatch</WikiTitle>
       <Box className={classes.search_box}>
         <IAStopwatch withIAWrapper />
       </Box>
 
-      <WikiTitle>6. Timer</WikiTitle>
+      <WikiTitle>8. Timer</WikiTitle>
       <Box className={classes.search_box}>
         <IATimer withIAWrapper />
       </Box>
 
-      {/* <WikiTitle>7. Translate</WikiTitle>
+      {/* <WikiTitle>9. Translate</WikiTitle>
       <Box className={classes.search_box}>
         <Translate />
       </Box> */}
 
-      <WikiTitle>7. Random UUID</WikiTitle>
+      <WikiTitle>9. Unit convertor</WikiTitle>
+      <Box className={classes.search_box}>
+        <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
+      </Box>
+
+      <WikiTitle>10. Random UUID</WikiTitle>
       <Box className={classes.search_box}>
         <IAUUID />
       </Box>
 
-      <WikiTitle>8. Weather</WikiTitle>
+      <WikiTitle>11. Weather</WikiTitle>
       <Box className={classes.search_box}>
         <IAWeather />
       </Box>

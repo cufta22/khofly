@@ -1,0 +1,10 @@
+@use "variables" as vars;
+
+.search_suggestionbox {
+  width: 450px;
+  max-width: 450px;
+
+  @media (max-width: vars.$mantine-breakpoint-lg) {
+    display: none;
+  }
+}
