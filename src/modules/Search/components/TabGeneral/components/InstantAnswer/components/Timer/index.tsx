@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 import {
   ActionIcon,
   Button,

@@ -2,8 +2,8 @@ import React from "react";
 import { Tabs } from "@mantine/core";
 import { IconClock, IconHourglassLow } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import Stopwatch from "../../Stopwatch";
-import Timer from "../../Timer";
+import Stopwatch from "../../components/Stopwatch";
+import Timer from "../../components/Timer";
 import { IAWrapper } from "../../wrapper";
 
 interface Props {

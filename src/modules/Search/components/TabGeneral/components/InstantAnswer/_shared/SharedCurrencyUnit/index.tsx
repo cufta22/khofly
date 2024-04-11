@@ -1,19 +1,11 @@
 import React from "react";
 import { Tabs } from "@mantine/core";
-import {
-  IconCash,
-  IconClock,
-  IconHourglassLow,
-  IconRuler,
-  IconRuler2,
-  IconRulerMeasure,
-} from "@tabler/icons-react";
+import { IconCash, IconRulerMeasure } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import Stopwatch from "../../Stopwatch";
-import Timer from "../../Timer";
+
 import { IAWrapper } from "../../wrapper";
-import IAUnit, { UnitsType } from "../../Unit";
-import IACurrency from "../../Currency";
+import IAUnit, { UnitsType } from "../../components/Unit";
+import IACurrency from "../../components/Currency";
 
 interface Props {
   type: "currency" | "unit";

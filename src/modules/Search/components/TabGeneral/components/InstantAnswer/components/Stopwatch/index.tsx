@@ -1,5 +1,5 @@
 import { ActionIcon, Button, Center, Flex, Paper, Text } from "@mantine/core";
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 import classes from "./styles.module.scss";
 import {
   IconPlayerPlay,
@@ -8,6 +8,7 @@ import {
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useState } from "react";
+import { useInterval } from "@mantine/hooks";
 
 const formatOutput = (no: number) => {
   return no.toLocaleString("en-US", {
@@ -17,9 +18,9 @@ const formatOutput = (no: number) => {
 };
 
 const INITIAL_TIME = {
-  hour: 0,
   minute: 0,
-  second: 10,
+  second: 0,
+  milisecond: 0,
 };
 
 interface Props {
@@ -28,6 +29,31 @@ interface Props {
 
 const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
   const [time, setTime] = useState(INITIAL_TIME);
+
+  // Timer logic
+  const { active, start, stop } = useInterval(() => {
+    setTime((time) => {
+      let newMilisecond = time.milisecond + 1;
+      let newSecond = time.second;
+      let newMinute = time.minute;
+
+      if (newMilisecond === 100) {
+        newMilisecond = 0;
+        newSecond += 1;
+      }
+
+      if (newSecond === 60) {
+        newSecond = 0;
+        newMinute += 1;
+      }
+
+      return {
+        minute: newMinute,
+        second: newSecond,
+        milisecond: newMilisecond,
+      };
+    });
+  }, 100);
 
   const handleReset = () => {};
 
@@ -44,14 +70,17 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
               variant="light"
               radius={50}
               size={100}
+              onClick={start}
             >
               <IconPlayerPlayFilled style={getIconStyle(50)} stroke={5} />
             </ActionIcon>
             <Flex align="flex-end">
-              <Text fz={42}>{formatOutput(time.hour)}:</Text>
               <Text fz={42}>{formatOutput(time.minute)}</Text>
               <Text fz={24} c="dimmed" ml={2} mb={6}>
-                {formatOutput(time.second)}
+                :{formatOutput(time.second)}.
+              </Text>
+              <Text fz={24} c="dimmed" ml={2} mb={6}>
+                {formatOutput(time.milisecond)}
               </Text>
             </Flex>
           </Flex>

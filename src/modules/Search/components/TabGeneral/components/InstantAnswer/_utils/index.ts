@@ -1,13 +1,6 @@
-import { UnitsType } from "../Unit";
+import { UnitsType } from "../components/Unit";
 import {
-  KEYWORDS_UNITS_LENGTH,
   KEYWORDS_UNITS_GENERAL,
-  KEYWORDS_UNITS_AREA,
-  KEYWORDS_UNITS_VOLUME,
-  KEYWORDS_UNITS_ANGLE,
-  KEYWORDS_UNITS_TIME,
-  KEYWORDS_UNITS_MASS,
-  KEYWORDS_UNITS_TEMPERATURE,
   KEYWORDS_UNITS_ALL_MAP,
 } from "./keywords_units";
 
@@ -75,4 +68,14 @@ export const shouldDisplayUnits = (
   }
 
   return returnValue;
+};
+
+// -----------------------------------------------------------------------------------
+// Equation handler
+// -----------------------------------------------------------------------------------
+
+export const shouldDisplayEquation = (query: string) => {
+  const re = /(?:(?:^|[-+_*/])(?:\s*-?\d+(\.\d+)?(?:[eE][+-]?\d+)?\s*))+$/;
+
+  return re.test(query);
 };

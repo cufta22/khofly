@@ -4,18 +4,19 @@ import classes from "./styles.module.scss";
 import WikiTitle from "./common/WikiTitle";
 import WikiSubtitle from "./common/WikiSubtitle";
 
-import IACalculator from "@module/Search/components/TabGeneral/components/InstantAnswer/Calculator";
-import IACoinFlip from "@module/Search/components/TabGeneral/components/InstantAnswer/CoinFilp";
-import IALyrics from "@module/Search/components/TabGeneral/components/InstantAnswer/Lyrics";
-import IATimer from "@module/Search/components/TabGeneral/components/InstantAnswer/Timer";
-import IATranslate from "@module/Search/components/TabGeneral/components/InstantAnswer/Translate";
-import IAUUID from "@module/Search/components/TabGeneral/components/InstantAnswer/UUID";
-import IAWeather from "@module/Search/components/TabGeneral/components/InstantAnswer/Weather";
-import IACalendar from "@module/Search/components/TabGeneral/components/InstantAnswer/Calendar";
-import IAStopwatch from "@module/Search/components/TabGeneral/components/InstantAnswer/Stopwatch";
-import IACurrency from "@module/Search/components/TabGeneral/components/InstantAnswer/Currency";
-import IAPassword from "@module/Search/components/TabGeneral/components/InstantAnswer/Password";
-import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/Unit";
+import IACalculator from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Calculator";
+import IACoinFlip from "@module/Search/components/TabGeneral/components/InstantAnswer/components/CoinFilp";
+import IALyrics from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Lyrics";
+import IATimer from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Timer";
+import IATranslate from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Translate";
+import IAUUID from "@module/Search/components/TabGeneral/components/InstantAnswer/components/UUID";
+import IAWeather from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Weather";
+import IACalendar from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Calendar";
+import IAStopwatch from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Stopwatch";
+import IACurrency from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Currency";
+import IAPassword from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Password";
+import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Unit";
+import IAEquation from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Equation";
 
 const DocsResourcesInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
@@ -26,7 +27,9 @@ const DocsResourcesInstantAnswer = () => {
 
       <Text mt="md">
         All instant answers code is located in{" "}
-        <Code>/src/modules/Search/components/InstantAnswer</Code>
+        <Code>
+          /src/modules/Search/components/TabGeneral/components/InstantAnswer
+        </Code>
       </Text>
       <Text mt="md">
         Create a folder with a descriptive name and make sure that everything is
@@ -63,22 +66,27 @@ const DocsResourcesInstantAnswer = () => {
         <IACurrency currency1="usd" currency2="eur" withIAWrapper />
       </Box>
 
-      <WikiTitle>5. Lyrics</WikiTitle>
+      <WikiTitle>5. Equation</WikiTitle>
+      <Box className={classes.search_box}>
+        <IAEquation query="6 * ( 2 + 7 )" />
+      </Box>
+
+      <WikiTitle>6. Lyrics</WikiTitle>
       <Box className={classes.search_box}>
         <IALyrics initialQ="rick astley never gonna give you up" />
       </Box>
 
-      <WikiTitle>6. Password</WikiTitle>
+      <WikiTitle>7. Password</WikiTitle>
       <Box className={classes.search_box}>
         <IAPassword />
       </Box>
 
-      <WikiTitle>7. Stopwatch</WikiTitle>
+      <WikiTitle>8. Stopwatch</WikiTitle>
       <Box className={classes.search_box}>
         <IAStopwatch withIAWrapper />
       </Box>
 
-      <WikiTitle>8. Timer</WikiTitle>
+      <WikiTitle>9. Timer</WikiTitle>
       <Box className={classes.search_box}>
         <IATimer withIAWrapper />
       </Box>
@@ -88,17 +96,17 @@ const DocsResourcesInstantAnswer = () => {
         <Translate />
       </Box> */}
 
-      <WikiTitle>9. Unit convertor</WikiTitle>
+      <WikiTitle>10. Unit convertor</WikiTitle>
       <Box className={classes.search_box}>
         <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
       </Box>
 
-      <WikiTitle>10. Random UUID</WikiTitle>
+      <WikiTitle>11. Random UUID</WikiTitle>
       <Box className={classes.search_box}>
         <IAUUID />
       </Box>
 
-      <WikiTitle>11. Weather</WikiTitle>
+      <WikiTitle>12. Weather</WikiTitle>
       <Box className={classes.search_box}>
         <IAWeather />
       </Box>

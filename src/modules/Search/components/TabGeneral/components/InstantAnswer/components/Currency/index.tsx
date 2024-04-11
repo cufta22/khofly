@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 import { Center, Paper, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";

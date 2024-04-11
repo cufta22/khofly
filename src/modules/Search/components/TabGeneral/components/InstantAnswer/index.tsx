@@ -1,20 +1,25 @@
 import { useResponsive } from "@hooks/use-responsive";
 
 import { useSearchParams } from "@remix-run/react";
-import { shouldDisplayIA, shouldDisplayUnits } from "./_utils";
+import {
+  shouldDisplayEquation,
+  shouldDisplayIA,
+  shouldDisplayUnits,
+} from "./_utils";
 import { useSettingsStore } from "@store/settings";
 
-import IACoinFlip from "./CoinFilp";
-import IACalculator from "./Calculator";
-import IALyrics from "./Lyrics";
-import IAUUID from "./UUID";
-import IAWeather from "./Weather";
-import IACalendar from "./Calendar";
-import SharedStopwatchTimer from "./_shared/SharedStopwatchTimer";
+import IACoinFlip from "./components/CoinFilp";
+import IACalculator from "./components/Calculator";
+import IALyrics from "./components/Lyrics";
+import IAUUID from "./components/UUID";
+import IAWeather from "./components/Weather";
+import IACalendar from "./components/Calendar";
 import IANeofetch from "./_commands/Neofetch";
-import IAUnits from "./Unit";
+import IAPassword from "./components/Password";
+
 import SharedCurrencyUnit from "./_shared/SharedCurrencyUnit";
-import IAPassword from "./Password";
+import SharedStopwatchTimer from "./_shared/SharedStopwatchTimer";
+import IAEquation from "./components/Equation";
 
 const InstantAnswer = () => {
   const [searchParams] = useSearchParams();
@@ -36,6 +41,9 @@ const InstantAnswer = () => {
 
   // Instant answer - Coin flip
   if (shouldDisplayIA(query, ["coinflip", "coin flip"])) return <IACoinFlip />;
+
+  // Instant answer - Equation
+  if (shouldDisplayEquation(query)) return <IAEquation query={query} />;
 
   // Instant answer - Lyrics by Genius
   if (shouldDisplayIA(query, ["lyrics"]) && !isXl) return <IALyrics />;

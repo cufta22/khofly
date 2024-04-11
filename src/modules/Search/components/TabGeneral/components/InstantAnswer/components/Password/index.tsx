@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { IAWrapper } from "../wrapper";
+import { useMounted } from "@mantine/hooks";
+import { IAWrapper } from "../../wrapper";
 import { Text } from "@mantine/core";
 
 const generatePassword = () => {
@@ -32,16 +32,18 @@ const generatePassword = () => {
 };
 
 const IAPassword = () => {
+  const mounted = useMounted();
+
   return (
     <IAWrapper
       label={
         <Text size="sm" c="dimmed">
-          Random password: 16 characters, great strength
+          Random strong password
         </Text>
       }
     >
       <Text size="lg" fw={500}>
-        {generatePassword()}
+        {mounted && generatePassword()}
       </Text>
     </IAWrapper>
   );

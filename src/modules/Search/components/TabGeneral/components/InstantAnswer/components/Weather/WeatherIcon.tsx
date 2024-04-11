@@ -33,7 +33,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
   const IconMain = isNight ? IconMoon : IconSun;
   const colorMain = isNight ? theme.colors.gray[7] : theme.colors.orange[5];
 
-  const modifier = size === "normal" ? 1.4 : 0.8;
+  const modifier = size === "normal" ? 1.6 : 0.8;
 
   const sizeBig = 52 * modifier;
   const sizeNormal = 46 * modifier;

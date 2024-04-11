@@ -10,7 +10,7 @@ import {
 import { getIconStyle } from "@utils/functions/iconStyle";
 import clsx from "clsx";
 import { cryptoRandomNumber } from "@utils/functions/cryptoRandomNumber";
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 
 const IACoinFlip = () => {
   const [side, setSide] = useState<"heads" | "tails" | "">("");

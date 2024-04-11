@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 
 import classes from "./styles.module.scss";
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 import { useSearchParams } from "@remix-run/react";
 
 interface Props {

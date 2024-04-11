@@ -4,6 +4,7 @@ import "@mantine/core/styles.css";
 import "@mantine/nprogress/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/dates/styles.css";
+import "@mantine/charts/styles.css";
 
 import AppLayout from "@layout/index";
 import { ColorSchemeScript, useMantineColorScheme } from "@mantine/core";
@@ -16,7 +17,6 @@ import {
   isRouteErrorResponse,
   json,
   useRouteError,
-  useRouteLoaderData,
 } from "@remix-run/react";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 

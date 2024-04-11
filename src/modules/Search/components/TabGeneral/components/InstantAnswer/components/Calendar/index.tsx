@@ -1,5 +1,5 @@
 import { Center } from "@mantine/core";
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 import { Calendar as MantineCalendar } from "@mantine/dates";
 
 import dayjs from "dayjs";

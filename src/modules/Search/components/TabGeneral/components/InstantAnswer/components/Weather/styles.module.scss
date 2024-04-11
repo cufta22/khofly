@@ -34,3 +34,12 @@
     stroke-width: 2px;
   }
 }
+
+.sun_icon_position {
+  fill: transparent;
+
+  &:nth-child(18) {
+    fill: var(--mantine-color-yellow-8);
+    stroke-width: 2px;
+  }
+}

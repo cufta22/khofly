@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 import { Text } from "@mantine/core";
 
 const IAUUID = () => {

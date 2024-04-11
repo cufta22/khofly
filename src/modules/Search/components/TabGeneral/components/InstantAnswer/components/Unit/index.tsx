@@ -1,4 +1,4 @@
-import { IAWrapper } from "../wrapper";
+import { IAWrapper } from "../../wrapper";
 import {
   ActionIcon,
   Center,
@@ -23,7 +23,7 @@ import {
   KEYWORDS_UNITS_TEMPERATURE,
   KEYWORDS_UNITS_TIME,
   KEYWORDS_UNITS_VOLUME,
-} from "../_utils/keywords_units";
+} from "../../_utils/keywords_units";
 
 const TYPE_TO_UNITS = {
   length: KEYWORDS_UNITS_LENGTH,

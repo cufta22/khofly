@@ -21,7 +21,7 @@ export const IAWrapper: React.FC<Props> = ({ children, label }) => {
         transition="scale-y"
         duration={300}
         mounted={visible}
-        keepMounted
+        keepMounted={false}
       >
         {(transitionStyles) => <div style={transitionStyles}>{children}</div>}
       </Transition>
