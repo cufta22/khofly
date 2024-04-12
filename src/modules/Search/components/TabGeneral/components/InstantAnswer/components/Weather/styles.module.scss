@@ -35,11 +35,51 @@
   }
 }
 
-.sun_icon_position {
+.sun_icon_pos {
   fill: transparent;
 
-  &:nth-child(18) {
-    fill: var(--mantine-color-yellow-8);
-    stroke-width: 2px;
+  $day_icon_numbers: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20;
+
+  // Night, 3 at the beginning
+  &--1,
+  &--2,
+  &--3 {
+    &:nth-child(3) {
+      fill: var(--mantine-color-gray-6);
+      stroke-width: 4px;
+      stroke: light-dark(
+        var(--mantine-color-gray-0),
+        var(--mantine-color-dark-8)
+      );
+    }
+  }
+
+  // Day
+  @each $i in $day_icon_numbers {
+    &--#{$i} {
+      &:nth-child(#{$i}) {
+        fill: var(--mantine-color-yellow-8);
+        stroke-width: 4px;
+        stroke: light-dark(
+          var(--mantine-color-gray-0),
+          var(--mantine-color-dark-8)
+        );
+      }
+    }
+  }
+
+  // Night, 3 at the end
+  &--21,
+  &--22,
+  &--23 {
+    &:nth-child(21) {
+      fill: var(--mantine-color-gray-6);
+      stroke-width: 4px;
+      stroke: light-dark(
+        var(--mantine-color-gray-0),
+        var(--mantine-color-dark-8)
+      );
+    }
   }
 }

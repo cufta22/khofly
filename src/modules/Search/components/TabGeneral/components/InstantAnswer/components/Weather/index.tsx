@@ -12,31 +12,31 @@ import {
 } from "@mantine/core";
 import { AreaChart } from "@mantine/charts";
 import {
+  IconLetterK,
+  IconLetterKSmall,
   IconTemperatureCelsius,
   IconTemperatureFahrenheit,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import useWeatherSWR from "src/api/weather/use-weather-query";
 import useGeolocation from "@hooks/use-geolocation";
-import WeatherIcon from "./WeatherIcon";
-import WeatherDaily from "./WeatherDaily";
+import WeatherIcon from "./components/WeatherIcon";
+import WeatherDaily from "./components/WeatherDaily";
 import { useGeneralStore } from "@store/general";
 import { OpenWeatherCode, OpenWeatherDaily } from "src/api/weather/types";
-
-import classes from "./styles.module.scss";
+import SunPosition from "./components/SunPosition";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
-const SUN_POS_VALUES = [
-  -10, -7, -5, 0, 5, 10, 15, 20, 22, 24, 25, 26, 25, 24, 22, 20, 15, 10, 5, 0,
-  -5, -7, -10,
-];
+const formatChartHr = (dt: number) => {
+  const hr = dayjs.unix(dt).format("hh");
+
+  return parseInt(hr) >= 12 ? hr + "PM" : hr + "AM";
+};
 
 const IAWeather = () => {
-  const { data, isMutating, trigger } = useWeatherSWR();
-
   // Get data either from localStorage or Geolocation
   const { geolocation, hydrated } = useGeneralStore((state) => ({
     hydrated: state.hydrated,
@@ -45,20 +45,23 @@ const IAWeather = () => {
 
   const { location } = useGeolocation(!geolocation && hydrated);
 
-  const [unit, setUnit] = useState("C");
+  const [unit, setUnit] = useState<"standard" | "metric" | "imperial">(
+    "metric"
+  );
   const [areaChart, setAreaChart] = useState<string>("temp");
   const [selectedData, setSelectedData] = useState<OpenWeatherDaily | null>(
     null
   );
+  const { data, isLoading, mutate } = useWeatherSWR({
+    lat: geolocation?.lat || location?.latitude,
+    lon: geolocation?.lon || location?.longitude,
+    units: unit,
+  });
 
-  // Get geolocation
   useEffect(() => {
-    if (location || geolocation) {
-      trigger(
-        geolocation || { lat: location?.latitude, lon: location?.longitude }
-      );
-    }
-  }, [location, geolocation]);
+    // Don't fetch if previous data already exists to not spam the instance
+    if (!data && hydrated) mutate();
+  }, [hydrated]);
 
   // Update current data
   useEffect(() => {
@@ -69,21 +72,6 @@ const IAWeather = () => {
 
   const selectedDataDay =
     selectedData && dayjs.unix(selectedData.dt).format("ddd");
-
-  const displayHourly = data?.hourly
-    // Filter for current day
-    .filter(
-      (element, idx) =>
-        dayjs.unix(element.dt).format("ddd") === selectedDataDay &&
-        idx % 3 === 0
-    )
-    .map((hr) => ({
-      time: dayjs.unix(hr.dt).format("H") + ":00",
-      temp: Math.round(hr.temp),
-      humidity: hr.humidity,
-      wind: hr.wind_speed,
-      weather: hr.weather[0].description,
-    }));
 
   return (
     <IAWrapper
@@ -105,15 +93,19 @@ const IAWeather = () => {
 
         <SegmentedControl
           value={unit}
-          onChange={(val) => setUnit(val)}
+          onChange={(val) => setUnit(val as "standard" | "metric" | "imperial")}
           data={[
             {
-              value: "F",
+              value: "metric",
+              label: <IconTemperatureCelsius style={getIconStyle(20)} />,
+            },
+            {
+              value: "imperial",
               label: <IconTemperatureFahrenheit style={getIconStyle(20)} />,
             },
             {
-              value: "C",
-              label: <IconTemperatureCelsius style={getIconStyle(20)} />,
+              value: "standard",
+              label: <IconLetterK style={getIconStyle(20)} stroke={2} />,
             },
           ]}
         />
@@ -149,99 +141,95 @@ const IAWeather = () => {
                 {
                   // If current is toady then pick from data.current
                   selectedDataDay === dayjs.unix(data.current.dt).format("ddd")
-                    ? `${Math.round(data?.current.temp)}°`
+                    ? `${Math.round(data?.current.temp)}${
+                        unit !== "standard" ? "°" : ""
+                      }`
                     : selectedData
                     ? // Else pick user selected
-                      `${Math.round(selectedData?.temp.day)}°`
+                      `${Math.round(selectedData?.temp.day)}${
+                        unit !== "standard" ? "°" : ""
+                      }`
                     : ""
                 }
               </Text>
 
               <Flex align="center" justify="center" gap="md">
                 <Text size="lg" fw="bold">
-                  {Math.round(selectedData?.temp.max)}°
+                  {Math.round(selectedData?.temp.max)}
+                  {unit !== "standard" ? "°" : ""}
                 </Text>
                 <Text size="sm" c="dimmed">
-                  {Math.round(selectedData?.temp.min)}°
+                  {Math.round(selectedData?.temp.min)}
+                  {unit !== "standard" ? "°" : ""}
                 </Text>
               </Flex>
             </Flex>
           </Flex>
 
-          <Flex direction="column" w="30%">
-            <AreaChart
-              h={80}
-              w="100%"
-              data={SUN_POS_VALUES.map((val) => ({
-                value: val,
-              }))}
-              withGradient={true}
-              withTooltip={false}
-              withXAxis={false}
-              withYAxis={false}
-              gridAxis="none"
-              fillOpacity={0.6}
-              dotProps={{
-                r: 10,
-                className: classes.sun_icon_position,
-              }}
-              referenceLines={[{ y: 0, label: "" }]}
-              curveType="monotone"
-              dataKey="value"
-              type="split"
-              strokeWidth={1}
-              // withDots={false}
-              series={[{ name: "value", color: "yellow.3" }]}
-              splitColors={["transparent", "violet.8"]}
-            />
-
-            <Text ta="center">Sunset</Text>
-          </Flex>
+          <SunPosition data={data.current} />
         </Flex>
       )}
 
-      <SegmentedControl
-        value={areaChart}
-        onChange={(val) => setAreaChart(val)}
-        data={[
-          { label: "Temperature", value: "temp" },
-          { label: "Humidity", value: "humidity" },
-          { label: "Wind", value: "wind" },
-        ]}
-        mt="xl"
-        mb="md"
-      />
-
-      {displayHourly?.length ? (
-        <AreaChart
-          h={120}
-          data={displayHourly}
-          gridAxis="none"
-          dataKey="time"
-          series={[
-            {
-              name: areaChart,
-              color:
-                areaChart === "temp"
-                  ? "yellow.5"
-                  : areaChart === "humidity"
-                  ? "blue.5"
-                  : "cyan.4",
-            },
-            {
-              name: "weather",
-              color: "green.6",
-            },
+      {data?.current && (
+        <SegmentedControl
+          value={areaChart}
+          onChange={(val) => setAreaChart(val)}
+          data={[
+            { label: "Temperature", value: "temp" },
+            { label: "Humidity", value: "humidity" },
+            { label: "Wind", value: "wind" },
           ]}
-          // curveType="linear"
-          mb="xl"
+          mt="xl"
+          mb="md"
         />
-      ) : (
-        <Center h={120} mb="xl">
-          <Text size="lg" fw="bold">
-            Detailed data not available
-          </Text>
-        </Center>
+      )}
+
+      {data?.hourly?.length && (
+        <ScrollArea>
+          <AreaChart
+            h={120}
+            w={2500}
+            pr="sm"
+            data={data?.hourly.map((hr) => ({
+              time: formatChartHr(hr.dt),
+              temp: Math.round(hr.temp),
+              humidity: hr.humidity,
+              wind: hr.wind_speed,
+              weather: hr.weather[0].description,
+            }))}
+            yAxisProps={{
+              tickMargin: 15,
+              orientation: "left",
+              // domain: [, "dataMax + 5"],
+              domain:
+                // Fix Kelvin temp display
+                unit === "standard" && areaChart === "temp"
+                  ? ["dataMin - 10", "dataMax + 5"]
+                  : [0, "dataMax + 5"],
+            }}
+            xAxisProps={{ tickMargin: 15, orientation: "bottom" }}
+            areaChartProps={{ stackOffset: "expand" }}
+            gridAxis="none"
+            dataKey="time"
+            series={[
+              {
+                name: areaChart,
+                color:
+                  areaChart === "temp"
+                    ? "yellow.5"
+                    : areaChart === "humidity"
+                    ? "blue.5"
+                    : "cyan.4",
+              },
+              {
+                name: "weather",
+                color: "green.6",
+              },
+            ]}
+            // curveType="linear"
+            mb="xl"
+          />
+        </ScrollArea>
       )}
 
       {data?.daily && (
@@ -252,8 +240,12 @@ const IAWeather = () => {
                 key={i}
                 code={daily.weather[0].id as OpenWeatherCode}
                 onClick={() => setSelectedData(data.daily[i])}
-                tempMax={Math.round(daily.temp.max)}
-                tempMin={Math.round(daily.temp.min)}
+                tempMax={`${Math.round(daily.temp.max)}${
+                  unit !== "standard" ? "°" : ""
+                }`}
+                tempMin={`${Math.round(daily.temp.min)}${
+                  unit !== "standard" ? "°" : ""
+                }`}
                 date={daily.dt}
               />
             ))}
@@ -262,8 +254,8 @@ const IAWeather = () => {
       )}
 
       {/* Loading state */}
-      {isMutating && !data && <Space h={300} />}
-      <LoadingOverlay visible={isMutating || !data} />
+      {isLoading && !data && <Space h={300} />}
+      <LoadingOverlay visible={isLoading || !data} />
     </IAWrapper>
   );
 };

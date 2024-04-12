@@ -1,7 +1,16 @@
-import { ActionIcon, Button, Center, Flex, Paper, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Center,
+  Flex,
+  Paper,
+  RingProgress,
+  Text,
+} from "@mantine/core";
 import { IAWrapper } from "../../wrapper";
 import classes from "./styles.module.scss";
 import {
+  IconPlayerPauseFilled,
   IconPlayerPlay,
   IconPlayerPlayFilled,
   IconVideo,
@@ -32,30 +41,33 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
 
   // Timer logic
   const { active, start, stop } = useInterval(() => {
-    setTime((time) => {
-      let newMilisecond = time.milisecond + 1;
-      let newSecond = time.second;
-      let newMinute = time.minute;
+    setTime((prev) => {
+      let newMilisecond = prev.milisecond + 1;
+      let newSecond = prev.second;
+      let newMinute = prev.minute;
 
       if (newMilisecond === 100) {
-        newMilisecond = 0;
         newSecond += 1;
+        newMilisecond = 0;
       }
 
       if (newSecond === 60) {
-        newSecond = 0;
         newMinute += 1;
+        newSecond = 0;
       }
 
       return {
-        minute: newMinute,
-        second: newSecond,
         milisecond: newMilisecond,
+        second: newSecond,
+        minute: newMinute,
       };
     });
-  }, 100);
+  }, 10);
 
-  const handleReset = () => {};
+  const handleReset = () => {
+    setTime(INITIAL_TIME);
+    stop();
+  };
 
   const handleLoop = () => {};
 
@@ -64,16 +76,36 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
       <Paper className={classes.paper_base} p="md" radius="sm" withBorder>
         <Flex align="flex-start" justify="space-between" direction="row">
           <Flex align="center" justify="space-between" direction="row">
-            <ActionIcon
-              color="teal"
-              m={10}
-              variant="light"
-              radius={50}
-              size={100}
-              onClick={start}
-            >
-              <IconPlayerPlayFilled style={getIconStyle(50)} stroke={5} />
-            </ActionIcon>
+            <RingProgress
+              size={120}
+              thickness={8}
+              roundCaps
+              sections={[]}
+              label={
+                <Center className={classes.action_button}>
+                  <ActionIcon
+                    color={active ? "red" : "teal"}
+                    variant="light"
+                    radius="50%"
+                    size={70}
+                    onClick={active ? stop : start}
+                  >
+                    {active ? (
+                      <IconPlayerPauseFilled
+                        style={getIconStyle(32)}
+                        stroke={5}
+                      />
+                    ) : (
+                      <IconPlayerPlayFilled
+                        style={getIconStyle(32)}
+                        stroke={5}
+                      />
+                    )}
+                  </ActionIcon>
+                </Center>
+              }
+            />
+
             <Flex align="flex-end">
               <Text fz={42}>{formatOutput(time.minute)}</Text>
               <Text fz={24} c="dimmed" ml={2} mb={6}>

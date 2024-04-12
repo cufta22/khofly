@@ -14,7 +14,7 @@ import {
 import { getIconStyle } from "@utils/functions/iconStyle";
 import React from "react";
 
-import classes from "./styles.module.scss";
+import classes from "../styles.module.scss";
 import { OpenWeatherCode } from "src/api/weather/types";
 import dayjs from "dayjs";
 

@@ -1,5 +1,10 @@
 import useFetch from "../use-fetch";
-import { IDateRange, ISafeSearch, ISearchLang, useSearchStore } from "@store/search";
+import {
+  IDateRange,
+  ISafeSearch,
+  ISearchLang,
+  useSearchStore,
+} from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
 
@@ -35,10 +40,6 @@ const getKey = (
   )}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
 };
 
-// Restart SearXNG
-// sudo systemctl reload nginx
-// sudo service uwsgi restart searxng
-
 const useSearXNGSWR = <IResults>() => {
   const { fetchData } = useFetch();
 
@@ -62,13 +63,11 @@ const useSearXNGSWR = <IResults>() => {
     enginesIT: state.enginesIT,
   }));
 
-  const { safeSearch, dateRange, searchLanguage } = useSearchStore(
-    (state) => ({
-      safeSearch: state.safeSearch,
-      dateRange: state.dateRange,
-      searchLanguage: state.searchLanguage,
-    })
-  );
+  const { safeSearch, dateRange, searchLanguage } = useSearchStore((state) => ({
+    safeSearch: state.safeSearch,
+    dateRange: state.dateRange,
+    searchLanguage: state.searchLanguage,
+  }));
 
   const [searchParams] = useSearchParams();
   const q = (searchParams.get("q") as string) || "";
@@ -110,7 +109,6 @@ const useSearXNGSWR = <IResults>() => {
       revalidateOnFocus: false,
       revalidateFirstPage: false,
       keepPreviousData: false,
-      // keepPreviousData: false,
     }
   );
 };

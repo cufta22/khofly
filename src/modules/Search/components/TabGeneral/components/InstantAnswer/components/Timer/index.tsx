@@ -119,6 +119,7 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
       >
         <Flex align="center" justify="space-between" direction="row">
           <RingProgress
+            size={120}
             thickness={8}
             roundCaps
             sections={[
@@ -127,44 +128,37 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
                   getTotalSeconds(time),
                   getTotalSeconds(initialTime)
                 ),
-                color: "green",
+                color: !isStarted
+                  ? "transparent"
+                  : isFinished
+                  ? "green"
+                  : !active
+                  ? "dark.3"
+                  : "green",
               },
             ]}
             label={
-              isFinished ? (
-                <Center className={classes.action_button} onClick={handleReset}>
-                  <ActionIcon
-                    color="teal"
-                    variant="light"
-                    radius="xl"
-                    size={50}
-                  >
-                    <IconCheck style={getIconStyle(30)} stroke={5} />
-                  </ActionIcon>
-                </Center>
-              ) : active ? (
-                <Center className={classes.action_button} onClick={handlePause}>
-                  <ActionIcon
-                    color="gray"
-                    variant="light"
-                    radius="xl"
-                    size={50}
-                  >
+              <Center
+                className={classes.action_button}
+                onClick={
+                  isFinished ? handleReset : active ? handlePause : handlePlay
+                }
+              >
+                <ActionIcon
+                  color={isFinished ? "teal" : active ? "gray" : "teal"}
+                  variant="light"
+                  radius="50%"
+                  size={70}
+                >
+                  {isFinished ? (
+                    <IconCheck style={getIconStyle(32)} stroke={5} />
+                  ) : active ? (
                     <IconPlayerPauseFilled style={getIconStyle(32)} />
-                  </ActionIcon>
-                </Center>
-              ) : (
-                <Center className={classes.action_button} onClick={handlePlay}>
-                  <ActionIcon
-                    color="gray"
-                    variant="light"
-                    radius="xl"
-                    size={50}
-                  >
+                  ) : (
                     <IconPlayerPlayFilled style={getIconStyle(32)} />
-                  </ActionIcon>
-                </Center>
-              )
+                  )}
+                </ActionIcon>
+              </Center>
             }
           />
 

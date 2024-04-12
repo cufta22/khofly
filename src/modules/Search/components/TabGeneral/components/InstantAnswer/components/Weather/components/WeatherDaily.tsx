@@ -1,6 +1,6 @@
-import { Anchor, Box, Flex, Image, Text, UnstyledButton } from "@mantine/core";
+import { Flex, Text, UnstyledButton } from "@mantine/core";
 
-import classes from "./styles.module.scss";
+import classes from "../styles.module.scss";
 import { OpenWeatherCode } from "src/api/weather/types";
 import WeatherIcon from "./WeatherIcon";
 
@@ -10,8 +10,8 @@ dayjs.extend(utc);
 
 interface Props {
   onClick: () => void;
-  tempMin: number;
-  tempMax: number;
+  tempMin: string;
+  tempMax: string;
   code: OpenWeatherCode;
   date: number;
 }
@@ -38,10 +38,10 @@ const WeatherDaily: React.FC<Props> = ({
 
       <Flex align="center" justify="center" gap="md">
         <Text size="lg" fw="bold">
-          {tempMax}°
+          {tempMax}
         </Text>
         <Text size="sm" c="dimmed">
-          {tempMin}°
+          {tempMin}
         </Text>
       </Flex>
     </UnstyledButton>
