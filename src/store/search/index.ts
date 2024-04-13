@@ -24,6 +24,10 @@ interface SearchState {
   setSelectedTab: (next: ICategories) => void;
   searchQuery: string;
   setSearchQuery: (next: string) => void;
+
+  visitedLinks: string[];
+  updateVisitedLinks: (next: string) => void;
+  resetVisitedLinks: () => void;
 }
 
 export const useSearchStore = create<SearchState>()((set) => ({
@@ -42,4 +46,9 @@ export const useSearchStore = create<SearchState>()((set) => ({
   setSelectedTab: (next) => set({ selectedTab: next }),
   searchQuery: "",
   setSearchQuery: (next) => set({ searchQuery: next }),
+
+  visitedLinks: [],
+  updateVisitedLinks: (next) =>
+    set((state) => ({ visitedLinks: [...state.visitedLinks, next] })),
+  resetVisitedLinks: () => set({ visitedLinks: [] }),
 }));

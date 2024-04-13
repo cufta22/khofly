@@ -1,5 +1,4 @@
 import useFetch from "../use-fetch";
-import useSWRMutation from "swr/mutation";
 import { OpenWeatherResponse } from "./types";
 import useSWR from "swr";
 

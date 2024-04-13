@@ -1,22 +1,37 @@
 import { LinksGroupProps } from "@components/Navbar/Wiki/components/LinksGroup";
-import { IconPick, IconServer } from "@tabler/icons-react";
+import { IconPick, IconSearch, IconServer } from "@tabler/icons-react";
 
 export const NAVBAR_DATA: LinksGroupProps[] = [
   {
-    label: "Resources",
-    icon: IconPick,
+    label: "Search",
+    icon: IconSearch,
     links: [
-      { label: "Overview", link: "/docs/overview", isWip: true },
       {
         label: "Instant Answers",
         link: "/docs/instant-answers",
         isWip: false,
       },
+      {
+        label: "Private Search",
+        link: "/docs/private-search",
+        isWip: false,
+      },
+    ],
+  },
+  {
+    label: "Resources",
+    icon: IconPick,
+    links: [
       { label: "Set Default", link: "/docs/set-default", isWip: false },
       { label: "Custom SearXNG", link: "/docs/custom-searxng", isWip: false },
       {
         label: "Languages",
         link: "/docs/internationalization",
+        isWip: false,
+      },
+      {
+        label: "Site Data",
+        link: "/docs/site-data",
         isWip: false,
       },
     ],

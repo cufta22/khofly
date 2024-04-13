@@ -18,7 +18,7 @@ import IAPassword from "@module/Search/components/TabGeneral/components/InstantA
 import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Unit";
 import IAEquation from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Equation";
 
-const DocsResourcesInstantAnswer = () => {
+const DocsSearchInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
 
   return (
@@ -114,4 +114,4 @@ const DocsResourcesInstantAnswer = () => {
   );
 };
 
-export default DocsResourcesInstantAnswer;
+export default DocsSearchInstantAnswer;

@@ -48,5 +48,10 @@ export default defineConfig(({ mode }) => {
       "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
       "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
     },
+
+    // Testing for Vercel edge functions
+    ssr: {
+      noExternal: true,
+    },
   };
 });

@@ -4,8 +4,8 @@ import classes from "./styles.module.scss";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useResponsive } from "@hooks/use-responsive";
-import { useGeneralStore } from "@store/general";
 import { useSettingsStore } from "@store/settings";
+import { useSearchStore } from "@store/search";
 
 const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   title,
@@ -14,7 +14,7 @@ const SearchResultRow: React.FC<ISearXNGResultsGeneral["results"][0]> = ({
   content,
   engines,
 }) => {
-  const { visitedLinks, updateVisitedLinks } = useGeneralStore((state) => ({
+  const { visitedLinks, updateVisitedLinks } = useSearchStore((state) => ({
     visitedLinks: state.visitedLinks,
     updateVisitedLinks: state.updateVisitedLinks,
   }));

@@ -1,12 +1,20 @@
-import { Text } from "@mantine/core";
+import { Flex, Text } from "@mantine/core";
 import { IFC } from "@ts/global.types";
 import React from "react";
 
-const WikiSubtitle: React.FC<IFC> = ({ children }) => {
+interface Props extends IFC {
+  leftSection?: any;
+}
+
+const WikiSubtitle: React.FC<Props> = ({ children, leftSection }) => {
   return (
-    <Text mt="md" mb="xs" size="xl" fw="bold">
-      {children}
-    </Text>
+    <Flex direction="row" align="center" gap="lg" mt="md" mb="xs">
+      {leftSection && leftSection}
+
+      <Text size="xl" fw="bold">
+        {children}
+      </Text>
+    </Flex>
   );
 };
 

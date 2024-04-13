@@ -19,14 +19,19 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
 
   useEffect(() => {
     if (initialQ) {
+      console.log("TEST 1");
+
       trigger(initialQ);
-      return;
     }
+  }, []);
 
-    if (q) trigger(q.replace("lyrics", ""));
+  useEffect(() => {
+    if (q && !initialQ) {
+      console.log("TEST 2");
+
+      trigger(q.replace("lyrics", ""));
+    }
   }, [q]);
-
-  if (!data) return <IAWrapper />;
 
   return (
     <IAWrapper
@@ -41,16 +46,18 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
         </Text>
       }
     >
-      <Spoiler maxHeight={170} showLabel="Show more" hideLabel="Hide">
-        <Text className={classes.song_title} fz={22} fw={600}>
-          {data.title}
-        </Text>
-        <Text size="md" mb="xl">
-          {data.artist}
-        </Text>
+      {data && (
+        <Spoiler maxHeight={170} showLabel="Show more" hideLabel="Hide">
+          <Text className={classes.song_title} fz={22} fw={600}>
+            {data.title}
+          </Text>
+          <Text size="md" mb="xl">
+            {data.artist}
+          </Text>
 
-        <Text className={classes.song_lyrics}>{data?.lyrics}</Text>
-      </Spoiler>
+          <Text className={classes.song_lyrics}>{data?.lyrics}</Text>
+        </Spoiler>
+      )}
     </IAWrapper>
   );
 };

@@ -4,7 +4,6 @@ import SearchBar from "./components/SearchBar";
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import Shortcuts from "./components/Shortcuts";
-import { AreaChart } from "@mantine/charts";
 
 const PageIndex = () => {
   const t = useTranslate();

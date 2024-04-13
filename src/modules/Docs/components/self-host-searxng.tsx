@@ -12,6 +12,9 @@ import { IconFile } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useState } from "react";
 import WikiLink from "./common/WikiLink";
+import WikiTitle from "./common/WikiTitle";
+import WikiText from "./common/WikiText";
+import WikiSubtitle from "./common/WikiSubtitle";
 
 const CODE_SYS_UPDATE_DEBIAN = `
 apt update && apt upgrade
@@ -164,6 +167,8 @@ const DocsSelfHostSearxng = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
+      <WikiTitle>Installation guide</WikiTitle>
+
       <Blockquote
         color="blue"
         cite="- https://docs.searxng.org/"
@@ -176,15 +181,11 @@ const DocsSelfHostSearxng = () => {
         anonymity.
       </Blockquote>
 
-      <Text fz="34" fw={600} mt={50} mb="md">
-        Installation guide
-      </Text>
-
-      <Text mt="md">
+      <WikiText>
         This guide will show you how to setup a SearXNG instance to be used with
         Khofly Search as it&apos;s front-end, your instance will still be
         perfectly usable on it&apos;s own. Important differences:
-      </Text>
+      </WikiText>
 
       <List>
         <List.Item>
@@ -207,9 +208,7 @@ const DocsSelfHostSearxng = () => {
         </List.Item>
       </List>
 
-      <Text mt="md" mb="xs" size="lg" fw="bold">
-        Requirements:
-      </Text>
+      <WikiSubtitle>Requirements:</WikiSubtitle>
 
       <List>
         <List.Item>
@@ -225,9 +224,7 @@ const DocsSelfHostSearxng = () => {
         VPS will do just fine
       </Text>
 
-      <Text mt="md" mb="xs" size="xl" fw="bold">
-        Make sure everything is up to date
-      </Text>
+      <WikiSubtitle>Make sure everything is up to date</WikiSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <CodeHighlightTabs
@@ -264,9 +261,7 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <Text mt="md" mb="xs" size="xl" fw="bold">
-        Create a new user
-      </Text>
+      <WikiSubtitle>Create a new user</WikiSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <CodeHighlightTabs
@@ -303,15 +298,13 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <Text mt="md">
+      <WikiText>
         Doing this allows you to isolate all the commands and files when
         installing and configuring SearXNG. It can be especially useful if you
         intend to host the search engine on a VPS with multiple services.
-      </Text>
+      </WikiText>
 
-      <Text mt="md" mb="xs" size="xl" fw="bold">
-        Install dependencies
-      </Text>
+      <WikiSubtitle>Install dependencies</WikiSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <CodeHighlightTabs
@@ -348,11 +341,9 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <Text mt="md" mb="xs" size="xl" fw="bold">
-        Clone and install SearXNG
-      </Text>
+      <WikiSubtitle>Clone and install SearXNG</WikiSubtitle>
 
-      <Text mt="md">
+      <WikiText>
         There are three different methods for installing SearXNG ( manual,
         installation script, docker ), all explained at the
         <WikiLink
@@ -366,7 +357,7 @@ const DocsSelfHostSearxng = () => {
           label="SearXNG repository"
         />
         . After that is finished, run the installation script.
-      </Text>
+      </WikiText>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <CodeHighlightTabs
@@ -403,14 +394,12 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <Text mt="md">
+      <WikiText>
         Installation process is mostly automatic, but you will be asked to
         confirm everything that SearXNG wants to install.
-      </Text>
+      </WikiText>
 
-      <Text mt="md" mb="xs" size="xl" fw="bold">
-        Nginx configuration
-      </Text>
+      <WikiSubtitle>Nginx configuration</WikiSubtitle>
 
       <Blockquote
         color="yellow"
@@ -460,16 +449,9 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <Text mt="md" mb="xs" size="xl" fw="bold">
-        SearXNG configuration
-      </Text>
+      <WikiSubtitle>SearXNG configuration</WikiSubtitle>
 
-      <Blockquote
-        color="green"
-        // cite="- https://docs.searxng.org/"
-        mt="lg"
-        radius="sm"
-      >
+      <Blockquote color="green" mt="lg" radius="sm">
         Default configuration file for SearXNG is located at
         /etc/searxng/settings.yml ( read more about the different options at the
         <WikiLink
@@ -511,9 +493,7 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <Text mt="md" mb="xs" size="xl" fw="bold">
-        Finalize installation
-      </Text>
+      <WikiSubtitle>Finalize installation</WikiSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <CodeHighlightTabs

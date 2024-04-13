@@ -36,7 +36,7 @@
     "react": "18.3.0-canary-c3048aab4-20240326",
     "react-dom": "18.3.0-canary-c3048aab4-20240326",
     "react-leaflet": "^4.2.1",
-    "recharts": "^2.12.4",
+    "recharts": "^2.12.5",
     "swr": "^2.2.5",
     "zustand": "^4.5.2"
   },

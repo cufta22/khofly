@@ -60,8 +60,8 @@ const IAWeather = () => {
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data && hydrated) mutate();
-  }, [hydrated]);
+    if (!data && hydrated && (location?.latitude || geolocation?.lat)) mutate();
+  }, [hydrated, geolocation, location]);
 
   // Update current data
   useEffect(() => {

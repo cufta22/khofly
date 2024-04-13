@@ -8,8 +8,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { IconClock } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
-import { useGeneralStore } from "@store/general";
 import { useSettingsStore } from "@store/settings";
+import { useSearchStore } from "@store/search";
 
 dayjs.extend(relativeTime);
 
@@ -21,7 +21,7 @@ const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
   engines,
   publishedDate,
 }) => {
-  const { visitedLinks, updateVisitedLinks } = useGeneralStore((state) => ({
+  const { visitedLinks, updateVisitedLinks } = useSearchStore((state) => ({
     visitedLinks: state.visitedLinks,
     updateVisitedLinks: state.updateVisitedLinks,
   }));

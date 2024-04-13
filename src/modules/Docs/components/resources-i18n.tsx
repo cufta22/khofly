@@ -1,72 +1,40 @@
-import { CodeHighlightTabs } from "@mantine/code-highlight";
-import { Blockquote, Code, Container, Paper, Text } from "@mantine/core";
+import { Code, Container, useMantineTheme } from "@mantine/core";
 import WikiText from "./common/WikiText";
 import WikiSubtitle from "./common/WikiSubtitle";
-import RemixLink from "@components/RemixLink";
-
-const CODE_SEARXNG_CONFIG = `
-search:
-  formats:
-    - html
-    - json # add this
-
-server:
-  secret_key: "sercet" # make sure to change this
-`;
+import WikiTitle from "./common/WikiTitle";
+import { IconLanguage } from "@tabler/icons-react";
+import { getIconStyle } from "@utils/functions/iconStyle";
 
 const DocsResourcesInternationalization = () => {
+  const theme = useMantineTheme();
+
+  const LanguageSelectString = "<LanguageSelect />";
+
   return (
     <Container size="lg" p="xl" pb={100}>
-      <Blockquote
-        color="blue"
-        // cite="- https://docs.searxng.org/"
-        mt="xl"
-        radius="sm"
+      <WikiTitle
+        leftSection={
+          <IconLanguage style={getIconStyle(48)} color={theme.colors.blue[5]} />
+        }
       >
-        This page will show you settings that you need if you want to use your
-        own SearXNG instance with Khofly. If you don't have your own SearXNG
-        instance hosted check out{" "}
-        <RemixLink to="/docs/self-host-searxng">
-          <Text component="span" c="blue.4">
-            the hosting guide
-          </Text>
-        </RemixLink>
-        .
-      </Blockquote>
+        Internationalization
+      </WikiTitle>
 
-      <WikiSubtitle>
-        1. Change settings yaml to include the following changes
-      </WikiSubtitle>
+      <WikiSubtitle>1. Adding new language to Khofly</WikiSubtitle>
 
       <WikiText>
-        Add output format <Code>json</Code>, this will allow you to use the
-        search as API and return a JSON response, and make sure to set a long
-        randomly generated string for server secret ( ex. run{" "}
-        <Code>openssl rand -hex 32</Code> )
+        Languages are saved in <Code>/public/locales</Code> in JSON files. These
+        files need to be in sync with each other so every change made to one
+        file needs to be added to every other file too.
       </WikiText>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
-          code={[
-            {
-              code: CODE_SEARXNG_CONFIG,
-              language: "yaml",
-              fileName: "/etc/searxng/settings.yml",
-            },
-          ]}
-        />
-      </Paper>
-
       <WikiText>
-        After this change restart your SearXNG instance with{" "}
-        <Code>sudo service uwsgi restart searxng</Code>
-      </WikiText>
-
-      <WikiSubtitle>1. Add your instance to Khofly</WikiSubtitle>
-
-      <WikiText>
-        Go to Settings/Instances/SearXNG Domain and set your instances domain in
-        the following format <Code>https://domain.com</Code>
+        <Code>{LanguageSelectString}</Code> is located in{" "}
+        <Code>/src/modules/Settings/components/Interface</Code> and will
+        automatically set a cookie for the new language and refresh the page to
+        apply the changes. <Code>LANG_DATA</Code> array stores all available
+        languages just make sure that <Code>value</Code> prop matches with{" "}
+        <Code>{`{value}.json`}</Code> in the public folder.
       </WikiText>
     </Container>
   );

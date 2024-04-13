@@ -11,7 +11,6 @@ import { useDisclosure, useDocumentTitle, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
 import NProgress from "@module/NProgress";
-import { useGeneralStore } from "@store/general";
 import {
   useLocation,
   useRouteError,
@@ -19,6 +18,7 @@ import {
   useSearchParams,
 } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { useSearchStore } from "@store/search";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const data = useRouteLoaderData("root") as { theme: IAppTheme };
@@ -27,7 +27,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
-  const { resetVisitedLinks } = useGeneralStore((state) => ({
+  const { resetVisitedLinks } = useSearchStore((state) => ({
     resetVisitedLinks: state.resetVisitedLinks,
   }));
 

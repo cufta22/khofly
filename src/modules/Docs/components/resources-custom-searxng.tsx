@@ -65,7 +65,7 @@ const DocsResourcesCustomSearxng = () => {
         <Code>sudo service uwsgi restart searxng</Code>
       </WikiText>
 
-      <WikiSubtitle>1. Add your instance to Khofly</WikiSubtitle>
+      <WikiSubtitle>2. Add your instance to Khofly</WikiSubtitle>
 
       <WikiText>
         Go to Settings/Instances/SearXNG Domain and set your instances domain in
