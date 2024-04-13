@@ -19,6 +19,7 @@ import {
 } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useSearchStore } from "@store/search";
+import DevInterface from "./DevInterface";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const data = useRouteLoaderData("root") as { theme: IAppTheme };
@@ -72,6 +73,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
       <Notifications />
 
       <NProgress />
+
+      <DevInterface />
 
       <AppShell
         header={{

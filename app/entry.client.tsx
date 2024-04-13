@@ -31,6 +31,8 @@ async function hydrate() {
         content={content}
         language={htmlLang}
         theme={appTheme}
+        // vercelRegion=""
+        // nodeVersion=""
       >
         <StrictMode>
           <RemixBrowser />

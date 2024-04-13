@@ -16,6 +16,7 @@ import SettingsCategories from "./components/Categories";
 import SettingsNominatim from "./components/Nominatim";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useState } from "react";
+import SettingsDevelopment from "./components/Development";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -82,6 +83,8 @@ const PageSettings = () => {
           <>
             <SettingsCategories />
             <SettingsGeneral />
+
+            <SettingsDevelopment />
           </>
         </Tabs.Panel>
 

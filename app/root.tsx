@@ -45,6 +45,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json({
     language: appLang,
     theme: appTheme,
+
+    // Vercel stuff
+    nodeVersion: process?.versions?.node || "/",
+    vercelRegion: process?.env?.VERCEL_REGION || "/",
   });
 }
 

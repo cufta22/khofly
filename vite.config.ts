@@ -50,8 +50,8 @@ export default defineConfig(({ mode }) => {
     },
 
     // Testing for Vercel edge functions
-    ssr: {
-      noExternal: true,
-    },
+    // ssr: {
+    //   noExternal: true,
+    // },
   };
 });
