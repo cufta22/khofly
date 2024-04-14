@@ -4,6 +4,10 @@
 const DEFAULT = "https://searxng-eu1.khofly.com";
 
 export const getDefaultSearXNG = (): string => {
+  if (process.env.SELF_HOST === "1") {
+    return process.env.SEARXNG_URL_DEFAULT || DEFAULT;
+  }
+
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone.split("/")[0];
 
   switch (tz) {

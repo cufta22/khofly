@@ -8,11 +8,17 @@ import WikiTitle from "../../common/WikiTitle";
 
 const envVars = `
 HOST = # your domain, either set a custom domain or Vercel auto assigned one
-SEARXNG_URL = # url for your SearXNG instance
+
+SEARXNG_URL_DEFAULT = # url for your SearXNG instance
+
 NOMINATIM_URL = https://nominatim.openstreetmap.org 
+
+OPEN_WEATHER_URL = https://api.openweathermap.org
+OPEN_WEATHER_API_KEY = # Your API key if you want to use weather IA
 
 IS_SELF_HOST = 1
 APP_NAME = # Custom instance name
+HOST_TARGET = vercel
 `;
 
 const SectionVercel = () => {

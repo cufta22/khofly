@@ -63,14 +63,18 @@ const useSearXNGSWR = <IResults>() => {
     enginesIT: state.enginesIT,
   }));
 
-  const { safeSearch, dateRange, searchLanguage } = useSearchStore((state) => ({
-    safeSearch: state.safeSearch,
-    dateRange: state.dateRange,
-    searchLanguage: state.searchLanguage,
-  }));
+  const { safeSearch, dateRange, searchLanguage, searchQuery } = useSearchStore(
+    (state) => ({
+      safeSearch: state.safeSearch,
+      dateRange: state.dateRange,
+      searchLanguage: state.searchLanguage,
+
+      searchQuery: state.searchQuery,
+    })
+  );
 
   const [searchParams] = useSearchParams();
-  const q = (searchParams.get("q") as string) || "";
+  const q = searchQuery || (searchParams.get("q") as string) || "";
   const tab = (searchParams.get("tab") as ICategories) || "general";
 
   const fetcher = (_key: string) => {

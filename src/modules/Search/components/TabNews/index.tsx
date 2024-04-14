@@ -6,7 +6,7 @@ import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import classes from "./styles.module.scss";
 import NewsRow from "./components/NewsRow";
 import SearchResultSkeleton from "../TabGeneral/components/SearchResultSkeleton";
-import ScrollToTop from "../ScrollToTop";
+import ScrollToTop from "../../../../common/components/ScrollToTop";
 import SearchOptions from "../SearchOptions";
 import { useEnginesStore } from "@store/engines";
 

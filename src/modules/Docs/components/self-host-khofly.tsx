@@ -1,5 +1,6 @@
 import { Container, Tabs, useMantineTheme } from "@mantine/core";
 import {
+  IconAirBalloon,
   IconBrandVercel,
   IconServer,
 } from "@tabler/icons-react";
@@ -12,8 +13,19 @@ const DocsSelfHostKhofly = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <Tabs variant="default" defaultValue="vercel" keepMounted={false}>
+      <Tabs variant="default" defaultValue="flyio" keepMounted={false}>
         <Tabs.List>
+          <Tabs.Tab
+            value="flyio"
+            leftSection={
+              <IconAirBalloon
+                style={{ ...getIconStyle(28), color: colors.grape[4] }}
+              />
+            }
+            fz={15}
+          >
+            Fly.io
+          </Tabs.Tab>
           <Tabs.Tab
             value="vercel"
             leftSection={
@@ -59,6 +71,10 @@ const DocsSelfHostKhofly = () => {
             VPS
           </Tabs.Tab>
         </Tabs.List>
+
+        <Tabs.Panel value="flyio">
+          <DocsWIP />
+        </Tabs.Panel>
         <Tabs.Panel value="vercel">
           <SectionVercel />
         </Tabs.Panel>

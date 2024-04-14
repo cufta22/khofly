@@ -20,6 +20,7 @@ import {
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useSearchStore } from "@store/search";
 import DevInterface from "./DevInterface";
+import { useGeneralStore } from "@store/general";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const data = useRouteLoaderData("root") as { theme: IAppTheme };
@@ -28,8 +29,12 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
-  const { resetVisitedLinks } = useSearchStore((state) => ({
+  const { resetVisitedLinks, searchQuery } = useSearchStore((state) => ({
     resetVisitedLinks: state.resetVisitedLinks,
+    searchQuery: state.searchQuery,
+  }));
+  const { devMode } = useGeneralStore((state) => ({
+    devMode: state.devMode,
   }));
 
   const appTheme: IAppTheme = data?.theme;
@@ -39,7 +44,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const tab = searchParams.get("tab");
-  const q = searchParams.get("q");
+  const q = searchQuery || searchParams.get("q") || "";
 
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
@@ -74,7 +79,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
       <NProgress />
 
-      <DevInterface />
+      {devMode && <DevInterface />}
 
       <AppShell
         header={{
@@ -101,6 +106,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           }),
           footer: classes.app_footer,
         }}
+        id="root"
       >
         {!isSearchMaps && (
           <AppShell.Header>

@@ -22,6 +22,7 @@ import clsx from "clsx";
 import useNominatimSWR from "src/api/nominatim/use-nominatim-query";
 import { useResponsive } from "@hooks/use-responsive";
 import { useNavigate, useSearchParams } from "@remix-run/react";
+import { useSettingsStore } from "@store/settings";
 
 interface Props {
   coords: { latitude: number; longitude: number };
@@ -32,12 +33,16 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
+  const { data, isMutating, trigger, error } = useNominatimSWR();
+
   const [isOpen, { toggle }] = useDisclosure(true);
   const [q, setQ] = useState(searchParams.get("q") || "");
 
-  const isXs = useResponsive("max", "xs");
+  const { privateSearch } = useSettingsStore((state) => ({
+    privateSearch: state.privateSearch,
+  }));
 
-  const { data, isMutating, trigger, error } = useNominatimSWR();
+  const isXs = useResponsive("max", "xs");
 
   const handleSearch = () => {
     // Prevent empty search
@@ -48,6 +53,11 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
 
   const handleGoBack = () => {
     const query = searchParams.get("q") || "";
+
+    // Handle Private Search
+    if (privateSearch) {
+      return navigate("/search?tab=general");
+    }
 
     navigate(`/search?q=${encodeURIComponent(query)}&tab=general`);
   };

@@ -5,15 +5,21 @@ interface GeneralState {
 
   geolocation: { lon: string; lat: string } | null;
   setGeolocation: (next: { lon: string; lat: string }) => void;
+
+  devMode: boolean;
+  toggleDevMode: () => void;
 }
 
 export const useGeneralStore = create<GeneralState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       hydrated: false,
 
       geolocation: null,
       setGeolocation: (next) => set({ geolocation: next }),
+
+      devMode: false,
+      toggleDevMode: () => set({ devMode: !get().devMode }),
     }),
     {
       onRehydrateStorage: () => (state) => {

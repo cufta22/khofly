@@ -50,14 +50,14 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
     <Drawer
       opened={isOpen}
       onClose={handleClose}
-      title="View image"
+      title={<Text size="xl">Image preview</Text>}
       position="right"
       size="xl"
       closeButtonProps={{
         size: "xl",
       }}
     >
-      <Text mt="xl" size="lg" c="white">
+      <Text mt="md" size="lg" c="white">
         {viewImage?.title}
       </Text>
 

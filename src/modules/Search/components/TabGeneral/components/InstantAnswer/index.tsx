@@ -20,15 +20,20 @@ import IAPassword from "./components/Password";
 import SharedCurrencyUnit from "./_shared/SharedCurrencyUnit";
 import SharedStopwatchTimer from "./_shared/SharedStopwatchTimer";
 import IAEquation from "./components/Equation";
+import { useSearchStore } from "@store/search";
 
 const InstantAnswer = () => {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get("q") || "";
   const isXl = useResponsive("min", "lg");
 
+  const { searchQuery } = useSearchStore((state) => ({
+    searchQuery: state.searchQuery,
+  }));
   const { useInstantAnswers } = useSettingsStore((state) => ({
     useInstantAnswers: state.useInstantAnswers,
   }));
+
+  const query = searchQuery || searchParams.get("q") || "";
 
   // Instant Answers disabled in settings
   if (!useInstantAnswers) return null;

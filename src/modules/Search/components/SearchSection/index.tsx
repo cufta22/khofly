@@ -10,6 +10,7 @@ import RemixLink from "@components/RemixLink";
 
 import SearchSectionInput from "./components/SearchSectionInput";
 import { useSearchParams } from "@remix-run/react";
+import { useSearchStore } from "@store/search";
 
 const SearchSectionTabsWithoutSSR = lazy(
   () => import(`./components/SearchSectionTabs`)
@@ -17,6 +18,11 @@ const SearchSectionTabsWithoutSSR = lazy(
 
 const SearchSection = () => {
   const [searchParams] = useSearchParams();
+
+  const { searchQuery } = useSearchStore((state) => ({
+    searchQuery: state.searchQuery,
+  }));
+  const q = searchQuery || searchParams.get("q") || "";
 
   return (
     <Group
@@ -26,7 +32,7 @@ const SearchSection = () => {
       gap="md"
     >
       <RemixLink className={classes.app_logo} to="/">
-        {searchParams.get("q")?.includes("doge") ? (
+        {q.includes("doge") ? (
           <Image
             w={42}
             h={42}

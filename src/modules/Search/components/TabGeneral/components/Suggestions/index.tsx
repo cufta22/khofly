@@ -5,6 +5,8 @@ import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import React from "react";
 import classes from "./styles.module.scss";
+import { useSearchStore } from "@store/search";
+import { useSettingsStore } from "@store/settings";
 
 interface Props {
   suggestions: ISearXNGResultsGeneral["suggestions"];
@@ -15,7 +17,20 @@ const Suggestions: React.FC<Props> = ({ suggestions, type }) => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
+  const { privateSearch } = useSettingsStore((state) => ({
+    privateSearch: state.privateSearch,
+  }));
+  const { setSearchQuery } = useSearchStore((state) => ({
+    setSearchQuery: state.setSearchQuery,
+  }));
+
   const handleSubmitSearch = (newQ: string) => {
+    // Handle Private Search
+    if (privateSearch) {
+      setSearchQuery(encodeURIComponent(newQ));
+      return navigate("/search?tab=general");
+    }
+
     navigate(`/search?q=${encodeURIComponent(newQ)}&tab=general`);
   };
 

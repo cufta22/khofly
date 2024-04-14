@@ -18,6 +18,7 @@ import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useSettingsStore } from "@store/settings";
+import { useSearchStore } from "@store/search";
 
 const SearchSectionInput = () => {
   const t = useTranslate();
@@ -30,11 +31,16 @@ const SearchSectionInput = () => {
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const { useAutocomplete } = useSettingsStore((state) => ({
+  const { useAutocomplete, privateSearch } = useSettingsStore((state) => ({
     useAutocomplete: state.useAutocomplete,
+    privateSearch: state.privateSearch,
+  }));
+  const { setSearchQuery, searchQuery } = useSearchStore((state) => ({
+    setSearchQuery: state.setSearchQuery,
+    searchQuery: state.searchQuery,
   }));
 
-  const [q, setQ] = useState(searchParams.get("q") || "");
+  const [q, setQ] = useState(searchQuery || searchParams.get("q") || "");
   const [debouncedQ] = useDebouncedValue(q, 400);
 
   // Autocomplete API
@@ -45,10 +51,16 @@ const SearchSectionInput = () => {
     const paramsQ = searchParams.get("q") || "";
 
     // Prevent unnecessary search
-    if (!query.length || query === paramsQ) return;
+    if (!query.length || query === paramsQ || searchQuery === paramsQ) return;
 
     // Unfocus input on search
     inputRef.current?.blur();
+
+    // Handle Private Search
+    if (privateSearch) {
+      setSearchQuery(encodeURIComponent(query));
+      return navigate(`/search?tab=${paramsTab}`);
+    }
     navigate(`/search?q=${encodeURIComponent(query)}&tab=${paramsTab}`);
   };
 

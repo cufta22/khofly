@@ -17,32 +17,40 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useSearchStore } from "@store/search";
 import { ICategories, useSettingsStore } from "@store/settings";
+import { useState } from "react";
+import { nprogress } from "@mantine/nprogress";
 
 const SearchSectionTabs = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const {
-    isSearchOptionsOpen,
-    setIsSearchOptionsOpen,
-    selectedTab,
-    setSelectedTab,
-  } = useSearchStore((state) => ({
-    setIsSearchOptionsOpen: state.setIsSearchOptionsOpen,
-    isSearchOptionsOpen: state.isSearchOptionsOpen,
-    selectedTab: state.selectedTab,
-    setSelectedTab: state.setSelectedTab,
-  }));
-  const { categories } = useSettingsStore((state) => ({
+  const { isSearchOptionsOpen, setIsSearchOptionsOpen, setSearchQuery } =
+    useSearchStore((state) => ({
+      setIsSearchOptionsOpen: state.setIsSearchOptionsOpen,
+      isSearchOptionsOpen: state.isSearchOptionsOpen,
+      setSearchQuery: state.setSearchQuery,
+    }));
+  const { categories, privateSearch } = useSettingsStore((state) => ({
     categories: state.categories,
+    privateSearch: state.privateSearch,
   }));
+
+  const [selectedTab, setSelectedTab] = useState(
+    searchParams.get("tab") || "general"
+  );
 
   const iconSize = 16;
 
   const handleChangeTab = (tab: ICategories) => {
+    nprogress.start();
+    setSelectedTab(tab);
+
     const query = searchParams.get("q") || "";
 
-    // setSelectedTab(tab);
+    // Handle Private Search
+    if (privateSearch) {
+      return navigate(`/search?tab=${tab}`);
+    }
     navigate(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
 
@@ -55,7 +63,7 @@ const SearchSectionTabs = () => {
         }}
         defaultValue="general"
         // value={selectedTab || "general"}
-        value={searchParams.get("tab") || "general"}
+        value={selectedTab}
         onChange={(tab) => handleChangeTab(tab as ICategories)}
         variant="default"
         w="fit-content"

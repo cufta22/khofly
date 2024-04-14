@@ -19,9 +19,7 @@ interface SearchState {
   dateRange: IDateRange;
   setDateRange: (next: IDateRange) => void;
 
-  // Search state
-  selectedTab: ICategories;
-  setSelectedTab: (next: ICategories) => void;
+  // For Private Search
   searchQuery: string;
   setSearchQuery: (next: string) => void;
 
@@ -41,9 +39,7 @@ export const useSearchStore = create<SearchState>()((set) => ({
   dateRange: "all",
   setDateRange: (next) => set({ dateRange: next }),
 
-  // Search state
-  selectedTab: "general",
-  setSelectedTab: (next) => set({ selectedTab: next }),
+  // For Private Search
   searchQuery: "",
   setSearchQuery: (next) => set({ searchQuery: next }),
 

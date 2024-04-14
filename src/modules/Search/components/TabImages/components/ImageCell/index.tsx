@@ -1,7 +1,8 @@
 import { Flex, Image, Text } from "@mantine/core";
 import { ISearXNGResultsImages } from "@ts/searxng.types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./styles.module.scss";
+import { useInViewport } from "@mantine/hooks";
 
 interface Props {
   openImageInView: (img: ISearXNGResultsImages["results"][0]) => void;
@@ -11,14 +12,20 @@ interface Props {
 const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
   const { thumbnail_src, resolution, parsed_url, title } = imageData;
 
+  // Lazy load images
+  const [visible, setVisible] = useState(false);
+  const { ref, inViewport } = useInViewport();
+
+  useEffect(() => {
+    if (inViewport) setVisible(true);
+  }, [inViewport]);
+
   return (
     <Flex
       className={classes.image_container}
       direction="column"
       onClick={() => openImageInView(imageData)}
-      //   href={url}
-      //   target={"_blank"}
-      //   rel="noreferrer noopener"
+      ref={ref}
     >
       <Flex
         className={classes.image_cell}
@@ -26,13 +33,17 @@ const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
         // w={getDynamicWidth()}
         px={6}
       >
-        <Image
-          src={thumbnail_src}
-          width={200}
-          height={220}
-          alt={title}
-          // unoptimized
-        />
+        {visible ? (
+          <Image
+            src={thumbnail_src}
+            width={200}
+            height={220}
+            alt={title}
+            // unoptimized
+          />
+        ) : (
+          <Flex w={200} h={220} />
+        )}
         <Text size="xs" className={classes.format_label}>
           {resolution}
         </Text>

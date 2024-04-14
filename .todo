@@ -1,4 +1,3 @@
-If equation = give result
 
 move leaflet stuff to /search
 fix language change page refresh
@@ -8,7 +7,8 @@ reduce file sizes
 make about page
 404 text alignment when deployed
 
-use remix fetcher with useSwr?
 add all translations
+
+currency convert
 
 sort out <ClientOnly />, use-mounted?

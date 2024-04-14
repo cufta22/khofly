@@ -33,6 +33,9 @@ interface SettingsState {
 
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;
+
+  privateSearch: boolean;
+  setPrivateSearch: (next: boolean) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -55,6 +58,9 @@ export const useSettingsStore = create<SettingsState>()(
 
       openInNewTab: false,
       setOpenInNewTab: (next) => set({ openInNewTab: next }),
+
+      privateSearch: false,
+      setPrivateSearch: (next) => set({ privateSearch: next }),
     }),
     {
       name: "settings-store", // name of the item in the storage (must be unique)
@@ -64,6 +70,7 @@ export const useSettingsStore = create<SettingsState>()(
         useAutocomplete: state.useAutocomplete,
         autocompleteEngine: state.autocompleteEngine,
         categories: state.categories,
+        privateSearch: state.privateSearch,
       }),
     }
   )

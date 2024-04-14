@@ -4,7 +4,7 @@ import SearchResultRow from "./components/SearchResultRow";
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-import ScrollToTop from "../ScrollToTop";
+import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import SearchResultSkeleton from "./components/SearchResultSkeleton";

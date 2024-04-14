@@ -5,6 +5,7 @@ import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 import classes from "./styles.module.scss";
 import { IAWrapper } from "../../wrapper";
 import { useSearchParams } from "@remix-run/react";
+import { useSearchStore } from "@store/search";
 
 interface Props {
   initialQ?: string;
@@ -15,20 +16,20 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
 
   const { data, trigger } = useLyricsSWR();
 
-  const q = searchParams.get("q");
+  const { searchQuery } = useSearchStore((state) => ({
+    searchQuery: state.searchQuery,
+  }));
+
+  const q = searchQuery || searchParams.get("q") || "";
 
   useEffect(() => {
     if (initialQ) {
-      console.log("TEST 1");
-
       trigger(initialQ);
     }
   }, []);
 
   useEffect(() => {
     if (q && !initialQ) {
-      console.log("TEST 2");
-
       trigger(q.replace("lyrics", ""));
     }
   }, [q]);

@@ -12,17 +12,20 @@ import { useEffect } from "react";
 import classes from "./styles.module.scss";
 import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 import { useSearchParams } from "@remix-run/react";
+import { useSearchStore } from "@store/search";
 
 const Lyricsbox = () => {
   const [searchParams] = useSearchParams();
 
   const { data, trigger } = useLyricsSWR();
 
-  const q = searchParams.get("q");
+  const { searchQuery } = useSearchStore((state) => ({
+    searchQuery: state.searchQuery,
+  }));
+
+  const q = searchQuery || searchParams.get("q") || "";
 
   useEffect(() => {
-    const q = searchParams.get("q");
-
     if (q && q.includes("lyrics")) trigger(q.replace("lyrics", ""));
   }, [q]);
 

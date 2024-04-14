@@ -6,9 +6,10 @@ import {
   Stack,
   Text,
   Tooltip,
+  useMantineTheme,
 } from "@mantine/core";
 
-import { IconInfoCircle, IconSettings2 } from "@tabler/icons-react";
+import { IconInfoCircle, IconSettings2, IconShield } from "@tabler/icons-react";
 import FaviconSwitch from "./FaviconSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
@@ -17,9 +18,12 @@ import classes from "./styles.module.scss";
 import IASwitch from "./IASwitch";
 import RemixLink from "@components/RemixLink";
 import { useTranslate } from "@hooks/translate/use-translate";
+import PrivateSearchSwitch from "./PrivateSearchSwitch";
 
 const SettingsGeneral = () => {
   const t = useTranslate();
+
+  const theme = useMantineTheme();
 
   return (
     <Paper radius="md" withBorder mt={40}>
@@ -96,6 +100,23 @@ const SettingsGeneral = () => {
 
           <IASwitch />
         </Flex> */}
+
+        <Divider my="sm" w="100%" />
+
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
+          <Flex align="center" gap="sm">
+            <Text size="md" fw={400}>
+              {t("pages.settings.general.toggle_private_search")}
+            </Text>
+
+            <IconShield
+              style={getIconStyle(20)}
+              color={theme.colors.green["5"]}
+            />
+          </Flex>
+
+          <PrivateSearchSwitch />
+        </Flex>
 
         <Divider my="sm" w="100%" />
 

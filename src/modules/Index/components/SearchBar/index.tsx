@@ -13,6 +13,7 @@ import { nprogress } from "@mantine/nprogress";
 import { useNavigate } from "@remix-run/react";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useSettingsStore } from "@store/settings";
+import { useSearchStore } from "@store/search";
 
 const SearchBar = () => {
   const t = useTranslate();
@@ -37,12 +38,25 @@ const SearchBar = () => {
     reset,
   } = useAutocompleteSWR();
 
+  const { privateSearch } = useSettingsStore((state) => ({
+    privateSearch: state.privateSearch,
+  }));
+  const { setSearchQuery } = useSearchStore((state) => ({
+    setSearchQuery: state.setSearchQuery,
+  }));
+
   const handleSearch = (query: string) => {
     // Prevent empty search
     if (!query.length) return;
 
     nprogress.start();
-    navigate(`/search?q=${encodeURIComponent(query)}`);
+
+    // Handle Private Search
+    if (privateSearch) {
+      setSearchQuery(encodeURIComponent(query));
+      return navigate("/search?tab=general");
+    }
+    navigate(`/search?q=${encodeURIComponent(query)}&tab=general`);
   };
 
   useEffect(() => {

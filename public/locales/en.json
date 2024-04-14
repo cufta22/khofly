@@ -91,6 +91,8 @@
 
         "toggle_ia": "Enable Instant Answers",
 
+        "toggle_private_search": "Enable Private Search",
+
         "set_as_default": "Set Khofly as default search engine",
         "set_as_default_btn": "Set default",
 

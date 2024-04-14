@@ -17,6 +17,7 @@ import IACurrency from "@module/Search/components/TabGeneral/components/InstantA
 import IAPassword from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Password";
 import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Unit";
 import IAEquation from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Equation";
+import ScrollToTop from "@components/ScrollToTop";
 
 const DocsSearchInstantAnswer = () => {
   const IAWrapperString = "<IAWrapper />";
@@ -110,6 +111,8 @@ const DocsSearchInstantAnswer = () => {
       <Box className={classes.search_box}>
         <IAWeather />
       </Box>
+
+      <ScrollToTop />
     </Container>
   );
 };

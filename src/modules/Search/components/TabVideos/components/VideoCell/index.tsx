@@ -1,9 +1,10 @@
 import { Anchor, Flex, Image, Text } from "@mantine/core";
 import { ISearXNGResultsVideos } from "@ts/searxng.types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./styles.module.scss";
 import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
+import { useInViewport } from "@mantine/hooks";
 
 interface Props {
   videoData: ISearXNGResultsVideos["results"][0];
@@ -17,6 +18,15 @@ const VideoCell: React.FC<Props> = ({ videoData }) => {
   }));
 
   const isXs = useResponsive("max", "xs");
+
+  // Lazy load images
+  const [visible, setVisible] = useState(false);
+  const { ref, inViewport } = useInViewport();
+
+  useEffect(() => {
+    if (inViewport) setVisible(true);
+  }, [inViewport]);
+
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
     ? "_blank"
     : openInNewTab
@@ -25,16 +35,25 @@ const VideoCell: React.FC<Props> = ({ videoData }) => {
 
   return (
     <Anchor href={url} target={anchorTarget} rel="noreferrer noopener">
-      <Flex className={classes.video_container} direction="column" p="xs">
-        <Image
-          src={thumbnail}
-          w="100%"
-          h="auto"
-          alt={title}
-          fit="cover"
-          radius="md"
-          // unoptimized
-        />
+      <Flex
+        ref={ref}
+        className={classes.video_container}
+        direction="column"
+        p="xs"
+      >
+        {visible ? (
+          <Image
+            src={thumbnail}
+            w="100%"
+            h="auto"
+            alt={title}
+            fit="cover"
+            radius="md"
+            // unoptimized
+          />
+        ) : (
+          <Flex w="100%" h={100} />
+        )}
 
         <Text component="span" size="sm" c="white" lineClamp={2} mt={4}>
           {title}
