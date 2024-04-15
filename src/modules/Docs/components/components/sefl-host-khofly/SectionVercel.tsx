@@ -17,7 +17,7 @@ OPEN_WEATHER_URL = https://api.openweathermap.org
 OPEN_WEATHER_API_KEY = # Your API key if you want to use weather IA
 
 IS_SELF_HOST = 1
-APP_NAME = # Custom instance name
+APP_NAME = YourApp # Will be used instead of "Khofly" across the app
 HOST_TARGET = vercel
 `;
 

@@ -1,31 +1,23 @@
 import { Container, Tabs, useMantineTheme } from "@mantine/core";
 import {
   IconAirBalloon,
+  IconBrandCloudflare,
   IconBrandVercel,
   IconServer,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsWIP from "./wip";
 import SectionVercel from "./components/sefl-host-khofly/SectionVercel";
+import SectionFly from "./components/sefl-host-khofly/SectionFly";
+import SectionCloudflare from "./components/sefl-host-khofly/SectionCloudflare";
 
 const DocsSelfHostKhofly = () => {
   const { colors } = useMantineTheme();
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <Tabs variant="default" defaultValue="flyio" keepMounted={false}>
+      <Tabs variant="default" defaultValue="vercel" keepMounted={false}>
         <Tabs.List>
-          <Tabs.Tab
-            value="flyio"
-            leftSection={
-              <IconAirBalloon
-                style={{ ...getIconStyle(28), color: colors.grape[4] }}
-              />
-            }
-            fz={15}
-          >
-            Fly.io
-          </Tabs.Tab>
           <Tabs.Tab
             value="vercel"
             leftSection={
@@ -36,6 +28,17 @@ const DocsSelfHostKhofly = () => {
             fz={15}
           >
             Vercel
+          </Tabs.Tab>
+          <Tabs.Tab
+            value="flyio"
+            leftSection={
+              <IconAirBalloon
+                style={{ ...getIconStyle(28), color: colors.grape[4] }}
+              />
+            }
+            fz={15}
+          >
+            Fly.io
           </Tabs.Tab>
           {/* <Tabs.Tab
             value="netlify"
@@ -48,7 +51,7 @@ const DocsSelfHostKhofly = () => {
           >
             Netlify
           </Tabs.Tab> */}
-          {/* <Tabs.Tab
+          <Tabs.Tab
             value="cloudflare"
             leftSection={
               <IconBrandCloudflare
@@ -58,7 +61,7 @@ const DocsSelfHostKhofly = () => {
             fz={15}
           >
             Cloudflare
-          </Tabs.Tab> */}
+          </Tabs.Tab>
           <Tabs.Tab
             value="vps"
             leftSection={
@@ -72,13 +75,14 @@ const DocsSelfHostKhofly = () => {
           </Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="flyio">
-          <DocsWIP />
-        </Tabs.Panel>
         <Tabs.Panel value="vercel">
           <SectionVercel />
         </Tabs.Panel>
+        <Tabs.Panel value="flyio">
+          <SectionFly />
+        </Tabs.Panel>
         <Tabs.Panel value="cloudflare">
+          {/* <SectionCloudflare /> */}
           <DocsWIP />
         </Tabs.Panel>
         <Tabs.Panel value="vps">
