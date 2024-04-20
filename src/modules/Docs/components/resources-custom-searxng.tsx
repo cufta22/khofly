@@ -1,9 +1,9 @@
-import { CodeHighlightTabs } from "@mantine/code-highlight";
 import { Blockquote, Code, Container, Paper, Text } from "@mantine/core";
-import WikiText from "./common/WikiText";
-import WikiSubtitle from "./common/WikiSubtitle";
+import DocsText from "./common/DocsText";
+import DocsSubtitle from "./common/DocsSubtitle";
 import RemixLink from "@components/RemixLink";
-import WikiTitle from "./common/WikiTitle";
+import DocsTitle from "./common/DocsTitle";
+import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
 
 const CODE_SEARXNG_CONFIG = `
 search:
@@ -18,7 +18,7 @@ server:
 const DocsResourcesCustomSearxng = () => {
   return (
     <Container size="lg" p="xl" pb={100}>
-      <WikiTitle>Custom SearXNG instance</WikiTitle>
+      <DocsTitle>Custom SearXNG instance</DocsTitle>
 
       <Blockquote
         color="blue"
@@ -37,19 +37,19 @@ const DocsResourcesCustomSearxng = () => {
         .
       </Blockquote>
 
-      <WikiSubtitle>
+      <DocsSubtitle>
         1. Change settings yaml to include the following changes
-      </WikiSubtitle>
+      </DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Add output format <Code>json</Code>, this will allow you to use the
         search as API and return a JSON response, and make sure to set a long
         randomly generated string for server secret ( ex. run{" "}
         <Code>openssl rand -hex 32</Code> )
-      </WikiText>
+      </DocsText>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           code={[
             {
               code: CODE_SEARXNG_CONFIG,
@@ -60,17 +60,17 @@ const DocsResourcesCustomSearxng = () => {
         />
       </Paper>
 
-      <WikiText>
+      <DocsText>
         After this change restart your SearXNG instance with{" "}
         <Code>sudo service uwsgi restart searxng</Code>
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>2. Add your instance to Khofly</WikiSubtitle>
+      <DocsSubtitle>2. Add your instance to Khofly</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Go to Settings/Instances/SearXNG Domain and set your instances domain in
         the following format <Code>https://domain.com</Code>
-      </WikiText>
+      </DocsText>
     </Container>
   );
 };

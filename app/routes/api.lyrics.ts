@@ -1,10 +1,7 @@
 import { Client } from "genius-lyrics";
 
-import { LoaderFunctionArgs, json as nodeJson } from "@remix-run/node";
-import { json as vercelJson } from "@vercel/remix";
-
-// Change functions based on deployment target
-const json = process.env.HOST_TARGET === "vercel" ? vercelJson : nodeJson;
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { platformJson } from "app/platform/json";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const client = new Client();
@@ -18,7 +15,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const lyrics = await song?.lyrics();
 
-  return json({
+  return platformJson({
     lyrics: lyrics,
     title: song?.title,
     artist: song?.artist.name,

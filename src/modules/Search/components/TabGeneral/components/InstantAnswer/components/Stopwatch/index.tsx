@@ -37,7 +37,13 @@ interface Props {
 }
 
 const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
-  const [time, setTime] = useState(INITIAL_TIME);
+  const [time, setTime] = useState<typeof INITIAL_TIME>(INITIAL_TIME);
+  const [loops, setLoops] = useState<
+    Array<{
+      current: typeof INITIAL_TIME; // loop timestamp
+      diff: typeof INITIAL_TIME; // Time from previous
+    }>
+  >([]);
 
   // Timer logic
   const { active, start, stop } = useInterval(() => {
@@ -65,11 +71,21 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
   }, 10);
 
   const handleReset = () => {
-    setTime(INITIAL_TIME);
     stop();
+
+    setTime(INITIAL_TIME);
+    setLoops([]);
   };
 
-  const handleLoop = () => {};
+  const handleLoop = () => {
+    setLoops((prev) => [
+      ...prev,
+      {
+        current: time,
+        diff: !prev.length ? time : time,
+      },
+    ]);
+  };
 
   const stopwatchComponent = (
     <Center>
@@ -122,34 +138,56 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
             justify="space-between"
             direction="column"
             gap="md"
+            mt={48}
           >
             <Flex
               align="flex-start"
               justify="space-between"
-              direction="row"
-              gap="md"
-            >
-              <Button size="xs" variant="default" onClick={handleReset}>
-                Reset
-              </Button>
-
-              <Button size="xs" variant="default" onClick={handleLoop}>
-                Loop
-              </Button>
-            </Flex>
-
-            <Flex
-              align="flex-start"
-              justify="space-between"
               direction="column"
-              mt="sm"
               gap="xs"
             >
-              <Text>1. 01:23.23</Text>
-              <Text>2. 01:23.23</Text>
+              {[...loops].reverse().map((loop, i) => (
+                <Flex w="100%" align="center" justify="space-between" gap="md">
+                  <Text size="sm" c="dimmed">
+                    {loops.length - i}.
+                  </Text>
+
+                  <Text size="xs" c="dimmed">{`+ ${formatOutput(
+                    loop.diff.minute
+                  )}:${formatOutput(loop.diff.second)}.${formatOutput(
+                    loop.diff.milisecond
+                  )}`}</Text>
+
+                  <Text size="md">{`${formatOutput(
+                    loop.current.minute
+                  )}:${formatOutput(loop.current.second)}.${formatOutput(
+                    loop.current.milisecond
+                  )}`}</Text>
+                </Flex>
+              ))}
             </Flex>
           </Flex>
         </Flex>
+
+        {/* Action buttons */}
+        <Button
+          className={classes.reset_btn}
+          size="xs"
+          variant="default"
+          onClick={handleReset}
+        >
+          Reset
+        </Button>
+
+        <Button
+          className={classes.lap_btn}
+          size="xs"
+          variant="default"
+          onClick={handleLoop}
+          disabled={!active}
+        >
+          Lap
+        </Button>
       </Paper>
     </Center>
   );

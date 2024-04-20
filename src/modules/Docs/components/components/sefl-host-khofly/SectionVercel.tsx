@@ -1,15 +1,15 @@
-import WikiText from "../../common/WikiText";
-import WikiLink from "../../common/WikiLink";
+import DocsText from "../../common/DocsText";
+import DocsLink from "../../common/DocsLink";
 import { IconInfoCircle } from "@tabler/icons-react";
 import { Alert, Code } from "@mantine/core";
-import WikiSubtitle from "../../common/WikiSubtitle";
-import { CodeHighlight } from "@mantine/code-highlight";
-import WikiTitle from "../../common/WikiTitle";
+import DocsSubtitle from "../../common/DocsSubtitle";
+import DocsTitle from "../../common/DocsTitle";
+import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
 
 const envVars = `
 HOST = # your domain, either set a custom domain or Vercel auto assigned one
 
-SEARXNG_URL_DEFAULT = # url for your SearXNG instance
+SEARXNG_URL_SELF_HOST = # url for your SearXNG instance
 
 NOMINATIM_URL = https://nominatim.openstreetmap.org 
 
@@ -24,55 +24,55 @@ HOST_TARGET = vercel
 const SectionVercel = () => {
   return (
     <>
-      <WikiTitle>Deploying to Vercel</WikiTitle>
+      <DocsTitle>Deploying to Vercel</DocsTitle>
 
-      <WikiSubtitle>1. Clone Khofly repo on your machine</WikiSubtitle>
+      <DocsSubtitle>1. Clone Khofly repo on your machine</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Type <Code>git clone https://github.com/cufta22/khofly.git .</Code> in
         an empty folder on your system.
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>
+      <DocsSubtitle>
         2. Create an empty repository on your git provider account
-      </WikiSubtitle>
+      </DocsSubtitle>
 
-      <WikiSubtitle>3. Push your code</WikiSubtitle>
+      <DocsSubtitle>3. Push your code</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Push your local Khofly code to your newly created repository and Vercel
         should handle the deployment for you automatically
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>
+      <DocsSubtitle>
         4. Create a new project on Vercel and connect it to your git repository
-      </WikiSubtitle>
+      </DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Once the project is created go to Settings/General and make sure the
         Output Directory is set to <Code>build</Code>
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         Now go into Settings/Environment Variables and make sure to set the
         following:
-      </WikiText>
+      </DocsText>
 
-      <CodeHighlight code={envVars} language="shell" />
+      <DocsCodeHighlight code={envVars} language="shell" />
 
-      <WikiSubtitle>
+      <DocsSubtitle>
         5. Redeploy Vercel project so that env variables set in
-      </WikiSubtitle>
+      </DocsSubtitle>
 
-      <WikiTitle>Updating Khofly version</WikiTitle>
+      <DocsTitle>Updating Khofly version</DocsTitle>
 
-      <WikiSubtitle>1. Get the latest code</WikiSubtitle>
+      <DocsSubtitle>1. Get the latest code</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Open the folder where you originally cloned Khofly and run{" "}
         <Code>git pull origin master</Code>, after this push the code to your
         hosted repository and Vercel will automatically redeploy your app.
-      </WikiText>
+      </DocsText>
 
       <Alert
         mt="xl"
@@ -82,7 +82,7 @@ const SectionVercel = () => {
         icon={<IconInfoCircle />}
       >
         You can read more about deploying a Remix site to Vercel at{" "}
-        <WikiLink
+        <DocsLink
           href="https://vercel.com/guides/deploying-remix-with-vercel"
           label="official docs"
         />

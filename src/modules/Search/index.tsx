@@ -5,11 +5,13 @@ import TabImages from "./components/TabImages";
 import TabVideos from "./components/TabVideos";
 import TabNews from "./components/TabNews";
 import { useSearchParams } from "@remix-run/react";
-import ClientOnly from "@components/ClientOnly";
+import { useMounted } from "@mantine/hooks";
 
 const TabMapsWithoutSSR = lazy(() => import("./components/TabMaps"));
 
 const PageSearch = () => {
+  const mounted = useMounted();
+
   const [searchParams] = useSearchParams();
 
   const tab = searchParams.get("tab") || "general";
@@ -20,11 +22,7 @@ const PageSearch = () => {
     images: <TabImages />,
     videos: <TabVideos />,
     news: <TabNews />,
-    maps: (
-      <ClientOnly>
-        <TabMapsWithoutSSR />
-      </ClientOnly>
-    ),
+    maps: mounted ? <TabMapsWithoutSSR /> : null,
 
     // WIP
     music: null,

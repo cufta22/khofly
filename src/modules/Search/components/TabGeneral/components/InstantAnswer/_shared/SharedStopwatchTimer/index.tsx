@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tabs } from "@mantine/core";
 import { IconClock, IconHourglassLow } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -11,9 +11,17 @@ interface Props {
 }
 
 const SharedStopwatchTimer: React.FC<Props> = ({ type }) => {
+  const [activeTab, setActiveTab] = useState<"stopwatch" | "timer">(type);
+
   return (
     <IAWrapper>
-      <Tabs defaultValue={type} mt={-16}>
+      <Tabs
+        value={activeTab}
+        onChange={(val) =>
+          setActiveTab((val as "stopwatch" | "timer") || "timer")
+        }
+        mt={-16}
+      >
         <Tabs.List grow mb="lg">
           <Tabs.Tab
             value="stopwatch"

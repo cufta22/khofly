@@ -6,7 +6,7 @@ interface Props {
   label: string;
 }
 
-const WikiLink: React.FC<Props> = ({ href, label }) => {
+const DocsLink: React.FC<Props> = ({ href, label }) => {
   return (
     <>
       {" "}
@@ -19,4 +19,4 @@ const WikiLink: React.FC<Props> = ({ href, label }) => {
   );
 };
 
-export default WikiLink;
+export default DocsLink;

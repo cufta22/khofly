@@ -24,12 +24,6 @@ export const loader = async () => {
 
     <!-- STATIC PAGES -->
     <url>
-        <loc>${loc}/about</loc>
-        <lastmod>${lastMod}</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.85</priority>
-    </url>
-    <url>
         <loc>${loc}/settings</loc>
         <lastmod>${lastMod}</lastmod>
         <changefreq>monthly</changefreq>

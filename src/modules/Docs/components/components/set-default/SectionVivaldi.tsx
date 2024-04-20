@@ -1,19 +1,19 @@
-import WikiSubtitle from "../../common/WikiSubtitle";
-import WikiText from "../../common/WikiText";
-import WikiLink from "../../common/WikiLink";
+import DocsSubtitle from "../../common/DocsSubtitle";
+import DocsText from "../../common/DocsText";
+import DocsLink from "../../common/DocsLink";
 import { Alert, Code, Image } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
 
 const SectionVivaldi = () => {
   return (
     <>
-      <WikiSubtitle>1. The easy way?</WikiSubtitle>
+      <DocsSubtitle>1. The easy way?</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Simply right-click in a search ﬁeld on any web page and choose 'Add as
         search engine' from the context menu. Then, type in the keyword you want
         to use and select 'Add' to save it.
-      </WikiText>
+      </DocsText>
 
       <Image
         src="https://vivaldi.com/wp-content/uploads/2016/11/addsearchengine_600.png"
@@ -23,21 +23,21 @@ const SectionVivaldi = () => {
         alt="Vivaldi add search engine"
       />
 
-      <WikiSubtitle>2. Another route</WikiSubtitle>
+      <DocsSubtitle>2. Another route</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         You can add engines as well as edit, modify and manage all of your
         search settings. To do this, add them through preferences in Vivaldi
         Settings/Search. Here, you can modify and organize to your own
         preferences. With a little bit of magic, you can now start searching
         with your new custom search engine. Use the URLs below to add search
         engines from a few of our favourite sites.
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         Example how to add Khofly{" "}
         <Code>https://khofly.com/search?q=%s&tab=general</Code>
-      </WikiText>
+      </DocsText>
 
       <Image
         src="https://vivaldi.com/wp-content/uploads/2016/11/searchsettings_600.png"
@@ -55,7 +55,7 @@ const SectionVivaldi = () => {
         icon={<IconInfoCircle />}
       >
         You can read more about adding a search engine to Vivaldi at{" "}
-        <WikiLink
+        <DocsLink
           href="https://vivaldi.com/blog/search-favorite-websites-quickly/"
           label="official docs"
         />

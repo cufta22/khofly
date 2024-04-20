@@ -1,8 +1,8 @@
 import { Box, Code, Container, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-import WikiTitle from "./common/WikiTitle";
-import WikiSubtitle from "./common/WikiSubtitle";
+import DocsTitle from "./common/DocsTitle";
+import DocsSubtitle from "./common/DocsSubtitle";
 
 import IACalculator from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Calculator";
 import IACoinFlip from "@module/Search/components/TabGeneral/components/InstantAnswer/components/CoinFilp";
@@ -24,7 +24,7 @@ const DocsSearchInstantAnswer = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <WikiTitle>Adding instant answer</WikiTitle>
+      <DocsTitle>Adding instant answer</DocsTitle>
 
       <Text mt="md">
         All instant answers code is located in{" "}
@@ -39,7 +39,7 @@ const DocsSearchInstantAnswer = () => {
         others are displayed conditionally.
       </Text>
 
-      <WikiSubtitle>All available instant answers</WikiSubtitle>
+      <DocsSubtitle>All available instant answers</DocsSubtitle>
 
       <Text mt="md">
         Below is a list of all currently available Instant Answers, some of them
@@ -47,67 +47,67 @@ const DocsSearchInstantAnswer = () => {
         be included and be useful. More will be available in the future.
       </Text>
 
-      <WikiTitle>1. Calculator</WikiTitle>
+      <DocsTitle>1. Calculator</DocsTitle>
       <Box className={classes.search_box}>
         <IACalculator />
       </Box>
 
-      <WikiTitle>2. Calendar</WikiTitle>
+      <DocsTitle>2. Calendar</DocsTitle>
       <Box className={classes.search_box}>
         <IACalendar />
       </Box>
 
-      <WikiTitle>3. Coin Flip</WikiTitle>
+      <DocsTitle>3. Coin Flip</DocsTitle>
       <Box className={classes.search_box}>
         <IACoinFlip />
       </Box>
 
-      <WikiTitle>4. Currency</WikiTitle>
+      <DocsTitle>4. Currency converter</DocsTitle>
       <Box className={classes.search_box}>
         <IACurrency currency1="usd" currency2="eur" withIAWrapper />
       </Box>
 
-      <WikiTitle>5. Equation</WikiTitle>
+      <DocsTitle>5. Equation</DocsTitle>
       <Box className={classes.search_box}>
         <IAEquation query="6 * ( 2 + 7 )" />
       </Box>
 
-      <WikiTitle>6. Lyrics</WikiTitle>
+      <DocsTitle>6. Lyrics</DocsTitle>
       <Box className={classes.search_box}>
         <IALyrics initialQ="rick astley never gonna give you up" />
       </Box>
 
-      <WikiTitle>7. Password</WikiTitle>
+      <DocsTitle>7. Password</DocsTitle>
       <Box className={classes.search_box}>
         <IAPassword />
       </Box>
 
-      <WikiTitle>8. Stopwatch</WikiTitle>
+      <DocsTitle>8. Stopwatch</DocsTitle>
       <Box className={classes.search_box}>
         <IAStopwatch withIAWrapper />
       </Box>
 
-      <WikiTitle>9. Timer</WikiTitle>
+      <DocsTitle>9. Timer</DocsTitle>
       <Box className={classes.search_box}>
         <IATimer withIAWrapper />
       </Box>
 
-      {/* <WikiTitle>9. Translate</WikiTitle>
+      {/* <DocsTitle>9. Translate</DocsTitle>
       <Box className={classes.search_box}>
         <Translate />
       </Box> */}
 
-      <WikiTitle>10. Unit convertor</WikiTitle>
+      <DocsTitle>10. Unit converter</DocsTitle>
       <Box className={classes.search_box}>
         <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
       </Box>
 
-      <WikiTitle>11. Random UUID</WikiTitle>
+      <DocsTitle>11. Random UUID</DocsTitle>
       <Box className={classes.search_box}>
         <IAUUID />
       </Box>
 
-      <WikiTitle>12. Weather</WikiTitle>
+      <DocsTitle>12. Weather</DocsTitle>
       <Box className={classes.search_box}>
         <IAWeather />
       </Box>

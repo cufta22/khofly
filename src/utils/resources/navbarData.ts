@@ -1,5 +1,5 @@
 import { LinksGroupProps } from "@components/Navbar/Wiki/components/LinksGroup";
-import { IconPick, IconSearch, IconServer } from "@tabler/icons-react";
+import { IconApi, IconPick, IconSearch, IconServer } from "@tabler/icons-react";
 
 export const NAVBAR_DATA: LinksGroupProps[] = [
   {
@@ -42,6 +42,24 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
     links: [
       { label: "Khofly", link: "/docs/self-host-khofly", isWip: false },
       { label: "SearXNG", link: "/docs/self-host-searxng", isWip: false },
+    ],
+  },
+  {
+    label: "3rd-Party",
+    icon: IconApi,
+    links: [
+      { label: "Weather", link: "/docs/3rd-party-weather", isWip: false },
+      {
+        label: "Currency",
+        link: "/docs/3rd-party-currency",
+        isWip: false,
+      },
+      // Nominatim stuff
+      // {
+      //   label: "Geolocation",
+      //   link: "/docs/3rd-party-geolocation",
+      //   isWip: false,
+      // },
     ],
   },
 ];

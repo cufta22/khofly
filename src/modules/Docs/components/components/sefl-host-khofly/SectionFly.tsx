@@ -7,12 +7,12 @@ import {
   Paper,
   Spoiler,
 } from "@mantine/core";
-import WikiSubtitle from "../../common/WikiSubtitle";
-import WikiText from "../../common/WikiText";
-import WikiTitle from "../../common/WikiTitle";
-import { CodeHighlight } from "@mantine/code-highlight";
-import WikiLink from "../../common/WikiLink";
+import DocsSubtitle from "../../common/DocsSubtitle";
+import DocsText from "../../common/DocsText";
+import DocsTitle from "../../common/DocsTitle";
+import DocsLink from "../../common/DocsLink";
 import { IconInfoCircle } from "@tabler/icons-react";
+import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
 
 const flyDockerfile = `
 # syntax = docker/dockerfile:1
@@ -64,63 +64,63 @@ CMD [ "npm", "run", "start" ]
 const SectionFly = () => {
   return (
     <>
-      <WikiTitle>Deploying to Fly.io</WikiTitle>
+      <DocsTitle>Deploying to Fly.io</DocsTitle>
 
-      <WikiSubtitle>1. Clone Khofly repo on your machine</WikiSubtitle>
+      <DocsSubtitle>1. Clone Khofly repo on your machine</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Type <Code>git clone https://github.com/cufta22/khofly.git .</Code> in
         an empty folder on your system.
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>
+      <DocsSubtitle>
         2. Create an account on Fly.io and add a payment method
-      </WikiSubtitle>
+      </DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         It ain't free unfortunately but it gives you a lot of control, size of
         virtual machines, location, etc.
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>3. flyctl magic</WikiSubtitle>
+      <DocsSubtitle>3. flyctl magic</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Install flyctl, instructions{" "}
-        <WikiLink
+        <DocsLink
           href="https://fly.io/docs/hands-on/install-flyctl/"
           label="here"
         />
         , cross your fingers and run <Code>fly launch</Code>
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         It will prompt you for virtual machine config, pick whatever suits you
         the best
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>3.1 OPTIONAL if your Dockerfile errors out</WikiSubtitle>
+      <DocsSubtitle>3.1 OPTIONAL if your Dockerfile errors out</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         <Code>fly launch</Code> will generate a Dockerfile but the default one
         kept breaking for me ( maybe pnpm related ), so if it does for you as
         well try the one below
-      </WikiText>
+      </DocsText>
 
       <Spoiler maxHeight={200} showLabel="Show more" hideLabel="Hide" mb={60}>
         <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-          <CodeHighlight code={flyDockerfile} language="docker" />
+          <DocsCodeHighlight code={flyDockerfile} language="docker" />
         </Paper>
       </Spoiler>
 
-      <WikiTitle>Updating Khofly version</WikiTitle>
+      <DocsTitle>Updating Khofly version</DocsTitle>
 
-      <WikiSubtitle>1. Get the latest code</WikiSubtitle>
+      <DocsSubtitle>1. Get the latest code</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         Open the folder where you originally cloned Khofly and run{" "}
         <Code>git pull origin master</Code>, after this run{" "}
         <Code>fly deploy</Code> and it "should" redeploy the latest changes
-      </WikiText>
+      </DocsText>
 
       <Alert
         mt="xl"
@@ -130,7 +130,7 @@ const SectionFly = () => {
         icon={<IconInfoCircle />}
       >
         You can read more about deploying a Remix site to Fly.io at{" "}
-        <WikiLink
+        <DocsLink
           href="https://fly.io/docs/js/frameworks/remix/"
           label="official docs"
         />

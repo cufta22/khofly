@@ -51,7 +51,7 @@ const DocsSelfHostKhofly = () => {
           >
             Netlify
           </Tabs.Tab> */}
-          <Tabs.Tab
+          {/* <Tabs.Tab
             value="cloudflare"
             leftSection={
               <IconBrandCloudflare
@@ -61,7 +61,7 @@ const DocsSelfHostKhofly = () => {
             fz={15}
           >
             Cloudflare
-          </Tabs.Tab>
+          </Tabs.Tab> */}
           <Tabs.Tab
             value="vps"
             leftSection={
@@ -81,10 +81,9 @@ const DocsSelfHostKhofly = () => {
         <Tabs.Panel value="flyio">
           <SectionFly />
         </Tabs.Panel>
-        <Tabs.Panel value="cloudflare">
-          {/* <SectionCloudflare /> */}
-          <DocsWIP />
-        </Tabs.Panel>
+        {/* <Tabs.Panel value="cloudflare">
+          <SectionCloudflare />
+        </Tabs.Panel> */}
         <Tabs.Panel value="vps">
           <DocsWIP />
         </Tabs.Panel>

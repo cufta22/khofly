@@ -6,7 +6,7 @@ interface Props extends IFC {
   leftSection?: any;
 }
 
-const WikiTitle: React.FC<Props> = ({ children, leftSection }) => {
+const DocsTitle: React.FC<Props> = ({ children, leftSection }) => {
   return (
     <Flex direction="row" align="center" gap="lg" my="md">
       {leftSection && leftSection}
@@ -18,4 +18,4 @@ const WikiTitle: React.FC<Props> = ({ children, leftSection }) => {
   );
 };
 
-export default WikiTitle;
+export default DocsTitle;

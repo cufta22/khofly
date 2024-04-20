@@ -57,9 +57,10 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isHeaderCollapsed = isSearch && !pinned;
   const isHeaderOffset = !isSearch && !isIndex;
 
-  const appName = !+process.env.IS_SELF_HOST!
-    ? t("_common.app_name")
-    : process.env.APP_NAME;
+  const appName =
+    process.env.IS_SELF_HOST === "0"
+      ? t("_common.app_name")
+      : process.env.APP_NAME;
   useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
 
   useEffect(() => {

@@ -2,6 +2,7 @@ import { useResponsive } from "@hooks/use-responsive";
 
 import { useSearchParams } from "@remix-run/react";
 import {
+  shouldDisplayCurrency,
   shouldDisplayEquation,
   shouldDisplayIA,
   shouldDisplayUnits,
@@ -46,6 +47,10 @@ const InstantAnswer = () => {
 
   // Instant answer - Coin flip
   if (shouldDisplayIA(query, ["coinflip", "coin flip"])) return <IACoinFlip />;
+
+  // Instant answer - Currency convertor
+  const { sdCurr, ...restCurr } = shouldDisplayCurrency(query);
+  if (sdCurr) return <SharedCurrencyUnit type="currency" {...restCurr} />;
 
   // Instant answer - Equation
   if (shouldDisplayEquation(query)) return <IAEquation query={query} />;

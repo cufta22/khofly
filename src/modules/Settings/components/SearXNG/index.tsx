@@ -89,7 +89,7 @@ const SettingsSearXNG = () => {
             {...form.getInputProps("domain")}
           />
 
-          {!+process.env.NEXT_PUBLIC_IS_SELF_HOST! && (
+          {process.env.IS_SELF_HOST === "0" && (
             <Select
               className={classes.settings_select}
               label="Default instances"

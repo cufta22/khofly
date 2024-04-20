@@ -1,4 +1,5 @@
 import { UnitsType } from "../components/Unit";
+import { KEYWORDS_CURRENCY } from "./keywords_currency";
 import {
   KEYWORDS_UNITS_GENERAL,
   KEYWORDS_UNITS_ALL_MAP,
@@ -78,4 +79,35 @@ export const shouldDisplayEquation = (query: string) => {
   const re = /(?:(?:^|[-+_*/])(?:\s*-?\d+(\.\d+)?(?:[eE][+-]?\d+)?\s*))+$/;
 
   return re.test(query);
+};
+
+// -----------------------------------------------------------------------------------
+// Currency handler
+// -----------------------------------------------------------------------------------
+
+export const shouldDisplayCurrency = (query: string) => {
+  const currency1 = query.split(" ")[0]?.toLocaleLowerCase();
+  const currency2 = query.split(" ")[2]?.toLocaleLowerCase();
+
+  let sdCurr = false;
+  const currencyArray = Object.keys(KEYWORDS_CURRENCY).map((val) =>
+    val.toLocaleLowerCase()
+  );
+
+  // Display currency convertor if query is unclear
+  if (currencyArray.includes(query)) sdCurr = true;
+
+  if (
+    query?.includes("to") &&
+    currencyArray.includes(currency1.toLocaleLowerCase()) &&
+    currencyArray.includes(currency2.toLocaleLowerCase())
+  ) {
+    sdCurr = true;
+  }
+
+  return {
+    sdCurr,
+    currency1,
+    currency2,
+  };
 };

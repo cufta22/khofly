@@ -1,9 +1,7 @@
-import { LoaderFunctionArgs, json as nodeJson } from "@remix-run/node";
-import { json as vercelJson } from "@vercel/remix";
 import { OpenWeatherResponse } from "src/api/weather/types";
 
-// Change functions based on deployment target
-const json = process.env.HOST_TARGET === "vercel" ? vercelJson : nodeJson;
+import { LoaderFunctionArgs } from "@remix-run/node";
+import { platformJson } from "app/platform/json";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
@@ -18,5 +16,5 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const resData: OpenWeatherResponse = await res.json();
 
-  return json(resData);
+  return platformJson(resData);
 };

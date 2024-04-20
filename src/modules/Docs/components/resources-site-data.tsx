@@ -1,57 +1,57 @@
 import { Code, Container, useMantineTheme } from "@mantine/core";
-import WikiTitle from "./common/WikiTitle";
+import DocsTitle from "./common/DocsTitle";
 import { IconCookie, IconLayoutRows } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import WikiSubtitle from "./common/WikiSubtitle";
-import WikiText from "./common/WikiText";
+import DocsSubtitle from "./common/DocsSubtitle";
+import DocsText from "./common/DocsText";
 
 const DocsResourcesSiteData = () => {
   const theme = useMantineTheme();
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <WikiTitle>Important data for functionality</WikiTitle>
+      <DocsTitle>Important data for functionality</DocsTitle>
 
-      <WikiText>
+      <DocsText>
         Khofly uses site data mainly for storing user preferences that persist
         throughout sessions so that next time you visit{" "}
         <Code>https://khofly.com</Code> all your settings will be saved.
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         If you have <Code>Clear site data</Code> option enabled in your browser
         settings, which you should, this will wipe all cookies and local storage
         data saved for Khofly. For best user experience add{" "}
         <Code>https://khofly.com</Code> to exceptions to this rule in your
         browser settings.
-      </WikiText>
+      </DocsText>
 
-      <WikiText>Below is a list of data that Khofly uses.</WikiText>
+      <DocsText>Below is a list of data that Khofly uses.</DocsText>
 
-      <WikiSubtitle
+      <DocsSubtitle
         leftSection={
           <IconCookie style={getIconStyle(36)} color={theme.colors.yellow[5]} />
         }
       >
         Cookies
-      </WikiSubtitle>
+      </DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         <Code>khofly-language</Code>: if you change the app language in settings
         it will be saved in a cookie
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         <Code>khofly-app-theme</Code>: if you change the app theme in settings
         it will be saved in a cookie
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         These are stored in a cookie because they are important for server-side
         rendering.
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle
+      <DocsSubtitle
         leftSection={
           <IconLayoutRows
             style={getIconStyle(36)}
@@ -60,38 +60,38 @@ const DocsResourcesSiteData = () => {
         }
       >
         LocalStorage
-      </WikiSubtitle>
+      </DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         <Code>engines-store</Code>: search engines selected in settings that are
         passed to SearXNG API
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         <Code>general-store</Code>: saves geolocation data for Weather Instant
         Answer so that it doesn't prompt for location access every time it is
         used. Only gets saved once user gives permission for location access
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         <Code>instance-store</Code>: domains for all instances ( SearXNG,
         Nominatim, etc. ) that Khofly uses
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         <Code>search-store</Code>: search settings like safe search, search
         language, date range, visited links, etc.
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         <Code>settings-store</Code>: general store for settings options like
         autocomplete, display favicons, open in new tab, etc.
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         These are persisted in local storage by zustand because they are "not
         so" important for server-side rendering.
-      </WikiText>
+      </DocsText>
     </Container>
   );
 };

@@ -117,7 +117,7 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
         radius="sm"
         withBorder
       >
-        <Flex align="center" justify="space-between" direction="row">
+        <Flex align="center" justify="flex-start" direction="row">
           <RingProgress
             size={120}
             thickness={8}

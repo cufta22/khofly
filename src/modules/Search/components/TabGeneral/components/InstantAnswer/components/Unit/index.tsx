@@ -54,24 +54,24 @@ interface Props {
 const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
   const [state, setState] = useState({
     input: 1,
-    result: 0,
-    fromUnit: unit1,
-    toUnit: unit2,
+    result: convertUnit(1, unit1, unit2, type),
+    from: unit1,
+    to: unit2,
     type: type,
   });
 
   const handleChangeInput = (val: string | number) => {
     const numVal = typeof val === "number" ? val : parseFloat(val);
-    const res = convertUnit(numVal, state.fromUnit, state.toUnit, state.type);
+    const res = convertUnit(numVal, state.from, state.to, state.type);
 
     setState((s) => ({ ...s, input: numVal, result: res }));
   };
 
-  const handleChangeUnit = (val: string, field: "fromUnit" | "toUnit") => {
+  const handleChangeUnit = (val: string, field: "from" | "to") => {
     const res = convertUnit(
       state.input,
-      field === "fromUnit" ? val : state.fromUnit,
-      field === "toUnit" ? val : state.toUnit,
+      field === "from" ? val : state.from,
+      field === "to" ? val : state.to,
       state.type
     );
 
@@ -88,32 +88,22 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
     setState({
       input: 1,
       result: res,
-      fromUnit: newFrom,
-      toUnit: newTo,
+      from: newFrom,
+      to: newTo,
       type: val,
     });
   };
 
   const handleSwapUnits = () => {
-    const res = convertUnit(
-      state.input,
-      state.toUnit,
-      state.fromUnit,
-      state.type
-    );
+    const res = convertUnit(state.input, state.to, state.from, state.type);
 
     setState((s) => ({
       ...s,
       result: res,
-      fromUnit: s.toUnit,
-      toUnit: s.fromUnit,
+      from: s.to,
+      to: s.from,
     }));
   };
-
-  useEffect(() => {
-    const res = convertUnit(state.input, state.fromUnit, state.toUnit, type);
-    setState((s) => ({ ...s, result: res }));
-  }, []);
 
   const unitComponent = (
     <Center>
@@ -131,7 +121,7 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
           />
         </ScrollArea>
 
-        <Flex align="flex-end" gap="md">
+        <Flex align="flex-end" justify="space-between" gap="md">
           <Flex gap="md" direction="column">
             <NumberInput
               value={state.input}
@@ -142,8 +132,8 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
 
             <Select
               withCheckIcon={false}
-              value={state.fromUnit}
-              onChange={(val) => val && handleChangeUnit(val, "fromUnit")}
+              value={state.from}
+              onChange={(val) => val && handleChangeUnit(val, "from")}
               data={TYPE_TO_UNITS[state.type].map((val) => ({
                 value: val,
                 label: val,
@@ -151,12 +141,7 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
             />
           </Flex>
 
-          <ActionIcon
-            style={{ flexGrow: 1 }}
-            variant="subtle"
-            onClick={handleSwapUnits}
-            mb={4}
-          >
+          <ActionIcon size="lg" variant="subtle" onClick={handleSwapUnits}>
             <IconSwitchHorizontal />
           </ActionIcon>
 
@@ -170,8 +155,8 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
 
             <Select
               withCheckIcon={false}
-              value={state.toUnit}
-              onChange={(val) => val && handleChangeUnit(val, "toUnit")}
+              value={state.to}
+              onChange={(val) => val && handleChangeUnit(val, "to")}
               data={TYPE_TO_UNITS[state.type].map((val) => ({
                 value: val,
                 label: val,

@@ -1,5 +1,5 @@
-import React from "react";
-import { Tabs } from "@mantine/core";
+import React, { useState } from "react";
+import { Anchor, Tabs, Text } from "@mantine/core";
 import { IconCash, IconRulerMeasure } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
@@ -26,14 +26,35 @@ const SharedCurrencyUnit: React.FC<Props> = ({
   unit2,
   unitType,
 }) => {
+  const [activeTab, setActiveTab] = useState<"currency" | "unit">(type);
+
   return (
-    <IAWrapper>
-      <Tabs defaultValue={type} mt={-16}>
+    <IAWrapper
+      label={
+        activeTab === "currency" ? (
+          <Text size="sm" c="dimmed">
+            Data provided by{" "}
+            <Anchor
+              href="https://openexchangerates.com/"
+              rel="noreferrer noopener"
+            >
+              <Text component="span" c="blue.4">
+                Open Exchange Rates
+              </Text>
+            </Anchor>
+          </Text>
+        ) : undefined
+      }
+    >
+      <Tabs
+        value={activeTab}
+        onChange={(val) => setActiveTab((val as "currency" | "unit") || "unit")}
+        mt={-16}
+      >
         <Tabs.List grow mb="lg">
           <Tabs.Tab
             value="currency"
             leftSection={<IconCash style={getIconStyle(20)} />}
-            disabled
           >
             Currency
           </Tabs.Tab>
@@ -48,17 +69,17 @@ const SharedCurrencyUnit: React.FC<Props> = ({
         <Tabs.Panel value="currency">
           <IACurrency
             withIAWrapper={false}
-            currency1={currency1!}
-            currency2={currency2!}
+            currency1={currency1 || "USD"}
+            currency2={currency2 || "EUR"}
           />
         </Tabs.Panel>
 
         <Tabs.Panel value="unit">
           <IAUnit
             withIAWrapper={false}
-            type={unitType!}
-            unit1={unit1!}
-            unit2={unit2!}
+            type={unitType || "length"}
+            unit1={unit1 || "m"}
+            unit2={unit2 || "cm"}
           />
         </Tabs.Panel>
       </Tabs>

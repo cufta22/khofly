@@ -1,10 +1,5 @@
 import { useBrowser } from "@hooks/use-browser";
-import {
-  Center,
-  Container,
-  Loader,
-  useMantineTheme,
-} from "@mantine/core";
+import { Center, Container, Loader, useMantineTheme } from "@mantine/core";
 import {
   IconBrandChrome,
   IconBrandEdge,
@@ -21,9 +16,9 @@ import SectionChromium from "./components/set-default/SectionChromium";
 import SectionEdge from "./components/set-default/SectionEdge";
 import SectionSafari from "./components/set-default/SectionSafari";
 import SectionOpera from "./components/set-default/SectionOpera";
-import WikiLink from "./common/WikiLink";
+import DocsLink from "./common/DocsLink";
 import { useSearchParams } from "@remix-run/react";
-import WikiTitle from "./common/WikiTitle";
+import DocsTitle from "./common/DocsTitle";
 import SectionVivaldi from "./components/set-default/SectionVivaldi";
 
 const DocsResourcesSetDefault = () => {
@@ -39,7 +34,7 @@ const DocsResourcesSetDefault = () => {
     <Container size="lg" p="xl" pb={100}>
       {paramsBrowser === "firefox" && (
         <>
-          <WikiTitle
+          <DocsTitle
             leftSection={
               <IconBrandFirefox
                 style={getIconStyle(48)}
@@ -48,7 +43,7 @@ const DocsResourcesSetDefault = () => {
             }
           >
             Adding search engine to Firefox
-          </WikiTitle>
+          </DocsTitle>
 
           <SectionFirefox />
         </>
@@ -56,7 +51,7 @@ const DocsResourcesSetDefault = () => {
 
       {["chromium", "chrome"].includes(paramsBrowser) && (
         <>
-          <WikiTitle
+          <DocsTitle
             leftSection={
               <IconBrandChrome
                 style={getIconStyle(48)}
@@ -65,7 +60,7 @@ const DocsResourcesSetDefault = () => {
             }
           >
             Adding search engine to Chromium
-          </WikiTitle>
+          </DocsTitle>
 
           <SectionChromium />
         </>
@@ -73,7 +68,7 @@ const DocsResourcesSetDefault = () => {
 
       {paramsBrowser === "edge" && (
         <>
-          <WikiTitle
+          <DocsTitle
             leftSection={
               <IconBrandEdge
                 style={getIconStyle(48)}
@@ -82,7 +77,7 @@ const DocsResourcesSetDefault = () => {
             }
           >
             Adding search engine to Edge
-          </WikiTitle>
+          </DocsTitle>
 
           <SectionEdge />
         </>
@@ -90,7 +85,7 @@ const DocsResourcesSetDefault = () => {
 
       {paramsBrowser === "safari" && (
         <>
-          <WikiTitle
+          <DocsTitle
             leftSection={
               <IconBrandSafari
                 style={getIconStyle(48)}
@@ -99,7 +94,7 @@ const DocsResourcesSetDefault = () => {
             }
           >
             Adding search engine to Safari
-          </WikiTitle>
+          </DocsTitle>
 
           <SectionSafari />
         </>
@@ -107,7 +102,7 @@ const DocsResourcesSetDefault = () => {
 
       {paramsBrowser === "vivaldi" && (
         <>
-          <WikiTitle
+          <DocsTitle
             leftSection={
               <IconBrandVivaldi
                 style={getIconStyle(48)}
@@ -116,7 +111,7 @@ const DocsResourcesSetDefault = () => {
             }
           >
             Adding search engine to Vivaldi
-          </WikiTitle>
+          </DocsTitle>
 
           <SectionVivaldi />
         </>
@@ -124,7 +119,7 @@ const DocsResourcesSetDefault = () => {
 
       {paramsBrowser === "opera" && (
         <>
-          <WikiTitle
+          <DocsTitle
             leftSection={
               <IconBrandOpera
                 style={getIconStyle(48)}
@@ -133,7 +128,7 @@ const DocsResourcesSetDefault = () => {
             }
           >
             Adding search engine to Opera
-          </WikiTitle>
+          </DocsTitle>
 
           <SectionOpera />
         </>
@@ -141,7 +136,7 @@ const DocsResourcesSetDefault = () => {
 
       {["ie", "samsung", "unknown"].includes(paramsBrowser) && (
         <>
-          <WikiTitle
+          <DocsTitle
             leftSection={
               <IconWorldWww
                 style={getIconStyle(48)}
@@ -150,9 +145,9 @@ const DocsResourcesSetDefault = () => {
             }
           >
             Adding search engine to [your browser]
-          </WikiTitle>
+          </DocsTitle>
 
-          <WikiLink
+          <DocsLink
             href={`https://khofly.com/search?q=How to add a custom search engine to ${browser}`}
             label="How to add a custom search engine to [your browser]"
           />

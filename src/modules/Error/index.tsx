@@ -24,7 +24,15 @@ const ErrorPage: React.FC<Props> = ({ code, title, message, stack }) => {
 
       <Title className={classes.title}>{title}</Title>
 
-      <Text c="dimmed" size="lg" ta="center" className={classes.description}>
+      <Text
+        maw={540}
+        c="dimmed"
+        size="lg"
+        ta="center"
+        mx="auto"
+        mt="sm"
+        mb="xl"
+      >
         {message}
       </Text>
 

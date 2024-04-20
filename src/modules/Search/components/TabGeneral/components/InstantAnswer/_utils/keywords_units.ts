@@ -1,4 +1,4 @@
-import { UnitsType } from "../Unit";
+import { UnitsType } from "../components/Unit";
 
 export const KEYWORDS_UNITS_GENERAL = [
   "unit convert",

@@ -1,4 +1,3 @@
-import { CodeHighlightTabs } from "@mantine/code-highlight";
 import {
   Blockquote,
   Code,
@@ -11,10 +10,11 @@ import {
 import { IconFile } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useState } from "react";
-import WikiLink from "./common/WikiLink";
-import WikiTitle from "./common/WikiTitle";
-import WikiText from "./common/WikiText";
-import WikiSubtitle from "./common/WikiSubtitle";
+import DocsLink from "./common/DocsLink";
+import DocsTitle from "./common/DocsTitle";
+import DocsText from "./common/DocsText";
+import DocsSubtitle from "./common/DocsSubtitle";
+import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
 
 const CODE_SYS_UPDATE_DEBIAN = `
 apt update && apt upgrade
@@ -167,7 +167,7 @@ const DocsSelfHostSearxng = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <WikiTitle>Installation guide</WikiTitle>
+      <DocsTitle>Installation guide</DocsTitle>
 
       <Blockquote
         color="blue"
@@ -181,17 +181,17 @@ const DocsSelfHostSearxng = () => {
         anonymity.
       </Blockquote>
 
-      <WikiText>
+      <DocsText>
         This guide will show you how to setup a SearXNG instance to be used with
         Khofly Search as it&apos;s front-end, your instance will still be
         perfectly usable on it&apos;s own. Important differences:
-      </WikiText>
+      </DocsText>
 
       <List>
         <List.Item>
           <Text>
             Khofly utilizes SearXNG
-            <WikiLink
+            <DocsLink
               href="https://docs.searxng.org/dev/search_api.html"
               label="/search API"
             />{" "}
@@ -208,7 +208,7 @@ const DocsSelfHostSearxng = () => {
         </List.Item>
       </List>
 
-      <WikiSubtitle>Requirements:</WikiSubtitle>
+      <DocsSubtitle>Requirements:</DocsSubtitle>
 
       <List>
         <List.Item>
@@ -224,10 +224,10 @@ const DocsSelfHostSearxng = () => {
         VPS will do just fine
       </Text>
 
-      <WikiSubtitle>Make sure everything is up to date</WikiSubtitle>
+      <DocsSubtitle>Make sure everything is up to date</DocsSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           activeTab={activeTab}
           onTabChange={(tab) => setActiveTab(tab)}
           code={[
@@ -261,10 +261,10 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <WikiSubtitle>Create a new user</WikiSubtitle>
+      <DocsSubtitle>Create a new user</DocsSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           activeTab={activeTab}
           onTabChange={(tab) => setActiveTab(tab)}
           code={[
@@ -298,16 +298,16 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <WikiText>
+      <DocsText>
         Doing this allows you to isolate all the commands and files when
         installing and configuring SearXNG. It can be especially useful if you
         intend to host the search engine on a VPS with multiple services.
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>Install dependencies</WikiSubtitle>
+      <DocsSubtitle>Install dependencies</DocsSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           activeTab={activeTab}
           onTabChange={(tab) => setActiveTab(tab)}
           code={[
@@ -341,26 +341,26 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <WikiSubtitle>Clone and install SearXNG</WikiSubtitle>
+      <DocsSubtitle>Clone and install SearXNG</DocsSubtitle>
 
-      <WikiText>
+      <DocsText>
         There are three different methods for installing SearXNG ( manual,
         installation script, docker ), all explained at the
-        <WikiLink
+        <DocsLink
           href="https://docs.searxng.org/admin/installation.html"
           label="official wiki"
         />
         . Here we will use the installation script which automates the manual
         process. First we need to clone the{" "}
-        <WikiLink
+        <DocsLink
           href="https://github.com/searxng/searxng"
           label="SearXNG repository"
         />
         . After that is finished, run the installation script.
-      </WikiText>
+      </DocsText>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           activeTab={activeTab}
           onTabChange={(tab) => setActiveTab(tab)}
           code={[
@@ -394,12 +394,12 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <WikiText>
+      <DocsText>
         Installation process is mostly automatic, but you will be asked to
         confirm everything that SearXNG wants to install.
-      </WikiText>
+      </DocsText>
 
-      <WikiSubtitle>Nginx configuration</WikiSubtitle>
+      <DocsSubtitle>Nginx configuration</DocsSubtitle>
 
       <Blockquote
         color="yellow"
@@ -414,7 +414,7 @@ const DocsSelfHostSearxng = () => {
       </Blockquote>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           code={[
             {
               fileName: "/etc/nginx/sites-available/default",
@@ -437,7 +437,7 @@ const DocsSelfHostSearxng = () => {
       </Blockquote>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           code={[
             {
               fileName: "/etc/nginx/sites-available/default",
@@ -449,12 +449,12 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <WikiSubtitle>SearXNG configuration</WikiSubtitle>
+      <DocsSubtitle>SearXNG configuration</DocsSubtitle>
 
       <Blockquote color="green" mt="lg" radius="sm">
         Default configuration file for SearXNG is located at
         /etc/searxng/settings.yml ( read more about the different options at the
-        <WikiLink
+        <DocsLink
           href="https://docs.searxng.org/admin/settings/settings.html"
           label="official wiki"
         />{" "}
@@ -481,7 +481,7 @@ const DocsSelfHostSearxng = () => {
       </Blockquote>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           code={[
             {
               fileName: "/etc/searxng/settings.yml",
@@ -493,10 +493,10 @@ const DocsSelfHostSearxng = () => {
         />
       </Paper>
 
-      <WikiSubtitle>Finalize installation</WikiSubtitle>
+      <DocsSubtitle>Finalize installation</DocsSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <CodeHighlightTabs
+        <DocsCodeHighlightTabs
           activeTab={activeTab}
           onTabChange={(tab) => setActiveTab(tab)}
           code={[

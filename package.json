@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@mantine/charts": "^7.8.0",
-    "@mantine/code-highlight": "^7.8.0",
     "@mantine/core": "^7.8.0",
     "@mantine/dates": "^7.8.0",
     "@mantine/form": "^7.8.0",
@@ -30,6 +29,7 @@
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
     "genius-lyrics": "^4.4.7",
+    "highlight.js": "^11.9.0",
     "isbot": "^5.1.4",
     "leaflet": "^1.9.4",
     "mantine-flagpack": "^4.0.1",
@@ -61,9 +61,10 @@
     "postcss": "^8.4.38",
     "postcss-preset-mantine": "^1.14.4",
     "postcss-simple-vars": "^7.0.1",
+    "rollup-plugin-visualizer": "^5.12.0",
     "sass": "1.75.0",
     "typescript": "^5.4.5",
-    "vite": "^5.2.8",
+    "vite": "^5.2.9",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "engines": {

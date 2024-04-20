@@ -23,7 +23,6 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const isSettings = pathname.startsWith("/settings");
   const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
-  const isAbout = pathname.startsWith("/about");
   const isDocs = pathname.startsWith("/docs");
 
   const pageTitle = isChangelog
@@ -32,8 +31,6 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     ? "Settings"
     : isPrivacy
     ? "Privacy"
-    : isAbout
-    ? "About"
     : isDocs
     ? "Docs"
     : "";
@@ -53,7 +50,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {isSearch && <SearchSection />}
 
       {/* Header with title */}
-      {(isDocs || isSettings || isChangelog || isPrivacy || isAbout) && (
+      {(isDocs || isSettings || isChangelog || isPrivacy) && (
         <>
           <HeaderLogo
             hasBurger={isDocs}
@@ -70,7 +67,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       {isSearch && <HeaderSettings />}
 
-      {(isAbout || isDocs || isChangelog) && <HeaderCode />}
+      {(isDocs || isChangelog) && <HeaderCode />}
     </Group>
   );
 };

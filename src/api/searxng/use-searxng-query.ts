@@ -24,6 +24,7 @@ const getKey = (
   searchLanguage: ISearchLang
 ) => {
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
+  if (!q) return null; // prevent empty search
 
   const engineBangs = getEngineBangs(tab, enginesSelected);
 

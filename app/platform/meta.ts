@@ -1,8 +1,8 @@
-export const ROOT_META = [
+import { MetaFunction } from "@remix-run/node";
+
+export const ROOT_META_FUNCTION: MetaFunction = () => [
   {
-    title: !+process.env.NEXT_PUBLIC_IS_SELF_HOST!
-      ? "Khofly"
-      : process.env.NEXT_PUBLIC_APP_NAME,
+    title: process.env.IS_SELF_HOST === "0" ? "Khofly" : process.env.APP_NAME,
   },
   {
     name: "description",

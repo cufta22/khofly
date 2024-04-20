@@ -1,14 +1,9 @@
 
 move leaflet stuff to /search
-fix language change page refresh
+fix language change page refresh?
 
-fix build errors
 reduce file sizes
-make about page
-404 text alignment when deployed
 
 add all translations
 
 currency convert
-
-sort out <ClientOnly />, use-mounted?

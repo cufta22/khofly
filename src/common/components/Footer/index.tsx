@@ -37,10 +37,6 @@ const Footer = () => {
       </Flex>
 
       <Group gap="sm" justify="flex-end">
-        <RemixLink to="/about">
-          <Text size="sm">About</Text>
-        </RemixLink>
-
         <RemixLink to="/docs">
           <Text size="sm">Docs</Text>
         </RemixLink>

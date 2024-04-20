@@ -1,30 +1,30 @@
-import WikiText from "../../common/WikiText";
-import WikiLink from "../../common/WikiLink";
+import DocsText from "../../common/DocsText";
+import DocsLink from "../../common/DocsLink";
 import { Text } from "@mantine/core";
 import RemixLink from "@components/RemixLink";
 
 const SectionOpera = () => {
   return (
     <>
-      <WikiText>1. 深呼吸。</WikiText>
+      <DocsText>1. 深呼吸。</DocsText>
 
-      <WikiText>
+      <DocsText>
         2. 打开 Firefox{" "}
-        <WikiLink
+        <DocsLink
           href="https://www.mozilla.org/en-US/firefox/new/"
           label="download page"
         />{" "}
         并继续安装.
-      </WikiText>
+      </DocsText>
 
-      <WikiText>
+      <DocsText>
         3. 安装完成后，请按照以下步骤操作{" "}
         <RemixLink to={"/docs/set-default?browser=Firefox"}>
           <Text component="span" c="blue">
             this page
           </Text>
         </RemixLink>
-      </WikiText>
+      </DocsText>
     </>
   );
 };

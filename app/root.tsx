@@ -7,7 +7,7 @@ import "@mantine/dates/styles.css";
 import "@mantine/charts/styles.css";
 
 import AppLayout from "@layout/index";
-import { ColorSchemeScript, useMantineColorScheme } from "@mantine/core";
+import { ColorSchemeScript } from "@mantine/core";
 import {
   Links,
   Meta,
@@ -15,16 +15,17 @@ import {
   Scripts,
   ScrollRestoration,
   isRouteErrorResponse,
-  json,
   useRouteError,
 } from "@remix-run/react";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 
-import { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
+
 import ErrorPage from "@module/Error";
-import { ROOT_META } from "./meta/root";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 import { useClientServerState } from "@store/client-server";
+import { ROOT_META_FUNCTION } from "./platform/meta";
+import { platformLoaderJson } from "./platform/loaderJson";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = request.headers.get("Cookie");
@@ -42,20 +43,23 @@ export async function loader({ request }: LoaderFunctionArgs) {
     "Mantine-Old"
   );
 
-  return json({
+  return platformLoaderJson({
     language: appLang,
     theme: appTheme,
 
+    // Platform variables
+    nodeVersion: process?.versions?.node || "",
     // Vercel stuff
-    nodeVersion: process?.versions?.node || "/",
-    vercelRegion: process?.env?.VERCEL_REGION || "/",
+    vercelRegion: process?.env?.VERCEL_REGION || "",
+    // Fly.io stuff
+    flyAppName: process?.env?.FLY_APP_NAME || "",
+    flyRegion: process?.env?.FLY_REGION || "",
+    flyMachineId: process?.env?.FLY_MACHINE_ID || "",
   });
 }
 
 // Meta tags
-export const meta: MetaFunction = () => {
-  return ROOT_META;
-};
+export const meta = ROOT_META_FUNCTION;
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { language } = useClientServerState();

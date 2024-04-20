@@ -1,5 +1,5 @@
-@use 'functions' as func;
-@use 'variables' as vars;
+@use "functions" as func;
+@use "variables" as vars;
 
 .root {
   padding-top: func.to-rem(80px);
@@ -28,11 +28,4 @@
   @media (max-width: vars.$mantine-breakpoint-sm) {
     font-size: func.to-rem(32px);
   }
-}
-
-.description {
-  max-width: func.to-rem(540px);
-  margin: auto;
-  margin-top: var(--mantine-spacing-sm);
-  margin-bottom: calc(var(--mantine-spacing-xl) * 1.5);
 }

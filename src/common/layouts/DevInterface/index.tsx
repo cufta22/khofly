@@ -30,28 +30,34 @@ export const regions: Record<string, string> = {
 const DevInterface = () => {
   const theme = useMantineTheme();
 
-  const { nodeVersion, vercelRegion } = useRouteLoaderData<any>("root");
+  const { nodeVersion, vercelRegion, flyAppName, flyRegion, flyMachineId } =
+    useRouteLoaderData<any>("root");
 
   return (
     <Alert
       variant="light"
-      color="dark"
+      color="blue"
       title="Dev Interface"
       icon={<IconCode />}
       className={classes.dev_interface}
     >
       <Stack>
-        {vercelRegion && vercelRegion !== "/" && (
-          <Text size="sm">Vercel Region: {regions[vercelRegion]}</Text>
-        )}
-        {nodeVersion && nodeVersion !== "/" && (
+        {nodeVersion && (
           <Flex align="center" gap="sm">
             <IconBrandNodejs
-              style={getIconStyle(22)}
+              style={getIconStyle(18)}
               color={theme.colors.green["5"]}
             />
-            <Text size="sm">{nodeVersion}</Text>
+            <Text size="xs">{nodeVersion}</Text>
           </Flex>
+        )}
+        {vercelRegion && (
+          <Text size="xs">Vercel Region: {regions[vercelRegion]}</Text>
+        )}
+        {flyAppName && <Text size="xs">Fly.io App Name: {flyAppName}</Text>}
+        {flyRegion && <Text size="xs">Fly.io Region: {flyRegion}</Text>}{" "}
+        {flyMachineId && (
+          <Text size="xs">Fly.io Machine ID: {flyMachineId}</Text>
         )}
       </Stack>
     </Alert>

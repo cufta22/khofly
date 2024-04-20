@@ -1,9 +1,12 @@
-import WikiTitle from "../../common/WikiTitle";
+import DocsText from "../../common/DocsText";
+import DocsTitle from "../../common/DocsTitle";
 
 const SectionCloudflare = () => {
   return (
     <>
-      <WikiTitle>Deploying to Cloudflare Workers</WikiTitle>
+      <DocsTitle>Deploying to Cloudflare Pages</DocsTitle>
+
+      <DocsText>Can't get it to work :(</DocsText>
     </>
   );
 };

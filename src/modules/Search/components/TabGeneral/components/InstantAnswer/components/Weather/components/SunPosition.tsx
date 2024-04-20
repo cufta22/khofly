@@ -45,7 +45,7 @@ const SunPosition: React.FC<Porps> = ({ data }) => {
       : mapRange(currentHr, 4, 20, sunriseHr, sunsetHr);
 
   return (
-    <Flex direction="column" w="20%">
+    <Flex direction="column" w={130}>
       <AreaChart
         h={80}
         w="100%"
