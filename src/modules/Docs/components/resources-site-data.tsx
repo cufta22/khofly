@@ -4,6 +4,9 @@ import { IconCookie, IconLayoutRows } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
+import DocsNextPrev from "./common/DocsNextPrev";
+
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const DocsResourcesSiteData = () => {
   const theme = useMantineTheme();
@@ -92,6 +95,11 @@ const DocsResourcesSiteData = () => {
         These are persisted in local storage by zustand because they are "not
         so" important for server-side rendering.
       </DocsText>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["i18n"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["selfHostKhofly"] }}
+      />
     </Container>
   );
 };

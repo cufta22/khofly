@@ -58,3 +58,7 @@
   top: var(--mantine-spacing-md);
   right: var(--mantine-spacing-md);
 }
+
+.ring_svg circle {
+  transition: stroke-dasharray 1s linear;
+}

@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import clsx from "clsx";
-import WikiNavbar from "@components/Navbar/Wiki";
+import DocsNavbar from "@components/Navbar/Docs";
 import { useDisclosure, useDocumentTitle, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
@@ -119,7 +119,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
         {isDocs && (
           <AppShell.Navbar p="md">
-            <WikiNavbar />
+            <DocsNavbar />
           </AppShell.Navbar>
         )}
 

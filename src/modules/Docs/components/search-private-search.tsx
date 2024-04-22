@@ -5,8 +5,10 @@ import { IconShield } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
-import DocsLink from "./common/DocsLink";
 import RemixLink from "@components/RemixLink";
+import DocsNextPrev from "./common/DocsNextPrev";
+
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const DocsSearchPrivateSearch = () => {
   const theme = useMantineTheme();
@@ -22,8 +24,7 @@ const DocsSearchPrivateSearch = () => {
       </DocsTitle>
 
       <DocsText>
-        In essence this just moves the search query data from URL to local
-        state.
+        TL;DR this just moves the search query data from URL to local state.
       </DocsText>
 
       <DocsSubtitle>Pros & Cons</DocsSubtitle>
@@ -47,7 +48,13 @@ const DocsSearchPrivateSearch = () => {
             here
           </Text>
         </RemixLink>
+        .
       </DocsText>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["IA"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
+      />
     </Container>
   );
 };

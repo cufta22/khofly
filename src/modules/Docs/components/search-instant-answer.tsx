@@ -1,8 +1,16 @@
-import { Box, Code, Container, Text } from "@mantine/core";
+import { Box, Code, Container, Text, useMantineTheme } from "@mantine/core";
 import classes from "./styles.module.scss";
 
 import DocsTitle from "./common/DocsTitle";
 import DocsSubtitle from "./common/DocsSubtitle";
+
+import ScrollToTop from "@components/ScrollToTop";
+import { IconMessageCode } from "@tabler/icons-react";
+import { getIconStyle } from "@utils/functions/iconStyle";
+import DocsText from "./common/DocsText";
+import DocsNextPrev from "./common/DocsNextPrev";
+
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 import IACalculator from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Calculator";
 import IACoinFlip from "@module/Search/components/TabGeneral/components/InstantAnswer/components/CoinFilp";
@@ -17,35 +25,54 @@ import IACurrency from "@module/Search/components/TabGeneral/components/InstantA
 import IAPassword from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Password";
 import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Unit";
 import IAEquation from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Equation";
-import ScrollToTop from "@components/ScrollToTop";
 
 const DocsSearchInstantAnswer = () => {
+  const theme = useMantineTheme();
+
   const IAWrapperString = "<IAWrapper />";
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle>Adding instant answer</DocsTitle>
+      <DocsTitle
+        leftSection={
+          <IconMessageCode
+            style={getIconStyle(48)}
+            color={theme.colors.grape[5]}
+          />
+        }
+      >
+        Instant answers
+      </DocsTitle>
 
-      <Text mt="md">
+      <DocsText>
+        Instant answers (IA) provide a better user experience by providing
+        direct information without the need for user to click on any result.
+        This feature can easily be disabled in settings.
+      </DocsText>
+
+      <DocsSubtitle>Adding instant answer</DocsSubtitle>
+
+      <DocsText>
         All instant answers code is located in{" "}
         <Code>
           /src/modules/Search/components/TabGeneral/components/InstantAnswer
         </Code>
-      </Text>
-      <Text mt="md">
+      </DocsText>
+
+      <DocsText>
         Create a folder with a descriptive name and make sure that everything is
         wrapped with <Code>{IAWrapperString}</Code>, then add your logic for
         displaying Instant Answer in <Code>index.tsx</Code> similar to how
         others are displayed conditionally.
-      </Text>
+      </DocsText>
 
       <DocsSubtitle>All available instant answers</DocsSubtitle>
 
-      <Text mt="md">
+      <DocsText>
         Below is a list of all currently available Instant Answers, some of them
         might still be work in progress but offer enough functionality to still
         be included and be useful. More will be available in the future.
-      </Text>
+      </DocsText>
 
       <DocsTitle>1. Calculator</DocsTitle>
       <Box className={classes.search_box}>
@@ -111,6 +138,11 @@ const DocsSearchInstantAnswer = () => {
       <Box className={classes.search_box}>
         <IAWeather />
       </Box>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
+      />
 
       <ScrollToTop />
     </Container>

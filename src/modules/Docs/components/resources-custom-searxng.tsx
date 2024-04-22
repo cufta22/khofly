@@ -1,9 +1,21 @@
-import { Blockquote, Code, Container, Paper, Text } from "@mantine/core";
+import {
+  Blockquote,
+  Code,
+  Container,
+  Paper,
+  Text,
+  useMantineTheme,
+} from "@mantine/core";
 import DocsText from "./common/DocsText";
 import DocsSubtitle from "./common/DocsSubtitle";
 import RemixLink from "@components/RemixLink";
 import DocsTitle from "./common/DocsTitle";
 import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
+import DocsNextPrev from "./common/DocsNextPrev";
+
+import { DOCS_CARD_DATA } from "./common/docsCardData";
+import { IconSearch } from "@tabler/icons-react";
+import { getIconStyle } from "@utils/functions/iconStyle";
 
 const CODE_SEARXNG_CONFIG = `
 search:
@@ -16,9 +28,17 @@ server:
 `;
 
 const DocsResourcesCustomSearxng = () => {
+  const theme = useMantineTheme();
+
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle>Custom SearXNG instance</DocsTitle>
+      <DocsTitle
+        leftSection={
+          <IconSearch style={getIconStyle(48)} color={theme.colors.blue[5]} />
+        }
+      >
+        Custom SearXNG instance
+      </DocsTitle>
 
       <Blockquote
         color="blue"
@@ -71,6 +91,11 @@ const DocsResourcesCustomSearxng = () => {
         Go to Settings/Instances/SearXNG Domain and set your instances domain in
         the following format <Code>https://domain.com</Code>
       </DocsText>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["i18n"] }}
+      />
     </Container>
   );
 };

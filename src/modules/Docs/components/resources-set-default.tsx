@@ -20,6 +20,9 @@ import DocsLink from "./common/DocsLink";
 import { useSearchParams } from "@remix-run/react";
 import DocsTitle from "./common/DocsTitle";
 import SectionVivaldi from "./components/set-default/SectionVivaldi";
+import DocsNextPrev from "./common/DocsNextPrev";
+
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const DocsResourcesSetDefault = () => {
   const [searchParams] = useSearchParams();
@@ -159,6 +162,11 @@ const DocsResourcesSetDefault = () => {
           <Loader size="xl" />
         </Center>
       )}
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["customSearXNG"] }}
+      />
     </Container>
   );
 };

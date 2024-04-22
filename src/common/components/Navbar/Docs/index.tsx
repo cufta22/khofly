@@ -1,10 +1,9 @@
-
 import classes from "./styles.module.scss";
 import { Flex, ScrollArea } from "@mantine/core";
 import { NAVBAR_DATA } from "@utils/resources/navbarData";
 import LinksGroup from "./components/LinksGroup";
 
-const WikiNavbar = () => {
+const DocsNavbar = () => {
   const links = NAVBAR_DATA.map((item) => (
     <LinksGroup {...item} key={item.label} />
   ));
@@ -18,4 +17,4 @@ const WikiNavbar = () => {
   );
 };
 
-export default WikiNavbar;
+export default DocsNavbar;

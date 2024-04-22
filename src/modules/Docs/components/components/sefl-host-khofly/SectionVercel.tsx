@@ -1,7 +1,7 @@
 import DocsText from "../../common/DocsText";
 import DocsLink from "../../common/DocsLink";
 import { IconInfoCircle } from "@tabler/icons-react";
-import { Alert, Code } from "@mantine/core";
+import { Alert, Code, Paper } from "@mantine/core";
 import DocsSubtitle from "../../common/DocsSubtitle";
 import DocsTitle from "../../common/DocsTitle";
 import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
@@ -58,7 +58,9 @@ const SectionVercel = () => {
         following:
       </DocsText>
 
-      <DocsCodeHighlight code={envVars} language="shell" />
+      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+        <DocsCodeHighlight code={envVars} language="bash" />
+      </Paper>
 
       <DocsSubtitle>
         5. Redeploy Vercel project so that env variables set in

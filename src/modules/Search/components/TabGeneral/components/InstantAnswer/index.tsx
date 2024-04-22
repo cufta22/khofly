@@ -82,18 +82,14 @@ const InstantAnswer = () => {
   // TODO:
   // Instant answer - Translate WIP
   //if (shouldDisplayIA(query, ["translate"])) return <IATranslate />;
-  // Instant answer - Currency convert
-  // Instant answer - Generate password
   // Instant answer - Sport scores
-  // Instant answer - Time around the world
-
-  // Instant answer - low prio
+  // Instant answer - Time around the world?
   // Instant answer - Lorem ipsum generator
 
   // Commands for memes
 
   // IA Command - Neofetch
-  if (shouldDisplayIA(query, ["neofetch"])) return <IANeofetch />;
+  // if (shouldDisplayIA(query, ["neofetch"])) return <IANeofetch />;
 
   return null;
 };

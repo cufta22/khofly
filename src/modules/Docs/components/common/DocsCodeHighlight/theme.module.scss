@@ -1,41 +1,54 @@
 .theme {
-  color: var(--code-text-color);
-  background: var(--code-background);
+  $code-text-color: light-dark(
+    var(--mantine-color-gray-7),
+    var(--mantine-color-dark-1)
+  );
+  $code-background: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-8)
+  );
+  $code-comment-color: light-dark(
+    var(--mantine-color-gray-6),
+    var(--mantine-color-dark-3)
+  );
+  $code-keyword-color: light-dark(
+    var(--mantine-color-violet-8),
+    var(--mantine-color-violet-3)
+  );
+  $code-tag-color: light-dark(
+    var(--mantine-color-red-9),
+    var(--mantine-color-yellow-4)
+  );
+  $code-literal-color: light-dark(
+    var(--mantine-color-blue-6),
+    var(--mantine-color-blue-4)
+  );
+  $code-string-color: light-dark(
+    var(--mantine-color-blue-9),
+    var(--mantine-color-green-6)
+  );
+  $code-variable-color: light-dark(
+    var(--mantine-color-lime-9),
+    var(--mantine-color-blue-2)
+  );
+  $code-class-color: light-dark(
+    var(--mantine-color-orange-9),
+    var(--mantine-color-orange-5)
+  );
 
-  @mixin where-light {
-    --code-text-color: var(--mantine-color-gray-7);
-    --code-background: var(--mantine-color-gray-0);
-    --code-comment-color: var(--mantine-color-gray-6);
-    --code-keyword-color: var(--mantine-color-violet-8);
-    --code-tag-color: var(--mantine-color-red-9);
-    --code-literal-color: var(--mantine-color-blue-6);
-    --code-string-color: var(--mantine-color-blue-9);
-    --code-variable-color: var(--mantine-color-lime-9);
-    --code-class-color: var(--mantine-color-orange-9);
-  }
-
-  @mixin where-dark {
-    --code-text-color: var(--mantine-color-dark-1);
-    --code-background: var(--mantine-color-dark-8);
-    --code-comment-color: var(--mantine-color-dark-3);
-    --code-keyword-color: var(--mantine-color-violet-3);
-    --code-tag-color: var(--mantine-color-yellow-4);
-    --code-literal-color: var(--mantine-color-blue-4);
-    --code-string-color: var(--mantine-color-green-6);
-    --code-variable-color: var(--mantine-color-blue-2);
-    --code-class-color: var(--mantine-color-orange-5);
-  }
+  color: $code-text-color;
+  background: $code-background;
 
   :global(.hljs-comment),
   :global(.hljs-quote) {
     font-style: italic;
-    color: var(--code-comment-color);
+    color: $code-comment-color;
   }
 
   :global(.hljs-doctag),
   :global(.hljs-formula),
   :global(.hljs-keyword) {
-    color: var(--code-keyword-color);
+    color: $code-keyword-color;
   }
 
   :global(.hljs-deletion),
@@ -43,11 +56,11 @@
   :global(.hljs-section),
   :global(.hljs-selector-tag),
   :global(.hljs-subst) {
-    color: var(--code-tag-color);
+    color: $code-tag-color;
   }
 
   :global(.hljs-literal) {
-    color: var(--code-literal-color);
+    color: $code-literal-color;
   }
 
   :global(.hljs-addition),
@@ -55,7 +68,7 @@
   :global(.hljs-meta .hljs-string),
   :global(.hljs-regexp),
   :global(.hljs-string) {
-    color: var(--code-string-color);
+    color: $code-string-color;
   }
 
   :global(.hljs-attr),
@@ -66,7 +79,7 @@
   :global(.hljs-template-variable),
   :global(.hljs-type),
   :global(.hljs-variable) {
-    color: var(--code-variable-color);
+    color: $code-variable-color;
   }
 
   :global(.hljs-bullet),
@@ -78,7 +91,7 @@
   :global(.hljs-built_in),
   :global(.hljs-class .hljs-title),
   :global(.hljs-title.class_) {
-    color: var(--code-class-color);
+    color: $code-class-color;
   }
 
   :global(.hljs-emphasis) {

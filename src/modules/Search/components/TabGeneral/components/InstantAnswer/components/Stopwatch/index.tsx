@@ -19,17 +19,49 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useState } from "react";
 import { useInterval } from "@mantine/hooks";
 
-const formatOutput = (no: number) => {
+const INITIAL_TIME = {
+  minute: 0,
+  second: 0,
+  milisecond: 0,
+};
+
+const formatOutput = (no: number): string => {
   return no.toLocaleString("en-US", {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
 };
 
-const INITIAL_TIME = {
-  minute: 0,
-  second: 0,
-  milisecond: 0,
+const calculateTimeDifference = (
+  currentTime: typeof INITIAL_TIME,
+  lastLap: typeof INITIAL_TIME
+) => {
+  // Convert time objects to milliseconds
+  const currentMs =
+    currentTime.minute * 60 * 100 +
+    currentTime.second * 100 +
+    currentTime.milisecond;
+  const lastLapMs =
+    lastLap.minute * 60 * 100 + lastLap.second * 100 + lastLap.milisecond;
+
+  // Calculate the difference in milliseconds
+  const timeDifferenceMs = currentMs - lastLapMs;
+
+  // Convert milliseconds to separate units (minutes, seconds, milliseconds)
+  const minutes = Math.floor(timeDifferenceMs / (60 * 100));
+  const remainingMs = timeDifferenceMs % (60 * 100);
+  const seconds = Math.floor(remainingMs / 100);
+  const milliseconds = remainingMs % 100;
+  console.log(milliseconds);
+
+  // Formats miliseconds to the length of 2, ex. 9778 => 97
+  const formattedMillisecond = Number(String(milliseconds).slice(0, 2));
+
+  return {
+    minute: minutes,
+    second: seconds,
+    milisecond: formattedMillisecond,
+  };
 };
 
 interface Props {
@@ -45,7 +77,7 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
     }>
   >([]);
 
-  // Timer logic
+  // Stopwatch logic
   const { active, start, stop } = useInterval(() => {
     setTime((prev) => {
       let newMilisecond = prev.milisecond + 1;
@@ -82,7 +114,9 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
       ...prev,
       {
         current: time,
-        diff: !prev.length ? time : time,
+        diff: !prev.length
+          ? time
+          : calculateTimeDifference(time, prev[prev.length - 1].current),
       },
     ]);
   };
@@ -147,7 +181,13 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
               gap="xs"
             >
               {[...loops].reverse().map((loop, i) => (
-                <Flex w="100%" align="center" justify="space-between" gap="md">
+                <Flex
+                  key={i}
+                  w="100%"
+                  align="center"
+                  justify="space-between"
+                  gap="md"
+                >
                   <Text size="sm" c="dimmed">
                     {loops.length - i}.
                   </Text>

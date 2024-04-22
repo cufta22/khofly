@@ -16,8 +16,19 @@ const DocsSelfHostKhofly = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <Tabs variant="default" defaultValue="vercel" keepMounted={false}>
+      <Tabs variant="default" defaultValue="cloudflare" keepMounted={false}>
         <Tabs.List>
+          <Tabs.Tab
+            value="cloudflare"
+            leftSection={
+              <IconBrandCloudflare
+                style={{ ...getIconStyle(28), color: colors.orange[6] }}
+              />
+            }
+            fz={15}
+          >
+            Cloudflare
+          </Tabs.Tab>
           <Tabs.Tab
             value="vercel"
             leftSection={
@@ -51,17 +62,6 @@ const DocsSelfHostKhofly = () => {
           >
             Netlify
           </Tabs.Tab> */}
-          {/* <Tabs.Tab
-            value="cloudflare"
-            leftSection={
-              <IconBrandCloudflare
-                style={{ ...getIconStyle(28), color: colors.orange[6] }}
-              />
-            }
-            fz={15}
-          >
-            Cloudflare
-          </Tabs.Tab> */}
           <Tabs.Tab
             value="vps"
             leftSection={
@@ -75,15 +75,15 @@ const DocsSelfHostKhofly = () => {
           </Tabs.Tab>
         </Tabs.List>
 
+        <Tabs.Panel value="cloudflare">
+          <SectionCloudflare />
+        </Tabs.Panel>
         <Tabs.Panel value="vercel">
           <SectionVercel />
         </Tabs.Panel>
         <Tabs.Panel value="flyio">
           <SectionFly />
         </Tabs.Panel>
-        {/* <Tabs.Panel value="cloudflare">
-          <SectionCloudflare />
-        </Tabs.Panel> */}
         <Tabs.Panel value="vps">
           <DocsWIP />
         </Tabs.Panel>

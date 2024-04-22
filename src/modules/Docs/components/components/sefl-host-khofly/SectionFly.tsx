@@ -1,12 +1,4 @@
-import {
-  Alert,
-  Anchor,
-  Button,
-  Code,
-  Collapse,
-  Paper,
-  Spoiler,
-} from "@mantine/core";
+import { Alert, Code, Paper } from "@mantine/core";
 import DocsSubtitle from "../../common/DocsSubtitle";
 import DocsText from "../../common/DocsText";
 import DocsTitle from "../../common/DocsTitle";
@@ -33,8 +25,7 @@ ENV NODE_ENV="production"
 FROM base as build
 
 # Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
+RUN apt-get update -qq && apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
 
 # Install node modules
 COPY package.json ./
@@ -106,11 +97,13 @@ const SectionFly = () => {
         well try the one below
       </DocsText>
 
-      <Spoiler maxHeight={200} showLabel="Show more" hideLabel="Hide" mb={60}>
-        <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-          <DocsCodeHighlight code={flyDockerfile} language="docker" />
-        </Paper>
-      </Spoiler>
+      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+        <DocsCodeHighlight
+          code={flyDockerfile}
+          language="docker"
+          style={{ whiteSpace: "balance" }}
+        />
+      </Paper>
 
       <DocsTitle>Updating Khofly version</DocsTitle>
 

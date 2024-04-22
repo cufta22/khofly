@@ -59,8 +59,6 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
 
   // Timer logic
   const { active, start, stop } = useInterval(() => {
-    // setSeconds((seconds) => seconds - 1);
-
     setTime((time) => {
       if (time.second > 0) {
         return { ...time, second: time.second - 1 };
@@ -122,6 +120,9 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
             size={120}
             thickness={8}
             roundCaps
+            classNames={{
+              svg: classes.ring_svg,
+            }}
             sections={[
               {
                 value: remainingPercentage(

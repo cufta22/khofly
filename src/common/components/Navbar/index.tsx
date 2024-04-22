@@ -1,1 +1,1 @@
-export * from "./Wiki";
+export * from "./Docs";
