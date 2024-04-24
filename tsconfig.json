@@ -2,15 +2,17 @@
   "include": [
     "env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-    // "**/.server/**/*.ts",
-    // "**/.server/**/*.tsx",
-    // "**/.client/**/*.ts",
-    // "**/.client/**/*.tsx"
+    "**/*.tsx",
+    "node_modules/@remix-run/react/future/single-fetch.d.ts",
+    // Cloudflare stuff
+    "**/.server/**/*.ts",
+    "**/.server/**/*.tsx",
+    "**/.client/**/*.ts",
+    "**/.client/**/*.tsx"
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    // "types": ["@remix-run/cloudflare", "vite/client"],
+    "types": ["@remix-run/cloudflare", "vite/client"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",

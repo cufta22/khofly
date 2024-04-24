@@ -1,4 +1,4 @@
-import { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/cloudflare";
 
 export const ROOT_META_FUNCTION: MetaFunction = () => [
   {

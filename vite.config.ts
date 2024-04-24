@@ -1,7 +1,7 @@
 import {
   Preset,
   vitePlugin as remix,
-  // cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
+  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from "@remix-run/dev";
 import { defineConfig, loadEnv } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
@@ -12,8 +12,9 @@ import path from "path";
 // Hosting providers
 import { vercelPreset } from "@vercel/remix/vite";
 
-// process.env.HOST_TARGET !== "cloudflare" && installGlobals();
-installGlobals();
+installGlobals({
+  nativeFetch: true,
+});
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
@@ -29,15 +30,18 @@ export default defineConfig(({ mode }) => {
       port: 3000,
     },
     plugins: [
-      // env.HOST_TARGET === "cloudflare" && remixCloudflareDevProxy(),
+      env.HOST_TARGET === "cloudflare" && remixCloudflareDevProxy(),
 
       remix({
         ignoredRouteFiles: ["**/.*", "**/*.css", "**/*.scss", "**/*.css.map"],
         presets: loadedPresets,
+        future: {
+          unstable_singleFetch: true,
+        },
       }),
 
       tsconfigPaths(),
-    ],
+    ].filter(Boolean),
 
     // Scss stuff
     css: {
@@ -53,13 +57,12 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         plugins: [
-          env.ANALYZE === "1"
-            ? visualizer({
-                open: true,
-                gzipSize: true,
-                brotliSize: true,
-              })
-            : null,
+          env.ANALYZE === "1" &&
+            visualizer({
+              open: true,
+              gzipSize: true,
+              brotliSize: true,
+            }),
         ].filter(Boolean),
         output: {
           manualChunks(id) {

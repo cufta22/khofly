@@ -14,9 +14,17 @@
   );
   transition: box-shadow 150ms ease, transform 100ms ease;
   padding: var(--mantine-spacing-xs);
+  position: relative;
 
   &:hover {
     box-shadow: var(--mantine-shadow-md);
     transform: scale(1.05);
   }
+}
+
+.item_actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
 }

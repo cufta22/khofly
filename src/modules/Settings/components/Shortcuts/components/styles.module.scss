@@ -1,0 +1,16 @@
+.add_new {
+  border: 2px solid var(--mantine-color-green-5);
+  border-radius: var(--mantine-radius-md);
+
+  cursor: pointer;
+
+  svg {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover {
+    svg {
+      transform: scale(1.2);
+    }
+  }
+}

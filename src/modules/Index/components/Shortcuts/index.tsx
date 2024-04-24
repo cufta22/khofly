@@ -1,43 +1,15 @@
-import {
-  Anchor,
-  Box,
-  Flex,
-  Image,
-  Text,
-  UnstyledButton,
-} from "@mantine/core";
+import { Flex } from "@mantine/core";
 
-import classes from "./styles.module.scss";
+import { useSettingsStore } from "@store/settings";
+import Shortcut from "./components/Shortcut";
 
-const mockdata = [
-  { title: "Music", url: "music.youtube.com" },
-  { title: "GitHub", url: "github.com" },
-  { title: "localhost:3000", url: "localhost:3000" },
-];
+export const Shortcuts = () => {
+  const { shortcuts } = useSettingsStore((state) => ({
+    shortcuts: state.shortcuts,
+  }));
 
-export function Shortcuts() {
-  const items = mockdata.map((item) => {
-    const fullUrl = item.url.includes("http") ? item.url : `http://${item.url}`;
-
-    return (
-      <Anchor href={fullUrl} target="_blank" rel="noreferrer noopener">
-        <UnstyledButton key={item.title} className={classes.item} w={90} h={90}>
-          <Image
-            w={40}
-            h={40}
-            // src={`https://favicone.com/${item.url}?s=32`}
-            src={`https://www.google.com/s2/favicons?domain=${item.url}&sz=32`}
-            alt=""
-          />
-        </UnstyledButton>
-
-        <Box w={90}>
-          <Text size="md" fw="bold" mt={8} ta="center" truncate="end">
-            {item.title}
-          </Text>
-        </Box>
-      </Anchor>
-    );
+  const items = shortcuts.map((item, i) => {
+    return <Shortcut key={i} {...item} />;
   });
 
   return (
@@ -45,5 +17,5 @@ export function Shortcuts() {
       {items}
     </Flex>
   );
-}
+};
 export default Shortcuts;

@@ -90,6 +90,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
 
         <link rel="manifest" href="manifest.json" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
         <AppLayout>
@@ -122,30 +123,12 @@ export default function App() {
 export function ErrorBoundary() {
   const error: any = useRouteError();
 
-  if (isRouteErrorResponse(error)) {
-    return (
-      <ErrorPage
-        code={error.status}
-        title="You have found a secret place"
-        message={error.data}
-      />
-    );
-  } else if (error instanceof Error) {
-    return (
-      <ErrorPage
-        code={500}
-        title="You have found a secret place"
-        message={error.message}
-        stack={error.stack}
-      />
-    );
-  } else {
-    return (
-      <ErrorPage
-        code={500}
-        title="You have found a secret place"
-        message="Unknown Error"
-      />
-    );
-  }
+  return (
+    <ErrorPage
+      code={error?.status || 500}
+      title="You have found a secret place"
+      message={error?.data || error?.message || "Unknown Error"}
+      stack={error?.stack}
+    />
+  );
 }

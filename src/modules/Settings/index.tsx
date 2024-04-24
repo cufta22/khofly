@@ -16,6 +16,7 @@ import SettingsCategories from "./components/Categories";
 import SettingsNominatim from "./components/Nominatim";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useState } from "react";
+import SettingsShortcuts from "./components/Shortcuts";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -95,10 +96,10 @@ const PageSettings = () => {
         <Tabs.Panel value="engines">
           <SettingsEngines />
         </Tabs.Panel>
-        {/* 
+
         <Tabs.Panel value="shortcuts">
           <SettingsShortcuts />
-        </Tabs.Panel> */}
+        </Tabs.Panel>
       </Tabs>
     </Container>
   );

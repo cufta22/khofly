@@ -1,4 +1,4 @@
-import { Alert, Code, Paper } from "@mantine/core";
+import { Alert, Badge, Code, Flex, Paper } from "@mantine/core";
 import DocsSubtitle from "../../common/DocsSubtitle";
 import DocsText from "../../common/DocsText";
 import DocsTitle from "../../common/DocsTitle";
@@ -55,7 +55,13 @@ CMD [ "npm", "run", "start" ]
 const SectionFly = () => {
   return (
     <>
-      <DocsTitle>Deploying to Fly.io</DocsTitle>
+      <Flex align="center" justify="space-between">
+        <DocsTitle>Deploying to Fly.io</DocsTitle>
+
+        <Badge size="lg" color="pink" variant="light">
+          Has 5$ free credit
+        </Badge>
+      </Flex>
 
       <DocsSubtitle>1. Clone Khofly repo on your machine</DocsSubtitle>
 

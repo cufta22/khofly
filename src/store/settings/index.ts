@@ -15,12 +15,24 @@ export type ICategories =
   | "files"
   | "social_media";
 
+export interface IShortcut {
+  title: string;
+  href: string;
+}
+
 interface SettingsState {
+  hydrated: boolean;
+
   categories: ICategories[];
   setCategories: (next: ICategories[]) => void;
 
   autocompleteEngine: IAutocompleteEngines;
   setAutocompleteEngine: (next: IAutocompleteEngines) => void;
+
+  shortcuts: IShortcut[];
+  setShortcuts: (next: IShortcut[]) => void;
+  displayShortcuts: boolean;
+  setDisplayShortcuts: (next: boolean) => void;
 
   displayFavicon: boolean;
   setDisplayFavicon: (next: boolean) => void;
@@ -41,11 +53,18 @@ interface SettingsState {
 export const useSettingsStore = create<SettingsState>()(
   persist(
     (set) => ({
+      hydrated: false,
+
       categories: ["general", "images", "videos", "news", "maps"],
       setCategories: (next) => set({ categories: next }),
 
       autocompleteEngine: "google",
       setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
+
+      shortcuts: [],
+      setShortcuts: (next) => set({ shortcuts: next }),
+      displayShortcuts: false,
+      setDisplayShortcuts: (next) => set({ displayShortcuts: next }),
 
       displayFavicon: false,
       setDisplayFavicon: (displayFavicon) => set({ displayFavicon }),
@@ -63,6 +82,11 @@ export const useSettingsStore = create<SettingsState>()(
       setPrivateSearch: (next) => set({ privateSearch: next }),
     }),
     {
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.hydrated = true;
+        }
+      },
       name: "settings-store", // name of the item in the storage (must be unique)
       partialize: (state) => ({
         displayFavicon: state.displayFavicon,
@@ -70,6 +94,7 @@ export const useSettingsStore = create<SettingsState>()(
         useAutocomplete: state.useAutocomplete,
         autocompleteEngine: state.autocompleteEngine,
         categories: state.categories,
+        shortcuts: state.shortcuts,
         privateSearch: state.privateSearch,
       }),
     }

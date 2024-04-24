@@ -1,7 +1,7 @@
 import DocsText from "../../common/DocsText";
 import DocsLink from "../../common/DocsLink";
 import { IconInfoCircle } from "@tabler/icons-react";
-import { Alert, Code, Paper } from "@mantine/core";
+import { Alert, Badge, Code, Flex, Paper } from "@mantine/core";
 import DocsSubtitle from "../../common/DocsSubtitle";
 import DocsTitle from "../../common/DocsTitle";
 import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
@@ -24,7 +24,13 @@ HOST_TARGET = vercel
 const SectionVercel = () => {
   return (
     <>
-      <DocsTitle>Deploying to Vercel</DocsTitle>
+      <Flex align="center" justify="space-between">
+        <DocsTitle>Deploying to Vercel</DocsTitle>
+
+        <Badge size="lg" color="green" variant="light">
+          Has free tier
+        </Badge>
+      </Flex>
 
       <DocsSubtitle>1. Clone Khofly repo on your machine</DocsSubtitle>
 
