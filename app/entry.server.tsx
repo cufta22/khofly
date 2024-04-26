@@ -5,7 +5,7 @@ import ClientServerProvider from "@store/client-server";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
-import { handleRequest as handleVercelRequest } from "@vercel/remix";
+// import { handleRequest as handleVercelRequest } from "@vercel/remix";
 
 import type { EntryContext } from "@remix-run/cloudflare";
 
@@ -57,14 +57,14 @@ export default async function handleRequest(
   // -------------------------------------------------
   // Handle Vercel request
   // -------------------------------------------------
-  if (process.env.HOST_TARGET === "vercel") {
-    return handleVercelRequest(
-      request,
-      responseStatusCode,
-      responseHeaders,
-      remixServer
-    );
-  }
+  // if (process.env.HOST_TARGET === "vercel") {
+  //   return handleVercelRequest(
+  //     request,
+  //     responseStatusCode,
+  //     responseHeaders,
+  //     remixServer
+  //   );
+  // }
 
   const body = await renderToReadableStream(remixServer, {
     signal: request.signal,

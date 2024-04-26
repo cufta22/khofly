@@ -19,7 +19,7 @@ import {
 } from "@remix-run/react";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/cloudflare";
 
 import ErrorPage from "@module/Error";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";

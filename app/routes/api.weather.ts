@@ -1,6 +1,6 @@
 import { OpenWeatherResponse } from "src/api/weather/types";
 
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { platformJson } from "app/platform/json";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
