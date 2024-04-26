@@ -6,8 +6,9 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
+    "install": "npm install --legacy-peer-deps",
     "dev": "remix vite:dev",
+    "build": "remix vite:build",
     "start": "remix-serve ./build/server/index.js",
     "start:cf": "wrangler pages dev ./build/client",
     "deploy:cf": "wrangler pages deploy ./build/client",
