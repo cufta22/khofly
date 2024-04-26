@@ -32,20 +32,20 @@
     "dayjs": "^1.11.10",
     "genius-lyrics": "^4.4.7",
     "highlight.js": "^11.9.0",
-    "isbot": "^5.1.4",
+    "isbot": "^5.1.5",
     "jsdom": "^24.0.0",
     "leaflet": "^1.9.4",
     "mantine-flagpack": "^4.0.1",
-    "react": "18.3.0-canary-c3048aab4-20240326",
-    "react-dom": "18.3.0-canary-c3048aab4-20240326",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-leaflet": "^4.2.1",
     "recharts": "^2.12.6",
     "swr": "^2.2.5",
     "zustand": "^4.5.2"
   },
   "overrides": {
-    "react": "18.3.0-canary-c3048aab4-20240326",
-    "react-dom": "18.3.0-canary-c3048aab4-20240326"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240423.0",
