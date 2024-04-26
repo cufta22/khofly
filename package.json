@@ -6,7 +6,6 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "install": "npm install --legacy-peer-deps",
     "dev": "remix vite:dev",
     "build": "remix vite:build",
     "start": "remix-serve ./build/server/index.js",
