@@ -13,10 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: NPM stuff
-        run: |
-          npm install --legacy-peer-deps
-          npm run build
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build the project
+        run: npm run build
 
       # With cloudflare/pages-action - https://github.com/cloudflare/pages-action
       - name: Publish to Cloudflare Pages
