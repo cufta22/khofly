@@ -32,14 +32,7 @@ const Lyricsbox = () => {
   if (!data || !q?.includes("lyrics")) return null;
 
   return (
-    <Paper
-      className={classes.search_lyricsbox}
-      mt="xl"
-      ml={80}
-      mr={80}
-      withBorder
-      radius="md"
-    >
+    <Paper className={classes.search_lyricsbox} ml={80} withBorder radius="md">
       <Flex p="md" direction="column">
         <Flex direction="row" align="flex-start" gap="md" mb="xl">
           <Image src={data.image} w={60} h={60} radius="md" fit="contain" />

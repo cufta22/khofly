@@ -38,7 +38,7 @@ const Suggestions: React.FC<Props> = ({ suggestions, type }) => {
 
   if (type === "infobox")
     return (
-      <Stack mt="xl" ml={80} mr={80} className={classes.search_suggestionbox}>
+      <Stack ml={80} className={classes.search_suggestionbox}>
         <Text size="lg">
           Searches related to <b>{q}</b>
         </Text>

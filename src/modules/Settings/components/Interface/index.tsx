@@ -1,16 +1,31 @@
-import { Divider, Flex, Paper, Stack, Text } from "@mantine/core";
+import {
+  Divider,
+  Flex,
+  Paper,
+  Stack,
+  Text,
+  useMantineTheme,
+} from "@mantine/core";
 
 import LanguageSelect from "./LanguageSelect/LanguageSelect";
 import ThemeSelect from "./ThemeSelect/ThemeSelect";
 import ColorSchemeSwitch from "./ColorThemeSwitch/ColorThemeSwitch";
 
-import { IconBrush } from "@tabler/icons-react";
+import {
+  IconBrush,
+  IconLanguage,
+  IconPalette,
+  IconSunMoon,
+} from "@tabler/icons-react";
 
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { getIconStyle } from "@utils/functions/iconStyle";
 
 const SettingsInterface = () => {
   const t = useTranslate();
+
+  const theme = useMantineTheme();
 
   return (
     <Paper radius="md" withBorder>
@@ -25,9 +40,16 @@ const SettingsInterface = () => {
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
         <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            {t("pages.settings.interface.selectLang")}
-          </Text>
+          <Flex align="center" gap="sm">
+            <IconLanguage
+              style={getIconStyle(20)}
+              color={theme.colors.gray["5"]}
+            />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.interface.selectLang")}
+            </Text>
+          </Flex>
 
           <LanguageSelect />
         </Flex>
@@ -35,18 +57,34 @@ const SettingsInterface = () => {
         <Divider my="sm" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            {t("pages.settings.interface.selectTheme")}
-          </Text>
+          <Flex align="center" gap="sm">
+            <IconPalette
+              style={getIconStyle(20)}
+              color={theme.colors.gray["5"]}
+            />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.interface.selectTheme")}
+            </Text>
+          </Flex>
+
           <ThemeSelect />
         </Flex>
 
         <Divider my="sm" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            {t("pages.settings.interface.selectColor")}
-          </Text>
+          <Flex align="center" gap="sm">
+            <IconSunMoon
+              style={getIconStyle(20)}
+              color={theme.colors.gray["5"]}
+            />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.interface.selectColor")}
+            </Text>
+          </Flex>
+
           <ColorSchemeSwitch />
         </Flex>
       </Stack>

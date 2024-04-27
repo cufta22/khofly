@@ -23,7 +23,6 @@ const Infobox: React.FC<ISearXNGResultsGeneral["infoboxes"][0]> = ({
       className={classes.search_infobox}
       mt="xl"
       ml={80}
-      mr={80}
       withBorder
       radius="md"
     >

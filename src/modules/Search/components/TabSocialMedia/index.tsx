@@ -1,22 +1,22 @@
-import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
-import { ISearXNGResultsNews } from "@ts/searxng.types";
 import { useEffect } from "react";
-import useSearXNGSWR from "src/api/searxng/use-searxng-query";
+
+import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-import NewsRow from "./components/NewsRow";
-import SearchResultSkeleton from "../TabGeneral/components/SearchResultSkeleton";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
+import useSearXNGSWR from "src/api/searxng/use-searxng-query";
+import { ISearXNGResultsSocialMedia } from "@ts/searxng.types";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
+import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
 
-const TabNews = () => {
+const TabSocialMedia = () => {
   const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
-    useSearXNGSWR<ISearXNGResultsNews>();
+    useSearXNGSWR<ISearXNGResultsSocialMedia>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -26,11 +26,11 @@ const TabNews = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Flex className={classes.tag_news} align="flex-start">
+    <Flex className={classes.tab_general} align="flex-start">
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
         {/* Search Options */}
-        <SearchOptions className={classes.search_options_news} />
+        <SearchOptions className={classes.search_options_social_media} />
 
         {data?.map((res, i) => {
           if (!res?.results) return;
@@ -40,23 +40,27 @@ const TabNews = () => {
                 <Divider label={`Page ${i + 1}`} labelPosition="left" />
               )}
 
-              {res?.results.map((r, i) => (
-                <NewsRow key={i} {...r} />
-              ))}
+              {/* {res?.results.map((r, i) => (
+                <SearchResultRow key={i} {...r} />
+              ))} */}
             </Stack>
           );
         })}
 
-        {(isLoading || isValidating) &&
+        {/* {(isLoading || isValidating) &&
           // Loading state
           Array.from(Array(10).keys()).map((e, i) => (
             <SearchResultSkeleton key={i} />
-          ))}
+          ))} */}
 
         {error && (
           // Error state
           <Text>RIP results</Text>
         )}
+
+        {/* {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
+          <Suggestions suggestions={data?.[0]?.suggestions} type="search" />
+        ) : null} */}
 
         {isRateLimit && (
           // Rate limit
@@ -90,8 +94,14 @@ const TabNews = () => {
 
         <ScrollToTop />
       </Stack>
+
+      {/* Infoboxes */}
+
+      <Flex direction="column" gap="xl">
+        {/* <UnresponsiveInfobox /> */}
+      </Flex>
     </Flex>
   );
 };
 
-export default TabNews;
+export default TabSocialMedia;

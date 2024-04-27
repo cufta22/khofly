@@ -2,7 +2,7 @@ import classes from "./styles.module.scss";
 import { Group, Text } from "@mantine/core";
 
 import React from "react";
-import SearchSection from "@module/Search/components/SearchSection";
+import SearchSection from "@module/Search/components/components/SearchSection";
 import clsx from "clsx";
 import HeaderLogo from "./components/HeaderLogo";
 import HeaderSettings from "./components/HeaderSettings";

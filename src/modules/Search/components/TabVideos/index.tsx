@@ -6,7 +6,7 @@ import VideoCell from "./components/VideoCell";
 import VideoSkeleton from "./components/VideoSkeleton";
 
 import classes from "./styles.module.scss";
-import SearchOptions from "../SearchOptions";
+import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 
 const TabVideos = () => {

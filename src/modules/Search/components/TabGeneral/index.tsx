@@ -11,8 +11,9 @@ import SearchResultSkeleton from "./components/SearchResultSkeleton";
 import Suggestions from "./components/Suggestions";
 import Infobox from "./components/Infobox";
 import Lyricsbox from "./components/Lyricsbox";
-import SearchOptions from "../SearchOptions";
+import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
+import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
 
 const TabGeneral = () => {
   const { hydrated } = useEnginesStore((state) => ({
@@ -113,6 +114,8 @@ const TabGeneral = () => {
           )}
 
         <Lyricsbox />
+
+        <UnresponsiveInfobox />
 
         {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
           <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />

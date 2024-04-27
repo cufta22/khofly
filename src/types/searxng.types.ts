@@ -117,3 +117,38 @@ export interface ISearXNGResultsNews {
   suggestions: Array<any>;
   unresponsive_engines: Array<string[]>;
 }
+
+export interface ISearXNGResultsSocialMedia {
+  query: string;
+  number_of_results: number;
+  results: Array<{
+    title: string;
+    url: string;
+    template: string;
+    engine: string;
+    parsed_url: Array<string>;
+    engines: Array<string>;
+    positions: Array<number>;
+    content: string;
+    score: number;
+    category: string;
+    publishedDate: string;
+  }>;
+  answers: Array<any>;
+  corrections: Array<any>;
+  infoboxes: Array<{
+    infobox: string;
+    id: string;
+    content: string;
+    img_src: string;
+    urls: {
+      title: string;
+      url: string;
+    }[];
+    attributes: Array<any>;
+    engine: string;
+    engines: Array<string>;
+  }>;
+  suggestions: Array<string>;
+  unresponsive_engines: Array<string[]>;
+}

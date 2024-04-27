@@ -119,8 +119,8 @@ export interface EnginesState {
   enginesImages: IImagesEngines[];
   setEnginesImages: (next: IImagesEngines[]) => void;
 
-  enginesVideos: IImagesEngines[];
-  setEnginesVideos: (next: IImagesEngines[]) => void;
+  enginesVideos: IVideosEngines[];
+  setEnginesVideos: (next: IVideosEngines[]) => void;
 
   enginesNews: INewsEngines[];
   setEnginesNews: (next: INewsEngines[]) => void;
@@ -153,7 +153,7 @@ export const useEnginesStore = create<EnginesState>()(
       setEnginesImages: (next) => set({ enginesImages: next }),
 
       enginesVideos: ["duckduckgo", "brave", "qwant"],
-      setEnginesVideos: (next) => set({ enginesImages: next }),
+      setEnginesVideos: (next) => set({ enginesVideos: next }),
 
       enginesNews: ["duckduckgo", "bing", "wikinews"],
       setEnginesNews: (next) => set({ enginesNews: next }),

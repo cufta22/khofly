@@ -7,7 +7,7 @@ import classes from "./styles.module.scss";
 import ImageSkeleton from "./components/ImageSkeleton";
 import { useDisclosure } from "@mantine/hooks";
 import ImageView from "./components/ImageView";
-import SearchOptions from "../SearchOptions";
+import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 
 const TabImages = () => {

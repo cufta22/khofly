@@ -89,6 +89,8 @@ interface Props {
 }
 
 const SettingsEnginesWrapper: React.FC<Props> = ({ category, data }) => {
+  console.log(category);
+
   const { engines, setEngines } = useEnginesStore((state) => ({
     engines: state[
       CATEGORY_TO_STORE[category].data
@@ -97,6 +99,7 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data }) => {
       CATEGORY_TO_STORE[category].set
     ] as EnginesState["setEnginesGeneral"],
   }));
+  console.log(engines);
 
   const handleChangeEngines = (e: IGeneralEngines, next: boolean) => {
     let newEngines = [];

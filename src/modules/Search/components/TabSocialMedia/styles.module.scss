@@ -1,7 +1,7 @@
 @use "functions" as func;
 @use "variables" as vars;
 
-.tab_general {
+.tab_social_media {
   // Header offset
   padding-top: 100px;
 
@@ -34,6 +34,6 @@
   }
 }
 
-.search_options_general {
+.search_options_social_media {
   margin-top: calc(-1 * var(--mantine-spacing-xl));
 }

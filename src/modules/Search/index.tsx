@@ -6,6 +6,7 @@ import TabVideos from "./components/TabVideos";
 import TabNews from "./components/TabNews";
 import { useSearchParams } from "@remix-run/react";
 import { useMounted } from "@mantine/hooks";
+import TabSocialMedia from "./components/TabSocialMedia";
 
 const TabMapsWithoutSSR = lazy(() => import("./components/TabMaps"));
 
@@ -29,7 +30,7 @@ const PageSearch = () => {
     it: null,
     science: null,
     files: null,
-    social_media: null,
+    social_media: <TabSocialMedia />,
   }[tab];
 
   return renderTab;
