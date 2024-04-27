@@ -125,10 +125,14 @@
         "engineBing": "Bing",
         "engineBrave": "Brave",
         "engineYahoo": "Yahoo!",
+        "engineWiby": "Wiby",
 
         "engineWikibooks": "Wikibooks",
+        "engineWikiquote": "Wikiquote",
         "engineWikisource": "Wikisource",
         "engineWikispecies": "Wikispecies",
+        "engineWikiversity": "Wikiversity",
+        "engineWikivoyage": "Wikivoyage",
 
         "engineAlexandria": "Alexandria",
         "engineWikipedia": "Wikipedia",
@@ -142,6 +146,11 @@
         "engineQwantImg": "Qwant images",
         "engineBingImg": "Bing images",
         "engineBraveImg": "Brave images",
+        "enginePresearchImg": "Presearch images",
+        "engineDeviantArtImg": "DeviantArt",
+        "engineFlickrImg": "Flickr",
+        "enginePinterestImg": "Pinterest",
+        "engineUnsplashImg": "Unsplash",
 
         "titleVid": "Video engines",
         "titleVid2": "web",
@@ -152,9 +161,15 @@
         "engineBingVid": "Bing videos",
         "engineBraveVid": "Brave videos",
 
+        "engineDailymotionVid": "Dailymotion",
+        "engineOdyseeVid": "Odysee",
+        "enginePipedVid": "Piped",
+        "engineVimeoVid": "Vimeo",
+        "engineYoutubeVid": "YouTube",
+
         "titleNews": "News engines",
-        "titleNews2": "wiki stuff",
-        "titleNews3": "web news",
+        "titleNews2": "web",
+        "titleNews3": "wiki stuff",
 
         "engineGoogleNews": "Google news",
         "engineDDGNews": "DuckDuckGo news",
@@ -224,12 +239,14 @@
 
         "titleSocial": "Social Media engines",
 
+        "engine9gagSM": "9gag",
         "engineLemmyCommentsSM": "Lemmy Comments",
         "engineLemmyCommunitiesSM": "Lemmy Communities",
         "engineLemmyPostsSM": "Lemmy Posts",
         "engineLemmyUsersSM": "Lemmy Users",
         "engineMastodonHashtagsSM": "Mastodon Hashtags",
-        "engineMastodonUsersSM": "Mastodon Users"
+        "engineMastodonUsersSM": "Mastodon Users",
+        "engineRedditSM": "Reddit"
       }
     }
   }

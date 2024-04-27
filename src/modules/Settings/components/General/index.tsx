@@ -9,7 +9,15 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 
-import { IconInfoCircle, IconSettings2, IconShield } from "@tabler/icons-react";
+import {
+  IconCursorText,
+  IconExternalLink,
+  IconFavicon,
+  IconInfoCircle,
+  IconMessageCode,
+  IconSettings2,
+  IconShield,
+} from "@tabler/icons-react";
 import FaviconSwitch from "./FaviconSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
@@ -39,6 +47,11 @@ const SettingsGeneral = () => {
       <Stack w="100%" align="start" px="lg" mb="xl">
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
+            <IconFavicon
+              style={getIconStyle(20)}
+              color={theme.colors.gray["5"]}
+            />
+
             <Text size="md" fw={400}>
               {t("pages.settings.general.toggle_favicon")}
             </Text>
@@ -54,9 +67,16 @@ const SettingsGeneral = () => {
         <Divider my="sm" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            {t("pages.settings.general.toggle_autocomplete")}
-          </Text>
+          <Flex align="center" gap="sm">
+            <IconCursorText
+              style={getIconStyle(20)}
+              color={theme.colors.gray["5"]}
+            />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.general.toggle_autocomplete")}
+            </Text>
+          </Flex>
 
           <AutocompleteSwitch />
         </Flex>
@@ -64,9 +84,16 @@ const SettingsGeneral = () => {
         <Divider my="sm" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            {t("pages.settings.general.toggle_open_in_new_tab")}
-          </Text>
+          <Flex align="center" gap="sm">
+            <IconExternalLink
+              style={getIconStyle(20)}
+              color={theme.colors.gray["5"]}
+            />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.general.toggle_open_in_new_tab")}
+            </Text>
+          </Flex>
 
           <NewTabSwitch />
         </Flex>
@@ -74,9 +101,16 @@ const SettingsGeneral = () => {
         <Divider my="sm" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            {t("pages.settings.general.toggle_ia")}
-          </Text>
+          <Flex align="center" gap="sm">
+            <IconMessageCode
+              style={getIconStyle(20)}
+              color={theme.colors.grape["5"]}
+            />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.general.toggle_ia")}
+            </Text>
+          </Flex>
 
           <IASwitch />
         </Flex>
@@ -105,14 +139,14 @@ const SettingsGeneral = () => {
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_private_search")}
-            </Text>
-
             <IconShield
               style={getIconStyle(20)}
               color={theme.colors.green["5"]}
             />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.general.toggle_private_search")}
+            </Text>
           </Flex>
 
           <PrivateSearchSwitch />

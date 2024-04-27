@@ -11,9 +11,13 @@ export type IGeneralEngines =
   | "qwant"
   | "startpage"
   | "yahoo"
+  | "wiby"
   | "wikibooks"
+  | "wikiquote"
   | "wikisource"
   | "wikispecies"
+  | "wikiversity"
+  | "wikivoyage"
   | "alexandria"
   | "wikipedia"
   | "wikidata";
@@ -23,14 +27,24 @@ export type IImagesEngines =
   | "duckduckgo"
   | "bing"
   | "brave"
-  | "qwant";
+  | "qwant"
+  | "presearch"
+  | "deviantart"
+  | "flickr"
+  | "pinterest"
+  | "unsplash";
 
 export type IVideosEngines =
   | "google"
   | "duckduckgo"
   | "bing"
   | "brave"
-  | "qwant";
+  | "qwant"
+  | "dailymotion"
+  | "odysee"
+  | "piped"
+  | "vimeo"
+  | "youtube";
 
 export type INewsEngines =
   | "google"
@@ -87,12 +101,14 @@ export type IFilesEngines =
   | "piratebay";
 
 export type ISocialMediaEngines =
+  | "9gag"
   | "lemmycomments"
   | "lemmycommunities"
   | "lemmyposts"
   | "lemmyusers"
   | "mastodonhashtags"
-  | "mastodonusers";
+  | "mastodonusers"
+  | "reddit";
 
 export interface EnginesState {
   hydrated: boolean;
@@ -161,6 +177,7 @@ export const useEnginesStore = create<EnginesState>()(
         "lemmyusers",
         "mastodonhashtags",
         "mastodonusers",
+        "reddit",
       ],
       setEnginesSocialMedia: (next) => set({ enginesSocialMedia: next }),
     }),

@@ -237,7 +237,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/debian-icon.svg"
+                  src="/assets/engines/debian-icon.svg"
                   alt="Debian logo"
                   w={20}
                   h={20}
@@ -250,7 +250,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/arch-icon.svg"
+                  src="/assets/engines/arch-icon.svg"
                   alt="Arch logo"
                   w={20}
                   h={20}
@@ -274,7 +274,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/debian-icon.svg"
+                  src="/assets/engines/debian-icon.svg"
                   alt="Debian logo"
                   w={20}
                   h={20}
@@ -287,7 +287,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/arch-icon.svg"
+                  src="/assets/engines/arch-icon.svg"
                   alt="Arch logo"
                   w={20}
                   h={20}
@@ -317,7 +317,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/debian-icon.svg"
+                  src="/assets/engines/debian-icon.svg"
                   alt="Debian logo"
                   w={20}
                   h={20}
@@ -330,7 +330,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/arch-icon.svg"
+                  src="/assets/engines/arch-icon.svg"
                   alt="Arch logo"
                   w={20}
                   h={20}
@@ -370,7 +370,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/debian-icon.svg"
+                  src="/assets/engines/debian-icon.svg"
                   alt="Debian logo"
                   w={20}
                   h={20}
@@ -383,7 +383,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/arch-icon.svg"
+                  src="/assets/engines/arch-icon.svg"
                   alt="Arch logo"
                   w={20}
                   h={20}
@@ -506,7 +506,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/debian-icon.svg"
+                  src="/assets/engines/debian-icon.svg"
                   alt="Debian logo"
                   w={20}
                   h={20}
@@ -519,7 +519,7 @@ const DocsSelfHostSearxng = () => {
               language: "bash",
               icon: (
                 <Image
-                  src="/assets/arch-icon.svg"
+                  src="/assets/engines/arch-icon.svg"
                   alt="Arch logo"
                   w={20}
                   h={20}

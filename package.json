@@ -1,6 +1,6 @@
 {
   "name": "@khofly/search",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "cufta22",
   "private": false,
   "sideEffects": false,
@@ -38,6 +38,7 @@
     "jsdom": "^24.0.0",
     "leaflet": "^1.9.4",
     "mantine-flagpack": "^4.0.1",
+    "miniflare": "^3.20240419.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-leaflet": "^4.2.1",

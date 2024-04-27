@@ -126,36 +126,36 @@ const Engines = () => {
             >
               News
             </Tabs.Tab>
-            {/* <Tabs.Tab
+            <Tabs.Tab
               value="music"
               leftSection={<IconMusic style={getIconStyle(20)} />}
             >
               Music
-            </Tabs.Tab> */}
-            {/* <Tabs.Tab
+            </Tabs.Tab>
+            <Tabs.Tab
               value="it"
               leftSection={<IconCpu style={getIconStyle(20)} />}
             >
               IT
-            </Tabs.Tab> */}
-            {/* <Tabs.Tab
+            </Tabs.Tab>
+            <Tabs.Tab
               value="science"
               leftSection={<IconSchool style={getIconStyle(20)} />}
             >
               Science
-            </Tabs.Tab> */}
-            {/* <Tabs.Tab
+            </Tabs.Tab>
+            <Tabs.Tab
               value="files"
               leftSection={<IconFiles style={getIconStyle(20)} />}
             >
               Files
-            </Tabs.Tab> */}
-            {/* <Tabs.Tab
+            </Tabs.Tab>
+            <Tabs.Tab
               value="social_media"
               leftSection={<IconUsers style={getIconStyle(20)} />}
             >
               Social Media
-            </Tabs.Tab> */}
+            </Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="general">
