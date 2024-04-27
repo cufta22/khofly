@@ -1,6 +1,6 @@
 import { RemixBrowser } from "@remix-run/react";
 import ClientServerProvider from "@store/client-server";
-import { ILanguage } from "@ts/global.types";
+import { ILanguage, ITranslations } from "@ts/global.types";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
@@ -22,7 +22,7 @@ async function hydrate() {
 
   // Dynamically fetch content JSON
   const contentFetch = await fetch(`/locales/${htmlLang}.json`);
-  const content = await contentFetch.json();
+  const content: ITranslations = await contentFetch.json();
 
   startTransition(() => {
     hydrateRoot(

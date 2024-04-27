@@ -1,11 +1,11 @@
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
-import { renderToReadableStream } from "react-dom/server";
 import ClientServerProvider from "@store/client-server";
+import reactDom from "react-dom/server";
 import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
-// import { handleRequest as handleVercelRequest } from "@vercel/remix";
+import { handleRequest as handleVercelRequest } from "@vercel/remix";
 
 import type { EntryContext } from "@remix-run/cloudflare";
 
@@ -57,16 +57,16 @@ export default async function handleRequest(
   // -------------------------------------------------
   // Handle Vercel request
   // -------------------------------------------------
-  // if (process.env.HOST_TARGET === "vercel") {
-  //   return handleVercelRequest(
-  //     request,
-  //     responseStatusCode,
-  //     responseHeaders,
-  //     remixServer
-  //   );
-  // }
+  if (process.env.HOST_TARGET === "vercel") {
+    return handleVercelRequest(
+      request,
+      responseStatusCode,
+      responseHeaders,
+      remixServer
+    );
+  }
 
-  const body = await renderToReadableStream(remixServer, {
+  const body = await reactDom.renderToReadableStream(remixServer, {
     signal: request.signal,
     onError() {
       responseStatusCode = 500;

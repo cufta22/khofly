@@ -8,23 +8,23 @@ import { visualizer } from "rollup-plugin-visualizer";
 import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
-// import { installGlobals } from "@remix-run/node";
+import { installGlobals } from "@remix-run/node";
 
 // Hosting providers
-// import { vercelPreset } from "@vercel/remix/vite";
+import { vercelPreset } from "@vercel/remix/vite";
 
-// installGlobals({
-//   nativeFetch: true,
-// });
+installGlobals({
+  nativeFetch: true,
+});
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   const loadedPresets: Preset[] = [];
 
-  // if (env.HOST_TARGET === "vercel") {
-  //   loadedPresets.push(vercelPreset());
-  // }
+  if (env.HOST_TARGET === "vercel") {
+    loadedPresets.push(vercelPreset());
+  }
 
   return {
     server: {
