@@ -7,7 +7,7 @@ import { DotNestedKeys, ILanguage, ITranslations } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { useTranslate } from "@hooks/translate/use-translate";
-import { setCookie } from "@utils/functions/setCookie";
+import { setCookie } from "@utils/functions/cookies";
 
 import { useNavigate } from "@remix-run/react";
 import { useClientServerState } from "@store/client-server";

@@ -19,13 +19,7 @@ const Infobox: React.FC<ISearXNGResultsGeneral["infoboxes"][0]> = ({
   urls,
 }) => {
   return (
-    <Paper
-      className={classes.search_infobox}
-      mt="xl"
-      ml={80}
-      withBorder
-      radius="md"
-    >
+    <Paper className={classes.search_infobox} ml={80} withBorder radius="md">
       <Image src={img_src} radius="md" fit="contain" />
 
       <Flex p="md" direction="column">

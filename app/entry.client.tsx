@@ -1,7 +1,7 @@
 import { RemixBrowser } from "@remix-run/react";
 import ClientServerProvider from "@store/client-server";
 import { ILanguage, ITranslations } from "@ts/global.types";
-import { getCookieProperty } from "@utils/functions/getCookieProperty";
+import { getCookie } from "@utils/functions/cookies";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
 
@@ -14,11 +14,7 @@ async function hydrate() {
     ?.getAttribute("lang") as ILanguage;
 
   // Get app theme
-  const appTheme = getCookieProperty(
-    cookies || "",
-    "khofly-app-theme",
-    "Mantine-Old"
-  );
+  const appTheme = getCookie("khofly-app-theme", undefined, "Mantine-Old");
 
   // Dynamically fetch content JSON
   const contentFetch = await fetch(`/locales/${htmlLang}.json`);

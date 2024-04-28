@@ -1,5 +1,5 @@
-import { Flex, Group, Image } from "@mantine/core";
-import { lazy } from "react";
+import { Flex, Group, Image, Loader } from "@mantine/core";
+import { Suspense, lazy } from "react";
 
 import classes from "./styles.module.scss";
 
@@ -11,6 +11,7 @@ import RemixLink from "@components/RemixLink";
 import SearchSectionInput from "./components/SearchSectionInput";
 import { useSearchParams } from "@remix-run/react";
 import { useSearchStore } from "@store/search";
+import { useSettingsStore } from "@store/settings";
 
 const SearchSectionTabsWithoutSSR = lazy(
   () => import(`./components/SearchSectionTabs`)
@@ -18,6 +19,10 @@ const SearchSectionTabsWithoutSSR = lazy(
 
 const SearchSection = () => {
   const [searchParams] = useSearchParams();
+
+  const { hydrated } = useSettingsStore((state) => ({
+    hydrated: state.hydrated,
+  }));
 
   const { searchQuery } = useSearchStore((state) => ({
     searchQuery: state.searchQuery,
@@ -55,7 +60,11 @@ const SearchSection = () => {
         <SearchSectionInput />
 
         {/* Search Tabs */}
-        <SearchSectionTabsWithoutSSR />
+        {hydrated && (
+          <Suspense fallback={null}>
+            <SearchSectionTabsWithoutSSR />
+          </Suspense>
+        )}
       </Flex>
     </Group>
   );

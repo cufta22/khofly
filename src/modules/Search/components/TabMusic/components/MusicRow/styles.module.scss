@@ -1,26 +1,29 @@
 @use "functions" as func;
 @use "variables" as vars;
 
-.news_row {
-  .text_title {
-    color: light-dark(
-      var(--mantine-color-indigo-9),
-      var(--mantine-color-white)
-    );
-
-    &.text_title_visited {
-      color: light-dark(
-        var(--mantine-color-red-9),
-        var(--mantine-color-dark-1)
-      );
-    }
+.music_row {
+  .music_img {
+    min-width: func.to-rem(100);
+    width: func.to-rem(100);
+    height: func.to-rem(100);
   }
 
-  &_active {
-    box-shadow: 0 0 3px var(--mantine-color-blue-5);
+  .music_data {
+    width: 100%;
+    overflow: hidden;
 
     .text_title {
-      text-decoration: underline;
+      color: light-dark(
+        var(--mantine-color-indigo-9),
+        var(--mantine-color-white)
+      );
+
+      &.text_title_visited {
+        color: light-dark(
+          var(--mantine-color-red-9),
+          var(--mantine-color-dark-1)
+        );
+      }
     }
   }
 

@@ -4,7 +4,7 @@ import classes from "./styles.module.scss";
 import { DotNestedKeys, IAppTheme, ITranslations } from "@ts/global.types";
 
 import { useTranslate } from "@hooks/translate/use-translate";
-import { setCookie } from "@utils/functions/setCookie";
+import { setCookie } from "@utils/functions/cookies";
 import { useNavigate, useRouteLoaderData } from "@remix-run/react";
 
 interface ILangData {

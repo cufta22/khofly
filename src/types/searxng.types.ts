@@ -118,6 +118,76 @@ export interface ISearXNGResultsNews {
   unresponsive_engines: Array<string[]>;
 }
 
+// Music tab
+
+export interface ISearXNGResultsMusic {
+  query: string;
+  number_of_results: number;
+  results: Array<{
+    title: string;
+    url: string;
+    template: string;
+    engine: string;
+    parsed_url: Array<string>;
+    engines: Array<string>;
+    positions: Array<number>;
+    content: string;
+    score: number;
+    category: string;
+    iframe_src: string;
+    img_src: string;
+    publishedDate: string | null;
+  }>;
+  answers: Array<any>;
+  corrections: Array<any>;
+  infoboxes: Array<any>;
+  suggestions: Array<string>;
+  unresponsive_engines: Array<string[]>;
+}
+
+// IT tab
+
+export interface ISearXNGResultsIT {
+  query: string;
+  number_of_results: number;
+  results: Array<{
+    title: string;
+    url: string;
+    template: string;
+    engine: string;
+    parsed_url: Array<string>;
+    engines: Array<string>;
+    positions: Array<number>;
+    content: string;
+    score: number;
+    category: string;
+
+    // docker-hub, github, npm
+    img_src?: string;
+    publishedDate?: string;
+    package_name?: string;
+    maintainer?: string;
+    tags?: Array<string>;
+    popularity?: string | number;
+
+    // github
+    license_name?: string;
+    license_url?: string;
+    homepage?: string;
+    source_code_url?: string;
+
+    // npm
+    version?: string;
+  }>;
+  answers: Array<any>;
+  corrections: Array<any>;
+  infoboxes: Array<any>;
+  suggestions: Array<string>;
+  unresponsive_engines: Array<string[]>;
+}
+
+// Social Media tab
+
 export interface ISearXNGResultsSocialMedia {
   query: string;
   number_of_results: number;
@@ -136,19 +206,7 @@ export interface ISearXNGResultsSocialMedia {
   }>;
   answers: Array<any>;
   corrections: Array<any>;
-  infoboxes: Array<{
-    infobox: string;
-    id: string;
-    content: string;
-    img_src: string;
-    urls: {
-      title: string;
-      url: string;
-    }[];
-    attributes: Array<any>;
-    engine: string;
-    engines: Array<string>;
-  }>;
+  infoboxes: Array<any>;
   suggestions: Array<string>;
   unresponsive_engines: Array<string[]>;
 }

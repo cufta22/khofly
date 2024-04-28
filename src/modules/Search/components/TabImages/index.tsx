@@ -64,7 +64,7 @@ const TabImages = () => {
           ));
         })}
 
-        {(isLoading || isValidating) &&
+        {(isLoading || isValidating || !hydrated) &&
           // Loading state
           Array.from(Array(30).keys()).map((e, i) => <ImageSkeleton key={i} />)}
       </Flex>

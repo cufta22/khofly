@@ -1,5 +1,3 @@
-import { useResponsive } from "@hooks/use-responsive";
-
 import { useSearchParams } from "@remix-run/react";
 import {
   shouldDisplayCurrency,
@@ -25,7 +23,6 @@ import { useSearchStore } from "@store/search";
 
 const InstantAnswer = () => {
   const [searchParams] = useSearchParams();
-  const isXl = useResponsive("min", "lg");
 
   const { searchQuery } = useSearchStore((state) => ({
     searchQuery: state.searchQuery,
@@ -56,7 +53,7 @@ const InstantAnswer = () => {
   if (shouldDisplayEquation(query)) return <IAEquation query={query} />;
 
   // Instant answer - Lyrics by Genius
-  if (shouldDisplayIA(query, ["lyrics"]) && !isXl) return <IALyrics />;
+  if (shouldDisplayIA(query, ["lyrics"])) return <IALyrics />;
 
   // Instant answer - Password
   if (shouldDisplayIA(query, ["password"])) return <IAPassword />;

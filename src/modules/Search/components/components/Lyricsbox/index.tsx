@@ -24,12 +24,17 @@ const Lyricsbox = () => {
   }));
 
   const q = searchQuery || searchParams.get("q") || "";
+  const tab = searchParams.get("tab") || "general";
 
   useEffect(() => {
+    // Handle for music tab
+    if (tab === "music" && q) trigger(q);
+
+    // Handle for general tab
     if (q && q.includes("lyrics")) trigger(q.replace("lyrics", ""));
   }, [q]);
 
-  if (!data || !q?.includes("lyrics")) return null;
+  if (!data?.title) return null;
 
   return (
     <Paper className={classes.search_lyricsbox} ml={80} withBorder radius="md">
@@ -37,17 +42,19 @@ const Lyricsbox = () => {
         <Flex direction="row" align="flex-start" gap="md" mb="xl">
           <Image src={data.image} w={60} h={60} radius="md" fit="contain" />
 
-          <Flex direction="column">
+          <Flex className={classes.top_part} direction="column">
             <Text
               className={classes.song_title}
               fz={22}
               fw={600}
-              lineClamp={1}
               truncate="end"
             >
               {data.title}
             </Text>
-            <Text size="md">{data.artist}</Text>
+
+            <Text size="md" truncate="end">
+              {data.artist}
+            </Text>
           </Flex>
         </Flex>
 

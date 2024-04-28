@@ -31,8 +31,8 @@ const DocsSearchPrivateSearch = () => {
 
       <DocsText>
         You gain better privacy because no search data will be sent to hosting
-        service since the search query lives in state and not in a URL
-        parameter.
+        service or saved in browser since the search query lives in state and
+        not in a URL parameter.
       </DocsText>
 
       <DocsText>

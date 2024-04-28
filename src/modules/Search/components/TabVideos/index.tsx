@@ -44,7 +44,8 @@ const TabVideos = () => {
             <VideoCell key={i} videoData={img} />
           ));
         })}
-        {(isLoading || isValidating) &&
+
+        {(isLoading || isValidating || !hydrated) &&
           // Loading state
           Array.from(Array(30).keys()).map((e, i) => <VideoSkeleton key={i} />)}
       </SimpleGrid>

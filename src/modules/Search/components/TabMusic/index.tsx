@@ -1,30 +1,39 @@
 import { useEffect, useState } from "react";
-import InstantAnswer from "./components/InstantAnswer";
-import SearchResultRow from "./components/SearchResultRow";
+
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import { ISearXNGResultsGeneral } from "@ts/searxng.types";
-import SearchResultSkeleton from "./components/SearchResultSkeleton";
-import Suggestions from "../components/Suggestions";
-import Infobox from "../components/Infobox";
-import Lyricsbox from "../components/Lyricsbox";
+import { ISearXNGResultsMusic } from "@ts/searxng.types";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
-import SearchHotkeys, { getArrayOfURLs } from "../components/SearchHotkeys";
+import MusicRow from "./components/MusicRow/MusicRow";
+import MusicSkeleton from "./components/MusicSkeleton/MusicSkeleton";
+import Suggestions from "../components/Suggestions";
+import { useDisclosure } from "@mantine/hooks";
+import Lyricsbox from "../components/Lyricsbox";
+import MusicPlayer from "./components/MusicPlayer";
 
-const TabGeneral = () => {
+const TabMusic = () => {
   const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
-    useSearXNGSWR<ISearXNGResultsGeneral>();
+    useSearXNGSWR<ISearXNGResultsMusic>();
 
-  const [selectedRow, setSelectedRow] = useState("");
+  const [
+    isOpenMusicPlayer,
+    { open: openMusicPlayer, close: closeMusicPlayer },
+  ] = useDisclosure(false);
+  const [iframeSrc, setIframeSrc] = useState<string>("");
+
+  const openMusicInPlayer = (src: string) => {
+    setIframeSrc(src);
+    openMusicPlayer();
+  };
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -34,20 +43,11 @@ const TabGeneral = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Flex className={classes.tab_general} align="flex-start">
-      {/* Hotkeys */}
-      <SearchHotkeys
-        selectedRow={selectedRow}
-        setSelectedRow={setSelectedRow}
-        data={getArrayOfURLs(data || [])}
-      />
-
+    <Flex className={classes.tab_music} align="flex-start">
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
         {/* Search Options */}
-        <SearchOptions className={classes.search_options_general} />
-
-        <InstantAnswer />
+        <SearchOptions className={classes.search_options_music} />
 
         {data?.map((res, i) => {
           if (!res?.results) return;
@@ -58,7 +58,11 @@ const TabGeneral = () => {
               )}
 
               {res?.results.map((r, i) => (
-                <SearchResultRow key={i} selectedRow={selectedRow} data={r} />
+                <MusicRow
+                  key={i}
+                  openMusicInPlayer={openMusicInPlayer}
+                  musicData={r}
+                />
               ))}
             </Stack>
           );
@@ -66,9 +70,7 @@ const TabGeneral = () => {
 
         {(isLoading || isValidating || !hydrated) &&
           // Loading state
-          Array.from(Array(10).keys()).map((e, i) => (
-            <SearchResultSkeleton key={i} />
-          ))}
+          Array.from(Array(10).keys()).map((e, i) => <MusicSkeleton key={i} />)}
 
         {error && (
           // Error state
@@ -115,14 +117,6 @@ const TabGeneral = () => {
       {/* Infoboxes */}
 
       <Flex direction="column" gap="xl" pt="xl">
-        {!isLoading &&
-          !isValidating &&
-          !isRateLimit &&
-          data &&
-          data?.[0]?.infoboxes?.length >= 1 && (
-            <Infobox {...data[0].infoboxes[0]} />
-          )}
-
         <Lyricsbox />
 
         {!isLoading &&
@@ -134,12 +128,16 @@ const TabGeneral = () => {
               unresponsive_engines={data?.[0]?.unresponsive_engines}
             />
           )}
-        {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
-          <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />
-        ) : null}
       </Flex>
+
+      {/* Music player */}
+      <MusicPlayer
+        isOpen={isOpenMusicPlayer}
+        handleClose={closeMusicPlayer}
+        iframeSrc={iframeSrc}
+      />
     </Flex>
   );
 };
 
-export default TabGeneral;
+export default TabMusic;

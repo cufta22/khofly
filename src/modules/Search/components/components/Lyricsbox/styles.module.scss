@@ -8,11 +8,16 @@
     display: none;
   }
 
+  .top_part {
+    overflow: hidden;
+  }
+
   .song_lyrics {
     white-space: pre-wrap !important;
   }
 
   .song_title {
+    width: 100%;
     color: light-dark(var(--mantine-color-dark-9), var(--mantine-color-white));
   }
 }

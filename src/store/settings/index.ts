@@ -1,5 +1,6 @@
+import { cookieStorage } from "@store/cookieStorage";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export type IAutocompleteEngines = "google" | "duckduckgo" | "brave" | "qwant";
 
@@ -88,6 +89,7 @@ export const useSettingsStore = create<SettingsState>()(
         }
       },
       name: "settings-store", // name of the item in the storage (must be unique)
+      // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
         displayFavicon: state.displayFavicon,
         openInNewTab: state.openInNewTab,

@@ -153,10 +153,10 @@ export const getEngineBangs = (tab: ICategories, enginesSelected: any[]) => {
     it: IT_BANGS,
     science: SCIENCE_BANGS,
     files: FILES_BANGS,
-    social_media: {},
+    social_media: SOCIAL_MEDIA_BANGS,
 
     // unused
-    maps: {},
+    maps: GENERAL_BANGS,
   };
 
   enginesSelected.map((eng) => {

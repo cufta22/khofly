@@ -23,8 +23,8 @@ const getKey = (
   dateRange: IDateRange,
   searchLanguage: ISearchLang
 ) => {
-  if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
-  if (!q) return null; // prevent empty search
+  if (previousPageData && !previousPageData?.results?.length) return ""; // reached the end
+  if (!q) return ""; // prevent empty search
 
   const engineBangs = getEngineBangs(tab, enginesSelected);
 

@@ -1,3 +1,11 @@
+@use "variables" as vars;
+
+.song_ia {
+  @media (min-width: vars.$mantine-breakpoint-lg) {
+    display: none;
+  }
+}
+
 .song_lyrics {
   white-space: pre-wrap !important;
 }

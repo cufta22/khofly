@@ -1,8 +1,10 @@
 @use "functions" as func;
 @use "variables" as vars;
 
-.news_row {
+.it_row {
   .text_title {
+    font-size: var(--mantine-font-size-xl);
+
     color: light-dark(
       var(--mantine-color-indigo-9),
       var(--mantine-color-white)
@@ -13,14 +15,6 @@
         var(--mantine-color-red-9),
         var(--mantine-color-dark-1)
       );
-    }
-  }
-
-  &_active {
-    box-shadow: 0 0 3px var(--mantine-color-blue-5);
-
-    .text_title {
-      text-decoration: underline;
     }
   }
 

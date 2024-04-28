@@ -1,6 +1,6 @@
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 import { ISearXNGResultsNews } from "@ts/searxng.types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 
 import classes from "./styles.module.scss";
@@ -9,6 +9,7 @@ import SearchResultSkeleton from "../TabGeneral/components/SearchResultSkeleton"
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
+import SearchHotkeys, { getArrayOfURLs } from "../components/SearchHotkeys";
 
 const TabNews = () => {
   const { hydrated } = useEnginesStore((state) => ({
@@ -17,6 +18,8 @@ const TabNews = () => {
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsNews>();
+
+  const [selectedRow, setSelectedRow] = useState("");
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -27,6 +30,13 @@ const TabNews = () => {
 
   return (
     <Flex className={classes.tag_news} align="flex-start">
+      {/* Hotkeys */}
+      <SearchHotkeys
+        selectedRow={selectedRow}
+        setSelectedRow={setSelectedRow}
+        data={getArrayOfURLs(data || [])}
+      />
+
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
         {/* Search Options */}
@@ -41,13 +51,13 @@ const TabNews = () => {
               )}
 
               {res?.results.map((r, i) => (
-                <NewsRow key={i} {...r} />
+                <NewsRow key={i} selectedRow={selectedRow} data={r} />
               ))}
             </Stack>
           );
         })}
 
-        {(isLoading || isValidating) &&
+        {(isLoading || isValidating || !hydrated) &&
           // Loading state
           Array.from(Array(10).keys()).map((e, i) => (
             <SearchResultSkeleton key={i} />

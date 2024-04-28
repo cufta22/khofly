@@ -18,6 +18,14 @@
     }
   }
 
+  &_active {
+    box-shadow: 0 0 3px var(--mantine-color-blue-5);
+
+    .text_title {
+      text-decoration: underline;
+    }
+  }
+
   &:hover {
     .text_title {
       text-decoration: underline;

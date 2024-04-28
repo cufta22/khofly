@@ -1,5 +1,5 @@
 import { Anchor, Flex, Image, Text } from "@mantine/core";
-import React from "react";
+import React, { useRef } from "react";
 import classes from "./styles.module.scss";
 import { ISearXNGResultsNews } from "@ts/searxng.types";
 import clsx from "clsx";
@@ -10,17 +10,20 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
+import { useHotkeys } from "@mantine/hooks";
 
 dayjs.extend(relativeTime);
 
-const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
-  title,
-  url,
-  parsed_url,
-  content,
-  engines,
-  publishedDate,
-}) => {
+interface Props {
+  selectedRow: string;
+  data: ISearXNGResultsNews["results"][0];
+}
+
+const NewsRow: React.FC<Props> = ({ data, selectedRow }) => {
+  const { title, url, parsed_url, content, engines, publishedDate } = data;
+
+  const anchorRef = useRef<HTMLAnchorElement>(null);
+
   const { visitedLinks, updateVisitedLinks } = useSearchStore((state) => ({
     visitedLinks: state.visitedLinks,
     updateVisitedLinks: state.updateVisitedLinks,
@@ -37,8 +40,18 @@ const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
     ? "_blank"
     : "_self";
 
+  useHotkeys([
+    [
+      "Enter",
+      () => {
+        anchorRef.current?.click();
+      },
+    ],
+  ]);
+
   return (
     <Anchor
+      ref={anchorRef}
       href={url}
       target={anchorTarget}
       onClick={() => updateVisitedLinks(url)}
@@ -50,7 +63,12 @@ const NewsRow: React.FC<ISearXNGResultsNews["results"][0]> = ({
       }}
       rel="noreferrer noopener"
     >
-      <Flex className={classes.news_row} direction="column">
+      <Flex
+        className={clsx(classes.news_row, {
+          [classes.news_row_active]: selectedRow === url,
+        })}
+        direction="column"
+      >
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (

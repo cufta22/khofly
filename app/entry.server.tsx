@@ -2,12 +2,12 @@ import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import ClientServerProvider from "@store/client-server";
 import reactDom from "react-dom/server";
-import { getCookieProperty } from "@utils/functions/getCookieProperty";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
 import { handleRequest as handleVercelRequest } from "@vercel/remix";
 
 import type { EntryContext } from "@remix-run/cloudflare";
+import { getCookie } from "@utils/functions/cookies";
 
 const ABORT_DELAY = 5_000;
 
@@ -20,7 +20,7 @@ export default async function handleRequest(
 ) {
   // All i18n stuff - server side
   const cookies = request.headers.get("Cookie");
-  const userLang = getCookieProperty(cookies || "", "khofly-language", "");
+  const userLang = getCookie("khofly-language", request, "");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
   // Check if user accept-language exists as option
@@ -30,11 +30,7 @@ export default async function handleRequest(
   const appLang = userLang || existingPrefLang || "en";
 
   // Get app theme
-  const appTheme = getCookieProperty(
-    cookies || "",
-    "khofly-app-theme",
-    "Mantine-Old"
-  );
+  const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
 
   // Dynamically import content JSON
   const contentImport = (await import(`../public/locales/${appLang}.json`))

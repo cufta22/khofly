@@ -14,7 +14,7 @@ interface Props {
 const IALyrics: React.FC<Props> = ({ initialQ }) => {
   const [searchParams] = useSearchParams();
 
-  const { data, trigger } = useLyricsSWR();
+  const { data, trigger, isMutating } = useLyricsSWR();
 
   const { searchQuery } = useSearchStore((state) => ({
     searchQuery: state.searchQuery,
@@ -34,8 +34,14 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
     }
   }, [q]);
 
+  console.log(data?.title);
+  console.log(isMutating);
+
+  if (!data?.title && !isMutating) return null;
+
   return (
     <IAWrapper
+      className={classes.song_ia}
       label={
         <Text size="sm" c="dimmed">
           Lyrics provided by{" "}

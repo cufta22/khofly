@@ -17,7 +17,6 @@ import {
   isRouteErrorResponse,
   useRouteError,
 } from "@remix-run/react";
-import { getCookieProperty } from "@utils/functions/getCookieProperty";
 
 import { LoaderFunctionArgs } from "@remix-run/cloudflare";
 
@@ -26,22 +25,19 @@ import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 import { useClientServerState } from "@store/client-server";
 import { ROOT_META_FUNCTION } from "./platform/meta";
 import { platformLoaderJson } from "./platform/loaderJson";
+import { getCookie } from "@utils/functions/cookies";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const cookies = request.headers.get("Cookie");
 
   // // Get user language
-  const userLang = getCookieProperty(cookies || "", "khofly-language", "en");
+  const userLang = getCookie("khofly-language", request, "en");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
   // // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
   const appLang = userLang || prefLang || "en";
 
-  const appTheme = getCookieProperty(
-    cookies || "",
-    "khofly-app-theme",
-    "Mantine-Old"
-  );
+  const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
 
   return platformLoaderJson({
     language: appLang,

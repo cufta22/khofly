@@ -7,16 +7,17 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 interface Props extends IFC {
   label?: React.ReactElement;
+  className?: string;
 }
 
-export const IAWrapper: React.FC<Props> = ({ children, label }) => {
+export const IAWrapper: React.FC<Props> = ({ children, label, className }) => {
   const { pathname } = useLocation();
   const isDocs = pathname.includes("docs");
 
   const [visible, { toggle }] = useDisclosure(isDocs ? false : true);
 
   return (
-    <Stack gap={0}>
+    <Stack gap={0} className={className && className}>
       <Transition
         transition="scale-y"
         duration={300}

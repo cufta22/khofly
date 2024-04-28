@@ -52,7 +52,7 @@ const SettingsCategories = () => {
   const items = CATEGORIES_DATA.map((item) => (
     <CategoryCheckbox
       {...item}
-      checked={categories.includes(item.id as ICategories)}
+      checked={categories?.includes(item.id as ICategories)}
       onChange={handleChangeCategories}
       key={item.title}
     />
