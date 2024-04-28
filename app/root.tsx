@@ -24,7 +24,6 @@ import ErrorPage from "@module/Error";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 import { useClientServerState } from "@store/client-server";
 import { ROOT_META_FUNCTION } from "./platform/meta";
-import { platformLoaderJson } from "./platform/loaderJson";
 import { getCookie } from "@utils/functions/cookies";
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -39,7 +38,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
 
-  return platformLoaderJson({
+  return {
     language: appLang,
     theme: appTheme,
 
@@ -51,7 +50,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     flyAppName: process?.env?.FLY_APP_NAME || "",
     flyRegion: process?.env?.FLY_REGION || "",
     flyMachineId: process?.env?.FLY_MACHINE_ID || "",
-  });
+  };
 }
 
 // Meta tags

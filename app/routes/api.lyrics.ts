@@ -1,7 +1,6 @@
 import { Client } from "genius-lyrics";
 
 import { LoaderFunctionArgs } from "@remix-run/cloudflare";
-import { platformJson } from "app/platform/json";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const client = new Client();
@@ -15,7 +14,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const lyrics = await song?.lyrics();
 
-  return platformJson({
+  return {
     lyrics: lyrics,
     title: song?.title,
     artist: song?.artist.name,
@@ -23,5 +22,5 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     albumArt: song?.album?.image,
     releaseDate: song?.releasedAt,
     image: song?.image,
-  });
+  };
 };

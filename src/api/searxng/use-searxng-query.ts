@@ -23,8 +23,8 @@ const getKey = (
   dateRange: IDateRange,
   searchLanguage: ISearchLang
 ) => {
-  if (previousPageData && !previousPageData?.results?.length) return ""; // reached the end
-  if (!q) return ""; // prevent empty search
+  if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
+  if (!q) return null; // prevent empty search
 
   const engineBangs = getEngineBangs(tab, enginesSelected);
 
@@ -78,8 +78,8 @@ const useSearXNGSWR = <IResults>() => {
   const q = searchQuery || (searchParams.get("q") as string) || "";
   const tab = (searchParams.get("tab") as ICategories) || "general";
 
-  const fetcher = (_key: string) => {
-    return fetchData(`${searxngDomain}${_key}&format=json`);
+  const fetcher = (key: string) => {
+    return fetchData(`${searxngDomain}${key}&format=json`);
   };
 
   const enginesSelected = {
@@ -95,6 +95,7 @@ const useSearXNGSWR = <IResults>() => {
     social_media: [],
   }[tab];
 
+  // @ts-ignore idk why TS is complaining here
   return useSWRInfinite<IResults>(
     (idx, prev) =>
       getKey(
