@@ -81,7 +81,6 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
   const handleChangeType = (val: UnitsType) => {
     const newFrom = KEYWORDS_UNITS_ALL_MAP[val].array[0];
     const newTo = KEYWORDS_UNITS_ALL_MAP[val].array[1];
-    console.log(newTo);
 
     const res = convertUnit(1, newFrom, newTo, val);
 

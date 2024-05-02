@@ -15,7 +15,7 @@ import DocsSelfHostKhofly from "./components/self-host-khofly";
 import DocsResourcesSiteData from "./components/resources-site-data";
 import Docs3rdPartyWeather from "./components/3rdparty-weather";
 import Docs3rdPartyCurrency from "./components/3rdparty-currency";
-import DocsSelfHostOXR from "./components/self-host-oxr";
+import DocsSelfHostKhoflyAPI from "./components/self-host-khofly-api";
 
 const Docs = () => {
   const params = useParams();
@@ -36,7 +36,7 @@ const Docs = () => {
 
     "self-host-searxng": <DocsSelfHostSearxng />,
     "self-host-khofly": <DocsSelfHostKhofly />,
-    "self-host-oxr-api": <DocsSelfHostOXR />,
+    "self-host-khofly-api": <DocsSelfHostKhoflyAPI />,
 
     "3rd-party-weather": <Docs3rdPartyWeather />,
     "3rd-party-currency": <Docs3rdPartyCurrency />,

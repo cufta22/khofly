@@ -1,7 +1,5 @@
 import { Combobox, InputBase, useCombobox } from "@mantine/core";
 
-import { USFlag, FlagProps, DEFlag } from "mantine-flagpack";
-
 import classes from "./styles.module.scss";
 import { DotNestedKeys, ILanguage, ITranslations } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -11,6 +9,8 @@ import { setCookie } from "@utils/functions/cookies";
 
 import { useNavigate } from "@remix-run/react";
 import { useClientServerState } from "@store/client-server";
+import { FlagProps } from "@components/Icons/types";
+import { USFlag } from "@components/Icons/Flags";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;

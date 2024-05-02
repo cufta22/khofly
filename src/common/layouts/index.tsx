@@ -33,9 +33,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     resetVisitedLinks: state.resetVisitedLinks,
     searchQuery: state.searchQuery,
   }));
-  const { devMode } = useGeneralStore((state) => ({
-    devMode: state.devMode,
-  }));
 
   const appTheme: IAppTheme = data?.theme;
 
@@ -80,7 +77,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
       <NProgress />
 
-      {devMode && <DevInterface />}
+      <DevInterface />
 
       <AppShell
         header={{

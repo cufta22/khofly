@@ -27,8 +27,6 @@ import { ROOT_META_FUNCTION } from "./platform/meta";
 import { getCookie } from "@utils/functions/cookies";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const cookies = request.headers.get("Cookie");
-
   // // Get user language
   const userLang = getCookie("khofly-language", request, "en");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));

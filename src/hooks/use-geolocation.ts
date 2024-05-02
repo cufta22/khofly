@@ -16,12 +16,9 @@ const useGeolocation = (shouldSubmit: boolean) => {
 
   const getUserLocation = () => {
     if (navigator.geolocation) {
-      console.log("USER ALLOWED????");
-
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          console.log("SETTING GEO");
 
           setGeolocation({ lat: `${latitude}`, lon: `${longitude}` });
           setUserLocation({ latitude, longitude });

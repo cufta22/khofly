@@ -9,8 +9,6 @@ import { handleRequest as handleVercelRequest } from "@vercel/remix";
 import type { EntryContext } from "@remix-run/cloudflare";
 import { getCookie } from "@utils/functions/cookies";
 
-const ABORT_DELAY = 5_000;
-
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -19,7 +17,6 @@ export default async function handleRequest(
   // loadContext: AppLoadContext
 ) {
   // All i18n stuff - server side
-  const cookies = request.headers.get("Cookie");
   const userLang = getCookie("khofly-language", request, "");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
@@ -42,11 +39,7 @@ export default async function handleRequest(
       language={appLang}
       theme={appTheme}
     >
-      <RemixServer
-        context={remixContext}
-        url={request.url}
-        abortDelay={ABORT_DELAY}
-      />
+      <RemixServer context={remixContext} url={request.url} />
     </ClientServerProvider>
   );
 

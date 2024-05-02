@@ -10,16 +10,15 @@ import {
   TextInput,
 } from "@mantine/core";
 
-import { DEFlag, USFlag } from "mantine-flagpack";
-
 import classes from "../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useForm } from "@mantine/form";
 import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
 import { IconSearch } from "@tabler/icons-react";
 import { useEffect } from "react";
+import { DEFlag, USFlag } from "@components/Icons/Flags";
+import useForm from "@hooks/use-form";
 
 const icons: Record<string, React.ReactNode> = {
   [process.env.SEARXNG_URL_EU1!]: <DEFlag style={getIconStyle(20)} />,

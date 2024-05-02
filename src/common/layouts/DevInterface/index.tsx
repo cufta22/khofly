@@ -4,6 +4,8 @@ import classes from "./styles.module.scss";
 import { useClientServerState } from "@store/client-server";
 import { useRouteLoaderData } from "@remix-run/react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { useGeneralStore } from "@store/general";
+import { RootLoaderData } from "@ts/global.types";
 
 export const regions: Record<string, string> = {
   sfo1: "San Francisco",
@@ -31,7 +33,13 @@ const DevInterface = () => {
   const theme = useMantineTheme();
 
   const { nodeVersion, vercelRegion, flyAppName, flyRegion, flyMachineId } =
-    useRouteLoaderData<any>("root");
+    useRouteLoaderData<RootLoaderData>("root");
+
+  const { devMode } = useGeneralStore((state) => ({
+    devMode: state.devMode,
+  }));
+
+  if (!devMode) return null;
 
   return (
     <Alert

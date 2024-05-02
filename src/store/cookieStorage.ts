@@ -5,16 +5,12 @@ import { StateStorage } from "zustand/middleware";
 
 export const cookieStorage: StateStorage = {
   getItem: (name: string): string | null => {
-    console.log(name, "has been retrieved");
-
     return getCookie(`app-${name}`);
 
     // const cookieVal = getCookie(`app-${name}`);
     // return Buffer.from(encodeURIComponent(cookieVal), "base64").toString();
   },
   setItem: (name: string, value: string): void => {
-    console.log(name, "with value", value, "has been saved");
-
     // const cookieVal = Buffer.from(encodeURIComponent(value)).toString("base64");
 
     setCookie(`app-${name}`, value, {
@@ -22,7 +18,6 @@ export const cookieStorage: StateStorage = {
     });
   },
   removeItem: (name: string): void => {
-    console.log(name, "has been deleted");
     removeCookie(name);
   },
 };

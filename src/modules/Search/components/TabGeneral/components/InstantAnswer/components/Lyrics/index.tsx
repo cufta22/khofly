@@ -34,9 +34,6 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
     }
   }, [q]);
 
-  console.log(data?.title);
-  console.log(isMutating);
-
   if (!data?.title && !isMutating) return null;
 
   return (

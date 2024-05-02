@@ -20,9 +20,12 @@ import SharedCurrencyUnit from "./_shared/SharedCurrencyUnit";
 import SharedStopwatchTimer from "./_shared/SharedStopwatchTimer";
 import IAEquation from "./components/Equation";
 import { useSearchStore } from "@store/search";
+import { useResponsive } from "@hooks/use-responsive";
 
 const InstantAnswer = () => {
   const [searchParams] = useSearchParams();
+  const isXl = useResponsive("min", "lg", true);
+  console.log(isXl);
 
   const { searchQuery } = useSearchStore((state) => ({
     searchQuery: state.searchQuery,
@@ -53,7 +56,7 @@ const InstantAnswer = () => {
   if (shouldDisplayEquation(query)) return <IAEquation query={query} />;
 
   // Instant answer - Lyrics by Genius
-  if (shouldDisplayIA(query, ["lyrics"])) return <IALyrics />;
+  if (shouldDisplayIA(query, ["lyrics"]) && !isXl) return <IALyrics />;
 
   // Instant answer - Password
   if (shouldDisplayIA(query, ["password"])) return <IAPassword />;

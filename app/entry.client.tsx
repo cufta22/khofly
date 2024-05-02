@@ -7,8 +7,6 @@ import { hydrateRoot } from "react-dom/client";
 
 async function hydrate() {
   // All i18n stuff - client side
-  const cookies = document.cookie;
-
   const htmlLang = document
     .querySelector("html")
     ?.getAttribute("lang") as ILanguage;
@@ -27,12 +25,10 @@ async function hydrate() {
         content={content}
         language={htmlLang}
         theme={appTheme}
-        // vercelRegion=""
-        // nodeVersion=""
       >
-        <StrictMode>
-          <RemixBrowser />
-        </StrictMode>
+        {/* <StrictMode> */}
+        <RemixBrowser />
+        {/* </StrictMode> */}
       </ClientServerProvider>
     );
   });

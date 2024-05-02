@@ -1,6 +1,7 @@
 import { OpenWeatherResponse } from "src/api/weather/types";
 
 import { LoaderFunctionArgs } from "@remix-run/cloudflare";
+import { platformJson } from "app/platform/json";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
@@ -15,5 +16,5 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const resData: OpenWeatherResponse = await res.json();
 
-  return resData;
+  return platformJson(resData);
 };

@@ -6,12 +6,12 @@ import useSWR from "swr";
 const useCurrencySWR = () => {
   const { fetchData } = useFetch();
 
-  const { oxrDomain } = useInstanceStore((state) => ({
-    oxrDomain: state.oxrDomain,
+  const { searXNGDomain } = useInstanceStore((state) => ({
+    searXNGDomain: state.searXNGDomain,
   }));
 
   const fetcher = (_key: string) => {
-    return fetchData(`${oxrDomain}/rates`, {
+    return fetchData(`${searXNGDomain}/rates`, {
       method: "GET",
     });
   };

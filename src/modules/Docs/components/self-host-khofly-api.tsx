@@ -2,7 +2,7 @@ import { Container } from "@mantine/core";
 import React from "react";
 import DocsTitle from "./common/DocsTitle";
 
-const DocsSelfHostOXR = () => {
+const DocsSelfHostResourceAPI = () => {
   return (
     <Container size="lg" p="xl" pb={100}>
       <DocsTitle>Installation guide</DocsTitle>
@@ -10,4 +10,4 @@ const DocsSelfHostOXR = () => {
   );
 };
 
-export default DocsSelfHostOXR;
+export default DocsSelfHostResourceAPI;

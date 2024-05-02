@@ -10,6 +10,7 @@ import DocsWIP from "./wip";
 import SectionVercel from "./components/sefl-host-khofly/SectionVercel";
 import SectionFly from "./components/sefl-host-khofly/SectionFly";
 import SectionCloudflare from "./components/sefl-host-khofly/SectionCloudflare";
+import SectionVPS from "./components/sefl-host-khofly/SectionVPS";
 
 const DocsSelfHostKhofly = () => {
   const { colors } = useMantineTheme();
@@ -85,7 +86,7 @@ const DocsSelfHostKhofly = () => {
           <SectionFly />
         </Tabs.Panel>
         <Tabs.Panel value="vps">
-          <DocsWIP />
+          <SectionVPS />
         </Tabs.Panel>
       </Tabs>
     </Container>

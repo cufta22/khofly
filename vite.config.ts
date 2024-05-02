@@ -14,7 +14,7 @@ import { installGlobals } from "@remix-run/node";
 // Hosting providers
 import { vercelPreset } from "@vercel/remix/vite";
 
-["node", "vercel"].includes(process.env.HOST_TARGET || "node") &&
+["node", "vercel"].includes(process.env.HOST_TARGET || "cloudflare") &&
   installGlobals({
     nativeFetch: true,
   });
@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => {
 
     plugins: [
       env.HOST_TARGET === "cloudflare" && remixCloudflareDevProxy(),
-      env.HOST_TARGET === "cloudflare" && nodePolyfills(),
+      // env.HOST_TARGET === "cloudflare" && nodePolyfills(),
 
       remix({
         ignoredRouteFiles: ["**/.*", "**/*.css", "**/*.scss", "**/*.css.map"],
@@ -88,15 +88,15 @@ export default defineConfig(({ mode }) => {
       "process.env.HOST": JSON.stringify(env.HOST),
       "process.env.SEARXNG_URL_EU1": JSON.stringify(env.SEARXNG_URL_EU1),
       "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_US1),
-      "process.env.OXR_URL_EU1": JSON.stringify(env.OXR_URL_EU1),
-      "process.env.OXR_URL_US1": JSON.stringify(env.OXR_URL_US1),
+      "process.env.API_URL_EU1": JSON.stringify(env.API_URL_EU1),
+      "process.env.API_URL_US1": JSON.stringify(env.API_URL_US1),
       "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
       "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
       "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
       "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(
         env.SEARXNG_URL_SELF_HOST
       ),
-      "process.env.OXR_URL_SELF_HOST": JSON.stringify(env.OXR_URL_SELF_HOST),
+      "process.env.API_URL_SELF_HOST": JSON.stringify(env.API_URL_SELF_HOST),
     },
 
     // Testing for Vercel edge functions

@@ -11,9 +11,9 @@ import { IconWorld } from "@tabler/icons-react";
 
 import classes from "../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useForm } from "@mantine/form";
 import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
+import useForm from "@hooks/use-form";
 
 const SettingsNominatim = () => {
   const { domain, setDomain } = useInstanceStore((state) => ({
@@ -84,7 +84,11 @@ const SettingsNominatim = () => {
             Change this to your own url for better privacy & less load for
             default instance.{" "}
             <Text component="span" c="blue">
-              <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
+              <Anchor
+                href="https://nominatim.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Read more
               </Anchor>
             </Text>

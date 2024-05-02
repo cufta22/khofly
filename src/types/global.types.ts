@@ -17,6 +17,20 @@ export type IAppTheme =
   | "Nord"
   | "Tokyo-Night";
 
+export interface RootLoaderData {
+  language: ILanguage;
+  theme: IAppTheme;
+
+  // Platform variables
+  nodeVersion: string | undefined;
+  // Vercel stuff
+  vercelRegion: string | undefined;
+  // Fly.io stuff
+  flyAppName: string | undefined;
+  flyRegion: string | undefined;
+  flyMachineId: string | undefined;
+}
+
 // For translations
 
 type DotPrefix<T extends string> = T extends "" ? "" : `.${T}`;

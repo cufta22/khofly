@@ -47,9 +47,13 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
     label: "Self-Host",
     icon: IconServer,
     links: [
-      { label: "Khofly", link: "/docs/self-host-khofly", isWip: false },
       { label: "SearXNG", link: "/docs/self-host-searxng", isWip: false },
-      { label: "OXR Api", link: "/docs/self-host-oxr-api", isWip: true },
+      { label: "Khofly", link: "/docs/self-host-khofly", isWip: false },
+      {
+        label: "Khofly API",
+        link: "/docs/self-host-khofly-api",
+        isWip: true,
+      },
     ],
   },
   {

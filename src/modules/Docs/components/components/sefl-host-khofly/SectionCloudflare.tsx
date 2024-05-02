@@ -8,9 +8,15 @@ const SectionCloudflare = () => {
       <Flex align="center" justify="space-between">
         <DocsTitle>Deploying to Cloudflare Pages</DocsTitle>
 
-        <Badge size="lg" color="green" variant="light">
-          Has free tier
-        </Badge>
+        <Flex align="center" gap="sm">
+          <Badge size="lg" color="green" variant="light">
+            Recommended
+          </Badge>
+
+          <Badge size="lg" color="green" variant="light">
+            Has free tier
+          </Badge>
+        </Flex>
       </Flex>
 
       <DocsText>Can't get it to work :(</DocsText>

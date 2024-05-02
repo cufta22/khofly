@@ -52,7 +52,6 @@ const calculateTimeDifference = (
   const remainingMs = timeDifferenceMs % (60 * 100);
   const seconds = Math.floor(remainingMs / 100);
   const milliseconds = remainingMs % 100;
-  console.log(milliseconds);
 
   // Formats miliseconds to the length of 2, ex. 9778 => 97
   const formattedMillisecond = Number(String(milliseconds).slice(0, 2));
