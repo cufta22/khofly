@@ -12,7 +12,6 @@ pnpm-lock.yaml
 
 stats.html
 
-wrangler.toml
 .wrangler
 
 .vercel
