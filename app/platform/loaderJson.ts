@@ -3,7 +3,7 @@
 // import { json as vercelJson } from "@vercel/remix";
 
 // // Change functions based on deployment target
-// const hostTarget = process.env.HOST_TARGET as string;
+// const hostTarget = process?.env?.HOST_TARGET as string;
 
 // const platformLoaderJson =
 //   {

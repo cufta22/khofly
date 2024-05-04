@@ -6,27 +6,26 @@ import {
 import { defineConfig, loadEnv } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { nodePolyfills } from "vite-plugin-node-polyfills";
 import path from "path";
 
-import { installGlobals } from "@remix-run/node";
+// import { installGlobals } from "@remix-run/node";
 
 // Hosting providers
-import { vercelPreset } from "@vercel/remix/vite";
+// import { vercelPreset } from "@vercel/remix/vite";
 
-["node", "vercel"].includes(process.env.HOST_TARGET || "cloudflare") &&
-  installGlobals({
-    nativeFetch: true,
-  });
+// ["node", "vercel"].includes(process?.env?.HOST_TARGET || "cloudflare") &&
+//   installGlobals({
+//     nativeFetch: true,
+//   });
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   const loadedPresets: Preset[] = [];
 
-  if (env.HOST_TARGET === "vercel") {
-    loadedPresets.push(vercelPreset());
-  }
+  // if (env.HOST_TARGET === "vercel") {
+  //   loadedPresets.push(vercelPreset());
+  // }
 
   return {
     server: {
@@ -35,7 +34,6 @@ export default defineConfig(({ mode }) => {
 
     plugins: [
       env.HOST_TARGET === "cloudflare" && remixCloudflareDevProxy(),
-      // env.HOST_TARGET === "cloudflare" && nodePolyfills(),
 
       remix({
         ignoredRouteFiles: ["**/.*", "**/*.css", "**/*.scss", "**/*.css.map"],
@@ -88,15 +86,12 @@ export default defineConfig(({ mode }) => {
       "process.env.HOST": JSON.stringify(env.HOST),
       "process.env.SEARXNG_URL_EU1": JSON.stringify(env.SEARXNG_URL_EU1),
       "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_US1),
-      "process.env.API_URL_EU1": JSON.stringify(env.API_URL_EU1),
-      "process.env.API_URL_US1": JSON.stringify(env.API_URL_US1),
       "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
       "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
       "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
       "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(
         env.SEARXNG_URL_SELF_HOST
       ),
-      "process.env.API_URL_SELF_HOST": JSON.stringify(env.API_URL_SELF_HOST),
     },
 
     // Testing for Vercel edge functions

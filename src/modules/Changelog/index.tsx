@@ -5,7 +5,7 @@ import { useTranslate } from "@hooks/translate/use-translate";
 
 const getChangelogData = async () => {
   const envUrl =
-    process.env.NODE_ENV === "production"
+    process?.env?.NODE_ENV === "production"
       ? "https://raw.githubusercontent.com/cufta22/khofly/master/CHANGELOG.md"
       : "https://raw.githubusercontent.com/cufta22/khofly/staging/CHANGELOG.md";
 

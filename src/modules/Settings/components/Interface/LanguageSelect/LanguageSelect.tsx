@@ -46,8 +46,8 @@ const LanguageSelect = () => {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
       domain:
-        process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
-      secure: process.env.HOST?.includes("https") ? true : false,
+        process?.env?.NODE_ENV === "development" ? "localhost" : "khofly.com",
+      secure: process?.env?.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
     // TODO: better way to handle this???

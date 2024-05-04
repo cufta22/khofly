@@ -26,9 +26,9 @@ async function hydrate() {
         language={htmlLang}
         theme={appTheme}
       >
-        {/* <StrictMode> */}
-        <RemixBrowser />
-        {/* </StrictMode> */}
+        <StrictMode>
+          <RemixBrowser />
+        </StrictMode>
       </ClientServerProvider>
     );
   });

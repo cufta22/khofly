@@ -4,7 +4,7 @@ import ClientServerProvider from "@store/client-server";
 import reactDom from "react-dom/server";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
-import { handleRequest as handleVercelRequest } from "@vercel/remix";
+// import { handleRequest as handleVercelRequest } from "@vercel/remix";
 
 import type { EntryContext } from "@remix-run/cloudflare";
 import { getCookie } from "@utils/functions/cookies";
@@ -46,14 +46,14 @@ export default async function handleRequest(
   // -------------------------------------------------
   // Handle Vercel request
   // -------------------------------------------------
-  if (process.env.HOST_TARGET === "vercel") {
-    return handleVercelRequest(
-      request,
-      responseStatusCode,
-      responseHeaders,
-      remixServer
-    );
-  }
+  // if (process?.env?.HOST_TARGET === "vercel") {
+  //   return handleVercelRequest(
+  //     request,
+  //     responseStatusCode,
+  //     responseHeaders,
+  //     remixServer
+  //   );
+  // }
 
   const body = await reactDom.renderToReadableStream(remixServer, {
     signal: request.signal,

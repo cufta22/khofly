@@ -5,7 +5,7 @@ const docsLinks = NAVBAR_DATA.flatMap((group) => group.links);
 export const loader = async () => {
   // handle "GET" request
   // set up our text content that will be returned in the response
-  const loc = process.env.HOST;
+  const loc = process?.env?.HOST;
   const lastMod = new Date();
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>

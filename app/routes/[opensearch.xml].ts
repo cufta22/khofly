@@ -1,8 +1,8 @@
 export const loader = () => {
   // handle "GET" request
   // set up our text content that will be returned in the response
-  const siteUrl = process.env.HOST;
-  const siteName = process.env.APP_NAME;
+  const siteUrl = process?.env?.HOST;
+  const siteName = process?.env?.APP_NAME;
 
   const openSearchText = `<?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/" xmlns:moz="http://www.mozilla.org/2006/browser/search/">

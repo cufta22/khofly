@@ -73,7 +73,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
     // Don't search on render in dev to prevent API spam since 1 request/second rule
     // https://geocode.maps.co/
     // Maybe fix if self-host nominatim API
-    if (process.env.NODE_ENV === "production") {
+    if (process?.env?.NODE_ENV === "production") {
       if (!data?.length && query?.length) trigger(query);
     }
 

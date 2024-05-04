@@ -4,7 +4,6 @@ import "@mantine/core/styles.css";
 import "@mantine/nprogress/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/dates/styles.css";
-import "@mantine/charts/styles.css";
 
 import AppLayout from "@layout/index";
 import { ColorSchemeScript } from "@mantine/core";
@@ -14,7 +13,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
   useRouteError,
 } from "@remix-run/react";
 
@@ -25,8 +23,9 @@ import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 import { useClientServerState } from "@store/client-server";
 import { ROOT_META_FUNCTION } from "./platform/meta";
 import { getCookie } from "@utils/functions/cookies";
+import { getEnv } from "./platform/getEnv";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request, context }: LoaderFunctionArgs) {
   // // Get user language
   const userLang = getCookie("khofly-language", request, "en");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
@@ -35,6 +34,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const appLang = userLang || prefLang || "en";
 
   const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
+  console.log(context);
 
   return {
     language: appLang,
@@ -43,11 +43,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
     // Platform variables
     nodeVersion: process?.versions?.node || "",
     // Vercel stuff
-    vercelRegion: process?.env?.VERCEL_REGION || "",
+    vercelRegion: getEnv("VERCEL_REGION"),
     // Fly.io stuff
-    flyAppName: process?.env?.FLY_APP_NAME || "",
-    flyRegion: process?.env?.FLY_REGION || "",
-    flyMachineId: process?.env?.FLY_MACHINE_ID || "",
+    flyAppName: getEnv("FLY_APP_NAME"),
+    flyRegion: getEnv("FLY_REGION"),
+    flyMachineId: getEnv("FLY_MACHINE_ID"),
+    // Cloudflare stuff
   };
 }
 

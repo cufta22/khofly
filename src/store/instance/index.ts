@@ -16,7 +16,7 @@ export const useInstanceStore = create<InstanceState>()(
       searXNGDomain: getDefaultSearXNG(),
       setSearXNGDomain: (domain) => set({ searXNGDomain: domain }),
 
-      nominatimDomain: process.env.NOMINATIM_URL || "",
+      nominatimDomain: process?.env?.NOMINATIM_URL || "",
       setNominatimDomain: (domain) => set({ nominatimDomain: domain }),
     }),
     {

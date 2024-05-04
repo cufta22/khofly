@@ -1,5 +1,5 @@
 {
-  "name": "@khofly/search",
+  "name": "khofly-search",
   "version": "0.3.0",
   "author": "cufta22",
   "private": false,
@@ -16,22 +16,19 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@mantine/charts": "7.8.1",
-    "@mantine/core": "7.8.1",
-    "@mantine/dates": "7.8.1",
-    "@mantine/hooks": "7.8.1",
-    "@mantine/notifications": "7.8.1",
-    "@mantine/nprogress": "7.8.1",
+    "@mantine/core": "^7.9.0",
+    "@mantine/dates": "^7.9.0",
+    "@mantine/hooks": "^7.9.0",
+    "@mantine/notifications": "^7.9.0",
+    "@mantine/nprogress": "^7.9.0",
     "@remix-run/cloudflare": "^2.9.1",
     "@remix-run/cloudflare-pages": "^2.9.1",
     "@remix-run/node": "^2.9.1",
     "@remix-run/react": "^2.9.1",
     "@remix-run/serve": "^2.9.1",
-    "@tabler/icons-react": "^3.2.0",
-    "@vercel/remix": "^2.9.1",
+    "@tabler/icons-react": "^3.3.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.11",
-    "genius-lyrics": "^4.4.7",
     "highlight.js": "^11.9.0",
     "isbot": "^5.1.6",
     "leaflet": "^1.9.4",
@@ -39,23 +36,22 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-leaflet": "^4.2.1",
-    "recharts": "^2.12.6",
     "swr": "^2.2.5",
     "zustand": "^4.5.2"
   },
   "overrides": {
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "eslint": "9.1.1"
+    "eslint": "9.2.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240423.0",
+    "@cloudflare/workers-types": "^4.20240502.0",
     "@remix-run/dev": "^2.9.1",
     "@types/leaflet": "^1.9.12",
-    "@types/react": "^18.2.79",
-    "@types/react-dom": "^18.2.25",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
-    "eslint": "^9.1.1",
+    "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -70,9 +66,8 @@
     "sass": "1.76.0",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
-    "vite-plugin-node-polyfills": "^0.21.0",
     "vite-tsconfig-paths": "^4.3.2",
-    "wrangler": "^3.53.0"
+    "wrangler": "^3.53.1"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -21,8 +21,8 @@ import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 
 const icons: Record<string, React.ReactNode> = {
-  [process.env.SEARXNG_URL_EU1!]: <DEFlag style={getIconStyle(20)} />,
-  [process.env.SEARXNG_URL_US1!]: <USFlag style={getIconStyle(20)} />,
+  [process?.env?.SEARXNG_URL_EU1!]: <DEFlag style={getIconStyle(20)} />,
+  [process?.env?.SEARXNG_URL_US1!]: <USFlag style={getIconStyle(20)} />,
 };
 
 const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
@@ -60,7 +60,7 @@ const SettingsSearXNG = () => {
     form.setFieldValue("domain", domain);
 
     if (
-      [process.env.SEARXNG_URL_EU1, process.env.SEARXNG_URL_US1].includes(
+      [process?.env?.SEARXNG_URL_EU1, process?.env?.SEARXNG_URL_US1].includes(
         domain
       )
     ) {
@@ -88,7 +88,7 @@ const SettingsSearXNG = () => {
             {...form.getInputProps("domain")}
           />
 
-          {process.env.IS_SELF_HOST === "0" && (
+          {process?.env?.IS_SELF_HOST === "0" && (
             <Select
               className={classes.settings_select}
               label="Default instances"
@@ -102,11 +102,11 @@ const SettingsSearXNG = () => {
               data={[
                 {
                   label: "Nuremberg, Germany",
-                  value: process.env.SEARXNG_URL_EU1 || "1",
+                  value: process?.env?.SEARXNG_URL_EU1 || "1",
                 },
                 {
                   label: "Ashburn, USA",
-                  value: process.env.SEARXNG_URL_US1 || "2",
+                  value: process?.env?.SEARXNG_URL_US1 || "2",
                 },
               ]}
               renderOption={renderSelectOption}

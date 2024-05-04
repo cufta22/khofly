@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { IAWrapper } from "../../wrapper";
 import {
   Anchor,
-  Center,
   Flex,
   LoadingOverlay,
   ScrollArea,
@@ -10,10 +9,8 @@ import {
   Space,
   Text,
 } from "@mantine/core";
-import { AreaChart } from "@mantine/charts";
 import {
   IconLetterK,
-  IconLetterKSmall,
   IconTemperatureCelsius,
   IconTemperatureFahrenheit,
 } from "@tabler/icons-react";
@@ -28,6 +25,7 @@ import SunPosition from "./components/SunPosition";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import HourlyChart from "./components/HourlyChart";
 dayjs.extend(utc);
 
 const formatChartHr = (dt: number) => {
@@ -166,7 +164,7 @@ const IAWeather = () => {
             </Flex>
           </Flex>
 
-          <SunPosition data={data.current} />
+          {/* <SunPosition data={data.current} /> */}
         </Flex>
       )}
 
@@ -184,7 +182,9 @@ const IAWeather = () => {
         />
       )}
 
-      {data?.hourly?.length && (
+      <HourlyChart />
+
+      {/* {data?.hourly?.length && (
         <ScrollArea>
           <AreaChart
             h={120}
@@ -230,7 +230,7 @@ const IAWeather = () => {
             mb="xl"
           />
         </ScrollArea>
-      )}
+      )} */}
 
       {data?.daily && (
         <ScrollArea h={130} mt="lg">
