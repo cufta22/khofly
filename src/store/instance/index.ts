@@ -12,7 +12,7 @@ interface InstanceState {
 export const useInstanceStore = create<InstanceState>()(
   persist(
     (set) => ({
-      searXNGDomain: "",
+      searXNGDomain: "", // Will be set initially in layout
       setSearXNGDomain: (domain) => set({ searXNGDomain: domain }),
 
       nominatimDomain: "", // Will be set initially in layout

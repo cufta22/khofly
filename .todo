@@ -9,4 +9,6 @@ add all translations
 finish shortcuts
 remove sunset thing and find another lightweight lib for charts
 
-remove @mantine/form
+move meta to /meta & add meta for every page that needs
+
+fix dev console

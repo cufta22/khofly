@@ -40,6 +40,8 @@ export interface RootLoaderData {
   flyAppName: string | undefined;
   flyRegion: string | undefined;
   flyMachineId: string | undefined;
+  // Cloudflare stuff
+  cf: any;
 }
 
 // For translations

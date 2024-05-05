@@ -26,6 +26,8 @@ import { getDefaultSearXNG } from "@store/instance/utils";
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const loaderData = useRouteLoaderData("root") as RootLoaderData;
 
+  console.log(JSON.parse(loaderData.cf));
+
   const error = useRouteError();
   const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
@@ -83,7 +85,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
     // Set nominatim URL initially
     if (!nominatimDomain) setNominatimDomain(loaderData.env.NOMINATIM_URL);
-    if (!searXNGDomain) getDefaultSearXNG(loaderData.env);
+    if (!searXNGDomain) setSearXNGDomain(getDefaultSearXNG(loaderData.env));
   }, [pathname]);
 
   return (

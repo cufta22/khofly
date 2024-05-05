@@ -21,7 +21,7 @@ import { LoaderFunctionArgs } from "@remix-run/cloudflare";
 import ErrorPage from "@module/Error";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 import { useClientServerState } from "@store/client-server";
-import { ROOT_META_FUNCTION } from "./platform/meta";
+import { ROOT_META_FUNCTION } from "./meta/root";
 import { getCookie } from "@utils/functions/cookies";
 import { getEnv } from "./platform/getEnv";
 
@@ -34,6 +34,8 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   const appLang = userLang || prefLang || "en";
 
   const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
+
+  console.log(context.cloudflare.cf.region);
 
   return {
     language: appLang,
@@ -60,6 +62,8 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
     flyRegion: getEnv("FLY_REGION"),
     flyMachineId: getEnv("FLY_MACHINE_ID"),
     // Cloudflare stuff
+    // TODO: add cf stuff like region, etc. from context
+    cf: JSON.stringify(context?.cloudflare),
   };
 }
 

@@ -22,9 +22,9 @@ export const getDefaultSearXNG = (env: RootLoaderData["env"]): string => {
     case "America":
     case "Atlantic":
     case "Australia":
-      return env?.SEARXNG_URL_US1 || DEFAULT_1;
+      return env.SEARXNG_URL_US1 || DEFAULT_1;
 
     default:
-      return env?.SEARXNG_URL_EU1 || DEFAULT_1;
+      return env.SEARXNG_URL_EU1 || DEFAULT_1;
   }
 };
