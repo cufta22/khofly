@@ -1,13 +1,18 @@
 import { Combobox, InputBase, useCombobox } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-import { DotNestedKeys, ILanguage, ITranslations } from "@ts/global.types";
+import {
+  DotNestedKeys,
+  ILanguage,
+  ITranslations,
+  RootLoaderData,
+} from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/cookies";
 
-import { useNavigate } from "@remix-run/react";
+import { useNavigate, useRouteLoaderData } from "@remix-run/react";
 import { useClientServerState } from "@store/client-server";
 import { FlagProps } from "@components/Icons/types";
 import { USFlag } from "@components/Icons/Flags";
@@ -32,6 +37,8 @@ const LANG_DATA: ILangData[] = [
 ];
 
 const LanguageSelect = () => {
+  const loaderData = useRouteLoaderData("root") as RootLoaderData;
+
   const { language } = useClientServerState();
 
   const t = useTranslate();
@@ -46,8 +53,8 @@ const LanguageSelect = () => {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
       domain:
-        process?.env?.NODE_ENV === "development" ? "localhost" : "khofly.com",
-      secure: process?.env?.HOST?.includes("https") ? true : false,
+        loaderData.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
+      secure: loaderData.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
     // TODO: better way to handle this???

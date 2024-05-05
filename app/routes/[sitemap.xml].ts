@@ -1,11 +1,13 @@
+import { LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { NAVBAR_DATA } from "@utils/resources/navbarData";
+import { getEnv } from "app/platform/getEnv";
 
 const docsLinks = NAVBAR_DATA.flatMap((group) => group.links);
 
-export const loader = async () => {
+export const loader = async ({ context }: LoaderFunctionArgs) => {
   // handle "GET" request
   // set up our text content that will be returned in the response
-  const loc = process?.env?.HOST;
+  const loc = getEnv("HOST", context);
   const lastMod = new Date();
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>

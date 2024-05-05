@@ -13,10 +13,9 @@ import path from "path";
 // Hosting providers
 // import { vercelPreset } from "@vercel/remix/vite";
 
-// ["node", "vercel"].includes(process?.env?.HOST_TARGET || "cloudflare") &&
-//   installGlobals({
-//     nativeFetch: true,
-//   });
+// installGlobals({
+//   nativeFetch: true,
+// });
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
@@ -82,17 +81,17 @@ export default defineConfig(({ mode }) => {
     },
 
     // ENV variables
-    define: {
-      "process.env.HOST": JSON.stringify(env.HOST),
-      "process.env.SEARXNG_URL_EU1": JSON.stringify(env.SEARXNG_URL_EU1),
-      "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_US1),
-      "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
-      "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
-      "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
-      "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(
-        env.SEARXNG_URL_SELF_HOST
-      ),
-    },
+    // define: {
+    //   "process.env.HOST": JSON.stringify(env.HOST),
+    //   "process.env.SEARXNG_URL_EU1": JSON.stringify(env.SEARXNG_URL_EU1),
+    //   "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_US1),
+    //   "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
+    //   "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
+    //   "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
+    //   "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(
+    //     env.SEARXNG_URL_SELF_HOST
+    //   ),
+    // },
 
     // Testing for Vercel edge functions
     // ssr: {

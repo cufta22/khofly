@@ -2,8 +2,7 @@ import type { MetaFunction } from "@remix-run/cloudflare";
 
 export const ROOT_META_FUNCTION: MetaFunction = () => [
   {
-    title:
-      process?.env?.IS_SELF_HOST === "0" ? "Khofly" : process?.env?.APP_NAME,
+    title: "Khofly",
   },
   {
     name: "description",

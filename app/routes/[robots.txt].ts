@@ -1,4 +1,7 @@
-export const loader = () => {
+import { LoaderFunctionArgs } from "@remix-run/cloudflare";
+import { getEnv } from "app/platform/getEnv";
+
+export const loader = ({ context }: LoaderFunctionArgs) => {
   // handle "GET" request
   // set up our text content that will be returned in the response
   const robotText = `User-agent: *
@@ -17,7 +20,7 @@ Disallow:
 User-agent: msnbot-media
 Disallow:
     
-Sitemap: ${process?.env?.HOST}/sitemap.xml
+Sitemap: ${getEnv("HOST", context)}/sitemap.xml
 `;
 
   // return the text content, a status 200 success response, and set the content type to text/plain

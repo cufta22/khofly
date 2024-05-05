@@ -34,14 +34,25 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   const appLang = userLang || prefLang || "en";
 
   const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
-  console.log(context);
 
   return {
     language: appLang,
     theme: appTheme,
 
+    // Browser ENV variables
+    env: {
+      NODE_ENV: getEnv("NODE_ENV", context),
+      HOST: getEnv("HOST", context),
+      SEARXNG_URL_EU1: getEnv("SEARXNG_URL_EU1", context),
+      SEARXNG_URL_US1: getEnv("SEARXNG_URL_US1", context),
+      NOMINATIM_URL: getEnv("NOMINATIM_URL", context),
+      IS_SELF_HOST: getEnv("IS_SELF_HOST", context),
+      APP_NAME: getEnv("APP_NAME", context),
+      SEARXNG_URL_SELF_HOST: getEnv("SEARXNG_URL_SELF_HOST", context),
+    },
+
     // Platform variables
-    nodeVersion: process?.versions?.node || "",
+    nodeVersion: typeof process !== "undefined" ? process?.versions?.node : "",
     // Vercel stuff
     vercelRegion: getEnv("VERCEL_REGION"),
     // Fly.io stuff

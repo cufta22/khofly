@@ -19,20 +19,12 @@ import { IconSearch } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
-
-const icons: Record<string, React.ReactNode> = {
-  [process?.env?.SEARXNG_URL_EU1!]: <DEFlag style={getIconStyle(20)} />,
-  [process?.env?.SEARXNG_URL_US1!]: <USFlag style={getIconStyle(20)} />,
-};
-
-const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
-  <Group flex="1" gap="xs">
-    {icons[option.value]}
-    {option.label}
-  </Group>
-);
+import { useRouteLoaderData } from "@remix-run/react";
+import { RootLoaderData } from "@ts/global.types";
 
 const SettingsSearXNG = () => {
+  const loaderData = useRouteLoaderData("root") as RootLoaderData;
+
   const { domain, setDomain } = useInstanceStore((state) => ({
     domain: state.searXNGDomain,
     setDomain: state.setSearXNGDomain,
@@ -60,13 +52,25 @@ const SettingsSearXNG = () => {
     form.setFieldValue("domain", domain);
 
     if (
-      [process?.env?.SEARXNG_URL_EU1, process?.env?.SEARXNG_URL_US1].includes(
+      [loaderData.env.SEARXNG_URL_EU1, loaderData.env.SEARXNG_URL_US1].includes(
         domain
       )
     ) {
       form.setFieldValue("select", domain);
     }
   }, [domain]);
+
+  const icons: Record<string, React.ReactNode> = {
+    [loaderData.env.SEARXNG_URL_EU1]: <DEFlag style={getIconStyle(20)} />,
+    [loaderData.env.SEARXNG_URL_US1]: <USFlag style={getIconStyle(20)} />,
+  };
+
+  const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
+    <Group flex="1" gap="xs">
+      {icons[option.value]}
+      {option.label}
+    </Group>
+  );
 
   return (
     <Paper radius="md" withBorder>
@@ -88,7 +92,7 @@ const SettingsSearXNG = () => {
             {...form.getInputProps("domain")}
           />
 
-          {process?.env?.IS_SELF_HOST === "0" && (
+          {loaderData.env.IS_SELF_HOST === "0" && (
             <Select
               className={classes.settings_select}
               label="Default instances"
@@ -102,11 +106,11 @@ const SettingsSearXNG = () => {
               data={[
                 {
                   label: "Nuremberg, Germany",
-                  value: process?.env?.SEARXNG_URL_EU1 || "1",
+                  value: loaderData?.env?.SEARXNG_URL_EU1 || "1",
                 },
                 {
                   label: "Ashburn, USA",
-                  value: process?.env?.SEARXNG_URL_US1 || "2",
+                  value: loaderData?.env?.SEARXNG_URL_US1 || "2",
                 },
               ]}
               renderOption={renderSelectOption}

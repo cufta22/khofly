@@ -1,7 +1,12 @@
 import { Combobox, Image, InputBase, useCombobox } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-import { DotNestedKeys, IAppTheme, ITranslations } from "@ts/global.types";
+import {
+  DotNestedKeys,
+  IAppTheme,
+  ITranslations,
+  RootLoaderData,
+} from "@ts/global.types";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/cookies";
@@ -47,7 +52,8 @@ const THEME_DATA: ILangData[] = [
 ];
 
 const ThemeSelect = () => {
-  const data = useRouteLoaderData("root") as { theme: IAppTheme };
+  const loaderData = useRouteLoaderData("root") as RootLoaderData;
+
   const t = useTranslate();
   const navigate = useNavigate();
 
@@ -56,15 +62,15 @@ const ThemeSelect = () => {
   });
 
   const selected =
-    THEME_DATA.find((l) => l.value === data?.theme) || THEME_DATA[1];
+    THEME_DATA.find((l) => l.value === loaderData.theme) || THEME_DATA[1];
 
   const handleChange = (next: IAppTheme) => {
     setCookie("khofly-app-theme", next, {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
       domain:
-        process?.env?.NODE_ENV === "development" ? "localhost" : "khofly.com",
-      secure: process?.env?.HOST?.includes("https") ? true : false,
+        loaderData.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
+      secure: loaderData.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
     navigate("/settings?tab=interface", { replace: true });

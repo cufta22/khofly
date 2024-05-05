@@ -25,7 +25,6 @@ import { useResponsive } from "@hooks/use-responsive";
 const InstantAnswer = () => {
   const [searchParams] = useSearchParams();
   const isXl = useResponsive("min", "lg", true);
-  console.log(isXl);
 
   const { searchQuery } = useSearchStore((state) => ({
     searchQuery: state.searchQuery,

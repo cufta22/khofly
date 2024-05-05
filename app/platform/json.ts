@@ -3,13 +3,13 @@ import { json as cloudflareJson } from "@remix-run/cloudflare";
 // import { json as vercelJson } from "@vercel/remix";
 
 // Change functions based on deployment target
-const hostTarget = process?.env?.HOST_TARGET as string;
+const HOST_TARGET = "cloudflare";
 
 const platformJson =
   {
     // node: nodeJson,
     // vercel: vercelJson,
     cloudflare: cloudflareJson,
-  }[hostTarget] || cloudflareJson;
+  }[HOST_TARGET] || cloudflareJson;
 
 export { platformJson };

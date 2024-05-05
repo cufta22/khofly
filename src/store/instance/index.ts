@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { getDefaultKhoflyAPI, getDefaultSearXNG } from "./utils";
 
 interface InstanceState {
   searXNGDomain: string;
@@ -13,10 +12,10 @@ interface InstanceState {
 export const useInstanceStore = create<InstanceState>()(
   persist(
     (set) => ({
-      searXNGDomain: getDefaultSearXNG(),
+      searXNGDomain: "",
       setSearXNGDomain: (domain) => set({ searXNGDomain: domain }),
 
-      nominatimDomain: process?.env?.NOMINATIM_URL || "",
+      nominatimDomain: "", // Will be set initially in layout
       setNominatimDomain: (domain) => set({ nominatimDomain: domain }),
     }),
     {

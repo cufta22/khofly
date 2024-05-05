@@ -21,8 +21,13 @@ import { useDisclosure } from "@mantine/hooks";
 import clsx from "clsx";
 import useNominatimSWR from "src/api/nominatim/use-nominatim-query";
 import { useResponsive } from "@hooks/use-responsive";
-import { useNavigate, useSearchParams } from "@remix-run/react";
+import {
+  useNavigate,
+  useRouteLoaderData,
+  useSearchParams,
+} from "@remix-run/react";
 import { useSettingsStore } from "@store/settings";
+import { RootLoaderData } from "@ts/global.types";
 
 interface Props {
   coords: { latitude: number; longitude: number };
@@ -30,6 +35,7 @@ interface Props {
 }
 
 const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
+  const loaderData = useRouteLoaderData("root") as RootLoaderData;
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -70,10 +76,9 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   useEffect(() => {
     const query = searchParams.get("q");
 
-    // Don't search on render in dev to prevent API spam since 1 request/second rule
-    // https://geocode.maps.co/
+    // Don't search on render in dev to prevent API spam
     // Maybe fix if self-host nominatim API
-    if (process?.env?.NODE_ENV === "production") {
+    if (loaderData?.env?.NODE_ENV === "production") {
       if (!data?.length && query?.length) trigger(query);
     }
 

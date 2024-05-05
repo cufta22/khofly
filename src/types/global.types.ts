@@ -21,6 +21,17 @@ export interface RootLoaderData {
   language: ILanguage;
   theme: IAppTheme;
 
+  env: {
+    NODE_ENV: string;
+    HOST: string;
+    SEARXNG_URL_EU1: string;
+    SEARXNG_URL_US1: string;
+    NOMINATIM_URL: string;
+    IS_SELF_HOST: string;
+    APP_NAME: string;
+    SEARXNG_URL_SELF_HOST: string;
+  };
+
   // Platform variables
   nodeVersion: string | undefined;
   // Vercel stuff

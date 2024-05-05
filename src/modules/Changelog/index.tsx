@@ -2,10 +2,12 @@ import { Accordion, Center, Container, Loader, Title } from "@mantine/core";
 import { formatChangelog } from "./formatChangelog";
 import { useEffect, useState } from "react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { useRouteLoaderData } from "@remix-run/react";
+import { RootLoaderData } from "@ts/global.types";
 
-const getChangelogData = async () => {
+const getChangelogData = async (nodeEnv: string) => {
   const envUrl =
-    process?.env?.NODE_ENV === "production"
+    nodeEnv === "production"
       ? "https://raw.githubusercontent.com/cufta22/khofly/master/CHANGELOG.md"
       : "https://raw.githubusercontent.com/cufta22/khofly/staging/CHANGELOG.md";
 
@@ -17,12 +19,13 @@ const getChangelogData = async () => {
 };
 
 const PageChangelog = () => {
+  const loaderData = useRouteLoaderData("root") as RootLoaderData;
   const t = useTranslate();
 
   const [data, setData] = useState("");
 
   useEffect(() => {
-    getChangelogData().then((res) => setData(res));
+    getChangelogData(loaderData.env.NODE_ENV).then((res) => setData(res));
   }, []);
 
   if (!data)

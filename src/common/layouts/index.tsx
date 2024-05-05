@@ -1,7 +1,7 @@
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import { AppShell, MantineProvider } from "@mantine/core";
-import { IAppTheme, IFC } from "@ts/global.types";
+import { IAppTheme, IFC, RootLoaderData } from "@ts/global.types";
 import React, { useEffect } from "react";
 
 import classes from "./styles.module.scss";
@@ -20,10 +20,11 @@ import {
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useSearchStore } from "@store/search";
 import DevInterface from "./DevInterface";
-import { useGeneralStore } from "@store/general";
+import { useInstanceStore } from "@store/instance";
+import { getDefaultSearXNG } from "@store/instance/utils";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
-  const data = useRouteLoaderData("root") as { theme: IAppTheme };
+  const loaderData = useRouteLoaderData("root") as RootLoaderData;
 
   const error = useRouteError();
   const t = useTranslate();
@@ -33,8 +34,20 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     resetVisitedLinks: state.resetVisitedLinks,
     searchQuery: state.searchQuery,
   }));
+  const {
+    nominatimDomain,
+    setNominatimDomain,
+    searXNGDomain,
+    setSearXNGDomain,
+  } = useInstanceStore((state) => ({
+    nominatimDomain: state.nominatimDomain,
+    setNominatimDomain: state.setNominatimDomain,
 
-  const appTheme: IAppTheme = data?.theme;
+    searXNGDomain: state.searXNGDomain,
+    setSearXNGDomain: state.setSearXNGDomain,
+  }));
+
+  const appTheme: IAppTheme = loaderData?.theme;
 
   const pinned = useHeadroom({ fixedAt: 120 });
 
@@ -55,9 +68,10 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isHeaderOffset = !isSearch && !isIndex;
 
   const appName =
-    process?.env?.IS_SELF_HOST === "0"
+    loaderData.env.IS_SELF_HOST === "0"
       ? t("_common.app_name")
-      : process?.env?.APP_NAME;
+      : loaderData.env.APP_NAME;
+
   useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
 
   useEffect(() => {
@@ -66,6 +80,10 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     }
 
     if (openNavbar) toggleNavbar();
+
+    // Set nominatim URL initially
+    if (!nominatimDomain) setNominatimDomain(loaderData.env.NOMINATIM_URL);
+    if (!searXNGDomain) getDefaultSearXNG(loaderData.env);
   }, [pathname]);
 
   return (
