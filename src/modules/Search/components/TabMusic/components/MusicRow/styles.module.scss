@@ -2,6 +2,9 @@
 @use "variables" as vars;
 
 .music_row {
+  transition: padding 0.2s ease-in-out;
+  border-radius: var(--mantine-radius-md);
+
   .music_img {
     min-width: func.to-rem(100);
     width: func.to-rem(100);
@@ -24,13 +27,23 @@
           var(--mantine-color-dark-1)
         );
       }
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
-  &:hover {
-    .text_title {
-      text-decoration: underline;
-    }
+  &_playing {
+    padding: var(--mantine-spacing-sm);
+
+    background-color: light-dark(
+      var(--mantine-color-white),
+      var(--mantine-color-dark-7)
+    );
+
+    border: 1px solid
+      light-dark(var(--mantine-color-white), var(--mantine-color-dark-5));
   }
 
   @media (max-width: vars.$mantine-breakpoint-sm) {

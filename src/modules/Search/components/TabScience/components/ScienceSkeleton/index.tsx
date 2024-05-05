@@ -1,9 +1,9 @@
 import { Flex, Skeleton } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-const ITSkeleton = () => {
+const ScienceSkeleton = () => {
   return (
-    <Flex className={classes.search_row} direction="column">
+    <Flex className={classes.science_row} direction="column">
       {/* Website url */}
       <Flex align="center" gap="xs" mb={8}>
         <Skeleton height={18} width={16} radius="sm" />
@@ -23,4 +23,4 @@ const ITSkeleton = () => {
   );
 };
 
-export default ITSkeleton;
+export default ScienceSkeleton;

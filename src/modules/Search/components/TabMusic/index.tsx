@@ -14,7 +14,6 @@ import MusicSkeleton from "./components/MusicSkeleton/MusicSkeleton";
 import Suggestions from "../components/Suggestions";
 import { useDisclosure } from "@mantine/hooks";
 import Lyricsbox from "../components/Lyricsbox";
-import MusicPlayer from "./components/MusicPlayer";
 
 const TabMusic = () => {
   const { hydrated } = useEnginesStore((state) => ({
@@ -23,17 +22,6 @@ const TabMusic = () => {
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsMusic>();
-
-  const [
-    isOpenMusicPlayer,
-    { open: openMusicPlayer, close: closeMusicPlayer },
-  ] = useDisclosure(false);
-  const [iframeSrc, setIframeSrc] = useState<string>("");
-
-  const openMusicInPlayer = (src: string) => {
-    setIframeSrc(src);
-    openMusicPlayer();
-  };
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -58,11 +46,7 @@ const TabMusic = () => {
               )}
 
               {res?.results.map((r, i) => (
-                <MusicRow
-                  key={i}
-                  openMusicInPlayer={openMusicInPlayer}
-                  musicData={r}
-                />
+                <MusicRow key={i} musicData={r} />
               ))}
             </Stack>
           );
@@ -129,13 +113,6 @@ const TabMusic = () => {
             />
           )}
       </Flex>
-
-      {/* Music player */}
-      <MusicPlayer
-        isOpen={isOpenMusicPlayer}
-        handleClose={closeMusicPlayer}
-        iframeSrc={iframeSrc}
-      />
     </Flex>
   );
 };

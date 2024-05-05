@@ -1,5 +1,5 @@
-import { Anchor, Flex, Image, Text } from "@mantine/core";
-import React, { useRef } from "react";
+import { Flex, Image, Text } from "@mantine/core";
+import React from "react";
 import classes from "./styles.module.scss";
 import { ISearXNGResultsNews } from "@ts/searxng.types";
 import clsx from "clsx";
@@ -7,68 +7,29 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { IconClock } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
-import { useHotkeys } from "@mantine/hooks";
+import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 
 dayjs.extend(relativeTime);
 
 interface Props {
-  selectedRow: string;
   data: ISearXNGResultsNews["results"][0];
 }
 
-const NewsRow: React.FC<Props> = ({ data, selectedRow }) => {
+const NewsRow: React.FC<Props> = ({ data }) => {
   const { title, url, parsed_url, content, engines, publishedDate } = data;
 
-  const anchorRef = useRef<HTMLAnchorElement>(null);
-
-  const { visitedLinks, updateVisitedLinks } = useSearchStore((state) => ({
+  const { visitedLinks } = useSearchStore((state) => ({
     visitedLinks: state.visitedLinks,
-    updateVisitedLinks: state.updateVisitedLinks,
   }));
-  const { openInNewTab, displayFavicon } = useSettingsStore((state) => ({
-    openInNewTab: state.openInNewTab,
+  const { displayFavicon } = useSettingsStore((state) => ({
     displayFavicon: state.displayFavicon,
   }));
 
-  const isXs = useResponsive("max", "xs");
-  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
-    ? "_blank"
-    : openInNewTab
-    ? "_blank"
-    : "_self";
-
-  useHotkeys([
-    [
-      "Enter",
-      () => {
-        anchorRef.current?.click();
-      },
-    ],
-  ]);
-
   return (
-    <Anchor
-      ref={anchorRef}
-      href={url}
-      target={anchorTarget}
-      onClick={() => updateVisitedLinks(url)}
-      onAuxClick={(e) => {
-        if (e.button === 1) {
-          // Middle mouse button has been clicked! Do what you will with it...
-          updateVisitedLinks(url);
-        }
-      }}
-      rel="noreferrer noopener"
-    >
-      <Flex
-        className={clsx(classes.news_row, {
-          [classes.news_row_active]: selectedRow === url,
-        })}
-        direction="column"
-      >
+    <Flex className={classes.news_row} direction="column">
+      <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
@@ -96,26 +57,26 @@ const NewsRow: React.FC<Props> = ({ data, selectedRow }) => {
         >
           {title}
         </Text>
+      </SearchAnchor>
 
-        {/* Date */}
-        <Flex align="center" mb={4}>
-          <IconClock style={getIconStyle(18)} />
+      {/* Date */}
+      <Flex align="center" mb={4}>
+        <IconClock style={getIconStyle(18)} />
 
-          <Text size="sm" ml={6}>
-            {dayjs(publishedDate).fromNow()}
-          </Text>
-        </Flex>
-
-        {/* Website description */}
-        <Text size="sm" c="dimmed">
-          {content}
-        </Text>
-
-        <Text size="xs" c="dimmed" ta="right">
-          {engines.join(", ")}
+        <Text size="sm" ml={6}>
+          {dayjs(publishedDate).fromNow()}
         </Text>
       </Flex>
-    </Anchor>
+
+      {/* Website description */}
+      <Text size="sm" c="dimmed">
+        {content}
+      </Text>
+
+      <Text size="xs" c="dimmed" ta="right">
+        {engines.join(", ")}
+      </Text>
+    </Flex>
   );
 };
 

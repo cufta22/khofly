@@ -50,14 +50,16 @@ const SearchSectionInput = () => {
     const paramsTab = searchParams.get("tab") || "general";
     const paramsQ = searchParams.get("q") || "";
 
+
     // Prevent unnecessary search
-    if (!query.length || query === paramsQ || searchQuery === paramsQ) return;
+    if (!query.length || query === paramsQ || query === searchQuery) return;
 
     // Unfocus input on search
     inputRef.current?.blur();
 
     // Handle Private Search
     if (privateSearch) {
+
       setSearchQuery(encodeURIComponent(query));
       return navigate(`/search?tab=${paramsTab}`);
     }

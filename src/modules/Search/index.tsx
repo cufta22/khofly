@@ -9,6 +9,7 @@ import { useMounted } from "@mantine/hooks";
 import TabSocialMedia from "./components/TabSocialMedia";
 import TabMusic from "./components/TabMusic";
 import TabIT from "./components/TabIT";
+import TabScience from "./components/TabScience";
 
 const TabMapsWithoutSSR = lazy(() => import("./components/TabMaps"));
 
@@ -30,7 +31,7 @@ const PageSearch = () => {
     // WIP
     music: <TabMusic />,
     it: <TabIT />,
-    science: null,
+    science: <TabScience />,
     files: null,
     social_media: <TabSocialMedia />,
   }[tab];

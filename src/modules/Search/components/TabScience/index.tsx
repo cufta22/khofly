@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import { ISearXNGResultsIT } from "@ts/searxng.types";
+import { ISearXNGResultsScience } from "@ts/searxng.types";
+import Suggestions from "../components/Suggestions";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
+import ScienceRow from "./components/ScienceRow";
+import ScienceSkeleton from "./components/ScienceSkeleton";
 
-import Suggestions from "../components/Suggestions";
-import ITRow from "./components/ITRow";
-import ITSkeleton from "./components/ITSkeleton";
-
-const TabIT = () => {
+const TabScience = () => {
   const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
-    useSearXNGSWR<ISearXNGResultsIT>();
+    useSearXNGSWR<ISearXNGResultsScience>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -30,11 +29,11 @@ const TabIT = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Flex className={classes.tab_it} align="flex-start">
+    <Flex className={classes.tab_science} align="flex-start">
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
         {/* Search Options */}
-        <SearchOptions className={classes.search_options_it} />
+        <SearchOptions className={classes.search_options_science} />
 
         {data?.map((res, i) => {
           if (!res?.results) return;
@@ -45,15 +44,17 @@ const TabIT = () => {
               )}
 
               {res?.results.map((r, i) => (
-                <ITRow key={i} data={r} />
+                <ScienceRow key={i} data={r} />
               ))}
             </Stack>
           );
         })}
 
-        {(isLoading || isValidating) &&
+        {(isLoading || isValidating || !hydrated) &&
           // Loading state
-          Array.from(Array(10).keys()).map((e, i) => <ITSkeleton key={i} />)}
+          Array.from(Array(10).keys()).map((e, i) => (
+            <ScienceSkeleton key={i} />
+          ))}
 
         {error && (
           // Error state
@@ -109,9 +110,13 @@ const TabIT = () => {
               unresponsive_engines={data?.[0]?.unresponsive_engines}
             />
           )}
+
+        {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
+          <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />
+        ) : null}
       </Flex>
     </Flex>
   );
 };
 
-export default TabIT;
+export default TabScience;

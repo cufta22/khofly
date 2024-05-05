@@ -26,8 +26,6 @@ import { getDefaultSearXNG } from "@store/instance/utils";
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const loaderData = useRouteLoaderData("root") as RootLoaderData;
 
-  console.log(JSON.parse(loaderData.cf));
-
   const error = useRouteError();
   const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
@@ -37,14 +35,15 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     searchQuery: state.searchQuery,
   }));
   const {
+    hydrated,
     nominatimDomain,
     setNominatimDomain,
     searXNGDomain,
     setSearXNGDomain,
   } = useInstanceStore((state) => ({
+    hydrated: state.hydrated,
     nominatimDomain: state.nominatimDomain,
     setNominatimDomain: state.setNominatimDomain,
-
     searXNGDomain: state.searXNGDomain,
     setSearXNGDomain: state.setSearXNGDomain,
   }));
@@ -82,11 +81,15 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     }
 
     if (openNavbar) toggleNavbar();
+  }, [pathname]);
 
-    // Set nominatim URL initially
+  useEffect(() => {
+    if (!hydrated) return;
+
+    // Set instance URL initially
     if (!nominatimDomain) setNominatimDomain(loaderData.env.NOMINATIM_URL);
     if (!searXNGDomain) setSearXNGDomain(getDefaultSearXNG(loaderData.env));
-  }, [pathname]);
+  }, [hydrated]);
 
   return (
     <MantineProvider

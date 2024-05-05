@@ -41,7 +41,6 @@ export interface RootLoaderData {
   flyRegion: string | undefined;
   flyMachineId: string | undefined;
   // Cloudflare stuff
-  cf: any;
 }
 
 // For translations

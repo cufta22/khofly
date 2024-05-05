@@ -55,6 +55,7 @@ const useSearXNGSWR = <IResults>() => {
     enginesNews,
     enginesMusic,
     enginesIT,
+    enginesScience,
   } = useEnginesStore((state) => ({
     enginesGeneral: state.enginesGeneral,
     enginesImages: state.enginesImages,
@@ -62,6 +63,7 @@ const useSearXNGSWR = <IResults>() => {
     enginesNews: state.enginesNews,
     enginesMusic: state.enginesMusic,
     enginesIT: state.enginesIT,
+    enginesScience: state.enginesScience,
   }));
 
   const { safeSearch, dateRange, searchLanguage, searchQuery } = useSearchStore(
@@ -90,7 +92,7 @@ const useSearXNGSWR = <IResults>() => {
     maps: [],
     music: enginesMusic,
     it: enginesIT,
-    science: [],
+    science: enginesScience,
     files: [],
     social_media: [],
   }[tab];

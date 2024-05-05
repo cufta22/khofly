@@ -186,6 +186,43 @@ export interface ISearXNGResultsIT {
   unresponsive_engines: Array<string[]>;
 }
 
+// Science tab
+
+export interface ISearXNGResultsScience {
+  query: string;
+  number_of_results: number;
+  results: Array<{
+    title: string;
+    url: string;
+    template: string;
+    engine: string;
+    parsed_url: Array<string>;
+    engines: Array<string>;
+    positions: Array<number>;
+    content: string;
+    score: number;
+    category: string;
+    img_src?: string;
+
+    // Article data
+    authors?: Array<string>;
+    tags?: Array<string>;
+    pdf_url?: string;
+    doi?: string;
+    publishedDate?: string;
+    publisher?: string;
+    journal?: string;
+    type?: string;
+    isbn?: Array<string>;
+    issn?: Array<string>;
+  }>;
+  answers: Array<any>;
+  corrections: Array<any>;
+  infoboxes: Array<any>;
+  suggestions: Array<string>;
+  unresponsive_engines: Array<string[]>;
+}
+
 // Social Media tab
 
 export interface ISearXNGResultsSocialMedia {

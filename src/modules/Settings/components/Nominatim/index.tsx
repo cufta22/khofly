@@ -14,9 +14,11 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
+import { useEffect } from "react";
 
 const SettingsNominatim = () => {
-  const { domain, setDomain } = useInstanceStore((state) => ({
+  const { hydrated, domain, setDomain } = useInstanceStore((state) => ({
+    hydrated: state.hydrated,
     domain: state.nominatimDomain,
     setDomain: state.setNominatimDomain,
   }));
@@ -37,6 +39,12 @@ const SettingsNominatim = () => {
     setDomain(values.domain);
     toast.show({ message: "URL changed!", color: "green" });
   };
+
+  useEffect(() => {
+    if (hydrated && !form.values.domain) {
+      form.setFieldValue("domain", domain);
+    }
+  }, [hydrated]);
 
   return (
     <Paper radius="md" mt={40} withBorder>

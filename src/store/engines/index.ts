@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { DEFAULT_ENGINES } from "./default_engines";
 
 export type IGeneralEngines =
   | "google"
@@ -146,39 +147,31 @@ export const useEnginesStore = create<EnginesState>()(
     (set) => ({
       hydrated: false,
 
-      enginesGeneral: ["duckduckgo", "brave", "wikipedia"],
+      enginesGeneral: DEFAULT_ENGINES.general,
       setEnginesGeneral: (next) => set({ enginesGeneral: next }),
 
-      enginesImages: ["duckduckgo", "bing", "qwant"],
+      enginesImages: DEFAULT_ENGINES.images,
       setEnginesImages: (next) => set({ enginesImages: next }),
 
-      enginesVideos: ["duckduckgo", "brave", "qwant"],
+      enginesVideos: DEFAULT_ENGINES.videos,
       setEnginesVideos: (next) => set({ enginesVideos: next }),
 
-      enginesNews: ["duckduckgo", "bing", "wikinews"],
+      enginesNews: DEFAULT_ENGINES.news,
       setEnginesNews: (next) => set({ enginesNews: next }),
 
       enginesMusic: ["radiobrowser", "soundcloud", "youtube"],
       setEnginesMusic: (next) => set({ enginesMusic: next }),
 
-      enginesIT: ["dockerhub", "stackoverflow", "github", "archwiki"],
+      enginesIT: DEFAULT_ENGINES.it,
       setEnginesIT: (next) => set({ enginesIT: next }),
 
-      enginesScience: ["arxiv", "googlescholar", "pubmed", "pdbe"],
+      enginesScience: DEFAULT_ENGINES.science,
       setEnginesScience: (next) => set({ enginesScience: next }),
 
-      enginesFiles: ["fdroid", "bt4g", "piratebay"],
+      enginesFiles: DEFAULT_ENGINES.files,
       setEnginesFiles: (next) => set({ enginesFiles: next }),
 
-      enginesSocialMedia: [
-        "lemmycomments",
-        "lemmycommunities",
-        "lemmyposts",
-        "lemmyusers",
-        "mastodonhashtags",
-        "mastodonusers",
-        "reddit",
-      ],
+      enginesSocialMedia: DEFAULT_ENGINES.social_media,
       setEnginesSocialMedia: (next) => set({ enginesSocialMedia: next }),
     }),
     {

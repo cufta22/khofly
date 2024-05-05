@@ -35,8 +35,6 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
   const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
 
-  console.log(context.cloudflare.cf.region);
-
   return {
     language: appLang,
     theme: appTheme,
@@ -48,6 +46,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
       SEARXNG_URL_EU1: getEnv("SEARXNG_URL_EU1", context),
       SEARXNG_URL_US1: getEnv("SEARXNG_URL_US1", context),
       NOMINATIM_URL: getEnv("NOMINATIM_URL", context),
+      
       IS_SELF_HOST: getEnv("IS_SELF_HOST", context),
       APP_NAME: getEnv("APP_NAME", context),
       SEARXNG_URL_SELF_HOST: getEnv("SEARXNG_URL_SELF_HOST", context),
@@ -63,7 +62,6 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
     flyMachineId: getEnv("FLY_MACHINE_ID"),
     // Cloudflare stuff
     // TODO: add cf stuff like region, etc. from context
-    cf: JSON.stringify(context?.cloudflare),
   };
 }
 

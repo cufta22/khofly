@@ -2,12 +2,14 @@ import {
   Anchor,
   Button,
   Center,
+  Collapse,
   Flex,
   Image,
   Paper,
   Text,
+  Transition,
 } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import classes from "./styles.module.scss";
 import { ISearXNGResultsMusic } from "@ts/searxng.types";
 import clsx from "clsx";
@@ -15,6 +17,7 @@ import dayjs from "dayjs";
 import {
   IconCalendar,
   IconMusic,
+  IconPlayerPause,
   IconPlayerPlay,
   IconVinyl,
 } from "@tabler/icons-react";
@@ -22,13 +25,13 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
+import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 
 interface Props {
-  openMusicInPlayer: (src: string) => void;
   musicData: ISearXNGResultsMusic["results"][0];
 }
 
-const MusicRow: React.FC<Props> = ({ musicData, openMusicInPlayer }) => {
+const MusicRow: React.FC<Props> = ({ musicData }) => {
   const {
     title,
     url,
@@ -39,6 +42,8 @@ const MusicRow: React.FC<Props> = ({ musicData, openMusicInPlayer }) => {
     img_src,
     iframe_src,
   } = musicData;
+
+  const [iframeOpen, setIframeOpen] = useState(false);
 
   const { visitedLinks, updateVisitedLinks } = useSearchStore((state) => ({
     visitedLinks: state.visitedLinks,
@@ -57,19 +62,13 @@ const MusicRow: React.FC<Props> = ({ musicData, openMusicInPlayer }) => {
     : "_self";
 
   return (
-    <Anchor
-      href={url}
-      target={anchorTarget}
-      onClick={() => updateVisitedLinks(url)}
-      onAuxClick={(e) => {
-        if (e.button === 1) {
-          // Middle mouse button has been clicked! Do what you will with it...
-          updateVisitedLinks(url);
-        }
-      }}
-      rel="noreferrer noopener"
+    <Flex
+      className={clsx(classes.music_row, {
+        [classes.music_row_playing]: iframeOpen,
+      })}
+      direction="column"
     >
-      <Flex className={classes.music_row} direction="column">
+      <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
@@ -86,11 +85,12 @@ const MusicRow: React.FC<Props> = ({ musicData, openMusicInPlayer }) => {
             {parsed_url[2]}
           </Text>
         </Flex>
+      </SearchAnchor>
 
-        {/* Music title */}
-
-        <Flex mt="sm" gap="md">
-          {/* Music img */}
+      {/* Music title */}
+      <Flex mt="sm" gap="md">
+        {/* Music img */}
+        <SearchAnchor url={url}>
           {img_src ? (
             <Image className={classes.music_img} src={img_src} radius="md" />
           ) : (
@@ -100,9 +100,11 @@ const MusicRow: React.FC<Props> = ({ musicData, openMusicInPlayer }) => {
               </Center>
             </Paper>
           )}
+        </SearchAnchor>
 
-          {/* Music data */}
-          <Flex className={classes.music_data} direction="column">
+        {/* Music data */}
+        <Flex className={classes.music_data} direction="column">
+          <SearchAnchor url={url}>
             <Text
               className={clsx(classes.text_title, {
                 [classes.text_title_visited]: visitedLinks.includes(url),
@@ -112,50 +114,65 @@ const MusicRow: React.FC<Props> = ({ musicData, openMusicInPlayer }) => {
             >
               {title}
             </Text>
+          </SearchAnchor>
 
-            {/* Description */}
-            <Text size="sm" c="dimmed" truncate="end">
-              {content}
-            </Text>
+          {/* Description */}
+          <Text size="sm" c="dimmed" truncate="end">
+            {content}
+          </Text>
 
-            <Flex align="center" mt="xs" justify="space-between">
-              {/* Date */}
-              {
-                <Flex align="center">
-                  {publishedDate && (
-                    <>
-                      <IconCalendar style={getIconStyle(18)} />
+          <Flex align="center" mt="xs" justify="space-between">
+            {/* Date */}
+            {
+              <Flex align="center">
+                {publishedDate && (
+                  <>
+                    <IconCalendar style={getIconStyle(18)} />
 
-                      <Text size="sm" ml={6}>
-                        {dayjs(publishedDate).format("MMM D, YYYY")}
-                      </Text>
-                    </>
-                  )}
-                </Flex>
-              }
+                    <Text size="sm" ml={6}>
+                      {dayjs(publishedDate).format("MMM D, YYYY")}
+                    </Text>
+                  </>
+                )}
+              </Flex>
+            }
 
-              <Button
-                variant="light"
-                leftSection={<IconPlayerPlay style={getIconStyle(16)} />}
-                size="xs"
-                w={100}
-                onClick={(e) => {
-                  e.preventDefault();
+            <Button
+              variant="light"
+              size="xs"
+              w={100}
+              onClick={(e) => {
+                e.preventDefault();
 
-                  openMusicInPlayer(iframe_src);
-                }}
-              >
-                Play
-              </Button>
-            </Flex>
+                setIframeOpen((prev) => !prev);
+              }}
+            >
+              {iframeOpen ? "Hide media" : "Show media"}
+            </Button>
           </Flex>
         </Flex>
-
-        <Text size="xs" c="dimmed" mt="xs" ta="right">
-          {engines.join(", ")}
-        </Text>
       </Flex>
-    </Anchor>
+
+      <Text size="xs" c="dimmed" my="xs" ta="right">
+        {engines.join(", ")}
+      </Text>
+
+      <Transition
+        mounted={iframeOpen}
+        transition={"scale-y"}
+        duration={200}
+        timingFunction="ease"
+        keepMounted={false}
+      >
+        {(transitionStyle) => (
+          <iframe
+            style={{ ...transitionStyle, zIndex: 1 }}
+            width="100%"
+            src={iframe_src}
+          />
+        )}
+      </Transition>
+    </Flex>
   );
 };
 

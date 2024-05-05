@@ -1,79 +1,12 @@
 import EngineComponent from "../EngineRow";
 import { HOVER_DATA } from "../../hover-data";
-import { EnginesState, IGeneralEngines, useEnginesStore } from "@store/engines";
+import { IGeneralEngines, useEnginesStore } from "@store/engines";
 import { DotNestedKeys, ITranslations } from "@ts/global.types";
 import { ICategories } from "@store/settings";
 import { Table } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-
-const CATEGORY_TO_STORE: {
-  [key in ICategories]: {
-    data:
-      | "enginesGeneral"
-      | "enginesImages"
-      | "enginesVideos"
-      | "enginesNews"
-      | "enginesMusic"
-      | "enginesIT"
-      | "enginesScience"
-      | "enginesFiles"
-      | "enginesSocialMedia";
-    set:
-      | "setEnginesGeneral"
-      | "setEnginesImages"
-      | "setEnginesVideos"
-      | "setEnginesNews"
-      | "setEnginesMusic"
-      | "setEnginesIT"
-      | "setEnginesScience"
-      | "setEnginesFiles"
-      | "setEnginesSocialMedia";
-  };
-} = {
-  general: {
-    data: "enginesGeneral",
-    set: "setEnginesGeneral",
-  },
-  images: {
-    data: "enginesImages",
-    set: "setEnginesImages",
-  },
-  videos: {
-    data: "enginesVideos",
-    set: "setEnginesVideos",
-  },
-  news: {
-    data: "enginesNews",
-    set: "setEnginesNews",
-  },
-  music: {
-    data: "enginesMusic",
-    set: "setEnginesMusic",
-  },
-  it: {
-    data: "enginesIT",
-    set: "setEnginesIT",
-  },
-  science: {
-    data: "enginesScience",
-    set: "setEnginesScience",
-  },
-  files: {
-    data: "enginesFiles",
-    set: "setEnginesFiles",
-  },
-  social_media: {
-    data: "enginesSocialMedia",
-    set: "setEnginesSocialMedia",
-  },
-
-  // Will never be used, so general is fine
-  maps: {
-    data: "enginesGeneral",
-    set: "setEnginesGeneral",
-  },
-};
+import { CATEGORY_TO_STORE } from "./utils";
 
 interface Props {
   category: ICategories;
@@ -90,12 +23,10 @@ interface Props {
 
 const SettingsEnginesWrapper: React.FC<Props> = ({ category, data }) => {
   const { engines, setEngines } = useEnginesStore((state) => ({
-    engines: state[
-      CATEGORY_TO_STORE[category].data
-    ] as EnginesState["enginesGeneral"],
-    setEngines: state[
-      CATEGORY_TO_STORE[category].set
-    ] as EnginesState["setEnginesGeneral"],
+    engines: state[CATEGORY_TO_STORE[category].data] as string[],
+    setEngines: state[CATEGORY_TO_STORE[category].set] as (
+      next: string[]
+    ) => void,
   }));
 
   const handleChangeEngines = (e: IGeneralEngines, next: boolean) => {

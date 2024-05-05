@@ -1,41 +1,37 @@
-import { Flex, Image, Table, Text } from "@mantine/core";
+import { Button, Flex, Image, Spoiler, Table, Text } from "@mantine/core";
 import React from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsIT } from "@ts/searxng.types";
+import { ISearXNGResultsScience } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import SearchAnchor from "@module/Search/components/components/SearchAnchor";
-
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(relativeTime);
 
 interface Props {
-  data: ISearXNGResultsIT["results"][0];
+  data: ISearXNGResultsScience["results"][0];
 }
 
-const ITRow: React.FC<Props> = ({ data }) => {
+const ScienceRow: React.FC<Props> = ({ data }) => {
   const {
     title,
     url,
     parsed_url,
     content,
     engines,
-    engine,
-
-    homepage,
-    license_name,
-    img_src,
-    license_url,
-    maintainer,
-    package_name,
-    popularity,
-    source_code_url,
-    tags,
-    version,
     publishedDate,
+    doi,
+    tags,
+    authors,
+    pdf_url,
+    journal,
+    publisher,
+    type,
+    isbn,
+    issn,
   } = data;
 
   const { visitedLinks } = useSearchStore((state) => ({
@@ -46,7 +42,7 @@ const ITRow: React.FC<Props> = ({ data }) => {
   }));
 
   return (
-    <Flex className={classes.it_row} direction="column">
+    <Flex className={classes.science_row} direction="column">
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
@@ -70,58 +66,20 @@ const ITRow: React.FC<Props> = ({ data }) => {
           className={clsx(classes.text_title, {
             [classes.text_title_visited]: visitedLinks.includes(url),
           })}
-          mb={4}
           truncate="end"
         >
           {title}
         </Text>
       </SearchAnchor>
 
-      {/* Website description */}
-      <Text size="sm" c="dimmed">
-        {content}
-      </Text>
-
+      {/* Article data */}
       <Table withRowBorders={false} verticalSpacing={2} mt="sm">
         {/* <Table.Thead></Table.Thead> */}
         <Table.Tbody>
-          {package_name && (
-            <Table.Tr>
-              <Table.Td w={100}>
-                <Text size="xs">Name:</Text>
-              </Table.Td>
-              <Table.Td>
-                <Text size="xs">{package_name}</Text>
-              </Table.Td>
-            </Table.Tr>
-          )}
-
-          {version && (
-            <Table.Tr>
-              <Table.Td w={100}>
-                <Text size="xs">Version:</Text>
-              </Table.Td>
-              <Table.Td>
-                <Text size="xs">{version}</Text>
-              </Table.Td>
-            </Table.Tr>
-          )}
-
-          {maintainer && (
-            <Table.Tr>
-              <Table.Td w={100}>
-                <Text size="xs">Maintainer:</Text>
-              </Table.Td>
-              <Table.Td>
-                <Text size="xs">{maintainer}</Text>
-              </Table.Td>
-            </Table.Tr>
-          )}
-
           {publishedDate && (
             <Table.Tr>
-              <Table.Td w={100}>
-                <Text size="xs">Updated at:</Text>
+              <Table.Td w={120}>
+                <Text size="xs">Published date:</Text>
               </Table.Td>
               <Table.Td>
                 <Text size="xs">
@@ -131,9 +89,55 @@ const ITRow: React.FC<Props> = ({ data }) => {
             </Table.Tr>
           )}
 
+          {authors && (
+            <Table.Tr>
+              <Table.Td w={120}>
+                <Text size="xs">Author:</Text>
+              </Table.Td>
+              <Table.Td>
+                <Text size="xs">
+                  {authors.filter((a) => a !== "…").join(", ")}
+                </Text>
+              </Table.Td>
+            </Table.Tr>
+          )}
+
+          {journal && (
+            <Table.Tr>
+              <Table.Td w={120}>
+                <Text size="xs">Journal:</Text>
+              </Table.Td>
+              <Table.Td>
+                <Text size="xs">{journal}</Text>
+              </Table.Td>
+            </Table.Tr>
+          )}
+
+          {publisher && (
+            <Table.Tr>
+              <Table.Td w={120}>
+                <Text size="xs">Publisher:</Text>
+              </Table.Td>
+              <Table.Td>
+                <Text size="xs">{publisher}</Text>
+              </Table.Td>
+            </Table.Tr>
+          )}
+
+          {type && (
+            <Table.Tr>
+              <Table.Td w={120}>
+                <Text size="xs">Type:</Text>
+              </Table.Td>
+              <Table.Td>
+                <Text size="xs">{type}</Text>
+              </Table.Td>
+            </Table.Tr>
+          )}
+
           {tags && (
             <Table.Tr>
-              <Table.Td w={100}>
+              <Table.Td w={120}>
                 <Text size="xs">Tags:</Text>
               </Table.Td>
               <Table.Td>
@@ -142,56 +146,70 @@ const ITRow: React.FC<Props> = ({ data }) => {
             </Table.Tr>
           )}
 
-          {!!popularity && (
+          {doi && (
             <Table.Tr>
-              <Table.Td w={100}>
-                <Text size="xs">Popularity:</Text>
+              <Table.Td w={120}>
+                <Text size="xs">DOI:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{popularity}</Text>
-              </Table.Td>
-            </Table.Tr>
-          )}
-
-          {license_name && license_url && (
-            <Table.Tr>
-              <Table.Td w={100}>
-                <Text size="xs">Licence:</Text>
-              </Table.Td>
-              <Table.Td>
-                <SearchAnchor url={license_url}>
+                <SearchAnchor url={`https://oadoi.org/${doi}`}>
                   <Text c="blue" size="xs">
-                    {license_name}
+                    {doi}
                   </Text>
                 </SearchAnchor>
               </Table.Td>
             </Table.Tr>
           )}
 
-          {homepage && source_code_url && (
+          {isbn && (
             <Table.Tr>
-              <Table.Td w={100}>
-                <Text size="xs">Project:</Text>
+              <Table.Td w={120}>
+                <Text size="xs">ISBN:</Text>
               </Table.Td>
               <Table.Td>
-                <Flex align="center" gap="xs">
-                  <SearchAnchor url={homepage}>
-                    <Text c="blue" size="xs">
-                      Project homepage
-                    </Text>
-                  </SearchAnchor>
-                  <Text size="xs">|</Text>
-                  <SearchAnchor url={source_code_url}>
-                    <Text c="blue" size="xs">
-                      Project source code
-                    </Text>
-                  </SearchAnchor>
-                </Flex>
+                <Text size="xs">{isbn.join(", ")}</Text>
+              </Table.Td>
+            </Table.Tr>
+          )}
+
+          {issn && (
+            <Table.Tr>
+              <Table.Td w={120}>
+                <Text size="xs">ISSN:</Text>
+              </Table.Td>
+              <Table.Td>
+                <Text size="xs">{issn.join(", ")}</Text>
               </Table.Td>
             </Table.Tr>
           )}
         </Table.Tbody>
       </Table>
+
+      {/* Website description */}
+      <Spoiler maxHeight={90} showLabel="Show more" hideLabel="Hide">
+        <Text mt="xs" size="sm" c="dimmed">
+          {content}
+        </Text>
+      </Spoiler>
+
+      {/* Links */}
+      <Flex mt="xs" gap="sm">
+        {pdf_url && (
+          <SearchAnchor url={pdf_url}>
+            <Button variant="default" size="xs">
+              PDF
+            </Button>
+          </SearchAnchor>
+        )}
+
+        {doi && (
+          <SearchAnchor url={`https://www.altmetric.com/details/doi/${doi}`}>
+            <Button variant="default" size="xs">
+              Altmetric
+            </Button>
+          </SearchAnchor>
+        )}
+      </Flex>
 
       <Text size="xs" c="dimmed" ta="right">
         {engines.join(", ")}
@@ -200,4 +218,4 @@ const ITRow: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default ITRow;
+export default ScienceRow;

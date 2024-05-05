@@ -1,4 +1,4 @@
-import { Flex, Paper, Space, Stack, Tabs, Text } from "@mantine/core";
+import { Button, Flex, Paper, Space, Stack, Tabs, Text } from "@mantine/core";
 import {
   IconCpu,
   IconFiles,
@@ -18,65 +18,94 @@ import { DotNestedKeys, ITranslations } from "@ts/global.types";
 import SettingsEnginesWrapper from "./components/Wrapper";
 import classes from "./styles.module.scss";
 
-import { DATA_ENGINES_GENERAL } from "./components/data/general";
-import { DATA_ENGINES_IMAGES } from "./components/data/images";
-import { DATA_ENGINES_VIDEOS } from "./components/data/videos";
-import { DATA_ENGINES_NEWS } from "./components/data/news";
-import { DATA_ENGINES_MUSIC } from "./components/data/music";
-import { DATA_ENGINES_IT } from "./components/data/it";
-import { DATA_ENGINES_SCIENCE } from "./components/data/science";
-import { DATA_ENGINES_FILES } from "./components/data/files";
-import { DATA_ENGINES_SOCIAL_MEDIA } from "./components/data/social_media";
+import {
+  DATA_ENGINES_SOCIAL_MEDIA,
+  DATA_ENGINES_GENERAL,
+  DATA_ENGINES_IMAGES,
+  DATA_ENGINES_VIDEOS,
+  DATA_ENGINES_NEWS,
+  DATA_ENGINES_MUSIC,
+  DATA_ENGINES_IT,
+  DATA_ENGINES_SCIENCE,
+  DATA_ENGINES_FILES,
+} from "./components/data";
+
+import { useEnginesStore } from "@store/engines";
+import { DEFAULT_ENGINES } from "@store/engines/default_engines";
+import { ICategories } from "@store/settings";
+import { IDataEngine } from "./components/data";
+import { CATEGORY_TO_STORE } from "./components/Wrapper/utils";
 
 const TAB_DATA: {
-  [key: string]: {
+  [key in ICategories]: {
     label: DotNestedKeys<ITranslations>;
     icon: any;
+    data: IDataEngine[];
   };
 } = {
   general: {
     label: "pages.settings.engines.title",
     icon: <IconSearch size={32} />,
+    data: DATA_ENGINES_GENERAL,
   },
   images: {
     label: "pages.settings.engines.titleImg",
     icon: <IconPhoto size={32} />,
+    data: DATA_ENGINES_IMAGES,
   },
   videos: {
     label: "pages.settings.engines.titleVid",
     icon: <IconPlayerPlay size={32} />,
+    data: DATA_ENGINES_VIDEOS,
   },
   news: {
     label: "pages.settings.engines.titleNews",
     icon: <IconNews size={32} />,
+    data: DATA_ENGINES_NEWS,
   },
-
   music: {
     label: "pages.settings.engines.titleMusic",
     icon: <IconMusic size={32} />,
+    data: DATA_ENGINES_MUSIC,
   },
   it: {
     label: "pages.settings.engines.titleIT",
     icon: <IconCpu size={32} />,
+    data: DATA_ENGINES_IT,
   },
   science: {
     label: "pages.settings.engines.titleScience",
     icon: <IconSchool size={32} />,
+    data: DATA_ENGINES_SCIENCE,
   },
   files: {
     label: "pages.settings.engines.titleFiles",
     icon: <IconFiles size={32} />,
+    data: DATA_ENGINES_FILES,
   },
   social_media: {
     label: "pages.settings.engines.titleSocial",
     icon: <IconUsers size={32} />,
+    data: DATA_ENGINES_SOCIAL_MEDIA,
+  },
+
+  // Won't be used
+  maps: {
+    label: "_common.app_name",
+    icon: null,
+    data: [],
   },
 };
 
 const Engines = () => {
   const t = useTranslate();
 
-  const [tab, setTab] = useState("general");
+  const [tab, setTab] = useState<ICategories>("general");
+
+  const { setEngines } = useEnginesStore((state) => ({
+    engines: state[CATEGORY_TO_STORE[tab].data] as string[],
+    setEngines: state[CATEGORY_TO_STORE[tab].set] as (next: string[]) => void,
+  }));
 
   return (
     <Paper radius="md" withBorder>
@@ -91,14 +120,43 @@ const Engines = () => {
 
         <div style={{ flex: 1 }}></div>
 
-        <Text>Currently selected engines</Text>
+        <Flex align="center" justify="flex-end" gap="sm">
+          <Button
+            size="xs"
+            onClick={() => {
+              setEngines(DEFAULT_ENGINES[tab]);
+            }}
+          >
+            Set default
+          </Button>
+          <Button
+            size="xs"
+            onClick={() => {
+              setEngines(
+                TAB_DATA[tab].data
+                  .filter((row) => row.value)
+                  .map((eng) => eng.value)
+              );
+            }}
+          >
+            Enable all
+          </Button>
+          <Button
+            size="xs"
+            onClick={() => {
+              setEngines([]);
+            }}
+          >
+            Disable all
+          </Button>
+        </Flex>
       </Flex>
 
       <Stack w="100%" px="lg" gap={6}>
         <Tabs
           variant="default"
           value={tab}
-          onChange={(val) => setTab(val || "general")}
+          onChange={(val) => setTab((val as ICategories) || "general")}
           keepMounted={false}
         >
           <Tabs.List mb="lg" className={classesParent.tabs_scroll}>

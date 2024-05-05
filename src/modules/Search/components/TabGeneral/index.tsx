@@ -14,7 +14,6 @@ import Lyricsbox from "../components/Lyricsbox";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
-import SearchHotkeys, { getArrayOfURLs } from "../components/SearchHotkeys";
 
 const TabGeneral = () => {
   const { hydrated } = useEnginesStore((state) => ({
@@ -24,7 +23,6 @@ const TabGeneral = () => {
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
 
-  const [selectedRow, setSelectedRow] = useState("");
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -35,12 +33,7 @@ const TabGeneral = () => {
 
   return (
     <Flex className={classes.tab_general} align="flex-start">
-      {/* Hotkeys */}
-      <SearchHotkeys
-        selectedRow={selectedRow}
-        setSelectedRow={setSelectedRow}
-        data={getArrayOfURLs(data || [])}
-      />
+ 
 
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
@@ -58,7 +51,7 @@ const TabGeneral = () => {
               )}
 
               {res?.results.map((r, i) => (
-                <SearchResultRow key={i} selectedRow={selectedRow} data={r} />
+                <SearchResultRow key={i}  data={r} />
               ))}
             </Stack>
           );
