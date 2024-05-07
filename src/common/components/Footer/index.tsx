@@ -8,14 +8,15 @@ import { useGeneralStore } from "@store/general";
 import { useEffect, useState } from "react";
 
 const Footer = () => {
-  const { toggleDevMode } = useGeneralStore((state) => ({
-    toggleDevMode: state.toggleDevMode,
+  const { devMode, setDevMode } = useGeneralStore((state) => ({
+    devMode: state.devMode,
+    setDevMode: state.setDevMode,
   }));
 
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (count % 5 === 0) toggleDevMode();
+    if (count && count % 5 === 0) setDevMode(!devMode);
   }, [count]);
 
   return (

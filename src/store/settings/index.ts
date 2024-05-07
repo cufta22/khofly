@@ -30,6 +30,14 @@ interface SettingsState {
   autocompleteEngine: IAutocompleteEngines;
   setAutocompleteEngine: (next: IAutocompleteEngines) => void;
 
+  showEngines: boolean;
+  setShowEngines: (next: boolean) => void;
+
+  selectedMedia: "images" | "videos";
+  setSelectedMedia: (next: "images" | "videos") => void;
+  displayMedia: boolean;
+  setDisplayMedia: (next: boolean) => void;
+
   shortcuts: IShortcut[];
   setShortcuts: (next: IShortcut[]) => void;
   displayShortcuts: boolean;
@@ -61,6 +69,14 @@ export const useSettingsStore = create<SettingsState>()(
 
       autocompleteEngine: "google",
       setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
+
+      showEngines: false,
+      setShowEngines: (next) => set({ showEngines: next }),
+
+      selectedMedia: "images",
+      setSelectedMedia: (next) => set({ selectedMedia: next }),
+      displayMedia: false,
+      setDisplayMedia: (next) => set({ displayMedia: next }),
 
       shortcuts: [],
       setShortcuts: (next) => set({ shortcuts: next }),

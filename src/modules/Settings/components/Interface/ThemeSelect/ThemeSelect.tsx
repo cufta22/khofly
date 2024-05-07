@@ -1,4 +1,10 @@
-import { Combobox, Image, InputBase, useCombobox } from "@mantine/core";
+import {
+  Combobox,
+  Image,
+  InputBase,
+  MantineSize,
+  useCombobox,
+} from "@mantine/core";
 import classes from "./styles.module.scss";
 
 import {
@@ -10,7 +16,7 @@ import {
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/cookies";
-import { useNavigate, useRouteLoaderData } from "@remix-run/react";
+import { useLocation, useNavigate, useRouteLoaderData } from "@remix-run/react";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;
@@ -20,32 +26,32 @@ interface ILangData {
 
 const THEME_DATA: ILangData[] = [
   {
-    label: "pages.settings.interface.selectThemeOptions.mantine_old",
+    label: "pages.settings.interface.select_theme_options.mantine_old",
     value: "Mantine-Old",
     image: "/assets/mantine.png",
   },
   {
-    label: "pages.settings.interface.selectThemeOptions.mantine_new",
+    label: "pages.settings.interface.select_theme_options.mantine_new",
     value: "Mantine-New",
     image: "/assets/mantine.png",
   },
   {
-    label: "pages.settings.interface.selectThemeOptions.catppuccin",
+    label: "pages.settings.interface.select_theme_options.catppuccin",
     value: "Catppuccin-Mocha",
     image: "/assets/catppuccin.png",
   },
   // {
-  //   label: "pages.settings.interface.selectThemeOptions.tokyo_night",
+  //   label: "pages.settings.interface.select_theme_options.tokyo_night",
   //   value: "Tokyo-Night",
   //   image: "/assets/rosepine.png",
   // },
   // {
-  //   label: "pages.settings.interface.selectThemeOptions.rosepine",
+  //   label: "pages.settings.interface.select_theme_options.rosepine",
   //   value: "Rose-Pine",
   //   image: "/assets/rosepine.png",
   // },
   // {
-  //   label: "pages.settings.interface.selectThemeOptions.nord",
+  //   label: "pages.settings.interface.select_theme_options.nord",
   //   value: "Nord",
   //   image: "/assets/rosepine.png",
   // },
@@ -56,6 +62,7 @@ const ThemeSelect = () => {
 
   const t = useTranslate();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -73,7 +80,9 @@ const ThemeSelect = () => {
       secure: loaderData.env.HOST?.includes("https") ? true : false,
       sameSite: "Strict",
     });
-    navigate("/settings?tab=interface", { replace: true });
+
+    const { pathname, search } = location;
+    navigate(pathname + search, { replace: true, preventScrollReset: true });
 
     combobox.closeDropdown();
   };

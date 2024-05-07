@@ -60,24 +60,22 @@ const SettingsCategories = () => {
 
   return (
     <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16}>
-        <IconCategory size={32} />
+      <Flex align="center" justify="space-between" p="lg" mb={16}>
+        <Flex align="center">
+          <IconCategory size={32} />
 
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.categories.title")}
-        </Text>
+          <Text fz={26} fw={600} ml="sm">
+            {t("pages.settings.categories.title")}
+          </Text>
+        </Flex>
+
+        <Text>Currently enabled search categories</Text>
       </Flex>
 
       {/* Settings content */}
-      {/* <SimpleGrid px="lg" mb="xl" cols={{ base: 1, sm: 2, md: 10 }} spacing={4}> */}
-      <Stack w="100%" align="start" px="lg" mb="xl">
-        <Text>Currently enabled search categories</Text>
-
-        <Flex align="center" gap={4} wrap="wrap">
-          {items}
-        </Flex>
-      </Stack>
-      {/* </SimpleGrid> */}
+      <Flex align="center" gap={4} px="lg" mb="xl" wrap="wrap">
+        {items}
+      </Flex>
     </Paper>
   );
 };

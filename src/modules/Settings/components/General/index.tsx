@@ -14,19 +14,22 @@ import {
   IconExternalLink,
   IconFavicon,
   IconInfoCircle,
+  IconLayoutCollage,
   IconMessageCode,
+  IconRadar,
   IconSettings2,
   IconShield,
 } from "@tabler/icons-react";
 import FaviconSwitch from "./FaviconSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
-import NewTabSwitch from "./NewTabSwitch";
 import classes from "./styles.module.scss";
 import IASwitch from "./IASwitch";
 import RemixLink from "@components/RemixLink";
 import { useTranslate } from "@hooks/translate/use-translate";
 import PrivateSearchSwitch from "./PrivateSearchSwitch";
+import MediaSwitch from "./MediaSwitch";
+import ShowEnginesSwitch from "./ShowEnginesSwitch";
 
 const SettingsGeneral = () => {
   const t = useTranslate();
@@ -64,7 +67,7 @@ const SettingsGeneral = () => {
           <FaviconSwitch />
         </Flex>
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
@@ -81,24 +84,35 @@ const SettingsGeneral = () => {
           <AutocompleteSwitch />
         </Flex>
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
-            <IconExternalLink
-              style={getIconStyle(20)}
-              color={theme.colors.gray["5"]}
-            />
+            <IconRadar style={getIconStyle(20)} />
 
             <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_open_in_new_tab")}
+              {t("pages.settings.general.show_engines")}
             </Text>
           </Flex>
 
-          <NewTabSwitch />
+          <ShowEnginesSwitch />
         </Flex>
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
+
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
+          <Flex align="center" gap="sm">
+            <IconLayoutCollage style={getIconStyle(20)} />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.general.display_media")}
+            </Text>
+          </Flex>
+
+          <MediaSwitch />
+        </Flex>
+
+        <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
@@ -115,27 +129,7 @@ const SettingsGeneral = () => {
           <IASwitch />
         </Flex>
 
-        {/* <Divider my="sm" w="100%" />
-
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            WIP: Show engines for each search result
-          </Text>
-
-          <IASwitch />
-        </Flex>
-
-        <Divider my="sm" w="100%" />
-
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            WIP: display images in general search
-          </Text>
-
-          <IASwitch />
-        </Flex> */}
-
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
@@ -152,7 +146,7 @@ const SettingsGeneral = () => {
           <PrivateSearchSwitch />
         </Flex>
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Text size="md" fw={400}>

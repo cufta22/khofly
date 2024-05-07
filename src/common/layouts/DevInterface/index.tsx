@@ -1,33 +1,11 @@
 import { Alert, Flex, Stack, Text, useMantineTheme } from "@mantine/core";
 import { IconBrandNodejs, IconCode } from "@tabler/icons-react";
 import classes from "./styles.module.scss";
-import { useClientServerState } from "@store/client-server";
 import { useRouteLoaderData } from "@remix-run/react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useGeneralStore } from "@store/general";
 import { RootLoaderData } from "@ts/global.types";
-
-export const regions: Record<string, string> = {
-  sfo1: "San Francisco",
-  iad1: "Washington, D.C.",
-  pdx1: "Portland",
-  cle1: "Cleveland",
-  gru1: "São Paulo",
-  hkg1: "Hong Kong",
-  hnd1: "Tokyo",
-  icn1: "Seoul",
-  kix1: "Osaka",
-  sin1: "Singapore",
-  bom1: "Mumbai",
-  syd1: "Sydney",
-  cdg1: "Paris",
-  arn1: "Stockholm",
-  dub1: "Dublin",
-  lhr1: "London",
-  fra1: "Frankfurt",
-  cpt1: "Cape Town",
-  dev1: "localhost",
-};
+import { regions } from "./utils";
 
 const DevInterface = () => {
   const theme = useMantineTheme();

@@ -33,15 +33,15 @@
       "interface": {
         "title": "User interface",
 
-        "selectLang": "Language select",
-        "selectLangOptions": {
+        "select_lang": "Language select",
+        "select_lang_options": {
           "en": "English",
           "fr": "French",
           "de": "German"
         },
 
-        "selectTheme": "Theme select",
-        "selectThemeOptions": {
+        "select_theme": "Theme select",
+        "select_theme_options": {
           "mantine_old": "Mantine Old",
           "mantine_new": "Mantine New",
           "material": "Material",
@@ -51,29 +51,13 @@
           "tokyo_night": "Tokyo Night"
         },
 
-        "selectPrimaryColor": "Primary color",
-        "selectPrimaryColorOptions": {
-          "blue": "Blue",
-          "red": "Red",
-          "green": "Green",
-          "yellow": "Yellow",
-          "pink": "Pink",
-          "teal": "Teal"
-        },
-
-        "selectFont": "Font select",
-        "selectFontOptions": {
-          "inter": "Inter",
-          "roboto": "Roboto",
-          "montserrat": "Montserrat",
-          "sourceCodePro": "Source Code Pro"
-        },
-
-        "selectColor": "Color scheme",
-        "selectColorOptions": {
+        "select_color": "Color scheme",
+        "select_color_options": {
           "light": "Light",
           "dark": "Dark"
-        }
+        },
+
+        "toggle_open_in_new_tab": "Open links in new tab"
       },
 
       "general": {
@@ -81,13 +65,17 @@
 
         "toggle_favicon": "Display website favicon",
 
+        "show_engines": "Show engines for each search result",
+
+        "display_media": "Display media in general search",
+        "media_images": "Images",
+        "media_videos": "Videos",
+
         "toggle_autocomplete": "Enable search autocomplete",
         "autocomplete_engine_google": "Google",
         "autocomplete_engine_DDG": "DuckDuckGo",
         "autocomplete_engine_brave": "Brave",
         "autocomplete_engine_qwant": "Qwant",
-
-        "toggle_open_in_new_tab": "Open links in new tab",
 
         "toggle_ia": "Enable Instant Answers",
 

@@ -7,6 +7,7 @@ import {
   Drawer,
   Flex,
   Image,
+  ScrollArea,
   Text,
 } from "@mantine/core";
 import { useClipboard } from "@mantine/hooks";
@@ -18,7 +19,7 @@ import {
   IconInfoCircle,
 } from "@tabler/icons-react";
 import { ISearXNGResultsImages } from "@ts/searxng.types";
-import React from "react";
+import classes from "./styles.module.scss";
 
 interface Props {
   isOpen: boolean;
@@ -48,14 +49,21 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
 
   return (
     <Drawer
+      offset={isXs ? 0 : 8}
+      size="xl"
+      radius={isXs ? 0 : "md"}
       opened={isOpen}
       onClose={handleClose}
       title={<Text size="xl">Image preview</Text>}
       position="right"
-      size="xl"
       closeButtonProps={{
-        size: "xl",
+        size: "lg",
       }}
+      classNames={{
+        header: classes.drawer_header,
+        content: classes.drawer_root,
+      }}
+      scrollAreaComponent={ScrollArea.Autosize}
     >
       <Text mt="md" size="lg" c="white">
         {viewImage?.title}

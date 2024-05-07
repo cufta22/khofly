@@ -33,7 +33,7 @@ const ColorSchemeSwitch = () => {
               <Center>
                 <IconSun size={20} color={theme.colors.yellow[6]} />
                 <Box ml={10}>
-                  {t("pages.settings.interface.selectColorOptions.light")}
+                  {t("pages.settings.interface.select_color_options.light")}
                 </Box>
               </Center>
             ),
@@ -44,7 +44,7 @@ const ColorSchemeSwitch = () => {
               <Center>
                 <IconMoon size={20} color={theme.colors.gray[4]} />
                 <Box ml={10}>
-                  {t("pages.settings.interface.selectColorOptions.dark")}
+                  {t("pages.settings.interface.select_color_options.dark")}
                 </Box>
               </Center>
             ),

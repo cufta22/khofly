@@ -13,6 +13,7 @@ import ColorSchemeSwitch from "./ColorThemeSwitch/ColorThemeSwitch";
 
 import {
   IconBrush,
+  IconExternalLink,
   IconLanguage,
   IconPalette,
   IconSunMoon,
@@ -21,6 +22,7 @@ import {
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import NewTabSwitch from "./NewTabSwitch";
 
 const SettingsInterface = () => {
   const t = useTranslate();
@@ -47,14 +49,14 @@ const SettingsInterface = () => {
             />
 
             <Text size="md" fw={400}>
-              {t("pages.settings.interface.selectLang")}
+              {t("pages.settings.interface.select_lang")}
             </Text>
           </Flex>
 
           <LanguageSelect />
         </Flex>
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
@@ -64,14 +66,14 @@ const SettingsInterface = () => {
             />
 
             <Text size="md" fw={400}>
-              {t("pages.settings.interface.selectTheme")}
+              {t("pages.settings.interface.select_theme")}
             </Text>
           </Flex>
 
           <ThemeSelect />
         </Flex>
 
-        <Divider my="sm" w="100%" />
+        <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
@@ -81,11 +83,28 @@ const SettingsInterface = () => {
             />
 
             <Text size="md" fw={400}>
-              {t("pages.settings.interface.selectColor")}
+              {t("pages.settings.interface.select_color")}
             </Text>
           </Flex>
 
           <ColorSchemeSwitch />
+        </Flex>
+
+        <Divider my="xs" w="100%" />
+
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
+          <Flex align="center" gap="sm">
+            <IconExternalLink
+              style={getIconStyle(20)}
+              color={theme.colors.gray["5"]}
+            />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.interface.toggle_open_in_new_tab")}
+            </Text>
+          </Flex>
+
+          <NewTabSwitch />
         </Flex>
       </Stack>
     </Paper>

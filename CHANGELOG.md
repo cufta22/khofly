@@ -9,11 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Instant answers - Currency Converter, Definitions, Sports, etc.
-<!-- - Cloudflare Pages deployment target -->
+- Instant answers - Currency Converter, Definitions, etc.
 - Tabs - Music, IT, Science, Files, Social Media
+- Settings - media in general, show search engines in results
+- Quick settings on /search page
+- Cloudflare Pages as main deployment target
 - Multiple missing search engines
-- Settings - images in general, show search engines in results
 
 ## [0.2.0] - 01.05.2024
 
