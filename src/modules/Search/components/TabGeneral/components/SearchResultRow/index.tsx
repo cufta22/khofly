@@ -1,4 +1,4 @@
-import { Flex, Image, Text } from "@mantine/core";
+import { Flex, Image, Space, Text } from "@mantine/core";
 import React from "react";
 import classes from "./styles.module.scss";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
@@ -17,8 +17,9 @@ const SearchResultRow: React.FC<Props> = ({ data }) => {
   const { visitedLinks } = useSearchStore((state) => ({
     visitedLinks: state.visitedLinks,
   }));
-  const { displayFavicon } = useSettingsStore((state) => ({
+  const { showEngines, displayFavicon } = useSettingsStore((state) => ({
     displayFavicon: state.displayFavicon,
+    showEngines: state.showEngines,
   }));
 
   return (
@@ -58,9 +59,13 @@ const SearchResultRow: React.FC<Props> = ({ data }) => {
         {content}
       </Text>
 
-      <Text size="xs" c="dimmed" ta="right">
-        {engines.join(", ")}
-      </Text>
+      {showEngines ? (
+        <Text size="xs" c="dimmed" ta="right">
+          {showEngines ? engines.join(", ") : ""}
+        </Text>
+      ) : (
+        <Space h={16.8} />
+      )}
     </Flex>
   );
 };

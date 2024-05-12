@@ -3,19 +3,7 @@
     "app_name": "Khofly DE"
   },
 
-  "header": {
-    "sign_in": "Sign in",
-
-    "avatar": {
-      "label_1": "Resources",
-      "settings": "Settings",
-
-      "label_2": "Actions",
-
-      "switch_acc": "Switch accounts",
-      "sign_out": "Sign out"
-    }
-  },
+  "header": {},
   "pages": {
     "index": {
       "search_placeholder": "Search for anything..."
@@ -31,17 +19,17 @@
 
     "settings": {
       "interface": {
-        "title": "User interface DE",
+        "title": "User interface",
 
-        "selectLang": "Language select",
-        "selectLangOptions": {
+        "select_lang": "Language select",
+        "select_lang_options": {
           "en": "English",
           "fr": "French",
           "de": "German"
         },
 
-        "selectTheme": "Theme select",
-        "selectThemeOptions": {
+        "select_theme": "Theme select",
+        "select_theme_options": {
           "mantine_old": "Mantine Old",
           "mantine_new": "Mantine New",
           "material": "Material",
@@ -51,43 +39,40 @@
           "tokyo_night": "Tokyo Night"
         },
 
-        "selectPrimaryColor": "Primary color",
-        "selectPrimaryColorOptions": {
-          "blue": "Blue",
-          "red": "Red",
-          "green": "Green",
-          "yellow": "Yellow",
-          "pink": "Pink",
-          "teal": "Teal"
-        },
-
-        "selectFont": "Font select",
-        "selectFontOptions": {
-          "inter": "Inter",
-          "roboto": "Roboto",
-          "montserrat": "Montserrat",
-          "sourceCodePro": "Source Code Pro"
-        },
-
-        "selectColor": "Color scheme",
-        "selectColorOptions": {
+        "select_color": "Color scheme",
+        "select_color_options": {
           "light": "Light",
           "dark": "Dark"
-        }
+        },
+
+        "toggle_open_in_new_tab": "Open links in new tab"
       },
 
       "general": {
         "title": "General settings",
 
         "toggle_favicon": "Display website favicon",
+        "toggle_favicon_options": {
+          "DDG": "DuckDuckGo",
+          "google": "Google",
+          "favicone": "Favicone"
+        },
+
+        "show_engines": "Show engines for each search result",
+
+        "display_media": "Display media in general search",
+        "display_media_options": {
+          "images": "Images",
+          "videos": "Videos"
+        },
 
         "toggle_autocomplete": "Enable search autocomplete",
-        "autocomplete_engine_google": "Google",
-        "autocomplete_engine_DDG": "DuckDuckGo",
-        "autocomplete_engine_brave": "Brave",
-        "autocomplete_engine_qwant": "Qwant",
-
-        "toggle_open_in_new_tab": "Open links in new tab",
+        "toggle_autocomplete_options": {
+          "google": "Google",
+          "DDG": "DuckDuckGo",
+          "brave": "Brave",
+          "qwant": "Qwant"
+        },
 
         "toggle_ia": "Enable Instant Answers",
 
@@ -110,126 +95,154 @@
       },
 
       "engines": {
-        "titleWithout": "other stuff",
+        "title_without": "other stuff",
 
-        "title": "Web engines",
+        "title": "General engines",
         "title2": "web",
         "title3": "wiki stuff",
 
-        "engineGoogle": "Google",
-        "engineDDG": "DuckDuckGo",
-        "enginePresearch": "Presearch",
-        "engineQwant": "Qwant",
-        "engineMojeek": "Mojeek",
-        "engineStartpage": "Startpage",
-        "engineBing": "Bing",
-        "engineBrave": "Brave",
-        "engineYahoo": "Yahoo!",
+        "engine_google": "Google",
+        "engine_DDG": "DuckDuckGo",
+        "engine_presearch": "Presearch",
+        "engine_qwant": "Qwant",
+        "engine_mojeek": "Mojeek",
+        "engine_startpage": "Startpage",
+        "engine_bing": "Bing",
+        "engine_brave": "Brave",
+        "engine_yahoo": "Yahoo!",
+        "engine_wiby": "Wiby",
 
-        "engineWikibooks": "Wikibooks",
-        "engineWikisource": "Wikisource",
-        "engineWikispecies": "Wikispecies",
+        "engine_wikibooks": "Wikibooks",
+        "engine_wikiquote": "Wikiquote",
+        "engine_wikisource": "Wikisource",
+        "engine_wikispecies": "Wikispecies",
+        "engine_wikiversity": "Wikiversity",
+        "engine_wikivoyage": "Wikivoyage",
 
-        "engineAlexandria": "Alexandria",
-        "engineWikipedia": "Wikipedia",
-        "engineWikidata": "Wikidata",
+        "engine_alexandria": "Alexandria",
+        "engine_wikipedia": "Wikipedia",
+        "engine_wikidata": "Wikidata",
 
-        "titleImg": "Image engines",
-        "titleImg2": "web",
+        "title_img": "Image engines",
+        "title_img2": "web",
 
-        "engineGoogleImg": "Google images",
-        "engineDDGImg": "DuckDuckGo images",
-        "engineQwantImg": "Qwant images",
-        "engineBingImg": "Bing images",
-        "engineBraveImg": "Brave images",
+        "engine_google_img": "Google images",
+        "engine_DDG_img": "DuckDuckGo images",
+        "engine_qwant_img": "Qwant images",
+        "engine_bing_img": "Bing images",
+        "engine_brave_img": "Brave images",
+        "engine_presearch_img": "Presearch images",
+        "engine_deviantArt_img": "DeviantArt",
+        "engine_flickr_img": "Flickr",
+        "engine_pinterest_img": "Pinterest",
+        "engine_unsplash_img": "Unsplash",
 
-        "titleVid": "Video engines",
-        "titleVid2": "web",
+        "title_vid": "Video engines",
+        "title_vid2": "web",
 
-        "engineGoogleVid": "Google videos",
-        "engineDDGVid": "DuckDuckGo videos",
-        "engineQwantVid": "Qwant videos",
-        "engineBingVid": "Bing videos",
-        "engineBraveVid": "Brave videos",
+        "engine_google_vid": "Google videos",
+        "engine_DDG_vid": "DuckDuckGo videos",
+        "engine_qwant_vid": "Qwant videos",
+        "engine_bing_vid": "Bing videos",
+        "engine_brave_vid": "Brave videos",
 
-        "titleNews": "News engines",
-        "titleNews2": "wiki stuff",
-        "titleNews3": "web news",
+        "engine_dailymotion_vid": "Dailymotion",
+        "engine_odysee_vid": "Odysee",
+        "engine_piped_vid": "Piped",
+        "engine_vimeo_vid": "Vimeo",
+        "engine_youtube_vid": "YouTube",
 
-        "engineGoogleNews": "Google news",
-        "engineDDGNews": "DuckDuckGo news",
-        "engineBingNews": "Bing news",
-        "engineBraveNews": "Brave news",
-        "engineQwantNews": "Qwant news",
-        "engineYahooNews": "Yahoo! news",
-        "enginePresearchNews": "Presearch news",
+        "title_news": "News engines",
+        "title_news2": "web",
+        "title_news3": "wiki stuff",
 
-        "engineWikinews": "Wikinews",
+        "engine_google_news": "Google news",
+        "engine_DDG_news": "DuckDuckGo news",
+        "engine_bing_news": "Bing news",
+        "engine_brave_news": "Brave news",
+        "engine_qwant_news": "Qwant news",
+        "engine_yahoo_news": "Yahoo! news",
+        "engine_presearch_news": "Presearch news",
 
-        "titleMusic": "Music engines",
-        "titleMusic2": "lyrics",
-        "titleMusic3": "radio search",
+        "engine_wikinews": "Wikinews",
 
-        "engineGeniusMusic": "Genius",
-        "engineRBMusic": "Radio Browser",
-        "engineBandcampMusic": "Bandcamp",
-        "engineMixcloudMusic": "Mixcloud",
-        "enginePipedMusic": "Piped.Music",
-        "engineSCMusic": "Soundcloud",
-        "engineYTMusic": "YouTube",
+        "title_music": "Music engines",
+        "title_music2": "lyrics",
+        "title_music3": "radio search",
 
-        "titleIT": "IT engines",
-        "titleIT2": "packages",
-        "titleIT3": "q&a",
-        "titleIT4": "repos",
-        "titleIT5": "software wikis",
+        "engine_genius_music": "Genius",
+        "engine_RB_music": "Radio Browser",
+        "engine_bandcamp_music": "Bandcamp",
+        "engine_mixcloud_music": "Mixcloud",
+        "engine_piped_music": "Piped._music",
+        "engine_SC_music": "Soundcloud",
+        "engine_YT_music": "YouTube",
 
-        "engineDockerHubIT": "Docker hub",
-        "engineNPMIT": "NPM",
-        "enginePypiIT": "PyPI",
-        "engineAUIT": "Ask Ubuntu",
-        "engineSOIT": "StackOverflow",
-        "engineSUIT": "Superuser",
-        "engineCodebergIT": "Codeberg",
-        "engineGHIT": "GitHub",
-        "engineGLIT": "GitLab",
-        "engineArchIT": "Arch Wiki",
-        "engineGentooIT": "Gentoo",
-        "engineMDNIT": "MDN",
+        "title_IT": "IT engines",
+        "title_IT2": "packages",
+        "title_IT3": "q&a",
+        "title_IT4": "repos",
+        "title_IT5": "software wikis",
 
-        "titleScience": "Science engines",
-        "titleScience2": "publications",
-        "titleScience3": "wiki stuff",
+        "engine_docker_hub_IT": "Docker hub",
+        "engine_NPM_IT": "NPM",
+        "engine_pypi_IT": "PyPI",
+        "engine_ask_ubuntu_IT": "Ask Ubuntu",
+        "engine_stack_overflow_IT": "StackOverflow",
+        "engine_superuser_IT": "Superuser",
+        "engine_codeberg_IT": "Codeberg",
+        "engine_github_IT": "GitHub",
+        "engine_gitlab_IT": "GitLab",
+        "engine_arch_IT": "Arch Wiki",
+        "engine_gentoo_IT": "Gentoo",
+        "engine_MDN_IT": "MDN",
 
-        "engineArxivScience": "arXiv",
-        "engineCrossrefScience": "Crossref",
-        "engineGoogleScholarScience": "Google Scholar",
-        "engineIASScience": "Internet Archive Scholar",
-        "enginePubMedScience": "PubMed",
-        "engineSemanticScholarScience": "Semantic Scholar",
-        "engineOADatasetsScience": "OpenAIRE datasets",
-        "engineOAPublicationsScience": "OpenAIRE publications",
-        "enginePDBeScience": "PDBe",
+        "title_science": "Science engines",
+        "title_science2": "publications",
+        "title_science3": "wiki stuff",
 
-        "titleFiles": "Files engines",
-        "titleFiles2": "apps",
+        "engine_arxiv_science": "arXiv",
+        "engine_crossref_science": "Crossref",
+        "engine_google_scholar_science": "Google Scholar",
+        "engine_IAS_science": "Internet Archive Scholar",
+        "engine_pubmed_science": "PubMed",
+        "engine_semantic_scholar_science": "Semantic Scholar",
+        "engine_OA_datasets_science": "OpenAIRE datasets",
+        "engine_OA_publications_science": "OpenAIRE publications",
+        "engine_PDBe_science": "PDBe",
 
-        "engineAPKMirrorFiles": "APKMirror",
-        "engineFdriodFiles": "F-Droid",
-        "engine1337xFiles": "1337x",
-        "engineAnnasFiles": "Anna's Archive",
-        "engineBt4gFiles": "bt4g",
-        "engineNyaaFiles": "Nyaa",
-        "enginePiratebayFiles": "The Pirate Bay",
+        "title_files": "Files engines",
+        "title_files2": "apps",
 
-        "titleSocial": "Social Media engines",
+        "engine_APKMirror_files": "APKMirror",
+        "engine_fdriod_files": "F-Droid",
+        "engine_1337x_files": "1337x",
+        "engine_annas_files": "Anna's Archive",
+        "engine_bt4g_files": "bt4g",
+        "engine_nyaa_files": "Nyaa",
+        "engine_piratebay_files": "The Pirate Bay",
 
-        "engineLemmyCommentsSM": "Lemmy Comments",
-        "engineLemmyCommunitiesSM": "Lemmy Communities",
-        "engineLemmyPostsSM": "Lemmy Posts",
-        "engineLemmyUsersSM": "Lemmy Users",
-        "engineMastodonHashtagsSM": "Mastodon Hashtags",
-        "engineMastodonUsersSM": "Mastodon Users"
+        "title_SM": "Social Media engines",
+
+        "engine_9gag_SM": "9gag",
+        "engine_lemmy_comments_SM": "Lemmy Comments",
+        "engine_lemmy_communities_SM": "Lemmy Communities",
+        "engine_lemmy_posts_SM": "Lemmy Posts",
+        "engine_lemmy_users_SM": "Lemmy Users",
+        "engine_mastodon_hashtags_SM": "Mastodon Hashtags",
+        "engine_mastodon_users_SM": "Mastodon Users",
+        "engine_reddit_SM": "Reddit"
+      },
+
+      "shortcuts": {
+        "title": "Shortcuts",
+        "toggle_shortcuts": "Display shortcuts on home page",
+
+        "toggle_open_in_new_tab": "Open links in new tab",
+
+        "favicon_api_favicone": "Favicone",
+        "favicon_api_DDG": "DuckDuckGo",
+        "favicon_api_google": "Google"
       }
     }
   }

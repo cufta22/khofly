@@ -11,7 +11,6 @@ SEARXNG_URL_US1 = "https://searxng-us1.khofly.com"
 NOMINATIM_URL = "https://nominatim.openstreetmap.org"
 OPEN_WEATHER_URL = "https://api.openweathermap.org"
 OPEN_WEATHER_API_KEY = ""
-ANALYZE = 0 # 0 - false, 1 - true, for rollup-plugin-visualizer
 IS_SELF_HOST = 1
 APP_NAME = "Khofly"
 HOST_TARGET = "cloudflare" # node, vercel, cloudflare

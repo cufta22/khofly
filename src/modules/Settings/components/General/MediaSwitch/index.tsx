@@ -19,11 +19,11 @@ const MediaSwitch = () => {
         <Select
           data={[
             {
-              label: t("pages.settings.general.media_images"),
+              label: t("pages.settings.general.display_media_options.images"),
               value: "images",
             },
             {
-              label: t("pages.settings.general.media_videos"),
+              label: t("pages.settings.general.display_media_options.videos"),
               value: "videos",
             },
           ]}

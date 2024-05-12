@@ -11,6 +11,7 @@
 
   .flex {
     width: 100%;
+    position: relative;
   }
 
   .app_name {
@@ -18,7 +19,7 @@
     color: light-dark(var(--mantine-color-dark-5), var(--mantine-color-gray-4));
   }
 
-  @media (max-width: vars.$mantine-breakpoint-sm) {
+  @media (max-width: vars.$mantine-breakpoint-xs) {
     .app_name {
       font-size: func.to-rem(60px);
     }

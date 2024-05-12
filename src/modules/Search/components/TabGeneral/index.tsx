@@ -14,15 +14,20 @@ import Lyricsbox from "../components/Lyricsbox";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
+import GeneralMedia from "./components/GeneralMedia";
+import { useSettingsStore } from "@store/settings";
 
 const TabGeneral = () => {
   const { hydrated } = useEnginesStore((state) => ({
     hydrated: state.hydrated,
   }));
 
+  const { displayMedia } = useSettingsStore((state) => ({
+    displayMedia: state.displayMedia,
+  }));
+
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
-
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -33,8 +38,6 @@ const TabGeneral = () => {
 
   return (
     <Flex className={classes.tab_general} align="flex-start">
- 
-
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
         {/* Search Options */}
@@ -50,9 +53,23 @@ const TabGeneral = () => {
                 <Divider label={`Page ${i + 1}`} labelPosition="left" />
               )}
 
-              {res?.results.map((r, i) => (
-                <SearchResultRow key={i}  data={r} />
-              ))}
+              {displayMedia && i === 0 ? (
+                // Display images/videos in between results
+                <>
+                  {res?.results.slice(0, 2).map((r, i) => (
+                    <SearchResultRow key={i} data={r} />
+                  ))}
+
+                  <GeneralMedia />
+
+                  {res?.results.slice(2).map((r, i) => (
+                    <SearchResultRow key={i} data={r} />
+                  ))}
+                </>
+              ) : (
+                // Display just results
+                res?.results.map((r, i) => <SearchResultRow key={i} data={r} />)
+              )}
             </Stack>
           );
         })}

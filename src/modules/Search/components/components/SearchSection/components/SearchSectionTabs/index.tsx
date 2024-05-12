@@ -5,7 +5,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useNavigate, useSearchParams } from "@remix-run/react";
 import { useSearchStore } from "@store/search";
 import { ICategories, useSettingsStore } from "@store/settings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nprogress } from "@mantine/nprogress";
 import { CATEGORIES_DATA, sortCategories } from "./data";
 import { useHotkeys, useMounted } from "@mantine/hooks";
@@ -35,6 +35,7 @@ const SearchSectionTabs = () => {
 
   const handleChangeTab = (tab: ICategories) => {
     nprogress.start();
+
     setSelectedTab(tab);
 
     const query = searchParams.get("q") || "";
@@ -45,6 +46,12 @@ const SearchSectionTabs = () => {
     }
     navigate(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
+
+  // Sync params tab with local state
+  const paramsTab = searchParams.get("tab") || "general";
+  useEffect(() => {
+    if (paramsTab !== selectedTab) setSelectedTab(paramsTab);
+  }, [paramsTab]);
 
   useHotkeys([
     [

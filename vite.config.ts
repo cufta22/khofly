@@ -4,7 +4,7 @@ import {
   cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from "@remix-run/dev";
 import { defineConfig, loadEnv } from "vite";
-import { visualizer } from "rollup-plugin-visualizer";
+// import { visualizer } from "rollup-plugin-visualizer";
 import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
@@ -58,14 +58,14 @@ export default defineConfig(({ mode }) => {
     // Fix too large files on build
     build: {
       rollupOptions: {
-        plugins: [
-          env.ANALYZE === "1" &&
-            visualizer({
-              open: true,
-              gzipSize: true,
-              brotliSize: true,
-            }),
-        ].filter(Boolean),
+        // plugins: [
+        //   env.ANALYZE === "1" &&
+        //     visualizer({
+        //       open: true,
+        //       gzipSize: true,
+        //       brotliSize: true,
+        //     }),
+        // ].filter(Boolean),
         output: {
           manualChunks(id) {
             if (id.includes("node_modules/.pnpm")) {

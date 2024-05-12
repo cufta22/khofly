@@ -14,14 +14,14 @@ import classes from "../../styles.module.scss";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import ShortcutsSwitch from "./components/ShortcutsSwitch";
-import { useSettingsStore } from "@store/settings";
 import Shortcut from "@module/Index/components/Shortcuts/components/Shortcut";
 import ShortcutNew from "./components/ShortcutNew";
+import { useShortcutsStore } from "@store/shortcuts";
 
 const SettingsShortcuts = () => {
   const t = useTranslate();
 
-  const { shortcuts, hydrated } = useSettingsStore((state) => ({
+  const { shortcuts, hydrated } = useShortcutsStore((state) => ({
     shortcuts: state.shortcuts,
     hydrated: state.hydrated,
   }));
@@ -32,7 +32,7 @@ const SettingsShortcuts = () => {
         <IconApps size={32} />
 
         <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.theme.title")}
+          {t("pages.settings.shortcuts.title")}
         </Text>
       </Flex>
 
@@ -41,7 +41,7 @@ const SettingsShortcuts = () => {
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
             <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_favicon")}
+              {t("pages.settings.shortcuts.toggle_shortcuts")}
             </Text>
           </Flex>
 
@@ -58,7 +58,7 @@ const SettingsShortcuts = () => {
           pos="relative"
         >
           {shortcuts.map((data, i) => (
-            <Shortcut key={i} {...data} />
+            <Shortcut key={i} idx={i} {...data} />
           ))}
           <ShortcutNew />
 

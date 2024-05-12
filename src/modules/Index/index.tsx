@@ -6,19 +6,24 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import Shortcuts from "./components/Shortcuts";
 import { useRouteLoaderData } from "@remix-run/react";
 import { RootLoaderData } from "@ts/global.types";
+import { useShortcutsStore } from "@store/shortcuts";
 
 const PageIndex = () => {
   const loaderData = useRouteLoaderData("root") as RootLoaderData;
   const t = useTranslate();
 
-  const shortcutsActive = false;
+  const { displayShortcuts } = useShortcutsStore((state) => ({
+    displayShortcuts: state.displayShortcuts,
+  }));
 
   return (
     <Container
       className={classes.index_page}
       size="lg"
-      pb={80}
-      pt={shortcutsActive ? 200 : 80}
+      // pb={80 + 70 + 70}
+      p="xl"
+      pb={170}
+      // pt={240}
     >
       <Center className={classes.center}>
         <Flex className={classes.flex} align="center" direction="column">
@@ -30,7 +35,7 @@ const PageIndex = () => {
 
           <SearchBar />
 
-          {shortcutsActive && <Shortcuts />}
+          {displayShortcuts && <Shortcuts />}
         </Flex>
       </Center>
     </Container>

@@ -23,19 +23,27 @@ const AutocompleteSwitch = () => {
         <Select
           data={[
             {
-              label: t("pages.settings.general.autocomplete_engine_google"),
+              label: t(
+                "pages.settings.general.toggle_autocomplete_options.google"
+              ),
               value: "google",
             },
             {
-              label: t("pages.settings.general.autocomplete_engine_DDG"),
+              label: t(
+                "pages.settings.general.toggle_autocomplete_options.DDG"
+              ),
               value: "duckduckgo",
             },
             {
-              label: t("pages.settings.general.autocomplete_engine_brave"),
+              label: t(
+                "pages.settings.general.toggle_autocomplete_options.brave"
+              ),
               value: "brave",
             },
             {
-              label: t("pages.settings.general.autocomplete_engine_qwant"),
+              label: t(
+                "pages.settings.general.toggle_autocomplete_options.qwant"
+              ),
               value: "qwant",
             },
           ]}

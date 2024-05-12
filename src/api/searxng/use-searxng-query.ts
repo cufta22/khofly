@@ -41,7 +41,7 @@ const getKey = (
   )}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
 };
 
-const useSearXNGSWR = <IResults>() => {
+const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
   const { fetchData } = useFetch();
 
   const { domain: searxngDomain } = useInstanceStore((state) => ({
@@ -78,7 +78,8 @@ const useSearXNGSWR = <IResults>() => {
 
   const [searchParams] = useSearchParams();
   const q = searchQuery || (searchParams.get("q") as string) || "";
-  const tab = (searchParams.get("tab") as ICategories) || "general";
+  const tab =
+    initialTab || (searchParams.get("tab") as ICategories) || "general";
 
   const fetcher = (key: string) => {
     return fetchData(`${searxngDomain}${key}&format=json`);

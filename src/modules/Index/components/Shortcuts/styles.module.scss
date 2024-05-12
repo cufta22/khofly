@@ -1,4 +1,15 @@
 @use "functions" as func;
+@use "variables" as vars;
+
+.shortcuts_container {
+  height: func.to-rem(100px);
+  position: absolute;
+  bottom: calc(-100px + -30px);
+
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    bottom: calc(-100px + -30px);
+  }
+}
 
 .item {
   display: flex;
@@ -7,7 +18,8 @@
   justify-content: center;
   text-align: center;
   border-radius: var(--mantine-radius-md);
-  height: func.to-rem(90px);
+  width: func.to-rem(80px);
+  height: func.to-rem(80px);
   background-color: light-dark(
     var(--mantine-color-white),
     var(--mantine-color-dark-7)
@@ -16,15 +28,34 @@
   padding: var(--mantine-spacing-xs);
   position: relative;
 
+  .item_image {
+    width: func.to-rem(40px);
+    height: func.to-rem(40px);
+  }
+
   &:hover {
     box-shadow: var(--mantine-shadow-md);
     transform: scale(1.05);
+  }
+
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    width: func.to-rem(70px);
+    height: func.to-rem(70px);
+
+    .item_image {
+      width: func.to-rem(30px);
+      height: func.to-rem(30px);
+    }
   }
 }
 
 .item_actions {
   position: absolute;
   top: 0;
-  right: 0;
+  right: func.to-rem(4px);
   z-index: 2;
+
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    display: none;
+  }
 }

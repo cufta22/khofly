@@ -1,19 +1,20 @@
 import { Flex } from "@mantine/core";
 
-import { useSettingsStore } from "@store/settings";
 import Shortcut from "./components/Shortcut";
+import classes from "./styles.module.scss";
+import { useShortcutsStore } from "@store/shortcuts";
 
 export const Shortcuts = () => {
-  const { shortcuts } = useSettingsStore((state) => ({
+  const { shortcuts } = useShortcutsStore((state) => ({
     shortcuts: state.shortcuts,
   }));
 
   const items = shortcuts.map((item, i) => {
-    return <Shortcut key={i} {...item} />;
+    return <Shortcut key={i} idx={i} {...item} />;
   });
 
   return (
-    <Flex gap="sm" mt="xl">
+    <Flex className={classes.shortcuts_container} gap="sm">
       {items}
     </Flex>
   );

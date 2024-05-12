@@ -66,7 +66,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isSearchMaps = isSearch && tab === "maps";
   const headerHeight = isSearch ? 100 : 70;
   const isHeaderCollapsed = isSearch && !pinned;
-  const isHeaderOffset = !isSearch && !isIndex;
+  const isHeaderOffset = !isSearch;
 
   const appName =
     loaderData.env.IS_SELF_HOST === "0"

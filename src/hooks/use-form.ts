@@ -3,7 +3,7 @@ import { useNonInitialEffect } from "./use-non-initial-effect";
 
 interface Args<T extends Record<string, string>> {
   initialValues: T;
-  validate: Partial<{ [key in keyof T]: (val: string) => string | null }>;
+  validate?: Partial<{ [key in keyof T]: (val: string) => string | null }>;
 }
 
 // Lightweight version of @mantine/form useForm()
@@ -23,7 +23,28 @@ const useForm = <T extends Record<string, string>>({
   );
 
   const setFieldValue = <K extends keyof T>(field: K, val: string) => {
+    // Reset errors
+    setErrors((prev) =>
+      Object.keys(prev).reduce(
+        (acc, key) => ({ ...acc, [key]: null }),
+        {} as { [key in keyof T]: string | null }
+      )
+    );
+
     setValues((prev) => ({ ...prev, [field]: val }));
+  };
+
+  const reset = () => {
+    // Reset values
+    setValues(initialValues);
+
+    // Reset errors
+    setErrors((prev) =>
+      Object.keys(prev).reduce(
+        (acc, key) => ({ ...acc, [key]: null }),
+        {} as { [key in keyof T]: string | null }
+      )
+    );
   };
 
   const onSubmit =
@@ -56,8 +77,10 @@ const useForm = <T extends Record<string, string>>({
 
   return {
     values,
+    errors,
     setFieldValue,
     onSubmit,
+    reset,
 
     getInputProps: <K extends keyof T>(field: K) => ({
       name: field,

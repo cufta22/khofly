@@ -1,33 +1,51 @@
-import { Button, Flex, Modal, TextInput, useMantineTheme } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Flex,
+  Image,
+  Modal,
+  Paper,
+  TextInput,
+  useMantineTheme,
+} from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import classes from "./styles.module.scss";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
-import { useSettingsStore } from "@store/settings";
+import { useShortcutsStore } from "@store/shortcuts";
+import useForm from "@hooks/use-form";
 
 const ShortcutNew = () => {
   const theme = useMantineTheme();
 
-  const { shortcuts, setShortcuts } = useSettingsStore((state) => ({
+  const { shortcuts, setShortcuts } = useShortcutsStore((state) => ({
     shortcuts: state.shortcuts,
     setShortcuts: state.setShortcuts,
   }));
 
   const [opened, { open, close }] = useDisclosure(false);
 
-  const [title, setTitle] = useState("");
-  const [href, setHref] = useState("");
+  const form = useForm({
+    initialValues: {
+      title: "",
+      href: "",
+      imgUrl: "",
+    },
+  });
 
-  const handleAdd = () => {
+  const handleSubmit = (values: typeof form.values) => {
     setShortcuts([
       ...shortcuts,
       {
-        title,
-        href,
+        title: values.title,
+        href: values.href,
+        imgUrl: values.imgUrl,
       },
     ]);
+
+    form.reset();
 
     close();
   };
@@ -47,26 +65,44 @@ const ShortcutNew = () => {
 
       <Modal opened={opened} onClose={close} title="Add shortcut">
         {/* Modal content */}
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          <TextInput
+            label="Title"
+            placeholder="YouTube"
+            mb="sm"
+            {...form.getInputProps("title")}
+          />
 
-        <TextInput
-          value={title}
-          onChange={(e) => setTitle(e.currentTarget.value)}
-          label="Title"
-          placeholder="YouTube"
-          mb="sm"
-        />
+          <TextInput
+            label="URL"
+            placeholder="youtube.com"
+            mb="lg"
+            {...form.getInputProps("href")}
+          />
 
-        <TextInput
-          value={href}
-          onChange={(e) => setHref(e.currentTarget.value)}
-          label="URL"
-          placeholder="youtube.com"
-          mb="lg"
-        />
+          <Flex gap="md">
+            <TextInput
+              label="Custom image URL"
+              description="optional"
+              placeholder=""
+              mb="lg"
+              style={{ flexGrow: 1 }}
+              {...form.getInputProps("imgUrl")}
+            />
 
-        <Flex justify="flex-end">
-          <Button onClick={handleAdd}>Add</Button>
-        </Flex>
+            <Paper w={80} h={80} withBorder>
+              <Center h="100%">
+                {/^(ftp|http|https):\/\/[^ "]+$/.test(form.values.imgUrl) && (
+                  <Image w={60} h={60} radius="sm" src={form.values.imgUrl} />
+                )}
+              </Center>
+            </Paper>
+          </Flex>
+
+          <Flex justify="flex-end">
+            <Button type="submit">Add</Button>
+          </Flex>
+        </form>
       </Modal>
     </>
   );

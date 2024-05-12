@@ -9,6 +9,7 @@ import { useDisclosure } from "@mantine/hooks";
 import ImageView from "./components/ImageView";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
+import { useSearchParams } from "@remix-run/react";
 
 const TabImages = () => {
   const { hydrated } = useEnginesStore((state) => ({
@@ -24,6 +25,8 @@ const TabImages = () => {
     ISearXNGResultsImages["results"][0] | null
   >(null);
 
+  const [searchParams] = useSearchParams();
+
   const openImageInView = (img: ISearXNGResultsImages["results"][0]) => {
     setViewImage(img);
     openImageView();
@@ -33,6 +36,15 @@ const TabImages = () => {
     // Don't fetch if previous data already exists to not spam the instance
     if (!data?.length && hydrated) mutate();
   }, [hydrated]);
+
+  const paramsMediaSrc = searchParams.get("media_src");
+  useEffect(() => {
+    // const foundImg = data?.find((res) => res.results.find((img) => img.thumbnail_src === paramsMediaSrc))
+    // Open image initially if media_src param exists
+    if (paramsMediaSrc) {
+      // setViewImage(foundImg)
+    }
+  }, [paramsMediaSrc, data]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
 

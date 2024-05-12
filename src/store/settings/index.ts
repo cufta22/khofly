@@ -1,6 +1,5 @@
-import { cookieStorage } from "@store/cookieStorage";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 export type IAutocompleteEngines = "google" | "duckduckgo" | "brave" | "qwant";
 
@@ -16,10 +15,7 @@ export type ICategories =
   | "files"
   | "social_media";
 
-export interface IShortcut {
-  title: string;
-  href: string;
-}
+export type IFaviconAPI = "duckduckgo" | "favicone" | "google";
 
 interface SettingsState {
   hydrated: boolean;
@@ -37,11 +33,6 @@ interface SettingsState {
   setSelectedMedia: (next: "images" | "videos") => void;
   displayMedia: boolean;
   setDisplayMedia: (next: boolean) => void;
-
-  shortcuts: IShortcut[];
-  setShortcuts: (next: IShortcut[]) => void;
-  displayShortcuts: boolean;
-  setDisplayShortcuts: (next: boolean) => void;
 
   displayFavicon: boolean;
   setDisplayFavicon: (next: boolean) => void;
@@ -75,13 +66,8 @@ export const useSettingsStore = create<SettingsState>()(
 
       selectedMedia: "images",
       setSelectedMedia: (next) => set({ selectedMedia: next }),
-      displayMedia: false,
+      displayMedia: true,
       setDisplayMedia: (next) => set({ displayMedia: next }),
-
-      shortcuts: [],
-      setShortcuts: (next) => set({ shortcuts: next }),
-      displayShortcuts: false,
-      setDisplayShortcuts: (next) => set({ displayShortcuts: next }),
 
       displayFavicon: false,
       setDisplayFavicon: (displayFavicon) => set({ displayFavicon }),
@@ -112,7 +98,6 @@ export const useSettingsStore = create<SettingsState>()(
         useAutocomplete: state.useAutocomplete,
         autocompleteEngine: state.autocompleteEngine,
         categories: state.categories,
-        shortcuts: state.shortcuts,
         privateSearch: state.privateSearch,
       }),
     }

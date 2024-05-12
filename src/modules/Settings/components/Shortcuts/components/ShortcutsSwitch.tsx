@@ -1,8 +1,8 @@
 import { Switch } from "@mantine/core";
-import { useSettingsStore } from "@store/settings";
+import { useShortcutsStore } from "@store/shortcuts";
 
 const ShortcutsSwitch = () => {
-  const { displayShortcuts, setDisplayShortcuts } = useSettingsStore(
+  const { displayShortcuts, setDisplayShortcuts } = useShortcutsStore(
     (state) => ({
       displayShortcuts: state.displayShortcuts,
       setDisplayShortcuts: state.setDisplayShortcuts,
