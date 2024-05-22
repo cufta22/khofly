@@ -1,4 +1,5 @@
 import {
+  Accordion,
   Button,
   Center,
   Divider,
@@ -14,18 +15,17 @@ import {
   IconSettings2,
 } from "@tabler/icons-react";
 import classes from "./styles.module.scss";
-import NewTabSwitch from "@module/Settings/components/Interface/NewTabSwitch";
 import FaviconSwitch from "@module/Settings/components/General/FaviconSwitch";
 import { useTranslate } from "@hooks/translate/use-translate";
 import ShowEnginesSwitch from "@module/Settings/components/General/ShowEnginesSwitch";
-import ColorSchemeSwitch from "@module/Settings/components/Interface/ColorThemeSwitch/ColorThemeSwitch";
-import ThemeSelect from "@module/Settings/components/Interface/ThemeSelect/ThemeSelect";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import RemixLink from "@components/RemixLink";
-import LanguageSelect from "@module/Settings/components/Interface/LanguageSelect/LanguageSelect";
 import MediaSwitch from "@module/Settings/components/General/MediaSwitch";
 import IASwitch from "@module/Settings/components/General/IASwitch";
 import PrivateSearchSwitch from "@module/Settings/components/General/PrivateSearchSwitch";
+import QSInterface from "./components/QSInterface";
+import QSGeneral from "./components/QSGeneral";
+import QSEngines from "./components/QSEngines";
 
 interface Props {
   isOpen: boolean;
@@ -58,89 +58,13 @@ const QuickSettings: React.FC<Props> = ({ isOpen, onClose }) => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
-      <Stack className={classes.stact}>
-        <Flex align="center" gap="sm" mb="lg">
-          <IconSettings2 />
+      <Accordion defaultValue="general">
+        <QSGeneral />
 
-          <Text size="lg">{t("pages.settings.general.title")}</Text>
-        </Flex>
+        <QSInterface />
 
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.general.toggle_favicon")}</Text>
-
-          <FaviconSwitch />
-        </Flex>
-
-        <Divider my={6} w="100%" />
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.general.show_engines")}</Text>
-
-          <ShowEnginesSwitch />
-        </Flex>
-
-        <Divider my={6} w="100%" />
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.general.display_media")}</Text>
-
-          <MediaSwitch />
-        </Flex>
-
-        <Divider my={6} w="100%" />
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.general.toggle_ia")}</Text>
-
-          <IASwitch />
-        </Flex>
-
-        <Divider my={6} w="100%" />
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.general.toggle_private_search")}</Text>
-
-          <PrivateSearchSwitch />
-        </Flex>
-      </Stack>
-
-      <Stack className={classes.stact} mt="lg">
-        <Flex align="center" gap="sm" mb="lg">
-          <IconBrush />
-
-          <Text size="lg">{t("pages.settings.interface.title")}</Text>
-        </Flex>
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.interface.select_lang")}</Text>
-
-          <LanguageSelect />
-        </Flex>
-
-        <Divider my={6} w="100%" />
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.interface.select_theme")}</Text>
-
-          <ThemeSelect />
-        </Flex>
-
-        <Divider my={6} w="100%" />
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.interface.select_color")}</Text>
-
-          <ColorSchemeSwitch />
-        </Flex>
-
-        <Divider my={6} w="100%" />
-
-        <Flex align="center" justify="space-between">
-          <Text>{t("pages.settings.interface.toggle_open_in_new_tab")}</Text>
-
-          <NewTabSwitch />
-        </Flex>
-      </Stack>
+        <QSEngines />
+      </Accordion>
 
       <Center my="xl">
         <RemixLink to="/settings">

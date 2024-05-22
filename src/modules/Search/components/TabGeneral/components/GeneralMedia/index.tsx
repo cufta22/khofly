@@ -60,11 +60,10 @@ const GeneralMedia = () => {
       {selectedMedia === "images" && (
         <Grid grow gutter="xs" columns={5}>
           {data?.map((res) => {
-            if (!res) return;
+            if (!res) return null;
             return res?.results.slice(0, 10).map((img, i) => (
-              <Grid.Col span={1}>
+              <Grid.Col key={i} span={1}>
                 <Image
-                  key={i}
                   className={classes.general_media_img}
                   h={150}
                   w="100%"

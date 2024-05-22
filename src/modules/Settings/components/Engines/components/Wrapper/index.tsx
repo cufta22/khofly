@@ -19,9 +19,14 @@ interface Props {
     safeSearch: boolean;
     timeRange: boolean;
   }[];
+  variant?: "settings" | "quick_settings";
 }
 
-const SettingsEnginesWrapper: React.FC<Props> = ({ category, data }) => {
+const SettingsEnginesWrapper: React.FC<Props> = ({
+  category,
+  data,
+  variant = "settings",
+}) => {
   const { engines, setEngines } = useEnginesStore((state) => ({
     engines: state[CATEGORY_TO_STORE[category].data] as string[],
     setEngines: state[CATEGORY_TO_STORE[category].set] as (
@@ -55,6 +60,7 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data }) => {
       hoverData={HOVER_DATA[item.value]}
       safeSearch={item.safeSearch}
       timeRange={item.timeRange}
+      variant={variant || "settings"}
     />
   ));
 
@@ -64,15 +70,19 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data }) => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th w="100%">Engine</Table.Th>
-            <Table.Th className={classes.table_responsive} pr="xl">
-              Safe search
-            </Table.Th>
-            <Table.Th className={classes.table_responsive} pr="xl">
-              Time range
-            </Table.Th>
-            <Table.Th className={classes.table_responsive} pr="xl">
-              Status
-            </Table.Th>
+            {variant === "settings" && (
+              <>
+                <Table.Th className={classes.table_responsive} pr="xl">
+                  Safe search
+                </Table.Th>
+                <Table.Th className={classes.table_responsive} pr="xl">
+                  Time range
+                </Table.Th>
+                <Table.Th className={classes.table_responsive} pr="xl">
+                  Status
+                </Table.Th>
+              </>
+            )}
             <Table.Th ta="right">Active</Table.Th>
           </Table.Tr>
         </Table.Thead>

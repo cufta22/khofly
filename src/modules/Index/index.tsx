@@ -21,23 +21,23 @@ const PageIndex = () => {
       className={classes.index_page}
       size="lg"
       // pb={80 + 70 + 70}
-      p="xl"
-      pb={170}
+      // p="xl"
+      // pb={170}
       // pt={240}
     >
-      <Center className={classes.center}>
-        <Flex className={classes.flex} align="center" direction="column">
-          <Title className={classes.app_name} mb="sm">
-            {loaderData?.env?.IS_SELF_HOST === "0"
-              ? t("_common.app_name")
-              : loaderData?.env?.APP_NAME}
-          </Title>
+      {/* <Center className={classes.center}> */}
+      <Flex className={classes.flex} align="center" direction="column">
+        <Title className={classes.app_name} mb="sm">
+          {loaderData?.env?.IS_SELF_HOST === "0"
+            ? t("_common.app_name")
+            : loaderData?.env?.APP_NAME}
+        </Title>
 
-          <SearchBar />
+        <SearchBar />
 
-          {displayShortcuts && <Shortcuts />}
-        </Flex>
-      </Center>
+        {displayShortcuts && <Shortcuts />}
+      </Flex>
+      {/* </Center> */}
     </Container>
   );
 };

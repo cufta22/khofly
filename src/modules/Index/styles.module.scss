@@ -4,14 +4,11 @@
 .index_page {
   height: calc(100dvh - 70px - 60px);
 
-  .center {
-    height: 100%;
-    width: 100%;
-  }
+  padding-top: calc((35dvh - 70px));
 
   .flex {
     width: 100%;
-    position: relative;
+    // position: relative;
   }
 
   .app_name {

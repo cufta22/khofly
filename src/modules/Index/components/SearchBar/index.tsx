@@ -135,6 +135,7 @@ const SearchBar = () => {
         data-bwignore
         data-lpignore="true"
         data-form-type="other"
+        data-protonpass-form="false"
       />
 
       {openKeyboard && (

@@ -2,23 +2,23 @@
 
 @keyframes rgb_auto {
   0% {
-    border-color: var(--mantine-color-red-6);
-    box-shadow: 0px 0px 3px var(--mantine-color-red-6);
+    // border-color: var(--mantine-color-red-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-red-6);
     color: var(--mantine-color-red-6);
   }
   33% {
-    border-color: var(--mantine-color-green-6);
-    box-shadow: 0px 0px 3px var(--mantine-color-green-6);
+    // border-color: var(--mantine-color-green-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-green-6);
     color: var(--mantine-color-green-6);
   }
   66% {
-    border-color: var(--mantine-color-blue-6);
-    box-shadow: 0px 0px 3px var(--mantine-color-blue-6);
+    // border-color: var(--mantine-color-blue-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-blue-6);
     color: var(--mantine-color-blue-6);
   }
   100% {
-    border-color: var(--mantine-color-red-6);
-    box-shadow: 0px 0px 3px var(--mantine-color-red-6);
+    // border-color: var(--mantine-color-red-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-red-6);
     color: var(--mantine-color-red-6);
   }
 }
@@ -49,18 +49,18 @@
 
   // RGB
   .rgb_red {
-    border-color: var(--mantine-color-red-6);
-    box-shadow: 0px 0px 3px var(--mantine-color-red-6);
+    // border-color: var(--mantine-color-red-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-red-6);
     color: var(--mantine-color-red-6);
   }
   .rgb_green {
-    border-color: var(--mantine-color-green-6);
-    box-shadow: 0px 0px 3px var(--mantine-color-green-6);
+    // border-color: var(--mantine-color-green-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-green-6);
     color: var(--mantine-color-green-6);
   }
   .rgb_blue {
-    border-color: var(--mantine-color-blue-6);
-    box-shadow: 0px 0px 3px var(--mantine-color-blue-6);
+    // border-color: var(--mantine-color-blue-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-blue-6);
     color: var(--mantine-color-blue-6);
   }
   .rgb_auto {

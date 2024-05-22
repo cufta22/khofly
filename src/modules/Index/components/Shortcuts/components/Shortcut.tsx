@@ -19,7 +19,6 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
 
   const fullUrl = href.includes("https") ? href : `https://${href}`;
   const stripUrl = href.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, "$1");
-  console.log(idx);
 
   return (
     <>

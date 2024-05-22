@@ -172,6 +172,13 @@ const SearchSectionInput = () => {
           onFocus={() => combobox.openDropdown()}
           onBlur={() => combobox.closeDropdown()}
           maxLength={250}
+          // Disable password manager stuff
+          autoComplete="off"
+          data-1p-ignore
+          data-bwignore
+          data-lpignore="true"
+          data-form-type="other"
+          data-protonpass-form="false"
         />
       </Combobox.Target>
 

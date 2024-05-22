@@ -1,11 +1,4 @@
-import {
-  ActionIcon,
-  CloseButton,
-  Flex,
-  Paper,
-  Text,
-  rem,
-} from "@mantine/core";
+import { ActionIcon, CloseButton, Flex, Paper, Text, rem } from "@mantine/core";
 import React, { useRef, useState } from "react";
 
 import classes from "./styles.module.scss";
@@ -14,7 +7,8 @@ import {
   IconArrowBadgeUp,
   IconBackspace,
   IconChevronsUp,
- IconSun } from "@tabler/icons-react";
+  IconSun,
+} from "@tabler/icons-react";
 import { IKeyboard, KEYBOARD_EN_US } from "@utils/resources/keyboards";
 import clsx from "clsx";
 

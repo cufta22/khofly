@@ -14,7 +14,7 @@ export const Shortcuts = () => {
   });
 
   return (
-    <Flex className={classes.shortcuts_container} gap="sm">
+    <Flex className={classes.shortcuts_container} gap="sm" mt="md">
       {items}
     </Flex>
   );

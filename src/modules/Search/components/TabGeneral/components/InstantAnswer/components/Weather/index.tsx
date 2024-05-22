@@ -182,7 +182,10 @@ const IAWeather = () => {
         />
       )}
 
-      <HourlyChart />
+      <HourlyChart
+        data={[10, 20, 30, 50, 60]}
+        labels={["Jan", "Feb", "Mar", "Apr", "May"]}
+      />
 
       {/* {data?.hourly?.length && (
         <ScrollArea>

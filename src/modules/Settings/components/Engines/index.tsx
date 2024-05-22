@@ -36,7 +36,7 @@ import { ICategories } from "@store/settings";
 import { IDataEngine } from "./components/data";
 import { CATEGORY_TO_STORE } from "./components/Wrapper/utils";
 
-const TAB_DATA: {
+export const TAB_DATA: {
   [key in ICategories]: {
     label: DotNestedKeys<ITranslations>;
     icon: any;
@@ -49,42 +49,42 @@ const TAB_DATA: {
     data: DATA_ENGINES_GENERAL,
   },
   images: {
-    label: "pages.settings.engines.titleImg",
+    label: "pages.settings.engines.title_img",
     icon: <IconPhoto size={32} />,
     data: DATA_ENGINES_IMAGES,
   },
   videos: {
-    label: "pages.settings.engines.titleVid",
+    label: "pages.settings.engines.title_vid",
     icon: <IconPlayerPlay size={32} />,
     data: DATA_ENGINES_VIDEOS,
   },
   news: {
-    label: "pages.settings.engines.titleNews",
+    label: "pages.settings.engines.title_news",
     icon: <IconNews size={32} />,
     data: DATA_ENGINES_NEWS,
   },
   music: {
-    label: "pages.settings.engines.titleMusic",
+    label: "pages.settings.engines.title_music",
     icon: <IconMusic size={32} />,
     data: DATA_ENGINES_MUSIC,
   },
   it: {
-    label: "pages.settings.engines.titleIT",
+    label: "pages.settings.engines.title_IT",
     icon: <IconCpu size={32} />,
     data: DATA_ENGINES_IT,
   },
   science: {
-    label: "pages.settings.engines.titleScience",
+    label: "pages.settings.engines.title_science",
     icon: <IconSchool size={32} />,
     data: DATA_ENGINES_SCIENCE,
   },
   files: {
-    label: "pages.settings.engines.titleFiles",
+    label: "pages.settings.engines.title_files",
     icon: <IconFiles size={32} />,
     data: DATA_ENGINES_FILES,
   },
   social_media: {
-    label: "pages.settings.engines.titleSocial",
+    label: "pages.settings.engines.title_SM",
     icon: <IconUsers size={32} />,
     data: DATA_ENGINES_SOCIAL_MEDIA,
   },

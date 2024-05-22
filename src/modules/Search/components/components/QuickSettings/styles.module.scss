@@ -11,7 +11,7 @@
   padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
 }
 
-.stact {
+.acc_item {
   background-color: light-dark(
     var(--mantine-color-gray-0),
     var(--mantine-color-dark-8)
@@ -22,4 +22,10 @@
   border-radius: var(--mantine-radius-md);
   margin-top: var(--mantine-spacing-xl);
   padding: var(--mantine-spacing-lg);
+}
+
+.acc_control {
+  &:hover {
+    background-color: inherit;
+  }
 }

@@ -3,8 +3,6 @@
 
 .shortcuts_container {
   height: func.to-rem(100px);
-  position: absolute;
-  bottom: calc(-100px + -30px);
 
   @media (max-width: vars.$mantine-breakpoint-xs) {
     bottom: calc(-100px + -30px);

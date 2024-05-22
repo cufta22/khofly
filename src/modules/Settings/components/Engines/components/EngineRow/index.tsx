@@ -28,6 +28,7 @@ interface Props {
   hoverData?: IHoverData;
   safeSearch: boolean;
   timeRange: boolean;
+  variant?: "settings" | "quick_settings";
 }
 
 const EngineComponent: React.FC<Props> = ({
@@ -40,6 +41,7 @@ const EngineComponent: React.FC<Props> = ({
   hoverData,
   safeSearch,
   timeRange,
+  variant = "settings",
 }) => {
   const theme = useMantineTheme();
   const t = useTranslate();
@@ -53,9 +55,13 @@ const EngineComponent: React.FC<Props> = ({
             {t(label)}
           </Text>
         </Table.Td>
-        <Table.Td className={classes.table_responsive}></Table.Td>
-        <Table.Td className={classes.table_responsive}></Table.Td>
-        <Table.Td className={classes.table_responsive}></Table.Td>
+        {variant === "settings" && (
+          <>
+            <Table.Td className={classes.table_responsive}></Table.Td>
+            <Table.Td className={classes.table_responsive}></Table.Td>
+            <Table.Td className={classes.table_responsive}></Table.Td>
+          </>
+        )}
         <Table.Td></Table.Td>
       </Table.Tr>
     );
@@ -149,30 +155,32 @@ const EngineComponent: React.FC<Props> = ({
         </HoverCard>
       </Table.Td>
 
-      {/* Safe search */}
-      <Table.Td className={classes.table_responsive}>
-        {safeSearch && (
-          <IconCheck
-            style={getIconStyle(22)}
-            stroke={2}
-            color={theme.colors.teal[6]}
-          />
-        )}
-      </Table.Td>
-
-      {/* Time range */}
-      <Table.Td className={classes.table_responsive}>
-        {timeRange && (
-          <IconCheck
-            style={getIconStyle(22)}
-            stroke={2}
-            color={theme.colors.teal[6]}
-          />
-        )}
-      </Table.Td>
-
-      {/* Status */}
-      <Table.Td className={classes.table_responsive}></Table.Td>
+      {variant === "settings" && (
+        <>
+          {/* Safe search */}
+          <Table.Td className={classes.table_responsive}>
+            {safeSearch && (
+              <IconCheck
+                style={getIconStyle(22)}
+                stroke={2}
+                color={theme.colors.teal[6]}
+              />
+            )}
+          </Table.Td>
+          {/* Time range */}
+          <Table.Td className={classes.table_responsive}>
+            {timeRange && (
+              <IconCheck
+                style={getIconStyle(22)}
+                stroke={2}
+                color={theme.colors.teal[6]}
+              />
+            )}
+          </Table.Td>
+          {/* Status */}
+          <Table.Td className={classes.table_responsive}></Table.Td>
+        </>
+      )}
 
       {/* Active */}
       <Table.Td ta="right">
