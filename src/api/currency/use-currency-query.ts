@@ -3,20 +3,26 @@ import useFetch from "../use-fetch";
 import { OXRResponse } from "./types";
 import useSWR from "swr";
 
+const getKey = (apiDomain: string) => {
+  if (!apiDomain) return null;
+
+  return `api-currency`;
+};
+
 const useCurrencySWR = () => {
   const { fetchData } = useFetch();
 
-  const { searXNGDomain } = useInstanceStore((state) => ({
-    searXNGDomain: state.searXNGDomain,
+  const { apiDomain } = useInstanceStore((state) => ({
+    apiDomain: state.apiDomain,
   }));
 
   const fetcher = (_key: string) => {
-    return fetchData(`${searXNGDomain}/rates`, {
+    return fetchData(`${apiDomain}/rates`, {
       method: "GET",
-    });
+    }) as Promise<OXRResponse>;
   };
 
-  return useSWR<OXRResponse>(`api-currency`, fetcher, {
+  return useSWR<OXRResponse>(getKey(apiDomain), fetcher, {
     revalidateOnMount: true,
     revalidateOnFocus: false,
     revalidateIfStale: false,

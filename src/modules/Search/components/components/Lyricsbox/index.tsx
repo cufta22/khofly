@@ -12,27 +12,28 @@ import { useEffect } from "react";
 import classes from "./styles.module.scss";
 import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 import { useSearchParams } from "@remix-run/react";
-import { useSearchStore } from "@store/search";
+import useSearchQuery from "@hooks/use-search-query";
+import { useInstanceStore } from "@store/instance";
 
 const Lyricsbox = () => {
   const [searchParams] = useSearchParams();
 
-  const { data, trigger } = useLyricsSWR();
+  const { data, mutate } = useLyricsSWR({ initialQ: "" });
 
-  const { searchQuery } = useSearchStore((state) => ({
-    searchQuery: state.searchQuery,
+  const { hydrated } = useInstanceStore((state) => ({
+    hydrated: state.hydrated,
   }));
 
-  const q = searchQuery || searchParams.get("q") || "";
+  const q = useSearchQuery();
   const tab = searchParams.get("tab") || "general";
 
   useEffect(() => {
     // Handle for music tab
-    if (tab === "music" && q) trigger(q);
+    if (tab === "music" && q && hydrated) mutate();
 
     // Handle for general tab
-    if (q && q.includes("lyrics")) trigger(q.replace("lyrics", ""));
-  }, [q]);
+    if (q && q.includes("lyrics") && hydrated) mutate();
+  }, [q, hydrated]);
 
   if (!data?.title) return null;
 

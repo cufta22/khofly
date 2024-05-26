@@ -12,6 +12,7 @@ import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import classes from "./styles.module.scss";
 import { useNavigate } from "@remix-run/react";
 import { nprogress } from "@mantine/nprogress";
+import { useEnginesStore } from "@store/engines";
 
 type IGeneralMediaResults = ISearXNGResultsImages & ISearXNGResultsVideos;
 
@@ -20,8 +21,11 @@ const GeneralMedia = () => {
     selectedMedia: state.selectedMedia,
     privateSearch: state.privateSearch,
   }));
+  const { hydrated } = useEnginesStore((state) => ({
+    hydrated: state.hydrated,
+  }));
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } =
+  const { data, isLoading, isValidating, mutate } =
     useSearXNGSWR<IGeneralMediaResults>(selectedMedia);
 
   const navigate = useNavigate();
@@ -44,8 +48,8 @@ const GeneralMedia = () => {
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length) mutate();
-  }, []);
+    if (!data?.length && hydrated) mutate();
+  }, [hydrated]);
 
   return (
     <Stack>

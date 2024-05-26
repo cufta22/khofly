@@ -1,5 +1,5 @@
 import { Button, SimpleGrid, Stack, Text } from "@mantine/core";
-import { useNavigate, useSearchParams } from "@remix-run/react";
+import { useNavigate } from "@remix-run/react";
 import { IconSearch } from "@tabler/icons-react";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -7,6 +7,7 @@ import React from "react";
 import classes from "./styles.module.scss";
 import { useSearchStore } from "@store/search";
 import { useSettingsStore } from "@store/settings";
+import useSearchQuery from "@hooks/use-search-query";
 
 interface Props {
   suggestions: ISearXNGResultsGeneral["suggestions"];
@@ -14,7 +15,6 @@ interface Props {
 }
 
 const Suggestions: React.FC<Props> = ({ suggestions, type }) => {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const { privateSearch } = useSettingsStore((state) => ({
@@ -34,7 +34,7 @@ const Suggestions: React.FC<Props> = ({ suggestions, type }) => {
     navigate(`/search?q=${encodeURIComponent(newQ)}&tab=general`);
   };
 
-  const q = searchParams.get("q") || "";
+  const q = useSearchQuery();
 
   if (type === "infobox")
     return (

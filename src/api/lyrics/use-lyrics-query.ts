@@ -1,29 +1,51 @@
 import { useInstanceStore } from "@store/instance";
 import useFetch from "../use-fetch";
 import useSWRMutation from "swr/mutation";
+import useSWR from "swr";
+import useSearchQuery from "@hooks/use-search-query";
 
-const useLyricsSWR = () => {
+interface ILyricsResponse {
+  lyrics: string;
+  title: string;
+  artist: string;
+  image: string;
+}
+
+interface Args {
+  initialQ: any;
+}
+
+const getKey = (apiDomain: string, query: string) => {
+  if (!apiDomain) return null;
+
+  return `api-lyrics-${encodeURIComponent(query)}`;
+};
+
+const useLyricsSWR = (args?: Args) => {
   const { fetchData } = useFetch();
 
-  const { searXNGDomain } = useInstanceStore((state) => ({
-    searXNGDomain: state.searXNGDomain,
+  const { apiDomain } = useInstanceStore((state) => ({
+    apiDomain: state.apiDomain,
   }));
 
-  const fetcher = (_key: string, { arg }: { arg: string }) => {
-    return fetchData(`${searXNGDomain}/lyrics?q=${encodeURIComponent(arg)}`, {
-      headers: {
-        // Authorization: `Bearer ${window.ENV.GENIUS_ACCESS_TOKEN}`,
-        Authorization: `Bearer`,
-      },
-    });
+  const q = useSearchQuery();
+
+  const query =
+    args?.initialQ || q.replace("lyrics", "") || "Never gonna give you up";
+
+  const fetcher = (_key: string) => {
+    return fetchData(`${apiDomain}/lyrics?q=${encodeURIComponent(query)}`, {
+      method: "GET",
+    }) as Promise<ILyricsResponse>;
   };
 
-  return useSWRMutation<
-    { lyrics: string; title: string; artist: string; image: string },
-    any,
-    any,
-    string
-  >(`api-lyrics`, fetcher, {});
+  return useSWR<ILyricsResponse>(getKey(apiDomain, query), fetcher, {
+    revalidateOnMount: false,
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+    revalidateOnReconnect: false,
+    keepPreviousData: true,
+  });
 };
 
 export default useLyricsSWR;

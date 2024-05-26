@@ -30,12 +30,8 @@ const TabGeneral = () => {
     useSearXNGSWR<ISearXNGResultsGeneral>();
 
   useEffect(() => {
-    console.log("Test 1");
-
     // Don't fetch if previous data already exists to not spam the instance
     if (!data?.length && hydrated) {
-      console.log("Test 2");
-
       mutate();
     }
   }, [hydrated]);

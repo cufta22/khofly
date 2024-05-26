@@ -24,7 +24,8 @@ const DocsSearchPrivateSearch = () => {
       </DocsTitle>
 
       <DocsText>
-        TL;DR this just moves the search query data from URL to local state.
+        TL;DR this just moves the search query data from URL to local state and
+        removes query from title.
       </DocsText>
 
       <DocsSubtitle>Pros & Cons</DocsSubtitle>

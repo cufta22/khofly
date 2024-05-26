@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 import classes from "./styles.module.scss";
 import clsx from "clsx";
 import DocsNavbar from "@components/Navbar/Docs";
-import { useDisclosure, useDocumentTitle, useHeadroom } from "@mantine/hooks";
+import { useDisclosure, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
 import NProgress from "@module/NProgress";
@@ -17,35 +17,19 @@ import {
   useRouteLoaderData,
   useSearchParams,
 } from "@remix-run/react";
-import { useTranslate } from "@hooks/translate/use-translate";
 import { useSearchStore } from "@store/search";
 import DevInterface from "./DevInterface";
-import { useInstanceStore } from "@store/instance";
-import { getDefaultSearXNG } from "@store/instance/utils";
+import useInstanceInit from "./use-instance-init";
+import useTitleQuery from "./use-title-query";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const loaderData = useRouteLoaderData("root") as RootLoaderData;
 
   const error = useRouteError();
-  const t = useTranslate();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
-  const { resetVisitedLinks, searchQuery } = useSearchStore((state) => ({
+  const { resetVisitedLinks } = useSearchStore((state) => ({
     resetVisitedLinks: state.resetVisitedLinks,
-    searchQuery: state.searchQuery,
-  }));
-  const {
-    hydrated,
-    nominatimDomain,
-    setNominatimDomain,
-    searXNGDomain,
-    setSearXNGDomain,
-  } = useInstanceStore((state) => ({
-    hydrated: state.hydrated,
-    nominatimDomain: state.nominatimDomain,
-    setNominatimDomain: state.setNominatimDomain,
-    searXNGDomain: state.searXNGDomain,
-    setSearXNGDomain: state.setSearXNGDomain,
   }));
 
   const appTheme: IAppTheme = loaderData?.theme;
@@ -55,7 +39,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const tab = searchParams.get("tab");
-  const q = searchQuery || searchParams.get("q") || "";
 
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
@@ -68,13 +51,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isHeaderCollapsed = isSearch && !pinned;
   const isHeaderOffset = !isSearch;
 
-  const appName =
-    loaderData.env.IS_SELF_HOST === "0"
-      ? t("_common.app_name")
-      : loaderData.env.APP_NAME;
-
-  useDocumentTitle(isSearch ? `${q} at ${appName}` : `${appName}`);
-
   useEffect(() => {
     if (!["/search"].includes(pathname)) {
       resetVisitedLinks();
@@ -83,13 +59,11 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     if (openNavbar) toggleNavbar();
   }, [pathname]);
 
-  useEffect(() => {
-    if (!hydrated) return;
+  // Adjust document title for query
+  useTitleQuery(loaderData, isSearch);
 
-    // Set instance URL initially
-    if (!nominatimDomain) setNominatimDomain(loaderData.env.NOMINATIM_URL);
-    if (!searXNGDomain) setSearXNGDomain(getDefaultSearXNG(loaderData.env));
-  }, [hydrated]);
+  // Initialize instance URLs
+  useInstanceInit(loaderData);
 
   return (
     <MantineProvider

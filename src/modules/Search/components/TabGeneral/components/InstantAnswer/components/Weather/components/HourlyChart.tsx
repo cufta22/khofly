@@ -29,9 +29,10 @@ const HourlyChart: React.FC<Props> = ({
     const y = chartHeight - (point - dataMin) * yScale;
     return `${acc} L${x},${y}`;
   }, "M"); // Start path with 'M' for move
+  console.log(linePath);
 
   return (
-    <svg width={width} height={height}>
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       {/* X-axis line */}
       <line
         x1={margin}
@@ -59,7 +60,19 @@ const HourlyChart: React.FC<Props> = ({
         </text>
       ))}
       {/* Line path */}
-      <path d={linePath} stroke="blue" fill="none" />
+      {/* <path d={linePath} stroke="blue" fill="blue" /> */}
+
+      <polyline
+        fill="none"
+        stroke="#0074d9"
+        stroke-width="3"
+        points="
+       0,
+       120 20,
+       60 40,
+       80 60,
+       20 30, 20"
+      />
     </svg>
   );
 };

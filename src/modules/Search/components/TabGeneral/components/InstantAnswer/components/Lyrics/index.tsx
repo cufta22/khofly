@@ -4,37 +4,29 @@ import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 
 import classes from "./styles.module.scss";
 import { IAWrapper } from "../../wrapper";
-import { useSearchParams } from "@remix-run/react";
-import { useSearchStore } from "@store/search";
+import { useInstanceStore } from "@store/instance";
+import useSearchQuery from "@hooks/use-search-query";
 
 interface Props {
   initialQ?: string;
 }
 
 const IALyrics: React.FC<Props> = ({ initialQ }) => {
-  const [searchParams] = useSearchParams();
+  const { data, mutate } = useLyricsSWR({ initialQ });
 
-  const { data, trigger, isMutating } = useLyricsSWR();
-
-  const { searchQuery } = useSearchStore((state) => ({
-    searchQuery: state.searchQuery,
+  const { hydrated } = useInstanceStore((state) => ({
+    hydrated: state.hydrated,
   }));
 
-  const q = searchQuery || searchParams.get("q") || "";
+  const q = useSearchQuery();
 
   useEffect(() => {
-    if (initialQ) {
-      trigger(initialQ);
-    }
-  }, []);
+    // Trigger for initialQ ( for Docs )
+    if (initialQ && hydrated) mutate();
 
-  useEffect(() => {
-    if (q && !initialQ) {
-      trigger(q.replace("lyrics", ""));
-    }
-  }, [q]);
-
-  if (!data?.title && !isMutating) return null;
+    // Trigger for query change
+    if (q && !initialQ && hydrated) mutate();
+  }, [q, hydrated]);
 
   return (
     <IAWrapper

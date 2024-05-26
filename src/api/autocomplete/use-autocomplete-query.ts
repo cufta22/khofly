@@ -18,9 +18,9 @@ const useAutocompleteSWR = () => {
   // ----------------------------------------------------------------------------
 
   const fetcher = async (_key: string, { arg }: { arg: string }) => {
-    const res = await fetchData(
+    const res = (await fetchData(
       `/api/autocomplete?q=${arg}&engine=${autocompleteEngine}`
-    );
+    )) as { data: any };
 
     let formattedRes = [];
 

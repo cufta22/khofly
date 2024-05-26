@@ -5,6 +5,7 @@ import { RootLoaderData } from "@ts/global.types";
 
 // TODO: replace with appropriate URL when servers are available
 const DEFAULT_1 = "https://searxng-eu1.khofly.com";
+const DEFAULT_2 = "https://api-eu1.khofly.com";
 
 export const getDefaultSearXNG = (env: RootLoaderData["env"]): string => {
   if (env.IS_SELF_HOST === "1") {
@@ -26,5 +27,28 @@ export const getDefaultSearXNG = (env: RootLoaderData["env"]): string => {
 
     default:
       return env.SEARXNG_URL_EU1 || DEFAULT_1;
+  }
+};
+
+export const getDefaultApi = (env: RootLoaderData["env"]): string => {
+  if (env.IS_SELF_HOST === "1") {
+    return env.API_URL_SELF_HOST || DEFAULT_2;
+  }
+
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone.split("/")[0];
+
+  switch (tz) {
+    case "Africa":
+    case "Asia":
+    case "Europe":
+      return env.API_URL_EU1 || DEFAULT_2;
+
+    case "America":
+    case "Atlantic":
+    case "Australia":
+      return env.API_URL_US1 || DEFAULT_2;
+
+    default:
+      return env.API_URL_EU1 || DEFAULT_2;
   }
 };

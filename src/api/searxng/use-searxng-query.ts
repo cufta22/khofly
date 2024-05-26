@@ -82,7 +82,7 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
     initialTab || (searchParams.get("tab") as ICategories) || "general";
 
   const fetcher = (key: string) => {
-    return fetchData(`${searxngDomain}${key}&format=json`);
+    return fetchData(`${searxngDomain}${key}&format=json`) as Promise<IResults>;
   };
 
   const enginesSelected = {
@@ -98,7 +98,6 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
     social_media: [],
   }[tab];
 
-  // @ts-ignore idk why TS is complaining here
   return useSWRInfinite<IResults>(
     (idx, prev) =>
       getKey(

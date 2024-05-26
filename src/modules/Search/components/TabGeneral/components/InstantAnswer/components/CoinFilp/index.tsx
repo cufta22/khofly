@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { Center, Paper } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-import {
-  IconCampfireFilled,
-  IconMoodSmileFilled,
-  IconShip,
-} from "@tabler/icons-react";
+import { IconCampfireFilled, IconMoodSmileFilled } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import clsx from "clsx";
 import { cryptoRandomNumber } from "@utils/functions/cryptoRandomNumber";
@@ -43,7 +39,7 @@ const IACoinFlip = () => {
             <IconMoodSmileFilled style={getIconStyle(80)} />
           </div>
           <div className={classes.side_tails}>
-            <IconShip style={getIconStyle(80)} />
+            <IconCampfireFilled style={getIconStyle(80)} />
           </div>
         </Paper>
       </Center>

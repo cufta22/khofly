@@ -26,10 +26,13 @@ export interface RootLoaderData {
     HOST: string;
     SEARXNG_URL_EU1: string;
     SEARXNG_URL_US1: string;
+    API_URL_EU1: string;
+    API_URL_US1: string;
     NOMINATIM_URL: string;
     IS_SELF_HOST: string;
     APP_NAME: string;
     SEARXNG_URL_SELF_HOST: string;
+    API_URL_SELF_HOST: string;
   };
 
   // Platform variables

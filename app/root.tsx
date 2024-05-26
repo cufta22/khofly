@@ -45,11 +45,14 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
       HOST: getEnv("HOST", context),
       SEARXNG_URL_EU1: getEnv("SEARXNG_URL_EU1", context),
       SEARXNG_URL_US1: getEnv("SEARXNG_URL_US1", context),
+      API_URL_EU1: getEnv("API_URL_EU1", context),
+      API_URL_US1: getEnv("API_URL_US1", context),
       NOMINATIM_URL: getEnv("NOMINATIM_URL", context),
-      
+
       IS_SELF_HOST: getEnv("IS_SELF_HOST", context),
       APP_NAME: getEnv("APP_NAME", context),
       SEARXNG_URL_SELF_HOST: getEnv("SEARXNG_URL_SELF_HOST", context),
+      API_URL_SELF_HOST: getEnv("API_URL_SELF_HOST", context),
     },
 
     // Platform variables
