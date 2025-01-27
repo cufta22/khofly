@@ -16,6 +16,7 @@ export default {
 
       "/changelog",
 
+      "/docs",
       "/docs/ai-answers",
       "/docs/private-search",
       "/docs/private-search",

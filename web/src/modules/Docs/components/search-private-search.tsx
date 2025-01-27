@@ -24,26 +24,25 @@ const DocsSearchPrivateSearch = () => {
       </DocsTitle>
 
       <DocsText>
-        TL;DR this just moves the search query data from URL to local state and
-        removes query from title.
+        TL;DR this just moves the search query data from URL to local state and removes
+        query from title.
       </DocsText>
 
       <DocsSubtitle>Pros & Cons</DocsSubtitle>
 
       <DocsText>
-        You gain better privacy because no search data will be sent to hosting
-        service or saved in browser since the search query lives in state and
-        not in a URL parameter.
+        You gain better privacy because no search data will be sent to hosting service or
+        saved in browser since the search query lives in state and not in a URL parameter.
       </DocsText>
 
       <DocsText>
-        Drawback is slightly worse user experience, since no data is saved in
-        the URL you will lose your search on refresh.
+        Drawback is slightly worse user experience, since no data is saved in the URL you
+        will lose your search on refresh.
       </DocsText>
 
       <DocsText>
-        For complete privacy you should also setup your own SearXNG instance
-        since the search data is still sent to the default one, full guide{" "}
+        For complete privacy you should also setup your own SearXNG instance since the
+        search data is still sent to the default one, full guide{" "}
         <RemixLink to="/docs/self-host-searxng">
           <Text c="blue" component="span">
             here
@@ -53,7 +52,7 @@ const DocsSearchPrivateSearch = () => {
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["IA"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["AI"] }}
         next={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
       />
     </Container>

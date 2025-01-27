@@ -36,43 +36,38 @@ const DocsSearchInstantAnswer = () => {
     <Container size="lg" p="xl" pb={100}>
       <DocsTitle
         leftSection={
-          <IconMessageCode
-            style={getIconStyle(48)}
-            color={theme.colors.grape[5]}
-          />
+          <IconMessageCode style={getIconStyle(48)} color={theme.colors.grape[5]} />
         }
       >
         Instant answers
       </DocsTitle>
 
       <DocsText>
-        Instant answers (IA) provide a better user experience by providing
-        direct information without the need for user to click on any result.
-        This feature can easily be disabled in settings.
+        Instant answers (IA) provide a better user experience by providing direct
+        information without the need for user to click on any result. This feature can
+        easily be disabled in settings.
       </DocsText>
 
       <DocsSubtitle>Adding instant answer</DocsSubtitle>
 
       <DocsText>
         All instant answers code is located in{" "}
-        <Code>
-          /src/modules/Search/components/TabGeneral/components/InstantAnswer
-        </Code>
+        <Code>/src/modules/Search/components/TabGeneral/components/InstantAnswer</Code>
       </DocsText>
 
       <DocsText>
-        Create a folder with a descriptive name and make sure that everything is
-        wrapped with <Code>{IAWrapperString}</Code>, then add your logic for
-        displaying Instant Answer in <Code>index.tsx</Code> similar to how
-        others are displayed conditionally.
+        Create a folder with a descriptive name and make sure that everything is wrapped
+        with <Code>{IAWrapperString}</Code>, then add your logic for displaying Instant
+        Answer in <Code>index.tsx</Code> similar to how others are displayed
+        conditionally.
       </DocsText>
 
       <DocsSubtitle>All available instant answers</DocsSubtitle>
 
       <DocsText>
-        Below is a list of all currently available Instant Answers, some of them
-        might still be work in progress but offer enough functionality to still
-        be included and be useful. More will be available in the future.
+        Below is a list of all currently available Instant Answers, some of them might
+        still be work in progress but offer enough functionality to still be included and
+        be useful. More will be available in the future.
       </DocsText>
 
       <DocsTitle>1. Calculator</DocsTitle>
@@ -146,8 +141,8 @@ const DocsSearchInstantAnswer = () => {
       </Box>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["AI"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
       />
 
       <ScrollToTop />

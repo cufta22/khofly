@@ -4,9 +4,10 @@ import React, { useEffect } from "react";
 import classes from "./styles.module.scss";
 import { IconSparkles } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import useSearchQuery from "@hooks/use-search-query";
 import useAISWR from "src/api/ai/use-ai-query";
 import { useInstanceStore } from "@store/instance";
+import useSearchQuery from "@hooks/use-search-query";
+import RemixLink from "@components/RemixLink";
 
 export const shouldDisplayAIAnswer = (query: string, keywords: string[]) => {
   let shouldDisplay = false;
@@ -18,40 +19,58 @@ export const shouldDisplayAIAnswer = (query: string, keywords: string[]) => {
   return shouldDisplay;
 };
 
-const AIAnswer: React.FC = () => {
-  const { data, isLoading, mutate } = useAISWR();
+interface Props {
+  propsQuery?: string;
+}
+
+const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
+  const { data, isMutating, trigger } = useAISWR();
   const theme = useMantineTheme();
 
   const q = useSearchQuery();
+  const queryToUse = propsQuery || q || "";
 
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
-  const shouldTrigger = shouldDisplayAIAnswer(q, ["what", "who", "when", "why", "where", "how"]);
+  const shouldTrigger = shouldDisplayAIAnswer(queryToUse, [
+    "what",
+    "who",
+    "when",
+    "why",
+    "where",
+    "how",
+  ]);
 
   useEffect(() => {
-    if (!workerDomain || !q) return;
+    if (!workerDomain || !queryToUse) return;
 
-    if (!data && !isLoading && shouldTrigger) {
-      mutate();
+    if (!data && !isMutating && shouldTrigger) {
+      trigger(queryToUse);
     }
-  }, [hydrated, q]);
+  }, [hydrated, queryToUse]);
 
   if (!shouldTrigger) return null;
 
   return (
-    <Paper className={classes.ai_answer} ml={80} withBorder radius="md" p="md">
+    <Paper
+      className={classes.ai_answer}
+      ml={propsQuery ? 0 : 80}
+      withBorder
+      radius="md"
+      p="md"
+    >
       {/* <Image src={img_src} radius="md" fit="contain" /> */}
 
       <Flex align="center" mb="sm">
         <IconSparkles style={getIconStyle(32)} color={theme.colors.pink["5"]} />
 
         <Text className={classes.ai_title} ml="sm" size="lg">
-          {q}
+          {queryToUse}
         </Text>
       </Flex>
 
-      {data && !isLoading ? (
+      {data && !isMutating ? (
         <Text className={classes.ai_text} size="sm" c="dimmed">
           {data?.response}
         </Text>
@@ -63,6 +82,16 @@ const AIAnswer: React.FC = () => {
           <Skeleton h={10} w="50%" />
         </Flex>
       )}
+
+      <Text size="sm" mt="xs" ta="right">
+        Answer provided by AI,{" "}
+        <RemixLink to="/docs/ai-answers">
+          {" "}
+          <Text c="blue" component="span">
+            learn more
+          </Text>
+        </RemixLink>
+      </Text>
     </Paper>
   );
 };

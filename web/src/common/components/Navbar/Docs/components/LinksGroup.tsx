@@ -22,11 +22,7 @@ export interface LinksGroupProps {
   links?: { label: string; link: string; isWip: boolean }[];
 }
 
-const LinksGroup: React.FC<LinksGroupProps> = ({
-  icon: Icon,
-  label,
-  links,
-}) => {
+const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => {
   const theme = useMantineTheme();
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(false);
@@ -36,7 +32,7 @@ const LinksGroup: React.FC<LinksGroupProps> = ({
   useEffect(() => {
     const shouldOpen = !!links?.find((link) => pathname === link.link);
     if (shouldOpen) setOpened(shouldOpen);
-  }, []);
+  }, [pathname]);
 
   const items = (hasLinks ? links : []).map((link) => (
     <RemixLink
@@ -50,10 +46,7 @@ const LinksGroup: React.FC<LinksGroupProps> = ({
         {link.label}
 
         {link.isWip && (
-          <IconBarrierBlock
-            style={getIconStyle(18)}
-            color={theme.colors.orange["5"]}
-          />
+          <IconBarrierBlock style={getIconStyle(18)} color={theme.colors.orange["5"]} />
         )}
       </Flex>
     </RemixLink>
@@ -61,10 +54,7 @@ const LinksGroup: React.FC<LinksGroupProps> = ({
 
   return (
     <>
-      <UnstyledButton
-        onClick={() => setOpened((o) => !o)}
-        className={classes.control}
-      >
+      <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
         <Group justify="space-between" gap={0}>
           <Box style={{ display: "flex", alignItems: "center" }}>
             <ThemeIcon variant="light" size={30}>

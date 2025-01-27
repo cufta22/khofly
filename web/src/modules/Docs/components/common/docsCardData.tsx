@@ -7,6 +7,7 @@ import {
   IconSearch,
   IconServer,
   IconShield,
+  IconSparkles,
   IconWorld,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -15,11 +16,15 @@ import DocsSelfHostKhofly from "../self-host-khofly";
 export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
   IA: {
     href: "/docs/instant-answers",
-    icon: (
-      <IconMessageCode style={getIconStyle(28)} color={theme.colors.grape[5]} />
-    ),
+    icon: <IconMessageCode style={getIconStyle(28)} color={theme.colors.grape[5]} />,
     title: "Instant Answers",
     description: "Explore different Instant Answers provided by Khofly",
+  },
+  AI: {
+    href: "/docs/ai-answers",
+    icon: <IconSparkles style={getIconStyle(28)} color={theme.colors.pink[5]} />,
+    title: "AI Answers",
+    description: "Learn more about AI answers",
   },
   privateSearch: {
     href: "/docs/private-search",
@@ -41,36 +46,25 @@ export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
   },
   i18n: {
     href: "/docs/internationalization",
-    icon: (
-      <IconLanguage style={getIconStyle(28)} color={theme.colors.blue[5]} />
-    ),
+    icon: <IconLanguage style={getIconStyle(28)} color={theme.colors.blue[5]} />,
     title: "Internationalization",
     description: "Khofly aims to provide best experience to everyone",
   },
   siteData: {
     href: "/docs/site-data",
-    icon: (
-      <IconCookie style={getIconStyle(28)} color={theme.colors.yellow[5]} />
-    ),
+    icon: <IconCookie style={getIconStyle(28)} color={theme.colors.yellow[5]} />,
     title: "Site Data",
     description: "View all site data that Khofly stores",
   },
   selfHostKhofly: {
     href: "/docs/self-host-khofly",
-    icon: (
-      <IconBrandCloudflare
-        style={getIconStyle(28)}
-        color={theme.colors.orange[5]}
-      />
-    ),
+    icon: <IconBrandCloudflare style={getIconStyle(28)} color={theme.colors.orange[5]} />,
     title: "Self-Host Khofly",
     description: "You can also host Khofly by yourself",
   },
   selfHostSearXNG: {
     href: "/docs/self-host-searxng",
-    icon: (
-      <IconServer style={getIconStyle(28)} color={theme.colors.yellow[5]} />
-    ),
+    icon: <IconServer style={getIconStyle(28)} color={theme.colors.yellow[5]} />,
     title: "Self-Host SearXNG",
     description: "Own your data by self-hosting your SearXNG instance",
   },

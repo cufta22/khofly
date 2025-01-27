@@ -24,7 +24,8 @@ const TabGeneral = () => {
   const displayMedia = useSettingsStore((state) => state.displayMedia);
   const hydratedSettings = useSettingsStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<ISearXNGResultsGeneral>();
+  const { data, error, isLoading, isValidating, size, setSize, mutate } =
+    useSearXNGSWR<ISearXNGResultsGeneral>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -89,9 +90,12 @@ const TabGeneral = () => {
           <Text>Too Many Requests</Text>
         )}
 
-        {!isLoading && !isValidating && data && data?.length >= 1 && data?.[0]?.results?.length < 1 && !isRateLimit && (
-          <Center py="xs">No results, try with different query</Center>
-        )}
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && <Center py="xs">No results, try with different query</Center>}
 
         {!isLoading &&
           !isValidating &&
@@ -99,7 +103,12 @@ const TabGeneral = () => {
           data?.length >= 1 &&
           data?.[0]?.results?.length >= 1 &&
           !isRateLimit && (
-            <Button variant="filled" onClick={() => setSize(size + 1)} size="md" color="dark.5">
+            <Button
+              variant="filled"
+              onClick={() => setSize(size + 1)}
+              size="md"
+              color="dark.5"
+            >
               Load more
             </Button>
           )}
@@ -111,15 +120,21 @@ const TabGeneral = () => {
       <Flex direction="column" gap="xl" pt="xl">
         <AIAnswer />
 
-        {!isLoading && !isValidating && !isRateLimit && data && data?.[0]?.infoboxes?.length >= 1 && (
-          <Infobox {...data[0].infoboxes[0]} />
-        )}
+        {!isLoading &&
+          !isValidating &&
+          !isRateLimit &&
+          data &&
+          data?.[0]?.infoboxes?.length >= 1 && <Infobox {...data[0].infoboxes[0]} />}
 
         <Lyricsbox />
 
-        {!isLoading && !isValidating && !isRateLimit && data && data?.[0]?.unresponsive_engines?.length >= 1 && (
-          <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
-        )}
+        {!isLoading &&
+          !isValidating &&
+          !isRateLimit &&
+          data &&
+          data?.[0]?.unresponsive_engines?.length >= 1 && (
+            <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
+          )}
         {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
           <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />
         ) : null}
