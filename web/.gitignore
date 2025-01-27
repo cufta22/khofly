@@ -9,7 +9,7 @@ node_modules
 .env*.production
 .env
 
-# pnpm-lock.yaml
+pnpm-lock.yaml
 
 stats.html
 
