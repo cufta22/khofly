@@ -1,0 +1,16 @@
+@use "variables" as vars;
+
+.engines_message {
+  width: 450px;
+  max-width: 450px;
+
+  border: 1px solid var(--mantine-color-red-5);
+
+  @media (max-width: vars.$mantine-breakpoint-lg) {
+    display: none;
+  }
+
+  img {
+    max-height: 200px;
+  }
+}

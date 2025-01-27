@@ -1,0 +1,74 @@
+@use "functions" as func;
+
+@keyframes flip_heads {
+  0% {
+    transform: rotateZ(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg) rotateY(1800deg);
+  }
+}
+
+@keyframes flip_tails {
+  0% {
+    transform: rotateZ(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg) rotateY(1980deg);
+  }
+}
+
+.coin_wrapper {
+  cursor: pointer;
+}
+
+.coin {
+  position: relative;
+  width: func.to-rem(150px);
+  height: func.to-rem(150px);
+  border-radius: 50%;
+  border-width: func.to-rem(4px);
+  border-style: dashed;
+  transition: transform 1s ease-in;
+  transform-style: preserve-3d;
+  cursor: pointer;
+
+  .side_heads,
+  .side_tails {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .side_heads {
+    svg {
+      color: var(--mantine-color-blue-6);
+    }
+  }
+
+  .side_tails {
+    transform: rotateY(-180deg);
+
+    svg {
+      color: var(--mantine-color-red-6);
+      // fill: var(--mantine-color-red-6);
+      :nth-child(2) {
+        fill: var(--mantine-color-red-6);
+      }
+    }
+  }
+
+  &.heads_win {
+    animation: flip_heads 3s ease-out forwards;
+  }
+
+  &.tails_win {
+    animation: flip_tails 3s ease-out forwards;
+  }
+}

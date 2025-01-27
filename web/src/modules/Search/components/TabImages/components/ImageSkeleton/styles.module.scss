@@ -1,0 +1,16 @@
+@use "variables" as vars;
+
+.image_skeleton_container {
+  position: relative;
+  flex: 1 1 auto;
+  height: 280px;
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    height: 200px;
+  }
+
+  .image_skeleton_main {
+    width: 100%;
+    min-width: 220px;
+  }
+}

@@ -1,0 +1,20 @@
+@use "variables" as vars;
+
+.ai_answer {
+  width: 450px;
+  max-width: 450px;
+
+  border-color: var(--mantine-color-pink-5);
+
+  .ai_title {
+    color: light-dark(var(--mantine-color-indigo-9), var(--mantine-color-white));
+  }
+
+  .ai_text {
+    white-space: preserve;
+  }
+
+  img {
+    max-height: 200px;
+  }
+}

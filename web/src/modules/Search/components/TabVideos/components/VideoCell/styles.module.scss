@@ -1,0 +1,23 @@
+.video_container {
+  width: 100%;
+  height: fit-content;
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+  border-radius: var(--mantine-radius-md);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: light-dark(
+      var(--mantine-color-white),
+      var(--mantine-color-dark-6)
+    );
+  }
+
+  img {
+    max-height: 160px;
+    height: 160px;
+  }
+}

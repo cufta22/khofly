@@ -1,0 +1,71 @@
+@use "variables" as vars;
+
+.image_container {
+  cursor: pointer;
+  position: relative;
+  flex: 1 1 auto;
+  white-space: nowrap;
+
+  .image_cell {
+    position: relative;
+    background-color: light-dark(
+      var(--mantine-color-white),
+      var(--mantine-color-dark-7)
+    );
+    border-radius: var(--mantine-radius-sm);
+    transition: all 0.2s ease-in-out;
+    height: 240px;
+    margin-bottom: 48px;
+
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      vertical-align: middle;
+      border-radius: 6px;
+      flex: unset;
+    }
+
+    &:hover {
+      background-color: light-dark(
+        var(--mantine-color-white),
+        var(--mantine-color-dark-6)
+      );
+    }
+
+    @media (max-width: vars.$mantine-breakpoint-sm) {
+      height: 140px;
+    }
+  }
+
+  .format_label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #141517b3;
+    border-top-left-radius: var(--mantine-radius-md);
+    padding: 2px 10px;
+  }
+
+  .title_text {
+    position: absolute;
+    bottom: 22px;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .url_text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+}

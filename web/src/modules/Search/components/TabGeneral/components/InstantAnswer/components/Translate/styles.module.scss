@@ -1,0 +1,24 @@
+@use "variables" as vars;
+
+.flex_side {
+  flex: 1;
+}
+
+.textarea {
+  height: 150px;
+  width: 100%;
+}
+.output_box {
+  width: 100%;
+}
+
+.flex_mobile {
+  flex-direction: row;
+  gap: calc(24px + var(--mantine-spacing-sm) + var(--mantine-spacing-sm) + 4px);
+
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+}

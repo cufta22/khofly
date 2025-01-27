@@ -1,0 +1,22 @@
+node_modules
+
+/.cache
+/build
+.env
+
+# local env files
+.env*.local
+.env*.production
+.env
+
+pnpm-lock.yaml
+
+stats.html
+
+wrangler.toml
+.wrangler
+.dev.vars
+
+.vercel
+
+.react-router/

@@ -1,0 +1,10 @@
+# name: Cloudflare Pages production deployment
+# on:
+#   push:
+#     branches:
+#       - master
+# jobs:
+#   Deploy-Production:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2

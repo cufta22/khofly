@@ -1,0 +1,39 @@
+@use "functions" as func;
+@use "variables" as vars;
+
+.tab_general {
+  // Header offset
+  padding-top: 100px;
+
+  .stack {
+    width: func.to-rem(650px);
+    gap: var(--mantine-spacing-xl);
+
+    // header padding 100 + logo size + group gap ( SearchSection )
+    margin-left: calc(
+      func.to-rem(100px) + func.to-rem(42px) + var(--mantine-spacing-md)
+    );
+
+    @media (max-width: vars.$mantine-breakpoint-md) {
+      // header padding md + logo size + group gap ( SearchSection )
+      margin-left: calc(
+        var(--mantine-spacing-md) + func.to-rem(42px) +
+          var(--mantine-spacing-md)
+      );
+    }
+
+    @media (max-width: vars.$mantine-breakpoint-sm) {
+      width: 100%;
+
+      margin-left: 0;
+
+      padding: var(--mantine-spacing-md);
+
+      gap: var(--mantine-spacing-md);
+    }
+  }
+}
+
+.search_options_general {
+  margin-top: calc(-1 * var(--mantine-spacing-xl));
+}

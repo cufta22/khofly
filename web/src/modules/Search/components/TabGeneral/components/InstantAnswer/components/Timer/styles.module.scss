@@ -1,0 +1,64 @@
+@keyframes tilt_shaking {
+  0% {
+    transform: translateX(0px);
+  }
+  10% {
+    transform: translateX(-8px);
+  }
+  15% {
+    transform: translateX(0px);
+  }
+  20% {
+    transform: translateX(8px);
+  }
+  30% {
+    transform: translateX(0px);
+  }
+  40% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(0px);
+  }
+  70% {
+    transform: translateX(0px);
+  }
+  80% {
+    transform: translateX(0px);
+  }
+  90% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.paper_base {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.paper_finished {
+  animation: tilt_shaking 2s infinite;
+
+  border: 1px solid var(--mantine-color-green-6);
+}
+
+.action_button {
+  cursor: pointer;
+}
+
+.reset_btn {
+  position: absolute;
+  top: var(--mantine-spacing-md);
+  right: var(--mantine-spacing-md);
+}
+
+.ring_svg circle {
+  transition: stroke-dasharray 1s linear;
+}

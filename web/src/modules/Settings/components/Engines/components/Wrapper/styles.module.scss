@@ -1,0 +1,7 @@
+@use "variables" as vars;
+
+.table_responsive {
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    display: none;
+  }
+}

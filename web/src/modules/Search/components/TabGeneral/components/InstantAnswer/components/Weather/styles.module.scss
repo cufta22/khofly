@@ -1,0 +1,85 @@
+@use "functions" as func;
+
+.weather_daily {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--mantine-radius-md);
+  height: func.to-rem(90px);
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-7)
+  );
+  transition: box-shadow 150ms ease, transform 100ms ease;
+  padding: var(--mantine-spacing-xs);
+
+  &:hover {
+    box-shadow: var(--mantine-shadow-md);
+    transform: scale(1.05);
+  }
+}
+
+.weather_icon_cloud_rain {
+  :nth-child(2) {
+    stroke: var(--mantine-color-blue-4);
+    stroke-width: 2px;
+  }
+}
+
+.weather_icon_cloud_storm {
+  :nth-child(2) {
+    stroke: var(--mantine-color-yellow-6);
+    stroke-width: 2px;
+  }
+}
+
+.sun_icon_pos {
+  fill: transparent;
+
+  $day_icon_numbers: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20;
+
+  // Night, 3 at the beginning
+  &--1,
+  &--2,
+  &--3 {
+    &:nth-child(3) {
+      fill: var(--mantine-color-gray-6);
+      stroke-width: 4px;
+      stroke: light-dark(
+        var(--mantine-color-gray-0),
+        var(--mantine-color-dark-8)
+      );
+    }
+  }
+
+  // Day
+  @each $i in $day_icon_numbers {
+    &--#{$i} {
+      &:nth-child(#{$i}) {
+        fill: var(--mantine-color-yellow-8);
+        stroke-width: 4px;
+        stroke: light-dark(
+          var(--mantine-color-gray-0),
+          var(--mantine-color-dark-8)
+        );
+      }
+    }
+  }
+
+  // Night, 3 at the end
+  &--21,
+  &--22,
+  &--23 {
+    &:nth-child(21) {
+      fill: var(--mantine-color-gray-6);
+      stroke-width: 4px;
+      stroke: light-dark(
+        var(--mantine-color-gray-0),
+        var(--mantine-color-dark-8)
+      );
+    }
+  }
+}

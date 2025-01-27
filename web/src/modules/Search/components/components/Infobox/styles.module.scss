@@ -1,0 +1,14 @@
+@use "variables" as vars;
+
+.search_infobox {
+  width: 450px;
+  max-width: 450px;
+
+  @media (max-width: vars.$mantine-breakpoint-lg) {
+    display: none;
+  }
+
+  img {
+    max-height: 200px;
+  }
+}

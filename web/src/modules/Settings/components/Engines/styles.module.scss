@@ -1,0 +1,9 @@
+@use "variables" as vars;
+
+.settings_engines_title {
+  align-items: center;
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,15 @@
+.tab_images {
+  // Header offset
+  padding-top: 100px;
+}
+
+.image_gallery {
+  &::after {
+    content: "";
+    flex-grow: 999;
+  }
+}
+
+.search_options_images {
+  margin-left: var(--mantine-spacing-lg);
+}

@@ -1,0 +1,22 @@
+.paper_base {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.action_button {
+  cursor: pointer;
+}
+
+.reset_btn {
+  position: absolute;
+  top: var(--mantine-spacing-md);
+  // Lap btn length + lap btn right spacing + in between same spacing
+  right: calc(51.1px + var(--mantine-spacing-md) + var(--mantine-spacing-md));
+}
+
+.lap_btn {
+  position: absolute;
+  top: var(--mantine-spacing-md);
+  right: var(--mantine-spacing-md);
+}

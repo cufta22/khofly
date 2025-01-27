@@ -1,0 +1,69 @@
+@use "functions" as func;
+
+@keyframes rgb_auto {
+  0% {
+    // border-color: var(--mantine-color-red-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-red-6);
+    color: var(--mantine-color-red-6);
+  }
+  33% {
+    // border-color: var(--mantine-color-green-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-green-6);
+    color: var(--mantine-color-green-6);
+  }
+  66% {
+    // border-color: var(--mantine-color-blue-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-blue-6);
+    color: var(--mantine-color-blue-6);
+  }
+  100% {
+    // border-color: var(--mantine-color-red-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-red-6);
+    color: var(--mantine-color-red-6);
+  }
+}
+
+.virtual_keyboard {
+  width: func.to-rem(400px);
+  height: func.to-rem(300px);
+  position: absolute;
+  z-index: 110;
+
+  .draggable {
+    cursor: move;
+  }
+
+  .flex_grow {
+    flex-grow: 1;
+  }
+  .flex_lg {
+    width: 55px;
+  }
+  .flex_xl {
+    width: 100px;
+  }
+  .space_align {
+    justify-content: flex-start;
+    padding-left: func.to-rem(6px);
+  }
+
+  // RGB
+  .rgb_red {
+    // border-color: var(--mantine-color-red-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-red-6);
+    color: var(--mantine-color-red-6);
+  }
+  .rgb_green {
+    // border-color: var(--mantine-color-green-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-green-6);
+    color: var(--mantine-color-green-6);
+  }
+  .rgb_blue {
+    // border-color: var(--mantine-color-blue-6);
+    box-shadow: 0px 0px 2px var(--mantine-color-blue-6);
+    color: var(--mantine-color-blue-6);
+  }
+  .rgb_auto {
+    animation: rgb_auto 5s ease-in-out infinite;
+  }
+}

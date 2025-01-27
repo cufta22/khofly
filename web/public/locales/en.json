@@ -1,0 +1,251 @@
+{
+  "_common": {
+    "app_name": "Khofly"
+  },
+
+  "header": {},
+  "pages": {
+    "index": {
+      "search_placeholder": "Search for anything..."
+    },
+
+    "search": {
+      "search_placeholder": "Search for anything..."
+    },
+
+    "changelog": {
+      "title": "Changelog"
+    },
+
+    "settings": {
+      "interface": {
+        "title": "User interface",
+
+        "select_lang": "Language select",
+        "select_lang_options": {
+          "en": "English",
+          "fr": "French",
+          "de": "German"
+        },
+
+        "select_theme": "Theme select",
+        "select_theme_options": {
+          "mantine_old": "Mantine Old",
+          "mantine_new": "Mantine New",
+          "material": "Material",
+          "catppuccin": "Catppuccin",
+          "rosepine": "Rosé Pine",
+          "nord": "Nord",
+          "tokyo_night": "Tokyo Night"
+        },
+
+        "select_color": "Color scheme",
+        "select_color_options": {
+          "light": "Light",
+          "dark": "Dark"
+        },
+
+        "toggle_open_in_new_tab": "Open links in new tab"
+      },
+
+      "general": {
+        "title": "General settings",
+
+        "toggle_favicon": "Display website favicon",
+        "toggle_favicon_options": {
+          "DDG": "DuckDuckGo",
+          "google": "Google",
+          "favicone": "Favicone"
+        },
+
+        "show_engines": "Show engines for each search result",
+
+        "display_media": "Display media in general search",
+        "display_media_options": {
+          "images": "Images",
+          "videos": "Videos"
+        },
+
+        "toggle_autocomplete": "Enable search autocomplete",
+        "toggle_autocomplete_options": {
+          "google": "Google",
+          "DDG": "DuckDuckGo",
+          "brave": "Brave",
+          "qwant": "Qwant"
+        },
+
+        "toggle_ia": "Enable Instant Answers",
+
+        "toggle_ai_answers": "Enable AI Answers",
+
+        "toggle_private_search": "Enable Private Search",
+
+        "set_as_default": "Set Khofly as default search engine",
+        "set_as_default_btn": "Set default",
+
+        "learn_more": "Learn more"
+      },
+
+      "categories": {
+        "title": "Search categories"
+      },
+
+      "theme": {
+        "title": "Customize theme",
+        "description": "Apply current theme changes",
+        "button": "Apply"
+      },
+
+      "engines": {
+        "title_without": "other stuff",
+
+        "title": "General engines",
+        "title2": "web",
+        "title3": "wiki stuff",
+
+        "engine_google": "Google",
+        "engine_DDG": "DuckDuckGo",
+        "engine_presearch": "Presearch",
+        "engine_qwant": "Qwant",
+        "engine_mojeek": "Mojeek",
+        "engine_startpage": "Startpage",
+        "engine_bing": "Bing",
+        "engine_brave": "Brave",
+        "engine_yahoo": "Yahoo!",
+        "engine_wiby": "Wiby",
+
+        "engine_wikibooks": "Wikibooks",
+        "engine_wikiquote": "Wikiquote",
+        "engine_wikisource": "Wikisource",
+        "engine_wikispecies": "Wikispecies",
+        "engine_wikiversity": "Wikiversity",
+        "engine_wikivoyage": "Wikivoyage",
+
+        "engine_alexandria": "Alexandria",
+        "engine_wikipedia": "Wikipedia",
+        "engine_wikidata": "Wikidata",
+
+        "title_img": "Image engines",
+        "title_img2": "web",
+
+        "engine_google_img": "Google images",
+        "engine_DDG_img": "DuckDuckGo images",
+        "engine_qwant_img": "Qwant images",
+        "engine_bing_img": "Bing images",
+        "engine_brave_img": "Brave images",
+        "engine_presearch_img": "Presearch images",
+        "engine_deviantArt_img": "DeviantArt",
+        "engine_flickr_img": "Flickr",
+        "engine_pinterest_img": "Pinterest",
+        "engine_unsplash_img": "Unsplash",
+
+        "title_vid": "Video engines",
+        "title_vid2": "web",
+
+        "engine_google_vid": "Google videos",
+        "engine_DDG_vid": "DuckDuckGo videos",
+        "engine_qwant_vid": "Qwant videos",
+        "engine_bing_vid": "Bing videos",
+        "engine_brave_vid": "Brave videos",
+
+        "engine_dailymotion_vid": "Dailymotion",
+        "engine_odysee_vid": "Odysee",
+        "engine_piped_vid": "Piped",
+        "engine_vimeo_vid": "Vimeo",
+        "engine_youtube_vid": "YouTube",
+
+        "title_news": "News engines",
+        "title_news2": "web",
+        "title_news3": "wiki stuff",
+
+        "engine_google_news": "Google news",
+        "engine_DDG_news": "DuckDuckGo news",
+        "engine_bing_news": "Bing news",
+        "engine_brave_news": "Brave news",
+        "engine_qwant_news": "Qwant news",
+        "engine_yahoo_news": "Yahoo! news",
+        "engine_presearch_news": "Presearch news",
+
+        "engine_wikinews": "Wikinews",
+
+        "title_music": "Music engines",
+        "title_music2": "lyrics",
+        "title_music3": "radio search",
+
+        "engine_genius_music": "Genius",
+        "engine_RB_music": "Radio Browser",
+        "engine_bandcamp_music": "Bandcamp",
+        "engine_mixcloud_music": "Mixcloud",
+        "engine_piped_music": "Piped._music",
+        "engine_SC_music": "Soundcloud",
+        "engine_YT_music": "YouTube",
+
+        "title_IT": "IT engines",
+        "title_IT2": "packages",
+        "title_IT3": "q&a",
+        "title_IT4": "repos",
+        "title_IT5": "software wikis",
+
+        "engine_docker_hub_IT": "Docker hub",
+        "engine_NPM_IT": "NPM",
+        "engine_pypi_IT": "PyPI",
+        "engine_ask_ubuntu_IT": "Ask Ubuntu",
+        "engine_stack_overflow_IT": "StackOverflow",
+        "engine_superuser_IT": "Superuser",
+        "engine_codeberg_IT": "Codeberg",
+        "engine_github_IT": "GitHub",
+        "engine_gitlab_IT": "GitLab",
+        "engine_arch_IT": "Arch Wiki",
+        "engine_gentoo_IT": "Gentoo",
+        "engine_MDN_IT": "MDN",
+
+        "title_science": "Science engines",
+        "title_science2": "publications",
+        "title_science3": "wiki stuff",
+
+        "engine_arxiv_science": "arXiv",
+        "engine_crossref_science": "Crossref",
+        "engine_google_scholar_science": "Google Scholar",
+        "engine_IAS_science": "Internet Archive Scholar",
+        "engine_pubmed_science": "PubMed",
+        "engine_semantic_scholar_science": "Semantic Scholar",
+        "engine_OA_datasets_science": "OpenAIRE datasets",
+        "engine_OA_publications_science": "OpenAIRE publications",
+        "engine_PDBe_science": "PDBe",
+
+        "title_files": "Files engines",
+        "title_files2": "apps",
+
+        "engine_APKMirror_files": "APKMirror",
+        "engine_fdriod_files": "F-Droid",
+        "engine_1337x_files": "1337x",
+        "engine_annas_files": "Anna's Archive",
+        "engine_bt4g_files": "bt4g",
+        "engine_nyaa_files": "Nyaa",
+        "engine_piratebay_files": "The Pirate Bay",
+
+        "title_SM": "Social Media engines",
+
+        "engine_9gag_SM": "9gag",
+        "engine_lemmy_comments_SM": "Lemmy Comments",
+        "engine_lemmy_communities_SM": "Lemmy Communities",
+        "engine_lemmy_posts_SM": "Lemmy Posts",
+        "engine_lemmy_users_SM": "Lemmy Users",
+        "engine_mastodon_hashtags_SM": "Mastodon Hashtags",
+        "engine_mastodon_users_SM": "Mastodon Users",
+        "engine_reddit_SM": "Reddit"
+      },
+
+      "shortcuts": {
+        "title": "Shortcuts",
+        "toggle_shortcuts": "Display shortcuts on home page",
+
+        "toggle_open_in_new_tab": "Open links in new tab",
+
+        "favicon_api_favicone": "Favicone",
+        "favicon_api_DDG": "DuckDuckGo",
+        "favicon_api_google": "Google"
+      }
+    }
+  }
+}

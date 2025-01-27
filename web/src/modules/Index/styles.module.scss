@@ -1,0 +1,24 @@
+@use "functions" as func;
+@use "variables" as vars;
+
+.index_page {
+  height: calc(100dvh - 70px - 60px);
+
+  padding-top: calc((35dvh - 70px));
+
+  .flex {
+    width: 100%;
+    // position: relative;
+  }
+
+  .app_name {
+    font-size: func.to-rem(100px);
+    color: light-dark(var(--mantine-color-dark-5), var(--mantine-color-gray-4));
+  }
+
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    .app_name {
+      font-size: func.to-rem(60px);
+    }
+  }
+}

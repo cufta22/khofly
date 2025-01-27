@@ -1,0 +1,15 @@
+/* Import fonts */
+@import url("https://fonts.bunny.net/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+a {
+  text-decoration: unset !important;
+  color: unset !important;
+}
+
+.leaflet-attribution-flag {
+  width: 0px !important;
+}
+
+table th {
+  white-space: nowrap;
+}

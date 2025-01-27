@@ -1,0 +1,16 @@
+@use "variables" as vars;
+
+.set_default_title {
+  .set_default_title_text {
+    font-size: 34px;
+  }
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    flex-direction: column;
+    justify-content: center;
+
+    .set_default_title_text {
+      font-size: 24px;
+    }
+  }
+}
