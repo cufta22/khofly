@@ -1,4 +1,13 @@
-import { ActionIcon, Center, Flex, Loader, NavLink, Paper, ScrollArea, TextInput } from "@mantine/core";
+import {
+  ActionIcon,
+  Center,
+  Flex,
+  Loader,
+  NavLink,
+  Paper,
+  ScrollArea,
+  TextInput,
+} from "@mantine/core";
 import React, { Dispatch, useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
@@ -10,7 +19,7 @@ import useNominatimSWR from "src/api/nominatim/use-nominatim-query";
 import { useResponsive } from "@hooks/use-responsive";
 
 import { useSettingsStore } from "@store/settings";
-import { useNavigate,  useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import useSearchQuery from "@hooks/use-search-query";
 
 interface Props {
@@ -59,7 +68,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   useEffect(() => {
     // Don't search on render in dev to prevent API spam
     // Maybe fix if self-host nominatim API
-    if (process?.env?.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === "production") {
       if (!data?.length && currentQ?.length) trigger(currentQ);
     }
 
@@ -83,12 +92,22 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
       radius={0}
     >
       {/* Mobile slide controls */}
-      <Flex className={classes.controls_slide} onClick={toggle} align="center" justify="center" p="xs">
+      <Flex
+        className={classes.controls_slide}
+        onClick={toggle}
+        align="center"
+        justify="center"
+        p="xs"
+      >
         <IconChevronLeft style={getIconStyle(22)} />
       </Flex>
 
       <Flex className={classes.map_controls_head} p="xs" gap="xs">
-        <ActionIcon className={classes.action_icon} variant="light" onClick={handleGoBack}>
+        <ActionIcon
+          className={classes.action_icon}
+          variant="light"
+          onClick={handleGoBack}
+        >
           <IconArrowLeft />
         </ActionIcon>
 
@@ -102,7 +121,13 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
           }}
           rightSection={
             <>
-              <ActionIcon w={40} h={40} radius="sm" variant="blue" onClick={() => handleSearch()}>
+              <ActionIcon
+                w={40}
+                h={40}
+                radius="sm"
+                variant="blue"
+                onClick={() => handleSearch()}
+              >
                 <IconSearch style={getIconStyle(22)} stroke={1.5} color="white" />
               </ActionIcon>
             </>
@@ -117,7 +142,9 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
           </Center>
         )}
 
-        {!isMutating && data && data?.length < 1 && <Center py="xs">No results, try with different query</Center>}
+        {!isMutating && data && data?.length < 1 && (
+          <Center py="xs">No results, try with different query</Center>
+        )}
 
         {data && data?.length && !error && !isMutating
           ? data?.map((row, i) => (

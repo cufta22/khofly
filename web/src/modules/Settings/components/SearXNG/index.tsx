@@ -51,8 +51,8 @@ const SettingsSearXNG = () => {
   }, [domain]);
 
   const icons: Record<string, React.ReactNode> = {
-    [process?.env.SEARXNG_URL_EU1 || ""]: <DEFlag style={getIconStyle(20)} />,
-    // [process?.env.SEARXNG_URL_US1]: <USFlag style={getIconStyle(20)} />,
+    [process.env.SEARXNG_URL_EU1 || ""]: <DEFlag style={getIconStyle(20)} />,
+    // [process.env.SEARXNG_URL_US1]: <USFlag style={getIconStyle(20)} />,
   };
 
   const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
@@ -96,11 +96,11 @@ const SettingsSearXNG = () => {
               data={[
                 {
                   label: "Nuremberg, Germany",
-                  value: process?.env?.SEARXNG_URL_EU1 || "1",
+                  value: process.env.SEARXNG_URL_EU1 || "1",
                 },
                 // {
                 //   label: "Ashburn, USA",
-                //   value: process?.env?.SEARXNG_URL_US1 || "2",
+                //   value: process.env.SEARXNG_URL_US1 || "2",
                 // },
               ]}
               renderOption={renderSelectOption}

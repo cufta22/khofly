@@ -49,7 +49,7 @@ export default async function handleRequest(
   // -------------------------------------------------
   // Handle Vercel request
   // -------------------------------------------------
-  // if (process?.env?.HOST_TARGET === "vercel") {
+  // if (process.env.HOST_TARGET === "vercel") {
   //   return handleVercelRequest(
   //     request,
   //     responseStatusCode,

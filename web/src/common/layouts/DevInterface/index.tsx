@@ -10,7 +10,7 @@ const DevInterface = () => {
 
   const platformVariables = {
     // Platform variables
-    nodeVersion: typeof process !== "undefined" ? process?.versions?.node : "",
+    nodeVersion: typeof process !== "undefined" ? process.versions.node : "",
     // Vercel stuff
     vercelRegion: process.env.VERCEL_REGION || "",
     // Fly.io stuff
