@@ -55,16 +55,19 @@ export default defineConfig(({ mode }) => {
 
     // ENV variables
     define: {
+      "process.env.NODE_ENV": JSON.stringify(env.NODE_ENV),
+
       "process.env.HOST": JSON.stringify(env.HOST),
       "process.env.SEARXNG_URL_EU1": JSON.stringify(env.SEARXNG_URL_EU1),
-      "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_EU1),
+      // "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_EU1),
       "process.env.API_URL_EU1": JSON.stringify(env.API_URL_EU1),
-      "process.env.API_URL_US1": JSON.stringify(env.API_URL_EU1),
+      // "process.env.API_URL_US1": JSON.stringify(env.API_URL_EU1),
       "process.env.WORKER_URL": JSON.stringify(env.WORKER_URL),
       "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
       "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
       "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
       "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(env.SEARXNG_URL_SELF_HOST),
+      "process.env.API_URL_SELF_HOST": JSON.stringify(env.API_URL_SELF_HOST),
     },
 
     // Testing for Vercel edge functions

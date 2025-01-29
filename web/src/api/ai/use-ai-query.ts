@@ -1,37 +1,26 @@
 import { useInstanceStore } from "@store/instance";
 import useFetch from "../use-fetch";
 import { WorkerResponse } from "./types";
-import useSWR from "swr";
-import useSearchQuery from "@hooks/use-search-query";
+import useSWRMutation from "swr/mutation";
 
-const getKey = (query: string) => {
-  if (!query) return null;
+const getKey = (domain: string) => {
+  if (!domain) return null;
 
-  return `api-ai-${query}`;
+  return `api-ai`;
 };
 
 const useAISWR = () => {
   const { fetchData } = useFetch();
 
-  const q = useSearchQuery();
+  const domain = useInstanceStore((state) => state.workerDomain);
 
-  const workerDomain = useInstanceStore((state) => state.workerDomain);
-
-  const fetcher = (key: string) => {
-    console.log("Worker domain: " + workerDomain);
-
-    return fetchData(`${workerDomain}?prompt=${key}`, {
+  const fetcher = (key: string, { arg }: { arg: string }) => {
+    return fetchData(`${domain}?prompt=${arg}`, {
       method: "GET",
     }) as Promise<WorkerResponse>;
   };
 
-  return useSWR<WorkerResponse>(getKey(q), fetcher, {
-    revalidateOnMount: false,
-    revalidateOnFocus: false,
-    revalidateIfStale: false,
-    revalidateOnReconnect: false,
-    keepPreviousData: true,
-  });
+  return useSWRMutation<WorkerResponse, any, any, string>(getKey(domain), fetcher, {});
 };
 
 export default useAISWR;

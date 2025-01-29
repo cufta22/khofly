@@ -1,7 +1,7 @@
 import { Container, Text, useMantineTheme } from "@mantine/core";
 import React from "react";
 import DocsTitle from "./common/DocsTitle";
-import { IconShield } from "@tabler/icons-react";
+import { IconShield, IconSparkles } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
@@ -9,36 +9,43 @@ import RemixLink from "@components/RemixLink";
 import DocsNextPrev from "./common/DocsNextPrev";
 
 import { DOCS_CARD_DATA } from "./common/docsCardData";
+import AIAnswer from "@module/Search/components/TabGeneral/components/AIAnswer";
 
 const DocsSearchAIAnswers = () => {
   const theme = useMantineTheme();
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle leftSection={<IconShield style={getIconStyle(48)} color={theme.colors.green[5]} />}>
-        Private Search option
+      <DocsTitle
+        leftSection={
+          <IconSparkles style={getIconStyle(48)} color={theme.colors.pink[5]} />
+        }
+      >
+        AI Answers
       </DocsTitle>
 
       <DocsText>
-        TL;DR this just moves the search query data from URL to local state and removes query from title.
-      </DocsText>
-
-      <DocsSubtitle>Pros & Cons</DocsSubtitle>
-
-      <DocsText>
-        You gain better privacy because no search data will be sent to hosting service or saved in browser since the
-        search query lives in state and not in a URL parameter.
+        AI Answers will appear to the right of the search results when the search query
+        contains a "question" ( keywords: who, what, when, how, where, etc. ). These
+        answers can help when simple answer is needed so that the user doesn't have to
+        click through links.
       </DocsText>
 
       <DocsText>
-        Drawback is slightly worse user experience, since no data is saved in the URL you will lose your search on
-        refresh.
+        Although most of the time the information will be accurate, it is still AI and can
+        give out wrong answers so don't take these answers as facts.
+      </DocsText>
+
+      <DocsSubtitle>Cloudflare AI Workers</DocsSubtitle>
+
+      <DocsText>
+        Cloudflare Workers offer a lot of models for you to try out and can be very useful
+        for this purpose.
       </DocsText>
 
       <DocsText>
-        For complete privacy you should also setup your own SearXNG instance since the search data is still sent to the
-        default one, full guide{" "}
-        <RemixLink to="/docs/self-host-searxng">
+        Check out how to deploy your AI worker and use it with Khofly{" "}
+        <RemixLink to="/docs/self-host-ai-worker">
           <Text c="blue" component="span">
             here
           </Text>
@@ -46,7 +53,10 @@ const DocsSearchAIAnswers = () => {
         .
       </DocsText>
 
-      <DocsNextPrev prev={{ ...DOCS_CARD_DATA(theme)["IA"] }} next={{ ...DOCS_CARD_DATA(theme)["setDefault"] }} />
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["IA"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
+      />
     </Container>
   );
 };

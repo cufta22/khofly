@@ -2,6 +2,12 @@ import { Badge, Flex } from "@mantine/core";
 import DocsTitle from "../../common/DocsTitle";
 import DocsText from "../../common/DocsText";
 
+const scripts = `
+apt update && apt upgrade
+
+apt install git 
+`;
+
 const SectionVPS = () => {
   return (
     <>
@@ -13,7 +19,7 @@ const SectionVPS = () => {
         </Badge>
       </Flex>
 
-      <DocsText>WIP</DocsText>
+      <DocsText>test</DocsText>
     </>
   );
 };

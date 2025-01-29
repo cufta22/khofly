@@ -21,11 +21,7 @@ const RemixLink: React.FC<Props> = ({ children, ...linkProps }) => {
   };
 
   return (
-    <Link
-      {...linkProps}
-      onClick={handleClick}
-      target={linkProps?.target || "_self"}
-    >
+    <Link {...linkProps} onClick={handleClick} target={linkProps?.target || "_self"}>
       {children}
     </Link>
   );

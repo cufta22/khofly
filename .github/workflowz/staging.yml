@@ -1,0 +1,27 @@
+name: VPS staging deployment
+on:
+  push:
+    branches:
+      - staging
+jobs:
+  Deploy-Preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - run: npm install --legacy-peer-deps
+      - run: npm run build
+
+      # With cloudflare/pages-action - https://github.com/cloudflare/pages-action
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: a4129015a2ce39f1b7400ca845088bf8
+          projectName: khofly
+          directory: build/client
+          branch: staging
