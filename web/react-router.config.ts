@@ -19,7 +19,6 @@ export default {
       "/docs",
       "/docs/ai-answers",
       "/docs/private-search",
-      "/docs/private-search",
       "/docs/custom-searxng",
       "/docs/internationalization",
       "/docs/site-data",
