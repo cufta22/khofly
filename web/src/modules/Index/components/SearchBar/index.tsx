@@ -33,12 +33,7 @@ const SearchBar = () => {
   const isXs = useResponsive("max", "xs");
 
   // Autocomplete API
-  const {
-    data: autocompleteData,
-    isMutating,
-    trigger,
-    reset,
-  } = useAutocompleteSWR();
+  const { data: autocompleteData, isMutating, trigger, reset } = useAutocompleteSWR();
 
   const handleSearch = (query: string) => {
     // Prevent empty search
@@ -51,7 +46,9 @@ const SearchBar = () => {
       setSearchQuery(encodeURIComponent(query));
       return navigate("/search?tab=general");
     }
-    navigate(`/search?q=${encodeURIComponent(query)}&tab=general`);
+    navigate(`/search?q=${encodeURIComponent(query)}&tab=general`, {
+      viewTransition: true,
+    });
   };
 
   useEffect(() => {
@@ -95,11 +92,7 @@ const SearchBar = () => {
                 variant="transparent"
                 onClick={toggleKeyboard}
               >
-                <IconKeyboard
-                  style={getIconStyle(22)}
-                  color={"white"}
-                  stroke={1.5}
-                />
+                <IconKeyboard style={getIconStyle(22)} color={"white"} stroke={1.5} />
               </ActionIcon>
             )}
 

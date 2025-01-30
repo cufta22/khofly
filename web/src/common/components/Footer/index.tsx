@@ -25,26 +25,30 @@ const Footer = () => {
         </Text>
 
         <Text c="dimmed" size="sm">
-          <Anchor href="https://docs.searxng.org/" target="_blank" rel="noreferrer noopener">
+          <Anchor
+            href="https://docs.searxng.org/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             SearXNG
           </Anchor>
         </Text>
       </Flex>
 
       <Group gap="sm" justify="flex-end">
-        <RemixLink to="/docs">
+        <RemixLink to="/docs" prefetch="intent">
           <Text size="sm">Docs</Text>
         </RemixLink>
 
-        <RemixLink to="/privacy">
+        <RemixLink to="/privacy" prefetch="intent">
           <Text size="sm">Privacy</Text>
         </RemixLink>
 
-        <RemixLink to="/changelog">
+        <RemixLink to="/changelog" prefetch="intent">
           <Text size="sm">Changelog</Text>
         </RemixLink>
 
-        <RemixLink to="/settings">
+        <RemixLink to="/settings" prefetch="intent">
           <Text size="sm">Settings</Text>
         </RemixLink>
       </Group>
