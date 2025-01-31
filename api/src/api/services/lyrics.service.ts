@@ -53,6 +53,11 @@ export const handleGetLyrics = async (ctx: Context) => {
   console.log(songHtml?.substring(0, 200));
 
   const document = html(songHtml);
+
+  console.log(
+    "lyricsRoot fould?? " + document.toString().indexOf("lyrics-root")
+  );
+
   const lyricsRoot = document?.getElementById("lyrics-root");
 
   console.log("lyricsRoot");
@@ -68,6 +73,7 @@ export const handleGetLyrics = async (ctx: Context) => {
     })
     .join("\n")
     .trim();
+
   console.log("lyrics");
   console.log(lyrics?.substring(1, 50));
 
