@@ -3,6 +3,19 @@ import { IGeniusSearchResponse } from "../../types/genius.types";
 
 import html from "node-html-parser/dist/index";
 
+const GENIUS_HEADERS = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  Accept:
+    "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Accept-Language": "en-US,en;q=0.9",
+  Connection: "keep-alive",
+  "Upgrade-Insecure-Requests": "1",
+  "Cache-Control": "max-age=0",
+  TE: "Trailers",
+};
+
 // GET - /lyrics
 export const handleGetLyrics = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
@@ -46,13 +59,14 @@ export const handleGetLyrics = async (ctx: Context) => {
   }
 
   // Fetch the song html
-  const songRes = await fetch(firstRes.result.url);
+  const songRes = await fetch(firstRes.result.url, {
+    headers: GENIUS_HEADERS,
+  });
 
   const songHtml = await songRes.text();
 
   console.log("songHtml");
   console.log("songHtml.length: " + songHtml?.length);
-  console.log(songHtml);
 
   // console.log(songHtml?.substring(0, 200));
 
