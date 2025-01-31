@@ -8,8 +8,6 @@ export const handleGetLyrics = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
   const q = searchParams.get("q") || "";
 
-  console.log("q: " + q);
-
   if (!q) {
     ctx.set.status = 400;
     return "No query provided!";
@@ -22,8 +20,6 @@ export const handleGetLyrics = async (ctx: Context) => {
   });
 
   const searchData = (await searchRes.json()) as IGeniusSearchResponse;
-  console.log("searchData: ");
-  // console.log(searchData);
 
   if (!searchData) {
     ctx.set.status = 400;
@@ -35,9 +31,6 @@ export const handleGetLyrics = async (ctx: Context) => {
     (song) => song.type === "song" && song.result.lyrics_state === "complete"
   )[0];
 
-  console.log("firstRes: ");
-  // console.log(firstRes);
-
   if (!firstRes) {
     ctx.set.status = 400;
     return "Song not found, try another song!";
@@ -47,22 +40,8 @@ export const handleGetLyrics = async (ctx: Context) => {
   const songRes = await fetch(firstRes.result.url);
   const songHtml = await songRes.text();
 
-  console.log("songHtml: ");
-  // console.log(songHtml);
-
-  let document;
-
-  try {
-    document = html(songHtml);
-  } catch (error) {
-    console.log(error);
-  }
-
-  // const document = html(songHtml);
+  const document = html(songHtml);
   const lyricsRoot = document?.getElementById("lyrics-root");
-
-  console.log("lyricsRoot: ");
-  // console.log(lyricsRoot);
 
   const lyrics = lyricsRoot
     ?.querySelectorAll("[data-lyrics-container='true']")
@@ -74,9 +53,6 @@ export const handleGetLyrics = async (ctx: Context) => {
     })
     .join("\n")
     .trim();
-
-  console.log("lyrics: ");
-  // console.log(lyrics);
 
   if (!lyrics) {
     ctx.set.status = 400;
