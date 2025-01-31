@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
-    "build": "bun build --compile --minify-whitespace --minify-syntax --target bun --packages external --outfile ./build/server ./src/index.ts",
-    "start": "./build/server"
+    "build": "bun build --minify-whitespace --minify-syntax --target bun --packages external --outfile ./build/server.js ./src/index.ts",
+    "start": "bun run ./build/server"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.2.0",
