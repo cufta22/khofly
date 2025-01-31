@@ -47,10 +47,13 @@ export const handleGetLyrics = async (ctx: Context) => {
 
   // Fetch the song html
   const songRes = await fetch(firstRes.result.url);
+
   const songHtml = await songRes.text();
 
   console.log("songHtml");
   console.log("songHtml.length: " + songHtml?.length);
+  console.log(songHtml);
+
   // console.log(songHtml?.substring(0, 200));
 
   const document = html(songHtml);
