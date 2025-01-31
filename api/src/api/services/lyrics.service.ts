@@ -50,7 +50,8 @@ export const handleGetLyrics = async (ctx: Context) => {
   const songHtml = await songRes.text();
 
   console.log("songHtml");
-  console.log(songHtml?.substring(0, 200));
+  console.log("songHtml.length: " + songHtml?.length);
+  // console.log(songHtml?.substring(0, 200));
 
   const document = html(songHtml);
 
