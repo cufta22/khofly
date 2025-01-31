@@ -1,14 +1,17 @@
 import { Context } from "elysia";
 import { IGeniusSearchResponse } from "../../types/genius.types";
 
-import html from "node-html-parser";
+import html from "node-html-parser/dist/index";
 
 // GET - /lyrics
 export const handleGetLyrics = async (ctx: Context) => {
-  const q = ctx.query?.["q"] || "";
+  const { searchParams } = new URL(ctx.request.url);
+  const q = searchParams.get("q") || "";
+
+  console.log("q: " + q);
 
   if (!q) {
-    ctx.set.status = 500;
+    ctx.set.status = 400;
     return "No query provided!";
   }
 
@@ -19,10 +22,12 @@ export const handleGetLyrics = async (ctx: Context) => {
   });
 
   const searchData = (await searchRes.json()) as IGeniusSearchResponse;
+  console.log("searchData: ");
+  // console.log(searchData);
 
   if (!searchData) {
-    ctx.set.status = 500;
-    return "Try another song!";
+    ctx.set.status = 400;
+    return "Song not found, try another song!";
   }
 
   // Find one with lyrics
@@ -30,17 +35,34 @@ export const handleGetLyrics = async (ctx: Context) => {
     (song) => song.type === "song" && song.result.lyrics_state === "complete"
   )[0];
 
+  console.log("firstRes: ");
+  // console.log(firstRes);
+
   if (!firstRes) {
-    ctx.set.status = 500;
-    return "Try another song!";
+    ctx.set.status = 400;
+    return "Song not found, try another song!";
   }
 
   // Fetch the song html
   const songRes = await fetch(firstRes.result.url);
   const songHtml = await songRes.text();
 
-  const document = html(songHtml);
-  const lyricsRoot = document.getElementById("lyrics-root");
+  console.log("songHtml: ");
+  // console.log(songHtml);
+
+  let document;
+
+  try {
+    document = html(songHtml);
+  } catch (error) {
+    console.log(error);
+  }
+
+  // const document = html(songHtml);
+  const lyricsRoot = document?.getElementById("lyrics-root");
+
+  console.log("lyricsRoot: ");
+  // console.log(lyricsRoot);
 
   const lyrics = lyricsRoot
     ?.querySelectorAll("[data-lyrics-container='true']")
@@ -53,9 +75,12 @@ export const handleGetLyrics = async (ctx: Context) => {
     .join("\n")
     .trim();
 
+  console.log("lyrics: ");
+  // console.log(lyrics);
+
   if (!lyrics) {
-    ctx.set.status = 500;
-    return "Try another song!";
+    ctx.set.status = 400;
+    return "Lyrics not found, try another song!";
   }
 
   return {
