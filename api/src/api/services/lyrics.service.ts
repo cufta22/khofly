@@ -26,6 +26,7 @@ export const handleGetLyrics = async (ctx: Context) => {
   const searchData = (await searchRes.json()) as IGeniusSearchResponse;
 
   console.log("searchData");
+  console.log("searchData.length: " + searchData.response.hits.length);
 
   if (!searchData) {
     ctx.set.status = 400;
@@ -37,6 +38,7 @@ export const handleGetLyrics = async (ctx: Context) => {
     (song) => song.type === "song" && song.result.lyrics_state === "complete"
   )[0];
   console.log("firstRes");
+  console.log("firstRes URL: " + firstRes.result.url);
 
   if (!firstRes) {
     ctx.set.status = 400;
@@ -47,9 +49,14 @@ export const handleGetLyrics = async (ctx: Context) => {
   const songRes = await fetch(firstRes.result.url);
   const songHtml = await songRes.text();
 
+  console.log("songHtml");
+  console.log(songHtml?.substring(0, 200));
+
   const document = html(songHtml);
   const lyricsRoot = document?.getElementById("lyrics-root");
+
   console.log("lyricsRoot");
+  console.log(lyricsRoot?.toString().substring(0, 200));
 
   const lyrics = lyricsRoot
     ?.querySelectorAll("[data-lyrics-container='true']")
@@ -62,6 +69,7 @@ export const handleGetLyrics = async (ctx: Context) => {
     .join("\n")
     .trim();
   console.log("lyrics");
+  console.log(lyrics?.substring(1, 50));
 
   if (!lyrics) {
     ctx.set.status = 400;
