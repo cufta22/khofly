@@ -8,6 +8,8 @@ export const handleGetLyrics = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
   const q = searchParams.get("q") || "";
 
+  console.log("q: " + q);
+
   if (!q) {
     ctx.set.status = 400;
     return "No query provided!";
@@ -19,7 +21,11 @@ export const handleGetLyrics = async (ctx: Context) => {
     },
   });
 
+  console.log("searchRes");
+
   const searchData = (await searchRes.json()) as IGeniusSearchResponse;
+
+  console.log("searchData");
 
   if (!searchData) {
     ctx.set.status = 400;
@@ -30,6 +36,7 @@ export const handleGetLyrics = async (ctx: Context) => {
   const firstRes = searchData.response.hits.filter(
     (song) => song.type === "song" && song.result.lyrics_state === "complete"
   )[0];
+  console.log("firstRes");
 
   if (!firstRes) {
     ctx.set.status = 400;
@@ -42,6 +49,7 @@ export const handleGetLyrics = async (ctx: Context) => {
 
   const document = html(songHtml);
   const lyricsRoot = document?.getElementById("lyrics-root");
+  console.log("lyricsRoot");
 
   const lyrics = lyricsRoot
     ?.querySelectorAll("[data-lyrics-container='true']")
@@ -53,6 +61,7 @@ export const handleGetLyrics = async (ctx: Context) => {
     })
     .join("\n")
     .trim();
+  console.log("lyrics");
 
   if (!lyrics) {
     ctx.set.status = 400;
