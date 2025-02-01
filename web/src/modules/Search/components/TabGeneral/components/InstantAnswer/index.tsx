@@ -54,20 +54,22 @@ const InstantAnswer = () => {
   // Instant answer - Equation
   if (shouldDisplayEquation(q)) return <IAEquation query={q} />;
 
-  // Instant answer - Lyrics by Genius
-  if (shouldDisplayIA(q, ["lyrics"]) && !isXl) return <IALyrics />;
+  // Instant answer - Lyrics by -
+  // if (shouldDisplayIA(q, ["lyrics"]) && !isXl) return <IALyrics />;
 
   // Instant answer - Password
   if (shouldDisplayIA(q, ["password"])) return <IAPassword />;
 
   // Instant answer - Password
-  if (shouldDisplayIA(q, ["rng", "random number", "random number generator"])) return <IARNG />;
+  if (shouldDisplayIA(q, ["rng", "random number", "random number generator"]))
+    return <IARNG />;
 
   // Instant answer - Stopwatch
   if (shouldDisplayIA(q, ["stopwatch"])) return <SharedStopwatchTimer type="stopwatch" />;
 
   // Instant answer - Timer WIP
-  if (shouldDisplayIA(q, ["timer", "alarm"])) return <SharedStopwatchTimer type="timer" />;
+  if (shouldDisplayIA(q, ["timer", "alarm"]))
+    return <SharedStopwatchTimer type="timer" />;
 
   // Instant answer - Unit convertor
   const { sdUnit, ...restUnit } = shouldDisplayUnits(q);
@@ -83,6 +85,7 @@ const InstantAnswer = () => {
   // Instant answer - Translate WIP
   //if (shouldDisplayIA(query, ["translate"])) return <IATranslate />;
   // Instant answer - Sport scores
+  // Instant answer - Time zone conversion
   // Instant answer - Time around the world?
   // Instant answer - Lorem ipsum generator
 

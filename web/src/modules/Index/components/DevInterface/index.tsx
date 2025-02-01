@@ -4,22 +4,27 @@ import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useGeneralStore } from "@store/general";
 import { regions } from "./utils";
+import { ILoaderData_Index } from "app/routes/_index";
 
-const DevInterface = () => {
+interface Props {
+  loaderData: ILoaderData_Index;
+}
+
+const DevInterface: React.FC<Props> = ({ loaderData }) => {
   const theme = useMantineTheme();
 
-  const platformVariables = {
+  const {
     // Platform variables
-    nodeVersion: typeof process !== "undefined" ? process.versions.node : "",
+    nodeVersion,
     // Vercel stuff
-    vercelRegion: process.env.VERCEL_REGION || "",
+    vercelRegion,
     // Fly.io stuff
-    flyAppName: process.env.FLY_APP_NAME,
-    flyRegion: process.env.FLY_REGION,
-    flyMachineId: process.env.FLY_MACHINE_ID,
+    flyAppName,
+    flyRegion,
+    flyMachineId,
     // Cloudflare stuff
     // TODO: add cf stuff like region, etc. from context
-  };
+  } = loaderData;
 
   const devMode = useGeneralStore((state) => state.devMode);
 
@@ -34,24 +39,16 @@ const DevInterface = () => {
       className={classes.dev_interface}
     >
       <Stack>
-        {platformVariables.nodeVersion && (
+        {nodeVersion && (
           <Flex align="center" gap="sm">
             <IconBrandNodejs style={getIconStyle(18)} color={theme.colors.green["5"]} />
-            <Text size="xs">{platformVariables.nodeVersion}</Text>
+            <Text size="xs">{nodeVersion}</Text>
           </Flex>
         )}
-        {platformVariables.vercelRegion && (
-          <Text size="xs">Vercel Region: {regions[platformVariables?.vercelRegion]}</Text>
-        )}
-        {platformVariables.flyAppName && (
-          <Text size="xs">Fly.io App Name: {platformVariables.flyAppName}</Text>
-        )}
-        {platformVariables.flyRegion && (
-          <Text size="xs">Fly.io Region: {platformVariables.flyRegion}</Text>
-        )}{" "}
-        {platformVariables.flyMachineId && (
-          <Text size="xs">Fly.io Machine ID: {platformVariables.flyMachineId}</Text>
-        )}
+        {vercelRegion && <Text size="xs">Vercel Region: {regions[vercelRegion]}</Text>}
+        {flyAppName && <Text size="xs">Fly.io App Name: {flyAppName}</Text>}
+        {flyRegion && <Text size="xs">Fly.io Region: {flyRegion}</Text>}{" "}
+        {flyMachineId && <Text size="xs">Fly.io Machine ID: {flyMachineId}</Text>}
       </Stack>
     </Alert>
   );

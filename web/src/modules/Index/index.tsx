@@ -5,8 +5,14 @@ import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import Shortcuts from "./components/Shortcuts";
 import { useShortcutsStore } from "@store/shortcuts";
+import { ILoaderData_Index } from "app/routes/_index";
+import DevInterface from "./components/DevInterface";
 
-const PageIndex = () => {
+interface Props {
+  loaderData: ILoaderData_Index;
+}
+
+const PageIndex: React.FC<Props> = ({ loaderData }) => {
   const t = useTranslate();
 
   const displayShortcuts = useShortcutsStore((state) => state.displayShortcuts);
@@ -33,6 +39,8 @@ const PageIndex = () => {
         {displayShortcuts && <Shortcuts />}
       </Flex>
       {/* </Center> */}
+
+      <DevInterface loaderData={loaderData} />
     </Container>
   );
 };

@@ -40,9 +40,11 @@ const Footer = () => {
           <Text size="sm">Docs</Text>
         </RemixLink>
 
-        <RemixLink to="/privacy" prefetch="intent">
-          <Text size="sm">Privacy</Text>
-        </RemixLink>
+        {process.env.IS_SELF_HOST === "0" ? (
+          <RemixLink to="/privacy" prefetch="intent">
+            <Text size="sm">Privacy</Text>
+          </RemixLink>
+        ) : null}
 
         <RemixLink to="/changelog" prefetch="intent">
           <Text size="sm">Changelog</Text>

@@ -95,17 +95,17 @@ const DocsSearchInstantAnswer = () => {
         <IAEquation query="6 * ( 2 + 7 )" />
       </Box>
 
-      <DocsTitle>6. Lyrics</DocsTitle>
+      {/* <DocsTitle>6. Lyrics</DocsTitle>
       <Box className={classes.search_box}>
         <IALyrics initialQ="rick astley never gonna give you up" />
-      </Box>
+      </Box> */}
 
-      <DocsTitle>7. Password</DocsTitle>
+      <DocsTitle>6. Password</DocsTitle>
       <Box className={classes.search_box}>
         <IAPassword />
       </Box>
 
-      <DocsTitle>8. Random number generator</DocsTitle>
+      <DocsTitle>7. Random number generator</DocsTitle>
       <Box className={classes.search_box}>
         <IARNG />
       </Box>

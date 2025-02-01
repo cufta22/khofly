@@ -12,10 +12,14 @@ import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
 import NProgress from "@module/NProgress";
 import { useSearchStore } from "@store/search";
-import DevInterface from "./DevInterface";
 import useInstanceInit from "./use-instance-init";
 import useTitleQuery from "./use-title-query";
-import { useLocation, useRouteError, useRouteLoaderData, useSearchParams } from "react-router";
+import {
+  useLocation,
+  useRouteError,
+  useRouteLoaderData,
+  useSearchParams,
+} from "react-router";
 import { useClientServerState } from "@store/client-server";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
@@ -66,8 +70,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
       <Notifications />
 
       <NProgress />
-
-      <DevInterface />
 
       <AppShell
         header={{

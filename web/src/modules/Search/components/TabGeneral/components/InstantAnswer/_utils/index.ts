@@ -1,9 +1,6 @@
 import { UnitsType } from "../components/Unit";
 import { KEYWORDS_CURRENCY } from "./keywords_currency";
-import {
-  KEYWORDS_UNITS_GENERAL,
-  KEYWORDS_UNITS_ALL_MAP,
-} from "./keywords_units";
+import { KEYWORDS_UNITS_GENERAL, KEYWORDS_UNITS_ALL_MAP } from "./keywords_units";
 
 // -----------------------------------------------------------------------------------
 // General handler
@@ -98,9 +95,8 @@ export const shouldDisplayCurrency = (query: string) => {
   if (currencyArray.includes(query)) sdCurr = true;
 
   if (
-    query?.includes("to") &&
-    currencyArray.includes(currency1.toLocaleLowerCase()) &&
-    currencyArray.includes(currency2.toLocaleLowerCase())
+    (query?.includes("to") && currencyArray.includes(currency1?.toLocaleLowerCase())) ||
+    currencyArray.includes(currency2?.toLocaleLowerCase())
   ) {
     sdCurr = true;
   }

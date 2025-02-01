@@ -35,15 +35,12 @@ const PagePrivacy = () => {
         </Flex>
 
         <Text>
-          TL;DR Khofly doesn't track you, it doesn't save or share any of your
-          data, search or browsing history.
+          TL;DR Khofly doesn't track you, it doesn't save or share any of your data,
+          search or browsing history.
         </Text>
 
         <Flex mt="xl" mb="sm" align="center">
-          <IconCookie
-            style={getIconStyle(32)}
-            color={theme.colors.yellow["5"]}
-          />
+          <IconCookie style={getIconStyle(32)} color={theme.colors.yellow["5"]} />
 
           <Text fz={26} fw={600} ml="xs">
             Cookies
@@ -51,11 +48,11 @@ const PagePrivacy = () => {
         </Flex>
 
         <Text>
-          Cookies are used only to store user preferrences like selected
-          language, color scheme of the app, etc. No personal data is stored and
-          no 3rd party tracking ( or any ) cookies are ever used. You can check
-          this in DevTools ( Ctrl + Shift + I ) and go into Application ( for
-          Chrome ) or Storage ( for Firefox ) tab and find Cookies.
+          Cookies are used only to store user preferrences like selected language, color
+          scheme of the app, etc. No personal data is stored and no 3rd party tracking
+          cookies are ever used. You can check this in DevTools ( Ctrl + Shift + I ) and
+          go into Application ( for Chrome ) or Storage ( for Firefox ) tab and find
+          Cookies.
         </Text>
 
         <Flex mt="xl" mb="sm" align="center">
@@ -67,9 +64,9 @@ const PagePrivacy = () => {
         </Flex>
 
         <Text>
-          <strong>Cloudflare:</strong> Right now Khofly is hosted on Cloudflare
-          Pages, this means that Cloudflare has access to all incoming requests,
-          their privacy policy can be found{" "}
+          <strong>Cloudflare:</strong> Any Khofly requests are proxied through Cloudflare
+          DNS, this means that Cloudflare has access to all incoming requests, their
+          privacy policy can be found{" "}
           <Anchor
             href="https://www.cloudflare.com/privacypolicy/"
             target="_blank"
@@ -82,9 +79,8 @@ const PagePrivacy = () => {
         </Text>
 
         <Text component="span">
-          <strong>OpenStreetMaps:</strong> Public Nominatim API by
-          OpenStreetMaps is used for Geocoding data in maps, their privacy
-          policy can be found{" "}
+          <strong>OpenStreetMaps:</strong> Public Nominatim API by OpenStreetMaps is used
+          for Geocoding data in maps, their privacy policy can be found{" "}
           <Anchor
             href="https://osmfoundation.org/wiki/Privacy_Policy"
             target="_blank"
@@ -97,8 +93,8 @@ const PagePrivacy = () => {
         </Text>
 
         <Text component="span">
-          <strong>Hetzner:</strong> SearXNG instance that Khofly uses is hosted
-          on a Hetzner VPS, their privacy policy can be found{" "}
+          <strong>Hetzner:</strong> Web UI and SearXNG instance that Khofly uses are
+          hosted on Hetzner servers, their privacy policy can be found{" "}
           <Anchor
             href="https://www.hetzner.com/legal/privacy-policy/"
             target="_blank"
@@ -111,10 +107,9 @@ const PagePrivacy = () => {
         </Text>
 
         <Text component="span">
-          <strong>DuckDuckGo:</strong> If you decide to display website favicons
-          in settings this will send a request to DDGs servers, keep in mind
-          that this option is disabled by default, their privacy policy can be
-          found{" "}
+          <strong>DuckDuckGo:</strong> If you decide to display website favicons in
+          settings this will send a request to DDGs servers, keep in mind that this option
+          is disabled by default, their privacy policy can be found{" "}
           <Anchor
             href="https://duckduckgo.com/privacy"
             target="_blank"
@@ -151,13 +146,12 @@ const PagePrivacy = () => {
         </Text>
 
         <Text mt="md">
-          While you can generally trust public instances the only way to truly
-          own your data is to host it yourself. Khofly also provides you with
-          the ability to change default instances ( SearXNG, Nominatim, etc. )
-          to your own for extra flexibility but if you want to go a step further
-          you can also self-host Khofly itself. Guides for self-hosting can be
-          found either in the Khofly docs or the official website for each
-          service.
+          While you can generally trust public instances the only way to truly own your
+          data is to host it yourself. Khofly also provides you with the ability to change
+          default instances ( SearXNG, Nominatim, etc. ) to your own for extra flexibility
+          but if you want to go a step further you can also self-host Khofly itself.
+          Guides for self-hosting can be found either in the Khofly docs or the official
+          website for each service.
         </Text>
 
         <Flex mt="xl" mb="sm" align="center">
@@ -197,7 +191,7 @@ const PagePrivacy = () => {
           </Anchor>
         </Text>
 
-        <Text ta="right">Last updated: April 24, 2024</Text>
+        <Text ta="right">Last updated: February 1, 2025</Text>
       </Card>
     </Container>
   );

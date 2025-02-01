@@ -10,7 +10,7 @@ import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import SearchResultSkeleton from "./components/SearchResultSkeleton";
 import Suggestions from "../components/Suggestions";
 import Infobox from "../components/Infobox";
-import Lyricsbox from "../components/Lyricsbox";
+// import Lyricsbox from "../components/Lyricsbox";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
@@ -126,7 +126,7 @@ const TabGeneral = () => {
           data &&
           data?.[0]?.infoboxes?.length >= 1 && <Infobox {...data[0].infoboxes[0]} />}
 
-        <Lyricsbox />
+        {/* <Lyricsbox /> */}
 
         {!isLoading &&
           !isValidating &&
