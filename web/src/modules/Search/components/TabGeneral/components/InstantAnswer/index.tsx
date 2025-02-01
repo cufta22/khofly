@@ -3,6 +3,8 @@ import {
   shouldDisplayDownloader,
   shouldDisplayEquation,
   shouldDisplayIA,
+  shouldDisplayIAExact,
+  shouldDisplayTimeIn,
   shouldDisplayUnits,
 } from "./_utils";
 import { useSettingsStore } from "@store/settings";
@@ -18,15 +20,18 @@ import IAEquation from "./components/Equation";
 
 import IANeofetch from "./_commands/Neofetch";
 
-import SharedCurrencyUnit from "./_shared/SharedCurrencyUnit";
-import SharedStopwatchTimer from "./_shared/SharedStopwatchTimer";
+import SharedConverter from "./_shared/SharedConverter";
+import SharedClock from "./_shared/SharedClock";
+import SharedGlobalTime from "./_shared/SharedGlobalTime";
+
 import { useResponsive } from "@hooks/use-responsive";
+
 import IARNG from "./components/RNG";
 import IADownloader from "./components/Downloader";
 import useSearchQuery from "@hooks/use-search-query";
 
 const InstantAnswer = () => {
-  const isXl = useResponsive("min", "lg", true);
+  // const isXl = useResponsive("min", "lg", true);
 
   const useInstantAnswers = useSettingsStore((state) => state.useInstantAnswers);
 
@@ -36,17 +41,17 @@ const InstantAnswer = () => {
   if (!useInstantAnswers) return null;
 
   // Instant answer - Calculator WIP
-  if (shouldDisplayIA(q, ["calculator", "calc"])) return <IACalculator />;
+  if (shouldDisplayIAExact(q, ["calculator", "calc"])) return <IACalculator />;
 
   // Instant answer - Calendar
-  if (shouldDisplayIA(q, ["calendar", "cal"])) return <IACalendar />;
+  if (shouldDisplayIAExact(q, ["calendar", "cal"])) return <IACalendar />;
 
   // Instant answer - Coin flip
-  if (shouldDisplayIA(q, ["coinflip", "coin flip"])) return <IACoinFlip />;
+  if (shouldDisplayIAExact(q, ["coinflip", "coin flip"])) return <IACoinFlip />;
 
   // Instant answer - Currency convertor
   const { sdCurr, ...restCurr } = shouldDisplayCurrency(q);
-  if (sdCurr) return <SharedCurrencyUnit type="currency" {...restCurr} />;
+  if (sdCurr) return <SharedConverter type="currency" {...restCurr} />;
 
   // Instant answer - Downloader
   if (shouldDisplayDownloader(q)) return <IADownloader />;
@@ -58,25 +63,28 @@ const InstantAnswer = () => {
   // if (shouldDisplayIA(q, ["lyrics"]) && !isXl) return <IALyrics />;
 
   // Instant answer - Password
-  if (shouldDisplayIA(q, ["password"])) return <IAPassword />;
+  if (shouldDisplayIAExact(q, ["password"])) return <IAPassword />;
 
   // Instant answer - Password
-  if (shouldDisplayIA(q, ["rng", "random number", "random number generator"]))
+  if (shouldDisplayIAExact(q, ["rng", "random number", "random number generator"]))
     return <IARNG />;
 
   // Instant answer - Stopwatch
-  if (shouldDisplayIA(q, ["stopwatch"])) return <SharedStopwatchTimer type="stopwatch" />;
+  if (shouldDisplayIAExact(q, ["stopwatch"])) return <SharedClock type="stopwatch" />;
+
+  // Instant answer - Time In
+  const { sdTimeIn, location } = shouldDisplayTimeIn(q);
+  if (sdTimeIn) return <SharedGlobalTime type="time_in" location={location} />;
 
   // Instant answer - Timer WIP
-  if (shouldDisplayIA(q, ["timer", "alarm"]))
-    return <SharedStopwatchTimer type="timer" />;
+  if (shouldDisplayIAExact(q, ["timer", "alarm"])) return <SharedClock type="timer" />;
 
   // Instant answer - Unit convertor
   const { sdUnit, ...restUnit } = shouldDisplayUnits(q);
-  if (sdUnit) return <SharedCurrencyUnit type="unit" {...restUnit} />;
+  if (sdUnit) return <SharedConverter type="unit" {...restUnit} />;
 
   // Instant answer - UUID
-  if (shouldDisplayIA(q, ["uuid"])) return <IAUUID />;
+  if (shouldDisplayIAExact(q, ["uuid"])) return <IAUUID />;
 
   // Instant answer - Weather by OpenWeather
   if (shouldDisplayIA(q, ["weather", "forecast"])) return <IAWeather />;

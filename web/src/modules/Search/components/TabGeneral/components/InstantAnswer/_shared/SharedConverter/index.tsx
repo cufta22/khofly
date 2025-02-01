@@ -18,7 +18,7 @@ interface Props {
   currency2?: string;
 }
 
-const SharedCurrencyUnit: React.FC<Props> = ({
+const SharedConverter: React.FC<Props> = ({
   type,
   currency1,
   currency2,
@@ -34,10 +34,7 @@ const SharedCurrencyUnit: React.FC<Props> = ({
         activeTab === "currency" ? (
           <Text size="sm" c="dimmed">
             Data provided by{" "}
-            <Anchor
-              href="https://openexchangerates.com/"
-              rel="noreferrer noopener"
-            >
+            <Anchor href="https://openexchangerates.com/" rel="noreferrer noopener">
               <Text component="span" c="blue.4">
                 Open Exchange Rates
               </Text>
@@ -52,10 +49,7 @@ const SharedCurrencyUnit: React.FC<Props> = ({
         mt={-16}
       >
         <Tabs.List grow mb="lg">
-          <Tabs.Tab
-            value="currency"
-            leftSection={<IconCash style={getIconStyle(20)} />}
-          >
+          <Tabs.Tab value="currency" leftSection={<IconCash style={getIconStyle(20)} />}>
             Currency
           </Tabs.Tab>
           <Tabs.Tab
@@ -87,4 +81,4 @@ const SharedCurrencyUnit: React.FC<Props> = ({
   );
 };
 
-export default SharedCurrencyUnit;
+export default SharedConverter;

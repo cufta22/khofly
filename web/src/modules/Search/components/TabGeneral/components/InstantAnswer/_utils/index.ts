@@ -16,6 +16,16 @@ export const shouldDisplayIA = (query: string, keywords: string[]) => {
   return shouldDisplay;
 };
 
+export const shouldDisplayIAExact = (query: string, keywords: string[]) => {
+  let shouldDisplay = false;
+
+  keywords.map((val) => {
+    if (query?.toLowerCase() === val.toLocaleLowerCase()) shouldDisplay = true;
+  });
+
+  return shouldDisplay;
+};
+
 // -----------------------------------------------------------------------------------
 // Units handler
 // -----------------------------------------------------------------------------------
@@ -87,6 +97,7 @@ export const shouldDisplayCurrency = (query: string) => {
   const currency2 = query.split(" ")[2]?.toLocaleLowerCase();
 
   let sdCurr = false;
+
   const currencyArray = Object.keys(KEYWORDS_CURRENCY).map((val) =>
     val.toLocaleLowerCase()
   );
@@ -130,4 +141,22 @@ export const shouldDisplayDownloader = (query: string) => {
   });
 
   return shouldDisplay;
+};
+
+// -----------------------------------------------------------------------------------
+// Time In handler
+// -----------------------------------------------------------------------------------
+
+export const shouldDisplayTimeIn = (query: string) => {
+  const location = query.split("in")?.[1]?.toLocaleLowerCase()?.trimStart() || "";
+
+  let sdTimeIn = false;
+
+  // Display time in if query contains
+  if (query.includes("time in")) sdTimeIn = true;
+
+  return {
+    sdTimeIn,
+    location,
+  };
 };
