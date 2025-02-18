@@ -39,6 +39,24 @@
           "tokyo_night": "Tokyo Night"
         },
 
+        "select_primary_color": "Primary color select",
+        "select_primary_color_options": {
+          "dark": "Dark",
+          "gray": "Gray",
+          "red": "Red",
+          "pink": "Pink",
+          "grape": "Grape",
+          "violet": "Violet",
+          "indigo": "Indigo",
+          "blue": "Blue",
+          "cyan": "Cyan",
+          "teal": "Teal",
+          "green": "Green",
+          "lime": "Lime",
+          "yellow": "Yellow",
+          "orange": "Orange"
+        },
+
         "select_color": "Color scheme",
         "select_color_options": {
           "light": "Light",

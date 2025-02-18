@@ -1,5 +1,5 @@
 import { NAVBAR_DATA } from "@utils/resources/navbarData";
-import { LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 
 const docsLinks = NAVBAR_DATA.flatMap((group) => group.links);
 
@@ -52,7 +52,7 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-    `
+    `,
     )}
 </urlset>
 `;

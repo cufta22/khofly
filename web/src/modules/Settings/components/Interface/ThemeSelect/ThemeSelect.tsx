@@ -1,7 +1,7 @@
-import { Combobox, Image, InputBase, useCombobox } from "@mantine/core";
+import { Combobox, Flex, Image, InputBase, useCombobox } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-import { DotNestedKeys, IAppTheme, ITranslations } from "@ts/global.types";
+import type { DotNestedKeys, IAppTheme, ITranslations } from "@ts/global.types";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/cookies";
@@ -72,7 +72,7 @@ const ThemeSelect = () => {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
       domain: process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
-      secure: process.env.HOST?.includes("https") ? true : false,
+      secure: process.env.HOST?.includes("https"),
       sameSite: "Strict",
     });
 
@@ -81,7 +81,11 @@ const ThemeSelect = () => {
 
   const items = THEME_DATA.map((item) => (
     <Combobox.Option value={item.value} key={item.value}>
-      {t(item.label)}
+      <Flex align="center" gap="sm">
+        <Image src={item.image} w={16} h={16} alt={`${item.label} logo`} />
+
+        {t(item.label)}
+      </Flex>
     </Combobox.Option>
   ));
 
@@ -90,9 +94,7 @@ const ThemeSelect = () => {
       <Combobox.Target>
         <InputBase
           w={200}
-          leftSection={
-            <Image src={selected.image} w={20} h={20} alt={selected.label + " logo"} />
-          }
+          leftSection={<Image src={selected.image} w={20} h={20} alt={`${selected.label} logo`} />}
           leftSectionWidth={25 + 20}
           leftSectionProps={{
             onClick: () => combobox.openDropdown(),

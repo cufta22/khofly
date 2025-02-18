@@ -79,7 +79,7 @@ const GeneralMedia = () => {
             return res?.results.slice(0, 8).map((img: ISearXNGResultsVideos["results"][0], i: number) => (
               <Grid.Col key={i} span={1}>
                 <Image
-                  className={classes.general_media_img}
+                  className={classes.general_media_vid}
                   h={150}
                   w="100%"
                   radius="xs"

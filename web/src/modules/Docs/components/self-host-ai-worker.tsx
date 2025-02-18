@@ -8,6 +8,7 @@ import DocsText from "./common/DocsText";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
 import RemixLink from "@components/RemixLink";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const CODE_WORKER = `
 const corsHeaders = {
@@ -58,6 +59,8 @@ export default {
   `;
 
 const DocsSelfHostAiWorker = () => {
+  const linkTextColor = usePrimaryColor(4);
+
   return (
     <Container size="lg" p="xl" pb={100}>
       <DocsTitle>Setup guide</DocsTitle>
@@ -67,12 +70,13 @@ const DocsSelfHostAiWorker = () => {
       </DocsText>
 
       <DocsText>
-        2. In your dashboard go to <strong>Compute (Workers)</strong> and then <strong>Workers & Pages</strong>.
+        2. In your dashboard go to <strong>Compute (Workers)</strong> and then{" "}
+        <strong>Workers & Pages</strong>.
       </DocsText>
 
       <DocsText>
-        3. Click <strong>Create</strong> button, find <strong>Start from a template</strong> and pick{" "}
-        <strong>LLM App</strong>.
+        3. Click <strong>Create</strong> button, find <strong>Start from a template</strong> and
+        pick <strong>LLM App</strong>.
       </DocsText>
 
       <DocsText>
@@ -90,9 +94,9 @@ const DocsSelfHostAiWorker = () => {
       <DocsText>7. Paste the code below in the editor.</DocsText>
 
       <DocsText>
-        7.1. Optional, before you deploy you can change the model used to whichever you want, full list{" "}
-        <DocsLink href="https://developers.cloudflare.com/workers-ai/models/" label="here" />. You can change this later
-        whenever you want by editing worker code and redeploying.
+        7.1. Optional, before you deploy you can change the model used to whichever you want, full
+        list <DocsLink href="https://developers.cloudflare.com/workers-ai/models/" label="here" />.
+        You can change this later whenever you want by editing worker code and redeploying.
       </DocsText>
 
       <DocsText>
@@ -100,17 +104,20 @@ const DocsSelfHostAiWorker = () => {
       </DocsText>
 
       <DocsText>
-        9. In the <strong>Settings</strong> tab under <strong>Domains & Routes</strong> copy the active worker domain (
-        should be smth like <strong>name.email.workers.dev</strong> ) and paste in under{" "}
-        <Text component="span" c="blue.4">
-          <RemixLink to="/settings?tab=instances">/settings</RemixLink>
-        </Text>{" "}
+        9. In the <strong>Settings</strong> tab under <strong>Domains & Routes</strong> copy the
+        active worker domain ( should be smth like <strong>name.email.workers.dev</strong> ) and
+        paste in under{" "}
+        <RemixLink to="/settings?tab=instances">
+          <Text component="span" c={linkTextColor}>
+            /settings
+          </Text>
+        </RemixLink>{" "}
         into AI Worker.
       </DocsText>
 
       <DocsText>
-        10. That's it, you can now play around with different models and redeploy any change to the worker that you want
-        as long as it stays a GET request with ?prompt search param.
+        10. That's it, you can now play around with different models and redeploy any change to the
+        worker that you want as long as it stays a GET request with ?prompt search param.
       </DocsText>
 
       <DocsSubtitle>AI Worker Code</DocsSubtitle>

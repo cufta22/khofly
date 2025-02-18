@@ -8,11 +8,14 @@ import { useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
 import { useEffect } from "react";
 import RemixLink from "@components/RemixLink";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const SettingsAIWorker = () => {
   const hydrated = useInstanceStore((state) => state.hydrated);
   const domain = useInstanceStore((state) => state.workerDomain);
   const setDomain = useInstanceStore((state) => state.setWorkerDomain);
+
+  const linkTextColor = usePrimaryColor(4);
 
   const form = useForm({
     initialValues: {
@@ -57,25 +60,34 @@ const SettingsAIWorker = () => {
           />
 
           <Text size="sm">
-            <Text component="span" c="blue.4">
-              <Anchor
-                href="https://developers.cloudflare.com/workers-ai/get-started/dashboard/"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
+            <Anchor
+              href="https://developers.cloudflare.com/workers-ai/get-started/dashboard/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Text component="span" c={linkTextColor}>
                 Cloudflare AI Workers
-              </Anchor>
-            </Text>{" "}
-            are used to display AI answers in /search. Click read more below to learn how to set up your own worker.
+              </Text>
+            </Anchor>{" "}
+            are used to display AI answers in /search. Click read more below to learn how to set up
+            your own worker.
           </Text>
         </Stack>
 
-        <Flex align="center" justify="space-between" py="sm" px="lg" className={classes.settings_footer}>
+        <Flex
+          align="center"
+          justify="space-between"
+          py="sm"
+          px="lg"
+          className={classes.settings_footer}
+        >
           <Text size="sm" c="dimmed">
             Change this to your own url for better privacy & less load for default instance.{" "}
-            <Text component="span" c="blue">
-              <RemixLink to={"/docs/self-host-ai-worker"}>Read more</RemixLink>
-            </Text>
+            <RemixLink to={"/docs/self-host-ai-worker"}>
+              <Text component="span" c={linkTextColor}>
+                Read more
+              </Text>
+            </RemixLink>
           </Text>
 
           <Button type="submit">Save</Button>

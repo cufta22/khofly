@@ -6,17 +6,16 @@ import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import SearchResultSkeleton from "./components/SearchResultSkeleton";
 import Suggestions from "../components/Suggestions";
 import Infobox from "../components/Infobox";
-// import Lyricsbox from "../components/Lyricsbox";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
 import GeneralMedia from "./components/GeneralMedia";
 import { useSettingsStore } from "@store/settings";
 import AIAnswer from "./components/AIAnswer";
+import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
 
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
@@ -35,6 +34,7 @@ const TabGeneral = () => {
   }, [hydratedEngines]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
+  console.log(data);
 
   return (
     <Flex className={classes.tab_general} align="flex-start">
@@ -46,6 +46,8 @@ const TabGeneral = () => {
         <InstantAnswer />
 
         {data?.map((res, i) => {
+          if (typeof res === "string") return;
+
           if (!res?.results) return;
           return (
             <Stack gap="lg" key={i}>
@@ -103,12 +105,7 @@ const TabGeneral = () => {
           data?.length >= 1 &&
           data?.[0]?.results?.length >= 1 &&
           !isRateLimit && (
-            <Button
-              variant="filled"
-              onClick={() => setSize(size + 1)}
-              size="md"
-              color="dark.5"
-            >
+            <Button variant="filled" onClick={() => setSize(size + 1)} size="md" color="dark.5">
               Load more
             </Button>
           )}

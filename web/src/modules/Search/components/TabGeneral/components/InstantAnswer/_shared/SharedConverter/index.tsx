@@ -6,6 +6,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { IAWrapper } from "../../wrapper";
 import IAUnit, { UnitsType } from "../../components/Unit";
 import IACurrency from "../../components/Currency";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 interface Props {
   type: "currency" | "unit";
@@ -28,6 +29,8 @@ const SharedConverter: React.FC<Props> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<"currency" | "unit">(type);
 
+  const linkTextColor = usePrimaryColor(4);
+
   return (
     <IAWrapper
       label={
@@ -35,7 +38,7 @@ const SharedConverter: React.FC<Props> = ({
           <Text size="sm" c="dimmed">
             Data provided by{" "}
             <Anchor href="https://openexchangerates.com/" rel="noreferrer noopener">
-              <Text component="span" c="blue.4">
+              <Text component="span" c={linkTextColor}>
                 Open Exchange Rates
               </Text>
             </Anchor>
@@ -52,10 +55,7 @@ const SharedConverter: React.FC<Props> = ({
           <Tabs.Tab value="currency" leftSection={<IconCash style={getIconStyle(20)} />}>
             Currency
           </Tabs.Tab>
-          <Tabs.Tab
-            value="unit"
-            leftSection={<IconRulerMeasure style={getIconStyle(20)} />}
-          >
+          <Tabs.Tab value="unit" leftSection={<IconRulerMeasure style={getIconStyle(20)} />}>
             Unit
           </Tabs.Tab>
         </Tabs.List>

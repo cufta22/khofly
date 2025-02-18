@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 
 export const loader = ({ context }: LoaderFunctionArgs) => {
   // handle "GET" request

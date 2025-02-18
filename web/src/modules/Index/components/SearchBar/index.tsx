@@ -1,4 +1,4 @@
-import { ActionIcon, Autocomplete, Flex, Loader, rem } from "@mantine/core";
+import { ActionIcon, Autocomplete, Flex, Loader, rem, useMantineTheme } from "@mantine/core";
 import { IconArrowRight, IconKeyboard, IconSearch } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
@@ -17,6 +17,8 @@ import { useNavigate } from "react-router";
 
 const SearchBar = () => {
   const t = useTranslate();
+
+  const theme = useMantineTheme();
 
   const useAutocomplete = useSettingsStore((state) => state.useAutocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
@@ -99,7 +101,7 @@ const SearchBar = () => {
             <ActionIcon
               size={isXs ? 32 : 38}
               radius="xl"
-              color={"blue"}
+              color={theme.colors[theme.primaryColor][6]}
               variant="filled"
               onClick={() => handleSearch(q)}
               disabled={!q}
@@ -126,9 +128,7 @@ const SearchBar = () => {
         data-protonpass-form="false"
       />
 
-      {openKeyboard && (
-        <VirtualKeyboard value={q} onChange={setQ} toggle={toggleKeyboard} />
-      )}
+      {openKeyboard && <VirtualKeyboard value={q} onChange={setQ} toggle={toggleKeyboard} />}
     </>
   );
 };

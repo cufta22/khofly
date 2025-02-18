@@ -1,25 +1,14 @@
 import { IAWrapper } from "../../wrapper";
-import {
-  ActionIcon,
-  Anchor,
-  Center,
-  Flex,
-  LoadingOverlay,
-  NumberInput,
-  Paper,
-  Select,
-  Text,
-} from "@mantine/core";
+import { Anchor, Center, Flex, LoadingOverlay, Paper, Select, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-import { IconSwitchHorizontal } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { KEYWORDS_CURRENCY } from "../../_utils/keywords_currency";
 import { useTimeApiTimezoneSWR } from "src/api/timeapi/use-timeapi-query";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { findTimeZone, TIME_ZONES } from "./utils";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 dayjs.extend(utc);
 
 interface Props {
@@ -28,9 +17,11 @@ interface Props {
 }
 
 const IATimeIn: React.FC<Props> = ({ withIAWrapper, location }) => {
+  const { data, isMutating, trigger } = useTimeApiTimezoneSWR();
+
   const [input, setInput] = useState("");
 
-  const { data, isMutating, trigger } = useTimeApiTimezoneSWR();
+  const linkTextColor = usePrimaryColor(4);
 
   const handleChangeSelect = (val: string) => {
     if (val === input) return;
@@ -88,7 +79,7 @@ const IATimeIn: React.FC<Props> = ({ withIAWrapper, location }) => {
           <Text size="sm" c="dimmed">
             Data provided by{" "}
             <Anchor href="https://timeapi.io/" rel="noreferrer noopener">
-              <Text component="span" c="blue.4">
+              <Text component="span" c={linkTextColor}>
                 TimeAPI
               </Text>
             </Anchor>

@@ -1,7 +1,13 @@
 import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconApps, IconBrush, IconLink, IconRadar, IconSettings2 } from "@tabler/icons-react";
+import {
+  IconApps,
+  IconBrush,
+  IconLink,
+  IconRadar,
+  IconSettings2,
+} from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
 import SettingsInterface from "./components/Interface";
@@ -12,6 +18,7 @@ import { useState } from "react";
 import SettingsShortcuts from "./components/Shortcuts";
 import { useNavigate, useSearchParams } from "react-router";
 import SettingsAIWorker from "./components/AIWorker";
+import SettingsThemeEditor from "./components/ThemeEditor";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -22,6 +29,8 @@ const PageSettings = () => {
   // Keep local state so app feels faster
   const [stateTab, setStateTab] = useState(paramTab || "general");
 
+  const [displayThemeEdit, setDisplayThemeEdit] = useState(false);
+
   const handleChangeTab = (next: string | null) => {
     if (!next) return;
 
@@ -31,12 +40,23 @@ const PageSettings = () => {
 
   return (
     <Container className={classes.settings_page} size="lg" pt={40} pb={80}>
-      <Tabs variant="default" value={stateTab} onChange={handleChangeTab} keepMounted={false}>
+      <Tabs
+        variant="default"
+        value={stateTab}
+        onChange={handleChangeTab}
+        keepMounted={false}
+      >
         <Tabs.List mb="xl" className={classes.tabs_scroll}>
-          <Tabs.Tab value="general" leftSection={<IconSettings2 style={getIconStyle(20)} />}>
+          <Tabs.Tab
+            value="general"
+            leftSection={<IconSettings2 style={getIconStyle(20)} />}
+          >
             General
           </Tabs.Tab>
-          <Tabs.Tab value="interface" leftSection={<IconBrush style={getIconStyle(20)} />}>
+          <Tabs.Tab
+            value="interface"
+            leftSection={<IconBrush style={getIconStyle(20)} />}
+          >
             Interface
           </Tabs.Tab>
           <Tabs.Tab value="instances" leftSection={<IconLink style={getIconStyle(20)} />}>
@@ -51,7 +71,10 @@ const PageSettings = () => {
         </Tabs.List>
 
         <Tabs.Panel value="interface">
-          <SettingsInterface />
+          <>
+            <SettingsInterface setDisplayThemeEdit={setDisplayThemeEdit} />
+            {displayThemeEdit && <SettingsThemeEditor />}
+          </>
         </Tabs.Panel>
 
         <Tabs.Panel value="general">

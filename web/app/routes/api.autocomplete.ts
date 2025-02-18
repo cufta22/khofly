@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from "react-router";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
@@ -24,7 +24,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   }
 
   if (["qwant"].includes(autocompleteEngine)) {
-    formattedData = data?.data?.items?.map((item: { value: string }) => item.value)?.slice(0, 5) || [];
+    formattedData =
+      data?.data?.items?.map((item: { value: string }) => item.value)?.slice(0, 5) || [];
   }
 
   return new Response(JSON.stringify(formattedData), {

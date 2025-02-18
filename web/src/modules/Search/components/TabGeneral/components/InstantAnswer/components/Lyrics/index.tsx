@@ -6,6 +6,7 @@ import classes from "./styles.module.scss";
 import { IAWrapper } from "../../wrapper";
 import { useInstanceStore } from "@store/instance";
 import useSearchQuery from "@hooks/use-search-query";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 interface Props {
   initialQ?: string;
@@ -17,6 +18,8 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
   const hydrated = useInstanceStore((state) => state.hydrated);
 
   const q = useSearchQuery();
+
+  const linkTextColor = usePrimaryColor(4);
 
   useEffect(() => {
     // Trigger for initialQ ( for Docs )
@@ -33,7 +36,7 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
         <Text size="sm" c="dimmed">
           Lyrics provided by{" "}
           <Anchor href="https://genius.com" rel="noreferrer noopener">
-            <Text component="span" c="blue.4">
+            <Text component="span" c={linkTextColor}>
               Genius
             </Text>
           </Anchor>

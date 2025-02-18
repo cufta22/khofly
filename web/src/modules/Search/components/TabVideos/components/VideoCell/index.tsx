@@ -1,6 +1,6 @@
 import { Anchor, Flex, Image, Text } from "@mantine/core";
-import { ISearXNGResultsVideos } from "@ts/searxng.types";
-import React, { useEffect, useState } from "react";
+import type { ISearXNGResultsVideos } from "@ts/searxng.types";
+import { useEffect, useState } from "react";
 import classes from "./styles.module.scss";
 import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
@@ -25,7 +25,13 @@ const VideoCell: React.FC<Props> = ({ videoData }) => {
     if (inViewport) setVisible(true);
   }, [inViewport]);
 
-  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs ? "_blank" : openInNewTab ? "_blank" : "_self";
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+      ? "_blank"
+      : "_self";
+
+  if (!title) return null;
 
   return (
     <Anchor href={url} target={anchorTarget} rel="noreferrer noopener">

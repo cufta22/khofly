@@ -4,7 +4,7 @@ import { ActionIcon, Alert, Anchor, Drawer, Flex, Image, ScrollArea, Text } from
 import { useClipboard } from "@mantine/hooks";
 import { useSettingsStore } from "@store/settings";
 import { IconCopy, IconDownload, IconExternalLink, IconInfoCircle } from "@tabler/icons-react";
-import { ISearXNGResultsImages } from "@ts/searxng.types";
+import type { ISearXNGResultsImages } from "@ts/searxng.types";
 import classes from "./styles.module.scss";
 
 interface Props {
@@ -25,7 +25,11 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
   };
 
   const isXs = useResponsive("max", "xs");
-  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs ? "_blank" : openInNewTab ? "_blank" : "_self";
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+      ? "_blank"
+      : "_self";
 
   return (
     <Drawer
@@ -49,9 +53,11 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
         {viewImage?.title}
       </Text>
 
-      <Text size="md">
-        {viewImage?.parsed_url[0]}://{viewImage?.parsed_url[1]}
-      </Text>
+      {viewImage?.parsed_url && viewImage?.parsed_url.length > 2 ? (
+        <Text size="xs" lineClamp={1} mt={30} className={classes.url_text}>
+          {viewImage?.parsed_url[0]}://{viewImage?.parsed_url[1]}
+        </Text>
+      ) : null}
 
       <Image src={viewImage?.img_src} fit="contain" mt="lg" radius="md" />
 
@@ -81,7 +87,12 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
         </Anchor>
 
         <Flex direction="column" align="center" justify="center">
-          <ActionIcon variant="light" aria-label="Settings" size="xl" onClick={handleCopyToClipboard}>
+          <ActionIcon
+            variant="light"
+            aria-label="Settings"
+            size="xl"
+            onClick={handleCopyToClipboard}
+          >
             <IconCopy style={{ width: "60%", height: "60%" }} stroke={1.5} />
           </ActionIcon>
 

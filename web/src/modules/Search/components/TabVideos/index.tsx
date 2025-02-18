@@ -1,5 +1,5 @@
 import { Button, Center, Flex, SimpleGrid, Text } from "@mantine/core";
-import { ISearXNGResultsVideos } from "@ts/searxng.types";
+import type { ISearXNGResultsVideos } from "@ts/searxng.types";
 import { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import VideoCell from "./components/VideoCell";
@@ -12,7 +12,8 @@ import { useEnginesStore } from "@store/engines";
 const TabVideos = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, setSize, size, mutate } = useSearXNGSWR<ISearXNGResultsVideos>();
+  const { data, error, isLoading, isValidating, setSize, size, mutate } =
+    useSearXNGSWR<ISearXNGResultsVideos>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance

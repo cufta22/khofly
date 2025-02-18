@@ -1,6 +1,6 @@
 import { Flex, Image, Text } from "@mantine/core";
-import { ISearXNGResultsImages } from "@ts/searxng.types";
-import React, { useEffect, useState } from "react";
+import type { ISearXNGResultsImages } from "@ts/searxng.types";
+import { useEffect, useState } from "react";
 import classes from "./styles.module.scss";
 import { useInViewport } from "@mantine/hooks";
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
-  const { thumbnail_src, resolution, parsed_url, title } = imageData;
+  const { thumbnail_src, img_src, resolution, parsed_url, title } = imageData;
 
   // Lazy load images
   const [visible, setVisible] = useState(false);
@@ -19,6 +19,8 @@ const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
   useEffect(() => {
     if (inViewport) setVisible(true);
   }, [inViewport]);
+
+  if (!title) return null;
 
   return (
     <Flex
@@ -35,7 +37,7 @@ const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
       >
         {visible ? (
           <Image
-            src={thumbnail_src}
+            src={thumbnail_src || img_src}
             width={200}
             height={220}
             alt={title}
@@ -49,19 +51,15 @@ const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
         </Text>
       </Flex>
 
-      <Text
-        component="span"
-        size="sm"
-        c="white"
-        mt={4}
-        className={classes.title_text}
-      >
+      <Text component="span" size="sm" c="white" mt={4} className={classes.title_text}>
         {title}
       </Text>
 
-      <Text size="xs" lineClamp={1} mt={30} className={classes.url_text}>
-        {parsed_url[0]}://{parsed_url[1]}
-      </Text>
+      {parsed_url && parsed_url.length > 2 ? (
+        <Text size="xs" lineClamp={1} mt={30} className={classes.url_text}>
+          {parsed_url[0]}://{parsed_url[1]}
+        </Text>
+      ) : null}
     </Flex>
   );
 };

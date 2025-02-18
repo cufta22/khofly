@@ -1,19 +1,14 @@
-import { Combobox, InputBase, useCombobox } from "@mantine/core";
+import { Combobox, Flex, InputBase, useCombobox } from "@mantine/core";
 
 import classes from "./styles.module.scss";
-import {
-  DotNestedKeys,
-  ILanguage,
-  ITranslations,
-  RootLoaderData,
-} from "@ts/global.types";
+import type { DotNestedKeys, ILanguage, ITranslations } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/cookies";
 
 import { useClientServerState } from "@store/client-server";
-import { FlagProps } from "@components/Icons/types";
+import type { FlagProps } from "@components/Icons/types";
 import { USFlag, DEFlag } from "@components/Icons/Flags";
 
 interface ILangData {
@@ -59,7 +54,7 @@ const LanguageSelect = () => {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
       path: "/",
       domain: process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
-      secure: process.env.HOST?.includes("https") ? true : false,
+      secure: process.env.HOST?.includes("https"),
       sameSite: "Strict",
     });
 
@@ -70,7 +65,11 @@ const LanguageSelect = () => {
 
   const items = LANG_DATA.map((item) => (
     <Combobox.Option value={item.value} key={item.value}>
-      {t(item.label)}
+      <Flex align="center" gap="sm">
+        <item.icon style={getIconStyle(22)} className={classes.flag_icon} radius={1} />
+
+        {t(item.label)}
+      </Flex>
     </Combobox.Option>
   ));
 
@@ -80,7 +79,7 @@ const LanguageSelect = () => {
         <InputBase
           w={200}
           leftSection={
-            <selected.icon style={getIconStyle(25)} className={classes.flag_icon} />
+            <selected.icon style={getIconStyle(25)} className={classes.flag_icon} radius={2} />
           }
           leftSectionWidth={27 + 20}
           leftSectionProps={{

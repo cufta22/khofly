@@ -4,27 +4,20 @@ import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useGeneralStore } from "@store/general";
 import { regions } from "./utils";
-import { ILoaderData_Index } from "app/routes/_index";
 
-interface Props {
-  loaderData: ILoaderData_Index;
-}
-
-const DevInterface: React.FC<Props> = ({ loaderData }) => {
+const DevInterface = () => {
   const theme = useMantineTheme();
 
-  const {
-    // Platform variables
-    nodeVersion,
-    // Vercel stuff
-    vercelRegion,
-    // Fly.io stuff
-    flyAppName,
-    flyRegion,
-    flyMachineId,
-    // Cloudflare stuff
-    // TODO: add cf stuff like region, etc. from context
-  } = loaderData;
+  // Platform variables
+  const nodeVersion = process.env.NODE_VERSION;
+
+  // Vercel stuff
+  const vercelRegion = process.env.VERCEL_REGION;
+
+  // Fly.io stuff
+  const flyAppName = process.env.FLY_APP_NAME;
+  const flyRegion = process.env.FLY_REGION;
+  const flyMachineId = process.env.FLY_MACHINE_ID;
 
   const devMode = useGeneralStore((state) => state.devMode);
 
@@ -47,7 +40,7 @@ const DevInterface: React.FC<Props> = ({ loaderData }) => {
         )}
         {vercelRegion && <Text size="xs">Vercel Region: {regions[vercelRegion]}</Text>}
         {flyAppName && <Text size="xs">Fly.io App Name: {flyAppName}</Text>}
-        {flyRegion && <Text size="xs">Fly.io Region: {flyRegion}</Text>}{" "}
+        {flyRegion && <Text size="xs">Fly.io Region: {flyRegion}</Text>}
         {flyMachineId && <Text size="xs">Fly.io Machine ID: {flyMachineId}</Text>}
       </Stack>
     </Alert>

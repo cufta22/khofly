@@ -19,7 +19,7 @@ const PageChangelog: React.FC<Props> = ({ loaderData }) => {
     );
 
   return (
-    <Container size="lg" py="xl" mt={40} mb={40}>
+    <Container size="lg" py="xl" pt={40} pb={40}>
       <Title ta="center" mt="md" mb="xl">
         {t("pages.changelog.title")}
       </Title>

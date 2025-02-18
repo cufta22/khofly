@@ -1,15 +1,10 @@
-import { FlagProps } from "./types";
+import type { FlagProps } from "./types";
 import clsx from "clsx";
 
 import classes from "./styles.module.scss";
 import { Box, getRadius, rem } from "@mantine/core";
 
-export const USFlag: React.FC<FlagProps> = ({
-  radius,
-  className,
-  size,
-  ...others
-}) => {
+export const USFlag: React.FC<FlagProps> = ({ radius, className, size, ...others }) => {
   return (
     <Box
       className={clsx(classes.flag, className)}
@@ -17,6 +12,7 @@ export const USFlag: React.FC<FlagProps> = ({
       {...others}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 24">
+        <title>USFlag</title>
         <mask id="mantine-5ozt72l3q" fill="#fff">
           <path fillRule="evenodd" d="M0 0h32v24H0z" />
         </mask>
@@ -37,12 +33,7 @@ export const USFlag: React.FC<FlagProps> = ({
   );
 };
 
-export const DEFlag: React.FC<FlagProps> = ({
-  radius,
-  className,
-  size,
-  ...others
-}) => {
+export const DEFlag: React.FC<FlagProps> = ({ radius, className, size, ...others }) => {
   return (
     <Box
       className={clsx(classes.flag, className)}
@@ -50,6 +41,7 @@ export const DEFlag: React.FC<FlagProps> = ({
       {...others}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 24">
+        <title>DEFlag</title>
         <mask id="mantine-3y10sj8mf" fill="#fff">
           <path fillRule="evenodd" d="M0 0h32v24H0z" />
         </mask>

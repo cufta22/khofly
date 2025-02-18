@@ -27,13 +27,14 @@ import { AreaChart } from "@mantine/charts";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 dayjs.extend(utc);
 
 const formatChartHr = (dt: number) => {
   const hr = dayjs.unix(dt).format("hh");
 
-  return parseInt(hr) >= 12 ? hr + "PM" : hr + "AM";
+  return Number.parseInt(hr) >= 12 ? `${hr} PM` : `${hr} AM`;
 };
 
 const IAWeather = () => {
@@ -45,6 +46,8 @@ const IAWeather = () => {
   const [unit, setUnit] = useState<"standard" | "metric" | "imperial">("metric");
   const [areaChart, setAreaChart] = useState<string>("temp");
   const [selectedData, setSelectedData] = useState<OpenWeatherDaily | null>(null);
+
+  const linkTextColor = usePrimaryColor(4);
 
   const { data, isLoading, mutate } = useWeatherSWR({
     lat: geolocation?.lat || location?.latitude,
@@ -72,7 +75,7 @@ const IAWeather = () => {
         <Text size="sm" c="dimmed">
           Data provided by{" "}
           <Anchor href="https://openweathermap.org" rel="noreferrer noopener">
-            <Text component="span" c="blue.4">
+            <Text component="span" c={linkTextColor}>
               OpenWeather
             </Text>
           </Anchor>
@@ -131,11 +134,9 @@ const IAWeather = () => {
                   selectedDataDay === dayjs.unix(data.current.dt).format("ddd")
                     ? `${Math.round(data?.current.temp)}${unit !== "standard" ? "°" : ""}`
                     : selectedData
-                    ? // Else pick user selected
-                      `${Math.round(selectedData?.temp.day)}${
-                        unit !== "standard" ? "°" : ""
-                      }`
-                    : ""
+                      ? // Else pick user selected
+                        `${Math.round(selectedData?.temp.day)}${unit !== "standard" ? "°" : ""}`
+                      : ""
                 }
               </Text>
 
@@ -204,8 +205,8 @@ const IAWeather = () => {
                   areaChart === "temp"
                     ? "yellow.5"
                     : areaChart === "humidity"
-                    ? "blue.5"
-                    : "cyan.4",
+                      ? "blue.5"
+                      : "cyan.4",
               },
               {
                 name: "weather",

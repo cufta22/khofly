@@ -1,5 +1,5 @@
 import PageChangelog from "@module/Changelog";
-import { Route } from "./+types/changelog";
+import type { Route } from "./+types/changelog";
 
 export interface ILoaderData_Changelog {
   data: string;
