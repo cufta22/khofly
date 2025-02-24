@@ -26,8 +26,9 @@ const PageIndex = () => {
         <Title className={classes.app_name} mb="sm">
           {process.env.IS_SELF_HOST === "0" ? t("_common.app_name") : process.env.APP_NAME}
         </Title>
-        <Text>test12345</Text>
+
         <SearchBar />
+
         {displayShortcuts && <Shortcuts />}
       </Flex>
       {/* </Center> */}
