@@ -6,6 +6,7 @@ reduce file sizes
 add all translations
 
 finish shortcuts
+
 remove sunset thing and find another lightweight lib for charts
 
 move meta to /meta & add meta for every page that needs
@@ -15,3 +16,5 @@ fix the lyrics api spam
 fix weather IA and move hourly to separate file
 
 Add X to close theme editor in settings
+
+Add argument to redeploy-web.sh so that we don't need to restart both staging and prod
