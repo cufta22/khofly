@@ -7,13 +7,13 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/cookies";
 import { useClientServerState } from "@store/client-server";
 
-interface ILangData {
+interface IThemeData {
   label: DotNestedKeys<ITranslations>;
   value: IAppTheme;
   image: string;
 }
 
-const THEME_DATA: ILangData[] = [
+const THEME_DATA: IThemeData[] = [
   {
     label: "pages.settings.interface.select_theme_options.mantine_old",
     value: "Mantine-Old",
@@ -26,19 +26,19 @@ const THEME_DATA: ILangData[] = [
   },
   {
     label: "pages.settings.interface.select_theme_options.catppuccin",
-    value: "Catppuccin-Mocha",
+    value: "Catppuccin",
     image: "/assets/catppuccin.png",
   },
-  // {
-  //   label: "pages.settings.interface.select_theme_options.tokyo_night",
-  //   value: "Tokyo-Night",
-  //   image: "/assets/rosepine.png",
-  // },
-  // {
-  //   label: "pages.settings.interface.select_theme_options.rosepine",
-  //   value: "Rose-Pine",
-  //   image: "/assets/rosepine.png",
-  // },
+  {
+    label: "pages.settings.interface.select_theme_options.tokyo_night",
+    value: "Tokyo-Night",
+    image: "/assets/tokyonight.png",
+  },
+  {
+    label: "pages.settings.interface.select_theme_options.rosepine",
+    value: "Rose-Pine",
+    image: "/assets/rosepine.png",
+  },
   // {
   //   label: "pages.settings.interface.select_theme_options.nord",
   //   value: "Nord",
@@ -55,7 +55,19 @@ const ThemeSelect = () => {
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const selected = THEME_DATA.find((l) => l.value === theme) || THEME_DATA[1];
+  const MOD_THEME_DATA: IThemeData[] =
+    theme === "Custom"
+      ? [
+          {
+            label: "pages.settings.interface.select_theme_options.custom",
+            value: "Custom",
+            image: "",
+          },
+          ...THEME_DATA,
+        ]
+      : [...THEME_DATA];
+
+  const selected = MOD_THEME_DATA.find((l) => l.value === theme) || MOD_THEME_DATA[1];
 
   const handleChange = (next: IAppTheme) => {
     // Don't update context for no reason
@@ -79,10 +91,10 @@ const ThemeSelect = () => {
     combobox.closeDropdown();
   };
 
-  const items = THEME_DATA.map((item) => (
+  const items = MOD_THEME_DATA.map((item) => (
     <Combobox.Option value={item.value} key={item.value}>
       <Flex align="center" gap="sm">
-        <Image src={item.image} w={16} h={16} alt={`${item.label} logo`} />
+        {item.image && <Image src={item.image} w={20} h={20} alt={`${item.label} logo`} />}
 
         {t(item.label)}
       </Flex>
@@ -94,7 +106,11 @@ const ThemeSelect = () => {
       <Combobox.Target>
         <InputBase
           w={200}
-          leftSection={<Image src={selected.image} w={20} h={20} alt={`${selected.label} logo`} />}
+          leftSection={
+            selected.image && (
+              <Image src={selected.image} w={20} h={20} alt={`${selected.label} logo`} />
+            )
+          }
           leftSectionWidth={25 + 20}
           leftSectionProps={{
             onClick: () => combobox.openDropdown(),

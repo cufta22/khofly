@@ -20,6 +20,11 @@
 }
 
 .app_header {
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-7)
+  );
+
   &.app_header_transparent {
     border-bottom: none !important;
     background-color: transparent !important;
@@ -38,7 +43,7 @@
 .app_footer {
   background-color: light-dark(
     var(--mantine-color-gray-1),
-    var(--mantine-color-dark-6)
+    var(--mantine-color-dark-7)
   );
   border-top: light-dark(
     func.to-rem(1px) solid var(--mantine-color-gray-2),

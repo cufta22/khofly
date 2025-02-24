@@ -30,6 +30,7 @@
 
         "select_theme": "Theme select",
         "select_theme_options": {
+          "custom": "Custom",
           "mantine_old": "Mantine Old",
           "mantine_new": "Mantine New",
           "material": "Material",

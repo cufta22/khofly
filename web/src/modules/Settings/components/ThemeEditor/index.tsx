@@ -1,57 +1,61 @@
-import {
-  Anchor,
-  Button,
-  DEFAULT_THEME,
-  Flex,
-  JsonInput,
-  Paper,
-  Stack,
-  Text,
-  useMantineTheme,
-  createTheme,
-} from "@mantine/core";
+import { Anchor, Button, DEFAULT_THEME, Flex, JsonInput, Paper, Stack, Text } from "@mantine/core";
 
-import {
-  IconBrush,
-  IconCheck,
-  IconMinus,
-  IconPalette,
-  IconPlus,
-} from "@tabler/icons-react";
+import { IconCheck, IconMinus, IconPalette, IconPlus } from "@tabler/icons-react";
 
 import { useTranslate } from "@hooks/translate/use-translate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { THEME_MANTINE_OLD } from "@utils/resources/themes/mantine-old";
-import { THEME_CATPPUCCIN_MOCHA } from "@utils/resources/themes/catppuccin-mocha";
+import { THEME_CATPPUCCIN } from "@utils/resources/themes/catppuccin";
 import { useClientServerState } from "@store/client-server";
+import useToast from "@hooks/use-toast";
+import { setCookie } from "@utils/functions/cookies";
+import { useMounted } from "@mantine/hooks";
+import ExternalLink from "@components/ExternalLink";
 
 const SettingsThemeEditor = () => {
   const t = useTranslate();
+  const mounted = useMounted();
 
   const [themeJson, setThemeJson] = useState("");
 
-  const theme = useMantineTheme();
+  const { toast } = useToast();
 
   const { setTheme } = useClientServerState();
 
   const handleApply = () => {
-    // const isValid = validateMantineTheme(JSON.parse(themeJson));
-    // console.log(validateMantineTheme(DEFAULT_THEME));
-    const newTheme = createTheme(JSON.parse(themeJson));
+    try {
+      // try to parse it for validation
+      JSON.parse(themeJson);
 
-    console.log(newTheme);
+      // Set theme in LS
+      localStorage.setItem("custom-theme-json", themeJson);
 
-    // Set theme in LS
-    localStorage.setItem("custom-theme-json", JSON.stringify(themeJson));
+      // Set theme in context
+      setTheme("Custom");
 
-    // Set theme in zustand
-    setTheme("Custom");
-
-    // if (!isValid) {
-    //   return;
-    // }
+      // Set theme in cookie ( for persistance )
+      setCookie("khofly-app-theme", "Custom", {
+        expires: 60 * 60 * 24 * 90, // ~ 90 days
+        path: "/",
+        domain: process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
+        secure: process.env.HOST?.includes("https"),
+        sameSite: "Strict",
+      });
+    } catch (error) {
+      toast.show({ message: "Invalid JSON string", color: "red" });
+    }
   };
+
+  // Set value initially
+  useEffect(() => {
+    if (mounted) {
+      const lsThemeJson = localStorage.getItem("custom-theme-json");
+
+      if (lsThemeJson) {
+        setThemeJson(lsThemeJson);
+      }
+    }
+  }, [mounted]);
 
   return (
     <Paper radius="md" withBorder mt={40}>
@@ -78,7 +82,7 @@ const SettingsThemeEditor = () => {
 
           <Button
             leftSection={<IconPlus style={getIconStyle(16)} />}
-            onClick={() => setThemeJson(JSON.stringify(THEME_CATPPUCCIN_MOCHA, null, 4))}
+            onClick={() => setThemeJson(JSON.stringify(THEME_CATPPUCCIN, null, 4))}
             size="xs"
             variant="light"
             mr="md"
@@ -100,7 +104,7 @@ const SettingsThemeEditor = () => {
             Learn more
           </Anchor>
 
-          <div style={{ flexGrow: 1 }}></div>
+          <div style={{ flexGrow: 1 }} />
 
           <Button
             leftSection={<IconCheck style={getIconStyle(16)} />}
@@ -112,8 +116,6 @@ const SettingsThemeEditor = () => {
           </Button>
         </Flex>
 
-        <Text>Edit this only if you know what you're doing</Text>
-
         <JsonInput
           placeholder="{ ..."
           validationError="Invalid JSON"
@@ -124,6 +126,13 @@ const SettingsThemeEditor = () => {
           value={themeJson}
           onChange={(val) => setThemeJson(val)}
         />
+
+        <Text>
+          Edit this only if you know what you're doing,{" "}
+          <ExternalLink href="https://mantine.dev/theming/theme-object/">
+            link to theme docs.
+          </ExternalLink>
+        </Text>
       </Stack>
     </Paper>
   );

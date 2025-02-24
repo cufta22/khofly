@@ -65,24 +65,12 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   const highlighted = hljs.highlight(code.trim(), { language }).value;
 
   return (
-    <Box
-      className={clsx(classes.root, themeClasses.theme)}
-      {...others}
-      dir="ltr"
-    >
+    <Box className={clsx(classes.root, themeClasses.theme)} {...others} dir="ltr">
       {withCopyButton && (
         <CopyButton value={code.trim()}>
           {({ copied, copy }) => (
-            <Tooltip
-              label={copied ? copiedLabel : copyLabel}
-              fz="sm"
-              position="left"
-            >
-              <ActionIcon
-                onClick={copy}
-                variant="none"
-                className={classes.copy}
-              >
+            <Tooltip label={copied ? copiedLabel : copyLabel} fz="sm" position="left">
+              <ActionIcon onClick={copy} variant="none" className={classes.copy}>
                 <CopyIcon copied={copied} />
               </ActionIcon>
             </Tooltip>
@@ -92,10 +80,7 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
 
       <ScrollArea type="hover" dir="ltr" offsetScrollbars={false}>
         <pre className={classes.pre}>
-          <code
-            className={classes.code}
-            dangerouslySetInnerHTML={{ __html: highlighted }}
-          />
+          <code className={classes.code} dangerouslySetInnerHTML={{ __html: highlighted }} />
         </pre>
       </ScrollArea>
     </Box>

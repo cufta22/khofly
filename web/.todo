@@ -13,3 +13,5 @@ move meta to /meta & add meta for every page that needs
 fix the lyrics api spam
 
 fix weather IA and move hourly to separate file
+
+Add X to close theme editor in settings

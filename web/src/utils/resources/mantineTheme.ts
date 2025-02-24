@@ -1,9 +1,10 @@
 import { DEFAULT_THEME, type MantineThemeOverride } from "@mantine/core";
 import type { IAppTheme } from "@ts/global.types";
-import { THEME_CATPPUCCIN_MOCHA } from "./themes/catppuccin-mocha";
+import { THEME_CATPPUCCIN } from "./themes/catppuccin";
 import { THEME_MANTINE_OLD } from "./themes/mantine-old";
 import { THEME_MANTINE_NEW } from "./themes/mantine-new";
 import { THEME_TOKYO_NIGHT } from "./themes/tokyo-night";
+import { THEME_ROSE_PINE } from "./themes/rose-pine";
 
 export const getMantineTheme = (
   appTheme: IAppTheme,
@@ -11,11 +12,15 @@ export const getMantineTheme = (
 ): MantineThemeOverride => {
   switch (appTheme) {
     // For custom in LS
+    // LS won't work on the server so... trycatch
     case "Custom": {
-      const customTheme =
-        JSON.parse(localStorage.getItem("custom-theme-json") || "") || DEFAULT_THEME;
-
-      return customTheme;
+      try {
+        const customTheme =
+          JSON.parse(localStorage.getItem("custom-theme-json") || "") || DEFAULT_THEME;
+        return customTheme;
+      } catch (error) {
+        return DEFAULT_THEME;
+      }
     }
 
     // Prebuilt themes
@@ -27,12 +32,12 @@ export const getMantineTheme = (
       return THEME_MANTINE_NEW;
     }
 
-    case "Catppuccin-Mocha": {
-      return THEME_CATPPUCCIN_MOCHA;
+    case "Catppuccin": {
+      return THEME_CATPPUCCIN;
     }
 
-    // case "Rose-Pine":
-    //   return THEME_ROSE_PINE;
+    case "Rose-Pine":
+      return THEME_ROSE_PINE;
 
     case "Tokyo-Night": {
       return THEME_TOKYO_NIGHT;

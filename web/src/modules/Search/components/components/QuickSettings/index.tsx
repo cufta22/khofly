@@ -1,28 +1,10 @@
-import {
-  Accordion,
-  Button,
-  Center,
-  Divider,
-  Drawer,
-  Flex,
-  ScrollArea,
-  Stack,
-  Text,
-} from "@mantine/core";
-import {
-  IconBrush,
-  IconChevronRight,
-  IconSettings2,
-} from "@tabler/icons-react";
+import { Accordion, Button, Center, Drawer, Flex, ScrollArea, Text } from "@mantine/core";
+import { IconChevronRight } from "@tabler/icons-react";
 import classes from "./styles.module.scss";
-import FaviconSwitch from "@module/Settings/components/General/FaviconSwitch";
 import { useTranslate } from "@hooks/translate/use-translate";
-import ShowEnginesSwitch from "@module/Settings/components/General/ShowEnginesSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import RemixLink from "@components/RemixLink";
-import MediaSwitch from "@module/Settings/components/General/MediaSwitch";
-import IASwitch from "@module/Settings/components/General/IASwitch";
-import PrivateSearchSwitch from "@module/Settings/components/General/PrivateSearchSwitch";
+
 import QSInterface from "./components/QSInterface";
 import QSGeneral from "./components/QSGeneral";
 import QSEngines from "./components/QSEngines";
@@ -68,10 +50,7 @@ const QuickSettings: React.FC<Props> = ({ isOpen, onClose }) => {
 
       <Center my="xl">
         <RemixLink to="/settings">
-          <Button
-            variant="outline"
-            rightSection={<IconChevronRight style={getIconStyle(18)} />}
-          >
+          <Button variant="outline" rightSection={<IconChevronRight style={getIconStyle(18)} />}>
             Show more
           </Button>
         </RemixLink>
