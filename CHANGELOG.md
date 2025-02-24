@@ -10,9 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Instant answers - Time In, Time Zone, etc.
-- Theme customization
-- Primary color customization
-- New themes
+- New and improved theme customization
 - Multiple missing search engines
 
 ### Fixed
