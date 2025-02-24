@@ -4,10 +4,10 @@ import {
   Group,
   Paper,
   Select,
-  SelectProps,
   Stack,
   Text,
   TextInput,
+  type SelectProps,
 } from "@mantine/core";
 
 import classes from "../../styles.module.scss";
@@ -19,6 +19,7 @@ import { IconSearch } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const SettingsSearXNG = () => {
   const domain = useInstanceStore((state) => state.searXNGDomain);
@@ -30,12 +31,13 @@ const SettingsSearXNG = () => {
       select: "",
     },
     validate: {
-      domain: (value) =>
-        /^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL",
+      domain: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
     },
   });
 
   const { toast } = useToast();
+
+  const linkTextColor = usePrimaryColor(4);
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
@@ -117,9 +119,8 @@ const SettingsSearXNG = () => {
           className={classes.settings_footer}
         >
           <Text size="sm" c="dimmed">
-            Change this to your own url for better privacy & less load for default
-            instance.{" "}
-            <Text component="span" c="blue">
+            Change this to your own url for better privacy & less load for default instance.{" "}
+            <Text component="span" c={linkTextColor}>
               <RemixLink to={"/docs/self-host-searxng"}>Read more</RemixLink>
             </Text>
           </Text>

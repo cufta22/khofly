@@ -20,6 +20,7 @@ import { convertCurrency } from "./utils";
 
 import dayjs, { unix } from "dayjs";
 import utc from "dayjs/plugin/utc";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 dayjs.extend(utc);
 
 interface Props {
@@ -28,23 +29,22 @@ interface Props {
   currency2: string;
 }
 
-const IACurrency: React.FC<Props> = ({
-  withIAWrapper,
-  currency1,
-  currency2,
-}) => {
+const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) => {
+  const { data, isLoading } = useCurrencySWR();
+
   const [state, setState] = useState({
     input: 1,
     result: 0,
     from: currency1.toLocaleUpperCase(),
     to: currency2.toLocaleUpperCase(),
   });
-  const { data, isLoading } = useCurrencySWR();
+
+  const linkTextColor = usePrimaryColor(4);
 
   const handleChangeInput = (val: string | number) => {
     if (!data) return;
 
-    const numVal = typeof val === "number" ? val : parseFloat(val);
+    const numVal = typeof val === "number" ? val : Number.parseFloat(val);
     const res = convertCurrency(numVal, state.from, state.to, data?.rates);
 
     setState((s) => ({ ...s, input: numVal, result: res }));
@@ -57,7 +57,7 @@ const IACurrency: React.FC<Props> = ({
       state.input,
       field === "from" ? val : state.from,
       field === "to" ? val : state.to,
-      data?.rates
+      data?.rates,
     );
 
     setState((s) => ({ ...s, [field]: val, result: res }));
@@ -91,7 +91,7 @@ const IACurrency: React.FC<Props> = ({
             <NumberInput
               value={state.input}
               onChange={handleChangeInput}
-              rightSection={<></>}
+              // rightSection={<></>}
               rightSectionWidth={0}
             />
 
@@ -114,7 +114,7 @@ const IACurrency: React.FC<Props> = ({
           <Flex gap="md" direction="column">
             <NumberInput
               value={state.result}
-              rightSection={<></>}
+              // rightSection={<></>}
               rightSectionWidth={0}
               readOnly
             />
@@ -138,10 +138,8 @@ const IACurrency: React.FC<Props> = ({
               1,
               state.from,
               state.to,
-              data.rates
-            )} ${state.to} • ${dayjs
-              .unix(data.timestamp)
-              .format("MMM DD, hh:mm A [UTC]Z")}`}
+              data.rates,
+            )} ${state.to} • ${dayjs.unix(data.timestamp).format("MMM DD, hh:mm A [UTC]Z")}`}
           </Text>
         )}
 
@@ -156,11 +154,8 @@ const IACurrency: React.FC<Props> = ({
         label={
           <Text size="sm" c="dimmed">
             Data provided by{" "}
-            <Anchor
-              href="https://openexchangerates.com/"
-              rel="noreferrer noopener"
-            >
-              <Text component="span" c="blue.4">
+            <Anchor href="https://openexchangerates.com/" rel="noreferrer noopener">
+              <Text component="span" c={linkTextColor}>
                 Open Exchange Rates
               </Text>
             </Anchor>

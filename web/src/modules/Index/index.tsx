@@ -1,10 +1,11 @@
-import { Center, Container, Flex, Title } from "@mantine/core";
+import { Container, Flex, Text, Title } from "@mantine/core";
 import SearchBar from "./components/SearchBar";
 
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import Shortcuts from "./components/Shortcuts";
 import { useShortcutsStore } from "@store/shortcuts";
+import DevInterface from "./components/DevInterface";
 
 const PageIndex = () => {
   const t = useTranslate();
@@ -23,9 +24,7 @@ const PageIndex = () => {
       {/* <Center className={classes.center}> */}
       <Flex className={classes.flex} align="center" direction="column">
         <Title className={classes.app_name} mb="sm">
-          {process.env.IS_SELF_HOST === "0"
-            ? t("_common.app_name")
-            : process.env.APP_NAME}
+          {process.env.IS_SELF_HOST === "0" ? t("_common.app_name") : process.env.APP_NAME}
         </Title>
 
         <SearchBar />
@@ -33,6 +32,8 @@ const PageIndex = () => {
         {displayShortcuts && <Shortcuts />}
       </Flex>
       {/* </Center> */}
+
+      <DevInterface />
     </Container>
   );
 };

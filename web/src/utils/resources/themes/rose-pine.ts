@@ -1,6 +1,7 @@
-import { MantineThemeOverride } from "@mantine/core";
+import type { MantineThemeOverride } from "@mantine/core";
 
-// Catppuccin - Mocha theme
+// Rose pine dark theme
+
 export const THEME_ROSE_PINE: MantineThemeOverride = {
   /** Put your mantine theme override here */
   fontFamily: `'Inter', sans-serif`,

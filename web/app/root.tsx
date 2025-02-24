@@ -9,37 +9,12 @@ import "@mantine/charts/styles.css";
 import AppLayout from "@layout/index";
 import { ColorSchemeScript } from "@mantine/core";
 
-import {
-  LayoutRouteProps,
-  Links,
-  LoaderFunctionArgs,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-  useRouteError,
-  useRouteLoaderData,
-} from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from "react-router";
+import type { LayoutRouteProps } from "react-router";
 
 import ErrorPage from "@module/Error";
-import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
-import ClientServerProvider, { useClientServerState } from "@store/client-server";
+import { useClientServerState } from "@store/client-server";
 import { ROOT_META_FUNCTION } from "./meta/root";
-import { getCookie } from "@utils/functions/cookies";
-
-// export async function clientLoader({ request }: LoaderFunctionArgs) {
-//   // // Get user language
-//   const userLang = getCookie("khofly-language", request, "en");
-//   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
-
-//   // // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
-//   const appLang = userLang || prefLang || "en";
-
-//   return {
-//     language: appLang,
-//   };
-// }
 
 // Meta tags
 export const meta = ROOT_META_FUNCTION;

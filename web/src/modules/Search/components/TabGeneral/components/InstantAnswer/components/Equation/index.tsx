@@ -7,12 +7,12 @@ interface Props {
 }
 
 const IAEquation: React.FC<Props> = ({ query }) => {
-  const calc = calculate(query);
+  const cleanedQuery = query.replace(/[^\d+\-*/. ]/g, ""); // Keep digits, +, -, *, /, ., and spaces
+  const calc = calculate(cleanedQuery);
+
   return (
     <IAWrapper>
-      <Text size="xl">
-        {calc.success ? `${query} = ${calc.result}` : `${calc.result}`}
-      </Text>
+      <Text size="xl">{calc.success ? `${cleanedQuery} = ${calc.result}` : `${calc.result}`}</Text>
     </IAWrapper>
   );
 };

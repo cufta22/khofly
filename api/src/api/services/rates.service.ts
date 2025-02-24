@@ -11,7 +11,7 @@ export const handleGetRates = async (ctx: Context) => {
   ).json();
 
   if (!resultJson) {
-    ctx.set.status = 500;
+    ctx.set.status = 400;
     return "Data not found";
   }
 

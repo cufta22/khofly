@@ -1,11 +1,4 @@
-import {
-  Divider,
-  Flex,
-  Paper,
-  Stack,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
+import { ActionIcon, Divider, Flex, Paper, Stack, Text, useMantineTheme } from "@mantine/core";
 
 import LanguageSelect from "./LanguageSelect/LanguageSelect";
 import ThemeSelect from "./ThemeSelect/ThemeSelect";
@@ -13,9 +6,12 @@ import ColorSchemeSwitch from "./ColorThemeSwitch/ColorThemeSwitch";
 
 import {
   IconBrush,
+  IconColorPicker,
+  IconEdit,
   IconExternalLink,
   IconLanguage,
   IconPalette,
+  IconPencil,
   IconSunMoon,
 } from "@tabler/icons-react";
 
@@ -23,8 +19,14 @@ import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import NewTabSwitch from "./NewTabSwitch";
+import type { Dispatch, SetStateAction } from "react";
+import PrimaryColorSelect from "./PrimaryColorSelect/PrimaryColorSelect";
 
-const SettingsInterface = () => {
+interface Props {
+  setDisplayThemeEdit: Dispatch<SetStateAction<boolean>>;
+}
+
+const SettingsInterface: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   const t = useTranslate();
 
   const theme = useMantineTheme();
@@ -43,10 +45,7 @@ const SettingsInterface = () => {
       <Stack w="100%" align="start" px="lg" mb="xl">
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
-            <IconLanguage
-              style={getIconStyle(20)}
-              color={theme.colors.gray["5"]}
-            />
+            <IconLanguage style={getIconStyle(20)} color={theme.colors.gray["5"]} />
 
             <Text size="md" fw={400}>
               {t("pages.settings.interface.select_lang")}
@@ -60,27 +59,43 @@ const SettingsInterface = () => {
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
-            <IconPalette
-              style={getIconStyle(20)}
-              color={theme.colors.gray["5"]}
-            />
+            <IconPalette style={getIconStyle(20)} color={theme.colors.gray["5"]} />
 
             <Text size="md" fw={400}>
               {t("pages.settings.interface.select_theme")}
             </Text>
           </Flex>
 
-          <ThemeSelect />
+          <Flex align="center" gap="sm">
+            <ActionIcon variant="subtle" onClick={() => setDisplayThemeEdit((prev) => !prev)}>
+              <IconEdit style={getIconStyle(20)} />
+            </ActionIcon>
+
+            <ThemeSelect />
+          </Flex>
         </Flex>
 
         <Divider my="xs" w="100%" />
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
-            <IconSunMoon
-              style={getIconStyle(20)}
-              color={theme.colors.gray["5"]}
-            />
+            <IconColorPicker style={getIconStyle(20)} color={theme.colors.gray["5"]} />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.interface.select_primary_color")}
+            </Text>
+          </Flex>
+
+          <Flex align="center" gap="sm">
+            <PrimaryColorSelect />
+          </Flex>
+        </Flex>
+
+        <Divider my="xs" w="100%" />
+
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
+          <Flex align="center" gap="sm">
+            <IconSunMoon style={getIconStyle(20)} color={theme.colors.gray["5"]} />
 
             <Text size="md" fw={400}>
               {t("pages.settings.interface.select_color")}
@@ -94,10 +109,7 @@ const SettingsInterface = () => {
 
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
-            <IconExternalLink
-              style={getIconStyle(20)}
-              color={theme.colors.gray["5"]}
-            />
+            <IconExternalLink style={getIconStyle(20)} color={theme.colors.gray["5"]} />
 
             <Text size="md" fw={400}>
               {t("pages.settings.interface.toggle_open_in_new_tab")}

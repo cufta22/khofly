@@ -1,31 +1,17 @@
 import { Accordion, Center, Container, Loader, Title } from "@mantine/core";
 import { formatChangelog } from "./formatChangelog";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { ILoaderData_Changelog } from "app/routes/changelog";
 
-const getChangelogData = async (nodeEnv: string) => {
-  const envUrl =
-    nodeEnv === "production"
-      ? "https://raw.githubusercontent.com/cufta22/khofly/master/CHANGELOG.md"
-      : "https://raw.githubusercontent.com/cufta22/khofly/staging/CHANGELOG.md";
+interface Props {
+  loaderData: ILoaderData_Changelog;
+}
 
-  const data = await fetch(envUrl);
-
-  const changelog = await data.text();
-
-  return changelog;
-};
-
-const PageChangelog = () => {
+const PageChangelog: React.FC<Props> = ({ loaderData }) => {
   const t = useTranslate();
 
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    getChangelogData(process.env.NODE_ENV || "development").then((res) => setData(res));
-  }, []);
-
-  if (!data)
+  if (!loaderData.data)
     return (
       <Center mt={100}>
         <Loader size="xl" />
@@ -33,13 +19,13 @@ const PageChangelog = () => {
     );
 
   return (
-    <Container size="lg" py="xl" mt={40} mb={40}>
+    <Container size="lg" py="xl" pt={40} pb={40}>
       <Title ta="center" mt="md" mb="xl">
         {t("pages.changelog.title")}
       </Title>
 
       <Accordion variant="separated" defaultValue="customization">
-        {formatChangelog(data).map((obj, i) => {
+        {formatChangelog(loaderData.data).map((obj, i) => {
           return (
             <Accordion.Item key={i} value={obj.title}>
               <Accordion.Control>{obj.title}</Accordion.Control>

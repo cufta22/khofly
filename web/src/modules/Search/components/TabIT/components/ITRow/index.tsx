@@ -9,6 +9,7 @@ import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 dayjs.extend(relativeTime);
 
@@ -43,13 +44,20 @@ const ITRow: React.FC<Props> = ({ data }) => {
   const displayFavicon = useSettingsStore((state) => state.displayFavicon);
   const showEngines = useSettingsStore((state) => state.showEngines);
 
+  const linkTextColor = usePrimaryColor(4);
+
   return (
     <Flex className={classes.it_row} direction="column">
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
-            <Image w={16} h={16} src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`} alt="" />
+            <Image
+              w={16}
+              h={16}
+              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
+              alt=""
+            />
           )}
 
           <Text size="xs" truncate="end">
@@ -151,7 +159,7 @@ const ITRow: React.FC<Props> = ({ data }) => {
               </Table.Td>
               <Table.Td>
                 <SearchAnchor url={license_url}>
-                  <Text c="blue" size="xs">
+                  <Text c={linkTextColor} size="xs">
                     {license_name}
                   </Text>
                 </SearchAnchor>
@@ -167,13 +175,13 @@ const ITRow: React.FC<Props> = ({ data }) => {
               <Table.Td>
                 <Flex align="center" gap="xs">
                   <SearchAnchor url={homepage}>
-                    <Text c="blue" size="xs">
+                    <Text c={linkTextColor} size="xs">
                       Project homepage
                     </Text>
                   </SearchAnchor>
                   <Text size="xs">|</Text>
                   <SearchAnchor url={source_code_url}>
-                    <Text c="blue" size="xs">
+                    <Text c={linkTextColor} size="xs">
                       Project source code
                     </Text>
                   </SearchAnchor>

@@ -1,12 +1,12 @@
 import useFetch from "../use-fetch";
-import { IDateRange, ISafeSearch, ISearchLang, useSearchStore } from "@store/search";
+import { useSearchStore, type IDateRange, type ISafeSearch, type ISearchLang } from "@store/search";
 import useSWRInfinite from "swr/infinite";
 import { getEngineBangs } from "./utils";
+import { useSearchParams } from "react-router";
 
 import { useInstanceStore } from "@store/instance";
 import { useEnginesStore } from "@store/engines";
-import { ICategories } from "@store/settings";
-import { useSearchParams } from "react-router";
+import type { ICategories } from "@store/settings";
 
 const getKey = (
   pageIndex: number,
@@ -16,7 +16,7 @@ const getKey = (
   enginesSelected: string[],
   safeSearch: ISafeSearch,
   dateRange: IDateRange,
-  searchLanguage: ISearchLang
+  searchLanguage: ISearchLang,
 ) => {
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
   if (!q) return null; // prevent empty search
@@ -78,7 +78,8 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
   }[tab];
 
   return useSWRInfinite<IResults>(
-    (idx, prev) => getKey(idx, prev, tab, q, enginesSelected, safeSearch, dateRange, searchLanguage),
+    (idx, prev) =>
+      getKey(idx, prev, tab, q, enginesSelected, safeSearch, dateRange, searchLanguage),
     fetcher,
     {
       // populateCache
@@ -86,7 +87,7 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
       revalidateOnFocus: false,
       revalidateFirstPage: false,
       keepPreviousData: false,
-    }
+    },
   );
 };
 

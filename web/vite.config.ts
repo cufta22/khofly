@@ -1,10 +1,12 @@
 import { reactRouter } from "@react-router/dev/vite";
 import { defineConfig, loadEnv } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import path from "path";
+import path from "node:path";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
+
+  const nodeVersion = process.version;
 
   return {
     server: {
@@ -68,6 +70,14 @@ export default defineConfig(({ mode }) => {
       "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
       "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(env.SEARXNG_URL_SELF_HOST),
       "process.env.API_URL_SELF_HOST": JSON.stringify(env.API_URL_SELF_HOST),
+
+      // Platform specific
+      "process.env.VERCEL_REGION": JSON.stringify(env?.VERCEL_REGION || ""),
+      "process.env.FLY_APP_NAME": JSON.stringify(env?.FLY_APP_NAME || ""),
+      "process.env.FLY_REGION": JSON.stringify(env?.FLY_REGION || ""),
+      "process.env.FLY_MACHINE_ID": JSON.stringify(env?.FLY_MACHINE_ID || ""),
+
+      "process.env.NODE_VERSION": JSON.stringify(nodeVersion),
     },
 
     // Testing for Vercel edge functions

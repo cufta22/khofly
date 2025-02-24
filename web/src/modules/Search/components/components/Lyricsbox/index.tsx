@@ -6,6 +6,7 @@ import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 import useSearchQuery from "@hooks/use-search-query";
 import { useInstanceStore } from "@store/instance";
 import { useSearchParams } from "react-router";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const Lyricsbox = () => {
   const [searchParams] = useSearchParams();
@@ -13,6 +14,8 @@ const Lyricsbox = () => {
   const { data, mutate } = useLyricsSWR({ initialQ: "" });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
+
+  const linkTextColor = usePrimaryColor(4);
 
   const q = useSearchQuery();
   const tab = searchParams.get("tab") || "general";
@@ -22,7 +25,7 @@ const Lyricsbox = () => {
     if (tab === "music" && q && hydrated) mutate();
 
     // Handle for general tab
-    if (q && q.includes("lyrics") && hydrated) mutate();
+    if (q?.includes("lyrics") && hydrated) mutate();
   }, [q, hydrated]);
 
   if (!data?.title) return null;
@@ -55,7 +58,7 @@ const Lyricsbox = () => {
         <Text size="sm" c="dimmed">
           Lyrics provided by{" "}
           <Anchor href="https://genius.com" rel="noreferrer noopener">
-            <Text component="span" c="blue.4">
+            <Text component="span" c={linkTextColor}>
               Genius
             </Text>
           </Anchor>

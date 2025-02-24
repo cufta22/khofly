@@ -1,4 +1,4 @@
-import { ActionIcon, Autocomplete, Flex, Loader, rem } from "@mantine/core";
+import { ActionIcon, Autocomplete, Flex, Loader, rem, useMantineTheme } from "@mantine/core";
 import { IconArrowRight, IconKeyboard, IconSearch } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
@@ -18,6 +18,8 @@ import { useNavigate } from "react-router";
 const SearchBar = () => {
   const t = useTranslate();
 
+  const theme = useMantineTheme();
+
   const useAutocomplete = useSettingsStore((state) => state.useAutocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
 
@@ -33,12 +35,7 @@ const SearchBar = () => {
   const isXs = useResponsive("max", "xs");
 
   // Autocomplete API
-  const {
-    data: autocompleteData,
-    isMutating,
-    trigger,
-    reset,
-  } = useAutocompleteSWR();
+  const { data: autocompleteData, isMutating, trigger, reset } = useAutocompleteSWR();
 
   const handleSearch = (query: string) => {
     // Prevent empty search
@@ -51,7 +48,9 @@ const SearchBar = () => {
       setSearchQuery(encodeURIComponent(query));
       return navigate("/search?tab=general");
     }
-    navigate(`/search?q=${encodeURIComponent(query)}&tab=general`);
+    navigate(`/search?q=${encodeURIComponent(query)}&tab=general`, {
+      viewTransition: true,
+    });
   };
 
   useEffect(() => {
@@ -95,18 +94,14 @@ const SearchBar = () => {
                 variant="transparent"
                 onClick={toggleKeyboard}
               >
-                <IconKeyboard
-                  style={getIconStyle(22)}
-                  color={"white"}
-                  stroke={1.5}
-                />
+                <IconKeyboard style={getIconStyle(22)} color={"white"} stroke={1.5} />
               </ActionIcon>
             )}
 
             <ActionIcon
               size={isXs ? 32 : 38}
               radius="xl"
-              color={"blue"}
+              color={theme.colors[theme.primaryColor][6]}
               variant="filled"
               onClick={() => handleSearch(q)}
               disabled={!q}
@@ -133,9 +128,7 @@ const SearchBar = () => {
         data-protonpass-form="false"
       />
 
-      {openKeyboard && (
-        <VirtualKeyboard value={q} onChange={setQ} toggle={toggleKeyboard} />
-      )}
+      {openKeyboard && <VirtualKeyboard value={q} onChange={setQ} toggle={toggleKeyboard} />}
     </>
   );
 };

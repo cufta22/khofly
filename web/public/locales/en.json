@@ -30,6 +30,7 @@
 
         "select_theme": "Theme select",
         "select_theme_options": {
+          "custom": "Custom",
           "mantine_old": "Mantine Old",
           "mantine_new": "Mantine New",
           "material": "Material",
@@ -37,6 +38,24 @@
           "rosepine": "Rosé Pine",
           "nord": "Nord",
           "tokyo_night": "Tokyo Night"
+        },
+
+        "select_primary_color": "Primary color select",
+        "select_primary_color_options": {
+          "dark": "Dark",
+          "gray": "Gray",
+          "red": "Red",
+          "pink": "Pink",
+          "grape": "Grape",
+          "violet": "Violet",
+          "indigo": "Indigo",
+          "blue": "Blue",
+          "cyan": "Cyan",
+          "teal": "Teal",
+          "green": "Green",
+          "lime": "Lime",
+          "yellow": "Yellow",
+          "orange": "Orange"
         },
 
         "select_color": "Color scheme",

@@ -1,8 +1,4 @@
-import { MantineThemeComponents, MantineThemeOverride } from "@mantine/core";
-
-const a: MantineThemeComponents = {
-  Select: { defaultProps: { style: { border: "none" } } },
-};
+import type { MantineThemeComponents, MantineThemeOverride } from "@mantine/core";
 
 // Catppuccin - Mocha theme
 export const THEME_NORD: MantineThemeOverride = {
@@ -11,7 +7,9 @@ export const THEME_NORD: MantineThemeOverride = {
   cursorType: "pointer",
   // autoContrast: true,
 
-  components: a,
+  components: {
+    Select: { defaultProps: { style: { border: "none" } } },
+  },
 
   colors: {
     blue: [

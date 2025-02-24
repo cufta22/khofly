@@ -15,8 +15,11 @@
   );
 
   &[data-checked] {
-    border-color: var(--mantine-color-blue-filled);
-    background-color: var(--mantine-color-blue-light);
+    // border-color: var(--mantine-color-blue-filled);
+    border-color: var(--mantine-primary-color-filled);
+    // background-color: var(--mantine-color-blue-light);
+    background-color: var(--mantine-primary-color-light);
+
   }
 }
 

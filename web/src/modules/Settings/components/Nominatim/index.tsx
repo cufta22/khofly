@@ -7,6 +7,8 @@ import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
 import { useEffect } from "react";
+import ExternalLink from "@components/ExternalLink";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const SettingsNominatim = () => {
   const hydrated = useInstanceStore((state) => state.hydrated);
@@ -23,6 +25,8 @@ const SettingsNominatim = () => {
   });
 
   const { toast } = useToast();
+
+  const linkTextColor = usePrimaryColor(4);
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
@@ -56,19 +60,21 @@ const SettingsNominatim = () => {
           />
 
           <Text size="sm">
-            <Text component="span" c="blue.4">
-              <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
-                Nominatim
-              </Anchor>
-            </Text>{" "}
-            uses OpenStreetMap data to find locations on Earth by name and address (geocoding).
+            <ExternalLink href="https://nominatim.org/">Nominatim</ExternalLink> uses OpenStreetMap
+            data to find locations on Earth by name and address (geocoding).
           </Text>
         </Stack>
 
-        <Flex align="center" justify="space-between" py="sm" px="lg" className={classes.settings_footer}>
+        <Flex
+          align="center"
+          justify="space-between"
+          py="sm"
+          px="lg"
+          className={classes.settings_footer}
+        >
           <Text size="sm" c="dimmed">
             Change this to your own url for better privacy & less load for default instance.{" "}
-            <Text component="span" c="blue">
+            <Text component="span" c={linkTextColor}>
               <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
                 Read more
               </Anchor>

@@ -11,7 +11,7 @@ export type ILanguage = "en" | "de";
 export type IAppTheme =
   | "Mantine-Old"
   | "Mantine-New"
-  | "Catppuccin-Mocha"
+  | "Catppuccin"
   | "Rose-Pine"
   | "Custom"
   | "Nord"

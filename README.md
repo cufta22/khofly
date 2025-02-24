@@ -36,10 +36,10 @@ If you're working on an **issue**, create an issue branch - [ fix/issue-\* ] ( e
 
 ## Contributing
 
-See [CONTRIBUTING.md](https://github.com/khofly/search/blob/master/CONTRIBUTING.md) for all details.
+See [CONTRIBUTING.md](https://github.com/cufta22/khofly/blob/master/CONTRIBUTING.md) for all details.
 
 I recommend creating an issue or message me on discord [ cufta22 ] to let me know what you are working on first that way we don't overwrite each other.
 
 ## Code of Conduct
 
-Please read [CODE_OF_CONDUCT.md](https://github.com/khofly/search/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct.
+Please read [CODE_OF_CONDUCT.md](https://github.com/cufta22/khofly/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct.

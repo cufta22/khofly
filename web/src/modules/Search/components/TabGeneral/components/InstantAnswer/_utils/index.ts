@@ -1,9 +1,6 @@
 import { UnitsType } from "../components/Unit";
 import { KEYWORDS_CURRENCY } from "./keywords_currency";
-import {
-  KEYWORDS_UNITS_GENERAL,
-  KEYWORDS_UNITS_ALL_MAP,
-} from "./keywords_units";
+import { KEYWORDS_UNITS_GENERAL, KEYWORDS_UNITS_ALL_MAP } from "./keywords_units";
 
 // -----------------------------------------------------------------------------------
 // General handler
@@ -14,6 +11,16 @@ export const shouldDisplayIA = (query: string, keywords: string[]) => {
 
   keywords.map((val) => {
     if (query?.toLowerCase().includes(val)) shouldDisplay = true;
+  });
+
+  return shouldDisplay;
+};
+
+export const shouldDisplayIAExact = (query: string, keywords: string[]) => {
+  let shouldDisplay = false;
+
+  keywords.map((val) => {
+    if (query?.toLowerCase() === val.toLocaleLowerCase()) shouldDisplay = true;
   });
 
   return shouldDisplay;
@@ -90,6 +97,7 @@ export const shouldDisplayCurrency = (query: string) => {
   const currency2 = query.split(" ")[2]?.toLocaleLowerCase();
 
   let sdCurr = false;
+
   const currencyArray = Object.keys(KEYWORDS_CURRENCY).map((val) =>
     val.toLocaleLowerCase()
   );
@@ -98,9 +106,8 @@ export const shouldDisplayCurrency = (query: string) => {
   if (currencyArray.includes(query)) sdCurr = true;
 
   if (
-    query?.includes("to") &&
-    currencyArray.includes(currency1.toLocaleLowerCase()) &&
-    currencyArray.includes(currency2.toLocaleLowerCase())
+    (query?.includes("to") && currencyArray.includes(currency1?.toLocaleLowerCase())) ||
+    currencyArray.includes(currency2?.toLocaleLowerCase())
   ) {
     sdCurr = true;
   }
@@ -134,4 +141,22 @@ export const shouldDisplayDownloader = (query: string) => {
   });
 
   return shouldDisplay;
+};
+
+// -----------------------------------------------------------------------------------
+// Time In handler
+// -----------------------------------------------------------------------------------
+
+export const shouldDisplayTimeIn = (query: string) => {
+  const location = query.split("in")?.[1]?.toLocaleLowerCase()?.trimStart() || "";
+
+  let sdTimeIn = false;
+
+  // Display time in if query contains
+  if (query.includes("time in")) sdTimeIn = true;
+
+  return {
+    sdTimeIn,
+    location,
+  };
 };

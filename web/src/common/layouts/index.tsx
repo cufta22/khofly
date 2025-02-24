@@ -1,8 +1,8 @@
 import Footer from "@components/Footer";
 import Header from "@components/Header";
-import { AppShell, MantineProvider } from "@mantine/core";
-import { IAppTheme, IFC } from "@ts/global.types";
-import React, { useEffect } from "react";
+import { AppShell, createTheme, MantineProvider } from "@mantine/core";
+import type { IAppTheme, IFC } from "@ts/global.types";
+import { useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import clsx from "clsx";
@@ -12,16 +12,13 @@ import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
 import NProgress from "@module/NProgress";
 import { useSearchStore } from "@store/search";
-import DevInterface from "./DevInterface";
 import useInstanceInit from "./use-instance-init";
 import useTitleQuery from "./use-title-query";
-import { useLocation, useRouteError, useRouteLoaderData, useSearchParams } from "react-router";
+import { useLocation, useRouteError, useSearchParams } from "react-router";
 import { useClientServerState } from "@store/client-server";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
-  // const loaderData = useRouteLoaderData("root") as RootLoaderData;
-
-  const { theme } = useClientServerState();
+  const { theme, primaryColor } = useClientServerState();
 
   const error = useRouteError();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
@@ -41,7 +38,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isDocs = pathname.startsWith("/docs");
   const isIndex = pathname === "/";
 
-  const isFooterOffset = isSearch || isDocs;
+  const isFooterOffset = isIndex;
   const isSearchMaps = isSearch && tab === "maps";
   const headerHeight = isSearch ? 100 : 70;
   const isHeaderCollapsed = isSearch && !pinned;
@@ -62,12 +59,16 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   useInstanceInit();
 
   return (
-    <MantineProvider theme={getMantineTheme(appTheme)} defaultColorScheme="dark">
+    <MantineProvider
+      theme={createTheme({
+        primaryColor: primaryColor,
+        ...getMantineTheme(appTheme),
+      })}
+      defaultColorScheme="dark"
+    >
       <Notifications />
 
       <NProgress />
-
-      <DevInterface />
 
       <AppShell
         header={{
@@ -75,7 +76,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           offset: isHeaderOffset,
           collapsed: isHeaderCollapsed,
         }}
-        footer={{ height: 60, offset: isFooterOffset ? false : true }}
+        footer={{ height: 60, offset: isFooterOffset }}
         navbar={
           isDocs
             ? {

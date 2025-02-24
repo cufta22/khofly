@@ -1,11 +1,4 @@
-import {
-  Blockquote,
-  Code,
-  Container,
-  Paper,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
+import { Blockquote, Code, Container, Paper, Text, useMantineTheme } from "@mantine/core";
 import DocsText from "./common/DocsText";
 import DocsSubtitle from "./common/DocsSubtitle";
 import RemixLink from "@components/RemixLink";
@@ -16,6 +9,7 @@ import DocsNextPrev from "./common/DocsNextPrev";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 import { IconSearch } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const CODE_SEARXNG_CONFIG = `
 search:
@@ -30,13 +24,11 @@ server:
 const DocsResourcesCustomSearxng = () => {
   const theme = useMantineTheme();
 
+  const linkTextColor = usePrimaryColor(4);
+
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle
-        leftSection={
-          <IconSearch style={getIconStyle(48)} color={theme.colors.blue[5]} />
-        }
-      >
+      <DocsTitle leftSection={<IconSearch style={getIconStyle(48)} color={theme.colors.blue[5]} />}>
         Custom SearXNG instance
       </DocsTitle>
 
@@ -46,26 +38,22 @@ const DocsResourcesCustomSearxng = () => {
         mt="xl"
         radius="sm"
       >
-        This page will show you settings that you need if you want to use your
-        own SearXNG instance with Khofly. If you don't have your own SearXNG
-        instance hosted check out{" "}
+        This page will show you settings that you need if you want to use your own SearXNG instance
+        with Khofly. If you don't have your own SearXNG instance hosted check out{" "}
         <RemixLink to="/docs/self-host-searxng">
-          <Text component="span" c="blue.4">
+          <Text component="span" c={linkTextColor}>
             the hosting guide
           </Text>
         </RemixLink>
         .
       </Blockquote>
 
-      <DocsSubtitle>
-        1. Change settings yaml to include the following changes
-      </DocsSubtitle>
+      <DocsSubtitle>1. Change settings yaml to include the following changes</DocsSubtitle>
 
       <DocsText>
-        Add output format <Code>json</Code>, this will allow you to use the
-        search as API and return a JSON response, and make sure to set a long
-        randomly generated string for server secret ( ex. run{" "}
-        <Code>openssl rand -hex 32</Code> )
+        Add output format <Code>json</Code>, this will allow you to use the search as API and return
+        a JSON response, and make sure to set a long randomly generated string for server secret (
+        ex. run <Code>openssl rand -hex 32</Code> )
       </DocsText>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
@@ -88,8 +76,8 @@ const DocsResourcesCustomSearxng = () => {
       <DocsSubtitle>2. Add your instance to Khofly</DocsSubtitle>
 
       <DocsText>
-        Go to Settings/Instances/SearXNG Domain and set your instances domain in
-        the following format <Code>https://domain.com</Code>
+        Go to Settings/Instances/SearXNG Domain and set your instances domain in the following
+        format <Code>https://domain.com</Code>
       </DocsText>
 
       <DocsNextPrev

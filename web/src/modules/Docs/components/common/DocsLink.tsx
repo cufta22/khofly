@@ -1,5 +1,5 @@
-import { Anchor, Text } from "@mantine/core";
-import React from "react";
+import { usePrimaryColor } from "@hooks/use-primary-color";
+import { Anchor, Text, useMantineTheme } from "@mantine/core";
 
 interface Props {
   href: string;
@@ -7,14 +7,16 @@ interface Props {
 }
 
 const DocsLink: React.FC<Props> = ({ href, label }) => {
+  const linkTextColor = usePrimaryColor(4);
+
   return (
     <>
       {" "}
-      <Text component="span" c="blue.4">
-        <Anchor href={href} target="_blank" rel="noreferrer noopener">
+      <Anchor href={href} target="_blank" rel="noreferrer noopener">
+        <Text component="span" c={linkTextColor}>
           {label}
-        </Anchor>
-      </Text>
+        </Text>
+      </Anchor>
     </>
   );
 };

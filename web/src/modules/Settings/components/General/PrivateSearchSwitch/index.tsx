@@ -1,5 +1,6 @@
 import RemixLink from "@components/RemixLink";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 import { Flex, Switch, Text } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 
@@ -9,13 +10,15 @@ const PrivateSearchSwitch = () => {
   const privateSearch = useSettingsStore((state) => state.privateSearch);
   const setPrivateSearch = useSettingsStore((state) => state.setPrivateSearch);
 
+  const linkTextColor = usePrimaryColor(4);
+
   return (
     <Flex align="center" gap="sm">
-      <Text component="span" c="blue.4">
-        <RemixLink to="/docs/private-search" target="_blank">
+      <RemixLink to="/docs/private-search" target="_blank">
+        <Text component="span" c={linkTextColor}>
           {t("pages.settings.general.learn_more")}
-        </RemixLink>
-      </Text>
+        </Text>
+      </RemixLink>
 
       <Switch checked={privateSearch} onChange={(e) => setPrivateSearch(e.currentTarget.checked)} />
     </Flex>

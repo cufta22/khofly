@@ -8,6 +8,7 @@ import { useSearchStore } from "@store/search";
 import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { usePrimaryColor } from "@hooks/use-primary-color";
 
 dayjs.extend(relativeTime);
 
@@ -39,13 +40,20 @@ const ScienceRow: React.FC<Props> = ({ data }) => {
   const displayFavicon = useSettingsStore((state) => state.displayFavicon);
   const showEngines = useSettingsStore((state) => state.showEngines);
 
+  const linkTextColor = usePrimaryColor(4);
+
   return (
     <Flex className={classes.science_row} direction="column">
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
-            <Image w={16} h={16} src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`} alt="" />
+            <Image
+              w={16}
+              h={16}
+              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
+              alt=""
+            />
           )}
 
           <Text size="xs" truncate="end">
@@ -142,7 +150,7 @@ const ScienceRow: React.FC<Props> = ({ data }) => {
               </Table.Td>
               <Table.Td>
                 <SearchAnchor url={`https://oadoi.org/${doi}`}>
-                  <Text c="blue" size="xs">
+                  <Text c={linkTextColor} size="xs">
                     {doi}
                   </Text>
                 </SearchAnchor>
