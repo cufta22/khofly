@@ -1,13 +1,7 @@
 import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
-import {
-  IconApps,
-  IconBrush,
-  IconLink,
-  IconRadar,
-  IconSettings2,
-} from "@tabler/icons-react";
+import { IconApps, IconBrush, IconLink, IconRadar, IconSettings2 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SettingsGeneral from "./components/General";
 import SettingsInterface from "./components/Interface";
@@ -40,23 +34,12 @@ const PageSettings = () => {
 
   return (
     <Container className={classes.settings_page} size="lg" pt={40} pb={80}>
-      <Tabs
-        variant="default"
-        value={stateTab}
-        onChange={handleChangeTab}
-        keepMounted={false}
-      >
+      <Tabs variant="default" value={stateTab} onChange={handleChangeTab} keepMounted={false}>
         <Tabs.List mb="xl" className={classes.tabs_scroll}>
-          <Tabs.Tab
-            value="general"
-            leftSection={<IconSettings2 style={getIconStyle(20)} />}
-          >
+          <Tabs.Tab value="general" leftSection={<IconSettings2 style={getIconStyle(20)} />}>
             General
           </Tabs.Tab>
-          <Tabs.Tab
-            value="interface"
-            leftSection={<IconBrush style={getIconStyle(20)} />}
-          >
+          <Tabs.Tab value="interface" leftSection={<IconBrush style={getIconStyle(20)} />}>
             Interface
           </Tabs.Tab>
           <Tabs.Tab value="instances" leftSection={<IconLink style={getIconStyle(20)} />}>
@@ -73,7 +56,7 @@ const PageSettings = () => {
         <Tabs.Panel value="interface">
           <>
             <SettingsInterface setDisplayThemeEdit={setDisplayThemeEdit} />
-            {displayThemeEdit && <SettingsThemeEditor />}
+            {displayThemeEdit && <SettingsThemeEditor setDisplayThemeEdit={setDisplayThemeEdit} />}
           </>
         </Tabs.Panel>
 

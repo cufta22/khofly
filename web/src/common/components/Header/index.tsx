@@ -28,12 +28,12 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const pageTitle = isChangelog
     ? "Changelog"
     : isSettings
-    ? "Settings"
-    : isPrivacy
-    ? "Privacy"
-    : isDocs
-    ? "Docs"
-    : "";
+      ? "Settings"
+      : isPrivacy
+        ? "Privacy"
+        : isDocs
+          ? "Docs"
+          : "";
 
   return (
     <Group
@@ -52,18 +52,14 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {/* Header with title */}
       {(isDocs || isSettings || isChangelog || isPrivacy) && (
         <>
-          <HeaderLogo
-            hasBurger={isDocs}
-            openNavbar={openNavbar}
-            toggleNavbar={toggleNavbar}
-          />
+          <HeaderLogo hasBurger={isDocs} openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
           <Text ml="sm" size="xl" fw={700}>
             / {pageTitle}
           </Text>
         </>
       )}
 
-      <div className={classes.divider}></div>
+      <div className={classes.divider} />
 
       {isSearch && <HeaderSettings />}
 

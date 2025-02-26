@@ -6,11 +6,15 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import Shortcuts from "./components/Shortcuts";
 import { useShortcutsStore } from "@store/shortcuts";
 import DevInterface from "./components/DevInterface";
+import useSettingsParams from "./hooks/use-set-params";
 
 const PageIndex = () => {
   const t = useTranslate();
 
   const displayShortcuts = useShortcutsStore((state) => state.displayShortcuts);
+
+  // Change settings from params
+  useSettingsParams();
 
   return (
     <Container

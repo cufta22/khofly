@@ -1,6 +1,6 @@
 .general_media_img {
   cursor: pointer;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.05);
@@ -9,4 +9,26 @@
 
 .general_media_vid {
   cursor: pointer;
+
+  position: relative;
+  height: 150px;
+  width: 100%;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .image {
+    width: 100%;
+    height: 150px;
+  }
+
+  .play_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

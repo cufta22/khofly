@@ -1,5 +1,5 @@
 import RemixLink from "@components/RemixLink";
-import { ActionIcon, Combobox, Divider, Flex, TextInput, useCombobox } from "@mantine/core";
+import { ActionIcon, Combobox, Divider, Flex, Image, TextInput, useCombobox } from "@mantine/core";
 import { IconSearch, IconTriangleFilled, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useEffect, useRef, useState } from "react";
@@ -59,13 +59,11 @@ const SearchSectionInput = () => {
     reset();
   };
 
-  const comboboxOptions =
-    data &&
-    data.map((str) => (
-      <Combobox.Option value={str} key={str}>
-        {str}
-      </Combobox.Option>
-    ));
+  const comboboxOptions = data?.map((str) => (
+    <Combobox.Option value={str} key={str}>
+      {str}
+    </Combobox.Option>
+  ));
 
   useEffect(() => {
     const query = searchParams.get("q");
@@ -74,7 +72,8 @@ const SearchSectionInput = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    if (!useAutocomplete || !debouncedQ || document.activeElement !== combobox.targetRef.current) return;
+    if (!useAutocomplete || !debouncedQ || document.activeElement !== combobox.targetRef.current)
+      return;
 
     trigger(debouncedQ);
   }, [debouncedQ]);
@@ -111,18 +110,25 @@ const SearchSectionInput = () => {
               handleSearch(q);
             }
           }}
-          leftSection={
-            isSm && (
-              <RemixLink className={classes.app_logo_mobile} to="/">
-                <IconTriangleFilled style={getIconStyle(22)} />
-              </RemixLink>
-            )
-          }
+          // leftSection={
+          //   isSm && (
+          //     <RemixLink className={classes.app_logo_mobile} to="/">
+          //       {/* <IconTriangleFilled style={getIconStyle(22)} /> */}
+          //       <Image src="/assets/logo.svg" w={22} h={22} />
+          //     </RemixLink>
+          //   )
+          // }
           rightSection={
             <Flex align="center" justify="flex-end" gap={4}>
               {q.length >= 1 && (
                 <>
-                  <ActionIcon size="lg" radius="sm" color="gray.8" variant="transparent" onClick={handleClear}>
+                  <ActionIcon
+                    size="lg"
+                    radius="sm"
+                    color="gray.8"
+                    variant="transparent"
+                    onClick={handleClear}
+                  >
                     <IconX style={getIconStyle(20)} stroke={1.5} />
                   </ActionIcon>
 
