@@ -11,7 +11,6 @@ import {
   IconExternalLink,
   IconLanguage,
   IconPalette,
-  IconPencil,
   IconSunMoon,
 } from "@tabler/icons-react";
 

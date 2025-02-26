@@ -25,6 +25,14 @@
     <a href="https://khofly.com/docs">Documentation</a>
 </h3>
 
+## Structure
+
+| Codebase             | Description                                   | 
+| :-:                  | :-:                                           | 
+| [web](./web)         | Bun REST api for getting 3rd party data       |      
+| [api](./api)         | React web client                              | 
+| [scripts](./scripts) | Shell scripts for installing/updating apps    | 
+
 ## Branches
 
 - staging -> pr this branch for everything

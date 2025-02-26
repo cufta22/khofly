@@ -29,10 +29,6 @@ const SectionVercel = () => {
 
         <Flex align="center" gap="sm">
           <Badge size="lg" color="green" variant="light">
-            Recommended
-          </Badge>
-
-          <Badge size="lg" color="green" variant="light">
             Has free tier
           </Badge>
         </Flex>
@@ -41,19 +37,17 @@ const SectionVercel = () => {
       <DocsSubtitle>1. Clone Khofly repo on your machine</DocsSubtitle>
 
       <DocsText>
-        Type <Code>git clone https://github.com/cufta22/khofly.git .</Code> in
-        an empty folder on your system.
+        Type <Code>git clone https://github.com/cufta22/khofly.git .</Code> in an empty folder on
+        your system.
       </DocsText>
 
-      <DocsSubtitle>
-        2. Create an empty repository on your git provider account
-      </DocsSubtitle>
+      <DocsSubtitle>2. Create an empty repository on your git provider account</DocsSubtitle>
 
       <DocsSubtitle>3. Push your code</DocsSubtitle>
 
       <DocsText>
-        Push your local Khofly code to your newly created repository and Vercel
-        should handle the deployment for you automatically
+        Push your local Khofly code to your newly created repository and Vercel should handle the
+        deployment for you automatically
       </DocsText>
 
       <DocsSubtitle>
@@ -61,22 +55,19 @@ const SectionVercel = () => {
       </DocsSubtitle>
 
       <DocsText>
-        Once the project is created go to Settings/General and make sure the
-        Output Directory is set to <Code>build</Code>
+        Once the project is created go to Settings/General and make sure the Output Directory is set
+        to <Code>build</Code>
       </DocsText>
 
       <DocsText>
-        Now go into Settings/Environment Variables and make sure to set the
-        following:
+        Now go into Settings/Environment Variables and make sure to set the following:
       </DocsText>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={envVars} language="bash" />
       </Paper>
 
-      <DocsSubtitle>
-        5. Redeploy Vercel project so that env variables set in
-      </DocsSubtitle>
+      <DocsSubtitle>5. Redeploy Vercel project so that env variables set in</DocsSubtitle>
 
       <DocsTitle>Updating Khofly version</DocsTitle>
 
@@ -84,17 +75,11 @@ const SectionVercel = () => {
 
       <DocsText>
         Open the folder where you originally cloned Khofly and run{" "}
-        <Code>git pull origin master</Code>, after this push the code to your
-        hosted repository and Vercel will automatically redeploy your app.
+        <Code>git pull origin master</Code>, after this push the code to your hosted repository and
+        Vercel will automatically redeploy your app.
       </DocsText>
 
-      <Alert
-        mt="xl"
-        variant="light"
-        color="blue"
-        title="Learn more"
-        icon={<IconInfoCircle />}
-      >
+      <Alert mt="xl" variant="light" color="blue" title="Learn more" icon={<IconInfoCircle />}>
         You can read more about deploying a Remix site to Vercel at{" "}
         <DocsLink
           href="https://vercel.com/guides/deploying-remix-with-vercel"

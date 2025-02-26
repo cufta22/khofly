@@ -1,8 +1,5 @@
 import RemixLink from "@components/RemixLink";
-import { Burger, Flex } from "@mantine/core";
-import { IconTriangleFilled } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import React from "react";
+import { Burger, Flex, Image } from "@mantine/core";
 
 interface Props {
   hasBurger: boolean;
@@ -10,24 +7,15 @@ interface Props {
   toggleNavbar: () => void;
 }
 
-const HeaderLogo: React.FC<Props> = ({
-  hasBurger,
-  openNavbar,
-  toggleNavbar,
-}) => {
+const HeaderLogo: React.FC<Props> = ({ hasBurger, openNavbar, toggleNavbar }) => {
   return (
     <Flex align="center" gap="md">
-      {hasBurger && (
-        <Burger
-          opened={openNavbar}
-          onClick={toggleNavbar}
-          hiddenFrom="sm"
-          size="md"
-        />
-      )}
+      {hasBurger && <Burger opened={openNavbar} onClick={toggleNavbar} hiddenFrom="sm" size="md" />}
 
       <RemixLink to="/">
-        <IconTriangleFilled style={getIconStyle(32)} />
+        {/* <IconTriangleFilled style={getIconStyle(32)} /> */}
+
+        <Image src="/assets/logo.svg" w={32} h={32} />
       </RemixLink>
     </Flex>
   );

@@ -1,9 +1,19 @@
-import { Anchor, Button, DEFAULT_THEME, Flex, JsonInput, Paper, Stack, Text } from "@mantine/core";
+import {
+  Anchor,
+  Button,
+  CloseButton,
+  DEFAULT_THEME,
+  Flex,
+  JsonInput,
+  Paper,
+  Stack,
+  Text,
+} from "@mantine/core";
 
 import { IconCheck, IconMinus, IconPalette, IconPlus } from "@tabler/icons-react";
 
 import { useTranslate } from "@hooks/translate/use-translate";
-import { useEffect, useState } from "react";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { THEME_CATPPUCCIN } from "@utils/resources/themes/catppuccin";
 import { useClientServerState } from "@store/client-server";
@@ -12,7 +22,11 @@ import { setCookie } from "@utils/functions/cookies";
 import { useMounted } from "@mantine/hooks";
 import ExternalLink from "@components/ExternalLink";
 
-const SettingsThemeEditor = () => {
+interface Props {
+  setDisplayThemeEdit: Dispatch<SetStateAction<boolean>>;
+}
+
+const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   const t = useTranslate();
   const mounted = useMounted();
 
@@ -59,12 +73,21 @@ const SettingsThemeEditor = () => {
 
   return (
     <Paper radius="md" withBorder mt={40}>
-      <Flex align="center" p="lg" mb={16}>
+      <Flex align="center" p="lg" mb={16} justify="space-between">
         <IconPalette size={32} />
 
         <Text fz={26} fw={600} ml="sm">
           {t("pages.settings.theme.title")}
         </Text>
+
+        <div style={{ flex: 1 }} />
+
+        <CloseButton
+          size="lg"
+          onClick={() => {
+            setDisplayThemeEdit(false);
+          }}
+        />
       </Flex>
 
       {/* Settings content */}
