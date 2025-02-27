@@ -1,5 +1,5 @@
-import { Context } from "elysia";
-import path from "path";
+import type { Context } from "elysia";
+import path from "node:path";
 import { __dirname } from "../../config";
 
 // GET - /rates

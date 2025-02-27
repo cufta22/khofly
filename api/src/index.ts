@@ -13,9 +13,8 @@ const app = new Elysia()
   .get("/rates", router.handleRates) // Fetch latest currency exchange rates
   .get("/lyrics", router.handleLyrics) // Fetch song lyrics by name
   .get("/weather", router.handleWeather) // Fetch weather data
+  .get("/download", router.handleDownload) // Download media file
 
   .listen(4000);
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);

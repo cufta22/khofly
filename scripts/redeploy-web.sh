@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ..
+
 # Set default environment to 'staging' if no argument is provided
 ENVIRONMENT=${1:-staging}
 

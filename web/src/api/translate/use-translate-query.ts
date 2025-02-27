@@ -9,7 +9,7 @@ interface Args {
 
 const API_URL = "https://api-b2b.backenster.com/b1/api/v3";
 
-const useTranslateSWR = () => {
+const useDownloadSWR = () => {
   const { fetchData } = useFetch();
 
   // const searchParams = useSearchParams();
@@ -34,11 +34,7 @@ const useTranslateSWR = () => {
     });
   };
 
-  return useSWRMutation<{ result: string; err: string }, any, any, Args>(
-    `${API_URL}`,
-    fetcher,
-    {}
-  );
+  return useSWRMutation<{ result: string; err: string }, any, any, Args>(`${API_URL}`, fetcher, {});
 };
 
-export default useTranslateSWR;
+export default useDownloadSWR;

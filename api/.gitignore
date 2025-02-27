@@ -42,3 +42,6 @@ package-lock.json
 **/*.bun
 
 /temp/*.json
+
+/temp/media/*.mp4
+/temp/media/*.mp3

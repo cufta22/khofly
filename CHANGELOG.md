@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Instant answers - Time In, Time Zone, etc.
 - New and improved theme customization
 - Multiple missing search engines
+- Media Player
 
 ### Fixed
 

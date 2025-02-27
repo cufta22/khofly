@@ -76,8 +76,13 @@ const DocsResourcesCustomSearxng = () => {
       <DocsSubtitle>2. Add your instance to Khofly</DocsSubtitle>
 
       <DocsText>
-        Go to Settings/Instances/SearXNG Domain and set your instances domain in the following
-        format <Code>https://domain.com</Code>
+        Go to{" "}
+        <RemixLink to="/settings?tab=instances">
+          <Text component="span" c={linkTextColor}>
+            Settings/Instances/SearXNG Domain
+          </Text>
+        </RemixLink>{" "}
+        and set your instances domain in the following format <Code>https://domain.com</Code>
       </DocsText>
 
       <DocsNextPrev

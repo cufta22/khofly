@@ -1,6 +1,6 @@
 import { CronConfig } from "@elysiajs/cron";
 import { cron_fetchRates } from "./cron/fetchRates";
-import path from "path";
+import path from "node:path";
 
 export const __dirname = new URL(".", import.meta.url).pathname;
 
@@ -9,11 +9,7 @@ export const STATIC_OPTIONS = {
   prefix: "/temp",
 };
 
-const whitelist = [
-  "http://localhost:3000",
-  "https://staging.khofly.com",
-  "https://khofly.com",
-];
+const whitelist = ["http://localhost:3000", "https://staging.khofly.com", "https://khofly.com"];
 
 export const CORS_OPTIONS = {
   origin(req: Request) {

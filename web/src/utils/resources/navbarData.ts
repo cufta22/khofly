@@ -1,5 +1,12 @@
 import { LinksGroupProps } from "@components/Navbar/Docs/components/LinksGroup";
-import { IconApi, IconBox, IconPackage, IconPick, IconSearch, IconServer } from "@tabler/icons-react";
+import {
+  IconApi,
+  IconBox,
+  IconPackage,
+  IconPick,
+  IconSearch,
+  IconServer,
+} from "@tabler/icons-react";
 
 export const NAVBAR_DATA: LinksGroupProps[] = [
   {
@@ -15,6 +22,11 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
       {
         label: "Private Search",
         link: "/docs/private-search",
+        isWip: false,
+      },
+      {
+        label: "Private Player",
+        link: "/docs/private-player",
         isWip: false,
       },
     ],

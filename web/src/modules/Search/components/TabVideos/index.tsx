@@ -8,6 +8,7 @@ import VideoSkeleton from "./components/VideoSkeleton";
 import classes from "./styles.module.scss";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
+import PrivatePlayer from "../components/PrivatePlayer";
 
 const TabVideos = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
@@ -60,6 +61,9 @@ const TabVideos = () => {
           </Button>
         </Center>
       )}
+
+      {/* Private Player */}
+      <PrivatePlayer />
     </Flex>
   );
 };

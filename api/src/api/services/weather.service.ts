@@ -1,4 +1,4 @@
-import { Context } from "elysia";
+import type { Context } from "elysia";
 
 // GET - /weather
 export const handleGetWeather = async (ctx: Context) => {

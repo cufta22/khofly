@@ -1,6 +1,6 @@
 import { Container, Text, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import { IconShield } from "@tabler/icons-react";
+import { IconPlayerPlay } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
@@ -10,7 +10,7 @@ import DocsNextPrev from "./common/DocsNextPrev";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 
-const DocsSearchPrivateSearch = () => {
+const DocsSearchPrivatePlayer = () => {
   const theme = useMantineTheme();
 
   const linkTextColor = usePrimaryColor(4);
@@ -18,9 +18,9 @@ const DocsSearchPrivateSearch = () => {
   return (
     <Container size="lg" p="xl" pb={100}>
       <DocsTitle
-        leftSection={<IconShield style={getIconStyle(48)} color={theme.colors.green[5]} />}
+        leftSection={<IconPlayerPlay style={getIconStyle(48)} color={theme.colors.orange[5]} />}
       >
-        Private Search
+        Private Player
       </DocsTitle>
 
       <DocsText>
@@ -52,11 +52,11 @@ const DocsSearchPrivateSearch = () => {
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["AI"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["privatePlayer"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
       />
     </Container>
   );
 };
 
-export default DocsSearchPrivateSearch;
+export default DocsSearchPrivatePlayer;

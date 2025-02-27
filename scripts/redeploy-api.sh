@@ -1,7 +1,10 @@
 #!/bin/bash
 
+cd ..
+
 # Fetch latest code
 git pull origin staging
+
 
 # Build the api
 cd api

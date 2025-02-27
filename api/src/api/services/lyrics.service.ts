@@ -1,5 +1,5 @@
-import { Context } from "elysia";
-import { IGeniusSearchResponse } from "../../types/genius.types";
+import type { Context } from "elysia";
+// import { IGeniusSearchResponse } from "../../types/genius.types";
 
 // GET - /lyrics
 export const handleGetLyrics = async (ctx: Context) => {

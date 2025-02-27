@@ -11,10 +11,9 @@ HOST = # your domain, either set a custom domain or Vercel auto assigned one
 
 SEARXNG_URL_SELF_HOST = # url for your SearXNG instance
 
-NOMINATIM_URL = https://nominatim.openstreetmap.org 
+API_URL_SELF_HOST = # url for your hosted API
 
-OPEN_WEATHER_URL = https://api.openweathermap.org
-OPEN_WEATHER_API_KEY = # Your API key if you want to use weather IA
+NOMINATIM_URL = https://nominatim.openstreetmap.org 
 
 IS_SELF_HOST = 1
 APP_NAME = YourApp # Will be used instead of "Khofly" across the app
@@ -53,6 +52,10 @@ const SectionVercel = () => {
       <DocsSubtitle>
         4. Create a new project on Vercel and connect it to your git repository
       </DocsSubtitle>
+
+      <DocsText>
+        The Root Directory needs to be set to <Code>web</Code>
+      </DocsText>
 
       <DocsText>
         Once the project is created go to Settings/General and make sure the Output Directory is set

@@ -1,5 +1,5 @@
-import path from "path";
-import fs from "fs/promises";
+import path from "node:path";
+import fs from "node:fs/promises";
 
 import { __dirname } from "../config";
 
@@ -8,7 +8,9 @@ export const cron_fetchRates = async () => {
 
   // Remove old rates
   for (const file of await fs.readdir(tempDir)) {
-    if (file === ".gitkeep") continue;
+    if (file === ".gitkeep") continue; // Keep on git
+    if (file === "media") continue; // For media files
+
     await fs.unlink(path.join(tempDir, file));
   }
 
@@ -18,7 +20,6 @@ export const cron_fetchRates = async () => {
   );
 
   const resData: any = await res.json();
-  console.log(resData?.timestamp);
 
   if (!resData.rates) return;
 
