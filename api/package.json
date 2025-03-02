@@ -7,9 +7,9 @@
     "start": "bun run src/index.ts"
   },
   "dependencies": {
-    "@distube/ytdl-core": "^4.16.4",
     "@elysiajs/cors": "^1.2.0",
     "@elysiajs/cron": "^1.2.0",
+    "@elysiajs/static": "^1.2.0",
     "dayjs": "^1.11.13",
     "elysia": "latest"
   },

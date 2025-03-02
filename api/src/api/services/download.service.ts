@@ -5,9 +5,6 @@ import path from "node:path";
 
 import dayjs from "dayjs";
 
-// Youtube downloader
-import ytdl from "@distube/ytdl-core";
-
 // GET - /download
 export const handleDownload = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
@@ -15,53 +12,66 @@ export const handleDownload = async (ctx: Context) => {
   const from = searchParams.get("from") || "";
   const format = searchParams.get("format") || "";
 
-  console.log(url);
-  console.log(from);
-
   // Error handling
   if (!url) {
     ctx.set.status = 400;
-    return "URL is required!";
+    return { error: true, message: "URL is required!", data: null };
   }
   if (!["youtube"].includes(from)) {
     ctx.set.status = 400;
-    return "Invalid platform!";
+    return { error: true, message: "Invalid platform!", data: null };
   }
-  if (from === "youtube" && !["mp4", "mp3"].includes(from)) {
+  if (from === "youtube" && !["mp4", "mp3"].includes(format)) {
     ctx.set.status = 400;
-    return "Invalid arguments!";
+    return { error: true, message: "Invalid arguments!", data: null };
   }
 
   const tempDir = path.join(__dirname, `/../../../temp/media`);
 
   const randomNumbers = Math.floor(Math.random() * 100000);
-  const dateNow = dayjs().format("YYYY/MM/DD-mm");
+  const dateNow = dayjs().format("YYYY-MM-DD-HH:mm");
 
-  // Handle Youtube
-  if (from === "youtube") {
-    const outputPathYT = `${tempDir}/${dateNow}-${randomNumbers}.${format}`;
+  const staticUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:4000/media"
+      : "https://api-eu1.khofly.com/media";
 
-    //   try {
-    //     ytdl(url)
-    //       .pipe(fs.createWriteStream(outputPathYT))
-    //       .on("finish", () => {
-    //         ctx.set.status = 200;
-    //         return "Download successful";
-    //       })
-    //       .on("error", () => {
-    //         ctx.set.status = 400;
-    //         return "Download failed";
-    //       });
-    //   } catch (error) {
-    //     console.log(error);
+  const fileNameYT = `${dateNow}-${randomNumbers}.${format}`;
+  const outputPathYT = `${tempDir}/${fileNameYT}`;
 
-    //     ctx.set.status = 400;
-    //     return "Download failed";
-    //   }
+  try {
+    // -----------------------------------------------
+    // Handle Youtube
+    // -----------------------------------------------
+
+    if (from === "youtube") {
+      // Validate YouTube URL
+      // if (false) {
+      //   return { error: true, message: "Invalid YouTube URL", data: null };
+      // }
+    }
+
+    // -----------------------------------------------
+    // Handle Instagram
+    // -----------------------------------------------
+
+    if (from === "instagram") {
+    }
+  } catch (error) {
+    console.log("failed catch");
+    console.log(error);
+
+    ctx.set.status = 400;
+    return { error: true, message: "Download failed", data: null };
   }
 
-  // Handle Instagram
-
-  ctx.set.status = 200;
-  return "Something happened";
+  // ctx.set.status = 200;
+  // return {
+  //   error: false,
+  //   message: "Download successful",
+  //   data: {
+  //     url: from === "youtube" ? `${staticUrl}/${fileNameYT}` : "",
+  //     filename: from === "youtube" ? fileNameYT : "",
+  //   },
+  // };
 };

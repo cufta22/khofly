@@ -61,3 +61,9 @@ export type DotNestedKeys<T> = (
 ) extends infer D
   ? Extract<D, string>
   : never;
+
+export interface IAPIResponse<T> {
+  error: boolean;
+  message: string;
+  data: T;
+}

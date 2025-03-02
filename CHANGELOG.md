@@ -5,11 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 01.03.2025
+
+### Added
+
+- Instant answers - TicTacToe, Dice Roll
+- Prioritize or blacklist certain websites
+
+### Fixed
+
 ## [0.6.0] - 01.03.2025
 
 ### Added
 
-- Instant answers - Time In, Time Zone, etc.
+- Instant answers - Time In, Time Zone
 - New and improved theme customization
 - Multiple missing search engines
 - Media Player

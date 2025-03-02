@@ -3,9 +3,6 @@ export const findTimeZone = (input: string): string => {
     zone.toLocaleLowerCase().includes(input.toLocaleLowerCase())
   );
 
-  console.log(input);
-  console.log(zone);
-
   return zone || "";
 };
 

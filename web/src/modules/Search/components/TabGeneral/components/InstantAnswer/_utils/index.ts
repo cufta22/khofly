@@ -127,12 +127,13 @@ export const shouldDisplayDownloader = (query: string) => {
     "ytdl",
     "youtube download",
     "yt to mp3",
+    "yt to mp4",
 
     "ig download",
     "ig downloader",
     "instagram download",
 
-    "tiktok download",
+    // "tiktok download",
   ].map((val) => {
     if (query?.toLowerCase().includes(val)) shouldDisplay = true;
   });

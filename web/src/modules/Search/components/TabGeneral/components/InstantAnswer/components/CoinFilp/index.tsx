@@ -8,7 +8,11 @@ import clsx from "clsx";
 import { cryptoRandomNumber } from "@utils/functions/cryptoRandomNumber";
 import { IAWrapper } from "../../wrapper";
 
-const IACoinFlip = () => {
+interface Props {
+  withIAWrapper: boolean;
+}
+
+const IACoinFlip: React.FC<Props> = ({ withIAWrapper }) => {
   const [side, setSide] = useState<"heads" | "tails" | "">("");
   const [count, setCount] = useState(0);
 
@@ -24,27 +28,29 @@ const IACoinFlip = () => {
     setSide(landedOn === 0 ? "heads" : "tails");
   }, [count]);
 
-  return (
-    <IAWrapper>
-      <Center className={classes.coin_wrapper} onClick={handleToss}>
-        <Paper
-          className={clsx(
-            classes.coin,
-            { [classes.heads_win]: side === "heads" },
-            { [classes.tails_win]: side === "tails" }
-          )}
-          withBorder
-        >
-          <div className={classes.side_heads}>
-            <IconMoodSmileFilled style={getIconStyle(80)} />
-          </div>
-          <div className={classes.side_tails}>
-            <IconCampfireFilled style={getIconStyle(80)} />
-          </div>
-        </Paper>
-      </Center>
-    </IAWrapper>
+  const coinFlipComponent = (
+    <Center className={classes.coin_wrapper} onClick={handleToss}>
+      <Paper
+        className={clsx(
+          classes.coin,
+          { [classes.heads_win]: side === "heads" },
+          { [classes.tails_win]: side === "tails" }
+        )}
+        withBorder
+      >
+        <div className={classes.side_heads}>
+          <IconMoodSmileFilled style={getIconStyle(80)} />
+        </div>
+        <div className={classes.side_tails}>
+          <IconCampfireFilled style={getIconStyle(80)} />
+        </div>
+      </Paper>
+    </Center>
   );
+
+  if (withIAWrapper) return <IAWrapper>{coinFlipComponent}</IAWrapper>;
+
+  return coinFlipComponent;
 };
 
 export default IACoinFlip;

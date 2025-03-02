@@ -1,6 +1,6 @@
 import { useInstanceStore } from "@store/instance";
 import useFetch from "../use-fetch";
-import { INominatimResults } from "@ts/nominatim.tyles";
+import { INominatimResults } from "@ts/nominatim.types";
 import useSWRMutation from "swr/mutation";
 
 const getKey = (domain: string) => {
@@ -15,16 +15,10 @@ const useNominatimSWR = () => {
   const domain = useInstanceStore((state) => state.nominatimDomain);
 
   const fetcher = (key: string, { arg }: { arg: string }) => {
-    return fetchData(`${domain}/search?q=${arg}&format=jsonv2`) as Promise<
-      INominatimResults[]
-    >;
+    return fetchData(`${domain}/search?q=${arg}&format=jsonv2`) as Promise<INominatimResults[]>;
   };
 
-  return useSWRMutation<INominatimResults[], any, any, string>(
-    getKey(domain),
-    fetcher,
-    {}
-  );
+  return useSWRMutation<INominatimResults[], any, any, string>(getKey(domain), fetcher, {});
 };
 
 export default useNominatimSWR;

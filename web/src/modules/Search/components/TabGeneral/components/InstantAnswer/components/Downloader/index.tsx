@@ -17,9 +17,11 @@ import { IconBrandInstagram, IconBrandTiktok, IconBrandYoutube } from "@tabler/i
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { isValidURL } from "@utils/functions/isValidURL";
 import useToast from "@hooks/use-toast";
+import useDownloadSWR from "src/api/download/use-download-query";
 
 // "youtube" | "tiktok" | "instagram"
-type DownloadType = "youtube";
+type DownloadFrom = "youtube";
+type DownloadFormat = "mp3" | "mp4";
 
 const getDownloadOptions = (theme: MantineTheme) => ({
   youtube: {
@@ -32,18 +34,20 @@ const getDownloadOptions = (theme: MantineTheme) => ({
   //   value: "tiktok",
   //   icon: <IconBrandTiktok style={getIconStyle(20)} />,
   // },
-  // instagram: {
-  //   label: "Instagram",
-  //   value: "instagram",
-  //   icon: <IconBrandInstagram style={getIconStyle(20)} color={theme.colors.pink["6"]} />,
-  // },
+  instagram: {
+    label: "Instagram",
+    value: "instagram",
+    icon: <IconBrandInstagram style={getIconStyle(20)} color={theme.colors.pink["6"]} />,
+  },
 });
 
 const IADownloader = () => {
+  const { data, trigger } = useDownloadSWR({ shouldDownload: true });
   const theme = useMantineTheme();
-  const [from, setFrom] = useState("youtube");
+
   const [url, setUrl] = useState("");
-  const [format, setFormat] = useState("");
+  const [from, setFrom] = useState<DownloadFrom>("youtube");
+  const [format, setFormat] = useState<DownloadFormat>("mp4");
 
   const { toast } = useToast();
 
@@ -55,11 +59,18 @@ const IADownloader = () => {
       return;
     }
 
-    fetch(`http://localhost:4000/download?url=${url}&from=youtube`);
+    trigger({
+      format,
+      from,
+      url,
+    });
   };
 
   useEffect(() => {
-    const defaultFormat = from === "youtube" ? "mp4" : "";
+    // Clear URL when changing from
+    setUrl("");
+
+    const defaultFormat = from === "youtube" ? "mp4" : "mp4";
     setFormat(defaultFormat);
   }, [from]);
 
@@ -72,16 +83,16 @@ const IADownloader = () => {
               fullWidth
               mb="md"
               value={from}
-              onChange={(val) => val && setFrom(val as DownloadType)}
+              onChange={(val) => val && setFrom(val as DownloadFrom)}
               data={Object.keys(DOWNLOAD_OPTIONS).map((val) => ({
                 // label: DOWNLOAD_OPTIONS[val as DownloadType].label,
                 label: (
                   <Flex align="center" justify="center" gap="xs">
-                    {DOWNLOAD_OPTIONS[val as DownloadType].icon}
-                    <span>{DOWNLOAD_OPTIONS[val as DownloadType].label}</span>
+                    {DOWNLOAD_OPTIONS[val as DownloadFrom].icon}
+                    <span>{DOWNLOAD_OPTIONS[val as DownloadFrom].label}</span>
                   </Flex>
                 ),
-                value: DOWNLOAD_OPTIONS[val as DownloadType].value,
+                value: DOWNLOAD_OPTIONS[val as DownloadFrom].value,
               }))}
             />
           </ScrollArea>
@@ -104,11 +115,13 @@ const IADownloader = () => {
               <Select
                 size="sm"
                 value={format}
-                onChange={(val) => val && setFormat(val)}
+                onChange={(val) => val && setFormat(val as DownloadFormat)}
                 data={[
                   { value: "mp3", label: "mp3" },
                   { value: "mp4", label: "mp4" },
                 ]}
+                withCheckIcon
+                checkIconPosition="right"
               />
             )}
           </Flex>
