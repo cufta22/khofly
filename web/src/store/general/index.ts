@@ -16,10 +16,8 @@ export const useGeneralStore = create<GeneralState>()(
     (set, get) => ({
       hydrated: false,
 
-      // geolocation: null,
-      // geolocation: { lat: "44.786568", lon: "20.448921" }, // Belgrade
-      // geolocation: { lat: "48.85661400", lon: "2.35222190" }, // Paris
-      geolocation: { lat: "44.623219", lon: "21.187189" },
+      geolocation: null,
+      // geolocation: { lat: "48.85661400", lon: "2.35222190" }, // Paris, for testing
       setGeolocation: (next) => set({ geolocation: next }),
 
       devMode: false,
