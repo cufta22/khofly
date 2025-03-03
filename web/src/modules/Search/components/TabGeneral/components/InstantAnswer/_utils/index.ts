@@ -61,10 +61,7 @@ export const shouldDisplayUnits = (
     Object.keys(KEYWORDS_UNITS_ALL_MAP).map((val) => {
       // Handle {val} convertor
       const array = KEYWORDS_UNITS_ALL_MAP[val as UnitsType].array;
-      if (
-        array.includes(unit1.toLocaleLowerCase()) &&
-        array.includes(unit2.toLocaleLowerCase())
-      ) {
+      if (array.includes(unit1.toLocaleLowerCase()) && array.includes(unit2.toLocaleLowerCase())) {
         returnValue = {
           sdUnit: true,
           unitType: val as UnitsType,
@@ -98,9 +95,7 @@ export const shouldDisplayCurrency = (query: string) => {
 
   let sdCurr = false;
 
-  const currencyArray = Object.keys(KEYWORDS_CURRENCY).map((val) =>
-    val.toLocaleLowerCase()
-  );
+  const currencyArray = Object.keys(KEYWORDS_CURRENCY).map((val) => val.toLocaleLowerCase());
 
   // Display currency convertor if query is unclear
   if (currencyArray.includes(query)) sdCurr = true;
@@ -127,15 +122,18 @@ export const shouldDisplayDownloader = (query: string) => {
   let shouldDisplay = false;
 
   [
+    "downloader",
+
     "ytdl",
     "youtube download",
     "yt to mp3",
+    "yt to mp4",
 
     "ig download",
     "ig downloader",
     "instagram download",
 
-    "tiktok download",
+    // "tiktok download",
   ].map((val) => {
     if (query?.toLowerCase().includes(val)) shouldDisplay = true;
   });

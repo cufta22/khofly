@@ -13,3 +13,12 @@ a {
 table th {
   white-space: nowrap;
 }
+
+/* Fixes odd Firefox behavior in Select – https://github.com/mantinedev/mantine/issues/7476 */
+.mantine-Input-input {
+  @supports (-moz-appearance: none) {
+    &[readonly][aria-haspopup] {
+      pointer-events: all !important;
+    }
+  }
+}

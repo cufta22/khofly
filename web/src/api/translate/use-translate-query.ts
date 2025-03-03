@@ -34,11 +34,7 @@ const useTranslateSWR = () => {
     });
   };
 
-  return useSWRMutation<{ result: string; err: string }, any, any, Args>(
-    `${API_URL}`,
-    fetcher,
-    {}
-  );
+  return useSWRMutation<{ result: string; err: string }, any, any, Args>(`${API_URL}`, fetcher, {});
 };
 
 export default useTranslateSWR;

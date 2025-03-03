@@ -1,5 +1,4 @@
 import { Container, Text, useMantineTheme } from "@mantine/core";
-import React from "react";
 import DocsTitle from "./common/DocsTitle";
 import { IconShield } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -21,7 +20,7 @@ const DocsSearchPrivateSearch = () => {
       <DocsTitle
         leftSection={<IconShield style={getIconStyle(48)} color={theme.colors.green[5]} />}
       >
-        Private Search option
+        Private Search
       </DocsTitle>
 
       <DocsText>
@@ -54,7 +53,7 @@ const DocsSearchPrivateSearch = () => {
 
       <DocsNextPrev
         prev={{ ...DOCS_CARD_DATA(theme)["AI"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["privatePlayer"] }}
       />
     </Container>
   );

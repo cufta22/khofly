@@ -9,25 +9,22 @@ import {
 } from "./_utils";
 import { useSettingsStore } from "@store/settings";
 
-import IACoinFlip from "./components/CoinFilp";
 import IACalculator from "./components/Calculator";
-import IALyrics from "./components/Lyrics";
 import IAUUID from "./components/UUID";
 import IAWeather from "./components/Weather";
 import IACalendar from "./components/Calendar";
 import IAPassword from "./components/Password";
 import IAEquation from "./components/Equation";
+import IARNG from "./components/RNG";
+import IADownloader from "./components/Downloader";
 
 import IANeofetch from "./_commands/Neofetch";
 
 import SharedConverter from "./_shared/SharedConverter";
 import SharedClock from "./_shared/SharedClock";
 import SharedGlobalTime from "./_shared/SharedGlobalTime";
+import SharedGames from "./_shared/SharedGames";
 
-import { useResponsive } from "@hooks/use-responsive";
-
-import IARNG from "./components/RNG";
-import IADownloader from "./components/Downloader";
 import useSearchQuery from "@hooks/use-search-query";
 
 const InstantAnswer = () => {
@@ -47,11 +44,14 @@ const InstantAnswer = () => {
   if (shouldDisplayIAExact(q, ["calendar", "cal"])) return <IACalendar />;
 
   // Instant answer - Coin flip
-  if (shouldDisplayIAExact(q, ["coinflip", "coin flip"])) return <IACoinFlip />;
+  if (shouldDisplayIAExact(q, ["coinflip", "coin flip"])) return <SharedGames type="coinflip" />;
 
   // Instant answer - Currency convertor
   const { sdCurr, ...restCurr } = shouldDisplayCurrency(q);
   if (sdCurr) return <SharedConverter type="currency" {...restCurr} />;
+
+  // Instant answer - Dice Roll
+  if (shouldDisplayIAExact(q, ["dice", "dice roll"])) return <SharedGames type="diceroll" />;
 
   // Instant answer - Downloader
   if (shouldDisplayDownloader(q)) return <IADownloader />;
@@ -59,18 +59,22 @@ const InstantAnswer = () => {
   // Instant answer - Equation
   if (shouldDisplayEquation(q)) return <IAEquation query={q} />;
 
-  // Instant answer - Lyrics by -
+  // Instant answer - Lyrics by
   // if (shouldDisplayIA(q, ["lyrics"]) && !isXl) return <IALyrics />;
 
   // Instant answer - Password
   if (shouldDisplayIAExact(q, ["password"])) return <IAPassword />;
 
-  // Instant answer - Password
+  // Instant answer - Random number generator
   if (shouldDisplayIAExact(q, ["rng", "random number", "random number generator"]))
     return <IARNG />;
 
   // Instant answer - Stopwatch
   if (shouldDisplayIAExact(q, ["stopwatch"])) return <SharedClock type="stopwatch" />;
+
+  // Instant answer - TicTacToe
+  if (shouldDisplayIAExact(q, ["tictactoe", "tic tac toe"]))
+    return <SharedClock type="stopwatch" />;
 
   // Instant answer - Time In
   const { sdTimeIn, location } = shouldDisplayTimeIn(q);
@@ -99,8 +103,8 @@ const InstantAnswer = () => {
 
   // Commands for memes
 
-  // IA Command - Neofetch
-  if (shouldDisplayIA(q, ["neofetch"])) return <IANeofetch />;
+  // IA Command - Neofetch  | X mobile
+  if (shouldDisplayIAExact(q, ["neofetch"])) return <IANeofetch />;
 
   return null;
 };

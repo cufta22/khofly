@@ -17,6 +17,7 @@ import DocsSelfHostKhoflyAPI from "./components/self-host-khofly-api";
 import { useParams } from "react-router";
 import DocsSelfHostAiWorker from "./components/self-host-ai-worker";
 import DocsSearchAIAnswers from "./components/search-ai-answers";
+import DocsSearchPrivatePlayer from "./components/search-private-player";
 
 const Docs = () => {
   const params = useParams();
@@ -30,6 +31,7 @@ const Docs = () => {
     "instant-answers": <DocsSearchInstantAnswer />,
     "ai-answers": <DocsSearchAIAnswers />,
     "private-search": <DocsSearchPrivateSearch />,
+    "private-player": <DocsSearchPrivatePlayer />,
 
     "set-default": <DocsResourcesSetDefault />,
     "custom-searxng": <DocsResourcesCustomSearxng />,

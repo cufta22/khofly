@@ -4,6 +4,7 @@ import {
   IconCookie,
   IconLanguage,
   IconMessageCode,
+  IconPlayerPlay,
   IconSearch,
   IconServer,
   IconShield,
@@ -31,6 +32,12 @@ export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
     icon: <IconShield style={getIconStyle(28)} color={theme.colors.green[5]} />,
     title: "Private Search",
     description: "Make sure your search queries stay private",
+  },
+  privatePlayer: {
+    href: "/docs/private-player",
+    icon: <IconPlayerPlay style={getIconStyle(28)} color={theme.colors.orange[5]} />,
+    title: "Private Player",
+    description: "Play videos privately",
   },
   setDefault: {
     href: "/docs/set-default",

@@ -53,5 +53,50 @@ echo "module.exports = {
 pm2 start
 
 # Nginx
+echo -e "\e[32mCreating Nginx config files\e[0m"
+cd /etc/nginx/sites-available/
+
+# Config for web client
+echo "server {
+    server_name domain.com;
+
+    root /root/web;
+
+    location / {
+        # Proxy to pm2 server on 3001 for web
+
+        proxy_pass http://localhost:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    listen 80;
+}" > web
+
+# Config for bun api
+echo "server {
+    server_name domain.com;
+
+    root /root/api;
+
+    location / {
+        # Proxy to pm2 server on 4000 for api
+
+        proxy_pass http://localhost:4000/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header Origin $http_origin;
+        proxy_cache_bypass $http_upgrade;
+    }
 
 
+    listen 80;
+}" > api
+
+ln -s /etc/nginx/sites-available/web /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/api /etc/nginx/sites-enabled/

@@ -1,4 +1,3 @@
-
 move leaflet stuff to /search
 
 reduce file sizes
@@ -14,3 +13,14 @@ fix the lyrics api spam
 fix weather IA and move hourly to separate file
 
 Finish self host VPS guide
+
+Revisit all IAs
+
+Finish up IA commands
+
+Move space from SharedGames to individual css
+
+Ideas for v7:
+
+- CLI mode
+- Rerank domains ( similar to brave search )

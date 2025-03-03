@@ -34,7 +34,6 @@ const TabGeneral = () => {
   }, [hydratedEngines]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
-  console.log(data);
 
   return (
     <Flex className={classes.tab_general} align="flex-start">
