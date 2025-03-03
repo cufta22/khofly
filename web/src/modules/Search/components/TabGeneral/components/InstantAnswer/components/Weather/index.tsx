@@ -43,17 +43,26 @@ const IAWeather = () => {
   const geolocation = useGeneralStore((state) => state.geolocation);
   const { location } = useGeolocation(!geolocation && hydrated);
 
+  const [source, setSource] = useState<"owm" | "om">("owm");
+
   const [unit, setUnit] = useState<"standard" | "metric" | "imperial">("metric");
   const [areaChart, setAreaChart] = useState<string>("temp");
   const [selectedData, setSelectedData] = useState<OpenWeatherDaily | null>(null);
 
   const linkTextColor = usePrimaryColor(4);
 
-  const { data, isLoading, mutate } = useWeatherSWR({
+  const {
+    data: resData,
+    isLoading,
+    mutate,
+  } = useWeatherSWR({
     lat: geolocation?.lat || location?.latitude,
     lon: geolocation?.lon || location?.longitude,
     units: unit,
+    src: source,
   });
+  const data = resData?.data;
+  const message = resData?.message;
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -74,17 +83,27 @@ const IAWeather = () => {
       label={
         <Text size="sm" c="dimmed">
           Data provided by{" "}
-          <Anchor href="https://openweathermap.org" rel="noreferrer noopener">
-            <Text component="span" c={linkTextColor}>
-              OpenWeather
-            </Text>
-          </Anchor>
+          {message?.includes("OpenWeatherMap") ? (
+            <Anchor href="https://openweathermap.org" rel="noreferrer noopener" target="_blank">
+              <Text component="span" c={linkTextColor}>
+                OpenWeatherMap
+              </Text>
+            </Anchor>
+          ) : message?.includes("Open Meteo") ? (
+            <Anchor href="https://open-meteo.com" rel="noreferrer noopener" target="_blank">
+              <Text component="span" c={linkTextColor}>
+                Open Meteo
+              </Text>
+            </Anchor>
+          ) : (
+            "..."
+          )}
         </Text>
       }
     >
       <Flex align="center" justify="space-between">
         <Text size="sm" c="dimmed">
-          {data?.current && `Showing data for ${data.timezone}`}
+          {data?.current && `Time Zone: ${data.timezone}`}
         </Text>
 
         <SegmentedControl
@@ -102,6 +121,7 @@ const IAWeather = () => {
             {
               value: "standard",
               label: <IconLetterK style={getIconStyle(20)} stroke={2} />,
+              disabled: source === "om",
             },
           ]}
         />
@@ -134,9 +154,9 @@ const IAWeather = () => {
                   selectedDataDay === dayjs.unix(data.current.dt).format("ddd")
                     ? `${Math.round(data?.current.temp)}${unit !== "standard" ? "°" : ""}`
                     : selectedData
-                      ? // Else pick user selected
-                        `${Math.round(selectedData?.temp.day)}${unit !== "standard" ? "°" : ""}`
-                      : ""
+                    ? // Else pick user selected
+                      `${Math.round(selectedData?.temp.day)}${unit !== "standard" ? "°" : ""}`
+                    : ""
                 }
               </Text>
 
@@ -152,24 +172,43 @@ const IAWeather = () => {
               </Flex>
             </Flex>
           </Flex>
-
           {/* <SunPosition data={data.current} /> */}
         </Flex>
       )}
 
-      {data?.current && (
+      <Flex align="center" justify="space-between">
+        {data?.current && (
+          <SegmentedControl
+            value={areaChart}
+            onChange={(val) => setAreaChart(val)}
+            data={[
+              { label: "Temperature", value: "temp" },
+              { label: "Humidity", value: "humidity" },
+              { label: "Wind", value: "wind" },
+            ]}
+            mt="xl"
+            mb="md"
+          />
+        )}
+
         <SegmentedControl
-          value={areaChart}
-          onChange={(val) => setAreaChart(val)}
+          value={source}
+          onChange={(val) => {
+            if (val === "om" && unit === "standard") setUnit("metric");
+            setSource(val as "owm" | "om");
+          }}
           data={[
-            { label: "Temperature", value: "temp" },
-            { label: "Humidity", value: "humidity" },
-            { label: "Wind", value: "wind" },
+            {
+              value: "owm",
+              label: "OWM",
+            },
+            {
+              value: "om",
+              label: "O M",
+            },
           ]}
-          mt="xl"
-          mb="md"
         />
-      )}
+      </Flex>
 
       {data?.hourly?.length && (
         <ScrollArea>
@@ -205,8 +244,8 @@ const IAWeather = () => {
                   areaChart === "temp"
                     ? "yellow.5"
                     : areaChart === "humidity"
-                      ? "blue.5"
-                      : "cyan.4",
+                    ? "blue.5"
+                    : "cyan.4",
               },
               {
                 name: "weather",

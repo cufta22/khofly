@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Instant answers - TicTacToe, Dice Roll
+- Open Meteo as weather data source
 - Prioritize or blacklist certain websites
 
 ### Fixed
