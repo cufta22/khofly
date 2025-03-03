@@ -63,7 +63,7 @@ const TabVideos = () => {
       )}
 
       {/* Private Player */}
-      <PrivatePlayer />
+      {/* <PrivatePlayer /> */}
     </Flex>
   );
 };
