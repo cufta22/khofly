@@ -3,7 +3,7 @@ import React from "react";
 import classes from "../styles.module.scss";
 import { IconDots, IconEdit, IconExternalLink, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useShortcutsStore } from "@store/shortcuts";
+import { useStatrpageStore } from "@store/startpage";
 
 interface Props {
   openMenu: boolean;
@@ -14,9 +14,16 @@ interface Props {
   idx: number;
 }
 
-const ShortcutMenu: React.FC<Props> = ({ hovered, openMenu, toggleModal, toggleMenu, fullUrl, idx }) => {
-  const shortcuts = useShortcutsStore((state) => state.shortcuts);
-  const setShortcuts = useShortcutsStore((state) => state.setShortcuts);
+const ShortcutMenu: React.FC<Props> = ({
+  hovered,
+  openMenu,
+  toggleModal,
+  toggleMenu,
+  fullUrl,
+  idx,
+}) => {
+  const shortcuts = useStatrpageStore((state) => state.shortcuts);
+  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
 
   const handleDelete = () => {
     const newShortcuts = [...shortcuts].filter((_val, i) => i !== idx);
@@ -43,11 +50,20 @@ const ShortcutMenu: React.FC<Props> = ({ hovered, openMenu, toggleModal, toggleM
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item fz="xs" leftSection={<IconEdit style={getIconStyle(14)} />} onClick={toggleModal}>
+        <Menu.Item
+          fz="xs"
+          leftSection={<IconEdit style={getIconStyle(14)} />}
+          onClick={toggleModal}
+        >
           Edit
         </Menu.Item>
 
-        <Menu.Item fz="xs" leftSection={<IconTrash style={getIconStyle(14)} />} color="red" onClick={handleDelete}>
+        <Menu.Item
+          fz="xs"
+          leftSection={<IconTrash style={getIconStyle(14)} />}
+          color="red"
+          onClick={handleDelete}
+        >
           Delete
         </Menu.Item>
 

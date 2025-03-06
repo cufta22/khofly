@@ -1,18 +1,23 @@
 import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconApps, IconBrush, IconLink, IconRadar, IconSettings2 } from "@tabler/icons-react";
+import { IconBrowser, IconBrush, IconLink, IconRadar, IconSettings2 } from "@tabler/icons-react";
+import { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router";
 import { getIconStyle } from "@utils/functions/iconStyle";
+
 import SettingsGeneral from "./components/General";
 import SettingsInterface from "./components/Interface";
 import SettingsEngines from "./components/Engines";
 import SettingsCategories from "./components/Categories";
 import SettingsNominatim from "./components/Nominatim";
-import { useState } from "react";
-import SettingsShortcuts from "./components/Shortcuts";
-import { useNavigate, useSearchParams } from "react-router";
+
 import SettingsAIWorker from "./components/AIWorker";
 import SettingsThemeEditor from "./components/ThemeEditor";
+
+import SettingsShortcuts from "./components/_startpage/Shortcuts";
+import SettingsToDo from "./components/_startpage/ToDo";
+import SettingsWeather from "./components/_startpage/Weather";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -48,8 +53,8 @@ const PageSettings = () => {
           <Tabs.Tab value="engines" leftSection={<IconRadar style={getIconStyle(20)} />}>
             Engines
           </Tabs.Tab>
-          <Tabs.Tab value="shortcuts" leftSection={<IconApps style={getIconStyle(20)} />}>
-            Shortcuts
+          <Tabs.Tab value="startpage" leftSection={<IconBrowser style={getIconStyle(20)} />}>
+            Startpage
           </Tabs.Tab>
         </Tabs.List>
 
@@ -79,8 +84,10 @@ const PageSettings = () => {
           <SettingsEngines />
         </Tabs.Panel>
 
-        <Tabs.Panel value="shortcuts">
+        <Tabs.Panel value="startpage">
           <SettingsShortcuts />
+          <SettingsToDo />
+          <SettingsWeather />
         </Tabs.Panel>
       </Tabs>
     </Container>

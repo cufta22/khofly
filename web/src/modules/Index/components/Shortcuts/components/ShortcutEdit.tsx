@@ -1,6 +1,6 @@
 import useForm from "@hooks/use-form";
 import { Button, Center, Flex, Image, Paper, TextInput } from "@mantine/core";
-import { IShortcut, useShortcutsStore } from "@store/shortcuts";
+import { IShortcut, useStatrpageStore } from "@store/startpage";
 import React from "react";
 
 interface Props {
@@ -10,8 +10,8 @@ interface Props {
 }
 
 const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx }) => {
-  const shortcuts = useShortcutsStore((state) => state.shortcuts);
-  const setShortcuts = useShortcutsStore((state) => state.setShortcuts);
+  const shortcuts = useStatrpageStore((state) => state.shortcuts);
+  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
 
   const form = useForm({
     initialValues: {

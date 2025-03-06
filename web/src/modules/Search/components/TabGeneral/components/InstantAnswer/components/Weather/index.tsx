@@ -20,7 +20,7 @@ import useGeolocation from "@hooks/use-geolocation";
 import WeatherIcon from "./components/WeatherIcon";
 import WeatherDaily from "./components/WeatherDaily";
 import { useGeneralStore } from "@store/general";
-import { OpenWeatherCode, OpenWeatherDaily } from "src/api/weather/types";
+import type { OpenWeatherCode, OpenWeatherDaily } from "src/api/weather/types";
 import { AreaChart } from "@mantine/charts";
 
 // import SunPosition from "./components/SunPosition";

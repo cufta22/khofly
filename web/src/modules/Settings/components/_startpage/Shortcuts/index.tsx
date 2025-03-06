@@ -1,20 +1,20 @@
 import { Button, Divider, Flex, LoadingOverlay, Paper, Stack, Text } from "@mantine/core";
 
-import { IconApps } from "@tabler/icons-react";
+import { IconApps, IconDevices } from "@tabler/icons-react";
 
-import classes from "../../styles.module.scss";
+import classes from "../../../styles.module.scss";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import ShortcutsSwitch from "./components/ShortcutsSwitch";
 import Shortcut from "@module/Index/components/Shortcuts/components/Shortcut";
 import ShortcutNew from "./components/ShortcutNew";
-import { useShortcutsStore } from "@store/shortcuts";
+import { useStatrpageStore } from "@store/startpage";
 
 const SettingsShortcuts = () => {
   const t = useTranslate();
 
-  const hydrated = useShortcutsStore((state) => state.hydrated);
-  const shortcuts = useShortcutsStore((state) => state.shortcuts);
+  const hydrated = useStatrpageStore((state) => state.hydrated);
+  const shortcuts = useStatrpageStore((state) => state.shortcuts);
 
   return (
     <Paper radius="md" withBorder>
@@ -22,8 +22,16 @@ const SettingsShortcuts = () => {
         <IconApps size={32} />
 
         <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.shortcuts.title")}
+          {t("pages.settings.startpage.title_shortcuts")}
         </Text>
+
+        <div style={{ flex: 1 }} />
+
+        <Flex align="center">
+          <IconDevices />
+
+          <Text ml="sm">Desktop & Mobile</Text>
+        </Flex>
       </Flex>
 
       {/* Settings content */}
@@ -31,7 +39,7 @@ const SettingsShortcuts = () => {
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
             <Text size="md" fw={400}>
-              {t("pages.settings.shortcuts.toggle_shortcuts")}
+              {t("pages.settings.startpage.toggle_shortcuts")}
             </Text>
           </Flex>
 

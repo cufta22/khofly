@@ -1,18 +1,27 @@
-import { Button, Center, Flex, Image, Modal, Paper, TextInput, useMantineTheme } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Flex,
+  Image,
+  Modal,
+  Paper,
+  TextInput,
+  useMantineTheme,
+} from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import classes from "./styles.module.scss";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
-import { useShortcutsStore } from "@store/shortcuts";
+import { useStatrpageStore } from "@store/startpage";
 import useForm from "@hooks/use-form";
 
 const ShortcutNew = () => {
   const theme = useMantineTheme();
 
-  const shortcuts = useShortcutsStore((state) => state.shortcuts);
-  const setShortcuts = useShortcutsStore((state) => state.setShortcuts);
+  const shortcuts = useStatrpageStore((state) => state.shortcuts);
+  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
 
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -41,7 +50,14 @@ const ShortcutNew = () => {
 
   return (
     <>
-      <Flex className={classes.add_new} align="center" justify="center" w={90} h={120} onClick={open}>
+      <Flex
+        className={classes.add_new}
+        align="center"
+        justify="center"
+        w={90}
+        h={120}
+        onClick={open}
+      >
         <IconPlus style={getIconStyle(32)} color={theme.colors.green["5"]} />
       </Flex>
 
@@ -50,7 +66,12 @@ const ShortcutNew = () => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput label="Title" placeholder="YouTube" mb="sm" {...form.getInputProps("title")} />
 
-          <TextInput label="URL" placeholder="youtube.com" mb="lg" {...form.getInputProps("href")} />
+          <TextInput
+            label="URL"
+            placeholder="youtube.com"
+            mb="lg"
+            {...form.getInputProps("href")}
+          />
 
           <Flex gap="md">
             <TextInput

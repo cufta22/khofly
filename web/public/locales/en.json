@@ -255,15 +255,19 @@
         "engine_reddit_SM": "Reddit"
       },
 
-      "shortcuts": {
-        "title": "Shortcuts",
-        "toggle_shortcuts": "Display shortcuts on home page",
-
-        "toggle_open_in_new_tab": "Open links in new tab",
+      "startpage": {
+        "title_shortcuts": "Shortcuts",
+        "toggle_shortcuts": "Display shortcuts on start page",
 
         "favicon_api_favicone": "Favicone",
         "favicon_api_DDG": "DuckDuckGo",
-        "favicon_api_google": "Google"
+        "favicon_api_google": "Google",
+
+        "title_todos": "To-Do items",
+        "toggle_todos": "Display To-Do items on start page",
+
+        "title_weather": "Weather widget",
+        "toggle_weather": "Display weather widget on start page"
       }
     }
   }

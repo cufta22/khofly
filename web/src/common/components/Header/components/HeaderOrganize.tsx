@@ -1,8 +1,8 @@
 import { ActionIcon, rem } from "@mantine/core";
-import { IconFilter, IconListDetails } from "@tabler/icons-react";
+import { IconListDetails } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import classes from "../styles.module.scss";
-import QuickSettings from "@module/Search/components/components/QuickSettings";
+import Organize from "@module/Search/components/components/Organize";
 import { useDisclosure } from "@mantine/hooks";
 
 const HeaderOrganize = () => {
@@ -20,7 +20,7 @@ const HeaderOrganize = () => {
         <IconListDetails style={getIconStyle(24)} />
       </ActionIcon>
 
-      <QuickSettings isOpen={opened} onClose={close} />
+      <Organize isOpen={opened} onClose={close} />
     </>
   );
 };

@@ -3,15 +3,19 @@ import SearchBar from "./components/SearchBar";
 
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
-import Shortcuts from "./components/Shortcuts";
-import { useShortcutsStore } from "@store/shortcuts";
+import { useStatrpageStore } from "@store/startpage";
 import DevInterface from "./components/DevInterface";
 import useSettingsParams from "./hooks/use-set-params";
+
+import Shortcuts from "./components/Shortcuts";
+import WidgetWeather from "./components/WidgetWeather";
 
 const PageIndex = () => {
   const t = useTranslate();
 
-  const displayShortcuts = useShortcutsStore((state) => state.displayShortcuts);
+  const displayShortcuts = useStatrpageStore((state) => state.displayShortcuts);
+  const displayTodos = useStatrpageStore((state) => state.displayTodos);
+  const displayWeather = useStatrpageStore((state) => state.displayWeather);
 
   // Change settings from params
   useSettingsParams();
@@ -33,7 +37,9 @@ const PageIndex = () => {
 
         <SearchBar />
 
+        {/* Startpage widgets */}
         {displayShortcuts && <Shortcuts />}
+        {displayWeather && <WidgetWeather />}
       </Flex>
       {/* </Center> */}
 
