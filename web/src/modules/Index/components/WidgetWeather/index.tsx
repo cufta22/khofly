@@ -1,4 +1,4 @@
-import { Flex, Text } from "@mantine/core";
+import { Flex, LoadingOverlay, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
 import useWeatherSWR from "src/api/weather/use-weather-query";
 import { useGeneralStore } from "@store/general";
@@ -6,7 +6,7 @@ import useGeolocation from "@hooks/use-geolocation";
 import clsx from "clsx";
 import { IS_DAY } from "@utils/resources/isDay";
 import WeatherIcon from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Weather/components/WeatherIcon";
-import { OpenWeatherCode } from "src/api/weather/types";
+import type { OpenWeatherCode } from "src/api/weather/types";
 import { useEffect } from "react";
 
 const WidgetWeather = () => {
@@ -23,7 +23,7 @@ const WidgetWeather = () => {
     lat: geolocation?.lat || location?.latitude,
     lon: geolocation?.lon || location?.longitude,
     units: "metric",
-    src: "owm",
+    src: "om",
   });
   const data = resData?.data;
   const message = resData?.message;
@@ -32,6 +32,8 @@ const WidgetWeather = () => {
     // Don't fetch if previous data already exists to not spam the instance
     if (!data && hydrated && !isLoading && (location?.latitude || geolocation?.lat)) mutate();
   }, [hydrated]);
+
+  if (!location?.latitude || !geolocation?.lat) return null;
 
   return (
     <Flex
@@ -67,20 +69,29 @@ const WidgetWeather = () => {
 
       <Flex w="100%" align="center" justify="space-between">
         <Flex direction="column" align="center">
-          <Text>Wind</Text>
+          {data?.current && <Text>Wind</Text>}
           {data?.current && <Text fz={22}>{`${data?.current.wind_speed}`}</Text>}
         </Flex>
 
         <Flex direction="column" align="center">
-          <Text>Humidity</Text>
+          {data?.current && <Text>Humidity</Text>}
           {data?.current && <Text fz={22}>{`${data?.current.humidity}`}</Text>}
         </Flex>
 
         <Flex direction="column" align="center">
-          <Text>Feels like</Text>
+          {data?.current && <Text>Feels like</Text>}
           {data?.current && <Text fz={22}>{`${data?.current.feels_like}`}</Text>}
         </Flex>
       </Flex>
+
+      {/* Loading state */}
+      <LoadingOverlay
+        className={classes.loading_overlay}
+        visible
+        loaderProps={{
+          size: "xl",
+        }}
+      />
     </Flex>
   );
 };

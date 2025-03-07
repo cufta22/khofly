@@ -57,7 +57,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {(isDocs || isSettings || isChangelog || isPrivacy) && (
         <>
           <HeaderLogo hasBurger={isDocs} openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
-          <Text ml="sm" size="xl" fw={700}>
+          <Text className={classes.header_title} ml="sm" fw={700}>
             / {pageTitle}
           </Text>
         </>

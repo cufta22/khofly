@@ -33,6 +33,7 @@ const SearchBar = () => {
   const [debouncedQ] = useDebouncedValue(q, 300);
 
   const isXs = useResponsive("max", "xs");
+  const isXl = useResponsive("min", 1921);
 
   // Autocomplete API
   const { data: autocompleteData, isMutating, trigger, reset } = useAutocompleteSWR();
@@ -65,7 +66,7 @@ const SearchBar = () => {
         className={classes.search_bar}
         placeholder={t("pages.index.search_placeholder")}
         radius="xl"
-        size={isXs ? "md" : "lg"}
+        size={isXs ? "md" : isXl ? "xl" : "lg"}
         value={q}
         onChange={(val) => {
           setQ(val);

@@ -1,0 +1,18 @@
+@use "variables" as vars;
+
+.desktop_only {
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    display: none !important;
+  }
+}
+
+.flex_1 {
+  flex: 1;
+}
+
+.responsive_container {
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    max-width: 80% !important;
+  }
+}

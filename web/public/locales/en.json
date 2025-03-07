@@ -263,11 +263,13 @@
         "favicon_api_DDG": "DuckDuckGo",
         "favicon_api_google": "Google",
 
-        "title_todos": "To-Do items",
-        "toggle_todos": "Display To-Do items on start page",
+        "title_widgets": "Widgets",
 
-        "title_weather": "Weather widget",
-        "toggle_weather": "Display weather widget on start page"
+        "toggle_todos": "Display To-Do widget on start page",
+
+        "toggle_weather": "Display Weather widget on start page",
+
+        "toggle_clock": "Display Clock widget on start page"
       }
     }
   }

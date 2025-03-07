@@ -13,7 +13,6 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 import classes from "./styles.module.scss";
 import { useDisclosure } from "@mantine/hooks";
-import { useState } from "react";
 import { useStatrpageStore } from "@store/startpage";
 import useForm from "@hooks/use-form";
 

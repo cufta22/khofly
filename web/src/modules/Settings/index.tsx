@@ -16,8 +16,7 @@ import SettingsAIWorker from "./components/AIWorker";
 import SettingsThemeEditor from "./components/ThemeEditor";
 
 import SettingsShortcuts from "./components/_startpage/Shortcuts";
-import SettingsToDo from "./components/_startpage/ToDo";
-import SettingsWeather from "./components/_startpage/Weather";
+import SettingsWidgets from "./components/_startpage/Widgets";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -86,8 +85,7 @@ const PageSettings = () => {
 
         <Tabs.Panel value="startpage">
           <SettingsShortcuts />
-          <SettingsToDo />
-          <SettingsWeather />
+          <SettingsWidgets />
         </Tabs.Panel>
       </Tabs>
     </Container>

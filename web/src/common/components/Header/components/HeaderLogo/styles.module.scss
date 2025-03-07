@@ -1,0 +1,12 @@
+@use "variables" as vars;
+
+.header_logo {
+  width: 32px;
+  height: 32px;
+
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    width: 36px;
+    height: 36px;
+  }
+}

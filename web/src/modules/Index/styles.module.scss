@@ -16,9 +16,33 @@
     color: light-dark(var(--mantine-color-dark-5), var(--mantine-color-gray-4));
   }
 
+  .widgets_left {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 300px;
+    height: auto;
+  }
+
+  .widgets_right {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 300px;
+    height: auto;
+  }
+
+  // Scale on small devices
   @media (max-width: vars.$mantine-breakpoint-xs) {
     .app_name {
       font-size: func.to-rem(60px);
+    }
+  }
+
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    .app_name {
+      font-size: func.to-rem(140px);
     }
   }
 }

@@ -41,6 +41,9 @@
       },
       "security": {
         "noDangerouslySetInnerHtml": "warn"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off"
       }
     }
   },

@@ -7,6 +7,7 @@ import {
   IconInfoCircle,
   IconLayoutCollage,
   IconMessageCode,
+  IconPlayerPlay,
   IconRadar,
   IconSettings2,
   IconShield,
@@ -132,6 +133,20 @@ const SettingsGeneral = () => {
         <Flex w="100%" className={classes.flex_row} justify="space-between">
           <Flex align="center" gap="sm">
             <IconShield style={getIconStyle(20)} color={theme.colors.green["5"]} />
+
+            <Text size="md" fw={400}>
+              {t("pages.settings.general.toggle_private_search")}
+            </Text>
+          </Flex>
+
+          <PrivateSearchSwitch />
+        </Flex>
+
+        <Divider my="xs" w="100%" />
+
+        <Flex w="100%" className={classes.flex_row} justify="space-between">
+          <Flex align="center" gap="sm">
+            <IconPlayerPlay style={getIconStyle(20)} color={theme.colors.orange["5"]} />
 
             <Text size="md" fw={400}>
               {t("pages.settings.general.toggle_private_search")}

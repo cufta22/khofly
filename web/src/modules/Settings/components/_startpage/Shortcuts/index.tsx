@@ -1,6 +1,6 @@
 import { Button, Divider, Flex, LoadingOverlay, Paper, Stack, Text } from "@mantine/core";
 
-import { IconApps, IconDevices } from "@tabler/icons-react";
+import { IconApps, IconDevices, IconExternalLink } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
 
@@ -19,7 +19,7 @@ const SettingsShortcuts = () => {
   return (
     <Paper radius="md" withBorder>
       <Flex align="center" p="lg" mb={16}>
-        <IconApps size={32} />
+        <IconExternalLink size={32} />
 
         <Text fz={26} fw={600} ml="sm">
           {t("pages.settings.startpage.title_shortcuts")}
@@ -27,7 +27,7 @@ const SettingsShortcuts = () => {
 
         <div style={{ flex: 1 }} />
 
-        <Flex align="center">
+        <Flex className="desktop_only" align="center">
           <IconDevices />
 
           <Text ml="sm">Desktop & Mobile</Text>
