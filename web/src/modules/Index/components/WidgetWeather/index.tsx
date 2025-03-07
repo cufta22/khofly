@@ -33,7 +33,7 @@ const WidgetWeather = () => {
     if (!data && hydrated && !isLoading && (location?.latitude || geolocation?.lat)) mutate();
   }, [hydrated]);
 
-  if (!location?.latitude || !geolocation?.lat) return null;
+  if (!location?.latitude && !geolocation?.lat) return null;
 
   return (
     <Flex
@@ -87,7 +87,7 @@ const WidgetWeather = () => {
       {/* Loading state */}
       <LoadingOverlay
         className={classes.loading_overlay}
-        visible
+        visible={isLoading}
         loaderProps={{
           size: "xl",
         }}

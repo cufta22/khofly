@@ -8,7 +8,7 @@ export interface ILoaderData_Changelog {
 // Get changelog info
 export async function loader() {
   const envUrl =
-    process.env.NODE_ENV === "production"
+    process.env.HOST === "https://khofly.com"
       ? "https://raw.githubusercontent.com/cufta22/khofly/master/CHANGELOG.md"
       : "https://raw.githubusercontent.com/cufta22/khofly/staging/CHANGELOG.md";
 
