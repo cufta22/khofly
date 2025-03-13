@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 
 const SettingsSearXNG = () => {
   const domain = useInstanceStore((state) => state.searXNGDomain);
@@ -84,7 +85,7 @@ const SettingsSearXNG = () => {
             {...form.getInputProps("domain")}
           />
 
-          {process.env.IS_SELF_HOST === "0" && (
+          {!IS_SELF_HOST && (
             <Select
               className={classes.settings_select}
               label="Default instances"

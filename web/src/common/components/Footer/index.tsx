@@ -7,6 +7,7 @@ import RemixLink from "@components/RemixLink";
 import { useGeneralStore } from "@store/general";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 
 const Footer = () => {
   const devMode = useGeneralStore((state) => state.devMode);
@@ -46,7 +47,7 @@ const Footer = () => {
           <Text className={classes.footer_text}>Docs</Text>
         </RemixLink>
 
-        {process.env.IS_SELF_HOST === "0" ? (
+        {!IS_SELF_HOST ? (
           <RemixLink to="/privacy" prefetch="intent">
             <Text className={classes.footer_text}>Privacy</Text>
           </RemixLink>

@@ -4,7 +4,7 @@ import { Group, Text } from "@mantine/core";
 import React from "react";
 import clsx from "clsx";
 import { useTranslate } from "@hooks/translate/use-translate";
-import { useLocation } from "react-router";
+import { useLocation, useSearchParams } from "react-router";
 
 import HeaderLogo from "./components/HeaderLogo";
 
@@ -23,6 +23,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const t = useTranslate();
   const { pathname } = useLocation();
 
+  const [searchParams] = useSearchParams();
+
   const isChangelog = pathname.startsWith("/changelog");
   const isSettings = pathname.startsWith("/settings");
   const isPrivacy = pathname.startsWith("/privacy");
@@ -38,6 +40,9 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     : isDocs
     ? "Docs"
     : "";
+
+  // If /search
+  const tab = searchParams.get("tab");
 
   return (
     <Group
@@ -65,7 +70,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       <div className={classes.divider} />
 
-      {isSearch && <HeaderOrganize />}
+      {isSearch && tab === "general" && <HeaderOrganize />}
 
       {isSearch && <HeaderSettings />}
 

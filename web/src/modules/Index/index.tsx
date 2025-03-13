@@ -11,6 +11,7 @@ import Shortcuts from "./components/Shortcuts";
 import WidgetWeather from "./components/WidgetWeather";
 import WidgetTodo from "./components/WidgetToDo";
 import WidgetClock from "./components/WidgetClock";
+import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 
 const PageIndex = () => {
   const t = useTranslate();
@@ -58,7 +59,7 @@ const PageIndex = () => {
       {/* <Center className={classes.center}> */}
       <Flex className={classes.flex} align="center" direction="column">
         <Title className={classes.app_name} mb="sm">
-          {process.env.IS_SELF_HOST === "0" ? t("_common.app_name") : process.env.APP_NAME}
+          {!IS_SELF_HOST ? t("_common.app_name") : process.env.APP_NAME}
         </Title>
 
         <SearchBar />

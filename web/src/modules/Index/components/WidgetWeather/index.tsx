@@ -63,7 +63,7 @@ const WidgetWeather = () => {
         <Flex direction="column" ml="xs">
           {data?.current && <Text fz={38} fw="bold">{`${Math.round(data?.current.temp)}°`}</Text>}
 
-          {data?.current && <Text fz={24}>{`${data?.current.weather[0]?.description}`}</Text>}
+          {data?.current && <Text fz={18}>{`${data?.current.weather[0]?.description}`}</Text>}
         </Flex>
       </Flex>
 

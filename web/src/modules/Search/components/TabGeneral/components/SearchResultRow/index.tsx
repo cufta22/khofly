@@ -25,7 +25,12 @@ const SearchResultRow: React.FC<Props> = ({ data }) => {
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
-            <Image w={16} h={16} src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`} alt="" />
+            <Image
+              w={16}
+              h={16}
+              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
+              alt=""
+            />
           )}
 
           <Text size="xs" truncate="end">

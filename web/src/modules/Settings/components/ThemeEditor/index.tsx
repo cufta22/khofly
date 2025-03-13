@@ -123,10 +123,6 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
             Clear
           </Button>
 
-          <Anchor href="https://mantine.dev/theming/theme-object/" target="_blank">
-            Learn more
-          </Anchor>
-
           <div style={{ flexGrow: 1 }} />
 
           <Button

@@ -115,7 +115,7 @@ const SearchBar = () => {
         maxLength={250}
         autoFocus
         // Autocomplete props
-        data={autocompleteData?.map((str) => ({ label: str, value: str }))}
+        data={autocompleteData ? autocompleteData?.map((str) => ({ label: str, value: str })) : []}
         comboboxProps={{
           onOptionSubmit: (val) => handleSearch(val),
           size: "md",

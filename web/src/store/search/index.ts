@@ -26,6 +26,12 @@ interface SearchState {
   visitedLinks: string[];
   updateVisitedLinks: (next: string) => void;
   resetVisitedLinks: () => void;
+
+  // Organize search results
+  domainsBlacklist: string[];
+  setDomainsBlacklist: (next: string[]) => void;
+  domainsPriority: string[];
+  setDomainsPriority: (next: string[]) => void;
 }
 
 export const useSearchStore = create<SearchState>()((set) => ({
@@ -44,7 +50,12 @@ export const useSearchStore = create<SearchState>()((set) => ({
   setSearchQuery: (next) => set({ searchQuery: next }),
 
   visitedLinks: [],
-  updateVisitedLinks: (next) =>
-    set((state) => ({ visitedLinks: [...state.visitedLinks, next] })),
+  updateVisitedLinks: (next) => set((state) => ({ visitedLinks: [...state.visitedLinks, next] })),
   resetVisitedLinks: () => set({ visitedLinks: [] }),
+
+  // Organize search results
+  domainsBlacklist: [],
+  setDomainsBlacklist: (next) => set({ domainsBlacklist: next }),
+  domainsPriority: [],
+  setDomainsPriority: (next) => set({ domainsPriority: next }),
 }));

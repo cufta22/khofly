@@ -1,7 +1,7 @@
 // Returns instance closest to user location
 // [ Africa, America, Antarctica, Asia, Atlantic, Australia, Europe, Indian, Pacific ]
 
-import { RootLoaderData } from "@ts/global.types";
+import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 
 // TODO: replace with appropriate URL when servers are available
 const DEFAULT_1 = "https://searxng-eu1.khofly.com";
@@ -9,7 +9,7 @@ const DEFAULT_2 = "https://api-eu1.khofly.com";
 const DEFAULT_3 = "https://ai-worker.khofly.com";
 
 export const getDefaultSearXNG = (): string => {
-  if (process.env.IS_SELF_HOST === "1") {
+  if (IS_SELF_HOST) {
     return process.env.SEARXNG_URL_SELF_HOST || DEFAULT_1;
   }
 
@@ -32,7 +32,7 @@ export const getDefaultSearXNG = (): string => {
 };
 
 export const getDefaultApi = (): string => {
-  if (process.env.IS_SELF_HOST === "1") {
+  if (IS_SELF_HOST) {
     return process.env.API_URL_SELF_HOST || DEFAULT_2;
   }
 

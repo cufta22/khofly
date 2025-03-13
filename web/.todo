@@ -26,6 +26,8 @@ fix up private player
 
 add setting for API instance with own/om select
 
+hide select for widget position if display 3unchecked
+
 Ideas for v7:
 
 - Rerank domains ( similar to brave search )

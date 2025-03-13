@@ -3,7 +3,7 @@ import { Accordion, Stack, Text } from "@mantine/core";
 import { IconRadar } from "@tabler/icons-react";
 import classes from "../styles.module.scss";
 import { TAB_DATA } from "@module/Settings/components/Engines";
-import { ICategories } from "@store/settings";
+import type { ICategories } from "@store/settings";
 import SettingsEnginesWrapper from "@module/Settings/components/Engines/components/Wrapper";
 import { useSearchParams } from "react-router";
 
@@ -22,11 +22,7 @@ const QSEngines = () => {
       </Accordion.Control>
       <Accordion.Panel>
         <Stack mt="lg">
-          <SettingsEnginesWrapper
-            data={DATA.data}
-            category={tab}
-            variant="quick_settings"
-          />
+          <SettingsEnginesWrapper data={DATA.data} category={tab} variant="quick_settings" />
         </Stack>
       </Accordion.Panel>
     </Accordion.Item>
