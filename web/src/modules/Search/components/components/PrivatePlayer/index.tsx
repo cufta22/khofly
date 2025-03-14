@@ -1,15 +1,41 @@
-import { Flex, Modal, Text, useMantineTheme } from "@mantine/core";
+import { Center, Flex, Loader, Modal, Text, useMantineTheme } from "@mantine/core";
 import { IconPlayerPlay } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import classes from "./styles.module.scss";
+import useDownloadSWR from "src/api/download/use-download-query";
+import { useEffect } from "react";
 
-const PrivatePlayer = () => {
+interface Props {
+  url: string;
+  onClose: () => void;
+}
+
+const PrivatePlayer: React.FC<Props> = ({ url, onClose }) => {
+  const { data, trigger, isMutating, reset } = useDownloadSWR({ shouldDownload: false });
+
   const theme = useMantineTheme();
+
+  useEffect(() => {
+    // TODO: check for only youtube URLs
+
+    if (url && !isMutating) {
+      trigger({
+        format: "mp4",
+        from: "youtube",
+        url: url,
+      });
+    }
+  }, [url]);
+  console.log(data);
 
   return (
     <Modal
-      opened={true}
-      onClose={() => {}}
+      opened={!!url}
+      onClose={() => {
+        reset();
+        onClose();
+      }}
+      closeOnClickOutside={false}
       size="60%"
       h={500}
       centered
@@ -23,13 +49,16 @@ const PrivatePlayer = () => {
         size: "lg",
       }}
     >
-      <video className={classes.media_player} controls>
-        <source
-          src="https://sample-videos.com/video321/mp4/480/big_buck_bunny_480p_1mb.mp4"
-          type="video/mp4"
-        />
-        <track kind="captions" />
-      </video>
+      {data?.data.url ? (
+        <video className={classes.media_player} controls>
+          <source src={data?.data.url} type="video/mp4" />
+          <track kind="captions" />
+        </video>
+      ) : (
+        <Center className={classes.media_player} p="xl">
+          <Loader size="xl" />
+        </Center>
+      )}
     </Modal>
   );
 };

@@ -24,6 +24,7 @@ import PrivateSearchSwitch from "./PrivateSearchSwitch";
 import MediaSwitch from "./MediaSwitch";
 import ShowEnginesSwitch from "./ShowEnginesSwitch";
 import AISwitch from "./AISwitch";
+import PrivatePlayerSwitch from "./PrivarePlayerSwitch";
 
 const SettingsGeneral = () => {
   const t = useTranslate();
@@ -149,11 +150,11 @@ const SettingsGeneral = () => {
             <IconPlayerPlay style={getIconStyle(20)} color={theme.colors.orange["5"]} />
 
             <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_private_search")}
+              {t("pages.settings.general.toggle_private_player")}
             </Text>
           </Flex>
 
-          <PrivateSearchSwitch />
+          <PrivatePlayerSwitch />
         </Flex>
 
         <Divider my="xs" w="100%" />

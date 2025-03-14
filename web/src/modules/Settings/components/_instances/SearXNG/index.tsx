@@ -10,7 +10,7 @@ import {
   type SelectProps,
 } from "@mantine/core";
 
-import classes from "../../styles.module.scss";
+import classes from "../../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";

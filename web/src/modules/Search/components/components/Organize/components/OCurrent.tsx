@@ -1,11 +1,11 @@
-import { Accordion, Flex, SimpleGrid, Stack, Text } from "@mantine/core";
+import { Accordion, SimpleGrid, Text } from "@mantine/core";
 import { IconLink } from "@tabler/icons-react";
 import classes from "../styles.module.scss";
 import useSearchQuery from "@hooks/use-search-query";
 import { useSWRConfig } from "swr";
 import { useEffect, useState } from "react";
-import { ISearXNGResultsGeneral } from "@ts/searxng.types";
-import ResultItem from "./ResultItem";
+import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
+import DomainItem from "./DomainItem";
 import { removeSubdomain } from "./utils";
 
 const OCurrent = () => {
@@ -22,8 +22,10 @@ const OCurrent = () => {
     const findPageDataKey = cacheKeys.find((key) => {
       const keyURL = new URL(`http://example.com${key}`);
 
-      return keyURL.searchParams.get("q")?.includes(encodeURIComponent(q));
+      return keyURL.searchParams.get("q")?.includes(q);
     });
+    console.log(findPageDataKey);
+
     if (!findPageDataKey) return;
 
     const pageData = cache.get(findPageDataKey)?.data?.[0]?.results;
@@ -34,7 +36,7 @@ const OCurrent = () => {
     });
 
     setCurrentDomains([...new Set(uniqueDomains)]);
-  }, [cacheKeys]);
+  }, []);
 
   return (
     <Accordion.Item className={classes.acc_item} value="current">
@@ -44,7 +46,7 @@ const OCurrent = () => {
       <Accordion.Panel>
         <SimpleGrid mt="lg" cols={2} spacing="md">
           {currentDomains.map((item) => (
-            <ResultItem key={item} domain={item} isCurrent />
+            <DomainItem key={item} domain={item} isCurrent />
           ))}
         </SimpleGrid>
       </Accordion.Panel>

@@ -16,12 +16,16 @@ import GeneralMedia from "./components/GeneralMedia";
 import { useSettingsStore } from "@store/settings";
 import AIAnswer from "./components/AIAnswer";
 import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
+import { useSearchStore } from "@store/search";
 
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
 
   const displayMedia = useSettingsStore((state) => state.displayMedia);
   const hydratedSettings = useSettingsStore((state) => state.hydrated);
+
+  const domainsPriority = useSearchStore((state) => state.domainsPriority);
+  const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
@@ -48,6 +52,31 @@ const TabGeneral = () => {
           if (typeof res === "string") return;
 
           if (!res?.results) return;
+
+          const organizedResults = [...res.results]
+            // Blacklist
+            .filter((item) => {
+              return !domainsBlacklist.some((domain) => item.parsed_url?.[1]?.includes(domain));
+            })
+            // Priority
+            .sort((a, b) => {
+              // Check if URL a is in priority domains
+              const aIsPriority = domainsPriority.some((domain) =>
+                a.parsed_url?.[1]?.includes(domain)
+              );
+              // Check if URL b is in priority domains
+              const bIsPriority = domainsPriority.some((domain) =>
+                b.parsed_url?.[1]?.includes(domain)
+              );
+
+              if (aIsPriority && !bIsPriority) {
+                return -1; // a comes before b
+              } else if (!aIsPriority && bIsPriority) {
+                return 1; // b comes before a
+              }
+              return 0; // Keep original order if both are priority or neither is priority
+            });
+
           return (
             <Stack gap="lg" key={i}>
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
@@ -55,19 +84,19 @@ const TabGeneral = () => {
               {displayMedia && i === 0 && hydratedSettings ? (
                 // Display images/videos in between results
                 <>
-                  {res?.results.slice(0, 2).map((r, i) => (
+                  {organizedResults.slice(0, 2).map((r, i) => (
                     <SearchResultRow key={i} data={r} />
                   ))}
 
                   <GeneralMedia />
 
-                  {res?.results.slice(2).map((r, i) => (
+                  {organizedResults.slice(2).map((r, i) => (
                     <SearchResultRow key={i} data={r} />
                   ))}
                 </>
               ) : (
                 // Display just results
-                res?.results.map((r, i) => <SearchResultRow key={i} data={r} />)
+                organizedResults.map((r, i) => <SearchResultRow key={i} data={r} />)
               )}
             </Stack>
           );

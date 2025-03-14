@@ -1,4 +1,5 @@
 import type { Context } from "elysia";
+import { $ } from "bun";
 
 import fs from "node:fs";
 import path from "node:path";
@@ -43,35 +44,68 @@ export const handleDownload = async (ctx: Context) => {
     // -----------------------------------------------
     // Handle Youtube
     // -----------------------------------------------
-
     if (from === "youtube") {
       // Validate YouTube URL
-      // if (false) {
-      //   return { error: true, message: "Invalid YouTube URL", data: null };
-      // }
+      const youtubeRegex =
+        /^(https?:\/\/)?(www\.|m\.|music\.)?((youtube\.com\/(watch\?v=|shorts\/|playlist\?list=))|youtu\.be\/)[a-zA-Z0-9_-]{1,}(&.*)?$/;
+      if (!youtubeRegex.test(url)) {
+        return { error: true, message: "Invalid YouTube URL", data: null };
+      }
+
+      // Build the command
+      const ytCommand = [`yt-dlp`];
+      if (format === "mp3") {
+        ytCommand.push("-x");
+        ytCommand.push("--audio-format");
+        ytCommand.push("mp3");
+      }
+      if (format === "mp4") {
+        ytCommand.push("-f");
+        // Takes forever to download ~2min
+        // ytCommand.push("bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]");
+        // Should be normal
+        ytCommand.push(
+          "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]"
+        );
+      }
+      ytCommand.push("-o");
+      ytCommand.push(outputPathYT);
+      ytCommand.push(url);
+
+      // console.log(ytCommand.join(" "));
+
+      const proc = Bun.spawn(ytCommand, {
+        cwd: tempDir, // working directory
+        onExit() {
+          // exit handler
+        },
+      });
+
+      // Wait for process to exit
+      const exitCode = await proc.exited;
+
+      if (exitCode === 0) {
+        return {
+          error: false,
+          message: "Download successful",
+          data: {
+            url: `${staticUrl}/${fileNameYT}`,
+            filename: fileNameYT,
+          },
+        };
+      } else {
+        ctx.set.status = 400;
+        return { error: true, message: "Download failed", data: null };
+      }
     }
 
     // -----------------------------------------------
     // Handle Instagram
     // -----------------------------------------------
-
     if (from === "instagram") {
     }
   } catch (error) {
-    console.log("failed catch");
-    console.log(error);
-
     ctx.set.status = 400;
     return { error: true, message: "Download failed", data: null };
   }
-
-  // ctx.set.status = 200;
-  // return {
-  //   error: false,
-  //   message: "Download successful",
-  //   data: {
-  //     url: from === "youtube" ? `${staticUrl}/${fileNameYT}` : "",
-  //     filename: from === "youtube" ? fileNameYT : "",
-  //   },
-  // };
 };

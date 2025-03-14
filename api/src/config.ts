@@ -19,7 +19,7 @@ const whitelist = IS_SELF_HOST
 export const CORS_OPTIONS = {
   origin(req: Request) {
     // Make sure that whitelist array exists
-    if (!whitelist?.length) return "https://khofly.com";
+    if (!whitelist?.length) return false;
 
     const found = !!whitelist.find((d) => d === req.headers.get("origin"));
 
@@ -33,7 +33,7 @@ export const CORS_OPTIONS = {
 export const CRON_FETCH_RATES_OPTIONS: CronConfig = {
   name: "fetch rates",
   // pattern: '* * * * *', // every 1 min, for testing
-  pattern: "30 * * * *", // every hour at 0 minutes
+  pattern: "0 * * * *", // every hour at 0 minutes
   run() {
     cron_fetchRates();
   },
@@ -41,8 +41,8 @@ export const CRON_FETCH_RATES_OPTIONS: CronConfig = {
 
 export const CRON_CLEAR_MEDIA: CronConfig = {
   name: "fetch rates",
-  pattern: "* * * * *", // every 1 min, for testing
-  // pattern: "30 * * * *", // every hour at 0 minutes
+  // pattern: "* * * * *", // every 1 min, for testing
+  pattern: "0 * * * *", // every hour at 0 minutes
   run() {
     cron_clearMedia();
   },

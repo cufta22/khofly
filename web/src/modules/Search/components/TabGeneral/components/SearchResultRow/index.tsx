@@ -1,4 +1,4 @@
-import { Flex, Image, Space, Text } from "@mantine/core";
+import { Flex, Image, Space, Text, useMantineTheme } from "@mantine/core";
 import React from "react";
 import classes from "./styles.module.scss";
 import { ISearXNGResultsGeneral } from "@ts/searxng.types";
@@ -6,6 +6,9 @@ import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import SearchAnchor from "@module/Search/components/components/SearchAnchor";
+import { IconLabelImportant } from "@tabler/icons-react";
+import { getIconStyle } from "@utils/functions/iconStyle";
+import { removeSubdomain } from "@module/Search/components/components/Organize/components/utils";
 
 interface Props {
   data: ISearXNGResultsGeneral["results"][0];
@@ -14,10 +17,16 @@ interface Props {
 const SearchResultRow: React.FC<Props> = ({ data }) => {
   const { title, url, parsed_url, content, engines } = data;
 
+  const theme = useMantineTheme();
+
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
   const showEngines = useSettingsStore((state) => state.showEngines);
   const displayFavicon = useSettingsStore((state) => state.displayFavicon);
+
+  const domainsPriority = useSearchStore((state) => state.domainsPriority);
+
+  const isPriority = domainsPriority.find((item) => item === removeSubdomain(parsed_url?.[1]));
 
   return (
     <Flex className={classes.search_row} direction="column">
@@ -32,11 +41,16 @@ const SearchResultRow: React.FC<Props> = ({ data }) => {
               alt=""
             />
           )}
-
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}
             {parsed_url[2]}
           </Text>
+
+          <div style={{ flex: 1 }} />
+
+          {isPriority && (
+            <IconLabelImportant style={getIconStyle(24)} color={theme.colors.green["6"]} />
+          )}
         </Flex>
 
         {/* Website title */}

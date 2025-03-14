@@ -51,6 +51,9 @@ interface SettingsState {
 
   privateSearch: boolean;
   setPrivateSearch: (next: boolean) => void;
+
+  privatePlayer: boolean;
+  setPrivatePlayer: (next: boolean) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -89,6 +92,9 @@ export const useSettingsStore = create<SettingsState>()(
 
       privateSearch: false,
       setPrivateSearch: (next) => set({ privateSearch: next }),
+
+      privatePlayer: false,
+      setPrivatePlayer: (next) => set({ privatePlayer: next }),
     }),
     {
       onRehydrateStorage: () => (state) => {
@@ -105,6 +111,7 @@ export const useSettingsStore = create<SettingsState>()(
         autocompleteEngine: state.autocompleteEngine,
         categories: state.categories,
         privateSearch: state.privateSearch,
+        privatePlayer: state.privatePlayer,
         displayMedia: state.displayMedia,
         selectedMedia: state.selectedMedia,
         useInstantAnswers: state.useInstantAnswers,

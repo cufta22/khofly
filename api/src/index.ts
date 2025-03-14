@@ -6,7 +6,7 @@ import * as router from "./api/router";
 import staticPlugin from "@elysiajs/static";
 import { middleware_Error } from "./middleware/error";
 
-const app = new Elysia()
+const app = new Elysia({ serve: { idleTimeout: 100 } })
   // Plugins
   .use(cors(CORS_OPTIONS))
   .use(staticPlugin(STATIC_OPTIONS))

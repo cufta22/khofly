@@ -2,7 +2,7 @@ import { Accordion, Center, SimpleGrid, Text } from "@mantine/core";
 import classes from "../styles.module.scss";
 import { IconLabelImportant } from "@tabler/icons-react";
 import { useSearchStore } from "@store/search";
-import ResultItem from "./ResultItem";
+import DomainItem from "./DomainItem";
 
 const OPriority = () => {
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
@@ -16,7 +16,7 @@ const OPriority = () => {
         {domainsPriority.length ? (
           <SimpleGrid mt="lg" cols={1} spacing="md">
             {domainsPriority.map((item, i) => (
-              <ResultItem key={i} domain={item} isCurrent={false} />
+              <DomainItem key={i} domain={item} isCurrent={false} />
             ))}
           </SimpleGrid>
         ) : (

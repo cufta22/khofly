@@ -1,4 +1,4 @@
-import { Context } from "elysia";
+import type { Context } from "elysia";
 import * as ratesSvc from "./services/rates.service";
 import * as lyricsSvc from "./services/lyrics.service";
 import * as weatherSvc from "./services/weather.service";

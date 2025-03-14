@@ -1,4 +1,3 @@
-import SettingsSearXNG from "./components/SearXNG";
 import { Container, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
 import { IconBrowser, IconBrush, IconLink, IconRadar, IconSettings2 } from "@tabler/icons-react";
@@ -10,13 +9,15 @@ import SettingsGeneral from "./components/General";
 import SettingsInterface from "./components/Interface";
 import SettingsEngines from "./components/Engines";
 import SettingsCategories from "./components/Categories";
-import SettingsNominatim from "./components/Nominatim";
-
-import SettingsAIWorker from "./components/AIWorker";
 import SettingsThemeEditor from "./components/ThemeEditor";
+
+import SettingsSearXNG from "./components/_instances/SearXNG";
+import SettingsAIWorker from "./components/_instances/AIWorker";
+import SettingsNominatim from "./components/_instances/Nominatim";
 
 import SettingsShortcuts from "./components/_startpage/Shortcuts";
 import SettingsWidgets from "./components/_startpage/Widgets";
+import SettingsAPI from "./components/_instances/API";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -74,6 +75,7 @@ const PageSettings = () => {
         <Tabs.Panel value="instances">
           <>
             <SettingsSearXNG />
+            <SettingsAPI />
             <SettingsNominatim />
             <SettingsAIWorker />
           </>

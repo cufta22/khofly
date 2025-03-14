@@ -11,11 +11,11 @@
     "@elysiajs/cron": "^1.2.0",
     "@elysiajs/static": "^1.2.0",
     "dayjs": "^1.11.13",
-    "elysia": "latest"
+    "elysia": "^1.2.25"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "bun-types": "latest"
+    "bun-types": "^1.2.5"
   },
   "module": "src/index.js"
 }

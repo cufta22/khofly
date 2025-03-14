@@ -8,15 +8,13 @@ import ShowEnginesSwitch from "@module/Settings/components/General/ShowEnginesSw
 import MediaSwitch from "@module/Settings/components/General/MediaSwitch";
 import IASwitch from "@module/Settings/components/General/IASwitch";
 import PrivateSearchSwitch from "@module/Settings/components/General/PrivateSearchSwitch";
+import PrivatePlayerSwitch from "@module/Settings/components/General/PrivarePlayerSwitch";
 
 const QSGeneral = () => {
   const t = useTranslate();
   return (
     <Accordion.Item className={classes.acc_item} value="general">
-      <Accordion.Control
-        className={classes.acc_control}
-        icon={<IconSettings2 />}
-      >
+      <Accordion.Control className={classes.acc_control} icon={<IconSettings2 />}>
         <Text size="lg">{t("pages.settings.general.title")}</Text>
       </Accordion.Control>
       <Accordion.Panel>
@@ -57,6 +55,14 @@ const QSGeneral = () => {
             <Text>{t("pages.settings.general.toggle_private_search")}</Text>
 
             <PrivateSearchSwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
+          <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.general.toggle_private_player")}</Text>
+
+            <PrivatePlayerSwitch />
           </Flex>
         </Stack>
       </Accordion.Panel>

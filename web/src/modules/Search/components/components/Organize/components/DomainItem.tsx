@@ -9,7 +9,7 @@ interface Props {
   isCurrent: boolean;
 }
 
-const ResultItem: React.FC<Props> = ({ domain, isCurrent }) => {
+const DomainItem: React.FC<Props> = ({ domain, isCurrent }) => {
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
   const setDomainsPriority = useSearchStore((state) => state.setDomainsPriority);
   const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
@@ -52,9 +52,10 @@ const ResultItem: React.FC<Props> = ({ domain, isCurrent }) => {
           h={isCurrent ? 42 : 34}
           src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
           alt=""
+          radius="sm"
         />
 
-        {hovered && isCurrent ? (
+        {(hovered && isCurrent) || (isCurrent && (isPriority || isBlacklist)) ? (
           <Grid w="100%" gutter="xs">
             <Grid.Col span={6}>
               <Button
@@ -109,4 +110,4 @@ const ResultItem: React.FC<Props> = ({ domain, isCurrent }) => {
   );
 };
 
-export default ResultItem;
+export default DomainItem;

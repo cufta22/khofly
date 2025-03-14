@@ -4,6 +4,7 @@ import {
   Button,
   Center,
   Flex,
+  LoadingOverlay,
   type MantineTheme,
   Paper,
   ScrollArea,
@@ -42,7 +43,7 @@ const getDownloadOptions = (theme: MantineTheme) => ({
 });
 
 const IADownloader = () => {
-  const { data, trigger } = useDownloadSWR({ shouldDownload: true });
+  const { data, trigger, isMutating } = useDownloadSWR({ shouldDownload: true });
   const theme = useMantineTheme();
 
   const [url, setUrl] = useState("");
@@ -125,6 +126,8 @@ const IADownloader = () => {
               />
             )}
           </Flex>
+
+          <LoadingOverlay visible={isMutating} />
         </Paper>
       </Center>
     </IAWrapper>
