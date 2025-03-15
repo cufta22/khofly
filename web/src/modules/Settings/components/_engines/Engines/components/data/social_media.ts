@@ -1,5 +1,5 @@
-import { ISocialMediaEngines } from "@store/engines";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
+import type { ISocialMediaEngines } from "@store/engines";
+import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_SOCIAL_MEDIA: {
   type: "divider" | "engine";

@@ -13,7 +13,8 @@ export type ICategories =
   | "it"
   | "science"
   | "files"
-  | "social_media";
+  | "social_media"
+  | "other";
 
 export type IFaviconAPI = "duckduckgo" | "favicone" | "google";
 

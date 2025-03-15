@@ -1,6 +1,7 @@
 import {
   Anchor,
   Badge,
+  Code,
   Flex,
   HoverCard,
   Image,
@@ -10,10 +11,9 @@ import {
   Text,
   useMantineTheme,
 } from "@mantine/core";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
-import React from "react";
+import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 import classes from "./styles.module.scss";
-import { IHoverData } from "../../hover-data";
+import type { IHoverData } from "../../hover-data";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -30,6 +30,7 @@ interface Props {
   safeSearch: boolean;
   timeRange: boolean;
   variant?: "settings" | "quick_settings";
+  bang: string;
 }
 
 const EngineComponent: React.FC<Props> = ({
@@ -43,6 +44,7 @@ const EngineComponent: React.FC<Props> = ({
   safeSearch,
   timeRange,
   variant = "settings",
+  bang,
 }) => {
   const theme = useMantineTheme();
   const t = useTranslate();
@@ -58,8 +60,10 @@ const EngineComponent: React.FC<Props> = ({
             {t(label)}
           </Text>
         </Table.Td>
+
         {variant === "settings" && (
           <>
+            <Table.Td className={classes.table_responsive}>{bang && <Code>{bang}</Code>}</Table.Td>
             <Table.Td className={classes.table_responsive} />
             <Table.Td className={classes.table_responsive} />
             <Table.Td className={classes.table_responsive} />
@@ -74,7 +78,7 @@ const EngineComponent: React.FC<Props> = ({
   return (
     <Table.Tr>
       {/* Engine */}
-      <Table.Td>
+      <Table.Td style={{ whiteSpace: "nowrap" }}>
         <HoverCard width={600} shadow="md" position="right" disabled={!hoverData}>
           <HoverCard.Target>
             <Flex
@@ -150,6 +154,8 @@ const EngineComponent: React.FC<Props> = ({
 
       {variant === "settings" && (
         <>
+          {/* Safe search */}
+          <Table.Td className={classes.table_responsive}>{bang && <Code>{bang}</Code>}</Table.Td>
           {/* Safe search */}
           <Table.Td className={classes.table_responsive}>
             {safeSearch && (

@@ -59,7 +59,7 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
       {
         label: "Khofly API",
         link: "/docs/self-host-khofly-api",
-        isWip: true,
+        isWip: false,
       },
     ],
   },

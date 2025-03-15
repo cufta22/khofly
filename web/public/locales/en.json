@@ -121,9 +121,13 @@
         "title_without": "other stuff",
 
         "title": "General engines",
-        "title2": "web",
-        "title3": "wiki stuff",
+        "title2": "i18n",
+        "title3": "web",
+        "title4": "wiki stuff",
 
+        "engine_dictzone": "Dictzone",
+        "engine_libre_translate": "LibreTranslate",
+        "engine_lingva": "Lingva",
         "engine_google": "Google",
         "engine_DDG": "DuckDuckGo",
         "engine_presearch": "Presearch",
@@ -134,6 +138,8 @@
         "engine_brave": "Brave",
         "engine_yahoo": "Yahoo!",
         "engine_wiby": "Wiby",
+        "engine_ask": "Ask",
+        "engine_cfai": "Cloudflare AI",
 
         "engine_wikibooks": "Wikibooks",
         "engine_wikiquote": "Wikiquote",
@@ -254,7 +260,24 @@
         "engine_lemmy_users_SM": "Lemmy Users",
         "engine_mastodon_hashtags_SM": "Mastodon Hashtags",
         "engine_mastodon_users_SM": "Mastodon Users",
-        "engine_reddit_SM": "Reddit"
+        "engine_reddit_SM": "Reddit",
+
+        "title_other": "Other engines",
+        "title_other2": "dictionaries",
+        "title_other3": "movies",
+        "title_other4": "weather",
+
+        "engine_etymonline": "Etymonline",
+        "engine_wiktionary": "Wiktionary",
+        "engine_wordnik": "Wordnik",
+        "engine_imdb": "IMDb",
+        "engine_rottentomatoes": "Rotten Tomatoes",
+        "engine_DDG_weather": "DuckDuckGo Weather",
+        "engine_openmeteo": "Open Meteo",
+        "engine_emojipedia": "Emojipedia",
+        "engine_goodreads": "Goodreads",
+        "engine_openlibrary": "Open Library",
+        "engine_podcastindex": "The Podcast Index"
       },
 
       "startpage": {

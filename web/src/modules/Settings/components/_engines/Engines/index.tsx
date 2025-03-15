@@ -1,6 +1,7 @@
 import { Button, Flex, Paper, Space, Stack, Tabs, Text } from "@mantine/core";
 import {
   IconCpu,
+  IconDotsCircleHorizontal,
   IconFiles,
   IconMusic,
   IconNews,
@@ -11,10 +12,10 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import classesParent from "../../styles.module.scss";
+import classesParent from "../../../styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useState } from "react";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
+import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 import SettingsEnginesWrapper from "./components/Wrapper";
 import classes from "./styles.module.scss";
 
@@ -28,12 +29,13 @@ import {
   DATA_ENGINES_IT,
   DATA_ENGINES_SCIENCE,
   DATA_ENGINES_FILES,
+  DATA_ENGINES_OTHER,
 } from "./components/data";
 
 import { useEnginesStore } from "@store/engines";
 import { DEFAULT_ENGINES } from "@store/engines/default_engines";
-import { ICategories } from "@store/settings";
-import { IDataEngine } from "./components/data";
+import type { ICategories } from "@store/settings";
+import type { IDataEngine } from "./components/data";
 import { CATEGORY_TO_STORE } from "./components/Wrapper/utils";
 
 export const TAB_DATA: {
@@ -89,6 +91,12 @@ export const TAB_DATA: {
     data: DATA_ENGINES_SOCIAL_MEDIA,
   },
 
+  other: {
+    label: "pages.settings.engines.title_other",
+    icon: <IconDotsCircleHorizontal size={32} />,
+    data: DATA_ENGINES_OTHER,
+  },
+
   // Won't be used
   maps: {
     label: "_common.app_name",
@@ -103,7 +111,9 @@ const Engines = () => {
   const [tab, setTab] = useState<ICategories>("general");
 
   // const engines = useEnginesStore((state) => state[CATEGORY_TO_STORE[tab].data] as string[])
-  const setEngines = useEnginesStore((state) => state[CATEGORY_TO_STORE[tab].set] as (next: string[]) => void);
+  const setEngines = useEnginesStore(
+    (state) => state[CATEGORY_TO_STORE[tab].set] as (next: string[]) => void
+  );
 
   return (
     <Paper radius="md" withBorder>
@@ -116,7 +126,7 @@ const Engines = () => {
           </Text>
         </Flex>
 
-        <div style={{ flex: 1 }}></div>
+        <div style={{ flex: 1 }} />
 
         <Flex align="center" justify="flex-end" gap="sm">
           <Button
@@ -181,6 +191,12 @@ const Engines = () => {
             <Tabs.Tab value="social_media" leftSection={<IconUsers style={getIconStyle(20)} />}>
               Social Media
             </Tabs.Tab>
+            <Tabs.Tab
+              value="other"
+              // leftSection={<IconDotsCircleHorizontal style={getIconStyle(20)} />}
+            >
+              Other
+            </Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="general">
@@ -217,6 +233,14 @@ const Engines = () => {
 
           <Tabs.Panel value="social_media">
             <SettingsEnginesWrapper category="social_media" data={DATA_ENGINES_SOCIAL_MEDIA} />
+          </Tabs.Panel>
+
+          <Tabs.Panel value="other">
+            <Text size="md" mb="xs">
+              This tab does not exists in the user interface, but you can search in these engines by
+              its !bangs.
+            </Text>
+            <SettingsEnginesWrapper category="other" data={DATA_ENGINES_OTHER} />
           </Tabs.Panel>
         </Tabs>
       </Stack>

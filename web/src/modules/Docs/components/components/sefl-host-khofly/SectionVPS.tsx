@@ -9,7 +9,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
-apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx
+apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg yt-dlp
 `;
 
 const CODE_NVM = `
@@ -45,7 +45,7 @@ pm2 start
 `;
 const CODE_ECOSYSTEM_FILE = `module.exports = {
   apps : [{
-    name: 'web',
+    name: 'api',
     script: 'pnpm',
     args: 'run start',
     env: {
@@ -182,8 +182,7 @@ const SectionVPS = () => {
       </Paper>
 
       <DocsText>
-        5. SSH into your VPS and create an empty folder in your home directory, ex.{" "}
-        <Code>mkdir khofly</Code>.
+        5. Create an empty folder in your home directory, ex. <Code>mkdir khofly</Code>.
       </DocsText>
 
       <DocsText>
@@ -223,7 +222,7 @@ const SectionVPS = () => {
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/nginx/sites-available/default",
+              fileName: "/etc/nginx/sites-available/web",
               code: CODE_NGINX_FILE,
               language: "nginx",
               icon: <IconFile style={getIconStyle(20)} />,

@@ -10,6 +10,29 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
   // -------------------------------------------------------------------------------------------------------------------------------
   // WEB
   // -------------------------------------------------------------------------------------------------------------------------------
+  dictzone: {
+    description:
+      "Online dictionaries: English, Spanish, German, French, Italian, Hungarian... Select your favorite dictionary! (Source: https://dictzone.com/)",
+    linkUrl: "https://dictzone.com",
+    wikiUrl: "",
+    bangsEngine: ["!dictzone", "!dz"],
+    bangsCategory: ["!general", "!translate"],
+  },
+  libretranslate: {
+    description:
+      "Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup. Run your own API server in just a few minutes.Free and Open Source Machine Translation API. Self-hosted, offline capable and easy to setup. Run your own API server in just a few minutes. (Source: https://libretranslate.com)",
+    linkUrl: "https://libretranslate.com",
+    wikiUrl: "",
+    bangsEngine: ["!libretranslate", "!lt"],
+    bangsCategory: ["!general", "!translate"],
+  },
+  lingva: {
+    description: "",
+    linkUrl: "https://lingva.ml",
+    wikiUrl: "",
+    bangsEngine: ["!lingva", "!lv"],
+    bangsCategory: ["!general", "!translate"],
+  },
   bing: {
     description:
       "Microsoft Bing, commonly referred to as Bing, is a web search engine owned and operated by Microsoft. The service traces its roots back to Microsoft's earlier search engines, including MSN Search, Windows Live Search, and Live Search. Bing offers a broad spectrum of search services, encompassing web, video, image, and map search products, all developed using ASP.NET. (Source: wikipedia)",
@@ -83,23 +106,6 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsCategory: ["!general", "!web"],
   },
 
-  wikibooks: {
-    description:
-      "Wikibooks is a wiki-based Wikimedia project hosted by the Wikimedia Foundation for the creation of free content digital textbooks and annotated texts that anyone can edit. (Source: wikipedia)",
-    linkUrl: "https://www.wikibooks.org/",
-    wikiUrl: "wikidata.org/wiki/Q367",
-    bangsEngine: ["!wikibooks", "!wb"],
-    bangsCategory: ["!general", "!wikimedia"],
-  },
-  wikisource: {
-    description:
-      "Wikisource is an online digital library of free-content textual sources on a wiki, operated by the Wikimedia Foundation. Wikisource is the name of the project as a whole and the name for each instance of that project ; multiple Wikisources make up the overall project of Wikisource. The project's aim is to host all forms of free text, in many languages, and translations. Originally conceived as an archive to store useful or important historical texts, it has expanded to become a general-content library. The project officially began on November 24, 2003, under the name Project Sourceberg, a play on the famous Project Gutenberg. The name Wikisource was adopted later that year and it received its own domain name. (Source: wikipedia)",
-    linkUrl: "https://www.wikisource.org/",
-    wikiUrl: "wikidata.org/wiki/Q263",
-    bangsEngine: ["!wikisource", "!ws"],
-    bangsCategory: ["!general", "!wikimedia"],
-  },
-
   alexandria: {
     description:
       "Search the web with alexandria.org - the open source search engine (Source: https://alexandria.org/)",
@@ -110,8 +116,9 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
   },
 
   // -------------------------------------------------------------------------------------------------------------------------------
-  // GENERAL
+  // WIKI STUFF
   // -------------------------------------------------------------------------------------------------------------------------------
+
   wikipedia: {
     description:
       "Wikipedia is a free-content online encyclopedia written and maintained by a community of volunteers, known as Wikipedians, through open collaboration and the use of the wiki-based editing system MediaWiki. Wikipedia is the largest and most-read reference work in history. It is consistently ranked as one of the ten most popular websites in the world, and as of 2024 is ranked the fifth most visited website on the Internet by Semrush. Founded by Jimmy Wales and Larry Sanger on January 15, 2001, Wikipedia is hosted by the Wikimedia Foundation, an American nonprofit organization that employs a staff of over 700 people. (Source: wikipedia)",
@@ -128,13 +135,52 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!wikidata", "!wd"],
     bangsCategory: ["!general"],
   },
-
+  wikibooks: {
+    description:
+      "Wikibooks is a wiki-based Wikimedia project hosted by the Wikimedia Foundation for the creation of free content digital textbooks and annotated texts that anyone can edit. (Source: wikipedia)",
+    linkUrl: "https://www.wikibooks.org/",
+    wikiUrl: "wikidata.org/wiki/Q367",
+    bangsEngine: ["!wikibooks", "!wb"],
+    bangsCategory: ["!general", "!wikimedia"],
+  },
+  wikiquote: {
+    description:
+      "Wikiquote is part of a family of wiki-based projects run by the Wikimedia Foundation using MediaWiki software. The project's objective is to collaboratively produce a vast reference of quotations from prominent people, books, films, proverbs, etc. and writings about them. The website aims to be as accurate as possible regarding the provenance and sourcing of the quotations. (Source: wikipedia)",
+    linkUrl: "https://www.wikiquote.org/",
+    wikiUrl: "wikidata.org/wiki/Q369",
+    bangsEngine: ["!wikiquote", "!wq"],
+    bangsCategory: ["!general", "!wikimedia"],
+  },
+  wikisource: {
+    description:
+      "Wikisource is an online digital library of free-content textual sources on a wiki, operated by the Wikimedia Foundation. Wikisource is the name of the project as a whole and the name for each instance of that project ; multiple Wikisources make up the overall project of Wikisource. The project's aim is to host all forms of free text, in many languages, and translations. Originally conceived as an archive to store useful or important historical texts, it has expanded to become a general-content library. The project officially began on November 24, 2003, under the name Project Sourceberg, a play on the famous Project Gutenberg. The name Wikisource was adopted later that year and it received its own domain name. (Source: wikipedia)",
+    linkUrl: "https://www.wikisource.org/",
+    wikiUrl: "wikidata.org/wiki/Q263",
+    bangsEngine: ["!wikisource", "!ws"],
+    bangsCategory: ["!general", "!wikimedia"],
+  },
   wikispecies: {
     description:
       "Wikispecies is a wiki-based online project supported by the Wikimedia Foundation. Its aim is to create a comprehensive open content catalogue of all species; the project is directed at scientists, rather than at the general public. Jimmy Wales stated that editors are not required to fax in their degrees, but that submissions will have to pass muster with a technical audience. Wikispecies is available under the GNU Free Documentation License and CC BY-SA 3.0. (Source: wikipedia)",
     linkUrl: "https://species.wikimedia.org/",
-    wikiUrl: "wikidata.org/wiki/Q370",
+    wikiUrl: "wikidata.org/wiki/Q13679",
     bangsEngine: ["!wikispecies", "!wsp"],
     bangsCategory: ["!general", "!science", "!wikimedia"],
+  },
+  wikiversity: {
+    description:
+      "Wikiversity is a Wikimedia Foundation project that supports learning communities, their learning materials, and resulting activities. It differs from Wikipedia in that it offers tutorials and other materials for the fostering of learning, rather than an encyclopedia. It is available in many languages. (Source: wikipedia)",
+    linkUrl: "https://species.wikimedia.org/",
+    wikiUrl: "wikidata.org/wiki/Q370",
+    bangsEngine: ["!wikiversity", "!wv"],
+    bangsCategory: ["!general", "!wikimedia"],
+  },
+  wikivoyage: {
+    description:
+      'Wikivoyage is a free web-based travel guide for travel destinations and travel topics written by volunteer authors. It is a sister project of Wikipedia and supported and hosted by the same non-profit Wikimedia Foundation (WMF). Wikivoyage has been called the "Wikipedia of travel guides". (Source: wikipedia)',
+    linkUrl: "https://www.wikivoyage.org/",
+    wikiUrl: "wikidata.org/wiki/Q373",
+    bangsEngine: ["!wikivoyage", "!wy"],
+    bangsCategory: ["!general", "!wikimedia"],
   },
 };

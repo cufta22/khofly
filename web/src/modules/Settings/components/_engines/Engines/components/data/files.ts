@@ -1,5 +1,5 @@
-import { IFilesEngines } from "@store/engines";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
+import type { IFilesEngines } from "@store/engines";
+import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_FILES: {
   type: "divider" | "engine";

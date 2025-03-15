@@ -5,11 +5,11 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
-import SettingsGeneral from "./components/General";
-import SettingsInterface from "./components/Interface";
-import SettingsEngines from "./components/Engines";
-import SettingsCategories from "./components/Categories";
-import SettingsThemeEditor from "./components/ThemeEditor";
+import SettingsGeneral from "./components/_general/General";
+import SettingsInterface from "./components/_interface/Interface";
+import SettingsEngines from "./components/_engines/Engines";
+import SettingsCategories from "./components/_general/Categories";
+import SettingsThemeEditor from "./components/_interface/ThemeEditor";
 
 import SettingsSearXNG from "./components/_instances/SearXNG";
 import SettingsAIWorker from "./components/_instances/AIWorker";

@@ -1,8 +1,8 @@
 import EngineComponent from "../EngineRow";
 import { HOVER_DATA } from "../../hover-data";
-import { IGeneralEngines, useEnginesStore } from "@store/engines";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
-import { ICategories } from "@store/settings";
+import { type IGeneralEngines, useEnginesStore } from "@store/engines";
+import type { DotNestedKeys, ITranslations } from "@ts/global.types";
+import type { ICategories } from "@store/settings";
 import { Table } from "@mantine/core";
 
 import classes from "./styles.module.scss";
@@ -16,6 +16,7 @@ interface Props {
     alt: string;
     icon: string;
     label: DotNestedKeys<ITranslations>;
+    bang: string;
     safeSearch: boolean;
     timeRange: boolean;
   }[];
@@ -24,7 +25,9 @@ interface Props {
 
 const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = "settings" }) => {
   const engines = useEnginesStore((state) => state[CATEGORY_TO_STORE[category].data] as string[]);
-  const setEngines = useEnginesStore((state) => state[CATEGORY_TO_STORE[category].set] as (next: string[]) => void);
+  const setEngines = useEnginesStore(
+    (state) => state[CATEGORY_TO_STORE[category].set] as (next: string[]) => void
+  );
 
   const handleChangeEngines = (e: IGeneralEngines, next: boolean) => {
     let newEngines = [];
@@ -50,6 +53,7 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = "se
       hoverData={HOVER_DATA[item.value]}
       safeSearch={item.safeSearch}
       timeRange={item.timeRange}
+      bang={item.bang}
       variant={variant || "settings"}
     />
   ));
@@ -59,9 +63,13 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = "se
       <Table verticalSpacing="sm" px="md" w="100%">
         <Table.Thead>
           <Table.Tr>
-            <Table.Th w="100%">Engine</Table.Th>
+            <Table.Th>Engine</Table.Th>
+
             {variant === "settings" && (
               <>
+                <Table.Th w="100%" className={classes.table_responsive} pr="xl">
+                  !bang
+                </Table.Th>
                 <Table.Th className={classes.table_responsive} pr="xl">
                   Safe search
                 </Table.Th>

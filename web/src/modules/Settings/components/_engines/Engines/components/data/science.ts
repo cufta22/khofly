@@ -1,5 +1,5 @@
-import { IScienceEngines } from "@store/engines";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
+import type { IScienceEngines } from "@store/engines";
+import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_SCIENCE: {
   type: "divider" | "engine";
@@ -73,6 +73,7 @@ export const DATA_ENGINES_SCIENCE: {
     safeSearch: false,
     timeRange: false,
   },
+
   {
     type: "divider",
     value: "",
@@ -91,6 +92,7 @@ export const DATA_ENGINES_SCIENCE: {
     safeSearch: false,
     timeRange: false,
   },
+
   {
     type: "divider",
     value: "",

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Open Meteo as weather data source
 - Prioritize or blacklist certain websites
 - More start page customization
+- Multiple missing search engines
 
 ### Fixed
 

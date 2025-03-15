@@ -1,9 +1,9 @@
-import { IVideosEngines } from "@store/engines";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
+import type{ IImagesEngines } from "@store/engines";
+import type{ DotNestedKeys, ITranslations } from "@ts/global.types";
 
-export const DATA_ENGINES_VIDEOS: {
+export const DATA_ENGINES_IMAGES: {
   type: "divider" | "engine";
-  value: IVideosEngines | "";
+  value: IImagesEngines | "";
   alt: string;
   icon: string;
   label: DotNestedKeys<ITranslations>;
@@ -15,7 +15,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "",
     alt: "",
     icon: "",
-    label: "pages.settings.engines.title_vid2",
+    label: "pages.settings.engines.title_img2",
     safeSearch: false,
     timeRange: false,
   },
@@ -24,7 +24,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "bing",
     alt: "Bing logo",
     icon: "/assets/engines/bing-icon.svg",
-    label: "pages.settings.engines.engine_bing_vid",
+    label: "pages.settings.engines.engine_bing_img",
     safeSearch: true,
     timeRange: true,
   },
@@ -33,7 +33,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "brave",
     alt: "Brave logo",
     icon: "/assets/engines/brave-icon.svg",
-    label: "pages.settings.engines.engine_brave_vid",
+    label: "pages.settings.engines.engine_brave_img",
     safeSearch: true,
     timeRange: false,
   },
@@ -42,7 +42,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "duckduckgo",
     alt: "DuckDuckGo logo",
     icon: "/assets/engines/ddg-icon.svg",
-    label: "pages.settings.engines.engine_DDG_vid",
+    label: "pages.settings.engines.engine_DDG_img",
     safeSearch: true,
     timeRange: false,
   },
@@ -51,7 +51,16 @@ export const DATA_ENGINES_VIDEOS: {
     value: "google",
     alt: "Google logo",
     icon: "/assets/engines/google-icon.svg",
-    label: "pages.settings.engines.engine_google_vid",
+    label: "pages.settings.engines.engine_google_img",
+    safeSearch: true,
+    timeRange: true,
+  },
+  {
+    type: "engine",
+    value: "presearch",
+    alt: "Presearch logo",
+    icon: "/assets/engines/presearch-icon.svg",
+    label: "pages.settings.engines.engine_presearch_img",
     safeSearch: true,
     timeRange: true,
   },
@@ -60,7 +69,7 @@ export const DATA_ENGINES_VIDEOS: {
     value: "qwant",
     alt: "Qwant logo",
     icon: "/assets/engines/qwant-icon.svg",
-    label: "pages.settings.engines.engine_qwant_vid",
+    label: "pages.settings.engines.engine_qwant_img",
     safeSearch: true,
     timeRange: false,
   },
@@ -75,47 +84,38 @@ export const DATA_ENGINES_VIDEOS: {
   },
   {
     type: "engine",
-    value: "dailymotion",
-    alt: "Dailymotion logo",
-    icon: "/assets/engines/dailymotion-icon.svg",
-    label: "pages.settings.engines.engine_dailymotion_vid",
-    safeSearch: true,
-    timeRange: true,
-  },
-  {
-    type: "engine",
-    value: "odysee",
-    alt: "Odysee logo",
-    icon: "",
-    label: "pages.settings.engines.engine_odysee_vid",
-    safeSearch: false,
-    timeRange: true,
-  },
-  {
-    type: "engine",
-    value: "piped",
-    alt: "Piped logo",
-    icon: "/assets/engines/piped-icon.svg",
-    label: "pages.settings.engines.engine_piped_vid",
+    value: "deviantart",
+    alt: "DeviantArt logo",
+    icon: "/assets/engines/deviantart-icon.svg",
+    label: "pages.settings.engines.engine_deviantArt_img",
     safeSearch: false,
     timeRange: false,
   },
   {
     type: "engine",
-    value: "vimeo",
-    alt: "Vimeo logo",
-    icon: "",
-    label: "pages.settings.engines.engine_vimeo_vid",
+    value: "flickr",
+    alt: "Flickr logo",
+    icon: "/assets/engines/flickr-icon.svg",
+    label: "pages.settings.engines.engine_flickr_img",
+    safeSearch: false,
+    timeRange: true,
+  },
+  {
+    type: "engine",
+    value: "pinterest",
+    alt: "Pinterest logo",
+    icon: "/assets/engines/pinterest-icon.svg",
+    label: "pages.settings.engines.engine_pinterest_img",
     safeSearch: false,
     timeRange: false,
   },
   {
     type: "engine",
-    value: "youtube",
-    alt: "YouTube logo",
-    icon: "/assets/engines/youtube-icon.svg",
-    label: "pages.settings.engines.engine_youtube_vid",
+    value: "unsplash",
+    alt: "Unsplash logo",
+    icon: "/assets/engines/unsplash-icon.svg",
+    label: "pages.settings.engines.engine_unsplash_img",
     safeSearch: false,
-    timeRange: true,
+    timeRange: false,
   },
 ];

@@ -3,12 +3,12 @@ import { IconSettings2 } from "@tabler/icons-react";
 import { useTranslate } from "@hooks/translate/use-translate";
 import classes from "../styles.module.scss";
 
-import FaviconSwitch from "@module/Settings/components/General/FaviconSwitch";
-import ShowEnginesSwitch from "@module/Settings/components/General/ShowEnginesSwitch";
-import MediaSwitch from "@module/Settings/components/General/MediaSwitch";
-import IASwitch from "@module/Settings/components/General/IASwitch";
-import PrivateSearchSwitch from "@module/Settings/components/General/PrivateSearchSwitch";
-import PrivatePlayerSwitch from "@module/Settings/components/General/PrivarePlayerSwitch";
+import FaviconSwitch from "@module/Settings/components/_general/General/FaviconSwitch";
+import ShowEnginesSwitch from "@module/Settings/components/_general/General/ShowEnginesSwitch";
+import MediaSwitch from "@module/Settings/components/_general/General/MediaSwitch";
+import IASwitch from "@module/Settings/components/_general/General/IASwitch";
+import PrivateSearchSwitch from "@module/Settings/components/_general/General/PrivateSearchSwitch";
+import PrivatePlayerSwitch from "@module/Settings/components/_general/General/PrivarePlayerSwitch";
 
 const QSGeneral = () => {
   const t = useTranslate();

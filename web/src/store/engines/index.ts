@@ -3,6 +3,9 @@ import { persist } from "zustand/middleware";
 import { DEFAULT_ENGINES } from "./default_engines";
 
 export type IGeneralEngines =
+  | "dictzone"
+  | "libretranslate"
+  | "lingva"
   | "google"
   | "mojeek"
   | "duckduckgo"
@@ -20,6 +23,8 @@ export type IGeneralEngines =
   | "wikiversity"
   | "wikivoyage"
   | "alexandria"
+  | "ask"
+  | "cloudflareai"
   | "wikipedia"
   | "wikidata";
 
@@ -111,6 +116,19 @@ export type ISocialMediaEngines =
   | "mastodonusers"
   | "reddit";
 
+export type IOtherEngines =
+  | "etymonline"
+  | "wiktionary"
+  | "wordnik"
+  | "imdb"
+  | "rottentomatoes"
+  | "duckduckgo-weather"
+  | "openmeteo"
+  | "emojipedia"
+  | "goodreads"
+  | "openlibrary"
+  | "podcastindex";
+
 export interface EnginesState {
   hydrated: boolean;
 
@@ -140,6 +158,9 @@ export interface EnginesState {
 
   enginesSocialMedia: ISocialMediaEngines[];
   setEnginesSocialMedia: (next: ISocialMediaEngines[]) => void;
+
+  enginesOther: IOtherEngines[];
+  setEnginesOther: (next: IOtherEngines[]) => void;
 }
 
 export const useEnginesStore = create<EnginesState>()(
@@ -159,7 +180,7 @@ export const useEnginesStore = create<EnginesState>()(
       enginesNews: DEFAULT_ENGINES.news,
       setEnginesNews: (next) => set({ enginesNews: next }),
 
-      enginesMusic: ["radiobrowser", "soundcloud", "youtube"],
+      enginesMusic: DEFAULT_ENGINES.music,
       setEnginesMusic: (next) => set({ enginesMusic: next }),
 
       enginesIT: DEFAULT_ENGINES.it,
@@ -173,6 +194,9 @@ export const useEnginesStore = create<EnginesState>()(
 
       enginesSocialMedia: DEFAULT_ENGINES.social_media,
       setEnginesSocialMedia: (next) => set({ enginesSocialMedia: next }),
+
+      enginesOther: DEFAULT_ENGINES.other,
+      setEnginesOther: (next) => set({ enginesOther: next }),
     }),
     {
       onRehydrateStorage: () => (state) => {

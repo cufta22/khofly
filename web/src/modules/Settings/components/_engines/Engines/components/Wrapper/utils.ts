@@ -11,7 +11,8 @@ export const CATEGORY_TO_STORE: {
       | "enginesIT"
       | "enginesScience"
       | "enginesFiles"
-      | "enginesSocialMedia";
+      | "enginesSocialMedia"
+      | "enginesOther";
     set:
       | "setEnginesGeneral"
       | "setEnginesImages"
@@ -21,7 +22,8 @@ export const CATEGORY_TO_STORE: {
       | "setEnginesIT"
       | "setEnginesScience"
       | "setEnginesFiles"
-      | "setEnginesSocialMedia";
+      | "setEnginesSocialMedia"
+      | "setEnginesOther";
   };
 } = {
   general: {
@@ -59,6 +61,10 @@ export const CATEGORY_TO_STORE: {
   social_media: {
     data: "enginesSocialMedia",
     set: "setEnginesSocialMedia",
+  },
+  other: {
+    data: "enginesOther",
+    set: "setEnginesOther",
   },
 
   // Will never be used, so general is fine

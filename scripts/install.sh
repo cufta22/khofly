@@ -5,7 +5,7 @@ apt update && apt upgrade
 
 # Dependencies
 echo -e "\e[32mInstalling all dependencies\e[0m"
-apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx
+apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg yt-dlp
 
 echo -e "\e[32mInstalling nvm\e[0m"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash

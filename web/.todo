@@ -26,9 +26,12 @@ fix up private player
 
 add setting for API instance with own/om select
 
-hide select for widget position if display 3unchecked
+hide select for widget position if display is unchecked
 
 see why most results are in DE ( server region )
+
+engine row add !bangs
+engine row add all hover data
 
 Private Player for music?
 

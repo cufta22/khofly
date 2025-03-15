@@ -1,17 +1,22 @@
-import {
+import type {
   IFilesEngines,
   IGeneralEngines,
   IITEngines,
   IImagesEngines,
   IMusicEngines,
   INewsEngines,
+  IOtherEngines,
   IScienceEngines,
   ISocialMediaEngines,
   IVideosEngines,
 } from "@store/engines";
-import { ICategories } from "@store/settings";
+import type { ICategories } from "@store/settings";
 
 const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
+  dictzone: "!dz",
+  libretranslate: "!lt",
+  lingva: "!lv",
+
   bing: "!bi",
   brave: "!br",
   duckduckgo: "!ddg",
@@ -31,6 +36,8 @@ const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
   wikivoyage: "!wy",
 
   alexandria: "!alx",
+  ask: "!ask",
+  cloudflareai: "!cfai",
   wikipedia: "!wp",
   wikidata: "!wd",
 };
@@ -141,6 +148,20 @@ const SOCIAL_MEDIA_BANGS: { [key in ISocialMediaEngines]: string } = {
   reddit: "!re",
 };
 
+const OTHER_BANGS: { [key in IOtherEngines]: string } = {
+  etymonline: "",
+  wiktionary: "",
+  wordnik: "",
+  imdb: "",
+  rottentomatoes: "",
+  "duckduckgo-weather": "",
+  openmeteo: "",
+  emojipedia: "",
+  goodreads: "",
+  openlibrary: "",
+  podcastindex: "",
+};
+
 export const getEngineBangs = (tab: ICategories, enginesSelected: any[]) => {
   let bangs = "";
 
@@ -155,12 +176,14 @@ export const getEngineBangs = (tab: ICategories, enginesSelected: any[]) => {
     files: FILES_BANGS,
     social_media: SOCIAL_MEDIA_BANGS,
 
+    other: OTHER_BANGS,
+
     // unused
     maps: GENERAL_BANGS,
   };
 
   enginesSelected.map((eng) => {
-    bangs = bangs + `${BANGS[tab][eng]}%20`;
+    bangs = `${bangs}${BANGS[tab][eng]}%20`;
   });
 
   return bangs;
