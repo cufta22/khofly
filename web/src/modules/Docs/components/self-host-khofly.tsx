@@ -11,9 +11,11 @@ import SectionVercel from "./components/sefl-host-khofly/SectionVercel";
 import SectionFly from "./components/sefl-host-khofly/SectionFly";
 // import SectionCloudflare from "./components/sefl-host-khofly/SectionCloudflare";
 import SectionVPS from "./components/sefl-host-khofly/SectionVPS";
+import DocsNextPrev from "./common/DocsNextPrev";
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const DocsSelfHostKhofly = () => {
-  const { colors } = useMantineTheme();
+  const theme = useMantineTheme();
 
   return (
     <Container size="lg" p="xl" pb={100}>
@@ -21,14 +23,18 @@ const DocsSelfHostKhofly = () => {
         <Tabs.List>
           <Tabs.Tab
             value="vps"
-            leftSection={<IconServer style={{ ...getIconStyle(28), color: colors.blue[4] }} />}
+            leftSection={
+              <IconServer style={{ ...getIconStyle(28), color: theme.colors.blue[4] }} />
+            }
             fz={15}
           >
             VPS
           </Tabs.Tab>
           <Tabs.Tab
             value="vercel"
-            leftSection={<IconBrandVercel style={{ ...getIconStyle(28), color: colors.gray[1] }} />}
+            leftSection={
+              <IconBrandVercel style={{ ...getIconStyle(28), color: theme.colors.gray[1] }} />
+            }
             fz={15}
           >
             Vercel
@@ -36,7 +42,7 @@ const DocsSelfHostKhofly = () => {
           <Tabs.Tab
             value="cloudflare"
             leftSection={
-              <IconBrandCloudflare style={{ ...getIconStyle(28), color: colors.orange[6] }} />
+              <IconBrandCloudflare style={{ ...getIconStyle(28), color: theme.colors.orange[6] }} />
             }
             fz={15}
           >
@@ -44,7 +50,9 @@ const DocsSelfHostKhofly = () => {
           </Tabs.Tab>
           <Tabs.Tab
             value="flyio"
-            leftSection={<IconAirBalloon style={{ ...getIconStyle(28), color: colors.grape[4] }} />}
+            leftSection={
+              <IconAirBalloon style={{ ...getIconStyle(28), color: theme.colors.grape[4] }} />
+            }
             fz={15}
           >
             Fly.io
@@ -76,6 +84,11 @@ const DocsSelfHostKhofly = () => {
           <SectionFly />
         </Tabs.Panel>
       </Tabs>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["aiWorker"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["selfHostKhoflyAPI"] }}
+      />
     </Container>
   );
 };

@@ -28,6 +28,7 @@ import { AreaChart } from "@mantine/charts";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import { useInstanceStore } from "@store/instance";
 
 dayjs.extend(utc);
 
@@ -43,7 +44,7 @@ const IAWeather = () => {
   const geolocation = useGeneralStore((state) => state.geolocation);
   const { location } = useGeolocation(!geolocation && hydrated);
 
-  const [source, setSource] = useState<"owm" | "om">("owm");
+  const weatherSource = useInstanceStore((state) => state.weatherSource);
 
   const [unit, setUnit] = useState<"standard" | "metric" | "imperial">("metric");
   const [areaChart, setAreaChart] = useState<string>("temp");
@@ -59,7 +60,7 @@ const IAWeather = () => {
     lat: geolocation?.lat || location?.latitude,
     lon: geolocation?.lon || location?.longitude,
     units: unit,
-    src: source,
+    src: weatherSource,
   });
   const data = resData?.data;
   const message = resData?.message;
@@ -121,7 +122,7 @@ const IAWeather = () => {
             {
               value: "standard",
               label: <IconLetterK style={getIconStyle(20)} stroke={2} />,
-              disabled: source === "om",
+              disabled: weatherSource === "om",
             },
           ]}
         />
@@ -190,24 +191,6 @@ const IAWeather = () => {
             mb="md"
           />
         )}
-
-        <SegmentedControl
-          value={source}
-          onChange={(val) => {
-            if (val === "om" && unit === "standard") setUnit("metric");
-            setSource(val as "owm" | "om");
-          }}
-          data={[
-            {
-              value: "owm",
-              label: "OWM",
-            },
-            {
-              value: "om",
-              label: "O M",
-            },
-          ]}
-        />
       </Flex>
 
       {data?.hourly?.length && (

@@ -6,6 +6,7 @@ import {
   List,
   Paper,
   Text,
+  useMantineTheme,
 } from "@mantine/core";
 import { IconFile } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -16,6 +17,8 @@ import DocsText from "./common/DocsText";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
 import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
+import DocsNextPrev from "./common/DocsNextPrev";
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const CODE_SYS_UPDATE = `
 apt update && apt upgrade
@@ -151,47 +154,39 @@ sudo service uwsgi restart searxng
 `;
 
 const DocsSelfHostSearxng = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  // const [activeTab, setActiveTab] = useState(0);
+
+  const theme = useMantineTheme();
 
   return (
     <Container size="lg" p="xl" pb={100}>
       <DocsTitle>Installation guide</DocsTitle>
 
-      <Blockquote
-        color="blue"
-        cite="- https://docs.searxng.org/"
-        mt="xl"
-        radius="sm"
-      >
-        SearXNG is a free internet metasearch engine which aggregates results
-        from more than 70 search services. Users are neither tracked nor
-        profiled. Additionally, SearXNG can be used over Tor for online
-        anonymity.
+      <Blockquote color="blue" cite="- https://docs.searxng.org/" mt="xl" radius="sm">
+        SearXNG is a free internet metasearch engine which aggregates results from more than 70
+        search services. Users are neither tracked nor profiled. Additionally, SearXNG can be used
+        over Tor for online anonymity.
       </Blockquote>
 
       <DocsText>
-        This guide will show you how to setup a SearXNG instance to be used with
-        Khofly Search as it&apos;s front-end, your instance will still be
-        perfectly usable on it&apos;s own. Important differences:
+        This guide will show you how to setup a SearXNG instance to be used with Khofly Search as
+        it&apos;s front-end, your instance will still be perfectly usable on it&apos;s own.
+        Important differences:
       </DocsText>
 
       <List>
         <List.Item>
           <Text>
             Khofly utilizes SearXNG
-            <DocsLink
-              href="https://docs.searxng.org/dev/search_api.html"
-              label="/search API"
-            />{" "}
-            to get the results as JSON so we will need to enable - json as
-            output format in settings.yml.
+            <DocsLink href="https://docs.searxng.org/dev/search_api.html" label="/search API" /> to
+            get the results as JSON so we will need to enable - json as output format in
+            settings.yml.
           </Text>
         </List.Item>
         <List.Item>
           <Text>
-            Since Khofly Search and SearXNG instance are on different domains we
-            will need to add Access-Control-Allow-Origin header in Nginx config
-            to avoid CORS error
+            Since Khofly Search and SearXNG instance are on different domains we will need to add
+            Access-Control-Allow-Origin header in Nginx config to avoid CORS error
           </Text>
         </List.Item>
       </List>
@@ -208,8 +203,7 @@ const DocsSelfHostSearxng = () => {
       </List>
 
       <Text mt="md">
-        If you&apos;re the only person using your SearXNG instance a basic 5$
-        VPS will do just fine
+        If you&apos;re the only person using your SearXNG instance a basic 5$ VPS will do just fine
       </Text>
 
       <DocsSubtitle>Make sure everything is up to date</DocsSubtitle>
@@ -225,9 +219,9 @@ const DocsSelfHostSearxng = () => {
       </Paper>
 
       <DocsText>
-        Doing this allows you to isolate all the commands and files when
-        installing and configuring SearXNG. It can be especially useful if you
-        intend to host the search engine on a VPS with multiple services.
+        Doing this allows you to isolate all the commands and files when installing and configuring
+        SearXNG. It can be especially useful if you intend to host the search engine on a VPS with
+        multiple services.
       </DocsText>
 
       <DocsSubtitle>Install dependencies</DocsSubtitle>
@@ -239,19 +233,13 @@ const DocsSelfHostSearxng = () => {
       <DocsSubtitle>Clone and install SearXNG</DocsSubtitle>
 
       <DocsText>
-        There are three different methods for installing SearXNG ( manual,
-        installation script, docker ), all explained at the
-        <DocsLink
-          href="https://docs.searxng.org/admin/installation.html"
-          label="official wiki"
-        />
-        . Here we will use the installation script which automates the manual
-        process. First we need to clone the{" "}
-        <DocsLink
-          href="https://github.com/searxng/searxng"
-          label="SearXNG repository"
-        />
-        . After that is finished, run the installation script.
+        There are three different methods for installing SearXNG ( manual, installation script,
+        docker ), all explained at the
+        <DocsLink href="https://docs.searxng.org/admin/installation.html" label="official wiki" />.
+        Here we will use the installation script which automates the manual process. First we need
+        to clone the{" "}
+        <DocsLink href="https://github.com/searxng/searxng" label="SearXNG repository" />. After
+        that is finished, run the installation script.
       </DocsText>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
@@ -259,8 +247,8 @@ const DocsSelfHostSearxng = () => {
       </Paper>
 
       <DocsText>
-        Installation process is mostly automatic, but you will be asked to
-        confirm everything that SearXNG wants to install.
+        Installation process is mostly automatic, but you will be asked to confirm everything that
+        SearXNG wants to install.
       </DocsText>
 
       <DocsSubtitle>Nginx configuration</DocsSubtitle>
@@ -271,10 +259,9 @@ const DocsSelfHostSearxng = () => {
         mt="lg"
         radius="sm"
       >
-        On Arch check if sites-available and sites-enable directories exist, if
-        not create them ( <Code>mkdir sites-available sites-enabled</Code> ) and
-        create the default file inside of /sites-available ({" "}
-        <Code>touch default</Code> )
+        On Arch check if sites-available and sites-enable directories exist, if not create them ({" "}
+        <Code>mkdir sites-available sites-enabled</Code> ) and create the default file inside of
+        /sites-available ( <Code>touch default</Code> )
       </Blockquote>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
@@ -296,8 +283,8 @@ const DocsSelfHostSearxng = () => {
         mt="lg"
         radius="sm"
       >
-        If your server is behind a Cloudflare proxy you need to adjust X-Real-IP
-        and X-Forwarded-For like this
+        If your server is behind a Cloudflare proxy you need to adjust X-Real-IP and X-Forwarded-For
+        like this
       </Blockquote>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
@@ -316,26 +303,23 @@ const DocsSelfHostSearxng = () => {
       <DocsSubtitle>SearXNG configuration</DocsSubtitle>
 
       <Blockquote color="green" mt="lg" radius="sm">
-        Default configuration file for SearXNG is located at
-        /etc/searxng/settings.yml ( read more about the different options at the
+        Default configuration file for SearXNG is located at /etc/searxng/settings.yml ( read more
+        about the different options at the
         <DocsLink
           href="https://docs.searxng.org/admin/settings/settings.html"
           label="official wiki"
         />{" "}
-        ), this is an example config and you will want to change the following
-        values:
+        ), this is an example config and you will want to change the following values:
         <List>
+          <List.Item>general.instance_name - to whatever you want ( optional )</List.Item>
           <List.Item>
-            general.instance_name - to whatever you want ( optional )
-          </List.Item>
-          <List.Item>
-            search.suspended_times.SearxEngineAccessDenied - 240 is ok, default
-            is way too high ( optional )
+            search.suspended_times.SearxEngineAccessDenied - 240 is ok, default is way too high (
+            optional )
           </List.Item>
 
           <List.Item>
-            search.formats - make sure the json format is enabled along with
-            html if you want to use your instacne as a front-end as well
+            search.formats - make sure the json format is enabled along with html if you want to use
+            your instacne as a front-end as well
           </List.Item>
           <List.Item>
             server.secret - make sure to change to a random key ( ex. run{" "}
@@ -362,6 +346,11 @@ const DocsSelfHostSearxng = () => {
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_CERTBOT} language="bash" />
       </Paper>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["siteData"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["aiWorker"] }}
+      />
     </Container>
   );
 };

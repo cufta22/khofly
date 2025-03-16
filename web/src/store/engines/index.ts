@@ -34,11 +34,13 @@ export type IImagesEngines =
   | "bing"
   | "brave"
   | "qwant"
+  | "startpage"
   | "presearch"
   | "deviantart"
   | "flickr"
   | "pinterest"
-  | "unsplash";
+  | "unsplash"
+  | "wikicommons";
 
 export type IVideosEngines =
   | "google"
@@ -49,15 +51,18 @@ export type IVideosEngines =
   | "dailymotion"
   | "odysee"
   | "piped"
+  | "rumble"
   | "vimeo"
   | "youtube";
 
 export type INewsEngines =
   | "google"
   | "duckduckgo"
+  | "mojeek"
   | "bing"
   | "brave"
   | "qwant"
+  | "startpage"
   | "yahoo"
   | "presearch"
   | "wikinews";
@@ -67,22 +72,33 @@ export type IMusicEngines =
   | "radiobrowser"
   | "bandcamp"
   | "mixcloud"
-  | "pipedmusic"
+  | "piped"
   | "soundcloud"
-  | "youtube";
+  | "youtube"
+  | "deezer"
+  | "wikicommons";
 
 export type IITEngines =
+  | "crates"
   | "dockerhub"
   | "npm"
+  | "packagist"
+  | "pkggodev"
   | "pypi"
+  | "rubygems"
+  | "void"
   | "askubuntu"
   | "stackoverflow"
   | "superuser"
+  | "bitbucket"
   | "codeberg"
   | "github"
   | "gitlab"
   | "archwiki"
   | "gentoo"
+  | "nixoswiki"
+  | "hackernews"
+  | "mankier"
   | "mdn";
 
 export type IScienceEngines =
@@ -99,12 +115,17 @@ export type IScienceEngines =
 
 export type IFilesEngines =
   | "apkmirror"
+  | "appstore"
   | "fdroid"
+  | "playstore"
   | "1337x"
   | "annas"
   | "bt4g"
+  | "kickass"
   | "nyaa"
-  | "piratebay";
+  | "piratebay"
+  | "wikicommons"
+  | "zlibrary";
 
 export type ISocialMediaEngines =
   | "9gag"
@@ -114,7 +135,8 @@ export type ISocialMediaEngines =
   | "lemmyusers"
   | "mastodonhashtags"
   | "mastodonusers"
-  | "reddit";
+  | "reddit"
+  | "tootfinder";
 
 export type IOtherEngines =
   | "etymonline"
@@ -122,7 +144,7 @@ export type IOtherEngines =
   | "wordnik"
   | "imdb"
   | "rottentomatoes"
-  | "duckduckgo-weather"
+  | "duckduckgo"
   | "openmeteo"
   | "emojipedia"
   | "goodreads"

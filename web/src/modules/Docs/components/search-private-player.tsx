@@ -28,6 +28,15 @@ const DocsSearchPrivatePlayer = () => {
         with too many large files.
       </DocsText>
 
+      <DocsSubtitle>Music</DocsSubtitle>
+
+      <DocsText>
+        Works in <Code>Music</Code> tab. Allows you to listen YouTube music or audio from any video
+        in Khofly by downloading the audio on the server where API is located and serving it to the
+        browser. Downloaded media is deleted after 1h to avoid filling up the{" "}
+        <Code>/temp/media</Code> folder with too many large files.
+      </DocsText>
+
       <DocsSubtitle>Pros & Cons</DocsSubtitle>
 
       <DocsText>You can watch videos without any YouTube ads or trackers.</DocsText>

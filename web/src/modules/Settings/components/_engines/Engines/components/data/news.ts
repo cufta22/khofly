@@ -7,6 +7,7 @@ export const DATA_ENGINES_NEWS: {
   alt: string;
   icon: string;
   label: DotNestedKeys<ITranslations>;
+  bang: string;
   safeSearch: boolean;
   timeRange: boolean;
 }[] = [
@@ -16,6 +17,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "",
     icon: "",
     label: "pages.settings.engines.title_news2",
+    bang: "!web",
     safeSearch: false,
     timeRange: false,
   },
@@ -25,6 +27,17 @@ export const DATA_ENGINES_NEWS: {
     alt: "DuckDuckGo logo",
     icon: "/assets/engines/ddg-icon.svg",
     label: "pages.settings.engines.engine_DDG_news",
+    bang: "!ddn",
+    safeSearch: true,
+    timeRange: false,
+  },
+  {
+    type: "engine",
+    value: "mojeek",
+    alt: "Mojeek logo",
+    icon: "/assets/engines/mojeek-icon.svg",
+    label: "pages.settings.engines.engine_mojeek_news",
+    bang: "!mjknews",
     safeSearch: true,
     timeRange: false,
   },
@@ -34,8 +47,19 @@ export const DATA_ENGINES_NEWS: {
     alt: "Presearch logo",
     icon: "/assets/engines/presearch-icon.svg",
     label: "pages.settings.engines.engine_presearch_news",
+    bang: "!psnews",
     safeSearch: true,
     timeRange: true,
+  },
+  {
+    type: "engine",
+    value: "startpage",
+    alt: "Startpage logo",
+    icon: "",
+    label: "pages.settings.engines.engine_startpage_news",
+    bang: "!spn",
+    safeSearch: true,
+    timeRange: false,
   },
 
   {
@@ -44,6 +68,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "",
     icon: "",
     label: "pages.settings.engines.title_news3",
+    bang: "!wikimedia",
     safeSearch: false,
     timeRange: false,
   },
@@ -53,6 +78,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "Wikinews logo",
     icon: "/assets/engines/wikinews-icon.svg",
     label: "pages.settings.engines.engine_wikinews",
+    bang: "!wn",
     safeSearch: false,
     timeRange: false,
   },
@@ -63,6 +89,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "",
     icon: "",
     label: "pages.settings.engines.title_without",
+    bang: "",
     safeSearch: false,
     timeRange: false,
   },
@@ -72,6 +99,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "Bing logo",
     icon: "/assets/engines/bing-icon.svg",
     label: "pages.settings.engines.engine_bing_news",
+    bang: "!bin",
     safeSearch: false,
     timeRange: true,
   },
@@ -81,6 +109,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "Brave logo",
     icon: "/assets/engines/brave-icon.svg",
     label: "pages.settings.engines.engine_brave_news",
+    bang: "!brnews",
     safeSearch: true,
     timeRange: false,
   },
@@ -90,6 +119,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "Google logo",
     icon: "/assets/engines/google-icon.svg",
     label: "pages.settings.engines.engine_google_news",
+    bang: "!gon",
     safeSearch: true,
     timeRange: false,
   },
@@ -99,6 +129,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "Qwant logo",
     icon: "/assets/engines/qwant-icon.svg",
     label: "pages.settings.engines.engine_qwant_news",
+    bang: "!qwn",
     safeSearch: true,
     timeRange: false,
   },
@@ -108,6 +139,7 @@ export const DATA_ENGINES_NEWS: {
     alt: "Yahoo logo",
     icon: "/assets/engines/yahoo-icon.svg",
     label: "pages.settings.engines.engine_yahoo_news",
+    bang: "!yhn",
     safeSearch: false,
     timeRange: false,
   },

@@ -10,7 +10,7 @@ interface Props {
   onClose: () => void;
 }
 
-const PrivatePlayer: React.FC<Props> = ({ url, onClose }) => {
+const PrivateVideoPlayer: React.FC<Props> = ({ url, onClose }) => {
   const { data, trigger, isMutating, reset } = useDownloadSWR({ shouldDownload: false });
 
   const theme = useMantineTheme();
@@ -63,4 +63,4 @@ const PrivatePlayer: React.FC<Props> = ({ url, onClose }) => {
   );
 };
 
-export default PrivatePlayer;
+export default PrivateVideoPlayer;

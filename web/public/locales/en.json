@@ -158,6 +158,7 @@
         "engine_google_img": "Google images",
         "engine_DDG_img": "DuckDuckGo images",
         "engine_qwant_img": "Qwant images",
+        "engine_startpage_img": "Startpage images",
         "engine_bing_img": "Bing images",
         "engine_brave_img": "Brave images",
         "engine_presearch_img": "Presearch images",
@@ -165,6 +166,7 @@
         "engine_flickr_img": "Flickr",
         "engine_pinterest_img": "Pinterest",
         "engine_unsplash_img": "Unsplash",
+        "engine_wikicommons_img": "Wikicommons",
 
         "title_vid": "Video engines",
         "title_vid2": "web",
@@ -178,6 +180,7 @@
         "engine_dailymotion_vid": "Dailymotion",
         "engine_odysee_vid": "Odysee",
         "engine_piped_vid": "Piped",
+        "engine_rumble_vid": "Rumble",
         "engine_vimeo_vid": "Vimeo",
         "engine_youtube_vid": "YouTube",
 
@@ -187,9 +190,11 @@
 
         "engine_google_news": "Google news",
         "engine_DDG_news": "DuckDuckGo news",
+        "engine_mojeek_news": "Mojeek news",
         "engine_bing_news": "Bing news",
         "engine_brave_news": "Brave news",
         "engine_qwant_news": "Qwant news",
+        "engine_startpage_news": "Startpage news",
         "engine_yahoo_news": "Yahoo! news",
         "engine_presearch_news": "Presearch news",
 
@@ -202,9 +207,11 @@
         "engine_genius_music": "Genius",
         "engine_RB_music": "Radio Browser",
         "engine_bandcamp_music": "Bandcamp",
+        "engine_deezer_music": "Deezer",
         "engine_mixcloud_music": "Mixcloud",
-        "engine_piped_music": "Piped._music",
+        "engine_piped_music": "Piped",
         "engine_SC_music": "Soundcloud",
+        "engine_wikicommons_music": "Wikicommons",
         "engine_YT_music": "YouTube",
 
         "title_IT": "IT engines",
@@ -213,17 +220,27 @@
         "title_IT4": "repos",
         "title_IT5": "software wikis",
 
+        "engine_crates_IT": "crates.io",
         "engine_docker_hub_IT": "Docker hub",
         "engine_NPM_IT": "NPM",
+        "engine_packagist_IT": "Packagist",
+        "engine_pkg_go_IT": "Go packages",
         "engine_pypi_IT": "PyPI",
+        "engine_ruby_gems_IT": "RubyGems",
+        "engine_void_IT": "Void Linux",
         "engine_ask_ubuntu_IT": "Ask Ubuntu",
         "engine_stack_overflow_IT": "StackOverflow",
         "engine_superuser_IT": "Superuser",
+        "engine_bitbucket_IT": "Bitbucket",
         "engine_codeberg_IT": "Codeberg",
         "engine_github_IT": "GitHub",
         "engine_gitlab_IT": "GitLab",
         "engine_arch_IT": "Arch Wiki",
-        "engine_gentoo_IT": "Gentoo",
+        "engine_gentoo_IT": "Gentoo Wiki",
+        "engine_nixos_IT": "Nixos Wiki",
+
+        "engine_hackernews_IT": "Hacker News",
+        "engine_mankier_IT": "ManKier",
         "engine_MDN_IT": "MDN",
 
         "title_science": "Science engines",
@@ -244,12 +261,17 @@
         "title_files2": "apps",
 
         "engine_APKMirror_files": "APKMirror",
+        "engine_app_store_files": "Apple App Store",
         "engine_fdriod_files": "F-Droid",
+        "engine_play_store_files": "Google Play Store",
         "engine_1337x_files": "1337x",
         "engine_annas_files": "Anna's Archive",
         "engine_bt4g_files": "bt4g",
+        "engine_kickass_files": "Kickass",
         "engine_nyaa_files": "Nyaa",
         "engine_piratebay_files": "The Pirate Bay",
+        "engine_wikicommons_files": "Wikicommons",
+        "engine_zlibrary_files": "Z-Library",
 
         "title_SM": "Social Media engines",
 
@@ -261,6 +283,7 @@
         "engine_mastodon_hashtags_SM": "Mastodon Hashtags",
         "engine_mastodon_users_SM": "Mastodon Users",
         "engine_reddit_SM": "Reddit",
+        "engine_tootfinder_SM": "Tootfinder",
 
         "title_other": "Other engines",
         "title_other2": "dictionaries",

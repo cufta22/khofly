@@ -168,8 +168,8 @@ const DocsSearchInstantAnswer = () => {
       </Box>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["AI"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["syntax"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["AI"] }}
       />
 
       <ScrollToTop />

@@ -55,6 +55,7 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = "se
       timeRange={item.timeRange}
       bang={item.bang}
       variant={variant || "settings"}
+      category={category}
     />
   ));
 

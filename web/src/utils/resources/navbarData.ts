@@ -14,6 +14,11 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
     icon: IconSearch,
     links: [
       {
+        label: "Search Syntax",
+        link: "/docs/search-syntax",
+        isWip: false,
+      },
+      {
         label: "Instant Answers",
         link: "/docs/instant-answers",
         isWip: false,

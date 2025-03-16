@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+export type IWeatherSource = "owm" | "om";
+
 interface InstanceState {
   hydrated: boolean;
 
@@ -9,6 +11,8 @@ interface InstanceState {
 
   apiDomain: string;
   setApiDomain: (domain: string) => void;
+  weatherSource: IWeatherSource;
+  setWeatherSource: (source: IWeatherSource) => void;
 
   nominatimDomain: string;
   setNominatimDomain: (domain: string) => void;
@@ -30,6 +34,8 @@ export const useInstanceStore = create<InstanceState>()(
 
       apiDomain: "", // Will be set initially in layout
       setApiDomain: (domain) => set({ apiDomain: domain }),
+      weatherSource: "owm",
+      setWeatherSource: (source) => set({ weatherSource: source }),
 
       nominatimDomain: "", // Will be set initially in layout
       setNominatimDomain: (domain) => set({ nominatimDomain: domain }),

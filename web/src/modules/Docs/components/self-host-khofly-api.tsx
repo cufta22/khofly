@@ -1,4 +1,4 @@
-import { Code, Container, Paper, Text } from "@mantine/core";
+import { Code, Container, Paper, Text, useMantineTheme } from "@mantine/core";
 import React from "react";
 import DocsTitle from "./common/DocsTitle";
 import DocsText from "./common/DocsText";
@@ -10,6 +10,8 @@ import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
 import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
 import { IconFile } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import DocsNextPrev from "./common/DocsNextPrev";
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -85,6 +87,8 @@ const CODE_NGINX_FILE = `server {
 `;
 
 const DocsSelfHostResourceAPI = () => {
+  const theme = useMantineTheme();
+
   const linkTextColor = usePrimaryColor(4);
 
   return (
@@ -182,6 +186,11 @@ const DocsSelfHostResourceAPI = () => {
       <DocsText>
         11. <Code>sudo systemctl reload nginx</Code>
       </DocsText>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["aiWorker"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["selfHostKhofly"] }}
+      />
     </Container>
   );
 };

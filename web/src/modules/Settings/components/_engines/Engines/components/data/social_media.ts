@@ -7,6 +7,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
   alt: string;
   icon: string;
   label: DotNestedKeys<ITranslations>;
+  bang: string;
   safeSearch: boolean;
   timeRange: boolean;
 }[] = [
@@ -16,6 +17,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "",
     icon: "",
     label: "pages.settings.engines.title_without",
+    bang: "",
     safeSearch: false,
     timeRange: false,
   },
@@ -25,6 +27,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "9gag logo",
     icon: "/assets/engines/9gag-icon.svg",
     label: "pages.settings.engines.engine_9gag_SM",
+    bang: "!9g",
     safeSearch: false,
     timeRange: false,
   },
@@ -34,6 +37,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "Lemmy logo",
     icon: "/assets/engines/lemmy-icon.svg",
     label: "pages.settings.engines.engine_lemmy_comments_SM",
+    bang: "!lecom",
     safeSearch: false,
     timeRange: false,
   },
@@ -43,6 +47,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "Lemmy logo",
     icon: "/assets/engines/lemmy-icon.svg",
     label: "pages.settings.engines.engine_lemmy_communities_SM",
+    bang: "!leco",
     safeSearch: false,
     timeRange: false,
   },
@@ -52,6 +57,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "Lemmy logo",
     icon: "/assets/engines/lemmy-icon.svg",
     label: "pages.settings.engines.engine_lemmy_posts_SM",
+    bang: "!lepo",
     safeSearch: false,
     timeRange: false,
   },
@@ -61,6 +67,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "Lemmy logo",
     icon: "/assets/engines/lemmy-icon.svg",
     label: "pages.settings.engines.engine_lemmy_users_SM",
+    bang: "!leus",
     safeSearch: false,
     timeRange: false,
   },
@@ -70,6 +77,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "Mastodon logo",
     icon: "/assets/engines/mastodon-icon.svg",
     label: "pages.settings.engines.engine_mastodon_hashtags_SM",
+    bang: "!mah",
     safeSearch: false,
     timeRange: false,
   },
@@ -79,6 +87,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "Mastodon logo",
     icon: "/assets/engines/mastodon-icon.svg",
     label: "pages.settings.engines.engine_mastodon_users_SM",
+    bang: "!mau",
     safeSearch: false,
     timeRange: false,
   },
@@ -88,6 +97,17 @@ export const DATA_ENGINES_SOCIAL_MEDIA: {
     alt: "Reddit logo",
     icon: "/assets/engines/reddit-icon.svg",
     label: "pages.settings.engines.engine_reddit_SM",
+    bang: "!re",
+    safeSearch: false,
+    timeRange: false,
+  },
+  {
+    type: "engine",
+    value: "tootfinder",
+    alt: "Tootfinder logo",
+    icon: "",
+    label: "pages.settings.engines.engine_tootfinder_SM",
+    bang: "!toot",
     safeSearch: false,
     timeRange: false,
   },

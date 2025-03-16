@@ -8,7 +8,7 @@ import VideoSkeleton from "./components/VideoSkeleton";
 import classes from "./styles.module.scss";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
-import PrivatePlayer from "../components/PrivatePlayer";
+import PrivateVideoPlayer from "../components/PrivatePlayer/videos";
 
 const TabVideos = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
@@ -67,7 +67,7 @@ const TabVideos = () => {
       )}
 
       {/* Private Player */}
-      <PrivatePlayer
+      <PrivateVideoPlayer
         url={privatePlayerURL}
         onClose={() => {
           setPrivatePlayerURL("");

@@ -49,11 +49,13 @@ const IMAGES_BANGS: { [key in IImagesEngines]: string } = {
   google: "!goi",
   qwant: "!qwi",
   presearch: "!psimg",
+  startpage: "!spi",
 
   deviantart: "!da",
   flickr: "!fl",
   pinterest: "!pin",
   unsplash: "!us",
+  wikicommons: "!wc",
 };
 
 const VIDEOS_BANGS: { [key in IVideosEngines]: string } = {
@@ -66,13 +68,16 @@ const VIDEOS_BANGS: { [key in IVideosEngines]: string } = {
   dailymotion: "!dm",
   odysee: "!od",
   piped: "!ppd",
+  rumble: "!ru",
   vimeo: "!vm",
   youtube: "!yt",
 };
 
 const NEWS_BANGS: { [key in INewsEngines]: string } = {
   duckduckgo: "!ddn",
+  mojeek: "!mjknews",
   presearch: "!psnews",
+  startpage: "!spn",
 
   wikinews: "!wn",
 
@@ -89,28 +94,39 @@ const MUSIC_BANGS: { [key in IMusicEngines]: string } = {
   radiobrowser: "!rb",
 
   bandcamp: "!bc",
+  deezer: "!dz",
   mixcloud: "!mc",
-  pipedmusic: "!ppdm",
+  piped: "!ppdm",
   soundcloud: "!sc",
+  wikicommons: "!wca",
   youtube: "!yt",
 };
 
 const IT_BANGS: { [key in IITEngines]: string } = {
+  crates: "!crates",
   dockerhub: "!dh",
   npm: "!npm",
+  packagist: "!pack",
+  pkggodev: "!pgo",
   pypi: "!pypi",
+  rubygems: "!rbg",
+  void: "!void",
 
   askubuntu: "!ubuntu",
   stackoverflow: "!st",
   superuser: "!su",
 
+  bitbucket: "!bb",
   codeberg: "!cb",
   github: "!gh",
   gitlab: "!gl",
 
   archwiki: "!al",
   gentoo: "!ge",
+  nixoswiki: "!nixw",
 
+  hackernews: "!hn",
+  mankier: "!man",
   mdn: "!mdn",
 };
 
@@ -118,23 +134,31 @@ const SCIENCE_BANGS: { [key in IScienceEngines]: string } = {
   arxiv: "!arx",
   crossref: "!cr",
   googlescholar: "!gos",
-  archive: "!ias",
+  archive: "", // Removed from SearXNG??
+  pubmed: "!pub",
+  semanticscholar: "!se",
+
+  wikispecies: "!wsp",
+
   openairedatasets: "!oad",
   openairepublications: "!oap",
   pdbe: "!pdb",
-  pubmed: "!pub",
-  semanticscholar: "!se",
-  wikispecies: "!wsp",
 };
 
 const FILES_BANGS: { [key in IFilesEngines]: string } = {
+  apkmirror: "!apkm",
+  appstore: "!aps",
+  fdroid: "!fd",
+  playstore: "gpa!",
+
   "1337x": "!1337x",
   annas: "!aa",
-  apkmirror: "!apkm",
   bt4g: "!bt4g",
-  fdroid: "!fd",
+  kickass: "!kc",
   nyaa: "!nt",
   piratebay: "!tpb",
+  wikicommons: "!wcf",
+  zlibrary: "!zlib",
 };
 
 const SOCIAL_MEDIA_BANGS: { [key in ISocialMediaEngines]: string } = {
@@ -146,6 +170,7 @@ const SOCIAL_MEDIA_BANGS: { [key in ISocialMediaEngines]: string } = {
   mastodonhashtags: "!mah",
   mastodonusers: "!mau",
   reddit: "!re",
+  tootfinder: "!toot",
 };
 
 const OTHER_BANGS: { [key in IOtherEngines]: string } = {
@@ -154,7 +179,7 @@ const OTHER_BANGS: { [key in IOtherEngines]: string } = {
   wordnik: "",
   imdb: "",
   rottentomatoes: "",
-  "duckduckgo-weather": "",
+  duckduckgo: "",
   openmeteo: "",
   emojipedia: "",
   goodreads: "",

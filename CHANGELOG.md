@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Prioritize or blacklist certain websites
 - More start page customization
 - Multiple missing search engines
+- SearXNG search syntax options
 
 ### Fixed
 

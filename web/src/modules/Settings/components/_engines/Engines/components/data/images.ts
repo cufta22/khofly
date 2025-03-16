@@ -1,5 +1,5 @@
-import type{ IImagesEngines } from "@store/engines";
-import type{ DotNestedKeys, ITranslations } from "@ts/global.types";
+import type { IImagesEngines } from "@store/engines";
+import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const DATA_ENGINES_IMAGES: {
   type: "divider" | "engine";
@@ -7,6 +7,7 @@ export const DATA_ENGINES_IMAGES: {
   alt: string;
   icon: string;
   label: DotNestedKeys<ITranslations>;
+  bang: string;
   safeSearch: boolean;
   timeRange: boolean;
 }[] = [
@@ -16,6 +17,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "",
     icon: "",
     label: "pages.settings.engines.title_img2",
+    bang: "!web",
     safeSearch: false,
     timeRange: false,
   },
@@ -25,6 +27,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Bing logo",
     icon: "/assets/engines/bing-icon.svg",
     label: "pages.settings.engines.engine_bing_img",
+    bang: "!bii",
     safeSearch: true,
     timeRange: true,
   },
@@ -34,6 +37,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Brave logo",
     icon: "/assets/engines/brave-icon.svg",
     label: "pages.settings.engines.engine_brave_img",
+    bang: "!brimg",
     safeSearch: true,
     timeRange: false,
   },
@@ -43,6 +47,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "DuckDuckGo logo",
     icon: "/assets/engines/ddg-icon.svg",
     label: "pages.settings.engines.engine_DDG_img",
+    bang: "!ddi",
     safeSearch: true,
     timeRange: false,
   },
@@ -52,6 +57,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Google logo",
     icon: "/assets/engines/google-icon.svg",
     label: "pages.settings.engines.engine_google_img",
+    bang: "!goi",
     safeSearch: true,
     timeRange: true,
   },
@@ -61,6 +67,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Presearch logo",
     icon: "/assets/engines/presearch-icon.svg",
     label: "pages.settings.engines.engine_presearch_img",
+    bang: "!psimg",
     safeSearch: true,
     timeRange: true,
   },
@@ -70,6 +77,17 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Qwant logo",
     icon: "/assets/engines/qwant-icon.svg",
     label: "pages.settings.engines.engine_qwant_img",
+    bang: "!qwi",
+    safeSearch: true,
+    timeRange: false,
+  },
+  {
+    type: "engine",
+    value: "startpage",
+    alt: "Startpage logo",
+    icon: "",
+    label: "pages.settings.engines.engine_startpage_img",
+    bang: "!spi",
     safeSearch: true,
     timeRange: false,
   },
@@ -79,6 +97,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "",
     icon: "",
     label: "pages.settings.engines.title_without",
+    bang: "",
     safeSearch: false,
     timeRange: false,
   },
@@ -88,6 +107,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "DeviantArt logo",
     icon: "/assets/engines/deviantart-icon.svg",
     label: "pages.settings.engines.engine_deviantArt_img",
+    bang: "!da",
     safeSearch: false,
     timeRange: false,
   },
@@ -97,6 +117,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Flickr logo",
     icon: "/assets/engines/flickr-icon.svg",
     label: "pages.settings.engines.engine_flickr_img",
+    bang: "!fl",
     safeSearch: false,
     timeRange: true,
   },
@@ -106,6 +127,7 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Pinterest logo",
     icon: "/assets/engines/pinterest-icon.svg",
     label: "pages.settings.engines.engine_pinterest_img",
+    bang: "!pin",
     safeSearch: false,
     timeRange: false,
   },
@@ -115,6 +137,17 @@ export const DATA_ENGINES_IMAGES: {
     alt: "Unsplash logo",
     icon: "/assets/engines/unsplash-icon.svg",
     label: "pages.settings.engines.engine_unsplash_img",
+    bang: "!us",
+    safeSearch: false,
+    timeRange: false,
+  },
+  {
+    type: "engine",
+    value: "wikicommons",
+    alt: "Wikicommons logo",
+    icon: "/assets/engines/wikicommons-icon.svg",
+    label: "pages.settings.engines.engine_wikicommons_img",
+    bang: "!wc",
     safeSearch: false,
     timeRange: false,
   },

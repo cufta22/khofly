@@ -14,7 +14,7 @@ import classes from "../../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";
-import { useInstanceStore } from "@store/instance";
+import { IWeatherSource, useInstanceStore } from "@store/instance";
 import { IconApiApp } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { DEFlag, USFlag } from "@components/Icons/Flags";
@@ -26,10 +26,12 @@ const SettingsAPI = () => {
   const domain = useInstanceStore((state) => state.apiDomain);
   const setDomain = useInstanceStore((state) => state.setApiDomain);
 
+  const weatherSource = useInstanceStore((state) => state.weatherSource);
+  const setWeatherSource = useInstanceStore((state) => state.setWeatherSource);
+
   const form = useForm({
     initialValues: {
       domain: "",
-      select: "",
     },
     validate: {
       domain: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
@@ -47,10 +49,6 @@ const SettingsAPI = () => {
 
   useEffect(() => {
     form.setFieldValue("domain", domain);
-
-    if ([process.env.SEARXNG_URL_EU1, process.env.SEARXNG_URL_US1].includes(domain)) {
-      form.setFieldValue("select", domain);
-    }
   }, [domain]);
 
   // const icons: Record<string, React.ReactNode> = {
@@ -58,12 +56,12 @@ const SettingsAPI = () => {
   //   // [process.env.SEARXNG_URL_US1]: <USFlag style={getIconStyle(20)} />,
   // };
 
-  // const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
-  //   <Group flex="1" gap="xs">
-  //     {icons[option.value]}
-  //     {option.label}
-  //   </Group>
-  // );
+  const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
+    <Group flex="1" gap="xs">
+      {/* {icons[option.value]} */}
+      {option.label}
+    </Group>
+  );
 
   return (
     <Paper radius="md" withBorder mt={40}>
@@ -85,31 +83,30 @@ const SettingsAPI = () => {
             {...form.getInputProps("domain")}
           />
 
-          {/* {!IS_SELF_HOST && (
+          {!IS_SELF_HOST && (
             <Select
               className={classes.settings_select}
-              label="Default instances"
-              description="Pick one based on your location"
-              placeholder="Instance location"
-              value={form.values.select}
+              label="Weather data source"
+              description="Pick one based on accuracy"
+              placeholder="Weather data source"
+              value={weatherSource}
               onChange={(val) => {
-                form.setFieldValue("select", val || "");
-                form.setFieldValue("domain", val || "");
+                setWeatherSource(val as IWeatherSource);
               }}
               data={[
                 {
-                  label: "Nuremberg, Germany",
-                  value: process.env.SEARXNG_URL_EU1 || "1",
+                  label: "OpenWeather",
+                  value: "owm",
                 },
-                // {
-                //   label: "Ashburn, USA",
-                //   value: process.env.SEARXNG_URL_US1 || "2",
-                // },
+                {
+                  label: "Open-Meteo",
+                  value: "om",
+                },
               ]}
               renderOption={renderSelectOption}
-              leftSection={icons[form.values.select]}
+              // leftSection={icons[form.values.select]}
             />
-          )} */}
+          )}
         </Stack>
 
         <Flex

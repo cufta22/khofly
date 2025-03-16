@@ -1,5 +1,6 @@
 import { MantineTheme } from "@mantine/core";
 import {
+  IconBracketsAngle,
   IconBrandCloudflare,
   IconCookie,
   IconLanguage,
@@ -15,6 +16,12 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSelfHostKhofly from "../self-host-khofly";
 
 export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
+  syntax: {
+    href: "/docs/instant-answers",
+    icon: <IconBracketsAngle style={getIconStyle(28)} color={theme.colors.blue[5]} />,
+    title: "Search Syntax",
+    description: "See how you can modify categories, engines, languages and more",
+  },
   IA: {
     href: "/docs/instant-answers",
     icon: <IconMessageCode style={getIconStyle(28)} color={theme.colors.grape[5]} />,
@@ -63,16 +70,28 @@ export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
     title: "Site Data",
     description: "View all site data that Khofly stores",
   },
+  selfHostSearXNG: {
+    href: "/docs/self-host-searxng",
+    icon: <IconSearch style={getIconStyle(28)} color={theme.colors.blue[5]} />,
+    title: "Self-Host SearXNG",
+    description: "Own your data by self-hosting your SearXNG instance",
+  },
+  aiWorker: {
+    href: "/docs/self-host-ai-worker",
+    icon: <IconSparkles style={getIconStyle(28)} color={theme.colors.pink[5]} />,
+    title: "AI Worker",
+    description: "Setup your own Cloudflare AI worker",
+  },
   selfHostKhofly: {
     href: "/docs/self-host-khofly",
-    icon: <IconBrandCloudflare style={getIconStyle(28)} color={theme.colors.orange[5]} />,
+    icon: <IconServer style={getIconStyle(28)} color={theme.colors.blue[5]} />,
     title: "Self-Host Khofly",
     description: "You can also host Khofly by yourself",
   },
-  selfHostSearXNG: {
-    href: "/docs/self-host-searxng",
-    icon: <IconServer style={getIconStyle(28)} color={theme.colors.yellow[5]} />,
-    title: "Self-Host SearXNG",
-    description: "Own your data by self-hosting your SearXNG instance",
+  selfHostKhoflyAPI: {
+    href: "/docs/self-host-khofly-api",
+    icon: <IconServer style={getIconStyle(28)} color={theme.colors.blue[5]} />,
+    title: "Self-Host Khofly API",
+    description: "You can also host Khofly API by yourself",
   },
 });

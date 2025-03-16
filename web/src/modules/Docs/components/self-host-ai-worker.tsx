@@ -1,4 +1,13 @@
-import { Blockquote, Code, Container, Image, List, Paper, Text } from "@mantine/core";
+import {
+  Blockquote,
+  Code,
+  Container,
+  Image,
+  List,
+  Paper,
+  Text,
+  useMantineTheme,
+} from "@mantine/core";
 import { IconFile } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useState } from "react";
@@ -9,6 +18,8 @@ import DocsSubtitle from "./common/DocsSubtitle";
 import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import DocsNextPrev from "./common/DocsNextPrev";
+import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const CODE_WORKER = `
 const corsHeaders = {
@@ -59,6 +70,8 @@ export default {
   `;
 
 const DocsSelfHostAiWorker = () => {
+  const theme = useMantineTheme();
+
   const linkTextColor = usePrimaryColor(4);
 
   return (
@@ -125,6 +138,11 @@ const DocsSelfHostAiWorker = () => {
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_WORKER} language="javascript" />
       </Paper>
+
+      <DocsNextPrev
+        prev={{ ...DOCS_CARD_DATA(theme)["selfHostSearXNG"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["selfHostKhofly"] }}
+      />
     </Container>
   );
 };

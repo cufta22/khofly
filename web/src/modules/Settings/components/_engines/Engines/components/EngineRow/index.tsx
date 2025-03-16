@@ -1,6 +1,7 @@
 import {
   Anchor,
   Badge,
+  Box,
   Code,
   Flex,
   HoverCard,
@@ -18,6 +19,7 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import { ICategories } from "@store/settings";
 
 interface Props {
   type: "divider" | "engine";
@@ -31,6 +33,7 @@ interface Props {
   timeRange: boolean;
   variant?: "settings" | "quick_settings";
   bang: string;
+  category: ICategories;
 }
 
 const EngineComponent: React.FC<Props> = ({
@@ -45,6 +48,7 @@ const EngineComponent: React.FC<Props> = ({
   timeRange,
   variant = "settings",
   bang,
+  category,
 }) => {
   const theme = useMantineTheme();
   const t = useTranslate();
@@ -87,14 +91,16 @@ const EngineComponent: React.FC<Props> = ({
               onClick={() => onChange(!checked)}
               className={classes.engine_component}
             >
-              <Image
-                src={iconSrc}
-                w={20}
-                h={20}
-                alt={iconAlt}
-                fit="contain"
-                fallbackSrc="https://placehold.co/200x200?text=Placeholder"
-              />
+              <Box w={20} h={20}>
+                <Image
+                  src={iconSrc}
+                  w={20}
+                  h={20}
+                  alt={iconAlt}
+                  fit="contain"
+                  fallbackSrc="https://placehold.co/200x200?text=Placeholder"
+                />
+              </Box>
 
               <Text size="md" fw={400}>
                 {t(label)}
@@ -126,11 +132,17 @@ const EngineComponent: React.FC<Props> = ({
 
               <Flex my="xs" align="center" justify="space-between">
                 <Flex align="center" justify="space-between" gap="xs">
-                  {hoverData?.bangsEngine.map((bang, i) => (
-                    <Badge key={i} size="lg" color="gray" tt="lowercase">
-                      {bang}
-                    </Badge>
-                  ))}
+                  {Array.isArray(hoverData?.bangsEngine)
+                    ? hoverData?.bangsEngine.map((bang, i) => (
+                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                          {bang}
+                        </Badge>
+                      ))
+                    : hoverData?.bangsEngine[category].map((bang, i) => (
+                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                          {bang}
+                        </Badge>
+                      ))}
                 </Flex>
 
                 <Text size="sm">!bang for this engine</Text>
@@ -138,11 +150,23 @@ const EngineComponent: React.FC<Props> = ({
 
               <Flex align="center" justify="space-between">
                 <Flex align="center" justify="space-between" gap="xs">
-                  {hoverData?.bangsCategory.map((bang, i) => (
+                  {/* {hoverData?.bangsCategory.map((bang, i) => (
                     <Badge key={i} size="lg" color="gray" tt="lowercase">
                       {bang}
                     </Badge>
-                  ))}
+                  ))} */}
+
+                  {Array.isArray(hoverData?.bangsCategory)
+                    ? hoverData?.bangsCategory.map((bang, i) => (
+                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                          {bang}
+                        </Badge>
+                      ))
+                    : hoverData?.bangsCategory[category].map((bang, i) => (
+                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                          {bang}
+                        </Badge>
+                      ))}
                 </Flex>
 
                 <Text size="sm">!bang for its category</Text>
