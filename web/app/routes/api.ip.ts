@@ -1,8 +1,7 @@
 import type { LoaderFunctionArgs } from "react-router";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  console.log(request);
-
+  // Try to get IP from headers
   const myIP = request.headers.get("x-real-ip") || request.headers.get("x-forwarder-for") || "";
 
   return new Response(myIP, {
