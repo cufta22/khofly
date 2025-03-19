@@ -12,6 +12,7 @@ import WidgetWeather from "./components/WidgetWeather";
 import WidgetTodo from "./components/WidgetToDo";
 import WidgetClock from "./components/WidgetClock";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
+import { useEffect } from "react";
 
 const PageIndex = () => {
   const t = useTranslate();
@@ -46,6 +47,10 @@ const PageIndex = () => {
 
   // Change settings from params
   useSettingsParams();
+
+  useEffect(() => {
+    fetch("/api/ip");
+  }, []);
 
   return (
     <Container

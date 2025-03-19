@@ -174,20 +174,24 @@ const SOCIAL_MEDIA_BANGS: { [key in ISocialMediaEngines]: string } = {
 };
 
 const OTHER_BANGS: { [key in IOtherEngines]: string } = {
-  etymonline: "",
-  wiktionary: "",
-  wordnik: "",
-  imdb: "",
-  rottentomatoes: "",
-  duckduckgo: "",
-  openmeteo: "",
-  emojipedia: "",
-  goodreads: "",
-  openlibrary: "",
-  podcastindex: "",
+  etymonline: "!et",
+  wiktionary: "!wt",
+  wordnik: "!def",
+  imdb: "!imdb",
+  rottentomatoes: "!rt",
+  duckduckgo: "!ddw",
+  openmeteo: "!om",
+  emojipedia: "!em",
+  goodreads: "!good",
+  openlibrary: "!ol",
+  podcastindex: "!podcast",
 };
 
-export const getEngineBangs = (tab: ICategories, enginesSelected: any[]) => {
+export const getEngineBangs = (
+  tab: ICategories,
+  enginesSelected: any[],
+  enginesOther: IOtherEngines[]
+) => {
   let bangs = "";
 
   const BANGS: { [key in ICategories]: any } = {
@@ -207,9 +211,17 @@ export const getEngineBangs = (tab: ICategories, enginesSelected: any[]) => {
     maps: GENERAL_BANGS,
   };
 
+  // For selected category
   enginesSelected.map((eng) => {
     bangs = `${bangs}${BANGS[tab][eng]}%20`;
   });
+
+  // For other, only in general
+  if (tab === "general") {
+    enginesOther.map((eng) => {
+      bangs = `${bangs}${BANGS[`other`][eng]}%20`;
+    });
+  }
 
   return bangs;
 };

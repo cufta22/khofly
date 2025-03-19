@@ -31,6 +31,7 @@ import IATranslate from "@module/Search/components/TabGeneral/components/Instant
 import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Unit";
 import IAUUID from "@module/Search/components/TabGeneral/components/InstantAnswer/components/UUID";
 import IAWeather from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Weather";
+import { KEYWORDS_IA } from "@module/Search/components/TabGeneral/components/InstantAnswer/_utils/keywords";
 
 const DocsSearchInstantAnswer = () => {
   const theme = useMantineTheme();
@@ -73,37 +74,58 @@ const DocsSearchInstantAnswer = () => {
       </DocsText>
 
       <DocsTitle>1. Calculator</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.calculator.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACalculator />
       </Box>
 
       <DocsTitle>2. Calendar</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.calendar.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACalendar />
       </Box>
 
       <DocsTitle>3. Coin Flip</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.coin_flip.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACoinFlip withIAWrapper />
       </Box>
 
       <DocsTitle>4. Currency Converter</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Condition: Search query contains any currency code, ex. <Code>EUR to USD</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACurrency currency1="usd" currency2="eur" withIAWrapper />
       </Box>
 
       <DocsTitle>5. Dice Roll</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.dice_roll.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IADiceRoll withIAWrapper />
       </Box>
 
       <DocsTitle>6. Downloader</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.downloader.slice(0, 4).join(", ")}, etc.</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IADownloader />
       </Box>
 
       <DocsTitle>7. Equation</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Condition: <Code>{`/(?:(?:^|[-+_*/])(?:\s*-?\d+(\.\d+)?(?:[eE][+-]?\d+)?\s*))+$/`}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAEquation query="6 * ( 2 + 7 )" />
       </Box>
 
@@ -113,57 +135,87 @@ const DocsSearchInstantAnswer = () => {
       </Box> */}
 
       <DocsTitle>8. Password</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.password.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAPassword />
       </Box>
 
       <DocsTitle>9. Random number generator</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.rng.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IARNG />
       </Box>
 
       <DocsTitle>10. Stopwatch</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.stopwatch.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAStopwatch withIAWrapper />
       </Box>
 
       <DocsTitle>11. TicTacToe</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.tictactoe.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IATicTacToe withIAWrapper />
       </Box>
 
       <DocsTitle>12. Time In</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Condition: <Code>{`query.includes("time in")`}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IATimeIn withIAWrapper location="Paris" />
       </Box>
 
       <DocsTitle>13. Timer</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.timer.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IATimer withIAWrapper />
       </Box>
 
-      <DocsTitle>13. Time Zone</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>14. Time Zone</DocsTitle>
+      <DocsText>
+        Condition: <Code>{`...`}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IATimeZone withIAWrapper location="Paris" />
       </Box>
 
       {/* <DocsTitle>14. Translate</DocsTitle>
-      <Box className={classes.search_box}>
+      <Box mt="md" className={classes.search_box}>
         <Translate />
       </Box> */}
 
-      <DocsTitle>14. Unit converter</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>15. Unit converter</DocsTitle>
+      <DocsText>
+        Condition: Search query contains any measurement unit, ex. <Code>m to km</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
       </Box>
 
-      <DocsTitle>15. Random UUID</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>16. Random UUID</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.uuid.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAUUID />
       </Box>
 
-      <DocsTitle>16. Weather</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>17. Weather</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.weather.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAWeather />
       </Box>
 

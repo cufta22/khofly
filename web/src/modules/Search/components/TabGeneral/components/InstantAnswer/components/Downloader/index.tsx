@@ -86,7 +86,6 @@ const IADownloader = () => {
               value={from}
               onChange={(val) => val && setFrom(val as DownloadFrom)}
               data={Object.keys(DOWNLOAD_OPTIONS).map((val) => ({
-                // label: DOWNLOAD_OPTIONS[val as DownloadType].label,
                 label: (
                   <Flex align="center" justify="center" gap="xs">
                     {DOWNLOAD_OPTIONS[val as DownloadFrom].icon}

@@ -5,7 +5,7 @@ import { getEngineBangs } from "./utils";
 import { useSearchParams } from "react-router";
 
 import { useInstanceStore } from "@store/instance";
-import { useEnginesStore } from "@store/engines";
+import { IOtherEngines, useEnginesStore } from "@store/engines";
 import type { ICategories } from "@store/settings";
 
 const getKey = (
@@ -14,14 +14,15 @@ const getKey = (
   tab: ICategories,
   q: string,
   enginesSelected: string[],
+  enginesOther: IOtherEngines[],
   safeSearch: ISafeSearch,
   dateRange: IDateRange,
-  searchLanguage: ISearchLang,
+  searchLanguage: ISearchLang
 ) => {
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
   if (!q) return null; // prevent empty search
 
-  const engineBangs = getEngineBangs(tab, enginesSelected);
+  const engineBangs = getEngineBangs(tab, enginesSelected, enginesOther);
 
   const catgParam = `&categories=${tab}`;
   const pageParam = `&pageno=${pageIndex + 1}`;
@@ -30,7 +31,9 @@ const getKey = (
   const langParam = searchLanguage === "all" ? "" : `&language=${searchLanguage}`;
 
   // SWR key
-  return `/search?q=${engineBangs}${encodeURIComponent(q)}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
+  return `/search?q=${engineBangs}${encodeURIComponent(
+    q
+  )}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
 };
 
 const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
@@ -47,6 +50,7 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
   const enginesScience = useEnginesStore((state) => state.enginesScience);
   const enginesFiles = useEnginesStore((state) => state.enginesFiles);
   const enginesSocialMedia = useEnginesStore((state) => state.enginesSocialMedia);
+  const enginesOther = useEnginesStore((state) => state.enginesOther);
 
   const safeSearch = useSearchStore((state) => state.safeSearch);
   const dateRange = useSearchStore((state) => state.dateRange);
@@ -74,12 +78,23 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
     files: enginesFiles,
     social_media: enginesSocialMedia,
 
+    other: enginesOther, // Used, not in UI
     maps: [], // Unused
   }[tab];
 
   return useSWRInfinite<IResults>(
     (idx, prev) =>
-      getKey(idx, prev, tab, q, enginesSelected, safeSearch, dateRange, searchLanguage),
+      getKey(
+        idx,
+        prev,
+        tab,
+        q,
+        enginesSelected,
+        enginesOther,
+        safeSearch,
+        dateRange,
+        searchLanguage
+      ),
     fetcher,
     {
       // populateCache
@@ -87,7 +102,7 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
       revalidateOnFocus: false,
       revalidateFirstPage: false,
       keepPreviousData: false,
-    },
+    }
   );
 };
 

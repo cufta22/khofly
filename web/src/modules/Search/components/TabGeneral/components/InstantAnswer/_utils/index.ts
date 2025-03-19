@@ -115,33 +115,6 @@ export const shouldDisplayCurrency = (query: string) => {
 };
 
 // -----------------------------------------------------------------------------------
-// Downloader handler
-// -----------------------------------------------------------------------------------
-
-export const shouldDisplayDownloader = (query: string) => {
-  let shouldDisplay = false;
-
-  [
-    "downloader",
-
-    "ytdl",
-    "youtube download",
-    "yt to mp3",
-    "yt to mp4",
-
-    "ig download",
-    "ig downloader",
-    "instagram download",
-
-    // "tiktok download",
-  ].map((val) => {
-    if (query?.toLowerCase().includes(val)) shouldDisplay = true;
-  });
-
-  return shouldDisplay;
-};
-
-// -----------------------------------------------------------------------------------
 // Time In handler
 // -----------------------------------------------------------------------------------
 
