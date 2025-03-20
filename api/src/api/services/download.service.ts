@@ -35,7 +35,7 @@ export const handleDownload = async (ctx: Context) => {
   const staticUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:4000/media"
-      : "https://api-eu1.khofly.com/media";
+      : `${process.env.HOST}/media`;
 
   const fileNameYT = `${dateNow}-${randomNumbers}.${format}`;
   const outputPathYT = `${tempDir}/${fileNameYT}`;
