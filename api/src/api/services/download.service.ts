@@ -1,10 +1,10 @@
 import type { Context } from "elysia";
-import { $ } from "bun";
+import { __dirname } from "../../config";
 
-import fs from "node:fs";
 import path from "node:path";
 
 import dayjs from "dayjs";
+import { checkFileExists } from "./utils/fileExists";
 
 // GET - /download
 export const handleDownload = async (ctx: Context) => {
@@ -27,7 +27,7 @@ export const handleDownload = async (ctx: Context) => {
     return { error: true, message: "Invalid arguments!", data: null };
   }
 
-  const tempDir = path.join(__dirname, `/../../../temp/media`);
+  const tempDir = path.join(__dirname, `/../temp/media`);
 
   const randomNumbers = Math.floor(Math.random() * 100000);
   const dateNow = dayjs().format("YYYY-MM-DD-HH:mm");
@@ -54,11 +54,15 @@ export const handleDownload = async (ctx: Context) => {
 
       // Build the command
       const ytCommand = [`yt-dlp`];
+
+      // If mp3 is selected
       if (format === "mp3") {
         ytCommand.push("-x");
         ytCommand.push("--audio-format");
         ytCommand.push("mp3");
       }
+
+      // If mp4 is selected
       if (format === "mp4") {
         ytCommand.push("-f");
         // Takes forever to download ~2min
@@ -68,6 +72,22 @@ export const handleDownload = async (ctx: Context) => {
           "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]"
         );
       }
+
+      // Avoid captcha - add cookies
+      const ytCookiesFilePath = path.join(__dirname, `/../yt-cookies.txt`);
+      const ytCookiesFileExists = await checkFileExists(ytCookiesFilePath);
+      if (ytCookiesFileExists) {
+        ytCommand.push("--cookies");
+        ytCommand.push(ytCookiesFilePath);
+      }
+
+      // Avoid captcha - add PO token
+      if (process.env.YT_DLP_PO_TOKEN) {
+        ytCommand.push(
+          `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
+        );
+      }
+
       ytCommand.push("-o");
       ytCommand.push(outputPathYT);
       ytCommand.push(url);

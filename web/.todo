@@ -43,6 +43,11 @@ update selfhost to run ./scripts/redeploy-web.sh
 
 Add missing features from Search Syntax
 
+Check if all api call 400s are handled well
+
+Fix yt-dlp error on server
+ERROR: [youtube] y0sF5xhGreA: Sign in to confirm you’re not a bot. This helps protect our community.
+
 Ideas for v7:
 
 - ip IA

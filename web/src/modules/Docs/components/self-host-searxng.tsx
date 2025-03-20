@@ -153,6 +153,14 @@ sudo systemctl reload nginx
 sudo service uwsgi restart searxng
 `;
 
+const CODE_SEARXNG_UPDATE = `
+# cd into the SearXNG root folder
+cd searxng
+
+# Update your instance
+sudo -H ./utils/searxng.sh instance update
+`;
+
 const DocsSelfHostSearxng = () => {
   // const [activeTab, setActiveTab] = useState(0);
 
@@ -345,6 +353,14 @@ const DocsSelfHostSearxng = () => {
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_CERTBOT} language="bash" />
+      </Paper>
+
+      <DocsSubtitle>Maintenance</DocsSubtitle>
+
+      <DocsText>How to update</DocsText>
+
+      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+        <DocsCodeHighlight code={CODE_SEARXNG_UPDATE} language="bash" />
       </Paper>
 
       <DocsNextPrev
