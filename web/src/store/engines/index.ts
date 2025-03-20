@@ -237,6 +237,7 @@ export const useEnginesStore = create<EnginesState>()(
         enginesScience: state.enginesScience,
         enginesFiles: state.enginesFiles,
         enginesSocialMedia: state.enginesSocialMedia,
+        enginesOther: state.enginesOther,
       }),
     }
   )

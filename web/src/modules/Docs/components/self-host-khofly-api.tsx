@@ -1,4 +1,4 @@
-import { Code, Container, Paper, Text, useMantineTheme } from "@mantine/core";
+import { Code, Container, List, Paper, Text, useMantineTheme } from "@mantine/core";
 import React from "react";
 import DocsTitle from "./common/DocsTitle";
 import DocsText from "./common/DocsText";
@@ -29,6 +29,14 @@ curl -fsSL https://bun.sh/install | bash
 
 const CODE_BUILD_API = `
 cd api
+
+# First create the .env.local file from example file
+cp .env.example .env.local
+
+# Edit the values per provided comments
+nano .env.local
+
+# Then we can install dependencies
 bun install
 `;
 
@@ -39,12 +47,12 @@ touch ecosystem.config.js
 # Paste the base config from below, edit whatever you want
 nano ecosystem.config.js
 
-# Start the web client with pm2
+# Start the API with pm2
 pm2 start
 `;
 const CODE_ECOSYSTEM_FILE = `module.exports = {
   apps : [{
-    name: 'web',
+    name: 'api',
     script: 'bun',
     args: 'run start',
   }]
@@ -54,18 +62,18 @@ const CODE_ECOSYSTEM_FILE = `module.exports = {
 const CODE_NGINX = `
 cd /etc/nginx/sites-available/
 
-# Create the config for the web client
-touch web
+# Create the config for the API
+touch api
 
 # Paste the base config from below, edit whatever you want
-nano web
+nano api
 
 # Link that file to /sites-enabled
 ln -s /etc/nginx/sites-available/api /etc/nginx/sites-enabled/
 `;
 
 const CODE_NGINX_FILE = `server {
-    server_name domain.com;
+    server_name example.com;
 
     root /root/api;
 
@@ -95,7 +103,11 @@ const DocsSelfHostResourceAPI = () => {
     <Container size="lg" p="xl" pb={100}>
       <DocsTitle>Installation guide</DocsTitle>
 
-      <DocsText>Requirements: a VPS</DocsText>
+      <DocsText>Requirements:</DocsText>
+      <List withPadding>
+        <List.Item>a VPS</List.Item>
+        <List.Item>Fully qualified domain name</List.Item>
+      </List>
 
       <DocsSubtitle>OPTION 1. Install script ( Recommended )</DocsSubtitle>
 
@@ -105,9 +117,10 @@ const DocsSelfHostResourceAPI = () => {
           <Text c={linkTextColor} component="span">
             docs/self-host-khofly
           </Text>
-        </RemixLink>
-        , the <Code>install.sh</Code> script installs and runs both the web client and api. If
-        you've already run that script you don't need this page.
+        </RemixLink>{" "}
+        <Code>VPS</Code> section, the <Code>./scripts/install.sh</Code> script installs and runs
+        both the web client and the API. If you've already run that script you probably don't need
+        this page.
       </DocsText>
 
       <DocsSubtitle>OPTION 2. Manual installation</DocsSubtitle>
@@ -138,6 +151,12 @@ const DocsSelfHostResourceAPI = () => {
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
+      <DocsText>
+        4.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
+        frequent updates <Code>git fetch origin staging</Code> and{" "}
+        <Code>git checkout -b staging origin/staging</Code>
+      </DocsText>
+
       <DocsText>5. Build and run API</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_BUILD_API} language="bash" />
@@ -151,7 +170,7 @@ const DocsSelfHostResourceAPI = () => {
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/web/ecosystem.config.cjs",
+              fileName: "/api/ecosystem.config.js",
               code: CODE_ECOSYSTEM_FILE,
               language: "javascript",
               icon: <IconFile style={getIconStyle(20)} />,
@@ -161,7 +180,7 @@ const DocsSelfHostResourceAPI = () => {
       </Paper>
 
       <DocsText>
-        7. Create Nginx config for web, don't forget to update the server_name to your domain name.
+        7. Create Nginx config for api, don't forget to update the server_name to your domain name.
       </DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_NGINX} language="bash" />
@@ -185,6 +204,17 @@ const DocsSelfHostResourceAPI = () => {
 
       <DocsText>
         11. <Code>sudo systemctl reload nginx</Code>
+      </DocsText>
+
+      <DocsSubtitle>Updating</DocsSubtitle>
+
+      <DocsText>
+        To update the API run <Code>./scripts/redeploy-api.sh api</Code>, make sure to replace "api"
+        with pm2 instance name for your API.
+      </DocsText>
+
+      <DocsText>
+        To get a list of all pm2 instances run <Code>pm2 ls</Code>
       </DocsText>
 
       <DocsNextPrev

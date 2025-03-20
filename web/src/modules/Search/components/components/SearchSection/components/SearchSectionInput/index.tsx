@@ -1,6 +1,5 @@
-import RemixLink from "@components/RemixLink";
 import { ActionIcon, Combobox, Divider, Flex, Image, TextInput, useCombobox } from "@mantine/core";
-import { IconSearch, IconTriangleFilled, IconX } from "@tabler/icons-react";
+import { IconSearch,  IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,6 +11,7 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import { useNavigate, useSearchParams } from "react-router";
+import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
 
 const SearchSectionInput = () => {
   const t = useTranslate();
@@ -40,6 +40,9 @@ const SearchSectionInput = () => {
     const paramsTab = searchParams.get("tab") || "general";
     const paramsQ = searchParams.get("q") || "";
 
+    // Infer tab from query syntax
+    const { tab: tabFromSyntax } = getTabFromQuery(query);
+
     // Prevent unnecessary search
     if (!query.length || query === paramsQ || query === searchQuery) return;
 
@@ -49,9 +52,9 @@ const SearchSectionInput = () => {
     // Handle Private Search
     if (privateSearch) {
       setSearchQuery(encodeURIComponent(query));
-      return navigate(`/search?tab=${paramsTab}`);
+      return navigate(`/search?tab=${tabFromSyntax || paramsTab}`);
     }
-    navigate(`/search?q=${encodeURIComponent(query)}&tab=${paramsTab}`);
+    navigate(`/search?q=${encodeURIComponent(query)}&tab=${tabFromSyntax || paramsTab}`);
   };
 
   const handleClear = () => {

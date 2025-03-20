@@ -39,8 +39,8 @@ Private Player for music?
 
 try to move favicons to searxng side
 
-Add Search Syntax /docs page like the one in SearXNG and explain how to use IAs
-Move IA keywords to a separate file so that they can be reused!!!
+update selfhost to run ./scripts/redeploy-web.sh
+
 Add missing features from Search Syntax
 
 Ideas for v7:

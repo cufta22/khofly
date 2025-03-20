@@ -53,7 +53,7 @@ const SettingsNominatim = () => {
         {/* Settings content */}
         <Stack px="lg" mb="xl">
           <TextInput
-            placeholder="domain.com"
+            placeholder="https://example.com"
             size="md"
             className={classes.settings_input}
             {...form.getInputProps("domain")}

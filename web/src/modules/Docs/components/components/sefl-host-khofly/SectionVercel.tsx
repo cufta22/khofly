@@ -83,9 +83,9 @@ const SectionVercel = () => {
       </DocsText>
 
       <Alert mt="xl" variant="light" color="blue" title="Learn more" icon={<IconInfoCircle />}>
-        You can read more about deploying a Remix site to Vercel at{" "}
+        You can read more about deploying a React Router app to Vercel at{" "}
         <DocsLink
-          href="https://vercel.com/guides/deploying-remix-with-vercel"
+          href="https://https://vercel.com/docs/frameworks/react-router"
           label="official docs"
         />
         .

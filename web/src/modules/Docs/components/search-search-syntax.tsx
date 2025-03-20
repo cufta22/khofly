@@ -111,63 +111,6 @@ const DocsSearchPrivatePlayer = () => {
         </List.Item>
       </List>
 
-      <DocsSubtitle>
-        <Code fz={20}>{`!!<bang>`}</Code> external bangs
-      </DocsSubtitle>
-
-      <DocsText>
-        SearXNG supports the external bangs from{" "}
-        <DocsLink href="https://duckduckgo.com/bangs" label="DuckDuckGo" />. To directly jump to a
-        external search page use the <Code>!!</Code> prefix. To give an example:
-      </DocsText>
-
-      <List mt="sm">
-        <List.Item>
-          search Wikipedia by a custom language
-          <List>
-            <List.Item>
-              <RemixLink to={`/search?q=!!wfr Wau Holland&tab=general`}>
-                <Text c={linkTextColor}>!!wfr Wau Holland</Text>
-              </RemixLink>
-            </List.Item>
-          </List>
-        </List.Item>
-      </List>
-
-      <DocsText>
-        Please note, your search will be performed directly in the external search engine, SearXNG
-        cannot protect your privacy on this.
-      </DocsText>
-
-      <DocsSubtitle>
-        <Code fz={20}>!!</Code> automatic redirect
-      </DocsSubtitle>
-
-      <DocsText>
-        When mentioning <Code>!!</Code> within the search query (separated by spaces), you will
-        automatically be redirected to the first result. This behavior is comparable to the “Feeling
-        Lucky” feature from DuckDuckGo. To give an example:
-      </DocsText>
-
-      <List mt="sm">
-        <List.Item>
-          search for a query and get redirected to the first result
-          <List>
-            <List.Item>
-              <RemixLink to={`/search?q=!! Wau Holland&tab=general`}>
-                <Text c={linkTextColor}>!! Wau Holland</Text>
-              </RemixLink>
-            </List.Item>
-          </List>
-        </List.Item>
-      </List>
-
-      <DocsText>
-        Please keep in mind that the result you are being redirected to can't become verified for
-        being trustworthy, SearXNG cannot protect your personal privacy when using this feature. Use
-        it at your own risk.
-      </DocsText>
-
       <DocsSubtitle>Special Queries</DocsSubtitle>
 
       <DocsText>

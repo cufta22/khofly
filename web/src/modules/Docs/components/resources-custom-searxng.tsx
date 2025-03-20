@@ -82,7 +82,7 @@ const DocsResourcesCustomSearxng = () => {
             Settings/Instances/SearXNG Domain
           </Text>
         </RemixLink>{" "}
-        and set your instances domain in the following format <Code>https://domain.com</Code>
+        and set your instances domain in the following format <Code>https://example.com</Code>
       </DocsText>
 
       <DocsNextPrev

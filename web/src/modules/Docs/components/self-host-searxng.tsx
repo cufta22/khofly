@@ -45,7 +45,7 @@ server {
   include /etc/nginx/default.d/*.conf;
 
   # Change this to your domain!
-  server_name domain.com;
+  server_name example.com;
 
   # Searx Redirect.
   location / {

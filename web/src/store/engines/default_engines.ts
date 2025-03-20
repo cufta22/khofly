@@ -30,6 +30,6 @@ export const DEFAULT_ENGINES = {
     "mastodonusers",
     "reddit",
   ] as ISocialMediaEngines[],
-  maps: [],
-  other: ["etymonline", "imdb", "emojipedia"] as IOtherEngines[],
+  maps: [] as string[],
+  other: [] as IOtherEngines[],
 };

@@ -14,6 +14,7 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import { useNavigate } from "react-router";
+import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
 
 const SearchBar = () => {
   const t = useTranslate();
@@ -44,14 +45,15 @@ const SearchBar = () => {
 
     nprogress.start();
 
+    // Infer tab from query syntax
+    const { tab } = getTabFromQuery(query);
+
     // Handle Private Search
     if (privateSearch) {
       setSearchQuery(encodeURIComponent(query));
-      return navigate("/search?tab=general");
+      return navigate(`/search?tab=${tab}`);
     }
-    navigate(`/search?q=${encodeURIComponent(query)}&tab=general`, {
-      viewTransition: true,
-    });
+    navigate(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
   };
 
   useEffect(() => {

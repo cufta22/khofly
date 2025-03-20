@@ -1,4 +1,4 @@
-import { ICategories } from "@store/settings";
+import type { ICategories } from "@store/settings";
 import {
   IconCpu,
   IconFiles,
@@ -10,9 +10,12 @@ import {
   IconSchool,
   IconSearch,
   IconUsers,
+  type IconProps,
 } from "@tabler/icons-react";
 
-export const CATEGORIES_DATA = {
+export const CATEGORIES_DATA: {
+  [key in ICategories]: { title: string; icon: React.ForwardRefExoticComponent<IconProps> };
+} = {
   general: {
     title: "General",
     icon: IconSearch,
@@ -52,6 +55,12 @@ export const CATEGORIES_DATA = {
   social_media: {
     title: "Social Media",
     icon: IconUsers,
+  },
+
+  // Unused
+  other: {
+    title: "Other",
+    icon: IconSearch,
   },
 };
 

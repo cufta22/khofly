@@ -25,6 +25,7 @@ curl -fsSL https://bun.sh/install | bash
 # Web
 echo -e "\e[32mBuild and Run web client\e[0m"
 cd web
+cp .env.example .env.local
 pnpm install
 pnpm run build
 echo "module.exports = {
@@ -42,6 +43,7 @@ pm2 start
 # Api
 echo -e "\e[32mBuild and Run API\e[0m"
 cd ../api
+cp .env.example .env.local
 bun install
 echo "module.exports = {
   apps : [{
@@ -58,7 +60,7 @@ cd /etc/nginx/sites-available/
 
 # Config for web client
 echo "server {
-    server_name domain.com;
+    server_name example.com;
 
     root /root/web;
 
@@ -78,7 +80,7 @@ echo "server {
 
 # Config for bun api
 echo "server {
-    server_name domain.com;
+    server_name example.com;
 
     root /root/api;
 

@@ -1,4 +1,4 @@
-import { Badge, Blockquote, Code, Flex, Paper, Text } from "@mantine/core";
+import { Badge, Blockquote, Code, Flex, List, Paper, Text } from "@mantine/core";
 import DocsTitle from "../../common/DocsTitle";
 import DocsText from "../../common/DocsText";
 import DocsSubtitle from "../../common/DocsSubtitle";
@@ -29,6 +29,14 @@ source ~/.bashrc
 
 const CODE_BUILD_WEB = `
 cd web
+
+# First create the .env.local file from example file
+cp .env.example .env.local
+
+# Edit the values per provided comments
+nano .env.local
+
+# Then we can install dependencies and build
 pnpm install
 pnpm run build
 `;
@@ -45,7 +53,7 @@ pm2 start
 `;
 const CODE_ECOSYSTEM_FILE = `module.exports = {
   apps : [{
-    name: 'api',
+    name: 'web',
     script: 'pnpm',
     args: 'run start',
     env: {
@@ -67,9 +75,8 @@ nano web
 # Link that file to /sites-enabled
 ln -s /etc/nginx/sites-available/web /etc/nginx/sites-enabled/
 `;
-
 const CODE_NGINX_FILE = `server {
-    server_name domain.com;
+    server_name example.com;
 
     root /root/web;
 
@@ -105,8 +112,6 @@ const SectionVPS = () => {
         </Flex>
       </Flex>
 
-      <DocsText>Requirements: a VPS</DocsText>
-
       <Blockquote color="red" mt="xl" radius="sm" icon={<IconBrandDebian />}>
         <Text>
           This installs and runs both the web client and api, if you want just the web client move
@@ -118,6 +123,12 @@ const SectionVPS = () => {
         </Text>
       </Blockquote>
 
+      <DocsText>Requirements:</DocsText>
+      <List withPadding>
+        <List.Item>a VPS</List.Item>
+        <List.Item>Fully qualified domain name</List.Item>
+      </List>
+
       <DocsSubtitle>OPTION 1. Install script ( Recommended )</DocsSubtitle>
 
       <DocsText>
@@ -128,6 +139,12 @@ const SectionVPS = () => {
       <DocsText>
         2. <Code>cd khofly</Code> and type{" "}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
+      </DocsText>
+
+      <DocsText>
+        2.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
+        frequent updates <Code>git fetch origin staging</Code> and{" "}
+        <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
       <DocsText>
@@ -146,17 +163,37 @@ const SectionVPS = () => {
       </DocsText>
 
       <DocsText>
-        5. <Code>cd /etc/nginx/sites-available/</Code> and edit the domain names for{" "}
+        5. Edit the .env file for web ( <Code>nano ./web/.env.local</Code> ) values per provided
+        comments.
+      </DocsText>
+
+      <DocsText>
+        5.1. Run <Code>./scripts/redeploy-web.sh web</Code> ( <Code>web</Code> argument is the name
+        of pm2 instance ) to rebuild the app since we changed the env file.
+      </DocsText>
+
+      <DocsText>
+        6. Edit the .env file for api ( <Code>nano ./api/.env.local</Code> ) values per provided
+        comments.
+      </DocsText>
+
+      <DocsText>
+        6.1. Run <Code>./scripts/redeploy-api.sh api</Code> ( <Code>api</Code> argument is the name
+        of pm2 instance ) to rebuild the app since we changed the env file.
+      </DocsText>
+
+      <DocsText>
+        7. <Code>cd /etc/nginx/sites-available/</Code> and edit the domain names for{" "}
         <Code>web</Code> and <Code>api</Code> files, and whatever other Nginx config you want to
         add.
       </DocsText>
 
       <DocsText>
-        6. Add SSL certificate for your domain <Code>certbot --nginx</Code>
+        8. Add SSL certificate for your domain <Code>certbot --nginx</Code>
       </DocsText>
 
       <DocsText>
-        7. <Code>sudo systemctl reload nginx</Code>
+        9. <Code>sudo systemctl reload nginx</Code>
       </DocsText>
 
       <DocsSubtitle>OPTION 2. Manual installation</DocsSubtitle>
@@ -188,6 +225,12 @@ const SectionVPS = () => {
       <DocsText>
         6. <Code>cd khofly</Code> and type{" "}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
+      </DocsText>
+
+      <DocsText>
+        6.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
+        frequent updates <Code>git fetch origin staging</Code> and{" "}
+        <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
       <DocsText>7. Build and run web client</DocsText>
@@ -237,6 +280,17 @@ const SectionVPS = () => {
 
       <DocsText>
         11. <Code>sudo systemctl reload nginx</Code>
+      </DocsText>
+
+      <DocsSubtitle>Updating</DocsSubtitle>
+
+      <DocsText>
+        To update the web client run <Code>./scripts/redeploy-web.sh web</Code>, make sure to
+        replace "web" with pm2 instance name for your web client.
+      </DocsText>
+
+      <DocsText>
+        To get a list of all pm2 instances run <Code>pm2 ls</Code>
       </DocsText>
     </>
   );
