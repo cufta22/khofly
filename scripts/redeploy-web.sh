@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ..
-
 # Set default INSTANCE_NAME to 'web-staging' if no argument is provided
 INSTANCE_NAME=${1:-web-staging}
 

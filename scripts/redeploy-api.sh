@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ..
-
 # Set default INSTANCE_NAME to 'api-staging' if no argument is provided
 INSTANCE_NAME=${1:-api-staging}
 
