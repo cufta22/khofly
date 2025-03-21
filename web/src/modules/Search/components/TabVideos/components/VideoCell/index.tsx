@@ -42,7 +42,7 @@ const VideoCell: React.FC<Props> = ({ videoData, setPrivatePlayerURL }) => {
       target={anchorTarget}
       rel="noreferrer noopener"
       onClick={(e) => {
-        if (privatePlayer) {
+        if (privatePlayer && url.includes("youtube.com")) {
           e.preventDefault();
           setPrivatePlayerURL(url);
         }

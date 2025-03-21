@@ -136,6 +136,7 @@ export interface ISearXNGResultsMusic {
     category: string;
     iframe_src: string;
     img_src: string;
+    thumbnail: string;
     publishedDate: string | null;
   }>;
   answers: Array<any>;

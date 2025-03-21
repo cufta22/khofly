@@ -8,7 +8,7 @@ interface Props extends IFC {
 
 const DocsSubtitle: React.FC<Props> = ({ children, leftSection }) => {
   return (
-    <Flex direction="row" align="center" gap="lg" mt="md" mb="xs">
+    <Flex direction="row" align="center" gap="lg" mt="lg" mb="sm">
       {leftSection && leftSection}
 
       <Text size="xl" fw="bold">

@@ -9,7 +9,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
-apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg yt-dlp
+apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
 `;
 
 const CODE_NVM = `

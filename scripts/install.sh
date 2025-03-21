@@ -5,7 +5,11 @@ apt update && apt upgrade
 
 # Dependencies
 echo -e "\e[32mInstalling all dependencies\e[0m"
-apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg yt-dlp
+apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
+
+echo -e "\e[32mInstalling yt-dlp\e[0m"
+curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/bin/yt-dlp
+chmod a+rx /usr/bin/yt-dlp
 
 echo -e "\e[32mInstalling nvm\e[0m"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash

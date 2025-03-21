@@ -1,29 +1,52 @@
-import { Anchor, Button, Center, Collapse, Flex, Image, Paper, Space, Text, Transition } from "@mantine/core";
-import React, { useState } from "react";
+import { Anchor, Button, Center, Flex, Image, Paper, Space, Text, Transition } from "@mantine/core";
+import { type Dispatch, type SetStateAction, useState } from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsMusic } from "@ts/searxng.types";
+import type { ISearXNGResultsMusic } from "@ts/searxng.types";
 import clsx from "clsx";
 import dayjs from "dayjs";
-import { IconCalendar, IconMusic, IconPlayerPause, IconPlayerPlay, IconVinyl } from "@tabler/icons-react";
+import { IconCalendar, IconVinyl } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import SearchAnchor from "@module/Search/components/components/SearchAnchor";
+import { useResponsive } from "@hooks/use-responsive";
 
 interface Props {
   musicData: ISearXNGResultsMusic["results"][0];
+  setPrivatePlayerData: Dispatch<SetStateAction<ISearXNGResultsMusic["results"][0] | null>>;
 }
 
-const MusicRow: React.FC<Props> = ({ musicData }) => {
-  const { title, url, parsed_url, content, engines, publishedDate, img_src, iframe_src } = musicData;
+const MusicRow: React.FC<Props> = ({ musicData, setPrivatePlayerData }) => {
+  const {
+    title,
+    url,
+    parsed_url,
+    content,
+    engines,
+    publishedDate,
+    img_src,
+    thumbnail,
+    iframe_src,
+  } = musicData;
 
   const [iframeOpen, setIframeOpen] = useState(false);
+
+  const privatePlayer = useSettingsStore((state) => state.privatePlayer);
+
+  const openInNewTab = useSettingsStore((state) => state.openInNewTab);
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
   const displayFavicon = useSettingsStore((state) => state.displayFavicon);
   const showEngines = useSettingsStore((state) => state.showEngines);
+
+  const isXs = useResponsive("max", "xs");
+
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+    ? "_blank"
+    : "_self";
 
   return (
     <Flex
@@ -32,11 +55,26 @@ const MusicRow: React.FC<Props> = ({ musicData }) => {
       })}
       direction="column"
     >
-      <SearchAnchor url={url}>
+      <Anchor
+        href={url}
+        target={anchorTarget}
+        rel="noreferrer noopener"
+        onClick={(e) => {
+          if (privatePlayer && url.includes("youtube.com")) {
+            e.preventDefault();
+            setPrivatePlayerData(musicData);
+          }
+        }}
+      >
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
-            <Image w={16} h={16} src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`} alt="" />
+            <Image
+              w={16}
+              h={16}
+              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
+              alt=""
+            />
           )}
 
           <Text size="xs" truncate="end">
@@ -44,26 +82,46 @@ const MusicRow: React.FC<Props> = ({ musicData }) => {
             {parsed_url[2]}
           </Text>
         </Flex>
-      </SearchAnchor>
+      </Anchor>
 
       <Flex mt="sm" gap="md">
         {/* Music img */}
-        <SearchAnchor url={url}>
-          {img_src ? (
-            <Image className={classes.music_img} src={img_src} radius="md" />
+        <Anchor
+          href={url}
+          target={anchorTarget}
+          rel="noreferrer noopener"
+          onClick={(e) => {
+            if (privatePlayer && url.includes("youtube.com")) {
+              e.preventDefault();
+              setPrivatePlayerData(musicData);
+            }
+          }}
+        >
+          {img_src || thumbnail ? (
+            <Image className={classes.music_img} src={img_src || thumbnail} radius="md" />
           ) : (
             <Paper className={classes.music_img}>
               <Center h="100%">
-                <IconVinyl style={getIconStyle(46)} />
+                <IconVinyl style={getIconStyle(26)} />
               </Center>
             </Paper>
           )}
-        </SearchAnchor>
+        </Anchor>
 
         {/* Content */}
         <Flex className={classes.music_data} direction="column">
           {/* Music title */}
-          <SearchAnchor url={url}>
+          <Anchor
+            href={url}
+            target={anchorTarget}
+            rel="noreferrer noopener"
+            onClick={(e) => {
+              if (privatePlayer && url.includes("youtube.com")) {
+                e.preventDefault();
+                setPrivatePlayerData(musicData);
+              }
+            }}
+          >
             <Text
               className={clsx(classes.text_title, {
                 [classes.text_title_visited]: visitedLinks.includes(url),
@@ -73,7 +131,7 @@ const MusicRow: React.FC<Props> = ({ musicData }) => {
             >
               {title}
             </Text>
-          </SearchAnchor>
+          </Anchor>
 
           {/* Description */}
           <Text size="sm" c="dimmed" truncate="end">
@@ -119,8 +177,21 @@ const MusicRow: React.FC<Props> = ({ musicData }) => {
         <Space h={26.8} />
       )}
 
-      <Transition mounted={iframeOpen} transition={"scale-y"} duration={200} timingFunction="ease" keepMounted={false}>
-        {(transitionStyle) => <iframe style={{ ...transitionStyle, zIndex: 1 }} width="100%" src={iframe_src} />}
+      <Transition
+        mounted={iframeOpen}
+        transition={"scale-y"}
+        duration={200}
+        timingFunction="ease"
+        keepMounted={false}
+      >
+        {(transitionStyle) => (
+          <iframe
+            style={{ ...transitionStyle, zIndex: 1 }}
+            width="100%"
+            src={iframe_src}
+            title={title}
+          />
+        )}
       </Transition>
     </Flex>
   );

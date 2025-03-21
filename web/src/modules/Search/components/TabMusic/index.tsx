@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import { ISearXNGResultsMusic } from "@ts/searxng.types";
+import type { ISearXNGResultsMusic } from "@ts/searxng.types";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
@@ -13,11 +13,17 @@ import MusicRow from "./components/MusicRow";
 import MusicSkeleton from "./components/MusicSkeleton";
 import Suggestions from "../components/Suggestions";
 import Lyricsbox from "../components/Lyricsbox";
+import PrivateMusicPlayer from "../components/PrivatePlayer/music";
 
 const TabMusic = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<ISearXNGResultsMusic>();
+  const [privatePlayerData, setPrivatePlayerData] = useState<
+    ISearXNGResultsMusic["results"][0] | null
+  >(null);
+
+  const { data, error, isLoading, isValidating, size, setSize, mutate } =
+    useSearXNGSWR<ISearXNGResultsMusic>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -40,7 +46,7 @@ const TabMusic = () => {
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
               {res?.results.map((r, i) => (
-                <MusicRow key={i} musicData={r} />
+                <MusicRow key={i} musicData={r} setPrivatePlayerData={setPrivatePlayerData} />
               ))}
             </Stack>
           );
@@ -64,9 +70,12 @@ const TabMusic = () => {
           <Text>Too Many Requests</Text>
         )}
 
-        {!isLoading && !isValidating && data && data?.length >= 1 && data?.[0]?.results?.length < 1 && !isRateLimit && (
-          <Center py="xs">No results, try with different query</Center>
-        )}
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && <Center py="xs">No results, try with different query</Center>}
 
         {!isLoading &&
           !isValidating &&
@@ -87,10 +96,24 @@ const TabMusic = () => {
       <Flex direction="column" gap="xl" pt="xl">
         <Lyricsbox />
 
-        {!isLoading && !isValidating && !isRateLimit && data && data?.[0]?.unresponsive_engines?.length >= 1 && (
-          <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
-        )}
+        {!isLoading &&
+          !isValidating &&
+          !isRateLimit &&
+          data &&
+          data?.[0]?.unresponsive_engines?.length >= 1 && (
+            <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
+          )}
       </Flex>
+
+      {/* Private Player */}
+      {privatePlayerData && (
+        <PrivateMusicPlayer
+          musicData={privatePlayerData}
+          onClose={() => {
+            setPrivatePlayerData(null);
+          }}
+        />
+      )}
     </Flex>
   );
 };

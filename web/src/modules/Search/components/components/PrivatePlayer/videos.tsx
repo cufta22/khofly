@@ -16,8 +16,6 @@ const PrivateVideoPlayer: React.FC<Props> = ({ url, onClose }) => {
   const theme = useMantineTheme();
 
   useEffect(() => {
-    // TODO: check for only youtube URLs
-
     if (url && !isMutating) {
       trigger({
         format: "mp4",
