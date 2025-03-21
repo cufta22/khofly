@@ -22,6 +22,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .get("/lyrics", router.handleLyrics) // Fetch song lyrics by name
   .get("/weather", router.handleWeather) // Fetch weather data
   .get("/download", router.handleDownload) // Download media file
+  .get("/ip", router.handleIP) // Get IP from headers
 
   .listen(4000);
 

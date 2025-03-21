@@ -3,6 +3,7 @@ import * as ratesSvc from "./services/rates.service";
 import * as lyricsSvc from "./services/lyrics.service";
 import * as weatherSvc from "./services/weather.service";
 import * as downlaodSvc from "./services/download.service";
+import * as ipSvc from "./services/ip.service";
 
 // GET - /rates
 export const handleRates = async (ctx: Context) => {
@@ -29,5 +30,12 @@ export const handleWeather = async (ctx: Context) => {
 export const handleDownload = async (ctx: Context) => {
   try {
     return await downlaodSvc.handleDownload(ctx);
+  } catch (error) {}
+};
+
+// GET - /ip
+export const handleIP = async (ctx: Context) => {
+  try {
+    return await ipSvc.handleGetIP(ctx);
   } catch (error) {}
 };
