@@ -49,7 +49,7 @@ const PageIndex = () => {
   useSettingsParams();
 
   useEffect(() => {
-    // fetch("/api/ip");
+    fetch("/api/ip");
 
     fetch(`${process.env.API_URL_EU1}/ip`);
   }, []);
