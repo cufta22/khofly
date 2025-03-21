@@ -23,9 +23,18 @@
     func.to-rem(1px) solid var(--mantine-color-dark-5)
   );
 
-  .music_img {
-    min-width: func.to-rem(50);
-    width: func.to-rem(50);
-    height: func.to-rem(50);
+  .title_text {
+    // Hide on smaller devices
+    @media (max-width: vars.$mantine-breakpoint-sm) {
+      display: none;
+    }
+  }
+
+  .music_details {
+    .music_img {
+      min-width: func.to-rem(50);
+      width: func.to-rem(50);
+      height: func.to-rem(50);
+    }
   }
 }

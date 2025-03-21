@@ -43,7 +43,8 @@
         "noDangerouslySetInnerHtml": "warn"
       },
       "a11y": {
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "useMediaCaption": "off"
       }
     }
   },

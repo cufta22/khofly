@@ -105,7 +105,7 @@ export type IScienceEngines =
   | "arxiv"
   | "crossref"
   | "googlescholar"
-  | "archive"
+  // | "archive" // Removed???
   | "pubmed"
   | "semanticscholar"
   | "wikispecies"
@@ -122,6 +122,7 @@ export type IFilesEngines =
   | "annas"
   | "bt4g"
   | "kickass"
+  | "librarygenesis"
   | "nyaa"
   | "piratebay"
   | "wikicommons"

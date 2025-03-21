@@ -2,7 +2,6 @@ import path from "node:path";
 import fs from "node:fs/promises";
 
 import { __dirname } from "../config";
-import dayjs from "dayjs";
 
 export const cron_clearMedia = async () => {
   const mediaDir = path.join(__dirname, `/../temp/media`);
@@ -13,11 +12,20 @@ export const cron_clearMedia = async () => {
 
     if (file.length > 26) continue; // Skip temp files
 
-    const fileTime = dayjs(file.substring(0, 16), { format: "YYYY-MM-DD-HH:mm" });
-    const now = dayjs();
-    const oneHourAgo = now.subtract(1, "hour");
+    // Parse the input date string (format: YYYY-MM-DD-HH-mm)
+    const [year, month, day, hour, minute] = file.substring(0, 16).split("-").map(Number);
 
-    if (fileTime.isBefore(oneHourAgo)) {
+    // JavaScript months are 0-indexed (0 = January, 11 = December)
+    const fileTime = new Date(year, month - 1, day, hour, minute);
+
+    const now = new Date();
+
+    const diffInMilliseconds = now.getTime() - fileTime.getTime();
+    const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+
+    const isOlderThan1H = diffInHours > 1;
+
+    if (isOlderThan1H) {
       await fs.unlink(path.join(mediaDir, file));
     }
   }

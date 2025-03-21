@@ -134,7 +134,7 @@ const SCIENCE_BANGS: { [key in IScienceEngines]: string } = {
   arxiv: "!arx",
   crossref: "!cr",
   googlescholar: "!gos",
-  archive: "", // Removed from SearXNG??
+  // archive: "", // Removed from SearXNG??
   pubmed: "!pub",
   semanticscholar: "!se",
 
@@ -155,6 +155,7 @@ const FILES_BANGS: { [key in IFilesEngines]: string } = {
   annas: "!aa",
   bt4g: "!bt4g",
   kickass: "!kc",
+  librarygenesis: "!lg",
   nyaa: "!nt",
   piratebay: "!tpb",
   wikicommons: "!wcf",

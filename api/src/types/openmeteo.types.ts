@@ -1,4 +1,4 @@
-export interface OpenMeteoResponse {
+export interface IOpenMeteoResponse {
   latitude: number;
   longitude: number;
   generationtime_ms: number;
@@ -6,12 +6,12 @@ export interface OpenMeteoResponse {
   timezone: string;
   timezone_abbreviation: string;
   elevation: number;
-  current_weather: OpenMeteoCurrentWeather;
-  hourly: OpenMeteoHourly;
-  daily: OpenMeteoDaily;
+  current_weather: IOpenMeteoCurrentWeather;
+  hourly: IOpenMeteoHourly;
+  daily: IOpenMeteoDaily;
 }
 
-export interface OpenMeteoCurrentWeather {
+export interface IOpenMeteoCurrentWeather {
   time: string;
   interval: number;
   temperature: number;
@@ -22,7 +22,7 @@ export interface OpenMeteoCurrentWeather {
   apparent_temperature?: number;
 }
 
-export interface OpenMeteoHourly {
+export interface IOpenMeteoHourly {
   time: string[];
   temperature_2m: number[];
   relative_humidity_2m: number[];
@@ -55,7 +55,7 @@ export interface OpenMeteoHourly {
   is_day: number[];
 }
 
-export interface OpenMeteoDaily {
+export interface IOpenMeteoDaily {
   time: string[];
   weather_code: number[];
   temperature_2m_max: number[];

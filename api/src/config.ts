@@ -40,7 +40,7 @@ export const CRON_FETCH_RATES_OPTIONS: CronConfig = {
 };
 
 export const CRON_CLEAR_MEDIA: CronConfig = {
-  name: "fetch rates",
+  name: "clean media folder",
   // pattern: "* * * * *", // every 1 min, for testing
   pattern: "0 * * * *", // every hour at 0 minutes
   run() {

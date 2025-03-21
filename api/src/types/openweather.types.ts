@@ -1,14 +1,14 @@
-export interface OpenWeatherResponse {
+export interface IOpenWeatherResponse {
   lat: number;
   lon: number;
   timezone: string;
   timezone_offset: number;
-  current: OpenWeatherCurrent;
-  hourly: OpenWeatherHourly[];
-  daily: OpenWeatherDaily[];
+  current: IOpenWeatherCurrent;
+  hourly: IOpenWeatherHourly[];
+  daily: IOpenWeatherDaily[];
 }
 
-export interface OpenWeatherCurrent {
+export interface IOpenWeatherCurrent {
   dt: number;
   sunrise: number;
   sunset: number;
@@ -23,17 +23,17 @@ export interface OpenWeatherCurrent {
   wind_speed: number;
   wind_deg: number;
   wind_gust: number;
-  weather: OpenWeatherWeather[];
+  weather: IOpenWeatherWeather[];
 }
 
-export interface OpenWeatherWeather {
+export interface IOpenWeatherWeather {
   id: number;
   main: string;
   description: string;
   icon: string;
 }
 
-export interface OpenWeatherHourly {
+export interface IOpenWeatherHourly {
   dt: number;
   temp: number;
   feels_like: number;
@@ -46,18 +46,18 @@ export interface OpenWeatherHourly {
   wind_speed: number;
   wind_deg: number;
   wind_gust: number;
-  weather: Weather2[];
+  weather: IWeather2[];
   pop: number;
 }
 
-export interface Weather2 {
+export interface IWeather2 {
   id: number;
   main: string;
   description: string;
   icon: string;
 }
 
-export interface OpenWeatherDaily {
+export interface IOpenWeatherDaily {
   dt: number;
   sunrise: number;
   sunset: number;
@@ -65,22 +65,22 @@ export interface OpenWeatherDaily {
   moonset: number;
   moon_phase: number;
   summary: string;
-  temp: Temp;
-  feels_like: FeelsLike;
+  temp: ITemp;
+  feels_like: IFeelsLike;
   pressure: number;
   humidity: number;
   dew_point: number;
   wind_speed: number;
   wind_deg: number;
   wind_gust: number;
-  weather: Weather3[];
+  weather: IWeather3[];
   clouds: number;
   pop: number;
   rain?: number;
   uvi: number;
 }
 
-export interface Temp {
+export interface ITemp {
   day: number;
   min: number;
   max: number;
@@ -89,14 +89,14 @@ export interface Temp {
   morn: number;
 }
 
-export interface FeelsLike {
+export interface IFeelsLike {
   day: number;
   night: number;
   eve: number;
   morn: number;
 }
 
-export interface Weather3 {
+export interface IWeather3 {
   id: number;
   main: string;
   description: string;

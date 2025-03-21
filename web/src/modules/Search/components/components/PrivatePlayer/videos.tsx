@@ -24,7 +24,6 @@ const PrivateVideoPlayer: React.FC<Props> = ({ url, onClose }) => {
       });
     }
   }, [url]);
-  console.log(data);
 
   return (
     <Modal
@@ -50,7 +49,7 @@ const PrivateVideoPlayer: React.FC<Props> = ({ url, onClose }) => {
       {data?.data.url ? (
         <video className={classes.media_player} controls>
           <source src={data?.data.url} type="video/mp4" />
-          <track kind="captions" />
+          {/* <track kind="captions" /> */}
         </video>
       ) : (
         <Center className={classes.media_player} p="xl">

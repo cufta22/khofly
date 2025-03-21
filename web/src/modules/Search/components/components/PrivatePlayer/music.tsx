@@ -1,9 +1,20 @@
-import { ActionIcon, Center, Flex, Image, Paper, Text, useMantineTheme } from "@mantine/core";
+import {
+  ActionIcon,
+  Center,
+  Flex,
+  Image,
+  Loader,
+  Paper,
+  Text,
+  useMantineTheme,
+} from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import type { ISearXNGResultsMusic } from "@ts/searxng.types";
-import { IconPlayerPlay, IconVinyl, IconX } from "@tabler/icons-react";
+import { IconPlayerPause, IconPlayerPlay, IconVinyl, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { useEffect, useRef, useState } from "react";
+import useDownloadSWR from "src/api/download/use-download-query";
 
 interface Props {
   musicData: ISearXNGResultsMusic["results"][0];
@@ -14,32 +25,42 @@ const PrivateMusicPlayer: React.FC<Props> = ({ musicData, onClose }) => {
   const { url, img_src, thumbnail, title } = musicData;
   const theme = useMantineTheme();
 
+  const { data, trigger, isMutating, reset } = useDownloadSWR({ shouldDownload: false });
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (url && !isMutating) {
+      trigger({
+        format: "mp3",
+        from: "youtube",
+        url: url,
+      });
+    }
+  }, [url]);
+
   return (
     <Flex className={classes.private_music_player} align="center" justify="space-between" p="md">
-      <Flex align="center">
-        <ActionIcon size="xl" variant="light" color="orange.5">
-          <IconPlayerPlay />
-        </ActionIcon>
+      <Flex className={classes.title_text} align="center">
+        <IconPlayerPlay style={getIconStyle(36)} color={theme.colors.orange[5]} />
 
         <Text size="xl" ml="md">
           Private Player
         </Text>
       </Flex>
 
-      <Flex>
-        {img_src || thumbnail ? (
-          <Image className={classes.music_img} src={img_src || thumbnail} radius="md" />
-        ) : (
-          <Paper className={classes.music_img}>
-            <Center h="100%">
-              <IconVinyl style={getIconStyle(46)} />
-            </Center>
-          </Paper>
-        )}
-        <Flex direction="column" ml="md">
-          <Text>{title}</Text>
-        </Flex>
-      </Flex>
+      {/* Audio element for player */}
+      {isMutating ? (
+        <Loader />
+      ) : (
+        <audio
+          ref={audioRef}
+          src={data?.data.url || ""}
+          controls
+          className="w-full mt-2"
+          title={title}
+        />
+      )}
 
       <Flex>
         <ActionIcon size="xl" variant="light" color="red.5" onClick={onClose}>

@@ -114,6 +114,16 @@ export const DATA_ENGINES_FILES: {
   },
   {
     type: "engine",
+    value: "librarygenesis",
+    alt: "library Genesis logo",
+    icon: "",
+    label: "pages.settings.engines.engine_library_genesis_files",
+    bang: "!lg",
+    safeSearch: false,
+    timeRange: false,
+  },
+  {
+    type: "engine",
     value: "nyaa",
     alt: "nyaa logo",
     icon: "",

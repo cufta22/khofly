@@ -19,7 +19,7 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { usePrimaryColor } from "@hooks/use-primary-color";
-import { ICategories } from "@store/settings";
+import type { ICategories } from "@store/settings";
 
 interface Props {
   type: "divider" | "engine";
@@ -88,7 +88,9 @@ const EngineComponent: React.FC<Props> = ({
             <Flex
               align="center"
               gap="sm"
-              onClick={() => onChange(!checked)}
+              onClick={() => {
+                if (category !== "other") onChange(!checked);
+              }}
               className={classes.engine_component}
             >
               <Box w={20} h={20}>
@@ -199,21 +201,23 @@ const EngineComponent: React.FC<Props> = ({
 
       {/* Active */}
       <Table.Td ta="right">
-        <Switch
-          ml="auto"
-          w={42}
-          style={{ cursor: "pointer" }}
-          checked={checked}
-          onChange={(e) => onChange(e.currentTarget.checked)}
-          color="teal"
-          thumbIcon={
-            checked ? (
-              <IconCheck style={getIconStyle(12)} color={theme.colors.teal[6]} stroke={3} />
-            ) : (
-              <IconX style={getIconStyle(12)} color={theme.colors.red[6]} stroke={3} />
-            )
-          }
-        />
+        {category !== "other" && (
+          <Switch
+            ml="auto"
+            w={42}
+            style={{ cursor: "pointer" }}
+            checked={checked}
+            onChange={(e) => onChange(e.currentTarget.checked)}
+            color="teal"
+            thumbIcon={
+              checked ? (
+                <IconCheck style={getIconStyle(12)} color={theme.colors.teal[6]} stroke={3} />
+              ) : (
+                <IconX style={getIconStyle(12)} color={theme.colors.red[6]} stroke={3} />
+              )
+            }
+          />
+        )}
       </Table.Td>
     </Table.Tr>
   );

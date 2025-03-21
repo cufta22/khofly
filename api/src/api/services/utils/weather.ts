@@ -1,14 +1,14 @@
 import type {
-  OpenMeteoCurrentWeather,
-  OpenMeteoDaily,
-  OpenMeteoHourly,
-  OpenMeteoResponse,
+  IOpenMeteoCurrentWeather,
+  IOpenMeteoDaily,
+  IOpenMeteoHourly,
+  IOpenMeteoResponse,
 } from "../../../types/openmeteo.types";
 import type {
-  OpenWeatherCurrent,
-  OpenWeatherDaily,
-  OpenWeatherHourly,
-  OpenWeatherResponse,
+  IOpenWeatherCurrent,
+  IOpenWeatherDaily,
+  IOpenWeatherHourly,
+  IOpenWeatherResponse,
 } from "../../../types/openweather.types";
 
 /**
@@ -20,10 +20,10 @@ import type {
  * @returns {Object} - Data in OpenWeatherMap format
  */
 export const convertOMToOWMFormat = (
-  data: OpenMeteoResponse,
+  data: IOpenMeteoResponse,
   lat: number,
   lon: number
-): OpenWeatherResponse | null => {
+): IOpenWeatherResponse | null => {
   // Handle missing data gracefully
   if (!data || !data.current_weather || !data.hourly || !data.daily) {
     return null;
@@ -47,7 +47,7 @@ export const convertOMToOWMFormat = (
  * @param {Object} current - Open-Meteo current weather data
  * @returns {Object} - Formatted current weather
  */
-function formatCurrentWeather(current: OpenMeteoCurrentWeather): OpenWeatherCurrent {
+function formatCurrentWeather(current: IOpenMeteoCurrentWeather): IOpenWeatherCurrent {
   const unixTime = Math.floor(new Date(current.time).getTime() / 1000);
 
   return {
@@ -84,7 +84,7 @@ function formatCurrentWeather(current: OpenMeteoCurrentWeather): OpenWeatherCurr
  * @param {Object} hourlyData - Open-Meteo hourly weather data
  * @returns {Array} - Formatted hourly weather array
  */
-function formatHourlyWeather(hourlyData: OpenMeteoHourly): OpenWeatherHourly[] {
+function formatHourlyWeather(hourlyData: IOpenMeteoHourly): IOpenWeatherHourly[] {
   const hourly = [];
 
   for (let i = 0; i < hourlyData.time.length; i++) {
@@ -128,8 +128,8 @@ function formatHourlyWeather(hourlyData: OpenMeteoHourly): OpenWeatherHourly[] {
  * @param {Object} dailyData - Open-Meteo daily weather data
  * @returns {Array} - Formatted daily weather array
  */
-function formatDailyWeather(dailyData: OpenMeteoDaily): OpenWeatherDaily[] {
-  const daily: OpenWeatherDaily[] = [];
+function formatDailyWeather(dailyData: IOpenMeteoDaily): IOpenWeatherDaily[] {
+  const daily: IOpenWeatherDaily[] = [];
 
   for (let i = 0; i < dailyData.time.length; i++) {
     const unixTime = Math.floor(new Date(dailyData.time[i]).getTime() / 1000);

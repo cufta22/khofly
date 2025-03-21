@@ -1,4 +1,4 @@
-import { Container, Flex, Slider, Text, Title } from "@mantine/core";
+import { Container, Flex, Title } from "@mantine/core";
 import SearchBar from "./components/SearchBar";
 
 import classes from "./styles.module.scss";

@@ -3,8 +3,8 @@ import { __dirname } from "../../config";
 
 import path from "node:path";
 
-import dayjs from "dayjs";
 import { checkFileExists } from "./utils/fileExists";
+import { getMediaFileName } from "./utils/getMediaFileName";
 
 // GET - /download
 export const handleDownload = async (ctx: Context) => {
@@ -30,7 +30,7 @@ export const handleDownload = async (ctx: Context) => {
   const tempDir = path.join(__dirname, `/../temp/media`);
 
   const randomNumbers = Math.floor(Math.random() * 100000);
-  const dateNow = dayjs().format("YYYY-MM-DD-HH:mm");
+  const dateNow = getMediaFileName();
 
   const staticUrl =
     process.env.NODE_ENV === "development"
@@ -83,9 +83,9 @@ export const handleDownload = async (ctx: Context) => {
 
       // Avoid captcha - add PO token
       if (process.env.YT_DLP_PO_TOKEN) {
-        ytCommand.push(
-          `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
-        );
+        // ytCommand.push(
+        //   `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
+        // );
       }
 
       ytCommand.push("-o");
