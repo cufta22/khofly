@@ -32,6 +32,7 @@ import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswe
 import IAUUID from "@module/Search/components/TabGeneral/components/InstantAnswer/components/UUID";
 import IAWeather from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Weather";
 import { KEYWORDS_IA } from "@module/Search/components/TabGeneral/components/InstantAnswer/_utils/keywords";
+import IAIP from "@module/Search/components/TabGeneral/components/InstantAnswer/components/IP";
 
 const DocsSearchInstantAnswer = () => {
   const theme = useMantineTheme();
@@ -129,12 +130,20 @@ const DocsSearchInstantAnswer = () => {
         <IAEquation query="6 * ( 2 + 7 )" />
       </Box>
 
+      <DocsTitle>8. What's my IP</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.ip.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
+        <IAIP />
+      </Box>
+
       {/* <DocsTitle>8. Lyrics</DocsTitle>
       <Box className={classes.search_box}>
         <IALyrics initialQ="rick astley never gonna give you up" />
       </Box> */}
 
-      <DocsTitle>8. Password</DocsTitle>
+      <DocsTitle>9. Password</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.password.join(", ")}</Code>
       </DocsText>
@@ -142,7 +151,7 @@ const DocsSearchInstantAnswer = () => {
         <IAPassword />
       </Box>
 
-      <DocsTitle>9. Random number generator</DocsTitle>
+      <DocsTitle>10. Random number generator</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.rng.join(", ")}</Code>
       </DocsText>
@@ -150,7 +159,7 @@ const DocsSearchInstantAnswer = () => {
         <IARNG />
       </Box>
 
-      <DocsTitle>10. Stopwatch</DocsTitle>
+      <DocsTitle>11. Stopwatch</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.stopwatch.join(", ")}</Code>
       </DocsText>
@@ -158,7 +167,7 @@ const DocsSearchInstantAnswer = () => {
         <IAStopwatch withIAWrapper />
       </Box>
 
-      <DocsTitle>11. TicTacToe</DocsTitle>
+      <DocsTitle>12. TicTacToe</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.tictactoe.join(", ")}</Code>
       </DocsText>
@@ -166,7 +175,7 @@ const DocsSearchInstantAnswer = () => {
         <IATicTacToe withIAWrapper />
       </Box>
 
-      <DocsTitle>12. Time In</DocsTitle>
+      <DocsTitle>13. Time In</DocsTitle>
       <DocsText>
         Condition: <Code>{`query.includes("time in")`}</Code>
       </DocsText>
@@ -174,7 +183,7 @@ const DocsSearchInstantAnswer = () => {
         <IATimeIn withIAWrapper location="Paris" />
       </Box>
 
-      <DocsTitle>13. Timer</DocsTitle>
+      <DocsTitle>14. Timer</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.timer.join(", ")}</Code>
       </DocsText>
@@ -182,7 +191,7 @@ const DocsSearchInstantAnswer = () => {
         <IATimer withIAWrapper />
       </Box>
 
-      <DocsTitle>14. Time Zone</DocsTitle>
+      <DocsTitle>15. Time Zone</DocsTitle>
       <DocsText>
         Condition: <Code>{`...`}</Code>
       </DocsText>
@@ -195,7 +204,7 @@ const DocsSearchInstantAnswer = () => {
         <Translate />
       </Box> */}
 
-      <DocsTitle>15. Unit converter</DocsTitle>
+      <DocsTitle>16. Unit converter</DocsTitle>
       <DocsText>
         Condition: Search query contains any measurement unit, ex. <Code>m to km</Code>
       </DocsText>
@@ -203,7 +212,7 @@ const DocsSearchInstantAnswer = () => {
         <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
       </Box>
 
-      <DocsTitle>16. Random UUID</DocsTitle>
+      <DocsTitle>17. Random UUID</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.uuid.join(", ")}</Code>
       </DocsText>
@@ -211,7 +220,7 @@ const DocsSearchInstantAnswer = () => {
         <IAUUID />
       </Box>
 
-      <DocsTitle>17. Weather</DocsTitle>
+      <DocsTitle>18. Weather</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.weather.join(", ")}</Code>
       </DocsText>

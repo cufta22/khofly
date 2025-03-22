@@ -1,8 +1,8 @@
 @use "variables" as vars;
 
 .ai_answer {
-  width: 450px;
-  max-width: 450px;
+  width: 100%;
+  // max-width: 450px;
 
   border-color: var(--mantine-color-pink-5);
 

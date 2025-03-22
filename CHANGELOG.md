@@ -9,13 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Instant answers - TicTacToe, Dice Roll
+- Instant answers - TicTacToe, Dice Roll, IP
 - Open Meteo as weather data source
 - Prioritize or blacklist certain websites
 - More start page customization
 - Multiple missing search engines
-- SearXNG search syntax options
 - Private Music Player
+
+### Changed
+
+- AI Answers to trigger manually
 
 ### Fixed
 

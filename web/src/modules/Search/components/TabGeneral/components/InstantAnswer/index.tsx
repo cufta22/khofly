@@ -26,6 +26,7 @@ import SharedGames from "./_shared/SharedGames";
 
 import useSearchQuery from "@hooks/use-search-query";
 import { KEYWORDS_IA } from "./_utils/keywords";
+import IAIP from "./components/IP";
 
 const InstantAnswer = () => {
   // const isXl = useResponsive("min", "lg", true);
@@ -58,6 +59,9 @@ const InstantAnswer = () => {
 
   // Instant answer - Equation
   if (shouldDisplayEquation(q)) return <IAEquation query={q} />;
+
+  // Instant answer - IP
+  if (shouldDisplayIAExact(q, KEYWORDS_IA.ip)) return <IAIP />;
 
   // Instant answer - Lyrics by
   // if (shouldDisplayIA(q, ["lyrics"]) && !isXl) return <IALyrics />;

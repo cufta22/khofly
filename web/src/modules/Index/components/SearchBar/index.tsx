@@ -1,5 +1,5 @@
 import { ActionIcon, Autocomplete, Flex, Loader, rem, useMantineTheme } from "@mantine/core";
-import { IconArrowRight, IconKeyboard, IconSearch } from "@tabler/icons-react";
+import { IconArrowRight, IconKeyboard, IconSearch, IconSparkles } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
@@ -23,6 +23,7 @@ const SearchBar = () => {
 
   const useAutocomplete = useSettingsStore((state) => state.useAutocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
+  const useAIAnswers = useSettingsStore((state) => state.useAIAnswers);
 
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
 
@@ -39,21 +40,25 @@ const SearchBar = () => {
   // Autocomplete API
   const { data: autocompleteData, isMutating, trigger, reset } = useAutocompleteSWR();
 
-  const handleSearch = (query: string) => {
+  const handleSearch = (query: string, withAI: boolean) => {
     // Prevent empty search
     if (!query.length) return;
 
     nprogress.start();
 
     // Infer tab from query syntax
-    const { tab } = getTabFromQuery(query);
+    const { tab: tabFromSyntax } = getTabFromQuery(query);
+
+    const qParam = `q=${encodeURIComponent(query)}`;
+    const tabParam = `tab=${tabFromSyntax || "general"}`;
+    const aiParam = withAI ? "&ai=1" : "";
 
     // Handle Private Search
     if (privateSearch) {
       setSearchQuery(encodeURIComponent(query));
-      return navigate(`/search?tab=${tab}`);
+      return navigate(`/search?${tabParam}${aiParam}`);
     }
-    navigate(`/search?q=${encodeURIComponent(query)}&tab=${tab}`);
+    navigate(`/search?${qParam}&${tabParam}${aiParam}`);
   };
 
   useEffect(() => {
@@ -75,7 +80,7 @@ const SearchBar = () => {
           if (!val.length) reset();
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") handleSearch(q);
+          if (e.key === "Enter") handleSearch(q, false);
         }}
         leftSection={
           !isXs &&
@@ -90,38 +95,55 @@ const SearchBar = () => {
           <Flex align="center" justify="flex-end">
             {!isXs && (
               <ActionIcon
-                size={"xl"}
+                size={isXs ? 32 : 38}
                 mr={6}
                 radius="xl"
-                // color={"blue"}
-                variant="transparent"
+                color={"white"}
+                variant="subtle"
                 onClick={toggleKeyboard}
               >
-                <IconKeyboard style={getIconStyle(22)} color={"white"} stroke={1.5} />
+                <IconKeyboard style={getIconStyle(18)} color={"white"} />
               </ActionIcon>
             )}
 
             <ActionIcon
               size={isXs ? 32 : 38}
+              mr={6}
               radius="xl"
               color={theme.colors[theme.primaryColor][6]}
-              variant="filled"
-              onClick={() => handleSearch(q)}
+              variant="subtle"
+              onClick={() => handleSearch(q, false)}
               disabled={!q}
             >
-              <IconArrowRight style={getIconStyle(22)} stroke={1.5} />
+              <IconArrowRight style={getIconStyle(22)} />
             </ActionIcon>
+
+            {useAIAnswers && (
+              <ActionIcon
+                size={isXs ? 32 : 38}
+                mr={6}
+                radius="xl"
+                color={theme.colors.pink[6]}
+                variant="subtle"
+                onClick={() => handleSearch(q, true)}
+                disabled={!q}
+              >
+                <IconSparkles style={getIconStyle(22)} />
+              </ActionIcon>
+            )}
           </Flex>
         }
-        rightSectionWidth={isXs ? 40 : 100}
+        // rightSectionWidth={isXs ? 40 : 170}
+        rightSectionWidth="fit-content"
         maxLength={250}
         autoFocus
         // Autocomplete props
         data={autocompleteData ? autocompleteData?.map((str) => ({ label: str, value: str })) : []}
         comboboxProps={{
-          onOptionSubmit: (val) => handleSearch(val),
+          onOptionSubmit: (val) => handleSearch(val, false),
           size: "md",
         }}
+        pr="xs"
         // Disable password manager stuff
         autoComplete="off"
         data-1p-ignore

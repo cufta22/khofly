@@ -9,6 +9,7 @@ import MediaSwitch from "@module/Settings/components/_general/General/MediaSwitc
 import IASwitch from "@module/Settings/components/_general/General/IASwitch";
 import PrivateSearchSwitch from "@module/Settings/components/_general/General/PrivateSearchSwitch";
 import PrivatePlayerSwitch from "@module/Settings/components/_general/General/PrivarePlayerSwitch";
+import AISwitch from "@module/Settings/components/_general/General/AISwitch";
 
 const QSGeneral = () => {
   const t = useTranslate();
@@ -47,6 +48,14 @@ const QSGeneral = () => {
             <Text>{t("pages.settings.general.toggle_ia")}</Text>
 
             <IASwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
+          <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.general.toggle_ai_answers")}</Text>
+
+            <AISwitch />
           </Flex>
 
           <Divider my={6} w="100%" />

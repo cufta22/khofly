@@ -45,8 +45,9 @@ Add missing features from Search Syntax
 
 Check if all api call 400s are handled well
 
-Fix yt-dlp error on server
-ERROR: [youtube] y0sF5xhGreA: Sign in to confirm you’re not a bot. This helps protect our community.
+change AI api to use swr instead of mutation
+
+update AI Answers page to remove trigger words
 
 Ideas for v7:
 

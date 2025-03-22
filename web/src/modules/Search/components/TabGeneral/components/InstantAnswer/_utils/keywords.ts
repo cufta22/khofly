@@ -17,6 +17,7 @@ export const KEYWORDS_IA = {
 
     // "tiktok download",
   ],
+  ip: ["whats my ip", "what's my ip", "my ip"],
   password: ["random password", "password"],
   rng: ["random number", "rng", "random number generator"],
   stopwatch: ["stopwatch"],

@@ -46,6 +46,10 @@ const TabGeneral = () => {
         {/* Search Options */}
         <SearchOptions className={classes.search_options_general} />
 
+        {/* AI Answer, optional */}
+        <AIAnswer />
+
+        {/* Instant Answer, optional */}
         <InstantAnswer />
 
         {data?.map((res, i) => {
@@ -143,8 +147,6 @@ const TabGeneral = () => {
 
       {/* Infoboxes */}
       <Flex direction="column" gap="xl" pt="xl">
-        <AIAnswer />
-
         {!isLoading &&
           !isValidating &&
           !isRateLimit &&
