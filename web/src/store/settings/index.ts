@@ -116,6 +116,7 @@ export const useSettingsStore = create<SettingsState>()(
         displayMedia: state.displayMedia,
         selectedMedia: state.selectedMedia,
         useInstantAnswers: state.useInstantAnswers,
+        useAIAnswers: state.useAIAnswers,
         showEngines: state.showEngines,
       }),
     }

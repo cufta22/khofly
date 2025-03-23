@@ -39,15 +39,11 @@ const SharedGames: React.FC<Props> = ({ type }) => {
         </Tabs.List>
 
         <Tabs.Panel value="coinflip">
-          <Space h={40} />
           <CoinFilp withIAWrapper={false} />
-          <Space h={40} />
         </Tabs.Panel>
 
         <Tabs.Panel value="diceroll">
-          <Space h={40} />
           <DiceRoll withIAWrapper={false} />
-          <Space h={40} />
         </Tabs.Panel>
 
         <Tabs.Panel value="tictactoe">

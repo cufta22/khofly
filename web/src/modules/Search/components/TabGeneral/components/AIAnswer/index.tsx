@@ -17,13 +17,14 @@ interface Props {
 }
 
 const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
-  const { data, isMutating, trigger } = useAISWR();
   const theme = useMantineTheme();
 
   const [searchParams] = useSearchParams();
 
   const q = useSearchQuery();
   const queryToUse = propsQuery || q || "";
+
+  const { data, isLoading, mutate } = useAISWR({ prompt: queryToUse });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
@@ -37,8 +38,8 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   useEffect(() => {
     if (!hydrated || !useAIAnswers || !workerDomain || !queryToUse) return;
 
-    if (!isMutating && shouldTrigger) {
-      trigger(queryToUse);
+    if (!isLoading && shouldTrigger) {
+      mutate();
     }
   }, [hydrated, queryToUse]);
 
@@ -56,7 +57,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
         </Text>
       </Flex>
 
-      {data && !isMutating ? (
+      {data && !isLoading ? (
         <Text className={classes.ai_text} size="sm" c="dimmed">
           {data?.response}
         </Text>

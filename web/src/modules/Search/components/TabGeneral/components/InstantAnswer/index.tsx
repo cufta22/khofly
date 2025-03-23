@@ -27,6 +27,7 @@ import SharedGames from "./_shared/SharedGames";
 import useSearchQuery from "@hooks/use-search-query";
 import { KEYWORDS_IA } from "./_utils/keywords";
 import IAIP from "./components/IP";
+import IATranslate from "./components/Translate";
 
 const InstantAnswer = () => {
   // const isXl = useResponsive("min", "lg", true);
@@ -85,6 +86,9 @@ const InstantAnswer = () => {
   // Instant answer - Timer WIP
   if (shouldDisplayIAExact(q, KEYWORDS_IA.timer)) return <SharedClock type="timer" />;
 
+  // Instant answer - Translate WIP
+  if (shouldDisplayIAExact(q, KEYWORDS_IA.translate)) return <IATranslate />;
+
   // Instant answer - Unit convertor
   const { sdUnit, ...restUnit } = shouldDisplayUnits(q);
   if (sdUnit) return <SharedConverter type="unit" {...restUnit} />;
@@ -96,11 +100,8 @@ const InstantAnswer = () => {
   if (shouldDisplayIA(q, KEYWORDS_IA.weather)) return <IAWeather />;
 
   // TODO:
-  // Instant answer - Translate WIP
-  //if (shouldDisplayIA(query, ["translate"])) return <IATranslate />;
   // Instant answer - Sport scores
   // Instant answer - Time zone conversion
-  // Instant answer - Time around the world?
   // Instant answer - Lorem ipsum generator
 
   // Commands for memes

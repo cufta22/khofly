@@ -3,12 +3,14 @@ import { Anchor, Center, Flex, LoadingOverlay, Paper, Select, Text } from "@mant
 
 import classes from "./styles.module.scss";
 import { useEffect, useState } from "react";
-import { useTimeApiTimezoneSWR } from "src/api/timeapi/use-timeapi-query";
+import { useTimeApiSWR } from "src/api/timeapi/use-timeapi-query";
+
+import { findTimeZone, TIME_ZONES } from "./utils";
+import { usePrimaryColor } from "@hooks/use-primary-color";
+import type { ITimeAPITimeInResponse } from "src/api/timeapi/types";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { findTimeZone, TIME_ZONES } from "./utils";
-import { usePrimaryColor } from "@hooks/use-primary-color";
 dayjs.extend(utc);
 
 interface Props {
@@ -17,7 +19,8 @@ interface Props {
 }
 
 const IATimeIn: React.FC<Props> = ({ withIAWrapper, location }) => {
-  const { data, isMutating, trigger } = useTimeApiTimezoneSWR();
+  const { data, isMutating, trigger } = useTimeApiSWR();
+  const apiData = data as ITimeAPITimeInResponse;
 
   const [input, setInput] = useState("");
 
@@ -30,7 +33,7 @@ const IATimeIn: React.FC<Props> = ({ withIAWrapper, location }) => {
   };
 
   useEffect(() => {
-    if (input) trigger({ timezone: input });
+    if (input) trigger({ timezone1: input, timezone2: "", type: "time_in" });
   }, [input]);
 
   useEffect(() => {
@@ -56,14 +59,14 @@ const IATimeIn: React.FC<Props> = ({ withIAWrapper, location }) => {
             mb="md"
           />
 
-          {data?.dateTime && (
+          {apiData?.dateTime && (
             <Text fz={36} fw="bold">
-              {dayjs(data?.dateTime).format("h:mm A")}
+              {dayjs(apiData?.dateTime).format("h:mm A")}
             </Text>
           )}
 
-          {data?.dateTime && (
-            <Text size="xl">{dayjs(data?.dateTime).format("dddd, MMMM DD, YYYY")}</Text>
+          {apiData?.dateTime && (
+            <Text size="xl">{dayjs(apiData?.dateTime).format("dddd, MMMM DD, YYYY")}</Text>
           )}
         </Flex>
 

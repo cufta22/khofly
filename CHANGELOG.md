@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- AI Answers to trigger manually
+- AI Answers to trigger on command instead of automatically
 
 ### Fixed
 

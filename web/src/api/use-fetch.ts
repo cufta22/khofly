@@ -14,7 +14,7 @@ const useFetch = () => {
 
     if (!res) return;
 
-    const contentType = res.headers.get("content-type")!;
+    const contentType = res.headers.get("content-type");
     let resData = undefined;
 
     if (contentType?.startsWith("application/json")) resData = await res.json();

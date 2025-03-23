@@ -151,7 +151,7 @@ const DocsSearchInstantAnswer = () => {
         <IAPassword />
       </Box>
 
-      <DocsTitle>10. Random number generator</DocsTitle>
+      <DocsTitle>10. RNG</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.rng.join(", ")}</Code>
       </DocsText>
@@ -199,12 +199,15 @@ const DocsSearchInstantAnswer = () => {
         <IATimeZone withIAWrapper location="Paris" />
       </Box>
 
-      {/* <DocsTitle>14. Translate</DocsTitle>
+      <DocsTitle>16. Translate</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.translate.join(", ")}</Code>
+      </DocsText>
       <Box mt="md" className={classes.search_box}>
-        <Translate />
-      </Box> */}
+        <IATranslate />
+      </Box>
 
-      <DocsTitle>16. Unit converter</DocsTitle>
+      <DocsTitle>17. Unit converter</DocsTitle>
       <DocsText>
         Condition: Search query contains any measurement unit, ex. <Code>m to km</Code>
       </DocsText>
@@ -212,7 +215,7 @@ const DocsSearchInstantAnswer = () => {
         <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
       </Box>
 
-      <DocsTitle>17. Random UUID</DocsTitle>
+      <DocsTitle>18. Random UUID</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.uuid.join(", ")}</Code>
       </DocsText>
@@ -220,7 +223,7 @@ const DocsSearchInstantAnswer = () => {
         <IAUUID />
       </Box>
 
-      <DocsTitle>18. Weather</DocsTitle>
+      <DocsTitle>19. Weather</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.weather.join(", ")}</Code>
       </DocsText>

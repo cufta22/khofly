@@ -76,8 +76,8 @@ const PageSettings = () => {
           <>
             <SettingsSearXNG />
             <SettingsAPI />
-            <SettingsNominatim />
             <SettingsAIWorker />
+            <SettingsNominatim />
           </>
         </Tabs.Panel>
 

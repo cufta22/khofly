@@ -1,25 +1,42 @@
-import { Anchor, Button, Flex, Paper, Stack, Text, TextInput } from "@mantine/core";
-import { IconSparkles, IconWorld } from "@tabler/icons-react";
+import {
+  Anchor,
+  Button,
+  Flex,
+  Group,
+  Image,
+  Paper,
+  Select,
+  SelectProps,
+  Stack,
+  Text,
+  TextInput,
+  useMantineTheme,
+} from "@mantine/core";
+import { IconBrandGoogle, IconBrandMeta, IconSparkles, IconWorld } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import useToast from "@hooks/use-toast";
-import { useInstanceStore } from "@store/instance";
+import { IWorkerModels, useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
 import { useEffect } from "react";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import { WORKER_MODELS_DATA } from "./data";
 
 const SettingsAIWorker = () => {
   const hydrated = useInstanceStore((state) => state.hydrated);
-  const domain = useInstanceStore((state) => state.workerDomain);
-  const setDomain = useInstanceStore((state) => state.setWorkerDomain);
+  const workerDomain = useInstanceStore((state) => state.workerDomain);
+  const setWorkerDomain = useInstanceStore((state) => state.setWorkerDomain);
+  const workerModel = useInstanceStore((state) => state.workerModel);
+  const setWorkerModel = useInstanceStore((state) => state.setWorkerModel);
 
+  const theme = useMantineTheme();
   const linkTextColor = usePrimaryColor(4);
 
   const form = useForm({
     initialValues: {
-      domain: domain,
+      domain: workerDomain,
     },
     validate: {
       domain: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
@@ -29,15 +46,35 @@ const SettingsAIWorker = () => {
   const { toast } = useToast();
 
   const handleSubmit = (values: typeof form.values) => {
-    setDomain(values.domain);
+    setWorkerDomain(values.domain);
     toast.show({ message: "URL changed!", color: "green" });
   };
 
   useEffect(() => {
     if (hydrated && !form.values.domain) {
-      form.setFieldValue("domain", domain);
+      form.setFieldValue("domain", workerDomain);
     }
   }, [hydrated]);
+
+  const getIcon = (label: string) => {
+    if (label.includes("llama-") || label.includes("m2m100")) {
+      return <Image src="/assets/engines/meta-icon.svg" fit="contain" w={16} h={16} />;
+    }
+
+    if (label.includes("gemma-")) {
+      return <Image src="/assets/engines/google-icon.svg" w={16} h={16} />;
+    }
+    if (label.includes("mistral-")) {
+      return <Image src="/assets/engines/mistral-icon.svg" w={16} h={16} />;
+    }
+  };
+
+  const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
+    <Group flex="1" gap="xs">
+      {getIcon(option.label)}
+      {option.label}
+    </Group>
+  );
 
   return (
     <Paper radius="md" mt={40} withBorder>
@@ -57,6 +94,20 @@ const SettingsAIWorker = () => {
             size="md"
             className={classes.settings_input}
             {...form.getInputProps("domain")}
+          />
+
+          <Select
+            className={classes.settings_select}
+            label="CF Worker model"
+            // description=""
+            placeholder="CF Worker model"
+            value={workerModel}
+            onChange={(val) => {
+              setWorkerModel(val as IWorkerModels);
+            }}
+            data={WORKER_MODELS_DATA}
+            renderOption={renderSelectOption}
+            leftSection={getIcon(workerModel)}
           />
 
           <Text size="sm">
