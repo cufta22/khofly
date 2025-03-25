@@ -1,6 +1,8 @@
 import { Combobox, Flex, InputBase, useCombobox } from "@mantine/core";
 
 import classes from "./styles.module.scss";
+import commonClasses from "../../../common/styles.module.scss";
+
 import type { DotNestedKeys, ILanguage, ITranslations } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
@@ -96,6 +98,7 @@ const LanguageSelect = () => {
           value={t(selected.label)}
           classNames={{
             input: classes.combobox_cursor,
+            root: commonClasses.settings_control,
           }}
           readOnly
         />

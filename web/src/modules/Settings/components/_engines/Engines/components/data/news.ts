@@ -1,16 +1,7 @@
-import type { INewsEngines } from "@store/engines";
-import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 
-export const DATA_ENGINES_NEWS: {
-  type: "divider" | "engine";
-  value: INewsEngines | "";
-  alt: string;
-  icon: string;
-  label: DotNestedKeys<ITranslations>;
-  bang: string;
-  safeSearch: boolean;
-  timeRange: boolean;
-}[] = [
+import type { IDataEngine } from ".";
+
+export const DATA_ENGINES_NEWS: IDataEngine[] = [
   {
     type: "divider",
     value: "",

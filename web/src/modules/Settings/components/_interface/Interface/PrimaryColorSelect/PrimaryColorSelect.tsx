@@ -9,6 +9,7 @@ import {
   type MantineColor,
 } from "@mantine/core";
 import classes from "./styles.module.scss";
+import commonClasses from "../../../common/styles.module.scss";
 
 import type { IAppTheme } from "@ts/global.types";
 
@@ -89,6 +90,7 @@ const PrimaryColorSelect = () => {
           value={t(selected.label)}
           classNames={{
             input: classes.combobox_cursor,
+            root: commonClasses.settings_control,
           }}
           readOnly
         />

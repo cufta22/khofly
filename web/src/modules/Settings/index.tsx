@@ -1,4 +1,4 @@
-import { Container, Tabs } from "@mantine/core";
+import { Container, Space, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
 import { IconBrowser, IconBrush, IconLink, IconRadar, IconSettings2 } from "@tabler/icons-react";
 import { useState } from "react";
@@ -18,6 +18,7 @@ import SettingsNominatim from "./components/_instances/Nominatim";
 import SettingsShortcuts from "./components/_startpage/Shortcuts";
 import SettingsWidgets from "./components/_startpage/Widgets";
 import SettingsAPI from "./components/_instances/API";
+import SettingsWallpaper from "./components/_startpage/Wallpaper";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -59,26 +60,25 @@ const PageSettings = () => {
         </Tabs.List>
 
         <Tabs.Panel value="interface">
-          <>
-            <SettingsInterface setDisplayThemeEdit={setDisplayThemeEdit} />
-            {displayThemeEdit && <SettingsThemeEditor setDisplayThemeEdit={setDisplayThemeEdit} />}
-          </>
+          <SettingsInterface setDisplayThemeEdit={setDisplayThemeEdit} />
+          <Space h={40} />
+          {displayThemeEdit && <SettingsThemeEditor setDisplayThemeEdit={setDisplayThemeEdit} />}
         </Tabs.Panel>
 
         <Tabs.Panel value="general">
-          <>
-            <SettingsCategories />
-            <SettingsGeneral />
-          </>
+          <SettingsCategories />
+          <Space h={40} />
+          <SettingsGeneral />
         </Tabs.Panel>
 
         <Tabs.Panel value="instances">
-          <>
-            <SettingsSearXNG />
-            <SettingsAPI />
-            <SettingsAIWorker />
-            <SettingsNominatim />
-          </>
+          <SettingsSearXNG />
+          <Space h={40} />
+          <SettingsAPI />
+          <Space h={40} />
+          <SettingsAIWorker />
+          <Space h={40} />
+          <SettingsNominatim />
         </Tabs.Panel>
 
         <Tabs.Panel value="engines">
@@ -86,7 +86,10 @@ const PageSettings = () => {
         </Tabs.Panel>
 
         <Tabs.Panel value="startpage">
+          <SettingsWallpaper />
+          <Space h={40} />
           <SettingsShortcuts />
+          <Space h={40} />
           <SettingsWidgets />
         </Tabs.Panel>
       </Tabs>

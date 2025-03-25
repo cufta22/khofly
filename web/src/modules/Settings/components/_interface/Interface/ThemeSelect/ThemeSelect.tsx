@@ -1,5 +1,6 @@
 import { Combobox, Flex, Image, InputBase, useCombobox } from "@mantine/core";
 import classes from "./styles.module.scss";
+import commonClasses from "../../../common/styles.module.scss";
 
 import type { DotNestedKeys, IAppTheme, ITranslations } from "@ts/global.types";
 
@@ -102,7 +103,11 @@ const ThemeSelect = () => {
   ));
 
   return (
-    <Combobox store={combobox} onOptionSubmit={(val) => handleChange(val as IAppTheme)}>
+    <Combobox
+      classNames={{}}
+      store={combobox}
+      onOptionSubmit={(val) => handleChange(val as IAppTheme)}
+    >
       <Combobox.Target>
         <InputBase
           w={200}
@@ -126,6 +131,7 @@ const ThemeSelect = () => {
           value={t(selected.label)}
           classNames={{
             input: classes.combobox_cursor,
+            root: commonClasses.settings_control,
           }}
           readOnly
         />

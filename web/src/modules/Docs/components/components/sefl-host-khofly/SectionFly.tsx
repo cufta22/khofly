@@ -5,6 +5,7 @@ import DocsTitle from "../../common/DocsTitle";
 import DocsLink from "../../common/DocsLink";
 import { IconInfoCircle } from "@tabler/icons-react";
 import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
+import classes from "./styles.module.scss";
 
 const flyDockerfile = `
 # syntax = docker/dockerfile:1
@@ -55,7 +56,7 @@ CMD [ "npm", "run", "start" ]
 const SectionFly = () => {
   return (
     <>
-      <Flex align="center" justify="space-between">
+      <Flex className={classes.self_host_title_wrapper} align="center" justify="space-between">
         <DocsTitle>Deploying to Fly.io</DocsTitle>
 
         <Badge size="lg" color="pink" variant="light">

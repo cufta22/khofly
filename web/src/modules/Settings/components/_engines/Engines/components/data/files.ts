@@ -1,16 +1,6 @@
-import type { IFilesEngines } from "@store/engines";
-import type { DotNestedKeys, ITranslations } from "@ts/global.types";
+import type { IDataEngine } from ".";
 
-export const DATA_ENGINES_FILES: {
-  type: "divider" | "engine";
-  value: IFilesEngines | "";
-  alt: string;
-  icon: string;
-  label: DotNestedKeys<ITranslations>;
-  bang: string;
-  safeSearch: boolean;
-  timeRange: boolean;
-}[] = [
+export const DATA_ENGINES_FILES: IDataEngine[] = [
   {
     type: "divider",
     value: "",

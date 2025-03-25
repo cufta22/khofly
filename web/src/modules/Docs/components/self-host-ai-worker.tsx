@@ -1,16 +1,5 @@
-import {
-  Blockquote,
-  Code,
-  Container,
-  Image,
-  List,
-  Paper,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
-import { IconFile } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useState } from "react";
+import { Container, Paper, Text, useMantineTheme } from "@mantine/core";
+
 import DocsLink from "./common/DocsLink";
 import DocsTitle from "./common/DocsTitle";
 import DocsText from "./common/DocsText";
@@ -34,6 +23,10 @@ export default {
 
     const url = new URL(request.url); // Get the URL of the request
     const prompt = url.searchParams.get('prompt'); // Retrieve the 'prompt' query parameter
+    const model = url.searchParams.get('model'); // Retrieve the 'model' query parameter
+
+    const source_lang = url.searchParams.get('source_lang'); // For translate
+    const target_lang = url.searchParams.get('target_lang'); // For translate
 
     if (request.method === "OPTIONS") {
       return new Response("OK", {
@@ -48,16 +41,28 @@ export default {
       });
     }
 
-    if (!prompt) return new Response('Prompt is missing', { status: 400 });;
+    if (!prompt) return new Response('Prompt is missing', { status: 400 });
 
     try {
-      // Use the model that you want, speed might vary
-      let response = await env.AI.run('@cf/meta/llama-3.2-1b-instruct', {
-        prompt: prompt
-      });
-      return Response.json(response, {
-        headers: corsHeaders
-      });
+      if(model.includes("m2m100")) {
+        // Used for translations
+        let response = await env.AI.run(model, {
+          text: prompt,
+          source_lang: source_lang,
+          target_lang: target_lang
+        });
+        return Response.json(response, {
+          headers: corsHeaders
+        });
+      } else {
+        // Used for text generation
+        let response = await env.AI.run(model, {
+          prompt: prompt
+        });
+        return Response.json(response, {
+          headers: corsHeaders
+        });
+      }
     } catch (error) {
       // Handle error
       return new Response('Error: ' + error?.message, { 
@@ -107,19 +112,13 @@ const DocsSelfHostAiWorker = () => {
       <DocsText>7. Paste the code below in the editor.</DocsText>
 
       <DocsText>
-        7.1. Optional, before you deploy you can change the model used to whichever you want, full
-        list <DocsLink href="https://developers.cloudflare.com/workers-ai/models/" label="here" />.
-        You can change this later whenever you want by editing worker code and redeploying.
-      </DocsText>
-
-      <DocsText>
         8. Click <strong>Deploy</strong> go back to the dashboard.
       </DocsText>
 
       <DocsText>
         9. In the <strong>Settings</strong> tab under <strong>Domains & Routes</strong> copy the
         active worker domain ( should be smth like <strong>name.email.workers.dev</strong> ) and
-        paste in under{" "}
+        paste it under{" "}
         <RemixLink to="/settings?tab=instances">
           <Text component="span" c={linkTextColor}>
             /settings
@@ -130,7 +129,19 @@ const DocsSelfHostAiWorker = () => {
 
       <DocsText>
         10. That's it, you can now play around with different models and redeploy any change to the
-        worker that you want as long as it stays a GET request with ?prompt search param.
+        worker that you want.
+      </DocsText>
+
+      <DocsText>
+        The model can be selected in{" "}
+        <RemixLink to="/settings?tab=instances">
+          <Text component="span" c={linkTextColor}>
+            /settings
+          </Text>
+        </RemixLink>{" "}
+        , speed and results will depend on the size of the model, you can find the full list of
+        models <DocsLink href="https://developers.cloudflare.com/workers-ai/models/" label="here" />
+        .
       </DocsText>
 
       <DocsSubtitle>AI Worker Code</DocsSubtitle>

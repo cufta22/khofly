@@ -1,13 +1,15 @@
 import { Select, Switch } from "@mantine/core";
-import { IWidgetPosition, useStatrpageStore } from "@store/startpage";
+import { type IWidgetPosition, useStatrpageStore } from "@store/startpage";
 
 interface Props {
-  type: "todos" | "weather" | "clock";
+  type: "todos" | "weather" | "clock" | "notes";
 }
 
 const PositionSelect: React.FC<Props> = ({ type }) => {
   const todosPosition = useStatrpageStore((state) => state.todosPosition);
   const setTodosPosition = useStatrpageStore((state) => state.setTodosPosition);
+  const notesPosition = useStatrpageStore((state) => state.notesPosition);
+  const setNotesPosition = useStatrpageStore((state) => state.setNotesPosition);
   const weatherPosition = useStatrpageStore((state) => state.weatherPosition);
   const setWeatherPosition = useStatrpageStore((state) => state.setWeatherPosition);
   const clockPosition = useStatrpageStore((state) => state.clockPosition);
@@ -26,6 +28,9 @@ const PositionSelect: React.FC<Props> = ({ type }) => {
         break;
       case "clock":
         setClockPosition(value);
+        break;
+      case "notes":
+        setNotesPosition(value);
         break;
       default:
         break;

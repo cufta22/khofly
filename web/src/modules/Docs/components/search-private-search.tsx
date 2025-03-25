@@ -1,7 +1,6 @@
 import { Container, Text, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
 import { IconShield } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
 import RemixLink from "@components/RemixLink";
@@ -17,9 +16,7 @@ const DocsSearchPrivateSearch = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle
-        leftSection={<IconShield style={getIconStyle(48)} color={theme.colors.green[5]} />}
-      >
+      <DocsTitle leftSection={<IconShield color={theme.colors.green[5]} />}>
         Private Search
       </DocsTitle>
 

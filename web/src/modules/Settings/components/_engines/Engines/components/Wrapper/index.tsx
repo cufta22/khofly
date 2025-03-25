@@ -1,25 +1,16 @@
 import EngineComponent from "../EngineRow";
 import { HOVER_DATA } from "../../hover-data";
 import { type IGeneralEngines, useEnginesStore } from "@store/engines";
-import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 import type { ICategories } from "@store/settings";
 import { Table } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import { CATEGORY_TO_STORE } from "./utils";
+import type { IDataEngine } from "../data";
 
 interface Props {
   category: ICategories;
-  data: {
-    type: "divider" | "engine";
-    value: string | "";
-    alt: string;
-    icon: string;
-    label: DotNestedKeys<ITranslations>;
-    bang: string;
-    safeSearch: boolean;
-    timeRange: boolean;
-  }[];
+  data: IDataEngine[];
   variant?: "settings" | "quick_settings";
 }
 

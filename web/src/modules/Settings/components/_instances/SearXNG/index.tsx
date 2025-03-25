@@ -21,6 +21,7 @@ import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
+import SettingsTitle from "../../common/SettingsTitle";
 
 const SettingsSearXNG = () => {
   const domain = useInstanceStore((state) => state.searXNGDomain);
@@ -68,13 +69,7 @@ const SettingsSearXNG = () => {
   return (
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Flex align="center" p="lg" mb={16}>
-          <IconSearch style={getIconStyle(32)} />
-
-          <Text fz={26} fw={600} ml="sm">
-            SearXNG Domain
-          </Text>
-        </Flex>
+        <SettingsTitle icon={<IconSearch />} title="pages.settings.instances.title_searxng" />
 
         {/* Settings content */}
         <Stack px="lg" mb="xl">

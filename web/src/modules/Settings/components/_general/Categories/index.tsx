@@ -1,4 +1,4 @@
-import { Flex, Paper, Stack, Text } from "@mantine/core";
+import { Flex, Paper, Text } from "@mantine/core";
 import {
   IconCategory,
   IconCpu,
@@ -13,8 +13,8 @@ import {
   IconUsers,
 } from "@tabler/icons-react";
 import { CategoryCheckbox } from "./components/CategoryCheckbox";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { ICategories, useSettingsStore } from "@store/settings";
+import { type ICategories, useSettingsStore } from "@store/settings";
+import SettingsTitle from "../../common/SettingsTitle";
 
 const CATEGORIES_DATA = [
   { id: "general", title: "General", icon: IconSearch },
@@ -30,8 +30,6 @@ const CATEGORIES_DATA = [
 ];
 
 const SettingsCategories = () => {
-  const t = useTranslate();
-
   const categories = useSettingsStore((state) => state.categories);
   const setCategories = useSettingsStore((state) => state.setCategories);
 
@@ -58,17 +56,11 @@ const SettingsCategories = () => {
 
   return (
     <Paper radius="md" withBorder>
-      <Flex align="center" justify="space-between" p="lg" mb={16}>
-        <Flex align="center">
-          <IconCategory size={32} />
-
-          <Text fz={26} fw={600} ml="sm">
-            {t("pages.settings.categories.title")}
-          </Text>
-        </Flex>
-
-        <Text>Currently enabled search categories</Text>
-      </Flex>
+      <SettingsTitle
+        icon={<IconCategory />}
+        title="pages.settings.categories.title"
+        rightSection={<Text>Currently enabled search categories</Text>}
+      />
 
       {/* Settings content */}
       <Flex align="center" gap={4} px="lg" mb="xl" wrap="wrap">

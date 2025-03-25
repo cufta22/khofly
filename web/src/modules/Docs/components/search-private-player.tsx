@@ -1,7 +1,6 @@
 import { Code, Container, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
 import { IconPlayerPlay } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
 import DocsNextPrev from "./common/DocsNextPrev";
@@ -13,9 +12,7 @@ const DocsSearchPrivatePlayer = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle
-        leftSection={<IconPlayerPlay style={getIconStyle(48)} color={theme.colors.orange[5]} />}
-      >
+      <DocsTitle leftSection={<IconPlayerPlay color={theme.colors.orange[5]} />}>
         Private Player
       </DocsTitle>
 

@@ -2,13 +2,7 @@ import { Container, Grid, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
 import DocsCard from "./common/DocsCard";
 import DocsText from "./common/DocsText";
-import {
-  IconLanguage,
-  IconMessageCode,
-  IconServer,
-  IconShield,
-} from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+
 import DocsSubtitle from "./common/DocsSubtitle";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 
@@ -20,10 +14,9 @@ const DocsIndex = () => {
       <DocsTitle>Khofly documentation</DocsTitle>
 
       <DocsText>
-        Here you'll find all the important technical information regarding
-        Khofly. Documentation is always being updated so if you notice any
-        missing/wrong information make sure to report it either on GitHub or
-        Discord.
+        Here you'll find all the important technical information regarding Khofly. Documentation is
+        always being updated so if you notice any missing/wrong information make sure to report it
+        either on GitHub or Discord.
       </DocsText>
 
       <DocsSubtitle>Getting started</DocsSubtitle>

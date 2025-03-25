@@ -12,6 +12,7 @@ import WidgetWeather from "./components/WidgetWeather";
 import WidgetTodo from "./components/WidgetToDo";
 import WidgetClock from "./components/WidgetClock";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
+import WidgetNotes from "./components/WidgetNotes";
 
 const PageIndex = () => {
   const t = useTranslate();
@@ -19,10 +20,12 @@ const PageIndex = () => {
   const displayShortcuts = useStatrpageStore((state) => state.displayShortcuts);
 
   const displayTodos = useStatrpageStore((state) => state.displayTodos);
+  const displayNotes = useStatrpageStore((state) => state.displayNotes);
   const displayWeather = useStatrpageStore((state) => state.displayWeather);
   const displayClock = useStatrpageStore((state) => state.displayClock);
 
   const todosPosition = useStatrpageStore((state) => state.todosPosition);
+  const notesPosition = useStatrpageStore((state) => state.notesPosition);
   const weatherPosition = useStatrpageStore((state) => state.weatherPosition);
   const clockPosition = useStatrpageStore((state) => state.clockPosition);
 
@@ -31,6 +34,11 @@ const PageIndex = () => {
       component: WidgetTodo,
       display: displayTodos,
       position: todosPosition,
+    },
+    {
+      component: WidgetNotes,
+      display: displayNotes,
+      position: notesPosition,
     },
     {
       component: WidgetWeather,

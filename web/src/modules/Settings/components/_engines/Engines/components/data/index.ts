@@ -17,6 +17,7 @@ export interface IDataEngine {
   alt: string;
   icon: string;
   label: DotNestedKeys<ITranslations>;
+  bang: string;
   safeSearch: boolean;
   timeRange: boolean;
 }

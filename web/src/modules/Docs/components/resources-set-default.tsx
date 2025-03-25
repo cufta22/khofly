@@ -36,11 +36,7 @@ const DocsResourcesSetDefault = () => {
     <Container size="lg" p="xl" pb={100}>
       {paramsBrowser === "firefox" && (
         <>
-          <DocsTitle
-            leftSection={
-              <IconBrandFirefox style={getIconStyle(48)} color={theme.colors.orange[5]} />
-            }
-          >
+          <DocsTitle leftSection={<IconBrandFirefox color={theme.colors.orange[5]} />}>
             Adding search engine to Firefox
           </DocsTitle>
 

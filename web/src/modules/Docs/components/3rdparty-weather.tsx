@@ -1,7 +1,6 @@
 import { Blockquote, Code, Container, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import { IconCloud, IconHaze } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+import {  IconHaze } from "@tabler/icons-react";
 import DocsText from "./common/DocsText";
 import DocsLink from "./common/DocsLink";
 import DocsSubtitle from "./common/DocsSubtitle";
@@ -11,7 +10,7 @@ const Docs3rdPartyWeather = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle leftSection={<IconHaze style={getIconStyle(48)} color={theme.colors.orange[5]} />}>
+      <DocsTitle leftSection={<IconHaze color={theme.colors.orange[5]} />}>
         Current weather data
       </DocsTitle>
 

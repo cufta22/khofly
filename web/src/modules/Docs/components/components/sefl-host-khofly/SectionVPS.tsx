@@ -6,6 +6,7 @@ import { IconBrandDebian, IconFile } from "@tabler/icons-react";
 import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
 import DocsCodeHighlightTabs from "../../common/DocsCodeHighlight/DocsCodeHighlightTabs";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import classes from "./styles.module.scss";
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -98,7 +99,7 @@ const CODE_NGINX_FILE = `server {
 const SectionVPS = () => {
   return (
     <>
-      <Flex align="center" justify="space-between">
+      <Flex className={classes.self_host_title_wrapper} align="center" justify="space-between">
         <DocsTitle>Deploying to a VPS</DocsTitle>
 
         <Flex align="center" gap="sm">

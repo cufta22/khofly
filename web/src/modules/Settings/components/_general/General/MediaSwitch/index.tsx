@@ -1,6 +1,7 @@
 import { useTranslate } from "@hooks/translate/use-translate";
 import { Flex, Select, Switch } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
+import commonClasses from "../../../common/styles.module.scss";
 
 const MediaSwitch = () => {
   const t = useTranslate();
@@ -11,7 +12,7 @@ const MediaSwitch = () => {
   const setDisplayMedia = useSettingsStore((state) => state.setDisplayMedia);
 
   return (
-    <Flex align="center" gap="sm">
+    <Flex className={commonClasses.settings_control} align="center" gap="sm">
       {displayMedia && (
         <Select
           data={[

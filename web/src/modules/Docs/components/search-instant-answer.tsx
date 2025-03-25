@@ -1,4 +1,4 @@
-import { Box, Code, Container, Text, useMantineTheme } from "@mantine/core";
+import { Box, Code, Container, useMantineTheme } from "@mantine/core";
 import classes from "./styles.module.scss";
 
 import DocsTitle from "./common/DocsTitle";
@@ -6,7 +6,6 @@ import DocsSubtitle from "./common/DocsSubtitle";
 
 import ScrollToTop from "@components/ScrollToTop";
 import { IconMessageCode } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsText from "./common/DocsText";
 import DocsNextPrev from "./common/DocsNextPrev";
 
@@ -41,9 +40,7 @@ const DocsSearchInstantAnswer = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle
-        leftSection={<IconMessageCode style={getIconStyle(48)} color={theme.colors.grape[5]} />}
-      >
+      <DocsTitle leftSection={<IconMessageCode color={theme.colors.grape[5]} />}>
         Instant Answers
       </DocsTitle>
 
@@ -138,12 +135,15 @@ const DocsSearchInstantAnswer = () => {
         <IAIP />
       </Box>
 
-      {/* <DocsTitle>8. Lyrics</DocsTitle>
+      <DocsTitle>9. Lyrics</DocsTitle>
+      <DocsText>
+        Condition: Query contains word <Code>lyrics</Code>
+      </DocsText>
       <Box className={classes.search_box}>
         <IALyrics initialQ="rick astley never gonna give you up" />
-      </Box> */}
+      </Box>
 
-      <DocsTitle>9. Password</DocsTitle>
+      <DocsTitle>10. Password</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.password.join(", ")}</Code>
       </DocsText>
@@ -151,7 +151,7 @@ const DocsSearchInstantAnswer = () => {
         <IAPassword />
       </Box>
 
-      <DocsTitle>10. RNG</DocsTitle>
+      <DocsTitle>11. RNG</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.rng.join(", ")}</Code>
       </DocsText>
@@ -159,7 +159,7 @@ const DocsSearchInstantAnswer = () => {
         <IARNG />
       </Box>
 
-      <DocsTitle>11. Stopwatch</DocsTitle>
+      <DocsTitle>12. Stopwatch</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.stopwatch.join(", ")}</Code>
       </DocsText>
@@ -167,7 +167,7 @@ const DocsSearchInstantAnswer = () => {
         <IAStopwatch withIAWrapper />
       </Box>
 
-      <DocsTitle>12. TicTacToe</DocsTitle>
+      <DocsTitle>13. TicTacToe</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.tictactoe.join(", ")}</Code>
       </DocsText>
@@ -175,7 +175,7 @@ const DocsSearchInstantAnswer = () => {
         <IATicTacToe withIAWrapper />
       </Box>
 
-      <DocsTitle>13. Time In</DocsTitle>
+      <DocsTitle>14. Time In</DocsTitle>
       <DocsText>
         Condition: <Code>{`query.includes("time in")`}</Code>
       </DocsText>
@@ -183,7 +183,7 @@ const DocsSearchInstantAnswer = () => {
         <IATimeIn withIAWrapper location="Paris" />
       </Box>
 
-      <DocsTitle>14. Timer</DocsTitle>
+      <DocsTitle>15. Timer</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.timer.join(", ")}</Code>
       </DocsText>
@@ -191,15 +191,15 @@ const DocsSearchInstantAnswer = () => {
         <IATimer withIAWrapper />
       </Box>
 
-      <DocsTitle>15. Time Zone</DocsTitle>
+      <DocsTitle>16. Time Zone</DocsTitle>
       <DocsText>
-        Condition: <Code>{`...`}</Code>
+        Condition: <Code>{KEYWORDS_IA.time_zone.join(", ")}</Code>
       </DocsText>
       <Box mt="md" className={classes.search_box}>
-        <IATimeZone withIAWrapper location="Paris" />
+        <IATimeZone withIAWrapper />
       </Box>
 
-      <DocsTitle>16. Translate</DocsTitle>
+      <DocsTitle>17. Translate</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.translate.join(", ")}</Code>
       </DocsText>
@@ -207,7 +207,7 @@ const DocsSearchInstantAnswer = () => {
         <IATranslate />
       </Box>
 
-      <DocsTitle>17. Unit converter</DocsTitle>
+      <DocsTitle>18. Unit converter</DocsTitle>
       <DocsText>
         Condition: Search query contains any measurement unit, ex. <Code>m to km</Code>
       </DocsText>
@@ -215,7 +215,7 @@ const DocsSearchInstantAnswer = () => {
         <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
       </Box>
 
-      <DocsTitle>18. Random UUID</DocsTitle>
+      <DocsTitle>19. Random UUID</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.uuid.join(", ")}</Code>
       </DocsText>
@@ -223,7 +223,7 @@ const DocsSearchInstantAnswer = () => {
         <IAUUID />
       </Box>
 
-      <DocsTitle>19. Weather</DocsTitle>
+      <DocsTitle>20. Weather</DocsTitle>
       <DocsText>
         Keywords: <Code>{KEYWORDS_IA.weather.join(", ")}</Code>
       </DocsText>

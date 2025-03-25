@@ -1,8 +1,7 @@
-import { Button, Divider, Flex, Paper, Stack, Text, Tooltip, useMantineTheme } from "@mantine/core";
+import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
 
 import {
   IconCursorText,
-  IconExternalLink,
   IconFavicon,
   IconInfoCircle,
   IconLayoutCollage,
@@ -16,158 +15,99 @@ import {
 import FaviconSwitch from "./FaviconSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
-import classes from "./styles.module.scss";
 import IASwitch from "./IASwitch";
-import RemixLink from "@components/RemixLink";
-import { useTranslate } from "@hooks/translate/use-translate";
 import PrivateSearchSwitch from "./PrivateSearchSwitch";
 import MediaSwitch from "./MediaSwitch";
 import ShowEnginesSwitch from "./ShowEnginesSwitch";
 import AISwitch from "./AISwitch";
 import PrivatePlayerSwitch from "./PrivarePlayerSwitch";
+import SettingsRow from "../../common/SettingsRow";
+import SettingsTitle from "../../common/SettingsTitle";
+import SetDefaultButton from "./SetDefaultButton";
 
 const SettingsGeneral = () => {
-  const t = useTranslate();
-
   const theme = useMantineTheme();
 
   return (
-    <Paper radius="md" withBorder mt={40}>
-      <Flex align="center" p="lg" mb={16}>
-        <IconSettings2 size={32} />
-
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.general.title")}
-        </Text>
-      </Flex>
+    <Paper radius="md" withBorder>
+      <SettingsTitle icon={<IconSettings2 />} title="pages.settings.general.title" />
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconFavicon style={getIconStyle(20)} color={theme.colors.gray["5"]} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_favicon")}
-            </Text>
-
+        <SettingsRow
+          icon={<IconFavicon color={theme.colors.gray["5"]} />}
+          desc="pages.settings.general.toggle_favicon"
+          tooltip={
             <Tooltip label="This will ping DuckDuckGo's favicon service, a lot">
               <IconInfoCircle style={getIconStyle(20)} />
             </Tooltip>
-          </Flex>
-
-          <FaviconSwitch />
-        </Flex>
-
-        <Divider my="xs" w="100%" />
-
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconCursorText style={getIconStyle(20)} color={theme.colors.gray["5"]} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_autocomplete")}
-            </Text>
-          </Flex>
-
-          <AutocompleteSwitch />
-        </Flex>
+          }
+          control={<FaviconSwitch />}
+        />
 
         <Divider my="xs" w="100%" />
 
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconRadar style={getIconStyle(20)} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.show_engines")}
-            </Text>
-          </Flex>
-
-          <ShowEnginesSwitch />
-        </Flex>
+        <SettingsRow
+          icon={<IconCursorText color={theme.colors.gray["5"]} />}
+          desc="pages.settings.general.toggle_autocomplete"
+          control={<AutocompleteSwitch />}
+        />
 
         <Divider my="xs" w="100%" />
 
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconLayoutCollage style={getIconStyle(20)} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.display_media")}
-            </Text>
-          </Flex>
-
-          <MediaSwitch />
-        </Flex>
+        <SettingsRow
+          icon={<IconRadar color={theme.colors.gray["5"]} />}
+          desc="pages.settings.general.show_engines"
+          control={<ShowEnginesSwitch />}
+        />
 
         <Divider my="xs" w="100%" />
 
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconMessageCode style={getIconStyle(20)} color={theme.colors.grape["5"]} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_ia")}
-            </Text>
-          </Flex>
-
-          <IASwitch />
-        </Flex>
+        <SettingsRow
+          icon={<IconLayoutCollage color={theme.colors.gray["5"]} />}
+          desc="pages.settings.general.display_media"
+          control={<MediaSwitch />}
+        />
 
         <Divider my="xs" w="100%" />
 
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconSparkles style={getIconStyle(20)} color={theme.colors.pink["5"]} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_ai_answers")}
-            </Text>
-          </Flex>
-
-          <AISwitch />
-        </Flex>
+        <SettingsRow
+          icon={<IconMessageCode color={theme.colors.grape["5"]} />}
+          desc="pages.settings.general.toggle_ia"
+          control={<IASwitch />}
+        />
 
         <Divider my="xs" w="100%" />
 
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconShield style={getIconStyle(20)} color={theme.colors.green["5"]} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_private_search")}
-            </Text>
-          </Flex>
-
-          <PrivateSearchSwitch />
-        </Flex>
+        <SettingsRow
+          icon={<IconSparkles color={theme.colors.pink["5"]} />}
+          desc="pages.settings.general.toggle_ai_answers"
+          control={<AISwitch />}
+        />
 
         <Divider my="xs" w="100%" />
 
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <IconPlayerPlay style={getIconStyle(20)} color={theme.colors.orange["5"]} />
-
-            <Text size="md" fw={400}>
-              {t("pages.settings.general.toggle_private_player")}
-            </Text>
-          </Flex>
-
-          <PrivatePlayerSwitch />
-        </Flex>
+        <SettingsRow
+          icon={<IconShield color={theme.colors.green["5"]} />}
+          desc="pages.settings.general.toggle_private_search"
+          control={<PrivateSearchSwitch />}
+        />
 
         <Divider my="xs" w="100%" />
 
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Text size="md" fw={400}>
-            {t("pages.settings.general.set_as_default")}
-          </Text>
+        <SettingsRow
+          icon={<IconPlayerPlay color={theme.colors.orange["5"]} />}
+          desc="pages.settings.general.toggle_private_player"
+          control={<PrivatePlayerSwitch />}
+        />
 
-          <RemixLink to="/docs/set-default">
-            <Button variant="outline">{t("pages.settings.general.set_as_default_btn")}</Button>
-          </RemixLink>
-        </Flex>
+        <Divider my="xs" w="100%" />
+
+        <SettingsRow
+          // icon={null}
+          desc="pages.settings.general.set_as_default"
+          control={<SetDefaultButton />}
+        />
       </Stack>
     </Paper>
   );

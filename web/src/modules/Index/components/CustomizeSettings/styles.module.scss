@@ -1,0 +1,23 @@
+.drawer_root {
+  overflow: hidden;
+}
+
+.drawer_header {
+  background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-9));
+
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
+}
+
+.wallpaper_item {
+  cursor: pointer;
+
+  img {
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+  }
+}

@@ -49,6 +49,10 @@ change AI api to use swr instead of mutation
 
 update AI Answers page to remove trigger words
 
+fix up /lyrics
+
+fix up downloads
+
 Ideas for v7:
 
 - ip IA

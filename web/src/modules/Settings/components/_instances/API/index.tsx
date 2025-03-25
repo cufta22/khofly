@@ -11,16 +11,16 @@ import {
 } from "@mantine/core";
 
 import classes from "../../../styles.module.scss";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";
-import { IWeatherSource, useInstanceStore } from "@store/instance";
+import { type IWeatherSource, useInstanceStore } from "@store/instance";
 import { IconApiApp } from "@tabler/icons-react";
 import { useEffect } from "react";
-import { DEFlag, USFlag } from "@components/Icons/Flags";
+// import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
+import SettingsTitle from "../../common/SettingsTitle";
 
 const SettingsAPI = () => {
   const domain = useInstanceStore((state) => state.apiDomain);
@@ -64,15 +64,9 @@ const SettingsAPI = () => {
   );
 
   return (
-    <Paper radius="md" withBorder mt={40}>
+    <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Flex align="center" p="lg" mb={16}>
-          <IconApiApp style={getIconStyle(32)} />
-
-          <Text fz={26} fw={600} ml="sm">
-            API Domain
-          </Text>
-        </Flex>
+        <SettingsTitle icon={<IconApiApp />} title="pages.settings.instances.title_api" />
 
         {/* Settings content */}
         <Stack px="lg" mb="xl">

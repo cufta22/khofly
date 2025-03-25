@@ -1,5 +1,4 @@
 import {
-  Anchor,
   Button,
   CloseButton,
   DEFAULT_THEME,
@@ -72,7 +71,7 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   }, [mounted]);
 
   return (
-    <Paper radius="md" withBorder mt={40}>
+    <Paper radius="md" withBorder>
       <Flex align="center" p="lg" mb={16} justify="space-between">
         <IconPalette size={32} />
 

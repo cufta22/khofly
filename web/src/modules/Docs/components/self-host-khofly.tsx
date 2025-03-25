@@ -14,13 +14,15 @@ import SectionVPS from "./components/sefl-host-khofly/SectionVPS";
 import DocsNextPrev from "./common/DocsNextPrev";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 
+import classes from "./styles.module.scss";
+
 const DocsSelfHostKhofly = () => {
   const theme = useMantineTheme();
 
   return (
     <Container size="lg" p="xl" pb={100}>
       <Tabs variant="default" defaultValue="vps" keepMounted={false}>
-        <Tabs.List>
+        <Tabs.List className={classes.tabs_scroll}>
           <Tabs.Tab
             value="vps"
             leftSection={

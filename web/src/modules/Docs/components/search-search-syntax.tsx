@@ -1,7 +1,6 @@
 import { Code, Container, List, Text, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import { IconBracketsAngle, IconPlayerPlay } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+import { IconBracketsAngle } from "@tabler/icons-react";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
 import DocsNextPrev from "./common/DocsNextPrev";
@@ -9,7 +8,6 @@ import DocsNextPrev from "./common/DocsNextPrev";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
-import DocsLink from "./common/DocsLink";
 
 const DocsSearchPrivatePlayer = () => {
   const linkTextColor = usePrimaryColor(4);
@@ -18,9 +16,7 @@ const DocsSearchPrivatePlayer = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle
-        leftSection={<IconBracketsAngle style={getIconStyle(48)} color={theme.colors.blue[5]} />}
-      >
+      <DocsTitle leftSection={<IconBracketsAngle color={theme.colors.blue[5]} />}>
         Search Syntax
       </DocsTitle>
 

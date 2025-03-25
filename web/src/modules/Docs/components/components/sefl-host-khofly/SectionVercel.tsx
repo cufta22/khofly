@@ -5,6 +5,7 @@ import { Alert, Badge, Code, Flex, Paper } from "@mantine/core";
 import DocsSubtitle from "../../common/DocsSubtitle";
 import DocsTitle from "../../common/DocsTitle";
 import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
+import classes from "./styles.module.scss";
 
 const envVars = `
 HOST = # your domain, either set a custom domain or Vercel auto assigned one
@@ -23,7 +24,7 @@ HOST_TARGET = vercel
 const SectionVercel = () => {
   return (
     <>
-      <Flex align="center" justify="space-between">
+      <Flex className={classes.self_host_title_wrapper} align="center" justify="space-between">
         <DocsTitle>Deploying to Vercel</DocsTitle>
 
         <Flex align="center" gap="sm">

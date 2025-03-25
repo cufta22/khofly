@@ -6,23 +6,23 @@ import {
   Image,
   Paper,
   Select,
-  SelectProps,
+  type SelectProps,
   Stack,
   Text,
   TextInput,
   useMantineTheme,
 } from "@mantine/core";
-import { IconBrandGoogle, IconBrandMeta, IconSparkles, IconWorld } from "@tabler/icons-react";
+import { IconSparkles } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import useToast from "@hooks/use-toast";
-import { IWorkerModels, useInstanceStore } from "@store/instance";
+import { type IWorkerModels, useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
 import { useEffect } from "react";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { WORKER_MODELS_DATA } from "./data";
+import SettingsTitle from "../../common/SettingsTitle";
 
 const SettingsAIWorker = () => {
   const hydrated = useInstanceStore((state) => state.hydrated);
@@ -77,15 +77,9 @@ const SettingsAIWorker = () => {
   );
 
   return (
-    <Paper radius="md" mt={40} withBorder>
+    <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Flex align="center" p="lg" mb={16}>
-          <IconSparkles style={getIconStyle(32)} />
-
-          <Text fz={26} fw={600} ml="sm">
-            AI Worker
-          </Text>
-        </Flex>
+        <SettingsTitle icon={<IconSparkles />} title="pages.settings.instances.title_ai" />
 
         {/* Settings content */}
         <Stack px="lg" mb="xl">

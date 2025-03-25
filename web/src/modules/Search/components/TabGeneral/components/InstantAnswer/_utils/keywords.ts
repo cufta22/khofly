@@ -23,6 +23,7 @@ export const KEYWORDS_IA = {
   stopwatch: ["stopwatch"],
   tictactoe: ["tictactoe", "tic tac toe"],
   timer: ["timer", "alarm"],
+  time_zone: ["time zone"],
   translate: ["translate"],
   uuid: ["random uuid", "uuid", "unique id"],
   weather: ["weather", "forecast"],

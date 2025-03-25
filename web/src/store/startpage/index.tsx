@@ -18,6 +18,9 @@ export type IWidgetPosition = "top-left" | "top-right";
 interface StartpageState {
   hydrated: boolean;
 
+  wallpaper: string;
+  setWallpaper: (next: string) => void;
+
   shortcuts: IShortcut[];
   setShortcuts: (next: IShortcut[]) => void;
   displayShortcuts: boolean;
@@ -31,6 +34,13 @@ interface StartpageState {
   setDisplayTodos: (next: boolean) => void;
   todosPosition: IWidgetPosition;
   setTodosPosition: (next: IWidgetPosition) => void;
+
+  notes: string;
+  setNotes: (next: string) => void;
+  displayNotes: boolean;
+  setDisplayNotes: (next: boolean) => void;
+  notesPosition: IWidgetPosition;
+  setNotesPosition: (next: IWidgetPosition) => void;
 
   displayWeather: boolean;
   setDislpayWeather: (next: boolean) => void;
@@ -48,6 +58,9 @@ export const useStatrpageStore = create<StartpageState>()(
     (set) => ({
       hydrated: false,
 
+      wallpaper: "",
+      setWallpaper: (next) => set({ wallpaper: next }),
+
       shortcuts: [],
       setShortcuts: (next) => set({ shortcuts: next }),
       displayShortcuts: false,
@@ -61,6 +74,13 @@ export const useStatrpageStore = create<StartpageState>()(
       setDisplayTodos: (next) => set({ displayTodos: next }),
       todosPosition: "top-left",
       setTodosPosition: (next) => set({ todosPosition: next }),
+
+      notes: "",
+      setNotes: (next) => set({ notes: next }),
+      displayNotes: false,
+      setDisplayNotes: (next) => set({ displayNotes: next }),
+      notesPosition: "top-left",
+      setNotesPosition: (next) => set({ notesPosition: next }),
 
       displayWeather: false,
       setDislpayWeather: (next) => set({ displayWeather: next }),
@@ -81,14 +101,23 @@ export const useStatrpageStore = create<StartpageState>()(
       name: "shortcuts-store", // name of the item in the storage (must be unique)
       // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
+        wallpaper: state.wallpaper,
+
         displayShortcuts: state.displayShortcuts,
         shortcuts: state.shortcuts,
         openInNewTab: state.openInNewTab,
+
         todos: state.todos,
         displayTodos: state.displayTodos,
         todosPosition: state.todosPosition,
+
+        notes: state.notes,
+        displayNotes: state.displayNotes,
+        notesPosition: state.notesPosition,
+
         displayWeather: state.displayWeather,
         weatherPosition: state.weatherPosition,
+
         displayClock: state.displayClock,
         clockPosition: state.clockPosition,
       }),

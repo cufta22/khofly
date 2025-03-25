@@ -117,6 +117,13 @@
         "button": "Apply"
       },
 
+      "instances": {
+        "title_searxng": "SearXNG URL",
+        "title_api": "API URL",
+        "title_ai": "AI Worker",
+        "title_nominatim": "Nominatim URL"
+      },
+
       "engines": {
         "title_without": "other stuff",
 
@@ -305,6 +312,8 @@
       },
 
       "startpage": {
+        "title_background": "Wallpaper",
+
         "title_shortcuts": "Shortcuts",
         "toggle_shortcuts": "Display shortcuts on start page",
 
@@ -313,11 +322,9 @@
         "favicon_api_google": "Google",
 
         "title_widgets": "Widgets",
-
         "toggle_todos": "Display To-Do widget on start page",
-
+        "toggle_notes": "Display Notes widget on start page",
         "toggle_weather": "Display Weather widget on start page",
-
         "toggle_clock": "Display Clock widget on start page"
       }
     }

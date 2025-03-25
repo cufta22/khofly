@@ -17,7 +17,6 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import { useState } from "react";
 import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 import SettingsEnginesWrapper from "./components/Wrapper";
-import classes from "./styles.module.scss";
 
 import {
   DATA_ENGINES_SOCIAL_MEDIA,
@@ -37,6 +36,7 @@ import { DEFAULT_ENGINES } from "@store/engines/default_engines";
 import type { ICategories } from "@store/settings";
 import type { IDataEngine } from "./components/data";
 import { CATEGORY_TO_STORE } from "./components/Wrapper/utils";
+import SettingsTitle from "../../common/SettingsTitle";
 
 export const TAB_DATA: {
   [key in ICategories]: {
@@ -117,44 +117,38 @@ const Engines = () => {
 
   return (
     <Paper radius="md" withBorder>
-      <Flex className={classes.settings_engines_title} p="lg" mb={0}>
-        <Flex align="center">
-          {TAB_DATA[tab].icon}
-
-          <Text fz={26} fw={600} ml="sm">
-            {t(TAB_DATA[tab].label)}
-          </Text>
-        </Flex>
-
-        <div style={{ flex: 1 }} />
-
-        <Flex align="center" justify="flex-end" gap="sm">
-          <Button
-            size="xs"
-            onClick={() => {
-              setEngines(DEFAULT_ENGINES[tab]);
-            }}
-          >
-            Set default
-          </Button>
-          <Button
-            size="xs"
-            onClick={() => {
-              setEngines(TAB_DATA[tab].data.filter((row) => row.value).map((eng) => eng.value));
-            }}
-          >
-            Enable all
-          </Button>
-          <Button
-            size="xs"
-            onClick={() => {
-              setEngines([]);
-            }}
-          >
-            Disable all
-          </Button>
-        </Flex>
-      </Flex>
+      <SettingsTitle
+        icon={TAB_DATA[tab].icon}
+        title={TAB_DATA[tab].label}
+        rightSection={
+          <Flex align="center" justify="flex-end" gap="sm">
+            <Button
+              size="xs"
+              onClick={() => {
+                setEngines(DEFAULT_ENGINES[tab]);
+              }}
+            >
+              Set default
+            </Button>
+            <Button
+              size="xs"
+              onClick={() => {
+                setEngines(TAB_DATA[tab].data.filter((row) => row.value).map((eng) => eng.value));
+              }}
+            >
+              Enable all
+            </Button>
+            <Button
+              size="xs"
+              onClick={() => {
+                setEngines([]);
+              }}
+            >
+              Disable all
+            </Button>
+          </Flex>
+        }
+      />
 
       <Stack w="100%" px="lg" gap={6}>
         <Tabs

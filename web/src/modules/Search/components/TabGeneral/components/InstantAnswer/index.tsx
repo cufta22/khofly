@@ -16,6 +16,7 @@ import IAPassword from "./components/Password";
 import IAEquation from "./components/Equation";
 import IARNG from "./components/RNG";
 import IADownloader from "./components/Downloader";
+import IALyrics from "./components/Lyrics";
 
 import IANeofetch from "./_commands/Neofetch";
 
@@ -64,8 +65,8 @@ const InstantAnswer = () => {
   // Instant answer - IP
   if (shouldDisplayIAExact(q, KEYWORDS_IA.ip)) return <IAIP />;
 
-  // Instant answer - Lyrics by
-  // if (shouldDisplayIA(q, ["lyrics"]) && !isXl) return <IALyrics />;
+  // Instant answer - Lyrics by || && !isXl
+  if (shouldDisplayIA(q, ["lyrics"])) return <IALyrics />;
 
   // Instant answer - Password
   if (shouldDisplayIAExact(q, KEYWORDS_IA.password)) return <IAPassword />;

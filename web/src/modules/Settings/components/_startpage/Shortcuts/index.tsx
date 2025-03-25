@@ -9,6 +9,8 @@ import ShortcutsSwitch from "./components/ShortcutsSwitch";
 import Shortcut from "@module/Index/components/Shortcuts/components/Shortcut";
 import ShortcutNew from "./components/ShortcutNew";
 import { useStatrpageStore } from "@store/startpage";
+import SettingsTitle from "../../common/SettingsTitle";
+import SettingsRow from "../../common/SettingsRow";
 
 const SettingsShortcuts = () => {
   const t = useTranslate();
@@ -18,33 +20,25 @@ const SettingsShortcuts = () => {
 
   return (
     <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16}>
-        <IconExternalLink size={32} />
+      <SettingsTitle
+        icon={<IconExternalLink />}
+        title="pages.settings.startpage.title_shortcuts"
+        rightSection={
+          <Flex className="desktop_only" align="center">
+            <IconDevices />
 
-        <Text fz={26} fw={600} ml="sm">
-          {t("pages.settings.startpage.title_shortcuts")}
-        </Text>
-
-        <div style={{ flex: 1 }} />
-
-        <Flex className="desktop_only" align="center">
-          <IconDevices />
-
-          <Text ml="sm">Desktop & Mobile</Text>
-        </Flex>
-      </Flex>
+            <Text ml="sm">Desktop & Mobile</Text>
+          </Flex>
+        }
+      />
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
-        <Flex w="100%" className={classes.flex_row} justify="space-between">
-          <Flex align="center" gap="sm">
-            <Text size="md" fw={400}>
-              {t("pages.settings.startpage.toggle_shortcuts")}
-            </Text>
-          </Flex>
-
-          <ShortcutsSwitch />
-        </Flex>
+        <SettingsRow
+          // icon={null}
+          desc="pages.settings.startpage.toggle_shortcuts"
+          control={<ShortcutsSwitch />}
+        />
 
         <Divider my="sm" w="100%" />
 

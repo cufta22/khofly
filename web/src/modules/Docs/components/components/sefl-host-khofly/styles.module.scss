@@ -1,9 +1,9 @@
 @use "variables" as vars;
+@use "functions" as func;
 
-.settings_engines_title {
-  align-items: center;
+.self_host_title_wrapper {
+  // Scale on small devices
   @media (max-width: vars.$mantine-breakpoint-sm) {
     flex-direction: column;
-    align-items: flex-start;
   }
 }

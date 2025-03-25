@@ -2,13 +2,13 @@ import { Anchor, Button, Flex, Paper, Stack, Text, TextInput } from "@mantine/co
 import { IconWorld } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
 import { useEffect } from "react";
 import ExternalLink from "@components/ExternalLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import SettingsTitle from "../../common/SettingsTitle";
 
 const SettingsNominatim = () => {
   const hydrated = useInstanceStore((state) => state.hydrated);
@@ -40,15 +40,9 @@ const SettingsNominatim = () => {
   }, [hydrated]);
 
   return (
-    <Paper radius="md" mt={40} withBorder>
+    <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Flex align="center" p="lg" mb={16}>
-          <IconWorld style={getIconStyle(32)} />
-
-          <Text fz={26} fw={600} ml="sm">
-            Nominatim Domain
-          </Text>
-        </Flex>
+        <SettingsTitle icon={<IconWorld />} title="pages.settings.instances.title_nominatim" />
 
         {/* Settings content */}
         <Stack px="lg" mb="xl">

@@ -10,9 +10,10 @@ import HeaderLogo from "./components/HeaderLogo";
 
 import SearchSection from "@module/Search/components/components/SearchSection";
 
-import HeaderSettings from "./components/HeaderSettings";
+import HeaderSearchSettings from "./components/HeaderSearchSettings";
 import HeaderOrganize from "./components/HeaderOrganize";
 import HeaderCode from "./components/HeaderCode";
+import HeaderIndexSettings from "./components/HeaderIndexSettings";
 
 interface Props {
   openNavbar: boolean;
@@ -30,6 +31,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
+
+  const isIndex = pathname === "/";
 
   const pageTitle = isChangelog
     ? "Changelog"
@@ -70,9 +73,10 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       <div className={classes.divider} />
 
-      {isSearch && tab === "general" && <HeaderOrganize />}
+      {isIndex && <HeaderIndexSettings />}
 
-      {isSearch && <HeaderSettings />}
+      {isSearch && tab === "general" && <HeaderOrganize />}
+      {isSearch && <HeaderSearchSettings />}
 
       {(isDocs || isChangelog) && <HeaderCode />}
     </Group>
