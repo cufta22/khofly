@@ -19,9 +19,9 @@ const SettingsWallpaper = () => {
     initialValues: {
       background: "",
     },
-    validate: {
-      background: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
-    },
+    // validate: {
+    //   background: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
+    // },
   });
 
   const { toast } = useToast();

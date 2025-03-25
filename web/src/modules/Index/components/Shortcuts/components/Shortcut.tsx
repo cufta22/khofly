@@ -55,6 +55,7 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
             imgUrl,
           }}
           idx={idx}
+          type="edit"
         />
       </Modal>
     </>

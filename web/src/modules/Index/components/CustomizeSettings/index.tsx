@@ -14,14 +14,21 @@ import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import RemixLink from "@components/RemixLink";
+import { useState } from "react";
+import CSWallpaperSelect from "./components/CSWallpaperSelect";
+import CSWallpaperCategory from "./components/CSWallpaperCategory";
+import CSShortcuts from "./components/CSShortcuts";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
+export type IWallpaperCategory = "" | "retrowave" | "landscape" | "catppuccin";
 
 const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
   const t = useTranslate();
+
+  const [wpCategory, setWpCategory] = useState<IWallpaperCategory>("");
 
   return (
     <Drawer
@@ -46,48 +53,23 @@ const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
-      <Flex mt="xl" align="center" justify="space-between">
-        <Text size="xl">Wallpapers</Text>
+      {wpCategory === "" && <CSWallpaperSelect setWpCategory={setWpCategory} />}
 
-        <Button variant="subtle">Reset</Button>
-      </Flex>
+      {["retrowave", "landscape", "catppuccin"].includes(wpCategory) && (
+        <CSWallpaperCategory wpCategory={wpCategory} setWpCategory={setWpCategory} />
+      )}
 
-      <SimpleGrid cols={3} mt="md">
-        <Flex className={classes.wallpaper_item} direction="column" align="center">
-          <Image
-            radius="md"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp5054433.png&f=1&nofb=1&ipt=c844207fabb89a00a392f8c7ef3af4198a6646e0a291beb48b6c2e97bda672d6&ipo=images"
-          />
+      {wpCategory === "" && <CSShortcuts />}
 
-          <Text mt="xs">A</Text>
-        </Flex>
-
-        <Flex className={classes.wallpaper_item} direction="column" align="center">
-          <Image
-            radius="md"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp5054433.png&f=1&nofb=1&ipt=c844207fabb89a00a392f8c7ef3af4198a6646e0a291beb48b6c2e97bda672d6&ipo=images"
-          />
-
-          <Text mt="xs">A</Text>
-        </Flex>
-
-        <Flex className={classes.wallpaper_item} direction="column" align="center">
-          <Image
-            radius="md"
-            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp5054433.png&f=1&nofb=1&ipt=c844207fabb89a00a392f8c7ef3af4198a6646e0a291beb48b6c2e97bda672d6&ipo=images"
-          />
-
-          <Text mt="xs">A</Text>
-        </Flex>
-      </SimpleGrid>
-
-      <Center my="xl">
-        <RemixLink to="/settings">
-          <Button variant="outline" rightSection={<IconChevronRight style={getIconStyle(18)} />}>
-            Show more
-          </Button>
-        </RemixLink>
-      </Center>
+      {wpCategory === "" && (
+        <Center my="xl">
+          <RemixLink to="/settings?tab=startpage">
+            <Button variant="outline" rightSection={<IconChevronRight style={getIconStyle(18)} />}>
+              Show more
+            </Button>
+          </RemixLink>
+        </Center>
+      )}
     </Drawer>
   );
 };

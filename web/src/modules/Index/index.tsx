@@ -8,11 +8,11 @@ import DevInterface from "./components/DevInterface";
 import useSettingsParams from "./hooks/use-set-params";
 
 import Shortcuts from "./components/Shortcuts";
-import WidgetWeather from "./components/WidgetWeather";
-import WidgetTodo from "./components/WidgetToDo";
-import WidgetClock from "./components/WidgetClock";
+import WidgetWeather from "./components/_widgets/WidgetWeather";
+import WidgetTodo from "./components/_widgets/WidgetToDo";
+import WidgetClock from "./components/_widgets/WidgetClock";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
-import WidgetNotes from "./components/WidgetNotes";
+import WidgetNotes from "./components/_widgets/WidgetNotes";
 
 const PageIndex = () => {
   const t = useTranslate();

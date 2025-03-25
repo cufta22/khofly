@@ -29,6 +29,10 @@
     height: func.to-rem(40px);
   }
 
+  &.item_new {
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-light));
+  }
+
   &:hover {
     box-shadow: var(--mantine-shadow-md);
     transform: scale(1.05);
