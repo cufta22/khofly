@@ -14,7 +14,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .use(cron(CRON_CLEAR_MEDIA)) // Clear downloaded media every 30min
 
   // Middlewares
-  .on("error", middleware_Error) // Handle errors
+  // .on("error", middleware_Error) // Handle errors
 
   .get("/", () => "Khofly API")
 
