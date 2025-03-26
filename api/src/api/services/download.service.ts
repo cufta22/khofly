@@ -64,13 +64,13 @@ export const handleDownload = async (ctx: Context) => {
 
       // If mp4 is selected
       if (format === "mp4") {
-        ytCommand.push("-f");
+        // ytCommand.push("-f");
         // Takes forever to download ~2min
         // ytCommand.push("bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]");
         // Should be normal
-        ytCommand.push(
-          "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]"
-        );
+        // ytCommand.push(
+        //   "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]"
+        // );
       }
 
       // Avoid captcha - add cookies
@@ -83,9 +83,9 @@ export const handleDownload = async (ctx: Context) => {
 
       // Avoid captcha - add PO token
       if (process.env.YT_DLP_PO_TOKEN) {
-        ytCommand.push(
-          `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
-        );
+        // ytCommand.push(
+        //   `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
+        // );
       }
 
       ytCommand.push("-o");
