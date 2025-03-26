@@ -44,25 +44,19 @@ export default {
     if (!prompt) return new Response('Prompt is missing', { status: 400 });
 
     try {
-      if(model.includes("m2m100")) {
-        // Used for translations
-        let response = await env.AI.run(model, {
-          text: prompt,
-          source_lang: source_lang,
-          target_lang: target_lang
-        });
-        return Response.json(response, {
-          headers: corsHeaders
-        });
-      } else {
-        // Used for text generation
-        let response = await env.AI.run(model, {
-          prompt: prompt
-        });
-        return Response.json(response, {
-          headers: corsHeaders
-        });
-      }
+      // Different body for different models
+      const body = model.includes("m2m100") ? {
+        text: prompt,
+        source_lang: source_lang,
+        target_lang: target_lang
+      } : {
+        prompt: prompt
+      };
+
+      let response = await env.AI.run(model, body);
+      return Response.json(response, {
+        headers: corsHeaders
+      });
     } catch (error) {
       // Handle error
       return new Response('Error: ' + error?.message, { 

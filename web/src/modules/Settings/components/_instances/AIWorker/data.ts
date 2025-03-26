@@ -77,13 +77,13 @@ export const WORKER_MODELS_DATA: ComboboxLikeProps["data"] = [
       },
       {
         label: "gemma-7b-it",
-        value: "@cf/google/gemma-7b-it",
+        value: "@hf/google/gemma-7b-it",
       },
     ],
   },
 
   {
-    group: "Mistral",
+    group: "MistralAI",
     items: [
       {
         label: "mistral-7b-instruct-v0.1",
@@ -91,11 +91,25 @@ export const WORKER_MODELS_DATA: ComboboxLikeProps["data"] = [
       },
       {
         label: "mistral-7b-instruct-v0.2",
-        value: "@cf/mistral/mistral-7b-instruct-v0.2",
+        value: "@hf/mistral/mistral-7b-instruct-v0.2",
       },
       {
         label: "mistral-7b-instruct-v0.2-lora",
         value: "@cf/mistral/mistral-7b-instruct-v0.2-lora",
+      },
+    ],
+  },
+
+  {
+    group: "deepseek-ai",
+    items: [
+      {
+        label: "deepseek-r1-distill-qwen-32b",
+        value: "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+      },
+      {
+        label: "deepseek-math-7b-instruct",
+        value: "@cf/deepseek-ai/deepseek-math-7b-instruct",
       },
     ],
   },

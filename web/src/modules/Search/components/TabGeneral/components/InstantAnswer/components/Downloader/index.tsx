@@ -99,7 +99,7 @@ const IADownloader = () => {
 
           <TextInput
             label="Media URL"
-            placeholder={from === "youtube" ? "https://www.youtube.com?watch=..." : ""}
+            placeholder={from === "youtube" ? "https://www.youtube.com/watch?v=..." : ""}
             value={url}
             onChange={(e) => {
               setUrl(e.currentTarget.value);

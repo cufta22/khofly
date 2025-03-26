@@ -60,12 +60,14 @@ const SettingsAIWorker = () => {
     if (label.includes("llama-") || label.includes("m2m100")) {
       return <Image src="/assets/engines/meta-icon.svg" fit="contain" w={16} h={16} />;
     }
-
     if (label.includes("gemma-")) {
       return <Image src="/assets/engines/google-icon.svg" w={16} h={16} />;
     }
     if (label.includes("mistral-")) {
       return <Image src="/assets/engines/mistral-icon.svg" w={16} h={16} />;
+    }
+    if (label.includes("deepseek")) {
+      return <Image src="/assets/engines/deepseek-icon.svg" w={16} h={16} />;
     }
   };
 

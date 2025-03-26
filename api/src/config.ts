@@ -6,6 +6,7 @@ import { cron_clearMedia } from "./cron/clearMedia";
 export const __dirname = new URL(".", import.meta.url).pathname;
 
 export const IS_SELF_HOST = process.env.IS_SELF_HOST === "1";
+console.log(path.join(__dirname, `/../temp/media`));
 
 export const STATIC_OPTIONS = {
   assets: path.join(__dirname, `/../temp/media`),

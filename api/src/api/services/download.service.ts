@@ -83,9 +83,9 @@ export const handleDownload = async (ctx: Context) => {
 
       // Avoid captcha - add PO token
       if (process.env.YT_DLP_PO_TOKEN) {
-        // ytCommand.push(
-        //   `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
-        // );
+        ytCommand.push(
+          `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
+        );
       }
 
       ytCommand.push("-o");
