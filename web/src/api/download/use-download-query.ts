@@ -7,7 +7,7 @@ import useToast from "@hooks/use-toast";
 
 interface Args {
   url: string;
-  from: "youtube" | "instagram";
+  from: "youtube" | "instagram" | "tiktok";
   format: "mp3" | "mp4";
 }
 

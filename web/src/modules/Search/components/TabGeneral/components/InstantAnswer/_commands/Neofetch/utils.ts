@@ -37,7 +37,7 @@ export const getOsLabel = () => {
   if (/Windows NT/.test(userAgent)) {
     const match = userAgent.match(/Windows NT (\d+\.\d+)/);
     if (match) {
-      const majorVersion = parseInt(match[1], 10);
+      const majorVersion = Number.parseInt(match[1], 10);
       return `Windows ${majorVersion}`;
     }
   }

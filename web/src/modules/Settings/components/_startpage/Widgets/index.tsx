@@ -13,7 +13,7 @@ import WeatherSwitch from "./components/WeatherSwitch";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import ToDoSwitch from "./components/ToDoSwitch";
 import ClockSwitch from "./components/ClockSwitch";
-import PositionSelect from "./components/PositionSelect";
+// import PositionSelect from "./components/PositionSelect";
 import SettingsTitle from "../../common/SettingsTitle";
 import SettingsRow from "../../common/SettingsRow";
 
@@ -45,7 +45,7 @@ const SettingsWidgets = () => {
           desc="pages.settings.startpage.toggle_weather"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
-              <PositionSelect type="weather" />
+              {/* <PositionSelect type="weather" /> */}
 
               <WeatherSwitch />
             </Flex>
@@ -60,7 +60,7 @@ const SettingsWidgets = () => {
           desc="pages.settings.startpage.toggle_todos"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
-              <PositionSelect type="todos" />
+              {/* <PositionSelect type="todos" /> */}
 
               <ToDoSwitch />
             </Flex>
@@ -75,7 +75,7 @@ const SettingsWidgets = () => {
           desc="pages.settings.startpage.toggle_notes"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
-              <PositionSelect type="notes" />
+              {/* <PositionSelect type="notes" /> */}
 
               <NotesSwitch />
             </Flex>
@@ -90,7 +90,7 @@ const SettingsWidgets = () => {
           desc="pages.settings.startpage.toggle_clock"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
-              <PositionSelect type="clock" />
+              {/* <PositionSelect type="clock" /> */}
 
               <ClockSwitch />
             </Flex>

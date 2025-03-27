@@ -1,0 +1,12 @@
+If you're having trouble with yt-dlp you can try and provide cookies as an option.
+
+Download your cookies.txt file as per the documentation and move it to the root of 
+/api folder next to this file and rename it to "cookies-yt.txt".
+
+Your downloaded cookies.txt file should look something like this:
+
+# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+... all your youtube cookies

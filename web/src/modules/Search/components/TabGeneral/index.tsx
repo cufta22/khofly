@@ -17,6 +17,7 @@ import { useSettingsStore } from "@store/settings";
 import AIAnswer from "./components/AIAnswer";
 import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import { useSearchStore } from "@store/search";
+import Lyricsbox from "../components/Lyricsbox";
 
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
@@ -153,7 +154,7 @@ const TabGeneral = () => {
           data &&
           data?.[0]?.infoboxes?.length >= 1 && <Infobox {...data[0].infoboxes[0]} />}
 
-        {/* <Lyricsbox /> */}
+        <Lyricsbox />
 
         {!isLoading &&
           !isValidating &&

@@ -14,14 +14,14 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconBrandInstagram, IconBrandTiktok, IconBrandYoutube } from "@tabler/icons-react";
+import { IconBrandInstagram, IconBrandYoutube } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { isValidURL } from "@utils/functions/isValidURL";
 import useToast from "@hooks/use-toast";
 import useDownloadSWR from "src/api/download/use-download-query";
 
-// "youtube" | "tiktok" | "instagram"
-type DownloadFrom = "youtube";
+type DownloadFrom = "youtube" | "instagram"; // | "tiktok";
+
 type DownloadFormat = "mp3" | "mp4";
 
 const getDownloadOptions = (theme: MantineTheme) => ({
@@ -30,16 +30,16 @@ const getDownloadOptions = (theme: MantineTheme) => ({
     value: "youtube",
     icon: <IconBrandYoutube style={getIconStyle(20)} color={theme.colors.red["6"]} />,
   },
-  // tiktok: {
-  //   label: "TikTok",
-  //   value: "tiktok",
-  //   icon: <IconBrandTiktok style={getIconStyle(20)} />,
-  // },
   instagram: {
     label: "Instagram",
     value: "instagram",
     icon: <IconBrandInstagram style={getIconStyle(20)} color={theme.colors.pink["6"]} />,
   },
+  // tiktok: {
+  //   label: "TikTok",
+  //   value: "tiktok",
+  //   icon: <IconBrandTiktok style={getIconStyle(20)} />,
+  // },
 });
 
 const IADownloader = () => {
@@ -99,7 +99,13 @@ const IADownloader = () => {
 
           <TextInput
             label="Media URL"
-            placeholder={from === "youtube" ? "https://www.youtube.com/watch?v=..." : ""}
+            placeholder={
+              from === "youtube"
+                ? "https://www.youtube.com/watch?v=..."
+                : from === "instagram"
+                ? "https://www.instagram.com/..."
+                : ""
+            }
             value={url}
             onChange={(e) => {
               setUrl(e.currentTarget.value);

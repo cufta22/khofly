@@ -23,7 +23,7 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
-export type IWallpaperCategory = "" | "retrowave" | "landscape" | "catppuccin";
+export type IWallpaperCategory = "" | "retrowave" | "landscape" | "minecraft";
 
 const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
   const t = useTranslate();
@@ -55,7 +55,7 @@ const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
     >
       {wpCategory === "" && <CSWallpaperSelect setWpCategory={setWpCategory} />}
 
-      {["retrowave", "landscape", "catppuccin"].includes(wpCategory) && (
+      {["retrowave", "landscape", "minecraft"].includes(wpCategory) && (
         <CSWallpaperCategory wpCategory={wpCategory} setWpCategory={setWpCategory} />
       )}
 

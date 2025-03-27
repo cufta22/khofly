@@ -1,37 +1,32 @@
-import { Anchor, Divider, Flex, Image, Paper, Spoiler, Text } from "@mantine/core";
-import { useEffect } from "react";
+import { Anchor, Divider, Flex, Image, LoadingOverlay, Paper, Spoiler, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
-import useSearchQuery from "@hooks/use-search-query";
-import { useInstanceStore } from "@store/instance";
-import { useSearchParams } from "react-router";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import { useInstanceStore } from "@store/instance";
+import { useEffect } from "react";
+import useSearchQuery from "@hooks/use-search-query";
 
-const Lyricsbox = () => {
-  const [searchParams] = useSearchParams();
-
-  const { data, mutate } = useLyricsSWR({ initialQ: "" });
-
-  const hydrated = useInstanceStore((state) => state.hydrated);
+const Lyricsbox: React.FC = () => {
+  const { data, mutate, isLoading, isValidating } = useLyricsSWR({ initialQ: "" });
 
   const linkTextColor = usePrimaryColor(4);
 
+  const hydrated = useInstanceStore((state) => state.hydrated);
+
   const q = useSearchQuery();
-  const tab = searchParams.get("tab") || "general";
 
   useEffect(() => {
-    // Handle for music tab
-    if (tab === "music" && q && hydrated) mutate();
-
-    // Handle for general tab
+    // Handle for general & music tab
     if (q?.includes("lyrics") && hydrated) mutate();
-  }, [q, hydrated]);
+  }, [hydrated]);
 
-  if (!data?.title) return null;
+  if (!data?.title || !q.includes("lyrics")) return null;
 
   return (
     <Paper className={classes.search_lyricsbox} ml={80} withBorder radius="md">
+      <LoadingOverlay visible={isLoading || isValidating} />
+
       <Flex p="md" direction="column">
         <Flex direction="row" align="flex-start" gap="md" mb="xl">
           <Image src={data.image} w={60} h={60} radius="md" fit="contain" />

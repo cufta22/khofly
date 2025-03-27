@@ -1,6 +1,6 @@
 import { ColorSwatch, Flex, Text, useMantineTheme } from "@mantine/core";
 import { IAWrapper } from "../../wrapper";
-import { OS, useMounted, useOs } from "@mantine/hooks";
+import { type OS, useMounted, useOs } from "@mantine/hooks";
 import { SYSTEM_ART, getBrowserLabel, getOsLabel } from "./utils";
 import classes from "./styles.module.scss";
 
@@ -14,10 +14,7 @@ const OS_ART_COLORED: { [key in OS]: string } = {
   macos: SYSTEM_ART.macos,
 
   undetermined: "Undetermined :(",
-  windows: SYSTEM_ART.windows.replace(
-    /(\#)/g,
-    '<span style="color: #4dabf7;">$1</span>'
-  ),
+  windows: SYSTEM_ART.windows.replace(/(\#)/g, '<span style="color: #4dabf7;">$1</span>'),
 };
 
 const IANeofetch = () => {
@@ -31,6 +28,7 @@ const IANeofetch = () => {
 
   return (
     <IAWrapper
+      className={classes.ia_neofetch}
       label={
         <Text c="dimmed" size="sm">
           This is a command like instant answer
@@ -38,10 +36,7 @@ const IANeofetch = () => {
       }
     >
       <Flex align="flex-start" gap="xl">
-        <Text
-          className={classes.os_art}
-          dangerouslySetInnerHTML={{ __html: OS_ART_COLORED[os] }}
-        ></Text>
+        <Text className={classes.os_art} dangerouslySetInnerHTML={{ __html: OS_ART_COLORED[os] }} />
 
         <Flex className={classes.device_info} direction="column">
           <Flex align="center" gap="sm">
@@ -83,9 +78,7 @@ const IANeofetch = () => {
               Time Zone:
             </Text>
 
-            <Text fz={15}>
-              {Intl.DateTimeFormat().resolvedOptions().timeZone}
-            </Text>
+            <Text fz={15}>{Intl.DateTimeFormat().resolvedOptions().timeZone}</Text>
           </Flex>
 
           <Flex align="center" gap="sm">

@@ -1,6 +1,6 @@
 import { Button, Flex, Image, SimpleGrid, Text } from "@mantine/core";
 import classes from "../styles.module.scss";
-import { WALLPAPERS_CATPPUCCIN, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from "../data";
+import { WALLPAPERS_MINECRAFT, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from "../data";
 import type { Dispatch, SetStateAction } from "react";
 import type { IWallpaperCategory } from "..";
 import { useStatrpageStore } from "@store/startpage";
@@ -47,13 +47,13 @@ const CSWallpaperSelect: React.FC<Props> = ({ setWpCategory }) => {
 
         <Flex
           className={classes.wallpaper_item}
-          onClick={() => setWpCategory("catppuccin")}
+          onClick={() => setWpCategory("minecraft")}
           direction="column"
           align="center"
         >
-          <Image radius="md" src={WALLPAPERS_CATPPUCCIN[0].src} />
+          <Image radius="md" src={WALLPAPERS_MINECRAFT[0].src} />
 
-          <Text mt="xs">Catppuccin</Text>
+          <Text mt="xs">Minecraft</Text>
         </Flex>
       </SimpleGrid>
     </>

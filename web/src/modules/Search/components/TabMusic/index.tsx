@@ -92,7 +92,6 @@ const TabMusic = () => {
       </Stack>
 
       {/* Infoboxes */}
-
       <Flex direction="column" gap="xl" pt="xl">
         <Lyricsbox />
 

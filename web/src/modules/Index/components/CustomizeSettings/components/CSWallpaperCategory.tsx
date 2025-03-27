@@ -1,6 +1,6 @@
 import { Button, Flex, Image, SimpleGrid, Text } from "@mantine/core";
 import type { IWallpaperCategory } from "..";
-import { WALLPAPERS_CATPPUCCIN, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from "../data";
+import { WALLPAPERS_MINECRAFT, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from "../data";
 import type { Dispatch, SetStateAction } from "react";
 import classes from "../styles.module.scss";
 import { useStatrpageStore } from "@store/startpage";
@@ -17,14 +17,14 @@ const CSWallpaperCategory: React.FC<Props> = ({ wpCategory, setWpCategory }) => 
     "": [],
     retrowave: WALLPAPERS_RETROWAVE,
     landscape: WALLPAPERS_LANDSCAPE,
-    catppuccin: WALLPAPERS_CATPPUCCIN,
+    minecraft: WALLPAPERS_MINECRAFT,
   }[wpCategory];
 
   const categoryLabel = {
     "": "",
     retrowave: "Retrowave",
     landscape: "Landscape",
-    catppuccin: "Catppuccin",
+    minecraft: "Minecraft",
   }[wpCategory];
 
   return (

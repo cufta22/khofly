@@ -4,61 +4,23 @@ reduce file sizes
 
 add all translations
 
-? find another lightweight lib for charts
-
 move meta to /meta & add meta for every page that needs
-
-fix the lyrics api spam
-
-fix weather IA and move hourly to separate file
-
-Finish self host VPS guide
-
-Revisit all IAs
 
 Finish up IA commands
 
-Move space from SharedGames to individual css
-
-fix up lyrics
-
-fix up private player
-
-add setting for API instance with own/om select
-
-hide select for widget position if display is unchecked
-
 see why most results are in DE ( server region )
-
-private player add check for YT videos only!!!
 
 engine row add !bangs
 engine row add all hover data
 
-Private Player for music?
-
 try to move favicons to searxng side
-
-update selfhost to run ./scripts/redeploy-web.sh
-
-Add missing features from Search Syntax
 
 Check if all api call 400s are handled well
 
-change AI api to use swr instead of mutation
-
-update AI Answers page to remove trigger words
-
-fix up /lyrics
-
-fix up downloads
-
-move widgets down a bit for settings, or have them left side only
-
-group all widgets in one folder
+Add gallery-dl section to self-host-API
 
 ? Docs page for widgets
 
-Ideas for v7:
+Ideas for v8:
 
-- ip IA
+More options for downloader

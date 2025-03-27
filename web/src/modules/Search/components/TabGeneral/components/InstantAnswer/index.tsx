@@ -1,4 +1,5 @@
 import {
+  shouldDisplayCowsay,
   shouldDisplayCurrency,
   shouldDisplayEquation,
   shouldDisplayIA,
@@ -29,9 +30,11 @@ import useSearchQuery from "@hooks/use-search-query";
 import { KEYWORDS_IA } from "./_utils/keywords";
 import IAIP from "./components/IP";
 import IATranslate from "./components/Translate";
+import { useResponsive } from "@hooks/use-responsive";
+import IACowsay from "./_commands/Cowsay";
 
 const InstantAnswer = () => {
-  // const isXl = useResponsive("min", "lg", true);
+  const isLg = useResponsive("min", "lg", true);
 
   const useInstantAnswers = useSettingsStore((state) => state.useInstantAnswers);
 
@@ -65,8 +68,8 @@ const InstantAnswer = () => {
   // Instant answer - IP
   if (shouldDisplayIAExact(q, KEYWORDS_IA.ip)) return <IAIP />;
 
-  // Instant answer - Lyrics by || && !isXl
-  if (shouldDisplayIA(q, ["lyrics"])) return <IALyrics />;
+  // Instant answer - Lyrics by genius
+  if (shouldDisplayIA(q, ["lyrics"]) && !isLg) return <IALyrics />;
 
   // Instant answer - Password
   if (shouldDisplayIAExact(q, KEYWORDS_IA.password)) return <IAPassword />;
@@ -101,7 +104,7 @@ const InstantAnswer = () => {
   if (shouldDisplayIA(q, KEYWORDS_IA.weather)) return <IAWeather />;
 
   // TODO:
-  // Instant answer - Sport scores
+  // Instant answer - Sport scores ?
   // Instant answer - Time zone conversion
   // Instant answer - Lorem ipsum generator
 
@@ -109,6 +112,10 @@ const InstantAnswer = () => {
 
   // IA Command - Neofetch  | X mobile
   if (shouldDisplayIAExact(q, ["neofetch"])) return <IANeofetch />;
+
+  // IA Command - Cowsay
+  const { sdCowsay, ...restCowsay } = shouldDisplayCowsay(q);
+  if (sdCowsay) return <IACowsay {...restCowsay} />;
 
   return null;
 };

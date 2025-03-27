@@ -1,3 +1,11 @@
+@use "variables" as vars;
+
+.ia_neofetch {
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    display: none;
+  }
+}
+
 .os_art {
   white-space: preserve;
   line-height: 1.3;

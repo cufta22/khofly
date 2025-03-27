@@ -10,7 +10,8 @@
     "@elysiajs/cors": "^1.2.0",
     "@elysiajs/cron": "^1.2.0",
     "@elysiajs/static": "^1.2.0",
-    "elysia": "^1.2.25"
+    "elysia": "^1.2.25",
+    "node-html-parser": "^7.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

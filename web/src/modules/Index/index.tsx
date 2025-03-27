@@ -24,31 +24,27 @@ const PageIndex = () => {
   const displayWeather = useStatrpageStore((state) => state.displayWeather);
   const displayClock = useStatrpageStore((state) => state.displayClock);
 
-  const todosPosition = useStatrpageStore((state) => state.todosPosition);
-  const notesPosition = useStatrpageStore((state) => state.notesPosition);
-  const weatherPosition = useStatrpageStore((state) => state.weatherPosition);
-  const clockPosition = useStatrpageStore((state) => state.clockPosition);
+  // const todosPosition = useStatrpageStore((state) => state.todosPosition);
+  // const notesPosition = useStatrpageStore((state) => state.notesPosition);
+  // const weatherPosition = useStatrpageStore((state) => state.weatherPosition);
+  // const clockPosition = useStatrpageStore((state) => state.clockPosition);
 
   const widgets = [
     {
       component: WidgetTodo,
       display: displayTodos,
-      position: todosPosition,
     },
     {
       component: WidgetNotes,
       display: displayNotes,
-      position: notesPosition,
     },
     {
       component: WidgetWeather,
       display: displayWeather,
-      position: weatherPosition,
     },
     {
       component: WidgetClock,
       display: displayClock,
-      position: clockPosition,
     },
   ];
 
@@ -76,21 +72,25 @@ const PageIndex = () => {
         {/* Startpage widgets */}
         <Flex direction="column" gap={24} className={classes.widgets_left}>
           {widgets.map((widget, i) => {
-            if (!widget.display || widget.position !== "top-left") return null;
+            if (
+              !widget.display
+              // || widget.position !== "top-left"
+            )
+              return null;
 
             const Widget = widget.component;
             return <Widget key={i} />;
           })}
         </Flex>
 
-        <Flex direction="column" gap={24} className={classes.widgets_right}>
+        {/* <Flex direction="column" gap={24} className={classes.widgets_right}>
           {widgets.map((widget, i) => {
             if (!widget.display || widget.position !== "top-right") return null;
 
             const Widget = widget.component;
             return <Widget key={i} />;
           })}
-        </Flex>
+        </Flex> */}
       </Flex>
       {/* </Center> */}
 

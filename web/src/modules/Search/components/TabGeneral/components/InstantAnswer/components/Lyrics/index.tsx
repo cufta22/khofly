@@ -1,33 +1,35 @@
-import { Anchor, Spoiler, Text } from "@mantine/core";
-import React, { useEffect } from "react";
+import { Anchor, LoadingOverlay, Spoiler, Text } from "@mantine/core";
 import useLyricsSWR from "src/api/lyrics/use-lyrics-query";
 
 import classes from "./styles.module.scss";
 import { IAWrapper } from "../../wrapper";
+import { usePrimaryColor } from "@hooks/use-primary-color";
+import { useEffect } from "react";
 import { useInstanceStore } from "@store/instance";
 import useSearchQuery from "@hooks/use-search-query";
-import { usePrimaryColor } from "@hooks/use-primary-color";
 
 interface Props {
   initialQ?: string;
 }
 
 const IALyrics: React.FC<Props> = ({ initialQ }) => {
-  const { data, mutate } = useLyricsSWR({ initialQ });
+  const { data, mutate, isLoading, isValidating } = useLyricsSWR({ initialQ });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
 
-  const q = useSearchQuery();
-
   const linkTextColor = usePrimaryColor(4);
 
+  const q = useSearchQuery();
+
   useEffect(() => {
+    if (data || isLoading || isValidating) return;
+
     // Trigger for initialQ ( for Docs )
     if (initialQ && hydrated) mutate();
 
     // Trigger for query change
-    if (q && !initialQ && hydrated) mutate();
-  }, [q, hydrated]);
+    if (!initialQ && q.includes("lyrics") && hydrated) mutate();
+  }, [hydrated]);
 
   return (
     <IAWrapper
@@ -43,6 +45,8 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
         </Text>
       }
     >
+      <LoadingOverlay visible={isLoading || isValidating} />
+
       {data && (
         <Spoiler maxHeight={170} showLabel="Show more" hideLabel="Hide">
           <Text className={classes.song_title} fz={22} fw={600}>

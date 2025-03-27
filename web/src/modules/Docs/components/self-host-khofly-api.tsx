@@ -262,9 +262,9 @@ const DocsSelfHostResourceAPI = () => {
           href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"
           label="Get cookies.txt LOCALLY"
         />{" "}
-        on Chormium you can extract your YouTube cookies and add it to a <Code>yt-cookies.txt</Code>{" "}
+        on Chormium you can extract your YouTube cookies and add it to a <Code>cookies-yt.txt</Code>{" "}
         file in the root of <Code>/api</Code> folder. So the path to your extracted cookies file
-        should be <Code>/api/yt-cookies.txt</Code>. Also make sure to use a burner google account
+        should be <Code>/api/cookies-yt.txt</Code>. Also make sure to use a burner google account
         instead of your main one.
       </DocsText>
 

@@ -1,10 +1,10 @@
-import { ActionIcon, Combobox, Divider, Flex, Image, TextInput, useCombobox } from "@mantine/core";
-import { IconSearch, IconSparkles, IconX } from "@tabler/icons-react";
+import { ActionIcon, Combobox, Divider, Flex, TextInput, useCombobox } from "@mantine/core";
+import { IconChevronLeft, IconSearch, IconSparkles, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useEffect, useRef, useState } from "react";
 
 import classes from "./styles.module.scss";
-import { useDebouncedValue } from "@mantine/hooks";
+import { useDebouncedValue, useWindowScroll } from "@mantine/hooks";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { useTranslate } from "@hooks/translate/use-translate";
@@ -12,6 +12,7 @@ import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import { useNavigate, useSearchParams } from "react-router";
 import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
+import RemixLink from "@components/RemixLink";
 
 const SearchSectionInput = () => {
   const t = useTranslate();
@@ -19,6 +20,8 @@ const SearchSectionInput = () => {
   const navigate = useNavigate();
   const isSm = useResponsive("max", "sm");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [scroll] = useWindowScroll();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -119,6 +122,24 @@ const SearchSectionInput = () => {
               handleSearch(q, false);
             }
           }}
+          leftSection={
+            // <Flex align="center" justify="flex-end">
+            scroll.y < 10 && (
+              <RemixLink to="/">
+                <ActionIcon
+                  size="lg"
+                  radius="sm"
+                  color="gray"
+                  variant="subtle"
+                  onClick={handleClear}
+                >
+                  <IconChevronLeft style={getIconStyle(22)} stroke={1.5} />
+                </ActionIcon>
+              </RemixLink>
+            )
+            // </Flex>
+          }
+          // leftSectionWidth="fit-content"
           rightSection={
             <Flex align="center" justify="flex-end">
               {q.length >= 1 && (
@@ -130,7 +151,7 @@ const SearchSectionInput = () => {
                     variant="subtle"
                     onClick={handleClear}
                   >
-                    <IconX style={getIconStyle(20)} stroke={1.5} />
+                    <IconX style={getIconStyle(22)} stroke={1.5} />
                   </ActionIcon>
 
                   <Divider orientation="vertical" w={1} my={9} mx={4} color="gray.7" />
@@ -146,7 +167,7 @@ const SearchSectionInput = () => {
                 mr={4}
               >
                 <IconSearch
-                  style={getIconStyle(20)}
+                  style={getIconStyle(22)}
                   stroke={2}
                   // color="white"
                 />
@@ -162,7 +183,7 @@ const SearchSectionInput = () => {
                   mr={4}
                 >
                   <IconSparkles
-                    style={getIconStyle(20)}
+                    style={getIconStyle(22)}
                     stroke={2}
                     // color="white"
                   />

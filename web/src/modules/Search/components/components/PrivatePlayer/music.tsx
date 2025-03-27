@@ -1,19 +1,10 @@
-import {
-  ActionIcon,
-  Center,
-  Flex,
-  Image,
-  Loader,
-  Paper,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
+import { ActionIcon, Flex, Loader, Text, useMantineTheme } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import type { ISearXNGResultsMusic } from "@ts/searxng.types";
-import { IconPlayerPause, IconPlayerPlay, IconVinyl, IconX } from "@tabler/icons-react";
+import { IconPlayerPlay, IconX } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import useDownloadSWR from "src/api/download/use-download-query";
 
 interface Props {
@@ -25,7 +16,7 @@ const PrivateMusicPlayer: React.FC<Props> = ({ musicData, onClose }) => {
   const { url, img_src, thumbnail, title } = musicData;
   const theme = useMantineTheme();
 
-  const { data, trigger, isMutating, reset } = useDownloadSWR({ shouldDownload: false });
+  const { data, trigger, isMutating } = useDownloadSWR({ shouldDownload: false });
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -55,7 +46,7 @@ const PrivateMusicPlayer: React.FC<Props> = ({ musicData, onClose }) => {
       ) : (
         <audio
           ref={audioRef}
-          src={data?.data.url || ""}
+          src={data?.data?.url || ""}
           controls
           className="w-full mt-2"
           title={title}
