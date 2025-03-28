@@ -31,6 +31,8 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
     if (!initialQ && q.includes("lyrics") && hydrated) mutate();
   }, [hydrated]);
 
+  if (!data?.title || !q.includes("lyrics")) return null;
+
   return (
     <IAWrapper
       className={classes.song_ia}
