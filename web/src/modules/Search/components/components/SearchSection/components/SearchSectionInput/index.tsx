@@ -18,7 +18,7 @@ const SearchSectionInput = () => {
   const t = useTranslate();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const isSm = useResponsive("max", "sm");
+  const isXs = useResponsive("max", "xs");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [scroll] = useWindowScroll();
@@ -123,8 +123,8 @@ const SearchSectionInput = () => {
             }
           }}
           leftSection={
-            // <Flex align="center" justify="flex-end">
-            scroll.y < 10 && (
+            scroll.y < 10 &&
+            isXs && (
               <RemixLink to="/">
                 <ActionIcon
                   size="lg"
@@ -137,9 +137,7 @@ const SearchSectionInput = () => {
                 </ActionIcon>
               </RemixLink>
             )
-            // </Flex>
           }
-          // leftSectionWidth="fit-content"
           rightSection={
             <Flex align="center" justify="flex-end">
               {q.length >= 1 && (

@@ -6,6 +6,12 @@
   }
 }
 
+.mobile_only {
+  @media (min-width: vars.$mantine-breakpoint-xs) {
+    display: none !important;
+  }
+}
+
 .flex_1 {
   flex: 1;
 }
