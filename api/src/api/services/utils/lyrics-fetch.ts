@@ -34,10 +34,6 @@ export const getLyricsWithFetch = async (
   const lyrics = lyricsRoot
     ?.querySelectorAll("[data-lyrics-container='true']")
     .map((x: any) => {
-      // x.querySelectorAll("br").forEach((y) => {
-      //   y.replaceWith(new html.TextNode("\n"));
-      // });
-
       for (const y of x.querySelectorAll("br")) {
         y.replaceWith(new html.TextNode("\n"));
       }
