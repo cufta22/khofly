@@ -23,7 +23,8 @@ export const getLyricsWithWorker = async (
     `${process.env.LYRICS_WORKER_URL}?songUrl=${firstRes.result.url}`,
     {
       headers: {
-        Origin: `${process.env.HOST || "https://example.com"}`,
+        Orgign: "localhost:3000",
+        // Origin: `${process.env.HOST || "https://example.com"}`,
       },
     }
   );
