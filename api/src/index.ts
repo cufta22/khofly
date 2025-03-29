@@ -3,6 +3,7 @@ import cron from "@elysiajs/cron";
 import { Elysia, file } from "elysia";
 import { CORS_OPTIONS, CRON_CLEAR_MEDIA, CRON_FETCH_RATES_OPTIONS } from "./config";
 import * as router from "./api/router";
+import { middleware_Error } from "./middleware/error";
 // import staticPlugin from "@elysiajs/static";
 
 const app = new Elysia({ serve: { idleTimeout: 100 } })
@@ -14,6 +15,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
 
   // Middlewares
   // .on("error", middleware_Error) // Handle errors
+  .onError(({ error }) => {}) // Handle errors
 
   .get("/", () => "Khofly API")
 

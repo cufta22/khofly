@@ -13,17 +13,20 @@ const OCurrent = () => {
 
   const { cache, mutate, ...extraConfig } = useSWRConfig();
   const cacheKeys = Array.from(cache.keys());
+  console.log(cacheKeys);
 
   const [currentDomains, setCurrentDomains] = useState<string[]>([]);
 
   useEffect(() => {
     if (currentDomains.length) return;
 
-    const findPageDataKey = cacheKeys.find((key) => {
-      const keyURL = new URL(`http://example.com${key}`);
+    const findPageDataKey = cacheKeys
+      .filter((item) => item.startsWith("$inf$/search?q="))
+      .find((key) => {
+        const keyURL = new URL(`http://example.com${key}`);
 
-      return keyURL.searchParams.get("q")?.includes(q);
-    });
+        return keyURL.searchParams.get("q")?.includes(q);
+      });
     console.log(findPageDataKey);
 
     if (!findPageDataKey) return;

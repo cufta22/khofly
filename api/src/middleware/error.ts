@@ -1,7 +1,10 @@
-import type { ErrorHandler } from "elysia";
+import type { ErrorHandler, MaybeArray, MergeSchema } from "elysia";
 
-// Unused for now
-export const middleware_Error: ErrorHandler = ({ code, error, set }) => {
+type ElysiaOnErrorHandler = MaybeArray<
+  ErrorHandler<any, MergeSchema<any, MergeSchema<any, MergeSchema<any, any>>>>
+>;
+
+export const middleware_Error: ElysiaOnErrorHandler = ({ code, set }) => {
   switch (code) {
     case "NOT_FOUND":
       set.status = 404;

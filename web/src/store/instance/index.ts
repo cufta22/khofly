@@ -44,7 +44,7 @@ export const useInstanceStore = create<InstanceState>()(
 
       workerDomain: "", // Will be set initially in layout
       setWorkerDomain: (domain) => set({ workerDomain: domain }),
-      workerModel: "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      workerModel: "@cf/meta/llama-3.2-3b-instruct",
       setWorkerModel: (domain) => set({ workerModel: domain }),
     }),
     {

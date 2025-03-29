@@ -6,8 +6,6 @@ add all translations
 
 move meta to /meta & add meta for every page that needs
 
-Finish up IA commands
-
 see why most results are in DE ( server region )
 
 engine row add !bangs
@@ -18,11 +16,21 @@ try to move favicons to searxng side
 Check if all api call 400s are handled well
 
 Add gallery-dl section to self-host-API
+Install gallery-dl on VPS
 
 Fix up lyrics ( deployed not working )
+
+Finish time zone IA
+
+Docs page for lyrics worker
 
 ? Docs page for widgets
 
 Ideas for v8:
 
 More options for downloader
+More AI
+More popularDomainNameMap stuff
+More engines
+A few IAs
+Save search history in LS

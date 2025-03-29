@@ -48,7 +48,9 @@ const SearchSectionInput = () => {
     const { tab: tabFromSyntax } = getTabFromQuery(query);
 
     // Prevent unnecessary search
-    if (!query.length || query === paramsQ || query === searchQuery) return;
+    if (!query.length || query === paramsQ || query === searchQuery) {
+      if (!withAI) return;
+    }
 
     // Unfocus input on search
     inputRef.current?.blur();
@@ -165,7 +167,7 @@ const SearchSectionInput = () => {
                 mr={4}
               >
                 <IconSearch
-                  style={getIconStyle(22)}
+                  style={getIconStyle(20)}
                   stroke={2}
                   // color="white"
                 />

@@ -3,6 +3,7 @@ import { popularDomainNameMap } from "./utils";
 import { useHover } from "@mantine/hooks";
 import { IconForbid, IconLabelImportant, IconTrash } from "@tabler/icons-react";
 import { useSearchStore } from "@store/search";
+import { useSettingsStore } from "@store/settings";
 
 interface Props {
   domain: string;
@@ -14,6 +15,8 @@ const DomainItem: React.FC<Props> = ({ domain, isCurrent }) => {
   const setDomainsPriority = useSearchStore((state) => state.setDomainsPriority);
   const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
   const setDomainsBlacklist = useSearchStore((state) => state.setDomainsBlacklist);
+
+  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
 
   const { hovered, ref } = useHover();
 
@@ -47,13 +50,15 @@ const DomainItem: React.FC<Props> = ({ domain, isCurrent }) => {
   return (
     <Paper ref={ref} withBorder>
       <Flex align={!isCurrent ? "center" : "flex-start"} justify="flex-start" gap="xs" p="xs">
-        <Image
-          w={isCurrent ? 42 : 34}
-          h={isCurrent ? 42 : 34}
-          src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
-          alt=""
-          radius="sm"
-        />
+        {displayFavicon && (
+          <Image
+            w={isCurrent ? 42 : 34}
+            h={isCurrent ? 42 : 34}
+            src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
+            alt=""
+            radius="sm"
+          />
+        )}
 
         {(hovered && isCurrent) || (isCurrent && (isPriority || isBlacklist)) ? (
           <Grid w="100%" gutter="xs">

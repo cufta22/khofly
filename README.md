@@ -31,8 +31,8 @@
 
 |       Codebase       |                Description                 |
 | :------------------: | :----------------------------------------: |
-|     [web](./web)     |     Bun API for getting 3rd party data     |
-|     [api](./api)     |          React Router web client           |
+|     [web](./web)     |          React Router web client           |
+|     [api](./api)     |     Bun API for getting 3rd party data     |
 | [scripts](./scripts) | Shell scripts for installing/updating apps |
 
 ## Branches

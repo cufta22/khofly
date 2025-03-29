@@ -1,3 +1,11 @@
+export interface ILyricsResponse {
+  lyrics: string;
+  title: string;
+  artist: string;
+  releaseDate: string;
+  image: string;
+}
+
 export interface IGeniusSearchResponse {
   meta: { status: number };
   response: {
@@ -17,9 +25,20 @@ export interface IGeniusSearchResponse {
           song_art_image_url: string;
           url: string;
           title: string;
+          primary_artist: {
+            name: string;
+          };
           // ...and a few more
         };
       }
     ];
   };
+}
+
+export interface ILyricsOvhResponse {
+  lyrics: string;
+}
+
+export interface ILyricsWorkerResponse {
+  songHtml: string;
 }
