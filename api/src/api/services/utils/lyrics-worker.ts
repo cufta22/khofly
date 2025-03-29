@@ -32,7 +32,7 @@ export const getLyricsWithWorker = async (
   const songHtml: ILyricsWorkerResponse = await lyricsWorkerRes.json();
 
   console.log(`songHtml length: ${songHtml?.songHtml?.length}`);
-  console.log(`songHtml substr: ${songHtml?.songHtml?.substring(0, 1500)}`);
+  // console.log(`songHtml substr: ${songHtml?.songHtml?.substring(0, 1500)}`);
 
   return {
     lyrics: songHtml?.songHtml,
@@ -42,42 +42,42 @@ export const getLyricsWithWorker = async (
     image: firstRes?.result?.header_image_url,
   };
 
-  // if (!songHtml?.songHtml) {
-  //   throw ctx.error(400, "Lyrics not found, try another song!");
-  // }
+  if (!songHtml?.songHtml) {
+    throw ctx.error(400, "Lyrics not found, try another song!");
+  }
 
-  // console.log(`songHtml length: ${songHtml?.songHtml?.length}`);
-  // console.log(`songHtml substr: ${songHtml?.songHtml?.substring(0, 5500)}`);
+  console.log(`songHtml length: ${songHtml?.songHtml?.length}`);
+  console.log(`songHtml substr: ${songHtml?.songHtml?.substring(0, 5500)}`);
 
-  // const document = html(songHtml.songHtml);
+  const document = html(songHtml.songHtml);
 
-  // const lyricsRoot = document?.getElementById("lyrics-root");
+  const lyricsRoot = document?.getElementById("lyrics-root");
 
-  // const lyrics = lyricsRoot
-  //   ?.querySelectorAll("[data-lyrics-container='true']")
-  //   .map((x: any) => {
-  //     // x.querySelectorAll("br").forEach((y) => {
-  //     //   y.replaceWith(new html.TextNode("\n"));
-  //     // });
+  const lyrics = lyricsRoot
+    ?.querySelectorAll("[data-lyrics-container='true']")
+    .map((x: any) => {
+      // x.querySelectorAll("br").forEach((y) => {
+      //   y.replaceWith(new html.TextNode("\n"));
+      // });
 
-  //     for (const y of x.querySelectorAll("br")) {
-  //       y.replaceWith(new html.TextNode("\n"));
-  //     }
+      for (const y of x.querySelectorAll("br")) {
+        y.replaceWith(new html.TextNode("\n"));
+      }
 
-  //     return x.text;
-  //   })
-  //   .join("\n")
-  //   .trim();
+      return x.text;
+    })
+    .join("\n")
+    .trim();
 
-  // if (!lyrics) {
-  //   throw ctx.error(400, "Lyrics not found, try another song!");
-  // }
+  if (!lyrics) {
+    throw ctx.error(400, "Lyrics not found, try another song!");
+  }
 
-  // return {
-  //   lyrics: lyrics,
-  //   title: firstRes?.result.title,
-  //   artist: firstRes?.result.artist_names,
-  //   releaseDate: firstRes?.result?.release_date_for_display,
-  //   image: firstRes?.result?.header_image_url,
-  // };
+  return {
+    lyrics: lyrics,
+    title: firstRes?.result.title,
+    artist: firstRes?.result.artist_names,
+    releaseDate: firstRes?.result?.release_date_for_display,
+    image: firstRes?.result?.header_image_url,
+  };
 };
