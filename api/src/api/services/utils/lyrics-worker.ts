@@ -35,7 +35,7 @@ export const getLyricsWithWorker = async (
   }
 
   console.log(`songHtml length: ${songHtml?.songHtml?.length}`);
-  console.log(`songHtml substr: ${songHtml?.songHtml?.substring(0, 200)}`);
+  console.log(`songHtml substr: ${songHtml?.songHtml?.substring(0, 500)}`);
 
   const document = html(songHtml.songHtml);
 
