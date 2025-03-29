@@ -25,6 +25,14 @@ curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr
 chmod a+rx /usr/bin/yt-dlp
 `;
 
+const CODE_GALLERY_DL = `
+# Install from binaries since the apt version is insanely out of date
+# You can also update it with gallery-dl -U when installing from binaries
+curl -L https://github.com/mikf/gallery-dl/releases/latest/download/gallery-dl.bin -o /usr/bin/gallery-dl
+
+chmod a+rx /usr/bin/gallery-dl
+`;
+
 const CODE_PM2 = `
 npm install pm2 -g
 source ~/.bashrc
@@ -144,37 +152,42 @@ const DocsSelfHostResourceAPI = () => {
         <DocsCodeHighlight code={CODE_YT_DLP} language="bash" />
       </Paper>
 
-      <DocsText>3. Install pm2</DocsText>
+      <DocsText>3. Install gallery-dl</DocsText>
+      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+        <DocsCodeHighlight code={CODE_GALLERY_DL} language="bash" />
+      </Paper>
+
+      <DocsText>4. Install pm2</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_PM2} language="bash" />
       </Paper>
 
-      <DocsText>4. Install Bun</DocsText>
+      <DocsText>5. Install Bun</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_BUN} language="bash" />
       </Paper>
 
       <DocsText>
-        5. Create an empty folder in your home directory, ex. <Code>mkdir khofly</Code>.
+        6. Create an empty folder in your home directory, ex. <Code>mkdir khofly</Code>.
       </DocsText>
 
       <DocsText>
-        6. <Code>cd khofly</Code> and type{" "}
+        7. <Code>cd khofly</Code> and type{" "}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
       <DocsText>
-        6.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
+        7.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
         frequent updates <Code>git fetch origin staging</Code> and{" "}
         <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
-      <DocsText>7. Build and run API</DocsText>
+      <DocsText>8. Build and run API</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_BUILD_API} language="bash" />
       </Paper>
 
-      <DocsText>8. Create the ecosystem.config file for pm2</DocsText>
+      <DocsText>9. Create the ecosystem.config file for pm2</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_ECOSYSTEM} language="bash" />
       </Paper>
@@ -192,7 +205,7 @@ const DocsSelfHostResourceAPI = () => {
       </Paper>
 
       <DocsText>
-        9. Create Nginx config for api, don't forget to update the server_name to your domain name.
+        10. Create Nginx config for api, don't forget to update the server_name to your domain name.
       </DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_NGINX} language="bash" />
@@ -211,11 +224,11 @@ const DocsSelfHostResourceAPI = () => {
       </Paper>
 
       <DocsText>
-        10. Add SSL certificate for your domain <Code>certbot --nginx</Code>
+        11. Add SSL certificate for your domain <Code>certbot --nginx</Code>
       </DocsText>
 
       <DocsText>
-        11. <Code>sudo systemctl reload nginx</Code>
+        12. <Code>sudo systemctl reload nginx</Code>
       </DocsText>
 
       <DocsSubtitle>Updating</DocsSubtitle>
@@ -233,7 +246,7 @@ const DocsSelfHostResourceAPI = () => {
         You should alse keep yt-dlp up to date with <Code>yt-dlp -U</Code>
       </DocsText>
 
-      <DocsSubtitle>YT-DLP issues</DocsSubtitle>
+      <DocsSubtitle>yt-dlp issues</DocsSubtitle>
 
       <DocsText>
         Sometimes when hosting API on a server YouTube can block download requests with captcha. To
@@ -259,7 +272,7 @@ const DocsSelfHostResourceAPI = () => {
         />{" "}
         on Firefox or{" "}
         <DocsLink
-          href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"
+          href="https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc"
           label="Get cookies.txt LOCALLY"
         />{" "}
         on Chormium you can extract your YouTube cookies and add it to a <Code>cookies-yt.txt</Code>{" "}
@@ -302,8 +315,43 @@ const DocsSelfHostResourceAPI = () => {
         will now use that PO Token when calling <Code>yt-dlp</Code> command.
       </DocsText>
 
+      <DocsSubtitle>gallery-dl issues</DocsSubtitle>
+
+      <DocsText>
+        Sometimes when hosting API on a server Instagram can block download requests with captcha.
+        To try and avoid this we can pass cookies argument to gallery-dl.
+      </DocsText>
+
+      <DocsText>1. Instagram Cookies</DocsText>
+
+      <DocsText>
+        Read more about providing cookies on yt-dlp{" "}
+        <DocsLink
+          href="https://github.com/mikf/gallery-dl?tab=readme-ov-file#cookies"
+          label="official wiki"
+        />
+        .
+      </DocsText>
+
+      <DocsText>
+        TL;DR With a browser extension like{" "}
+        <DocsLink
+          href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"
+          label="cookies.txt"
+        />{" "}
+        on Firefox or{" "}
+        <DocsLink
+          href="https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc"
+          label="Get cookies.txt LOCALLY"
+        />{" "}
+        on Chormium you can extract your Instagram cookies and add it to a{" "}
+        <Code>cookies-ig.txt</Code> file in the root of <Code>/api</Code> folder. So the path to
+        your extracted cookies file should be <Code>/api/cookies-ig.txt</Code>. Also make sure to
+        use a burner IG account instead of your main one.
+      </DocsText>
+
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["aiWorker"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["selfHostCFWorker"] }}
         next={{ ...DOCS_CARD_DATA(theme)["selfHostKhofly"] }}
       />
     </Container>

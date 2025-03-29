@@ -1,16 +1,6 @@
-import {
-  Blockquote,
-  Code,
-  Container,
-  Image,
-  List,
-  Paper,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
+import { Blockquote, Code, Container, List, Paper, Text, useMantineTheme } from "@mantine/core";
 import { IconFile } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useState } from "react";
 import DocsLink from "./common/DocsLink";
 import DocsTitle from "./common/DocsTitle";
 import DocsText from "./common/DocsText";
@@ -365,7 +355,7 @@ const DocsSelfHostSearxng = () => {
 
       <DocsNextPrev
         prev={{ ...DOCS_CARD_DATA(theme)["siteData"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["aiWorker"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["selfHostCFWorker"] }}
       />
     </Container>
   );

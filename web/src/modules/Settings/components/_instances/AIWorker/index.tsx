@@ -130,7 +130,7 @@ const SettingsAIWorker = () => {
         >
           <Text size="sm" c="dimmed">
             Change this to your own url for better privacy & less load for default instance.{" "}
-            <RemixLink to={"/docs/self-host-ai-worker"}>
+            <RemixLink to={"/docs/self-host-cf-workers"}>
               <Text component="span" c={linkTextColor}>
                 Read more
               </Text>

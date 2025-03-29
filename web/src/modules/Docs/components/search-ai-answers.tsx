@@ -45,7 +45,7 @@ const DocsSearchAIAnswers = () => {
 
       <DocsText>
         Check out how to deploy your AI worker and use it with Khofly{" "}
-        <RemixLink to="/docs/self-host-ai-worker">
+        <RemixLink to="/docs/self-host-cf-workers">
           <Text c={linkTextColor} component="span">
             here
           </Text>

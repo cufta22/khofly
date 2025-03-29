@@ -59,7 +59,7 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
     icon: IconServer,
     links: [
       { label: "SearXNG", link: "/docs/self-host-searxng", isWip: false },
-      { label: "AI Worker", link: "/docs/self-host-ai-worker", isWip: false },
+      { label: "CF Workers", link: "/docs/self-host-cf-workers", isWip: false },
       { label: "Khofly", link: "/docs/self-host-khofly", isWip: false },
       {
         label: "Khofly API",
@@ -76,6 +76,11 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
       {
         label: "Currency",
         link: "/docs/3rd-party-currency",
+        isWip: false,
+      },
+      {
+        label: "Lyrics",
+        link: "/docs/3rd-party-lyrics",
         isWip: false,
       },
       // Nominatim stuff

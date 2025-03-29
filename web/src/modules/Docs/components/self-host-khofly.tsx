@@ -44,7 +44,7 @@ const DocsSelfHostKhofly = () => {
           <Tabs.Tab
             value="cloudflare"
             leftSection={
-              <IconBrandCloudflare style={{ ...getIconStyle(28), color: theme.colors.orange[6] }} />
+              <IconBrandCloudflare style={{ ...getIconStyle(28), color: theme.colors.orange[5] }} />
             }
             fz={15}
           >
@@ -88,7 +88,7 @@ const DocsSelfHostKhofly = () => {
       </Tabs>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["aiWorker"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["selfHostCFWorker"] }}
         next={{ ...DOCS_CARD_DATA(theme)["selfHostKhoflyAPI"] }}
       />
     </Container>

@@ -13,7 +13,6 @@ import {
   IconWorld,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import DocsSelfHostKhofly from "../self-host-khofly";
 
 export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
   syntax: {
@@ -76,11 +75,11 @@ export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
     title: "Self-Host SearXNG",
     description: "Own your data by self-hosting your SearXNG instance",
   },
-  aiWorker: {
-    href: "/docs/self-host-ai-worker",
-    icon: <IconSparkles style={getIconStyle(28)} color={theme.colors.pink[5]} />,
-    title: "AI Worker",
-    description: "Setup your own Cloudflare AI worker",
+  selfHostCFWorker: {
+    href: "/docs/self-host-cf-workers",
+    icon: <IconBrandCloudflare style={getIconStyle(28)} color={theme.colors.orange[5]} />,
+    title: "CF Workers",
+    description: "Setup your own Cloudflare Worker",
   },
   selfHostKhofly: {
     href: "/docs/self-host-khofly",

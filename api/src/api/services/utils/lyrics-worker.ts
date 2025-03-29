@@ -16,6 +16,9 @@ export const getLyricsWithWorker = async (
     throw ctx.error(400, "No lyrics worker URL!");
   }
 
+  console.log(`Worker req: ${`${process.env.LYRICS_WORKER_URL}?songUrl=${firstRes.result.url}`}`);
+  console.log(`Origin header: ${`${process.env.HOST || "https://example.com"}`}`);
+
   const lyricsWorkerRes = await fetch(
     `${process.env.LYRICS_WORKER_URL}?songUrl=${firstRes.result.url}`,
     {
@@ -30,6 +33,9 @@ export const getLyricsWithWorker = async (
   if (!songHtml?.songHtml) {
     throw ctx.error(400, "Lyrics not found, try another song!");
   }
+
+  console.log(`songHtml length: ${songHtml?.songHtml?.length}`);
+  console.log(`songHtml substr: ${songHtml?.songHtml?.substring(0, 200)}`);
 
   const document = html(songHtml.songHtml);
 

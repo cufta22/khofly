@@ -1,14 +1,10 @@
-import { Container, Paper, Text, useMantineTheme } from "@mantine/core";
-
-import DocsLink from "./common/DocsLink";
-import DocsTitle from "./common/DocsTitle";
-import DocsText from "./common/DocsText";
-import DocsSubtitle from "./common/DocsSubtitle";
-import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
+import { Paper, Text } from "@mantine/core";
+import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
+import DocsSubtitle from "../../common/DocsSubtitle";
+import DocsLink from "../../common/DocsLink";
 import RemixLink from "@components/RemixLink";
+import DocsText from "../../common/DocsText";
 import { usePrimaryColor } from "@hooks/use-primary-color";
-import DocsNextPrev from "./common/DocsNextPrev";
-import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 const CODE_WORKER = `
 const corsHeaders = {
@@ -66,23 +62,19 @@ export default {
     }
   }
 };
-  `;
+`;
 
-const DocsSelfHostAiWorker = () => {
-  const theme = useMantineTheme();
-
+const SectionAIWorker = () => {
   const linkTextColor = usePrimaryColor(4);
 
   return (
-    <Container size="lg" p="xl" pb={100}>
-      <DocsTitle>Setup guide</DocsTitle>
-
+    <>
       <DocsText>
         1. Go to <DocsLink href="cloudflare.com" label="cloudflare.com" /> and log in.
       </DocsText>
 
       <DocsText>
-        2. In your dashboard go to <strong>Compute (Workers)</strong> and then{" "}
+        2. In your dashboard go to <strong>Workers & Pages</strong> and then{" "}
         <strong>Workers & Pages</strong>.
       </DocsText>
 
@@ -143,13 +135,8 @@ const DocsSelfHostAiWorker = () => {
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_WORKER} language="javascript" />
       </Paper>
-
-      <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["selfHostSearXNG"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["selfHostKhofly"] }}
-      />
-    </Container>
+    </>
   );
 };
 
-export default DocsSelfHostAiWorker;
+export default SectionAIWorker;
