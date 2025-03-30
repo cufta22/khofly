@@ -3,7 +3,7 @@ import { Container, Tabs, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
 import DocsNextPrev from "./common/DocsNextPrev";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
-import { IconBrandCloudflare, IconMusic, IconSparkles } from "@tabler/icons-react";
+import { IconBrandCloudflare, IconSparkles } from "@tabler/icons-react";
 import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import SectionAIWorker from "./components/self-host-cf-workers/SectionAIWorker";
@@ -29,7 +29,7 @@ const DocsSelfHostCFWorkers = () => {
           >
             AI Worker
           </Tabs.Tab>
-          <Tabs.Tab
+          {/* <Tabs.Tab
             value="lyrics"
             leftSection={
               <IconMusic style={{ ...getIconStyle(28), color: theme.colors.indigo[5] }} />
@@ -37,7 +37,7 @@ const DocsSelfHostCFWorkers = () => {
             fz={15}
           >
             Lyrics Worker
-          </Tabs.Tab>
+          </Tabs.Tab> */}
         </Tabs.List>
 
         <Tabs.Panel value="ai">

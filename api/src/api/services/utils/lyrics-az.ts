@@ -35,6 +35,7 @@ export const getLyricsFromAZ = async (
   });
 
   const songHtml = await songRes.text();
+  console.log(songHtml);
 
   //   return {
   //     lyrics: songHtml,
