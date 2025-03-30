@@ -43,7 +43,7 @@ export const handleGetLyrics = async (ctx: Context) => {
     const lyricsData = await getLyricsFromLyricsOvh(ctx, firstRes);
     return lyricsData;
   } else if (process.env.LYRICS_FETCH_METHOD === "az") {
-    // Should hopefully work on VPS
+    // Gets 403 on VPS :(
     const lyricsData = await getLyricsFromAZ(ctx, firstRes);
     return lyricsData;
   } else {

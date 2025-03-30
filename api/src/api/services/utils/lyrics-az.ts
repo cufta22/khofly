@@ -35,15 +35,6 @@ export const getLyricsFromAZ = async (
   });
 
   const songHtml = await songRes.text();
-  console.log(songHtml);
-
-  //   return {
-  //     lyrics: songHtml,
-  //     title: firstRes?.result.title,
-  //     artist: firstRes?.result.artist_names,
-  //     releaseDate: firstRes?.result?.release_date_for_display,
-  //     image: firstRes?.result?.header_image_url,
-  //   };
 
   const document = html.parse(songHtml);
 
