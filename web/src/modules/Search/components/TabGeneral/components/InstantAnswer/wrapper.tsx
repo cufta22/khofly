@@ -1,4 +1,4 @@
-import { Collapse, Divider, Flex, Stack, Text, Transition } from "@mantine/core";
+import { Collapse, Divider, Flex, Stack, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconSelector } from "@tabler/icons-react";
 import type { IFC } from "@ts/global.types";
@@ -17,7 +17,7 @@ export const IAWrapper: React.FC<Props> = ({ children, label, className }) => {
   const [visible, { toggle }] = useDisclosure(!isDocs);
 
   return (
-    <Stack gap={0} className={className && className}>
+    <Stack gap={0} className={className && className} pos="relative">
       {/* <Transition transition="fade" duration={100} mounted={visible} keepMounted={true}>
         {(transitionStyles) => <div style={transitionStyles}>{children}</div>}
       </Transition> */}

@@ -23,6 +23,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
 
   .get("/rates", router.handleRates) // Fetch latest currency exchange rates
   .get("/lyrics", router.handleLyrics) // Fetch song lyrics by name
+  .get("/geocoding", router.handleGeocoding) // Fetch geocoding data
   .get("/weather", router.handleWeather) // Fetch weather data
   .get("/download", router.handleDownload) // Download media file
   .get("/ip", router.handleIP) // Get IP from headers

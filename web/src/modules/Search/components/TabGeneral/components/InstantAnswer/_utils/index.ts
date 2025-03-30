@@ -133,6 +133,25 @@ export const shouldDisplayTimeIn = (query: string) => {
 };
 
 // -----------------------------------------------------------------------------------
+// Weather handler
+// -----------------------------------------------------------------------------------
+
+export const shouldDisplayWeather = (query: string) => {
+  // Check if query starts with cowsay
+  if (!query.startsWith("weather")) {
+    return {
+      sdWeather: false,
+      propLocation: "",
+    };
+  }
+
+  return {
+    sdWeather: true,
+    propLocation: query.replace(/^weather\s*/, ""),
+  };
+};
+
+// -----------------------------------------------------------------------------------
 // Cowsay handler
 // -----------------------------------------------------------------------------------
 
@@ -150,3 +169,4 @@ export const shouldDisplayCowsay = (query: string) => {
     message: query.replace(/^cowsay\s*/, ""),
   };
 };
+

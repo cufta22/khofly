@@ -6,6 +6,7 @@ import {
   shouldDisplayIAExact,
   shouldDisplayTimeIn,
   shouldDisplayUnits,
+  shouldDisplayWeather,
 } from "./_utils";
 import { useSettingsStore } from "@store/settings";
 
@@ -100,8 +101,9 @@ const InstantAnswer = () => {
   // Instant answer - UUID
   if (shouldDisplayIAExact(q, KEYWORDS_IA.uuid)) return <IAUUID />;
 
-  // Instant answer - Weather by OpenWeather
-  if (shouldDisplayIA(q, KEYWORDS_IA.weather)) return <IAWeather />;
+  // Instant answer - Weather by OpenWeatherMap | Open-Meteo
+  const { sdWeather, ...restWeather } = shouldDisplayWeather(q);
+  if (sdWeather) return <IAWeather {...restWeather} />;
 
   // TODO:
   // Instant answer - Sport scores ?

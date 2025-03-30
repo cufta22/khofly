@@ -23,8 +23,6 @@ const useGeolocation = (shouldSubmit: boolean) => {
         },
 
         (error) => {
-          console.log(error);
-
           toast.show({
             title: "Error while getting user location",
             message: error.message,

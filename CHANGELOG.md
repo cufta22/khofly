@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - More start page customization
 - Multiple missing search engines
 - Private Music Player
+- Geocoding for weather
 
 ### Changed
 

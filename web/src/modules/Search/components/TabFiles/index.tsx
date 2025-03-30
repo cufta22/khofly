@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import { ISearXNGResultsFiles } from "@ts/searxng.types";
+import type { ISearXNGResultsFiles } from "@ts/searxng.types";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
@@ -14,10 +14,11 @@ import Suggestions from "../components/Suggestions";
 import FilesRow from "./components/FilesRow";
 import FilesSkeleton from "./components/FilesSkeleton";
 
-const TabFiles= () => {
+const TabFiles = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<ISearXNGResultsFiles>();
+  const { data, error, isLoading, isValidating, size, setSize, mutate } =
+    useSearXNGSWR<ISearXNGResultsFiles>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -64,9 +65,12 @@ const TabFiles= () => {
           <Text>Too Many Requests</Text>
         )}
 
-        {!isLoading && !isValidating && data && data?.length >= 1 && data?.[0]?.results?.length < 1 && !isRateLimit && (
-          <Center py="xs">No results, try with different query</Center>
-        )}
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && <Center py="xs">No results, try with different query</Center>}
 
         {!isLoading &&
           !isValidating &&
@@ -85,9 +89,13 @@ const TabFiles= () => {
       {/* Infoboxes */}
 
       <Flex direction="column" gap="xl" pt="xl">
-        {!isLoading && !isValidating && !isRateLimit && data && data?.[0]?.unresponsive_engines?.length >= 1 && (
-          <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
-        )}
+        {!isLoading &&
+          !isValidating &&
+          !isRateLimit &&
+          data &&
+          data?.[0]?.unresponsive_engines?.length >= 1 && (
+            <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
+          )}
       </Flex>
     </Flex>
   );

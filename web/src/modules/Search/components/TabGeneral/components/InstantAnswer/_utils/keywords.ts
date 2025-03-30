@@ -26,5 +26,4 @@ export const KEYWORDS_IA = {
   time_zone: ["time zone"],
   translate: ["translate"],
   uuid: ["random uuid", "uuid", "unique id"],
-  weather: ["weather", "forecast"],
 };

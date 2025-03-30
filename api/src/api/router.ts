@@ -4,6 +4,7 @@ import * as lyricsSvc from "./services/lyrics.service";
 import * as weatherSvc from "./services/weather.service";
 import * as downlaodSvc from "./services/download.service";
 import * as ipSvc from "./services/ip.service";
+import * as geocodingSvc from "./services/geocoding.service";
 
 // GET - /rates
 export const handleRates = async (ctx: Context) => {
@@ -15,6 +16,10 @@ export const handleLyrics = async (ctx: Context) => {
   return await lyricsSvc.handleGetLyrics(ctx);
 };
 
+// GET - /geocoding
+export const handleGeocoding = async (ctx: Context) => {
+  return await geocodingSvc.handleGetGeocoding(ctx);
+};
 // GET - /weather
 export const handleWeather = async (ctx: Context) => {
   return await weatherSvc.handleGetWeather(ctx);
