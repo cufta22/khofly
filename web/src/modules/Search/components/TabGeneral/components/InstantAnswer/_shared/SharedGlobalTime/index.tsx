@@ -6,6 +6,8 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { IAWrapper } from "../../wrapper";
 
 import TimeIn from "../../components/TimeIn";
+import TimeZone from "../../components/TimeZone";
+
 import { usePrimaryColor } from "@hooks/use-primary-color";
 // import Timer from "../../components/TimeZone";
 
@@ -22,16 +24,14 @@ const SharedGlobalTime: React.FC<Props> = ({ type, location }) => {
   return (
     <IAWrapper
       label={
-        activeTab === "time_in" ? (
-          <Text size="sm" c="dimmed">
-            Data provided by{" "}
-            <Anchor href="https://timeapi.io/" rel="noreferrer noopener">
-              <Text component="span" c={linkTextColor}>
-                TimeAPI
-              </Text>
-            </Anchor>
-          </Text>
-        ) : undefined
+        <Text size="sm" c="dimmed">
+          Data provided by{" "}
+          <Anchor href="https://timeapi.io/" rel="noreferrer noopener">
+            <Text component="span" c={linkTextColor}>
+              TimeAPI
+            </Text>
+          </Anchor>
+        </Text>
       }
     >
       <Tabs
@@ -53,8 +53,7 @@ const SharedGlobalTime: React.FC<Props> = ({ type, location }) => {
         </Tabs.Panel>
 
         <Tabs.Panel value="time_zone">
-          {/* <Timer withIAWrapper={false} /> */}
-          <TimeIn withIAWrapper={false} location={location} />
+          <TimeZone withIAWrapper={false} />
         </Tabs.Panel>
       </Tabs>
     </IAWrapper>

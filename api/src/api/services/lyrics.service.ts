@@ -1,5 +1,8 @@
 import type { Context } from "elysia";
-// import { IGeniusSearchResponse } from "../../types/genius.types";
+import type { IGeniusSearchResponse } from "../../types/lyrics.types";
+import { getLyricsFromGenius } from "./utils/lyrics-genius";
+import { getLyricsFromLyricsOvh } from "./utils/lyrics-ovh";
+import { getLyricsFromAZ } from "./utils/lyrics-az";
 
 // GET - /lyrics
 export const handleGetLyrics = async (ctx: Context) => {
@@ -7,23 +10,43 @@ export const handleGetLyrics = async (ctx: Context) => {
   const q = searchParams.get("q") || "";
 
   if (!q) {
-    ctx.set.status = 400;
-    return "No query provided!";
+    throw ctx.error(400, "No query provided!");
   }
 
-  ctx.set.status = 400;
-  return "WIP Endpoint!";
+  const searchRes = await fetch(`https://api.genius.com/search?q=${q}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.GENIUS_ACCESS_TOKEN}`,
+    },
+  });
 
-  // if (!lyrics) {
-  //   ctx.set.status = 400;
-  //   return "Lyrics not found, try another song!";
-  // }
+  const searchData = (await searchRes.json()) as IGeniusSearchResponse;
 
-  // return {
-  //   lyrics: lyrics,
-  //   title: firstRes?.result.title,
-  //   artist: firstRes?.result.artist_names,
-  //   releaseDate: firstRes?.result?.release_date_for_display,
-  //   image: firstRes?.result?.header_image_url,
-  // };
+  if (!searchData) {
+    throw ctx.error(400, "Song not found, try another song!");
+  }
+
+  // Find one with lyrics
+  const firstRes = searchData.response.hits.filter(
+    (song) => song.type === "song" && song.result.lyrics_state === "complete"
+  )[0];
+
+  if (!firstRes) {
+    throw ctx.error(400, "Song not found, try another song!");
+  }
+
+  if (process.env.LYRICS_FETCH_METHOD === "genius") {
+    // Gets 403 on VPS :(
+    const lyricsData = await getLyricsFromGenius(ctx, firstRes);
+    return lyricsData;
+  } else if (process.env.LYRICS_FETCH_METHOD === "lyrics-ovh") {
+    // Works on VPS
+    const lyricsData = await getLyricsFromLyricsOvh(ctx, firstRes);
+    return lyricsData;
+  } else if (process.env.LYRICS_FETCH_METHOD === "az") {
+    // Gets 403 on VPS :(
+    const lyricsData = await getLyricsFromAZ(ctx, firstRes);
+    return lyricsData;
+  } else {
+    return ctx.error(400, "Blocked by Genius");
+  }
 };

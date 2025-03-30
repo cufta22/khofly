@@ -1,19 +1,27 @@
-import { CronConfig } from "@elysiajs/cron";
+import type { CronConfig } from "@elysiajs/cron";
 import { cron_fetchRates } from "./cron/fetchRates";
 import path from "node:path";
 import { cron_clearMedia } from "./cron/clearMedia";
 
 export const __dirname = new URL(".", import.meta.url).pathname;
 
+export const IS_SELF_HOST = process.env.IS_SELF_HOST === "1";
+
 export const STATIC_OPTIONS = {
   assets: path.join(__dirname, `/../temp/media`),
   prefix: "/media",
+  noCache: true,
 };
 
-const whitelist = ["http://localhost:3000", "https://staging.khofly.com", "https://khofly.com"];
+const whitelist = IS_SELF_HOST
+  ? process.env.WEB_CLIENT_URL?.split(", ")
+  : ["http://localhost:3000", "https://staging.khofly.com", "https://khofly.com"];
 
 export const CORS_OPTIONS = {
   origin(req: Request) {
+    // Make sure that whitelist array exists
+    if (!whitelist?.length) return false;
+
     const found = !!whitelist.find((d) => d === req.headers.get("origin"));
 
     return found;
@@ -26,16 +34,16 @@ export const CORS_OPTIONS = {
 export const CRON_FETCH_RATES_OPTIONS: CronConfig = {
   name: "fetch rates",
   // pattern: '* * * * *', // every 1 min, for testing
-  pattern: "30 * * * *", // every hour at 0 minutes
+  pattern: "0 * * * *", // every hour at 0 minutes
   run() {
     cron_fetchRates();
   },
 };
 
 export const CRON_CLEAR_MEDIA: CronConfig = {
-  name: "fetch rates",
-  pattern: "* * * * *", // every 1 min, for testing
-  // pattern: "30 * * * *", // every hour at 0 minutes
+  name: "clean media folder",
+  // pattern: "* * * * *", // every 1 min, for testing
+  pattern: "0 * * * *", // every hour at 0 minutes
   run() {
     cron_clearMedia();
   },

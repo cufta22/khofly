@@ -1,0 +1,12 @@
+.ttt_wrapper {
+  position: relative;
+
+  .field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+  }
+}

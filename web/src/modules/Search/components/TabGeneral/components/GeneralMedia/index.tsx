@@ -2,7 +2,7 @@ import useSearchQuery from "@hooks/use-search-query";
 import { Avatar, Button, Divider, Flex, Grid, Image, Stack, Text } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 import { IconPhoto, IconPlayerPlay, IconPlayerPlayFilled } from "@tabler/icons-react";
-import {
+import type {
   ISearXNGResultsBlank,
   ISearXNGResultsImages,
   ISearXNGResultsVideos,
@@ -14,12 +14,15 @@ import classes from "./styles.module.scss";
 import { nprogress } from "@mantine/nprogress";
 import { useEnginesStore } from "@store/engines";
 import { useNavigate } from "react-router";
+import { useResponsive } from "@hooks/use-responsive";
 
 const GeneralMedia = () => {
   const selectedMedia = useSettingsStore((state) => state.selectedMedia);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
 
   const hydrated = useEnginesStore((state) => state.hydrated);
+
+  const isSm = useResponsive("max", "sm");
 
   const { data, isLoading, isValidating, mutate } =
     useSearXNGSWR<ISearXNGResultsBlank>(selectedMedia);
@@ -56,12 +59,12 @@ const GeneralMedia = () => {
       </Flex>
 
       {selectedMedia === "images" && (
-        <Grid grow gutter="xs" columns={5}>
+        <Grid grow gutter="xs" columns={isSm ? 2 : 5}>
           {data?.map((res) => {
             if (!res) return null;
 
             return res?.results
-              .slice(0, 10)
+              .slice(0, isSm ? 4 : 10)
               .map((img: ISearXNGResultsImages["results"][0], i: number) => (
                 <Grid.Col key={i} span={1}>
                   <Image
@@ -79,12 +82,12 @@ const GeneralMedia = () => {
       )}
 
       {selectedMedia === "videos" && (
-        <Grid grow gutter="xs" columns={4}>
+        <Grid grow gutter="xs" columns={isSm ? 2 : 4}>
           {data?.map((res) => {
             if (!res) return null;
 
             return res?.results
-              .slice(0, 8)
+              .slice(0, isSm ? 4 : 8)
               .map((img: ISearXNGResultsVideos["results"][0], i: number) => (
                 <Grid.Col key={i} span={1}>
                   <div className={classes.general_media_vid}>

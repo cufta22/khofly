@@ -13,25 +13,34 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     qwant: `https://api.qwant.com/v3/suggest?q=${q}&version=2`,
   }[autocompleteEngine || "duckduckgo"];
 
-  const res = await fetch(autocompleteUrl);
+  try {
+    const res = await fetch(autocompleteUrl);
 
-  const data = await res.json();
+    const data = await res.json();
 
-  let formattedData = [];
+    let formattedData = [];
 
-  if (["duckduckgo", "google", "brave"].includes(autocompleteEngine)) {
-    formattedData = data?.[1]?.slice(0, 5) || [];
+    if (["duckduckgo", "google", "brave"].includes(autocompleteEngine)) {
+      formattedData = data?.[1]?.slice(0, 5) || [];
+    }
+
+    if (["qwant"].includes(autocompleteEngine)) {
+      formattedData =
+        data?.data?.items?.map((item: { value: string }) => item.value)?.slice(0, 5) || [];
+    }
+
+    return new Response(JSON.stringify(formattedData), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    return new Response("[]", {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
-
-  if (["qwant"].includes(autocompleteEngine)) {
-    formattedData =
-      data?.data?.items?.map((item: { value: string }) => item.value)?.slice(0, 5) || [];
-  }
-
-  return new Response(JSON.stringify(formattedData), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 };

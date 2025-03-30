@@ -14,6 +14,12 @@ export const cron_fetchRates = async () => {
     await fs.unlink(path.join(tempDir, file));
   }
 
+  // Make sure that API key exists
+  if (!process.env.OPEN_EXCHANGE_RATES_API_KEY) {
+    console.log("Missing OXR API key!");
+    return;
+  }
+
   // Fetch latest
   const res = await fetch(
     `${process.env.OPEN_EXCHANGE_RATES_URL}/api/latest.json?base=USD&app_id=${process.env.OPEN_EXCHANGE_RATES_API_KEY}`

@@ -8,10 +8,7 @@
 }
 
 .app_main {
-  background-color: light-dark(
-    var(--mantine-color-gray-0),
-    var(--mantine-color-dark-8)
-  );
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
 
   height: 100%;
   min-width: unset;
@@ -20,10 +17,7 @@
 }
 
 .app_header {
-  background-color: light-dark(
-    var(--mantine-color-gray-0),
-    var(--mantine-color-dark-7)
-  );
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
 
   &.app_header_transparent {
     border-bottom: none !important;
@@ -32,25 +26,25 @@
 }
 
 .app_navbar {
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-7)
-  );
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
   border-right: func.to-rem(1px) solid
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
 .app_footer {
-  background-color: light-dark(
-    var(--mantine-color-gray-1),
-    var(--mantine-color-dark-7)
-  );
+  background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7));
   border-top: light-dark(
     func.to-rem(1px) solid var(--mantine-color-gray-2),
     func.to-rem(1px) solid var(--mantine-color-dark-5)
   );
 
+  // Scale on small devices
   @media (max-width: vars.$mantine-breakpoint-sm) {
-    height: 80px;
+    height: func.to-rem(80px);
+  }
+
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    height: func.to-rem(64px);
   }
 }

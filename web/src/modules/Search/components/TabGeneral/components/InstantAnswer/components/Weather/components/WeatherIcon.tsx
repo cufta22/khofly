@@ -3,37 +3,43 @@ import {
   IconCloud,
   IconCloudRain,
   IconCloudStorm,
-  IconGrain,
   IconMist,
   IconMoon,
-  IconMoonStars,
   IconSnowflake,
-  IconSun,
+  IconSunLow,
   IconTornado,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React from "react";
 
 import classes from "../styles.module.scss";
-import { OpenWeatherCode } from "src/api/weather/types";
+import type { OpenWeatherCode } from "src/api/weather/types";
+import { getIsDay } from "@utils/resources/isDay";
 import dayjs from "dayjs";
 
 interface Props {
   code: OpenWeatherCode;
-  size: "normal" | "small";
+  size: "normal" | "small" | "large";
   date: number;
+  isWidget?: boolean;
 }
 
-const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
+const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
   const theme = useMantineTheme();
 
-  const hours = parseInt(dayjs.unix(date).format("HH"));
-  const isNight = hours >= 21 || hours < 8;
+  const hours = Number.parseInt(dayjs.unix(date).format("HH"));
+  const isDay = getIsDay(hours);
 
-  const IconMain = isNight ? IconMoon : IconSun;
-  const colorMain = isNight ? theme.colors.gray[7] : theme.colors.orange[5];
+  const IconMain = isDay ? IconSunLow : IconMoon;
 
-  const modifier = size === "normal" ? 1.6 : 0.8;
+  const colorDay = isWidget ? theme.colors.yellow[5] : theme.colors.orange[5];
+  const colorNight = theme.colors.gray[7];
+  const colorMain = isDay ? colorDay : colorNight;
+
+  const modifier = {
+    large: 2.4,
+    normal: 1.6,
+    small: 0.8,
+  }[size];
 
   const sizeBig = 52 * modifier;
   const sizeNormal = 46 * modifier;
@@ -44,7 +50,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
       return (
         <IconMain
           style={getIconStyle(sizeBig)}
-          stroke={isNight ? 1 : 2}
+          stroke={isDay ? 2 : 1}
           color={colorMain}
           fill={colorMain}
         />
@@ -71,7 +77,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
               top: 0,
               right: 0,
             }}
-            stroke={isNight ? 2 : 2}
+            stroke={isDay ? 2 : 1}
             color={colorMain}
             fill={colorMain}
           />
@@ -170,7 +176,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
               top: 0,
               right: 0,
             }}
-            stroke={isNight ? 1 : 2}
+            stroke={isDay ? 2 : 1}
             color={colorMain}
             fill={colorMain}
           />
@@ -279,7 +285,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date }) => {
       return (
         <IconMain
           style={getIconStyle(sizeBig)}
-          stroke={isNight ? 1 : 2}
+          stroke={isDay ? 2 : 1}
           color={colorMain}
           fill={colorMain}
         />

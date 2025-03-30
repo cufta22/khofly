@@ -1,3 +1,5 @@
+import { useInstanceStore } from "@store/instance";
+import type { IWorkerTranslateResponse } from "../ai/types";
 import useFetch from "../use-fetch";
 import useSWRMutation from "swr/mutation";
 
@@ -7,34 +9,23 @@ interface Args {
   to: string;
 }
 
-const API_URL = "https://api-b2b.backenster.com/b1/api/v3";
-
 const useTranslateSWR = () => {
   const { fetchData } = useFetch();
 
-  // const searchParams = useSearchParams();
-  // const q = (searchParams.get("q") as string) || "";
+  const workerDomain = useInstanceStore((state) => state.workerDomain);
 
-  const fetcher = (key: string, { arg }: { arg: Args }) => {
+  const fetcher = (_key: string, { arg }: { arg: Args }) => {
     const { data, from, to } = arg;
-    return fetchData(`${key}/translate`, {
-      method: "POST",
-      body: JSON.stringify({
-        data,
-        from,
-        to,
-        translateMode: "text",
-        platform: "api",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: `${window.ENV.LINGVANEX_API_KEY}`,
-        Authorization: "",
-      },
-    });
+
+    return fetchData(
+      `${workerDomain}?prompt=${data}&source_lang=${from}&target_lang=${to}&model=@cf/meta/m2m100-1.2b`,
+      {
+        method: "GET",
+      }
+    ) as Promise<IWorkerTranslateResponse>;
   };
 
-  return useSWRMutation<{ result: string; err: string }, any, any, Args>(`${API_URL}`, fetcher, {});
+  return useSWRMutation<IWorkerTranslateResponse, any, any, Args>(`api-translate`, fetcher);
 };
 
 export default useTranslateSWR;

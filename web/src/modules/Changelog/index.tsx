@@ -1,8 +1,7 @@
 import { Accordion, Center, Container, Loader, Title } from "@mantine/core";
 import { formatChangelog } from "./formatChangelog";
-import React, { useEffect, useState } from "react";
 import { useTranslate } from "@hooks/translate/use-translate";
-import { ILoaderData_Changelog } from "app/routes/changelog";
+import type { ILoaderData_Changelog } from "app/routes/changelog";
 
 interface Props {
   loaderData: ILoaderData_Changelog;

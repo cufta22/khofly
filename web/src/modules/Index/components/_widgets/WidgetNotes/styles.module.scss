@@ -1,0 +1,25 @@
+@use "variables" as vars;
+
+.widget_notes {
+  width: 300px;
+  height: 300px;
+  border-radius: var(--mantine-radius-xl);
+  border-color: var(--mantine-color-yellow-8);
+  color: var(--mantine-color-dark-6);
+
+  background-color: var(--mantine-color-yellow-4); /* Light yellow */
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+
+  .textarea_root {
+    width: 100%;
+  }
+  .textarea_input {
+    color: var(--mantine-color-black) !important;
+  }
+
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    display: none;
+  }
+}

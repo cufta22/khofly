@@ -45,3 +45,7 @@ package-lock.json
 
 /temp/media/*.mp4
 /temp/media/*.mp3
+/temp/media/*.*
+
+cookies-yt.txt
+cookies-ig.txt

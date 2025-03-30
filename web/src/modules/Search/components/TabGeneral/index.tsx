@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import InstantAnswer from "./components/InstantAnswer";
-import SearchResultRow from "./components/SearchResultRow";
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import SearchResultSkeleton from "./components/SearchResultSkeleton";
 import Suggestions from "../components/Suggestions";
 import Infobox from "../components/Infobox";
 import SearchOptions from "../components/SearchOptions";
@@ -16,12 +14,20 @@ import GeneralMedia from "./components/GeneralMedia";
 import { useSettingsStore } from "@store/settings";
 import AIAnswer from "./components/AIAnswer";
 import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
+import { useSearchStore } from "@store/search";
+import Lyricsbox from "../components/Lyricsbox";
+
+import GeneralRow from "./components/GeneralRow";
+import GeneralSkeleton from "./components/GeneralSkeleton";
 
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
 
   const displayMedia = useSettingsStore((state) => state.displayMedia);
   const hydratedSettings = useSettingsStore((state) => state.hydrated);
+
+  const domainsPriority = useSearchStore((state) => state.domainsPriority);
+  const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
@@ -42,12 +48,41 @@ const TabGeneral = () => {
         {/* Search Options */}
         <SearchOptions className={classes.search_options_general} />
 
+        {/* AI Answer, optional */}
+        <AIAnswer />
+
+        {/* Instant Answer, optional */}
         <InstantAnswer />
 
         {data?.map((res, i) => {
           if (typeof res === "string") return;
 
           if (!res?.results) return;
+
+          const organizedResults = [...res.results]
+            // Blacklist
+            .filter((item) => {
+              return !domainsBlacklist.some((domain) => item.parsed_url?.[1]?.includes(domain));
+            })
+            // Priority
+            .sort((a, b) => {
+              // Check if URL a is in priority domains
+              const aIsPriority = domainsPriority.some((domain) =>
+                a.parsed_url?.[1]?.includes(domain)
+              );
+              // Check if URL b is in priority domains
+              const bIsPriority = domainsPriority.some((domain) =>
+                b.parsed_url?.[1]?.includes(domain)
+              );
+
+              if (aIsPriority && !bIsPriority) {
+                return -1; // a comes before b
+              } else if (!aIsPriority && bIsPriority) {
+                return 1; // b comes before a
+              }
+              return 0; // Keep original order if both are priority or neither is priority
+            });
+
           return (
             <Stack gap="lg" key={i}>
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
@@ -55,19 +90,19 @@ const TabGeneral = () => {
               {displayMedia && i === 0 && hydratedSettings ? (
                 // Display images/videos in between results
                 <>
-                  {res?.results.slice(0, 2).map((r, i) => (
-                    <SearchResultRow key={i} data={r} />
+                  {organizedResults.slice(0, 2).map((r, i) => (
+                    <GeneralRow key={i} data={r} />
                   ))}
 
                   <GeneralMedia />
 
-                  {res?.results.slice(2).map((r, i) => (
-                    <SearchResultRow key={i} data={r} />
+                  {organizedResults.slice(2).map((r, i) => (
+                    <GeneralRow key={i} data={r} />
                   ))}
                 </>
               ) : (
                 // Display just results
-                res?.results.map((r, i) => <SearchResultRow key={i} data={r} />)
+                organizedResults.map((r, i) => <GeneralRow key={i} data={r} />)
               )}
             </Stack>
           );
@@ -75,7 +110,7 @@ const TabGeneral = () => {
 
         {(isLoading || isValidating || !hydratedEngines) &&
           // Loading state
-          Array.from(Array(10).keys()).map((e, i) => <SearchResultSkeleton key={i} />)}
+          Array.from(Array(10).keys()).map((e, i) => <GeneralSkeleton key={i} />)}
 
         {error && (
           // Error state
@@ -114,15 +149,13 @@ const TabGeneral = () => {
 
       {/* Infoboxes */}
       <Flex direction="column" gap="xl" pt="xl">
-        <AIAnswer />
-
         {!isLoading &&
           !isValidating &&
           !isRateLimit &&
           data &&
           data?.[0]?.infoboxes?.length >= 1 && <Infobox {...data[0].infoboxes[0]} />}
 
-        {/* <Lyricsbox /> */}
+        <Lyricsbox />
 
         {!isLoading &&
           !isValidating &&

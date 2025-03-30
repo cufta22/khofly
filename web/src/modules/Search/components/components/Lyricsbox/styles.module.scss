@@ -3,6 +3,7 @@
 .search_lyricsbox {
   width: 450px;
   max-width: 450px;
+  position: relative;
 
   @media (max-width: vars.$mantine-breakpoint-lg) {
     display: none;

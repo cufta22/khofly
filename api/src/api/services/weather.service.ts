@@ -1,6 +1,6 @@
 import type { Context } from "elysia";
-import { OPEN_METEO_PARAMS, OpenMeteoResponse } from "../../types/openmeteo.types";
-import { OpenWeatherResponse } from "../../types/openweather.types";
+import { OPEN_METEO_PARAMS, type IOpenMeteoResponse } from "../../types/openmeteo.types";
+import type { IOpenWeatherResponse } from "../../types/openweather.types";
 import { convertOMToOWMFormat } from "./utils/weather";
 
 // GET - /weather
@@ -64,10 +64,10 @@ export const handleGetWeather = async (ctx: Context) => {
 &temperature_unit=${units === "imperial" ? "fahrenheit" : "celsius"}`
       );
 
-      const resData: OpenMeteoResponse = await res.json();
+      const resData: IOpenMeteoResponse = await res.json();
 
       // Format it to look like OpenWeather response
-      const formattedData: OpenWeatherResponse | null = convertOMToOWMFormat(
+      const formattedData: IOpenWeatherResponse | null = convertOMToOWMFormat(
         resData,
         Number.parseFloat(lat),
         Number.parseFloat(lon)

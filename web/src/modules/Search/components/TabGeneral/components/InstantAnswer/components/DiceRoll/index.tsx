@@ -40,6 +40,7 @@ const IADiceRoll: React.FC<Props> = ({ withIAWrapper }) => {
   const diceRollComponent = (
     <Center
       className={classes.dice_wrapper}
+      
       onClick={() => {
         handleRoll();
       }}

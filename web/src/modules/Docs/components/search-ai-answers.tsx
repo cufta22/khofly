@@ -1,7 +1,6 @@
-import { Container, Text, useMantineTheme } from "@mantine/core";
+import { ActionIcon, Container, Text, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import { IconSparkles } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+import { IconSearch, IconSparkles } from "@tabler/icons-react";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
 import RemixLink from "@components/RemixLink";
@@ -17,16 +16,19 @@ const DocsSearchAIAnswers = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle
-        leftSection={<IconSparkles style={getIconStyle(48)} color={theme.colors.pink[5]} />}
-      >
-        AI Answers
-      </DocsTitle>
+      <DocsTitle leftSection={<IconSparkles color={theme.colors.pink[5]} />}>AI Answers</DocsTitle>
 
       <DocsText>
-        AI Answers will appear to the right of the search results when the search query contains a
-        "question" ( keywords: who, what, when, how, where, etc. ). These answers can help when
-        simple answer is needed so that the user doesn't have to click through links.
+        AI Answers will appear at the top of the search results when you click on the{" "}
+        <ActionIcon size="md" color="pink.5" variant="subtle">
+          <IconSparkles />
+        </ActionIcon>{" "}
+        instead of{" "}
+        <ActionIcon size="md" color="blue.5" variant="subtle">
+          <IconSearch />
+        </ActionIcon>{" "}
+        in any search bar. These answers can help when simple answer is needed so that the user
+        doesn't have to click through links.
       </DocsText>
 
       <DocsText>
@@ -43,7 +45,7 @@ const DocsSearchAIAnswers = () => {
 
       <DocsText>
         Check out how to deploy your AI worker and use it with Khofly{" "}
-        <RemixLink to="/docs/self-host-ai-worker">
+        <RemixLink to="/docs/self-host-cf-workers">
           <Text c={linkTextColor} component="span">
             here
           </Text>

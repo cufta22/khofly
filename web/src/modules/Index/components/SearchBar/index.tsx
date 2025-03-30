@@ -1,5 +1,5 @@
 import { ActionIcon, Autocomplete, Flex, Loader, rem, useMantineTheme } from "@mantine/core";
-import { IconArrowRight, IconKeyboard, IconSearch } from "@tabler/icons-react";
+import { IconArrowRight, IconKeyboard, IconSearch, IconSparkles } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
@@ -14,6 +14,7 @@ import { useTranslate } from "@hooks/translate/use-translate";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import { useNavigate } from "react-router";
+import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
 
 const SearchBar = () => {
   const t = useTranslate();
@@ -22,6 +23,7 @@ const SearchBar = () => {
 
   const useAutocomplete = useSettingsStore((state) => state.useAutocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
+  const useAIAnswers = useSettingsStore((state) => state.useAIAnswers);
 
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
 
@@ -33,24 +35,30 @@ const SearchBar = () => {
   const [debouncedQ] = useDebouncedValue(q, 300);
 
   const isXs = useResponsive("max", "xs");
+  const isXl = useResponsive("min", 1921);
 
   // Autocomplete API
   const { data: autocompleteData, isMutating, trigger, reset } = useAutocompleteSWR();
 
-  const handleSearch = (query: string) => {
+  const handleSearch = (query: string, withAI: boolean) => {
     // Prevent empty search
     if (!query.length) return;
 
     nprogress.start();
 
+    // Infer tab from query syntax
+    const { tab: tabFromSyntax } = getTabFromQuery(query);
+
+    const qParam = `q=${encodeURIComponent(query)}`;
+    const tabParam = `tab=${tabFromSyntax || "general"}`;
+    const aiParam = withAI ? "&ai=1" : "";
+
     // Handle Private Search
     if (privateSearch) {
       setSearchQuery(encodeURIComponent(query));
-      return navigate("/search?tab=general");
+      return navigate(`/search?${tabParam}${aiParam}`);
     }
-    navigate(`/search?q=${encodeURIComponent(query)}&tab=general`, {
-      viewTransition: true,
-    });
+    navigate(`/search?${qParam}&${tabParam}${aiParam}`);
   };
 
   useEffect(() => {
@@ -65,14 +73,14 @@ const SearchBar = () => {
         className={classes.search_bar}
         placeholder={t("pages.index.search_placeholder")}
         radius="xl"
-        size={isXs ? "md" : "lg"}
+        size={isXs ? "md" : isXl ? "xl" : "lg"}
         value={q}
         onChange={(val) => {
           setQ(val);
           if (!val.length) reset();
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") handleSearch(q);
+          if (e.key === "Enter") handleSearch(q, false);
         }}
         leftSection={
           !isXs &&
@@ -87,38 +95,55 @@ const SearchBar = () => {
           <Flex align="center" justify="flex-end">
             {!isXs && (
               <ActionIcon
-                size={"xl"}
+                size={isXs ? 32 : 38}
                 mr={6}
                 radius="xl"
-                // color={"blue"}
-                variant="transparent"
+                color={"white"}
+                variant="subtle"
                 onClick={toggleKeyboard}
               >
-                <IconKeyboard style={getIconStyle(22)} color={"white"} stroke={1.5} />
+                <IconKeyboard style={getIconStyle(18)} color={"white"} />
               </ActionIcon>
             )}
 
             <ActionIcon
               size={isXs ? 32 : 38}
+              mr={6}
               radius="xl"
               color={theme.colors[theme.primaryColor][6]}
-              variant="filled"
-              onClick={() => handleSearch(q)}
+              variant="subtle"
+              onClick={() => handleSearch(q, false)}
               disabled={!q}
             >
-              <IconArrowRight style={getIconStyle(22)} stroke={1.5} />
+              <IconArrowRight style={getIconStyle(22)} />
             </ActionIcon>
+
+            {useAIAnswers && (
+              <ActionIcon
+                size={isXs ? 32 : 38}
+                mr={6}
+                radius="xl"
+                color={theme.colors.pink[6]}
+                variant="subtle"
+                onClick={() => handleSearch(q, true)}
+                disabled={!q}
+              >
+                <IconSparkles style={getIconStyle(22)} />
+              </ActionIcon>
+            )}
           </Flex>
         }
-        rightSectionWidth={isXs ? 40 : 100}
+        // rightSectionWidth={isXs ? 40 : 170}
+        rightSectionWidth="fit-content"
         maxLength={250}
         autoFocus
         // Autocomplete props
-        data={autocompleteData?.map((str) => ({ label: str, value: str }))}
+        data={autocompleteData ? autocompleteData?.map((str) => ({ label: str, value: str })) : []}
         comboboxProps={{
-          onOptionSubmit: (val) => handleSearch(val),
+          onOptionSubmit: (val) => handleSearch(val, false),
           size: "md",
         }}
+        pr="xs"
         // Disable password manager stuff
         autoComplete="off"
         data-1p-ignore

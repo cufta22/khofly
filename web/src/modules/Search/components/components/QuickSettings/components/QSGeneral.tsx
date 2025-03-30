@@ -3,20 +3,19 @@ import { IconSettings2 } from "@tabler/icons-react";
 import { useTranslate } from "@hooks/translate/use-translate";
 import classes from "../styles.module.scss";
 
-import FaviconSwitch from "@module/Settings/components/General/FaviconSwitch";
-import ShowEnginesSwitch from "@module/Settings/components/General/ShowEnginesSwitch";
-import MediaSwitch from "@module/Settings/components/General/MediaSwitch";
-import IASwitch from "@module/Settings/components/General/IASwitch";
-import PrivateSearchSwitch from "@module/Settings/components/General/PrivateSearchSwitch";
+import FaviconSwitch from "@module/Settings/components/_general/General/FaviconSwitch";
+import ShowEnginesSwitch from "@module/Settings/components/_general/General/ShowEnginesSwitch";
+import MediaSwitch from "@module/Settings/components/_general/General/MediaSwitch";
+import IASwitch from "@module/Settings/components/_general/General/IASwitch";
+import PrivateSearchSwitch from "@module/Settings/components/_general/General/PrivateSearchSwitch";
+import PrivatePlayerSwitch from "@module/Settings/components/_general/General/PrivarePlayerSwitch";
+import AISwitch from "@module/Settings/components/_general/General/AISwitch";
 
 const QSGeneral = () => {
   const t = useTranslate();
   return (
     <Accordion.Item className={classes.acc_item} value="general">
-      <Accordion.Control
-        className={classes.acc_control}
-        icon={<IconSettings2 />}
-      >
+      <Accordion.Control className={classes.acc_control} icon={<IconSettings2 />}>
         <Text size="lg">{t("pages.settings.general.title")}</Text>
       </Accordion.Control>
       <Accordion.Panel>
@@ -54,9 +53,25 @@ const QSGeneral = () => {
           <Divider my={6} w="100%" />
 
           <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.general.toggle_ai_answers")}</Text>
+
+            <AISwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
+          <Flex align="center" justify="space-between">
             <Text>{t("pages.settings.general.toggle_private_search")}</Text>
 
             <PrivateSearchSwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
+          <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.general.toggle_private_player")}</Text>
+
+            <PrivatePlayerSwitch />
           </Flex>
         </Stack>
       </Accordion.Panel>

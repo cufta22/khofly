@@ -1,4 +1,5 @@
 import "@styles/base.scss";
+import "@styles/utility.scss";
 
 import "@mantine/core/styles.css";
 import "@mantine/nprogress/styles.css";

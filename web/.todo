@@ -4,23 +4,37 @@ reduce file sizes
 
 add all translations
 
-? find another lightweight lib for charts
-
 move meta to /meta & add meta for every page that needs
 
-fix the lyrics api spam
+see why most results are in DE ( server region )
 
-fix weather IA and move hourly to separate file
+engine row add !bangs
+engine row add all hover data
 
-Finish self host VPS guide
+try to move favicons to searxng side
 
-Revisit all IAs
+Check if all api call 400s are handled well
 
-Finish up IA commands
+Add gallery-dl section to self-host-API
+Install gallery-dl on VPS
 
-Move space from SharedGames to individual css
+Fix up lyrics ( deployed not working )
 
-Ideas for v7:
+Finish time zone IA
 
-- CLI mode
-- Rerank domains ( similar to brave search )
+Docs page for lyrics worker
+
+? Docs page for widgets
+
+Ideas for v0.8:
+
+More options for downloader
+More AI
+More popularDomainNameMap stuff
+More engines
+A few IAs
+Save search history in LS
+Add "h" to open hotkey modal and add missing hotkeys
+
+Dynamically set which _Row is gonna get displayed if query starts with !_ ...
+will need new CategoryMultiple for this

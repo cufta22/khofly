@@ -1,13 +1,13 @@
 import { Button, SimpleGrid, Stack, Text } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
-import { ISearXNGResultsGeneral } from "@ts/searxng.types";
+import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import React from "react";
 import classes from "./styles.module.scss";
 import { useSearchStore } from "@store/search";
 import { useSettingsStore } from "@store/settings";
 import useSearchQuery from "@hooks/use-search-query";
 import { useNavigate } from "react-router";
+import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
 
 interface Props {
   suggestions: ISearXNGResultsGeneral["suggestions"];
@@ -22,13 +22,16 @@ const Suggestions: React.FC<Props> = ({ suggestions, type }) => {
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
 
   const handleSubmitSearch = (newQ: string) => {
+    // Infer tab from query syntax
+    const { tab } = getTabFromQuery(newQ);
+
     // Handle Private Search
     if (privateSearch) {
       setSearchQuery(encodeURIComponent(newQ));
-      return navigate("/search?tab=general");
+      return navigate(`/search?tab=${tab}`);
     }
 
-    navigate(`/search?q=${encodeURIComponent(newQ)}&tab=general`);
+    navigate(`/search?q=${encodeURIComponent(newQ)}&tab=${tab}`);
   };
 
   const q = useSearchQuery();

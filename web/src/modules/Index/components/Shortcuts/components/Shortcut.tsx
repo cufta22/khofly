@@ -3,7 +3,7 @@ import { Anchor, Image, Modal, Text, UnstyledButton } from "@mantine/core";
 import classes from "../styles.module.scss";
 
 import { useDisclosure, useHover } from "@mantine/hooks";
-import { IShortcut } from "@store/shortcuts";
+import { IShortcut } from "@store/startpage";
 import ShortcutEdit from "./ShortcutEdit";
 import ShortcutMenu from "./ShortcutMenu";
 
@@ -22,13 +22,7 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
 
   return (
     <>
-      <Anchor
-        ref={ref}
-        href={fullUrl}
-        target="_blank"
-        rel="noreferrer noopener"
-        pos="relative"
-      >
+      <Anchor ref={ref} href={fullUrl} target="_blank" rel="noreferrer noopener" pos="relative">
         <ShortcutMenu
           fullUrl={fullUrl}
           hovered={hovered}
@@ -61,6 +55,7 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
             imgUrl,
           }}
           idx={idx}
+          type="edit"
         />
       </Modal>
     </>

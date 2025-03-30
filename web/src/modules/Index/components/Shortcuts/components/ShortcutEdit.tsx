@@ -1,17 +1,18 @@
 import useForm from "@hooks/use-form";
 import { Button, Center, Flex, Image, Paper, TextInput } from "@mantine/core";
-import { IShortcut, useShortcutsStore } from "@store/shortcuts";
+import { IShortcut, useStatrpageStore } from "@store/startpage";
 import React from "react";
 
 interface Props {
   toggleModal: () => void;
   shortcut: IShortcut;
   idx: number;
+  type: "edit" | "add";
 }
 
-const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx }) => {
-  const shortcuts = useShortcutsStore((state) => state.shortcuts);
-  const setShortcuts = useShortcutsStore((state) => state.setShortcuts);
+const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => {
+  const shortcuts = useStatrpageStore((state) => state.shortcuts);
+  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
 
   const form = useForm({
     initialValues: {
@@ -19,10 +20,28 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx }) => {
       href: shortcut.href,
       imgUrl: shortcut.imgUrl || "",
     },
+    validate: {
+      title: (value) => (value.length > 0 ? null : "Invalid Title"),
+      href: (value) =>
+        /^(?:(ftp|http|https):\/\/)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\/[^ "]*)?$/.test(value)
+          ? null
+          : "Invalid URL",
+    },
   });
 
   const handleSubmit = (values: typeof form.values) => {
-    const newShortcuts = [...shortcuts].map((val, i) => (i === idx ? { ...values } : val));
+    const newShortcuts =
+      type === "edit"
+        ? [...shortcuts].map((val, i) => (i === idx ? { ...values } : val))
+        : [
+            ...shortcuts,
+            {
+              title: values.title,
+              href: values.href,
+              imgUrl: values.imgUrl,
+            },
+          ];
+
     setShortcuts(newShortcuts);
 
     form.reset();
@@ -56,7 +75,7 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx }) => {
       </Flex>
 
       <Flex justify="flex-end">
-        <Button type="submit">Edit</Button>
+        <Button type="submit">{type === "edit" ? "Edit" : "Add"}</Button>
       </Flex>
     </form>
   );

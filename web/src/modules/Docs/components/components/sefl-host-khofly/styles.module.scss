@@ -1,0 +1,9 @@
+@use "variables" as vars;
+@use "functions" as func;
+
+.self_host_title_wrapper {
+  // Scale on small devices
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    flex-direction: column;
+  }
+}

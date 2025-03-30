@@ -3,6 +3,9 @@ import { persist } from "zustand/middleware";
 import { DEFAULT_ENGINES } from "./default_engines";
 
 export type IGeneralEngines =
+  | "dictzone"
+  | "libretranslate"
+  | "lingva"
   | "google"
   | "mojeek"
   | "duckduckgo"
@@ -20,6 +23,8 @@ export type IGeneralEngines =
   | "wikiversity"
   | "wikivoyage"
   | "alexandria"
+  | "ask"
+  | "cloudflareai"
   | "wikipedia"
   | "wikidata";
 
@@ -29,11 +34,13 @@ export type IImagesEngines =
   | "bing"
   | "brave"
   | "qwant"
+  | "startpage"
   | "presearch"
   | "deviantart"
   | "flickr"
   | "pinterest"
-  | "unsplash";
+  | "unsplash"
+  | "wikicommons";
 
 export type IVideosEngines =
   | "google"
@@ -44,15 +51,18 @@ export type IVideosEngines =
   | "dailymotion"
   | "odysee"
   | "piped"
+  | "rumble"
   | "vimeo"
   | "youtube";
 
 export type INewsEngines =
   | "google"
   | "duckduckgo"
+  | "mojeek"
   | "bing"
   | "brave"
   | "qwant"
+  | "startpage"
   | "yahoo"
   | "presearch"
   | "wikinews";
@@ -62,29 +72,40 @@ export type IMusicEngines =
   | "radiobrowser"
   | "bandcamp"
   | "mixcloud"
-  | "pipedmusic"
+  | "piped"
   | "soundcloud"
-  | "youtube";
+  | "youtube"
+  | "deezer"
+  | "wikicommons";
 
 export type IITEngines =
+  | "crates"
   | "dockerhub"
   | "npm"
+  | "packagist"
+  | "pkggodev"
   | "pypi"
+  | "rubygems"
+  | "void"
   | "askubuntu"
   | "stackoverflow"
   | "superuser"
+  | "bitbucket"
   | "codeberg"
   | "github"
   | "gitlab"
   | "archwiki"
   | "gentoo"
+  | "nixoswiki"
+  | "hackernews"
+  | "mankier"
   | "mdn";
 
 export type IScienceEngines =
   | "arxiv"
   | "crossref"
   | "googlescholar"
-  | "archive"
+  // | "archive" // Removed???
   | "pubmed"
   | "semanticscholar"
   | "wikispecies"
@@ -94,12 +115,18 @@ export type IScienceEngines =
 
 export type IFilesEngines =
   | "apkmirror"
+  | "appstore"
   | "fdroid"
+  | "playstore"
   | "1337x"
   | "annas"
   | "bt4g"
+  | "kickass"
+  | "librarygenesis"
   | "nyaa"
-  | "piratebay";
+  | "piratebay"
+  | "wikicommons"
+  | "zlibrary";
 
 export type ISocialMediaEngines =
   | "9gag"
@@ -109,7 +136,21 @@ export type ISocialMediaEngines =
   | "lemmyusers"
   | "mastodonhashtags"
   | "mastodonusers"
-  | "reddit";
+  | "reddit"
+  | "tootfinder";
+
+export type IOtherEngines =
+  | "etymonline"
+  | "wiktionary"
+  | "wordnik"
+  | "imdb"
+  | "rottentomatoes"
+  | "duckduckgo"
+  | "openmeteo"
+  | "emojipedia"
+  | "goodreads"
+  | "openlibrary"
+  | "podcastindex";
 
 export interface EnginesState {
   hydrated: boolean;
@@ -140,6 +181,9 @@ export interface EnginesState {
 
   enginesSocialMedia: ISocialMediaEngines[];
   setEnginesSocialMedia: (next: ISocialMediaEngines[]) => void;
+
+  enginesOther: IOtherEngines[];
+  setEnginesOther: (next: IOtherEngines[]) => void;
 }
 
 export const useEnginesStore = create<EnginesState>()(
@@ -159,7 +203,7 @@ export const useEnginesStore = create<EnginesState>()(
       enginesNews: DEFAULT_ENGINES.news,
       setEnginesNews: (next) => set({ enginesNews: next }),
 
-      enginesMusic: ["radiobrowser", "soundcloud", "youtube"],
+      enginesMusic: DEFAULT_ENGINES.music,
       setEnginesMusic: (next) => set({ enginesMusic: next }),
 
       enginesIT: DEFAULT_ENGINES.it,
@@ -173,6 +217,9 @@ export const useEnginesStore = create<EnginesState>()(
 
       enginesSocialMedia: DEFAULT_ENGINES.social_media,
       setEnginesSocialMedia: (next) => set({ enginesSocialMedia: next }),
+
+      enginesOther: DEFAULT_ENGINES.other,
+      setEnginesOther: (next) => set({ enginesOther: next }),
     }),
     {
       onRehydrateStorage: () => (state) => {
@@ -191,6 +238,7 @@ export const useEnginesStore = create<EnginesState>()(
         enginesScience: state.enginesScience,
         enginesFiles: state.enginesFiles,
         enginesSocialMedia: state.enginesSocialMedia,
+        enginesOther: state.enginesOther,
       }),
     }
   )

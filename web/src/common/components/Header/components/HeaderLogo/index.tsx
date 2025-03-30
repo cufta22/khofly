@@ -1,5 +1,6 @@
 import RemixLink from "@components/RemixLink";
 import { Burger, Flex, Image } from "@mantine/core";
+import classes from "./styles.module.scss";
 
 interface Props {
   hasBurger: boolean;
@@ -15,7 +16,7 @@ const HeaderLogo: React.FC<Props> = ({ hasBurger, openNavbar, toggleNavbar }) =>
       <RemixLink to="/">
         {/* <IconTriangleFilled style={getIconStyle(32)} /> */}
 
-        <Image src="/assets/logo.svg" w={32} h={32} />
+        <Image className={classes.header_logo} src="/assets/logo.svg" />
       </RemixLink>
     </Flex>
   );

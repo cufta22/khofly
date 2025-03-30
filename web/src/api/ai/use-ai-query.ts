@@ -1,26 +1,37 @@
 import { useInstanceStore } from "@store/instance";
 import useFetch from "../use-fetch";
-import { WorkerResponse } from "./types";
-import useSWRMutation from "swr/mutation";
+import type { IWorkerTextGenResponse } from "./types";
+import useSWR from "swr";
 
-const getKey = (domain: string) => {
+interface Args {
+  prompt: any;
+}
+
+const getKey = (domain: string, model?: string) => {
   if (!domain) return null;
 
-  return `api-ai`;
+  return `api-ai-${domain}-${model}`;
 };
 
-const useAISWR = () => {
+const useAISWR = (args: Args) => {
   const { fetchData } = useFetch();
 
-  const domain = useInstanceStore((state) => state.workerDomain);
+  const workerDomain = useInstanceStore((state) => state.workerDomain);
+  const workerModel = useInstanceStore((state) => state.workerModel);
 
-  const fetcher = (key: string, { arg }: { arg: string }) => {
-    return fetchData(`${domain}?prompt=${arg}`, {
+  const fetcher = (_key: string) => {
+    // Cloudflare AI Worker
+    return fetchData(`${workerDomain}?prompt=${args?.prompt}&model=${workerModel}`, {
       method: "GET",
-    }) as Promise<WorkerResponse>;
+    }) as Promise<IWorkerTextGenResponse>;
   };
 
-  return useSWRMutation<WorkerResponse, any, any, string>(getKey(domain), fetcher, {});
+  return useSWR<IWorkerTextGenResponse>(getKey(workerDomain, workerModel), fetcher, {
+    revalidateOnMount: false,
+    revalidateOnFocus: false,
+    revalidateIfStale: false,
+    revalidateOnReconnect: false,
+  });
 };
 
 export default useAISWR;

@@ -10,4 +10,15 @@
     flex-direction: column-reverse;
     padding-bottom: 0;
   }
+
+  .footer_text {
+    font-size: var(--mantine-font-size-sm);
+  }
+
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    .footer_text {
+      font-size: var(--mantine-font-size-md);
+    }
+  }
 }

@@ -30,21 +30,13 @@ const DocsResourcesSetDefault = () => {
   const theme = useMantineTheme();
 
   const paramsBrowser =
-    searchParams.get("browser")?.toLocaleLowerCase() ||
-    browser.toLocaleLowerCase();
+    searchParams.get("browser")?.toLocaleLowerCase() || browser.toLocaleLowerCase();
 
   return (
     <Container size="lg" p="xl" pb={100}>
       {paramsBrowser === "firefox" && (
         <>
-          <DocsTitle
-            leftSection={
-              <IconBrandFirefox
-                style={getIconStyle(48)}
-                color={theme.colors.orange[5]}
-              />
-            }
-          >
+          <DocsTitle leftSection={<IconBrandFirefox color={theme.colors.orange[5]} />}>
             Adding search engine to Firefox
           </DocsTitle>
 
@@ -55,12 +47,7 @@ const DocsResourcesSetDefault = () => {
       {["chromium", "chrome"].includes(paramsBrowser) && (
         <>
           <DocsTitle
-            leftSection={
-              <IconBrandChrome
-                style={getIconStyle(48)}
-                color={theme.colors.blue[4]}
-              />
-            }
+            leftSection={<IconBrandChrome style={getIconStyle(48)} color={theme.colors.blue[4]} />}
           >
             Adding search engine to Chromium
           </DocsTitle>
@@ -72,12 +59,7 @@ const DocsResourcesSetDefault = () => {
       {paramsBrowser === "edge" && (
         <>
           <DocsTitle
-            leftSection={
-              <IconBrandEdge
-                style={getIconStyle(48)}
-                color={theme.colors.blue[5]}
-              />
-            }
+            leftSection={<IconBrandEdge style={getIconStyle(48)} color={theme.colors.blue[5]} />}
           >
             Adding search engine to Edge
           </DocsTitle>
@@ -89,12 +71,7 @@ const DocsResourcesSetDefault = () => {
       {paramsBrowser === "safari" && (
         <>
           <DocsTitle
-            leftSection={
-              <IconBrandSafari
-                style={getIconStyle(48)}
-                color={theme.colors.blue[5]}
-              />
-            }
+            leftSection={<IconBrandSafari style={getIconStyle(48)} color={theme.colors.blue[5]} />}
           >
             Adding search engine to Safari
           </DocsTitle>
@@ -106,12 +83,7 @@ const DocsResourcesSetDefault = () => {
       {paramsBrowser === "vivaldi" && (
         <>
           <DocsTitle
-            leftSection={
-              <IconBrandVivaldi
-                style={getIconStyle(48)}
-                color={theme.colors.red[4]}
-              />
-            }
+            leftSection={<IconBrandVivaldi style={getIconStyle(48)} color={theme.colors.red[4]} />}
           >
             Adding search engine to Vivaldi
           </DocsTitle>
@@ -123,12 +95,7 @@ const DocsResourcesSetDefault = () => {
       {paramsBrowser === "opera" && (
         <>
           <DocsTitle
-            leftSection={
-              <IconBrandOpera
-                style={getIconStyle(48)}
-                color={theme.colors.red[6]}
-              />
-            }
+            leftSection={<IconBrandOpera style={getIconStyle(48)} color={theme.colors.red[6]} />}
           >
             Adding search engine to Opera
           </DocsTitle>
@@ -140,12 +107,7 @@ const DocsResourcesSetDefault = () => {
       {["ie", "samsung", "unknown"].includes(paramsBrowser) && (
         <>
           <DocsTitle
-            leftSection={
-              <IconWorldWww
-                style={getIconStyle(48)}
-                color={theme.colors.blue[4]}
-              />
-            }
+            leftSection={<IconWorldWww style={getIconStyle(48)} color={theme.colors.blue[4]} />}
           >
             Adding search engine to [your browser]
           </DocsTitle>
@@ -164,7 +126,7 @@ const DocsResourcesSetDefault = () => {
       )}
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["privatePlayer"] }}
         next={{ ...DOCS_CARD_DATA(theme)["customSearXNG"] }}
       />
     </Container>

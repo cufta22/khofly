@@ -6,6 +6,8 @@ import packageJson from "package.json";
 import RemixLink from "@components/RemixLink";
 import { useGeneralStore } from "@store/general";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
+import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 
 const Footer = () => {
   const devMode = useGeneralStore((state) => state.devMode);
@@ -18,14 +20,19 @@ const Footer = () => {
   }, [count]);
 
   return (
-    <Container size="xl" py="sm" className={classes.after_footer}>
+    <Container size="xl" py="sm" className={clsx("responsive_container", classes.after_footer)}>
       <Flex gap={4} align="center">
-        <Text c="dimmed" size="sm" onClick={() => setCount((prev) => prev + 1)}>
+        <Text
+          c="dimmed"
+          className={classes.footer_text}
+          onClick={() => setCount((prev) => prev + 1)}
+        >
           Version {packageJson.version} beta, powered by{" "}
         </Text>
 
-        <Text c="dimmed" size="sm">
+        <Text c="dimmed" className={classes.footer_text}>
           <Anchor
+            className={classes.footer_text}
             href="https://docs.searxng.org/"
             target="_blank"
             rel="noreferrer noopener"
@@ -37,21 +44,21 @@ const Footer = () => {
 
       <Group gap="sm" justify="flex-end">
         <RemixLink to="/docs" prefetch="intent">
-          <Text size="sm">Docs</Text>
+          <Text className={classes.footer_text}>Docs</Text>
         </RemixLink>
 
-        {process.env.IS_SELF_HOST === "0" ? (
+        {!IS_SELF_HOST ? (
           <RemixLink to="/privacy" prefetch="intent">
-            <Text size="sm">Privacy</Text>
+            <Text className={classes.footer_text}>Privacy</Text>
           </RemixLink>
         ) : null}
 
         <RemixLink to="/changelog" prefetch="intent">
-          <Text size="sm">Changelog</Text>
+          <Text className={classes.footer_text}>Changelog</Text>
         </RemixLink>
 
         <RemixLink to="/settings" prefetch="intent">
-          <Text size="sm">Settings</Text>
+          <Text className={classes.footer_text}>Settings</Text>
         </RemixLink>
       </Group>
     </Container>

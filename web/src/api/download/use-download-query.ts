@@ -7,7 +7,7 @@ import useToast from "@hooks/use-toast";
 
 interface Args {
   url: string;
-  from: "youtube" | "instagram";
+  from: "youtube" | "instagram" | "tiktok";
   format: "mp3" | "mp4";
 }
 
@@ -20,13 +20,13 @@ const useDownloadSWR = ({ shouldDownload }: { shouldDownload: boolean }) => {
   const { fetchData } = useFetch();
   const { toast } = useToast();
 
-  const domain = useInstanceStore((state) => state.nominatimDomain);
+  const apiUrl = useInstanceStore((state) => state.apiDomain);
 
   const fetcher = (key: string, { arg }: { arg: Args }) => {
     // return fetchData(`${domain}/search?q=${arg}&format=jsonv2`) as Promise<INominatimResults[]>;
 
     return fetchData(
-      `http://localhost:4000/download?url=${arg.url}&from=${arg.from}&format=${arg.format}`
+      `${apiUrl}/download?url=${arg.url}&from=${arg.from}&format=${arg.format}`
     ) as Promise<IAPIResponse<ResData>>;
   };
 

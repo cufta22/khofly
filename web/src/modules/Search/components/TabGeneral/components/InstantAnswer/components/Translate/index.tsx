@@ -44,13 +44,12 @@ const IATranslate = () => {
       to: lang2,
     });
 
-    if (res?.result) setInput2(res?.result);
+    if (res?.translated_text) setInput2(res?.translated_text);
 
-    if (res?.err)
+    if (!res?.translated_text)
       toast.show({
         color: "yellow",
-        title: "Translation error :(",
-        message: res.err,
+        message: "Translation error",
       });
   };
 
@@ -65,11 +64,7 @@ const IATranslate = () => {
           </Text>
         </Flex>
 
-        <Button
-          size="xs"
-          onClick={handleSubmit}
-          disabled={!input1 || !lang1 || !lang2}
-        >
+        <Button size="xs" onClick={handleSubmit} disabled={!input1 || !lang1 || !lang2}>
           Translate
         </Button>
       </Flex>
@@ -99,11 +94,7 @@ const IATranslate = () => {
         />
       </Flex>
 
-      <Flex
-        className={classes.flex_mobile}
-        align="flex-start"
-        justify="space-between"
-      >
+      <Flex className={classes.flex_mobile} align="flex-start" justify="space-between">
         {/* User input */}
         <Textarea
           classNames={{

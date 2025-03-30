@@ -57,8 +57,8 @@ const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => 
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
         <Group justify="space-between" gap={0}>
           <Box style={{ display: "flex", alignItems: "center" }}>
-            <ThemeIcon variant="light" size={30}>
-              <Icon style={{ width: rem(18), height: rem(18) }} />
+            <ThemeIcon className={classes.control_icon} variant="light">
+              <Icon className={classes.control_svg} />
             </ThemeIcon>
 
             <Box ml="md">{label}</Box>

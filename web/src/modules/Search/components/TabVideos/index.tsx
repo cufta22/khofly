@@ -1,6 +1,6 @@
 import { Button, Center, Flex, SimpleGrid, Text } from "@mantine/core";
 import type { ISearXNGResultsVideos } from "@ts/searxng.types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import VideoCell from "./components/VideoCell";
 import VideoSkeleton from "./components/VideoSkeleton";
@@ -8,10 +8,12 @@ import VideoSkeleton from "./components/VideoSkeleton";
 import classes from "./styles.module.scss";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
-import PrivatePlayer from "../components/PrivatePlayer";
+import PrivateVideoPlayer from "../components/PrivatePlayer/videos";
 
 const TabVideos = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
+
+  const [privatePlayerURL, setPrivatePlayerURL] = useState("");
 
   const { data, error, isLoading, isValidating, setSize, size, mutate } =
     useSearXNGSWR<ISearXNGResultsVideos>();
@@ -39,7 +41,9 @@ const TabVideos = () => {
       >
         {data?.map((res) => {
           if (!res) return;
-          return res?.results.map((img, i) => <VideoCell key={i} videoData={img} />);
+          return res?.results.map((vid, i) => (
+            <VideoCell key={i} videoData={vid} setPrivatePlayerURL={setPrivatePlayerURL} />
+          ));
         })}
 
         {(isLoading || isValidating || !hydrated) &&
@@ -63,7 +67,12 @@ const TabVideos = () => {
       )}
 
       {/* Private Player */}
-      {/* <PrivatePlayer /> */}
+      <PrivateVideoPlayer
+        url={privatePlayerURL}
+        onClose={() => {
+          setPrivatePlayerURL("");
+        }}
+      />
     </Flex>
   );
 };

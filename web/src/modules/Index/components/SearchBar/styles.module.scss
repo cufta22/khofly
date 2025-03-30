@@ -1,12 +1,23 @@
+@use "variables" as vars;
 
 .search_bar {
   // width: 60%;
   max-width: 650px;
   width: 100%;
+
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    max-width: 800px;
+  }
 }
 
 .autocomplete_menu {
   // width: 60%;
   max-width: 650px;
   width: calc(100% - 32px) !important;
+
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    max-width: 800px;
+  }
 }

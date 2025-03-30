@@ -17,6 +17,7 @@ const SearchSection = () => {
 
   return (
     <Group className={classes.search_section} align="flex-start" h="100%" gap="md">
+      {/* Logo desktop */}
       <RemixLink className={classes.app_logo} to="/">
         {q.includes("doge") ? (
           <Image w={42} h={42} src={"/assets/doge.svg"} alt="Doge image" fit="contain" />

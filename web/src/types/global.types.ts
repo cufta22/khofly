@@ -17,39 +17,7 @@ export type IAppTheme =
   | "Nord"
   | "Tokyo-Night";
 
-export interface RootLoaderData {
-  language: ILanguage;
-  theme: IAppTheme;
-  content: ITranslations;
-
-  env: {
-    NODE_ENV: string;
-    HOST: string;
-    SEARXNG_URL_EU1: string;
-    SEARXNG_URL_US1: string;
-    API_URL_EU1: string;
-    API_URL_US1: string;
-    NOMINATIM_URL: string;
-    WORKER_URL: string;
-    IS_SELF_HOST: string;
-    APP_NAME: string;
-    SEARXNG_URL_SELF_HOST: string;
-    API_URL_SELF_HOST: string;
-  };
-
-  // Platform variables
-  nodeVersion: string | undefined;
-  // Vercel stuff
-  vercelRegion: string | undefined;
-  // Fly.io stuff
-  flyAppName: string | undefined;
-  flyRegion: string | undefined;
-  flyMachineId: string | undefined;
-  // Cloudflare stuff
-}
-
 // For translations
-
 type DotPrefix<T extends string> = T extends "" ? "" : `.${T}`;
 
 export type DotNestedKeys<T> = (

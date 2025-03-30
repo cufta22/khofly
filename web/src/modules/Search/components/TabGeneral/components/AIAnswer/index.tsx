@@ -9,54 +9,44 @@ import { useInstanceStore } from "@store/instance";
 import useSearchQuery from "@hooks/use-search-query";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
-
-export const shouldDisplayAIAnswer = (query: string, keywords: string[]) => {
-  let shouldDisplay = false;
-
-  keywords.map((val) => {
-    if (query?.toLowerCase().startsWith(val)) shouldDisplay = true;
-  });
-
-  return shouldDisplay;
-};
+import { useSearchParams } from "react-router";
+import { useSettingsStore } from "@store/settings";
 
 interface Props {
   propsQuery?: string;
 }
 
 const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
-  const { data, isMutating, trigger } = useAISWR();
   const theme = useMantineTheme();
+
+  const [searchParams] = useSearchParams();
 
   const q = useSearchQuery();
   const queryToUse = propsQuery || q || "";
 
+  const { data, isLoading, mutate } = useAISWR({ prompt: queryToUse });
+
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
+  const useAIAnswers = useSettingsStore((state) => state.useAIAnswers);
+
   const linkTextColor = usePrimaryColor(4);
 
-  const shouldTrigger = shouldDisplayAIAnswer(queryToUse, [
-    "what",
-    "who",
-    "when",
-    "why",
-    "where",
-    "how",
-  ]);
+  const shouldTrigger = searchParams.get("ai") === "1";
 
   useEffect(() => {
-    if (!workerDomain || !queryToUse) return;
+    if (!hydrated || !useAIAnswers || !workerDomain || !queryToUse) return;
 
-    if (!data && !isMutating && shouldTrigger) {
-      trigger(queryToUse);
+    if (!isLoading && shouldTrigger) {
+      mutate();
     }
   }, [hydrated, queryToUse]);
 
-  if (!shouldTrigger) return null;
+  if (!shouldTrigger || !useAIAnswers) return null;
 
   return (
-    <Paper className={classes.ai_answer} ml={propsQuery ? 0 : 80} withBorder radius="md" p="md">
+    <Paper className={classes.ai_answer} withBorder radius="md" p="md">
       {/* <Image src={img_src} radius="md" fit="contain" /> */}
 
       <Flex align="center" mb="sm">
@@ -67,7 +57,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
         </Text>
       </Flex>
 
-      {data && !isMutating ? (
+      {data && !isLoading ? (
         <Text className={classes.ai_text} size="sm" c="dimmed">
           {data?.response}
         </Text>
@@ -80,7 +70,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
         </Flex>
       )}
 
-      <Text size="sm" mt="xs" ta="right">
+      <Text size="sm" mt="lg" ta="right">
         Answer provided by AI,{" "}
         <RemixLink to="/docs/ai-answers">
           <Text c={linkTextColor} component="span">

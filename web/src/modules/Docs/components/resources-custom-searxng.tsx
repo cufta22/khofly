@@ -8,7 +8,6 @@ import DocsNextPrev from "./common/DocsNextPrev";
 
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 import { IconSearch } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const CODE_SEARXNG_CONFIG = `
@@ -28,7 +27,7 @@ const DocsResourcesCustomSearxng = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle leftSection={<IconSearch style={getIconStyle(48)} color={theme.colors.blue[5]} />}>
+      <DocsTitle leftSection={<IconSearch color={theme.colors.blue[5]} />}>
         Custom SearXNG instance
       </DocsTitle>
 
@@ -82,7 +81,7 @@ const DocsResourcesCustomSearxng = () => {
             Settings/Instances/SearXNG Domain
           </Text>
         </RemixLink>{" "}
-        and set your instances domain in the following format <Code>https://domain.com</Code>
+        and set your instances domain in the following format <Code>https://example.com</Code>
       </DocsText>
 
       <DocsNextPrev

@@ -1,12 +1,9 @@
-import Footer from "@components/Footer";
-import Header from "@components/Header";
 import { AppShell, createTheme, MantineProvider } from "@mantine/core";
 import type { IAppTheme, IFC } from "@ts/global.types";
 import { useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import clsx from "clsx";
-import DocsNavbar from "@components/Navbar/Docs";
 import { useDisclosure, useHeadroom } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
@@ -16,6 +13,11 @@ import useInstanceInit from "./use-instance-init";
 import useTitleQuery from "./use-title-query";
 import { useLocation, useRouteError, useSearchParams } from "react-router";
 import { useClientServerState } from "@store/client-server";
+import { useStatrpageStore } from "@store/startpage";
+
+import Footer from "@components/Footer";
+import Header from "@components/Header";
+import DocsNavbar from "@components/Navbar/Docs";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const { theme, primaryColor } = useClientServerState();
@@ -24,6 +26,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
   const resetVisitedLinks = useSearchStore((state) => state.resetVisitedLinks);
+
+  const wallpaper = useStatrpageStore((state) => state.wallpaper);
 
   const appTheme: IAppTheme = theme; // loaderData?.theme
 
@@ -94,6 +98,13 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
             [classes.app_header_transparent]: ["/"].includes(pathname),
           }),
           footer: classes.app_footer,
+        }}
+        styles={{
+          main: {
+            backgroundImage: isIndex ? `url(${wallpaper})` : "",
+            backgroundSize: "cover",
+            backgroundPosition: "50%",
+          },
         }}
         id="root"
       >

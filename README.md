@@ -1,17 +1,19 @@
 <a href="https://khofly.com">
 <p align="center">
-    <img height="80" src="./assets/logo.png"/>
+    <img height="80" src="./.github/assets/512x512.png"/>
 </p>
 </a>
 
-<br />
-<p align="center">
+<h3 align="center">
     <strong>Khofly - A modern SearXNG front-end</strong>
-</p>
+</h3>
+
 <br />
 
 <p align="center">
-    <img align="center" alt="Remix" src="https://img.shields.io/badge/remix-%23000.svg?style=for-the-badge&logo=remix&logoColor=white"/>
+    <img align="center" alt="Bun" src="https://img.shields.io/badge/Bun-%23000000.svg?style=for-the-badge&logo=bun&logoColor=white"/>
+    <!-- <img align="center" alt="Remix" src="https://img.shields.io/badge/remix-%23000.svg?style=for-the-badge&logo=remix&logoColor=white"/> -->
+    <img align="center" alt="React Router" src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=red&color=black"/>
     <img align="center" alt="SearXNG" src="https://img.shields.io/badge/SearXNG-1?style=for-the-badge&logo=searxng&logoColor=white&color=blue" />
 </p>
 
@@ -27,11 +29,11 @@
 
 ## Structure
 
-| Codebase             | Description                                   | 
-| :-:                  | :-:                                           | 
-| [web](./web)         | Bun REST api for getting 3rd party data       |      
-| [api](./api)         | React web client                              | 
-| [scripts](./scripts) | Shell scripts for installing/updating apps    | 
+|       Codebase       |                Description                 |
+| :------------------: | :----------------------------------------: |
+|     [web](./web)     |          React Router web client           |
+|     [api](./api)     |     Bun API for getting 3rd party data     |
+| [scripts](./scripts) | Shell scripts for installing/updating apps |
 
 ## Branches
 

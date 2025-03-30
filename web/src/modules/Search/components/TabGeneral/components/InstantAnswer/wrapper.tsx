@@ -1,7 +1,7 @@
-import { Divider, Flex, Stack, Text, Transition } from "@mantine/core";
+import { Collapse, Divider, Flex, Stack, Text, Transition } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconSelector } from "@tabler/icons-react";
-import { IFC } from "@ts/global.types";
+import type { IFC } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useLocation } from "react-router";
 
@@ -14,18 +14,15 @@ export const IAWrapper: React.FC<Props> = ({ children, label, className }) => {
   const { pathname } = useLocation();
   const isDocs = pathname.includes("docs");
 
-  const [visible, { toggle }] = useDisclosure(isDocs ? false : true);
+  const [visible, { toggle }] = useDisclosure(!isDocs);
 
   return (
     <Stack gap={0} className={className && className}>
-      <Transition
-        transition="scale-y"
-        duration={300}
-        mounted={visible}
-        keepMounted={false}
-      >
+      {/* <Transition transition="fade" duration={100} mounted={visible} keepMounted={true}>
         {(transitionStyles) => <div style={transitionStyles}>{children}</div>}
-      </Transition>
+      </Transition> */}
+
+      <Collapse in={visible}>{children}</Collapse>
 
       <Flex mt="lg" align="center" justify="space-between">
         {label || (
@@ -34,11 +31,7 @@ export const IAWrapper: React.FC<Props> = ({ children, label, className }) => {
           </Text>
         )}
 
-        <Flex
-          align="center"
-          onClick={() => toggle()}
-          style={{ cursor: "pointer" }}
-        >
+        <Flex align="center" onClick={() => toggle()} style={{ cursor: "pointer" }}>
           <IconSelector style={getIconStyle(20)} stroke={1.5} />
 
           <Text c="dimmed" size="sm" ml={4}>

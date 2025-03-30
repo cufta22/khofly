@@ -1,14 +1,16 @@
-import { ActionIcon, Center, Flex, Loader, Tabs } from "@mantine/core";
+import { ActionIcon, Flex, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconAdjustmentsHorizontal, IconSearch } from "@tabler/icons-react";
+import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useSearchStore } from "@store/search";
-import { ICategories, useSettingsStore } from "@store/settings";
+import { type ICategories, useSettingsStore } from "@store/settings";
 import { useEffect, useState } from "react";
 import { nprogress } from "@mantine/nprogress";
 import { CATEGORIES_DATA, sortCategories } from "./data";
 import { useHotkeys, useMounted } from "@mantine/hooks";
 import { useNavigate, useSearchParams } from "react-router";
+import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
+import useSearchQuery from "@hooks/use-search-query";
 
 const SearchSectionTabs = () => {
   const [searchParams] = useSearchParams();
@@ -22,7 +24,14 @@ const SearchSectionTabs = () => {
   const privateSearch = useSettingsStore((state) => state.privateSearch);
   const hydrated = useSettingsStore((state) => state.hydrated);
 
-  const [selectedTab, setSelectedTab] = useState(searchParams.get("tab") || "general");
+  const q = useSearchQuery();
+
+  // Infer tab from query syntax
+  const { tab: tabFromSyntax } = getTabFromQuery(q);
+
+  const [selectedTab, setSelectedTab] = useState(
+    tabFromSyntax || searchParams.get("tab") || "general"
+  );
 
   const iconSize = 16;
 

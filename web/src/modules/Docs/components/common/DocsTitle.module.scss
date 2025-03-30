@@ -1,0 +1,35 @@
+@use "variables" as vars;
+@use "functions" as func;
+
+.docs_title {
+  flex-direction: row;
+  gap: var(--mantine-spacing-lg);
+  align-items: center;
+
+  svg {
+    width: func.to-rem(48px);
+    height: func.to-rem(48px);
+  }
+
+  .docs_title_text {
+    font-size: func.to-rem(34px);
+    font-weight: 600;
+  }
+
+  // Scale on small devices
+  @media (max-width: vars.$mantine-breakpoint-sm) {
+    flex-direction: column;
+    gap: var(--mantine-spacing-sm);
+
+    .docs_title_text {
+      font-size: func.to-rem(26px);
+      text-align: center;
+    }
+
+    svg {
+      width: func.to-rem(36px);
+      height: func.to-rem(36px);
+      min-width: func.to-rem(36px);
+    }
+  }
+}

@@ -21,6 +21,7 @@ import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
 import { useNavigate, useSearchParams } from "react-router";
 import useSearchQuery from "@hooks/use-search-query";
+import { removeBangsFromQ } from "../../utils/removeBangsFromQ";
 
 interface Props {
   coords: { latitude: number; longitude: number };
@@ -36,7 +37,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   const [isOpen, { toggle }] = useDisclosure(true);
 
   const currentQ = useSearchQuery();
-  const [q, setQ] = useState(currentQ);
+  const [q, setQ] = useState("");
 
   const privateSearch = useSettingsStore((state) => state.privateSearch);
 
@@ -61,7 +62,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   };
 
   const handleUpdateMap = (lat: string, lon: string) => {
-    setCoords({ latitude: parseFloat(lat), longitude: parseFloat(lon) });
+    setCoords({ latitude: Number.parseFloat(lat), longitude: Number.parseFloat(lon) });
     if (isXs) toggle();
   };
 
@@ -69,17 +70,17 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
     // Don't search on render in dev to prevent API spam
     // Maybe fix if self-host nominatim API
     if (process.env.NODE_ENV === "production") {
-      if (!data?.length && currentQ?.length) trigger(currentQ);
+      if (!data?.length && currentQ?.length) trigger(removeBangsFromQ(currentQ));
     }
 
-    if (currentQ) setQ(currentQ);
+    if (currentQ) setQ(removeBangsFromQ(currentQ));
   }, [currentQ]);
 
   useEffect(() => {
     if (!coords.latitude && !coords.longitude && data?.length && !error) {
       setCoords({
-        latitude: parseFloat(data[0].lat),
-        longitude: parseFloat(data[0].lon),
+        latitude: Number.parseFloat(data[0].lat),
+        longitude: Number.parseFloat(data[0].lon),
       });
     }
   }, [data]);
@@ -103,11 +104,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
       </Flex>
 
       <Flex className={classes.map_controls_head} p="xs" gap="xs">
-        <ActionIcon
-          className={classes.action_icon}
-          variant="light"
-          onClick={handleGoBack}
-        >
+        <ActionIcon className={classes.action_icon} variant="light" onClick={handleGoBack}>
           <IconArrowLeft />
         </ActionIcon>
 
@@ -120,17 +117,9 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
             if (e.key === "Enter") handleSearch();
           }}
           rightSection={
-            <>
-              <ActionIcon
-                w={40}
-                h={40}
-                radius="sm"
-                variant="blue"
-                onClick={() => handleSearch()}
-              >
-                <IconSearch style={getIconStyle(22)} stroke={1.5} color="white" />
-              </ActionIcon>
-            </>
+            <ActionIcon w={40} h={40} radius="sm" variant="blue" onClick={() => handleSearch()}>
+              <IconSearch style={getIconStyle(22)} stroke={1.5} color="white" />
+            </ActionIcon>
           }
         />
       </Flex>
@@ -146,7 +135,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
           <Center py="xs">No results, try with different query</Center>
         )}
 
-        {data && data?.length && !error && !isMutating
+        {data?.length && !error && !isMutating
           ? data?.map((row, i) => (
               <NavLink
                 key={i}

@@ -7,7 +7,7 @@ import { renderToPipeableStream } from "react-dom/server";
 import type { RenderToPipeableStreamOptions } from "react-dom/server";
 import { parseAcceptLanguage } from "@utils/functions/parseAcceptLanguage";
 
-// import { handleRequest as handleVercelRequest } from "@vercel/remix";
+// import { handleRequest as handleVercelRequest } from "@vercel/react-router";
 import { createReadableStreamFromReadable } from "@react-router/node";
 
 import { getCookie } from "@utils/functions/cookies";
@@ -19,7 +19,7 @@ export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  routerContext: EntryContext,
+  routerContext: EntryContext
   // loadContext: AppLoadContext
 ) {
   // All i18n stuff - server side
@@ -90,7 +90,7 @@ export default async function handleRequest(
           new Response(stream, {
             headers: responseHeaders,
             status: statusCode,
-          }),
+          })
         );
 
         pipe(body);
@@ -111,27 +111,4 @@ export default async function handleRequest(
 
     setTimeout(abort, ABORT_DELAY);
   });
-
-  // const body = await renderToReadableStream(remixServer, {
-  //   signal: request.signal,
-  //   onError() {
-  //     responseStatusCode = 500;
-  //   },
-  // });
-
-  // // -------------------------------------------------
-  // // Handle Bot request
-  // // -------------------------------------------------
-  // if (isbot(request.headers.get("user-agent") || "")) {
-  //   await body.allReady;
-  // }
-
-  // // -------------------------------------------------
-  // // Handle browser request
-  // // -------------------------------------------------
-  // responseHeaders.set("Content-Type", "text/html");
-  // return new Response(body, {
-  //   headers: responseHeaders,
-  //   status: responseStatusCode,
-  // });
 }

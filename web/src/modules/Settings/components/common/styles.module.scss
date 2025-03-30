@@ -1,0 +1,63 @@
+@use "variables" as vars;
+
+.settings_row {
+  flex-direction: row;
+  align-items: center;
+
+  svg {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+  }
+
+  // Scale on small devices
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--mantine-spacing-xs);
+  }
+}
+
+.settings_control {
+  // Scale on small devices
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    align-self: flex-end;
+  }
+}
+
+.settings_title_wrapper {
+  .settings_title_content {
+    svg {
+      width: 32px;
+      min-width: 32px;
+      height: 32px;
+    }
+
+    .settings_title_text {
+      font-size: 26px;
+      font-weight: 600;
+    }
+  }
+
+  // Scale on small devices
+  @media (max-width: vars.$mantine-breakpoint-xs) {
+    .settings_title_content {
+      svg {
+        width: 26px;
+        min-width: 26px;
+        height: 26px;
+      }
+
+      .settings_title_text {
+        font-size: 24px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .hide_mobile {
+    @media (max-width: vars.$mantine-breakpoint-xs) {
+      display: none;
+    }
+  }
+}

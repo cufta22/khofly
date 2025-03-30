@@ -1,6 +1,6 @@
 import { Anchor, Flex, Image, Text } from "@mantine/core";
 import type { ISearXNGResultsVideos } from "@ts/searxng.types";
-import { useEffect, useState } from "react";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import classes from "./styles.module.scss";
 import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
@@ -8,10 +8,13 @@ import { useInViewport } from "@mantine/hooks";
 
 interface Props {
   videoData: ISearXNGResultsVideos["results"][0];
+  setPrivatePlayerURL: Dispatch<SetStateAction<string>>;
 }
 
-const VideoCell: React.FC<Props> = ({ videoData }) => {
+const VideoCell: React.FC<Props> = ({ videoData, setPrivatePlayerURL }) => {
   const { parsed_url, title, thumbnail, url } = videoData;
+
+  const privatePlayer = useSettingsStore((state) => state.privatePlayer);
 
   const openInNewTab = useSettingsStore((state) => state.openInNewTab);
 
@@ -28,13 +31,23 @@ const VideoCell: React.FC<Props> = ({ videoData }) => {
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
     ? "_blank"
     : openInNewTab
-      ? "_blank"
-      : "_self";
+    ? "_blank"
+    : "_self";
 
   if (!title) return null;
 
   return (
-    <Anchor href={url} target={anchorTarget} rel="noreferrer noopener">
+    <Anchor
+      href={url}
+      target={anchorTarget}
+      rel="noreferrer noopener"
+      onClick={(e) => {
+        if (privatePlayer && url.includes("youtube.com")) {
+          e.preventDefault();
+          setPrivatePlayerURL(url);
+        }
+      }}
+    >
       <Flex ref={ref} className={classes.video_container} direction="column" p="xs">
         {visible ? (
           <Image

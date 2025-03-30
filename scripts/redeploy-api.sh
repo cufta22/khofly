@@ -1,15 +1,20 @@
 #!/bin/bash
 
-cd ..
+# Set default INSTANCE_NAME to 'api-staging' if no argument is provided
+INSTANCE_NAME=${1:-api-staging}
+
+# Stop pm2 process
+pm2 stop $INSTANCE_NAME
 
 # Fetch latest code
-git pull origin staging
-
+git pull
 
 # Build the api
 cd api
 bun install
 # bun run build
 
-# Restart pm2 process
-pm2 restart api-staging
+# Start pm2 process
+pm2 start $INSTANCE_NAME
+
+systemctl reload nginx

@@ -1,4 +1,4 @@
-import {
+import type {
   IFilesEngines,
   IGeneralEngines,
   IITEngines,
@@ -8,6 +8,7 @@ import {
   IScienceEngines,
   ISocialMediaEngines,
   IVideosEngines,
+  IOtherEngines,
 } from ".";
 
 // Default engines picked based on results and availability
@@ -18,12 +19,7 @@ export const DEFAULT_ENGINES = {
   news: ["duckduckgo", "bing", "wikinews"] as INewsEngines[],
   music: ["radiobrowser", "soundcloud", "youtube"] as IMusicEngines[],
   it: ["dockerhub", "stackoverflow", "github", "archwiki"] as IITEngines[],
-  science: [
-    "arxiv",
-    "googlescholar",
-    "semanticscholar",
-    "pdbe",
-  ] as IScienceEngines[],
+  science: ["arxiv", "googlescholar", "semanticscholar", "pdbe"] as IScienceEngines[],
   files: ["fdroid", "bt4g", "piratebay"] as IFilesEngines[],
   social_media: [
     "lemmycomments",
@@ -34,5 +30,6 @@ export const DEFAULT_ENGINES = {
     "mastodonusers",
     "reddit",
   ] as ISocialMediaEngines[],
-  maps: [],
+  maps: [] as string[],
+  other: [] as IOtherEngines[],
 };

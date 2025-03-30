@@ -99,6 +99,8 @@
 
         "toggle_private_search": "Enable Private Search",
 
+        "toggle_private_player": "Enable Private Player",
+
         "set_as_default": "Set Khofly as default search engine",
         "set_as_default_btn": "Set default",
 
@@ -115,13 +117,24 @@
         "button": "Apply"
       },
 
+      "instances": {
+        "title_searxng": "SearXNG URL",
+        "title_api": "API URL",
+        "title_ai": "AI Worker",
+        "title_nominatim": "Nominatim URL"
+      },
+
       "engines": {
         "title_without": "other stuff",
 
         "title": "General engines",
-        "title2": "web",
-        "title3": "wiki stuff",
+        "title2": "i18n",
+        "title3": "web",
+        "title4": "wiki stuff",
 
+        "engine_dictzone": "Dictzone",
+        "engine_libre_translate": "LibreTranslate",
+        "engine_lingva": "Lingva",
         "engine_google": "Google",
         "engine_DDG": "DuckDuckGo",
         "engine_presearch": "Presearch",
@@ -132,6 +145,8 @@
         "engine_brave": "Brave",
         "engine_yahoo": "Yahoo!",
         "engine_wiby": "Wiby",
+        "engine_ask": "Ask",
+        "engine_cfai": "Cloudflare AI",
 
         "engine_wikibooks": "Wikibooks",
         "engine_wikiquote": "Wikiquote",
@@ -150,6 +165,7 @@
         "engine_google_img": "Google images",
         "engine_DDG_img": "DuckDuckGo images",
         "engine_qwant_img": "Qwant images",
+        "engine_startpage_img": "Startpage images",
         "engine_bing_img": "Bing images",
         "engine_brave_img": "Brave images",
         "engine_presearch_img": "Presearch images",
@@ -157,6 +173,7 @@
         "engine_flickr_img": "Flickr",
         "engine_pinterest_img": "Pinterest",
         "engine_unsplash_img": "Unsplash",
+        "engine_wikicommons_img": "Wikicommons",
 
         "title_vid": "Video engines",
         "title_vid2": "web",
@@ -170,6 +187,7 @@
         "engine_dailymotion_vid": "Dailymotion",
         "engine_odysee_vid": "Odysee",
         "engine_piped_vid": "Piped",
+        "engine_rumble_vid": "Rumble",
         "engine_vimeo_vid": "Vimeo",
         "engine_youtube_vid": "YouTube",
 
@@ -179,9 +197,11 @@
 
         "engine_google_news": "Google news",
         "engine_DDG_news": "DuckDuckGo news",
+        "engine_mojeek_news": "Mojeek news",
         "engine_bing_news": "Bing news",
         "engine_brave_news": "Brave news",
         "engine_qwant_news": "Qwant news",
+        "engine_startpage_news": "Startpage news",
         "engine_yahoo_news": "Yahoo! news",
         "engine_presearch_news": "Presearch news",
 
@@ -194,9 +214,11 @@
         "engine_genius_music": "Genius",
         "engine_RB_music": "Radio Browser",
         "engine_bandcamp_music": "Bandcamp",
+        "engine_deezer_music": "Deezer",
         "engine_mixcloud_music": "Mixcloud",
-        "engine_piped_music": "Piped._music",
+        "engine_piped_music": "Piped",
         "engine_SC_music": "Soundcloud",
+        "engine_wikicommons_music": "Wikicommons",
         "engine_YT_music": "YouTube",
 
         "title_IT": "IT engines",
@@ -205,17 +227,27 @@
         "title_IT4": "repos",
         "title_IT5": "software wikis",
 
+        "engine_crates_IT": "crates.io",
         "engine_docker_hub_IT": "Docker hub",
         "engine_NPM_IT": "NPM",
+        "engine_packagist_IT": "Packagist",
+        "engine_pkg_go_IT": "Go packages",
         "engine_pypi_IT": "PyPI",
+        "engine_ruby_gems_IT": "RubyGems",
+        "engine_void_IT": "Void Linux",
         "engine_ask_ubuntu_IT": "Ask Ubuntu",
         "engine_stack_overflow_IT": "StackOverflow",
         "engine_superuser_IT": "Superuser",
+        "engine_bitbucket_IT": "Bitbucket",
         "engine_codeberg_IT": "Codeberg",
         "engine_github_IT": "GitHub",
         "engine_gitlab_IT": "GitLab",
         "engine_arch_IT": "Arch Wiki",
-        "engine_gentoo_IT": "Gentoo",
+        "engine_gentoo_IT": "Gentoo Wiki",
+        "engine_nixos_IT": "Nixos Wiki",
+
+        "engine_hackernews_IT": "Hacker News",
+        "engine_mankier_IT": "ManKier",
         "engine_MDN_IT": "MDN",
 
         "title_science": "Science engines",
@@ -236,12 +268,18 @@
         "title_files2": "apps",
 
         "engine_APKMirror_files": "APKMirror",
+        "engine_app_store_files": "Apple App Store",
         "engine_fdriod_files": "F-Droid",
+        "engine_play_store_files": "Google Play Store",
         "engine_1337x_files": "1337x",
         "engine_annas_files": "Anna's Archive",
         "engine_bt4g_files": "bt4g",
+        "engine_kickass_files": "Kickass",
+        "engine_library_genesis_files": "Library Genesis",
         "engine_nyaa_files": "Nyaa",
         "engine_piratebay_files": "The Pirate Bay",
+        "engine_wikicommons_files": "Wikicommons",
+        "engine_zlibrary_files": "Z-Library",
 
         "title_SM": "Social Media engines",
 
@@ -252,18 +290,42 @@
         "engine_lemmy_users_SM": "Lemmy Users",
         "engine_mastodon_hashtags_SM": "Mastodon Hashtags",
         "engine_mastodon_users_SM": "Mastodon Users",
-        "engine_reddit_SM": "Reddit"
+        "engine_reddit_SM": "Reddit",
+        "engine_tootfinder_SM": "Tootfinder",
+
+        "title_other": "Other engines",
+        "title_other2": "dictionaries",
+        "title_other3": "movies",
+        "title_other4": "weather",
+
+        "engine_etymonline": "Etymonline",
+        "engine_wiktionary": "Wiktionary",
+        "engine_wordnik": "Wordnik",
+        "engine_imdb": "IMDb",
+        "engine_rottentomatoes": "Rotten Tomatoes",
+        "engine_DDG_weather": "DuckDuckGo Weather",
+        "engine_openmeteo": "Open Meteo",
+        "engine_emojipedia": "Emojipedia",
+        "engine_goodreads": "Goodreads",
+        "engine_openlibrary": "Open Library",
+        "engine_podcastindex": "The Podcast Index"
       },
 
-      "shortcuts": {
-        "title": "Shortcuts",
-        "toggle_shortcuts": "Display shortcuts on home page",
+      "startpage": {
+        "title_background": "Wallpaper",
 
-        "toggle_open_in_new_tab": "Open links in new tab",
+        "title_shortcuts": "Shortcuts",
+        "toggle_shortcuts": "Display shortcuts on start page",
 
         "favicon_api_favicone": "Favicone",
         "favicon_api_DDG": "DuckDuckGo",
-        "favicon_api_google": "Google"
+        "favicon_api_google": "Google",
+
+        "title_widgets": "Widgets",
+        "toggle_todos": "Display To-Do widget on start page",
+        "toggle_notes": "Display Notes widget on start page",
+        "toggle_weather": "Display Weather widget on start page",
+        "toggle_clock": "Display Clock widget on start page"
       }
     }
   }

@@ -1,7 +1,6 @@
-import { Anchor, Button, Center, Flex, Image, Kbd, Paper, Space, Table, Text } from "@mantine/core";
-import React from "react";
+import { Anchor, Button, Center, Flex, Image, Kbd, Paper, Space, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsFiles } from "@ts/searxng.types";
+import type { ISearXNGResultsFiles } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
@@ -17,13 +16,13 @@ dayjs.extend(relativeTime);
 
 const formatBytes = (bytes: number) => {
   if (bytes < 1024) {
-    return bytes + " B";
+    return `${bytes} B`;
   } else if (bytes < 1024 * 1024) {
-    return (bytes / 1024).toFixed(2) + " KB";
+    return `${(bytes / 1024).toFixed(2)} KB`;
   } else if (bytes < 1024 * 1024 * 1024) {
-    return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
   } else {
-    return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+    return `${(bytes / (1024 * 1024 * 1024)).toFixed(2)} GB`;
   }
 };
 
@@ -31,7 +30,7 @@ interface Props {
   data: ISearXNGResultsFiles["results"][0];
 }
 
-const ITRow: React.FC<Props> = ({ data }) => {
+const FilesRow: React.FC<Props> = ({ data }) => {
   const {
     title,
     url,
@@ -54,7 +53,11 @@ const ITRow: React.FC<Props> = ({ data }) => {
 
   const isXs = useResponsive("max", "xs");
 
-  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs ? "_blank" : openInNewTab ? "_blank" : "_self";
+  const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
+    ? "_blank"
+    : openInNewTab
+    ? "_blank"
+    : "_self";
 
   return (
     <Flex className={classes.files_row} direction="column">
@@ -62,7 +65,12 @@ const ITRow: React.FC<Props> = ({ data }) => {
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
-            <Image w={16} h={16} src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`} alt="" />
+            <Image
+              w={16}
+              h={16}
+              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
+              alt=""
+            />
           )}
 
           <Text size="xs" truncate="end">
@@ -127,7 +135,11 @@ const ITRow: React.FC<Props> = ({ data }) => {
 
             {magnetlink && (
               <Anchor href={magnetlink} target={anchorTarget} rel="noreferrer noopener">
-                <Button variant="light" size="xs" leftSection={<IconMagnet style={getIconStyle(18)} />}>
+                <Button
+                  variant="light"
+                  size="xs"
+                  leftSection={<IconMagnet style={getIconStyle(18)} />}
+                >
                   Magnet link
                 </Button>
               </Anchor>
@@ -147,4 +159,4 @@ const ITRow: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default ITRow;
+export default FilesRow;

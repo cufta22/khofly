@@ -29,8 +29,6 @@ const PageSearch = () => {
     videos: <TabVideos />,
     news: <TabNews />,
     maps: mounted ? <TabMapsWithoutSSR /> : null,
-
-    // WIP
     music: <TabMusic />,
     it: <TabIT />,
     science: <TabScience />,

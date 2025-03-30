@@ -6,6 +6,7 @@ a {
   color: unset !important;
 }
 
+// Remove politics from the project
 .leaflet-attribution-flag {
   width: 0px !important;
 }
@@ -14,6 +15,7 @@ table th {
   white-space: nowrap;
 }
 
+// Revert this change
 /* Fixes odd Firefox behavior in Select – https://github.com/mantinedev/mantine/issues/7476 */
 .mantine-Input-input {
   @supports (-moz-appearance: none) {

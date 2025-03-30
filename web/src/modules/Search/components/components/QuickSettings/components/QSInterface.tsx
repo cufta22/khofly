@@ -3,10 +3,10 @@ import { IconBrush } from "@tabler/icons-react";
 import { useTranslate } from "@hooks/translate/use-translate";
 import classes from "../styles.module.scss";
 
-import LanguageSelect from "@module/Settings/components/Interface/LanguageSelect/LanguageSelect";
-import ThemeSelect from "@module/Settings/components/Interface/ThemeSelect/ThemeSelect";
-import ColorSchemeSwitch from "@module/Settings/components/Interface/ColorThemeSwitch/ColorThemeSwitch";
-import NewTabSwitch from "@module/Settings/components/Interface/NewTabSwitch";
+import LanguageSelect from "@module/Settings/components/_interface/Interface/LanguageSelect/LanguageSelect";
+import ThemeSelect from "@module/Settings/components/_interface/Interface/ThemeSelect/ThemeSelect";
+import ColorSchemeSwitch from "@module/Settings/components/_interface/Interface/ColorThemeSwitch/ColorThemeSwitch";
+import NewTabSwitch from "@module/Settings/components/_interface/Interface/NewTabSwitch";
 
 const QSInterface = () => {
   const t = useTranslate();

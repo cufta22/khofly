@@ -1,4 +1,4 @@
-import { Box, Code, Container, Text, useMantineTheme } from "@mantine/core";
+import { Box, Code, Container, useMantineTheme } from "@mantine/core";
 import classes from "./styles.module.scss";
 
 import DocsTitle from "./common/DocsTitle";
@@ -6,7 +6,6 @@ import DocsSubtitle from "./common/DocsSubtitle";
 
 import ScrollToTop from "@components/ScrollToTop";
 import { IconMessageCode } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsText from "./common/DocsText";
 import DocsNextPrev from "./common/DocsNextPrev";
 
@@ -31,6 +30,8 @@ import IATranslate from "@module/Search/components/TabGeneral/components/Instant
 import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Unit";
 import IAUUID from "@module/Search/components/TabGeneral/components/InstantAnswer/components/UUID";
 import IAWeather from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Weather";
+import { KEYWORDS_IA } from "@module/Search/components/TabGeneral/components/InstantAnswer/_utils/keywords";
+import IAIP from "@module/Search/components/TabGeneral/components/InstantAnswer/components/IP";
 
 const DocsSearchInstantAnswer = () => {
   const theme = useMantineTheme();
@@ -39,9 +40,7 @@ const DocsSearchInstantAnswer = () => {
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle
-        leftSection={<IconMessageCode style={getIconStyle(48)} color={theme.colors.grape[5]} />}
-      >
+      <DocsTitle leftSection={<IconMessageCode color={theme.colors.grape[5]} />}>
         Instant Answers
       </DocsTitle>
 
@@ -73,103 +72,168 @@ const DocsSearchInstantAnswer = () => {
       </DocsText>
 
       <DocsTitle>1. Calculator</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.calculator.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACalculator />
       </Box>
 
       <DocsTitle>2. Calendar</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.calendar.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACalendar />
       </Box>
 
       <DocsTitle>3. Coin Flip</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.coin_flip.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACoinFlip withIAWrapper />
       </Box>
 
       <DocsTitle>4. Currency Converter</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Condition: Search query contains any currency code, ex. <Code>EUR to USD</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IACurrency currency1="usd" currency2="eur" withIAWrapper />
       </Box>
 
       <DocsTitle>5. Dice Roll</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.dice_roll.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IADiceRoll withIAWrapper />
       </Box>
 
       <DocsTitle>6. Downloader</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.downloader.slice(0, 4).join(", ")}, etc.</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IADownloader />
       </Box>
 
       <DocsTitle>7. Equation</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsText>
+        Condition: <Code>{`/(?:(?:^|[-+_*/])(?:\s*-?\d+(\.\d+)?(?:[eE][+-]?\d+)?\s*))+$/`}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAEquation query="6 * ( 2 + 7 )" />
       </Box>
 
-      {/* <DocsTitle>8. Lyrics</DocsTitle>
+      <DocsTitle>8. What's my IP</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.ip.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
+        <IAIP />
+      </Box>
+
+      <DocsTitle>9. Lyrics</DocsTitle>
+      <DocsText>
+        Condition: Query contains word <Code>lyrics</Code>
+      </DocsText>
       <Box className={classes.search_box}>
         <IALyrics initialQ="rick astley never gonna give you up" />
-      </Box> */}
+      </Box>
 
-      <DocsTitle>8. Password</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>10. Password</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.password.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAPassword />
       </Box>
 
-      <DocsTitle>9. Random number generator</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>11. RNG</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.rng.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IARNG />
       </Box>
 
-      <DocsTitle>10. Stopwatch</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>12. Stopwatch</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.stopwatch.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAStopwatch withIAWrapper />
       </Box>
 
-      <DocsTitle>11. TicTacToe</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>13. TicTacToe</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.tictactoe.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IATicTacToe withIAWrapper />
       </Box>
 
-      <DocsTitle>12. Time In</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>14. Time In</DocsTitle>
+      <DocsText>
+        Condition: <Code>{`query.includes("time in")`}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IATimeIn withIAWrapper location="Paris" />
       </Box>
 
-      <DocsTitle>13. Timer</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>15. Timer</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.timer.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IATimer withIAWrapper />
       </Box>
 
-      <DocsTitle>13. Time Zone</DocsTitle>
-      <Box className={classes.search_box}>
-        <IATimeZone withIAWrapper location="Paris" />
+      <DocsTitle>16. Time Zone</DocsTitle>
+      <DocsText>
+        Condition: <Code>{KEYWORDS_IA.time_zone.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
+        <IATimeZone withIAWrapper />
       </Box>
 
-      {/* <DocsTitle>14. Translate</DocsTitle>
-      <Box className={classes.search_box}>
-        <Translate />
-      </Box> */}
+      <DocsTitle>17. Translate</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.translate.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
+        <IATranslate />
+      </Box>
 
-      <DocsTitle>14. Unit converter</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>18. Unit converter</DocsTitle>
+      <DocsText>
+        Condition: Search query contains any measurement unit, ex. <Code>m to km</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAUnit type="length" unit1="m" unit2="cm" withIAWrapper />
       </Box>
 
-      <DocsTitle>15. Random UUID</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>19. Random UUID</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.uuid.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAUUID />
       </Box>
 
-      <DocsTitle>16. Weather</DocsTitle>
-      <Box className={classes.search_box}>
+      <DocsTitle>20. Weather</DocsTitle>
+      <DocsText>
+        Keywords: <Code>{KEYWORDS_IA.weather.join(", ")}</Code>
+      </DocsText>
+      <Box mt="md" className={classes.search_box}>
         <IAWeather />
       </Box>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["AI"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["privateSearch"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["syntax"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["AI"] }}
       />
 
       <ScrollToTop />

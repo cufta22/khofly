@@ -20,9 +20,20 @@
     }
   }
 
+  .header_title {
+    font-size: var(--mantine-font-size-xl);
+  }
+
   .action_button {
     @media (max-width: vars.$mantine-breakpoint-md) {
       display: none;
+    }
+  }
+
+  // Scale on large devices
+  @media (min-width: vars.$screen-breakpoint-large) {
+    .header_title {
+      font-size: 1.35rem;
     }
   }
 }

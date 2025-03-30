@@ -1,4 +1,4 @@
-import { UnitsType } from "../components/Unit";
+import type { UnitsType } from "../components/Unit";
 import { KEYWORDS_CURRENCY } from "./keywords_currency";
 import { KEYWORDS_UNITS_GENERAL, KEYWORDS_UNITS_ALL_MAP } from "./keywords_units";
 
@@ -115,33 +115,6 @@ export const shouldDisplayCurrency = (query: string) => {
 };
 
 // -----------------------------------------------------------------------------------
-// Downloader handler
-// -----------------------------------------------------------------------------------
-
-export const shouldDisplayDownloader = (query: string) => {
-  let shouldDisplay = false;
-
-  [
-    "downloader",
-
-    "ytdl",
-    "youtube download",
-    "yt to mp3",
-    "yt to mp4",
-
-    "ig download",
-    "ig downloader",
-    "instagram download",
-
-    // "tiktok download",
-  ].map((val) => {
-    if (query?.toLowerCase().includes(val)) shouldDisplay = true;
-  });
-
-  return shouldDisplay;
-};
-
-// -----------------------------------------------------------------------------------
 // Time In handler
 // -----------------------------------------------------------------------------------
 
@@ -151,10 +124,29 @@ export const shouldDisplayTimeIn = (query: string) => {
   let sdTimeIn = false;
 
   // Display time in if query contains
-  if (query.includes("time in")) sdTimeIn = true;
+  if (query.startsWith("time in")) sdTimeIn = true;
 
   return {
     sdTimeIn,
     location,
+  };
+};
+
+// -----------------------------------------------------------------------------------
+// Cowsay handler
+// -----------------------------------------------------------------------------------
+
+export const shouldDisplayCowsay = (query: string) => {
+  // Check if query starts with cowsay
+  if (!query.startsWith("cowsay ")) {
+    return {
+      sdCowsay: false,
+      message: "",
+    };
+  }
+
+  return {
+    sdCowsay: true,
+    message: query.replace(/^cowsay\s*/, ""),
   };
 };

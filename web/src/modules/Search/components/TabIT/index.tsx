@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import { ISearXNGResultsIT } from "@ts/searxng.types";
+import type { ISearXNGResultsIT } from "@ts/searxng.types";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
@@ -17,7 +17,8 @@ import ITSkeleton from "./components/ITSkeleton";
 const TabIT = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<ISearXNGResultsIT>();
+  const { data, error, isLoading, isValidating, size, setSize, mutate } =
+    useSearXNGSWR<ISearXNGResultsIT>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -64,9 +65,12 @@ const TabIT = () => {
           <Text>Too Many Requests</Text>
         )}
 
-        {!isLoading && !isValidating && data && data?.length >= 1 && data?.[0]?.results?.length < 1 && !isRateLimit && (
-          <Center py="xs">No results, try with different query</Center>
-        )}
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && <Center py="xs">No results, try with different query</Center>}
 
         {!isLoading &&
           !isValidating &&
@@ -85,9 +89,13 @@ const TabIT = () => {
       {/* Infoboxes */}
 
       <Flex direction="column" gap="xl" pt="xl">
-        {!isLoading && !isValidating && !isRateLimit && data && data?.[0]?.unresponsive_engines?.length >= 1 && (
-          <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
-        )}
+        {!isLoading &&
+          !isValidating &&
+          !isRateLimit &&
+          data &&
+          data?.[0]?.unresponsive_engines?.length >= 1 && (
+            <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
+          )}
       </Flex>
     </Flex>
   );
