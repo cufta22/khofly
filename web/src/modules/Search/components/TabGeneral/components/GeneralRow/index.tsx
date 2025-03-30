@@ -1,7 +1,6 @@
 import { Flex, Image, Space, Text, useMantineTheme } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsGeneral } from "@ts/searxng.types";
+import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
@@ -14,7 +13,7 @@ interface Props {
   data: ISearXNGResultsGeneral["results"][0];
 }
 
-const SearchResultRow: React.FC<Props> = ({ data }) => {
+const GeneralRow: React.FC<Props> = ({ data }) => {
   const { title, url, parsed_url, content, engines } = data;
 
   const theme = useMantineTheme();
@@ -81,4 +80,4 @@ const SearchResultRow: React.FC<Props> = ({ data }) => {
   );
 };
 
-export default SearchResultRow;
+export default GeneralRow;

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import InstantAnswer from "./components/InstantAnswer";
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
@@ -10,21 +9,17 @@ import Infobox from "../components/Infobox";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
-import GeneralMedia from "./components/GeneralMedia";
-import { useSettingsStore } from "@store/settings";
-import AIAnswer from "./components/AIAnswer";
+import type { ICategories } from "@store/settings";
 import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
 import { useSearchStore } from "@store/search";
 import Lyricsbox from "../components/Lyricsbox";
-
-import GeneralRow from "./components/GeneralRow";
-import GeneralSkeleton from "./components/GeneralSkeleton";
+import AIAnswer from "../TabGeneral/components/AIAnswer";
+import InstantAnswer from "../TabGeneral/components/InstantAnswer";
+import GeneralSkeleton from "../TabGeneral/components/GeneralSkeleton";
+import { CATEGORY_TO_COMPONENTS } from "./utils";
 
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
-
-  const displayMedia = useSettingsStore((state) => state.displayMedia);
-  const hydratedSettings = useSettingsStore((state) => state.hydrated);
 
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
   const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
@@ -87,23 +82,11 @@ const TabGeneral = () => {
             <Stack gap="lg" key={i}>
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
-              {displayMedia && i === 0 && hydratedSettings ? (
-                // Display images/videos in between results
-                <>
-                  {organizedResults.slice(0, 2).map((r, i) => (
-                    <GeneralRow key={i} data={r} />
-                  ))}
+              {res?.results.map((r, i) => {
+                const MultipleRow = CATEGORY_TO_COMPONENTS[r.category as ICategories].row;
 
-                  <GeneralMedia />
-
-                  {organizedResults.slice(2).map((r, i) => (
-                    <GeneralRow key={i} data={r} />
-                  ))}
-                </>
-              ) : (
-                // Display just results
-                organizedResults.map((r, i) => <GeneralRow key={i} data={r} />)
-              )}
+                return <MultipleRow key={i} data={r} />;
+              })}
             </Stack>
           );
         })}

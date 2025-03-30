@@ -14,7 +14,7 @@ import Suggestions from "../components/Suggestions";
 import FilesRow from "./components/FilesRow";
 import FilesSkeleton from "./components/FilesSkeleton";
 
-const TabIT = () => {
+const TabFiles= () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<ISearXNGResultsFiles>();
@@ -93,4 +93,4 @@ const TabIT = () => {
   );
 };
 
-export default TabIT;
+export default TabFiles;

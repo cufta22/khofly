@@ -5,7 +5,7 @@ import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 
 import classes from "./styles.module.scss";
 import NewsRow from "./components/NewsRow";
-import SearchResultSkeleton from "../TabGeneral/components/SearchResultSkeleton";
+import SearchResultSkeleton from "../TabGeneral/components/GeneralSkeleton";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
@@ -13,7 +13,8 @@ import { useEnginesStore } from "@store/engines";
 const TabNews = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<ISearXNGResultsNews>();
+  const { data, error, isLoading, isValidating, size, setSize, mutate } =
+    useSearXNGSWR<ISearXNGResultsNews>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -56,9 +57,12 @@ const TabNews = () => {
           <Text>Too Many Requests</Text>
         )}
 
-        {!isLoading && !isValidating && data && data?.length >= 1 && data?.[0]?.results?.length < 1 && !isRateLimit && (
-          <Center py="xs">No results, try with different query</Center>
-        )}
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && <Center py="xs">No results, try with different query</Center>}
 
         {!isLoading &&
           !isValidating &&

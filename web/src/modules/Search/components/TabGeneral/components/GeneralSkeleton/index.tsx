@@ -1,7 +1,7 @@
 import { Flex, Skeleton } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-const SearchResultSkeleton = () => {
+const GeneralSkeleton = () => {
   return (
     <Flex className={classes.search_row} direction="column">
       {/* Website url */}
@@ -23,4 +23,4 @@ const SearchResultSkeleton = () => {
   );
 };
 
-export default SearchResultSkeleton;
+export default GeneralSkeleton;
