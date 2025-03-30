@@ -1,8 +1,8 @@
 import type { Context } from "elysia";
 import type { IGeniusSearchResponse } from "../../types/lyrics.types";
-import { getLyricsWithFetch } from "./utils/lyrics-fetch";
-import { getLyricsWithLyricsOvh } from "./utils/lyrics-ovh";
-import { getLyricsWithWorker } from "./utils/lyrics-worker";
+import { getLyricsFromGenius } from "./utils/lyrics-genius";
+import { getLyricsFromLyricsOvh } from "./utils/lyrics-ovh";
+import { getLyricsFromAZ } from "./utils/lyrics-az";
 
 // GET - /lyrics
 export const handleGetLyrics = async (ctx: Context) => {
@@ -34,17 +34,17 @@ export const handleGetLyrics = async (ctx: Context) => {
     throw ctx.error(400, "Song not found, try another song!");
   }
 
-  if (process.env.LYRICS_FETCH_METHOD === "fetch") {
+  if (process.env.LYRICS_FETCH_METHOD === "genius") {
     // Gets 403 on VPS :(
-    const lyricsData = await getLyricsWithFetch(ctx, firstRes);
+    const lyricsData = await getLyricsFromGenius(ctx, firstRes);
     return lyricsData;
   } else if (process.env.LYRICS_FETCH_METHOD === "lyrics-ovh") {
-    // Should hopefully work on VPS
-    const lyricsData = await getLyricsWithLyricsOvh(ctx, firstRes);
+    // Works on VPS
+    const lyricsData = await getLyricsFromLyricsOvh(ctx, firstRes);
     return lyricsData;
-  } else if (process.env.LYRICS_FETCH_METHOD === "worker") {
+  } else if (process.env.LYRICS_FETCH_METHOD === "az") {
     // Should hopefully work on VPS
-    const lyricsData = await getLyricsWithWorker(ctx, firstRes);
+    const lyricsData = await getLyricsFromAZ(ctx, firstRes);
     return lyricsData;
   } else {
     return ctx.error(400, "Blocked by Genius");

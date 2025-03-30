@@ -5,7 +5,7 @@ import { getEngineBangs } from "./utils";
 import { useSearchParams } from "react-router";
 
 import { useInstanceStore } from "@store/instance";
-import { IOtherEngines, useEnginesStore } from "@store/engines";
+import { type IOtherEngines, useEnginesStore } from "@store/engines";
 import type { ICategories } from "@store/settings";
 
 const getKey = (
@@ -22,8 +22,11 @@ const getKey = (
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
   if (!q) return null; // prevent empty search
 
-  const engineBangs = getEngineBangs(tab, enginesSelected, enginesOther);
+  // Query starts with ! for search with specific engine
+  const hasSpecificEngine = q.startsWith("!");
 
+  const engineBangs = hasSpecificEngine ? "" : getEngineBangs(tab, enginesSelected, enginesOther);
+  const query = encodeURIComponent(q);
   const catgParam = `&categories=${tab}`;
   const pageParam = `&pageno=${pageIndex + 1}`;
   const safeParam = `&safesearch=${safeSearch}`;
@@ -31,9 +34,7 @@ const getKey = (
   const langParam = searchLanguage === "all" ? "" : `&language=${searchLanguage}`;
 
   // SWR key
-  return `/search?q=${engineBangs}${encodeURIComponent(
-    q
-  )}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
+  return `/search?q=${engineBangs}${query}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
 };
 
 const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {

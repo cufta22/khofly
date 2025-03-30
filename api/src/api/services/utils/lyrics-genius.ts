@@ -15,8 +15,8 @@ const GENIUS_HEADERS = {
   TE: "Trailers",
 };
 
-// Get lyrics with fetch
-export const getLyricsWithFetch = async (
+// Get lyrics from Genius
+export const getLyricsFromGenius = async (
   ctx: Context,
   firstRes: IGeniusSearchResponse["response"]["hits"][0]
 ): Promise<ILyricsResponse> => {

@@ -5,8 +5,8 @@ import type {
   ILyricsResponse,
 } from "../../../types/lyrics.types";
 
-// Get lyrics with fetch
-export const getLyricsWithLyricsOvh = async (
+// Get lyrics from Lyrics.ovh
+export const getLyricsFromLyricsOvh = async (
   ctx: Context,
   firstRes: IGeniusSearchResponse["response"]["hits"][0]
 ): Promise<ILyricsResponse> => {
