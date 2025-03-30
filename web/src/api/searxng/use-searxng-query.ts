@@ -63,8 +63,6 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
   const tab = initialTab || (searchParams.get("tab") as ICategories) || "general";
 
   const fetcher = (key: string) => {
-    // console.log("Fetching data for: " + key);
-
     return fetchData(`${searXNGDomain}${key}&format=json`) as Promise<IResults>;
   };
 

@@ -29,6 +29,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { useInstanceStore } from "@store/instance";
+import useGeocodingSWR from "src/api/geocoding/use-geocoding-query";
 
 dayjs.extend(utc);
 
@@ -38,11 +39,18 @@ const formatChartHr = (dt: number) => {
   return Number.parseInt(hr) >= 12 ? `${hr} PM` : `${hr} AM`;
 };
 
-const IAWeather = () => {
-  // Get data either from localStorage or Geolocation
+interface Props {
+  propLocation?: string;
+}
+
+const IAWeather: React.FC<Props> = ({ propLocation }) => {
+  // Get geo data either from localStorage or Geolocation
   const hydrated = useGeneralStore((state) => state.hydrated);
-  const geolocation = useGeneralStore((state) => state.geolocation);
-  const { location } = useGeolocation(!geolocation && hydrated);
+  const lsGeo = useGeneralStore((state) => state.geolocation);
+  const { location: browserGeo } = useGeolocation(!propLocation && !lsGeo && hydrated);
+
+  // Get geo data dynamically for location
+  const { trigger: triggerGeo, data: dataGeo } = useGeocodingSWR();
 
   const weatherSource = useInstanceStore((state) => state.weatherSource);
 
@@ -52,13 +60,16 @@ const IAWeather = () => {
 
   const linkTextColor = usePrimaryColor(4);
 
+  const latToUse = dataGeo?.data?.lat || lsGeo?.lat || browserGeo?.latitude;
+  const lonToUse = dataGeo?.data?.lon || lsGeo?.lon || browserGeo?.longitude;
+
   const {
     data: resData,
     isLoading,
     mutate,
   } = useWeatherSWR({
-    lat: geolocation?.lat || location?.latitude,
-    lon: geolocation?.lon || location?.longitude,
+    lat: latToUse,
+    lon: lonToUse,
     units: unit,
     src: weatherSource,
   });
@@ -66,9 +77,21 @@ const IAWeather = () => {
   const message = resData?.message;
 
   useEffect(() => {
-    // Don't fetch if previous data already exists to not spam the instance
-    if (!data && hydrated && (location?.latitude || geolocation?.lat)) mutate();
-  }, [hydrated, geolocation, location]);
+    if (propLocation) {
+      // Handle for specific location
+      if (hydrated && dataGeo?.data) mutate();
+    } else {
+      // Handle for current location
+      if (hydrated && (lsGeo?.lat || browserGeo?.latitude)) mutate();
+    }
+  }, [hydrated, latToUse, propLocation]);
+
+  // Handle geo for specific location
+  useEffect(() => {
+    if (hydrated && propLocation) {
+      triggerGeo({ location: propLocation });
+    }
+  }, [hydrated, propLocation]);
 
   // Update current data
   useEffect(() => {
@@ -102,31 +125,44 @@ const IAWeather = () => {
         </Text>
       }
     >
-      <Flex align="center" justify="space-between">
-        <Text size="sm" c="dimmed">
-          {data?.current && `Time Zone: ${data.timezone}`}
-        </Text>
+      {data?.current && (
+        <Flex align="center" justify="space-between">
+          <Flex direction="column">
+            {dataGeo?.data && (
+              <Text size="sm" c="dimmed">
+                {`Location: ${dataGeo.data.name}`}
+              </Text>
+            )}
+            {data?.current && (
+              <Text size="sm" c="dimmed">
+                {`Time Zone: ${data.timezone}`}
+              </Text>
+            )}
+          </Flex>
 
-        <SegmentedControl
-          value={unit}
-          onChange={(val) => setUnit(val as "standard" | "metric" | "imperial")}
-          data={[
-            {
-              value: "metric",
-              label: <IconTemperatureCelsius style={getIconStyle(20)} />,
-            },
-            {
-              value: "imperial",
-              label: <IconTemperatureFahrenheit style={getIconStyle(20)} />,
-            },
-            {
-              value: "standard",
-              label: <IconLetterK style={getIconStyle(20)} stroke={2} />,
-              disabled: weatherSource === "om",
-            },
-          ]}
-        />
-      </Flex>
+          {data?.current && (
+            <SegmentedControl
+              value={unit}
+              onChange={(val) => setUnit(val as "standard" | "metric" | "imperial")}
+              data={[
+                {
+                  value: "metric",
+                  label: <IconTemperatureCelsius style={getIconStyle(20)} />,
+                },
+                {
+                  value: "imperial",
+                  label: <IconTemperatureFahrenheit style={getIconStyle(20)} />,
+                },
+                {
+                  value: "standard",
+                  label: <IconLetterK style={getIconStyle(20)} stroke={2} />,
+                  disabled: weatherSource === "om",
+                },
+              ]}
+            />
+          )}
+        </Flex>
+      )}
 
       {data?.current && selectedData && (
         <Flex align="center" justify="space-between" mt="lg">
@@ -177,8 +213,8 @@ const IAWeather = () => {
         </Flex>
       )}
 
-      <Flex align="center" justify="space-between">
-        {data?.current && (
+      {data?.current && (
+        <Flex align="center" justify="space-between">
           <SegmentedControl
             value={areaChart}
             onChange={(val) => setAreaChart(val)}
@@ -190,8 +226,8 @@ const IAWeather = () => {
             mt="xl"
             mb="md"
           />
-        )}
-      </Flex>
+        </Flex>
+      )}
 
       {data?.hourly?.length && (
         <ScrollArea>
@@ -242,7 +278,7 @@ const IAWeather = () => {
       )}
 
       {data?.daily && (
-        <ScrollArea h={130} mt="lg">
+        <ScrollArea h={130} mt="lg" type="hover">
           <Flex gap="sm" align="center" justify="flex-start">
             {data?.daily.map((daily, i) => (
               <WeatherDaily
@@ -259,7 +295,7 @@ const IAWeather = () => {
       )}
 
       {/* Loading state */}
-      {isLoading && !data && <Space h={300} />}
+      {/* {isLoading && !data && <Space h={300} />} */}
       <LoadingOverlay visible={isLoading || !data} />
     </IAWrapper>
   );

@@ -13,7 +13,6 @@ const OCurrent = () => {
 
   const { cache, mutate, ...extraConfig } = useSWRConfig();
   const cacheKeys = Array.from(cache.keys());
-  console.log(cacheKeys);
 
   const [currentDomains, setCurrentDomains] = useState<string[]>([]);
 
@@ -27,7 +26,6 @@ const OCurrent = () => {
 
         return keyURL.searchParams.get("q")?.includes(q);
       });
-    console.log(findPageDataKey);
 
     if (!findPageDataKey) return;
 

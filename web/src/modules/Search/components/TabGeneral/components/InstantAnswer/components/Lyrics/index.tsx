@@ -21,21 +21,20 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
 
   const q = useSearchQuery();
 
+  const queryToUse = initialQ || q;
+
   useEffect(() => {
     if (data || isLoading || isValidating) return;
 
-    // Trigger for initialQ ( for Docs )
-    if (initialQ && hydrated) mutate();
-
     // Trigger for query change
-    if (!initialQ && q.includes("lyrics") && hydrated) mutate();
+    if (queryToUse?.includes("lyrics") && hydrated) mutate();
   }, [hydrated]);
 
-  if (!data?.title || !q.includes("lyrics")) return null;
+  if (!data?.title || !queryToUse.includes("lyrics")) return null;
 
   return (
     <IAWrapper
-      className={classes.song_ia}
+      className={initialQ ? classes.song_ia_docs : classes.song_ia}
       label={
         <Text size="sm" c="dimmed">
           Lyrics provided by{" "}
@@ -52,10 +51,10 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
       {data && (
         <Spoiler maxHeight={170} showLabel="Show more" hideLabel="Hide">
           <Text className={classes.song_title} fz={22} fw={600}>
-            {data.title}
+            {data?.title}
           </Text>
           <Text size="md" mb="xl">
-            {data.artist}
+            {data?.artist}
           </Text>
 
           <Text className={classes.song_lyrics}>{data?.lyrics}</Text>

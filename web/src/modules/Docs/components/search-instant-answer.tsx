@@ -140,7 +140,7 @@ const DocsSearchInstantAnswer = () => {
         Condition: Query contains word <Code>lyrics</Code>
       </DocsText>
       <Box className={classes.search_box}>
-        <IALyrics initialQ="rick astley never gonna give you up" />
+        <IALyrics initialQ="rick astley never gonna give you up lyrics" />
       </Box>
 
       <DocsTitle>10. Password</DocsTitle>
@@ -225,10 +225,11 @@ const DocsSearchInstantAnswer = () => {
 
       <DocsTitle>20. Weather</DocsTitle>
       <DocsText>
-        Keywords: <Code>{KEYWORDS_IA.weather.join(", ")}</Code>
+        Condition: Search query starts with <Code>weather</Code>, can also contain location like{" "}
+        <Code>weather New York</Code>
       </DocsText>
       <Box mt="md" className={classes.search_box}>
-        <IAWeather />
+        <IAWeather propLocation="New York" />
       </Box>
 
       <DocsNextPrev

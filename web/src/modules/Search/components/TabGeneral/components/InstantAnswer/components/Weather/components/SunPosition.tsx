@@ -1,19 +1,18 @@
 import { AreaChart } from "@mantine/charts";
 import { Flex, Text } from "@mantine/core";
 import classes from "../styles.module.scss";
-import { OpenWeatherCurrent } from "src/api/weather/types";
+import type { OpenWeatherCurrent } from "src/api/weather/types";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import clsx from "clsx";
-import { IconSun } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+// import { IconSun } from "@tabler/icons-react";
+// import { getIconStyle } from "@utils/functions/iconStyle";
 dayjs.extend(utc);
 
 // This just renders UI for chart
 const SUN_POS_VALUES = [
-  -10, -7, -5, 0, 5, 10, 15, 20, 22, 24, 25, 25, 25, 24, 22, 20, 15, 10, 5, 0, -5, -7,
-  -10,
+  -10, -7, -5, 0, 5, 10, 15, 20, 22, 24, 25, 25, 25, 24, 22, 20, 15, 10, 5, 0, -5, -7, -10,
 ];
 
 const mapRange = (
@@ -30,10 +29,11 @@ interface Porps {
   data: OpenWeatherCurrent;
 }
 
+// Unused for now
 const SunPosition: React.FC<Porps> = ({ data }) => {
-  const sunriseHr = parseInt(dayjs.unix(data.sunrise).format("HH"));
-  const sunsetHr = parseInt(dayjs.unix(data.sunset).format("HH"));
-  const currentHr = parseInt(dayjs.unix(data.dt).format("HH"));
+  const sunriseHr = Number.parseInt(dayjs.unix(data.sunrise).format("HH"));
+  const sunsetHr = Number.parseInt(dayjs.unix(data.sunset).format("HH"));
+  const currentHr = Number.parseInt(dayjs.unix(data.dt).format("HH"));
 
   const sun_pos =
     currentHr < sunriseHr
