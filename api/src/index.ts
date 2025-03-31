@@ -27,6 +27,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .get("/weather", router.handleWeather) // Fetch weather data
   .get("/download", router.handleDownload) // Download media file
   .get("/ip", router.handleIP) // Get IP from headers
+  .get("/favicon", router.handleFavicon) // Fetch website favicon
 
   .listen(4000);
 

@@ -16,7 +16,7 @@ export type ICategories =
   | "social_media"
   | "other";
 
-export type IFaviconAPI = "duckduckgo" | "favicone" | "google";
+export type IFaviconAPI = "duckduckgo" | "google" | "favicone";
 
 interface SettingsState {
   hydrated: boolean;

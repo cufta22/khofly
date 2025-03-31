@@ -91,18 +91,18 @@ const TabGeneral = () => {
                 // Display images/videos in between results
                 <>
                   {organizedResults.slice(0, 2).map((r, i) => (
-                    <GeneralRow key={i} data={r} />
+                    <GeneralRow key={i} rowData={r} />
                   ))}
 
                   <GeneralMedia />
 
                   {organizedResults.slice(2).map((r, i) => (
-                    <GeneralRow key={i} data={r} />
+                    <GeneralRow key={i} rowData={r} />
                   ))}
                 </>
               ) : (
                 // Display just results
-                organizedResults.map((r, i) => <GeneralRow key={i} data={r} />)
+                organizedResults.map((r, i) => <GeneralRow key={i} rowData={r} />)
               )}
             </Stack>
           );

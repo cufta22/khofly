@@ -1,7 +1,6 @@
 import { Button, Flex, Image, Space, Spoiler, Table, Text } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsScience } from "@ts/searxng.types";
+import type { ISearXNGResultsScience } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
@@ -13,10 +12,10 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 dayjs.extend(relativeTime);
 
 interface Props {
-  data: ISearXNGResultsScience["results"][0];
+  rowData: ISearXNGResultsScience["results"][0];
 }
 
-const ScienceRow: React.FC<Props> = ({ data }) => {
+const ScienceRow: React.FC<Props> = ({ rowData }) => {
   const {
     title,
     url,
@@ -33,7 +32,7 @@ const ScienceRow: React.FC<Props> = ({ data }) => {
     type,
     isbn,
     issn,
-  } = data;
+  } = rowData;
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 

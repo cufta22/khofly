@@ -1,17 +1,18 @@
-import { Anchor, Flex, Image, Text } from "@mantine/core";
+import { Anchor, Avatar, Flex, Image } from "@mantine/core";
 import type { ISearXNGResultsVideos } from "@ts/searxng.types";
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import classes from "./styles.module.scss";
 import { useResponsive } from "@hooks/use-responsive";
 import { useSettingsStore } from "@store/settings";
 import { useInViewport } from "@mantine/hooks";
+import { IconPlayerPlayFilled } from "@tabler/icons-react";
 
 interface Props {
   rowData: ISearXNGResultsVideos["results"][0];
   setPrivatePlayerURL: Dispatch<SetStateAction<string>>;
 }
 
-const VideoCell: React.FC<Props> = ({ rowData, setPrivatePlayerURL }) => {
+const VideoCellMultiple: React.FC<Props> = ({ rowData, setPrivatePlayerURL }) => {
   const { parsed_url, title, thumbnail, url } = rowData;
 
   const privatePlayer = useSettingsStore((state) => state.privatePlayer);
@@ -37,42 +38,40 @@ const VideoCell: React.FC<Props> = ({ rowData, setPrivatePlayerURL }) => {
   if (!title) return null;
 
   return (
-    <Anchor
-      href={url}
-      target={anchorTarget}
-      rel="noreferrer noopener"
-      onClick={(e) => {
-        if (privatePlayer && url.includes("youtube.com")) {
-          e.preventDefault();
-          setPrivatePlayerURL(url);
-        }
-      }}
-    >
-      <Flex ref={ref} className={classes.video_container} direction="column" p="xs">
+    <Flex ref={ref} className={classes.video_container_multiple} direction="column" p="xs">
+      <Anchor
+        href={url}
+        target={anchorTarget}
+        rel="noreferrer noopener"
+        onClick={(e) => {
+          if (privatePlayer && url.includes("youtube.com")) {
+            e.preventDefault();
+            setPrivatePlayerURL(url);
+          }
+        }}
+      >
         {visible ? (
-          <Image
-            src={thumbnail}
-            w="100%"
-            h="auto"
-            alt={title}
-            fit="cover"
-            radius="md"
-            // unoptimized
-          />
+          <>
+            <Image
+              src={thumbnail}
+              w="100%"
+              h="auto"
+              alt={title}
+              fit="cover"
+              radius="md"
+              // unoptimized
+            />
+
+            <Avatar className={classes.play_icon} variant="filled" color="dark.5">
+              <IconPlayerPlayFilled />
+            </Avatar>
+          </>
         ) : (
           <Flex w="100%" h={100} />
         )}
-
-        <Text component="span" size="sm" c="white" lineClamp={2} mt={4}>
-          {title}
-        </Text>
-
-        <Text size="xs" lineClamp={1} mt="xs">
-          {parsed_url[0]}://{parsed_url[1]}
-        </Text>
-      </Flex>
-    </Anchor>
+      </Anchor>
+    </Flex>
   );
 };
 
-export default VideoCell;
+export default VideoCellMultiple;

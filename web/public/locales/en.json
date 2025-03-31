@@ -64,7 +64,9 @@
           "dark": "Dark"
         },
 
-        "toggle_open_in_new_tab": "Open links in new tab"
+        "toggle_open_in_new_tab": "Open links in new tab",
+
+        "toggle_search_on_category": "Search on category select"
       },
 
       "general": {

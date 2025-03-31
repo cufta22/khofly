@@ -1,6 +1,6 @@
 import { useInstanceStore } from "@store/instance";
 import useFetch from "../use-fetch";
-import { OXRResponse } from "./types";
+import type { OXRResponse } from "./types";
 import useSWR from "swr";
 
 const getKey = (apiDomain: string) => {

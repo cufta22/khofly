@@ -46,7 +46,7 @@ const TabMusic = () => {
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
               {res?.results.map((r, i) => (
-                <MusicRow key={i} musicData={r} setPrivatePlayerData={setPrivatePlayerData} />
+                <MusicRow key={i} rowData={r} setPrivatePlayerData={setPrivatePlayerData} />
               ))}
             </Stack>
           );

@@ -5,7 +5,7 @@ import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import { ISearXNGResultsScience } from "@ts/searxng.types";
+import type { ISearXNGResultsScience } from "@ts/searxng.types";
 import Suggestions from "../components/Suggestions";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
@@ -16,7 +16,8 @@ import ScienceSkeleton from "./components/ScienceSkeleton";
 const TabScience = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<ISearXNGResultsScience>();
+  const { data, error, isLoading, isValidating, size, setSize, mutate } =
+    useSearXNGSWR<ISearXNGResultsScience>();
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -39,7 +40,7 @@ const TabScience = () => {
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
               {res?.results.map((r, i) => (
-                <ScienceRow key={i} data={r} />
+                <ScienceRow key={i} rowData={r} />
               ))}
             </Stack>
           );
@@ -63,9 +64,12 @@ const TabScience = () => {
           <Text>Too Many Requests</Text>
         )}
 
-        {!isLoading && !isValidating && data && data?.length >= 1 && data?.[0]?.results?.length < 1 && !isRateLimit && (
-          <Center py="xs">No results, try with different query</Center>
-        )}
+        {!isLoading &&
+          !isValidating &&
+          data &&
+          data?.length >= 1 &&
+          data?.[0]?.results?.length < 1 &&
+          !isRateLimit && <Center py="xs">No results, try with different query</Center>}
 
         {!isLoading &&
           !isValidating &&
@@ -84,9 +88,13 @@ const TabScience = () => {
       {/* Infoboxes */}
 
       <Flex direction="column" gap="xl" pt="xl">
-        {!isLoading && !isValidating && !isRateLimit && data && data?.[0]?.unresponsive_engines?.length >= 1 && (
-          <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
-        )}
+        {!isLoading &&
+          !isValidating &&
+          !isRateLimit &&
+          data &&
+          data?.[0]?.unresponsive_engines?.length >= 1 && (
+            <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
+          )}
 
         {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
           <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />

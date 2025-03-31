@@ -42,7 +42,7 @@ const TabVideos = () => {
         {data?.map((res) => {
           if (!res) return;
           return res?.results.map((vid, i) => (
-            <VideoCell key={i} videoData={vid} setPrivatePlayerURL={setPrivatePlayerURL} />
+            <VideoCell key={i} rowData={vid} setPrivatePlayerURL={setPrivatePlayerURL} />
           ));
         })}
 

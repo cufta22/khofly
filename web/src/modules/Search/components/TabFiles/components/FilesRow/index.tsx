@@ -27,10 +27,10 @@ const formatBytes = (bytes: number) => {
 };
 
 interface Props {
-  data: ISearXNGResultsFiles["results"][0];
+  rowData: ISearXNGResultsFiles["results"][0];
 }
 
-const FilesRow: React.FC<Props> = ({ data }) => {
+const FilesRow: React.FC<Props> = ({ rowData }) => {
   const {
     title,
     url,
@@ -43,7 +43,7 @@ const FilesRow: React.FC<Props> = ({ data }) => {
     leech,
     magnetlink,
     publishedDate,
-  } = data;
+  } = rowData;
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 

@@ -11,7 +11,7 @@ see why most results are in DE ( server region )
 engine row add !bangs
 engine row add all hover data
 
-try to move favicons to searxng side
+try to move favicons to api side
 
 Check if all api call 400s are handled well
 
@@ -21,6 +21,8 @@ Install gallery-dl on VPS
 Fix up lyrics ( deployed not working )
 
 Finish time zone IA
+
+Media in general video finish on click
 
 Docs page for lyrics worker
 
@@ -35,6 +37,7 @@ More engines
 A few IAs
 Save search history in LS
 Add "h" to open hotkey modal and add missing hotkeys
+More responsive fixes
 
 Dynamically set which _Row is gonna get displayed if query starts with !_ ...
 will need new CategoryMultiple for this

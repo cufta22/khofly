@@ -10,11 +10,11 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { removeSubdomain } from "@module/Search/components/components/Organize/components/utils";
 
 interface Props {
-  data: ISearXNGResultsGeneral["results"][0];
+  rowData: ISearXNGResultsGeneral["results"][0];
 }
 
-const GeneralRow: React.FC<Props> = ({ data }) => {
-  const { title, url, parsed_url, content, engines } = data;
+const GeneralRow: React.FC<Props> = ({ rowData }) => {
+  const { title, url, parsed_url, content, engines } = rowData;
 
   const theme = useMantineTheme();
 

@@ -9,7 +9,7 @@ interface Props {
   openImageInView: (img: ISearXNGResultsImages["results"][0]) => void;
 }
 
-const ImageCell: React.FC<Props> = ({ rowData, openImageInView }) => {
+const ImageCellMultiple: React.FC<Props> = ({ rowData, openImageInView }) => {
   const { thumbnail_src, img_src, resolution, parsed_url, title } = rowData;
 
   // Lazy load images
@@ -24,7 +24,7 @@ const ImageCell: React.FC<Props> = ({ rowData, openImageInView }) => {
 
   return (
     <Flex
-      className={classes.image_container}
+      className={classes.image_container_multiple}
       direction="column"
       onClick={() => openImageInView(rowData)}
       ref={ref}
@@ -39,18 +39,8 @@ const ImageCell: React.FC<Props> = ({ rowData, openImageInView }) => {
           {resolution}
         </Text>
       </Flex>
-
-      <Text component="span" size="sm" c="white" mt={4} className={classes.title_text}>
-        {title}
-      </Text>
-
-      {parsed_url && parsed_url.length > 2 ? (
-        <Text size="xs" lineClamp={1} mt={30} className={classes.url_text}>
-          {parsed_url[0]}://{parsed_url[1]}
-        </Text>
-      ) : null}
     </Flex>
   );
 };
 
-export default ImageCell;
+export default ImageCellMultiple;

@@ -8,15 +8,14 @@ import { IconCalendar, IconVinyl } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
-import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 import { useResponsive } from "@hooks/use-responsive";
 
 interface Props {
-  musicData: ISearXNGResultsMusic["results"][0];
+  rowData: ISearXNGResultsMusic["results"][0];
   setPrivatePlayerData: Dispatch<SetStateAction<ISearXNGResultsMusic["results"][0] | null>>;
 }
 
-const MusicRow: React.FC<Props> = ({ musicData, setPrivatePlayerData }) => {
+const MusicRow: React.FC<Props> = ({ rowData, setPrivatePlayerData }) => {
   const {
     title,
     url,
@@ -27,7 +26,7 @@ const MusicRow: React.FC<Props> = ({ musicData, setPrivatePlayerData }) => {
     img_src,
     thumbnail,
     iframe_src,
-  } = musicData;
+  } = rowData;
 
   const [iframeOpen, setIframeOpen] = useState(false);
 
@@ -62,7 +61,7 @@ const MusicRow: React.FC<Props> = ({ musicData, setPrivatePlayerData }) => {
         onClick={(e) => {
           if (privatePlayer && url.includes("youtube.com")) {
             e.preventDefault();
-            setPrivatePlayerData(musicData);
+            setPrivatePlayerData(rowData);
           }
         }}
       >
@@ -93,7 +92,7 @@ const MusicRow: React.FC<Props> = ({ musicData, setPrivatePlayerData }) => {
           onClick={(e) => {
             if (privatePlayer && url.includes("youtube.com")) {
               e.preventDefault();
-              setPrivatePlayerData(musicData);
+              setPrivatePlayerData(rowData);
             }
           }}
         >
@@ -118,7 +117,7 @@ const MusicRow: React.FC<Props> = ({ musicData, setPrivatePlayerData }) => {
             onClick={(e) => {
               if (privatePlayer && url.includes("youtube.com")) {
                 e.preventDefault();
-                setPrivatePlayerData(musicData);
+                setPrivatePlayerData(rowData);
               }
             }}
           >

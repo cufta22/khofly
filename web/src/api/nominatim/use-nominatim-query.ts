@@ -1,6 +1,6 @@
 import { useInstanceStore } from "@store/instance";
 import useFetch from "../use-fetch";
-import { INominatimResults } from "@ts/nominatim.types";
+import type { INominatimResults } from "@ts/nominatim.types";
 import useSWRMutation from "swr/mutation";
 
 const getKey = (domain: string) => {

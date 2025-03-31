@@ -1,18 +1,17 @@
 import { Flex, Image, Space, Text } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsSocialMedia } from "@ts/searxng.types";
+import type { ISearXNGResultsSocialMedia } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 
 interface Props {
-  data: ISearXNGResultsSocialMedia["results"][0];
+  rowData: ISearXNGResultsSocialMedia["results"][0];
 }
 
-const SocialMediaRow: React.FC<Props> = ({ data }) => {
-  const { title, url, parsed_url, content, engines } = data;
+const SocialMediaRow: React.FC<Props> = ({ rowData }) => {
+  const { title, url, parsed_url, content, engines } = rowData;
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
@@ -25,7 +24,12 @@ const SocialMediaRow: React.FC<Props> = ({ data }) => {
         {/* Website url */}
         <Flex align="center" gap="xs">
           {displayFavicon && (
-            <Image w={16} h={16} src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`} alt="" />
+            <Image
+              w={16}
+              h={16}
+              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
+              alt=""
+            />
           )}
 
           <Text size="xs" truncate="end">

@@ -1,7 +1,6 @@
 import { Flex, Image, Space, Table, Text } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsIT } from "@ts/searxng.types";
+import type { ISearXNGResultsIT } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
@@ -14,21 +13,21 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 dayjs.extend(relativeTime);
 
 interface Props {
-  data: ISearXNGResultsIT["results"][0];
+  rowData: ISearXNGResultsIT["results"][0];
 }
 
-const ITRow: React.FC<Props> = ({ data }) => {
+const ITRow: React.FC<Props> = ({ rowData }) => {
   const {
     title,
     url,
     parsed_url,
     content,
     engines,
-    engine,
+    // engine,
 
     homepage,
     license_name,
-    img_src,
+    // img_src,
     license_url,
     maintainer,
     package_name,
@@ -37,7 +36,7 @@ const ITRow: React.FC<Props> = ({ data }) => {
     tags,
     version,
     publishedDate,
-  } = data;
+  } = rowData;
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
