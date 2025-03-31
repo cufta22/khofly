@@ -1,4 +1,4 @@
-import { Container, Flex, Image, Title } from "@mantine/core";
+import { Container, Flex, Title } from "@mantine/core";
 import SearchBar from "./components/SearchBar";
 
 import classes from "./styles.module.scss";
@@ -62,13 +62,6 @@ const PageIndex = () => {
     >
       {/* <Center className={classes.center}> */}
       <Flex className={classes.flex} align="center" direction="column">
-        <Image
-          src={"http://localhost:4000/favicon?url=google.com&resolver=duckduckgo"}
-          w={50}
-          h={50}
-          mb="xl"
-        />
-
         <Title className={classes.app_name} mb="sm">
           {!IS_SELF_HOST ? t("_common.app_name") : process.env.APP_NAME}
         </Title>
