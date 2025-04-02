@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import SearchAnchor from "@module/Search/components/components/SearchAnchor";
+import { useFaviconAPI } from "src/api/favicon";
 
 interface Props {
   rowData: ISearXNGResultsSocialMedia["results"][0];
@@ -13,24 +14,18 @@ interface Props {
 const SocialMediaRow: React.FC<Props> = ({ rowData }) => {
   const { title, url, parsed_url, content, engines } = rowData;
 
+  const { displayFavicon, getFaviconUrl } = useFaviconAPI();
+
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
   const showEngines = useSettingsStore((state) => state.showEngines);
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
 
   return (
     <Flex className={classes.social_media_row} direction="column">
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
-          {displayFavicon && (
-            <Image
-              w={16}
-              h={16}
-              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
-              alt=""
-            />
-          )}
+          {displayFavicon && <Image w={16} h={16} src={getFaviconUrl(parsed_url[1])} alt="" />}
 
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}

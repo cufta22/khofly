@@ -9,6 +9,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import { useResponsive } from "@hooks/use-responsive";
+import { useFaviconAPI } from "src/api/favicon";
 
 interface Props {
   rowData: ISearXNGResultsMusic["results"][0];
@@ -28,15 +29,14 @@ const MusicRow: React.FC<Props> = ({ rowData, setPrivatePlayerData }) => {
     iframe_src,
   } = rowData;
 
+  const { displayFavicon, getFaviconUrl } = useFaviconAPI();
+
   const [iframeOpen, setIframeOpen] = useState(false);
-
-  const privatePlayer = useSettingsStore((state) => state.privatePlayer);
-
-  const openInNewTab = useSettingsStore((state) => state.openInNewTab);
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
+  const privatePlayer = useSettingsStore((state) => state.privatePlayer);
+  const openInNewTab = useSettingsStore((state) => state.openInNewTab);
   const showEngines = useSettingsStore((state) => state.showEngines);
 
   const isXs = useResponsive("max", "xs");
@@ -67,14 +67,7 @@ const MusicRow: React.FC<Props> = ({ rowData, setPrivatePlayerData }) => {
       >
         {/* Website url */}
         <Flex align="center" gap="xs">
-          {displayFavicon && (
-            <Image
-              w={16}
-              h={16}
-              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
-              alt=""
-            />
-          )}
+          {displayFavicon && <Image w={16} h={16} src={getFaviconUrl(parsed_url[1])} alt="" />}
 
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}

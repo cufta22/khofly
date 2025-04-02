@@ -11,6 +11,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { IconCalendar, IconFile, IconMagnet } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
+import { useFaviconAPI } from "src/api/favicon";
 
 dayjs.extend(relativeTime);
 
@@ -45,9 +46,10 @@ const FilesRow: React.FC<Props> = ({ rowData }) => {
     publishedDate,
   } = rowData;
 
+  const { displayFavicon, getFaviconUrl } = useFaviconAPI();
+
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
   const openInNewTab = useSettingsStore((state) => state.openInNewTab);
   const showEngines = useSettingsStore((state) => state.showEngines);
 
@@ -64,14 +66,7 @@ const FilesRow: React.FC<Props> = ({ rowData }) => {
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
-          {displayFavicon && (
-            <Image
-              w={16}
-              h={16}
-              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
-              alt=""
-            />
-          )}
+          {displayFavicon && <Image w={16} h={16} src={getFaviconUrl(parsed_url[1])} alt="" />}
 
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}

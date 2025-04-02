@@ -9,6 +9,7 @@ import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import { useFaviconAPI } from "src/api/favicon";
 
 dayjs.extend(relativeTime);
 
@@ -38,9 +39,10 @@ const ITRow: React.FC<Props> = ({ rowData }) => {
     publishedDate,
   } = rowData;
 
+  const { displayFavicon, getFaviconUrl } = useFaviconAPI();
+
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
   const showEngines = useSettingsStore((state) => state.showEngines);
 
   const linkTextColor = usePrimaryColor(4);
@@ -50,14 +52,7 @@ const ITRow: React.FC<Props> = ({ rowData }) => {
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
-          {displayFavicon && (
-            <Image
-              w={16}
-              h={16}
-              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
-              alt=""
-            />
-          )}
+          {displayFavicon && <Image w={16} h={16} src={getFaviconUrl(parsed_url[1])} alt="" />}
 
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}

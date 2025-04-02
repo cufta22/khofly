@@ -40,6 +40,7 @@ const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
   cloudflareai: "!cfai",
   wikipedia: "!wp",
   wikidata: "!wd",
+  yep: "!yep",
 };
 
 const IMAGES_BANGS: { [key in IImagesEngines]: string } = {
@@ -51,11 +52,17 @@ const IMAGES_BANGS: { [key in IImagesEngines]: string } = {
   presearch: "!psimg",
   startpage: "!spi",
 
+  "1x": "!1x",
+  adobestock: "!asi",
   deviantart: "!da",
   flickr: "!fl",
+  imgur: "!img",
   pinterest: "!pin",
+  svgrepo: "!svg",
   unsplash: "!us",
+  wallhaven: "!wh",
   wikicommons: "!wc",
+  yep: "!yepi",
 };
 
 const VIDEOS_BANGS: { [key in IVideosEngines]: string } = {
@@ -65,10 +72,15 @@ const VIDEOS_BANGS: { [key in IVideosEngines]: string } = {
   google: "!gov",
   qwant: "!qwv",
 
+  adobestock: "!asv",
+  bilibili: "!bil",
   dailymotion: "!dm",
+  invidious: "!iv",
   odysee: "!od",
+  peertube: "!ptb",
   piped: "!ppd",
   rumble: "!ru",
+  sepiasearch: "!sep",
   vimeo: "!vm",
   youtube: "!yt",
 };
@@ -86,6 +98,7 @@ const NEWS_BANGS: { [key in INewsEngines]: string } = {
   google: "!gon",
   qwant: "!qwn",
   yahoo: "!yhn",
+  yep: "!yepn",
 };
 
 const MUSIC_BANGS: { [key in IMusicEngines]: string } = {
@@ -93,8 +106,10 @@ const MUSIC_BANGS: { [key in IMusicEngines]: string } = {
 
   radiobrowser: "!rb",
 
+  adobestock: "!asa",
   bandcamp: "!bc",
   deezer: "!dz",
+  invidious: "!iv",
   mixcloud: "!mc",
   piped: "!ppdm",
   soundcloud: "!sc",

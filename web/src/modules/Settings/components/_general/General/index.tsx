@@ -1,9 +1,8 @@
-import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
+import { Divider, Paper, Stack, useMantineTheme } from "@mantine/core";
 
 import {
   IconCursorText,
   IconFavicon,
-  IconInfoCircle,
   IconLayoutCollage,
   IconMessageCode,
   IconPlayerPlay,
@@ -13,7 +12,6 @@ import {
   IconSparkles,
 } from "@tabler/icons-react";
 import FaviconSwitch from "./FaviconSwitch";
-import { getIconStyle } from "@utils/functions/iconStyle";
 import AutocompleteSwitch from "./AutocompleteSwitch";
 import IASwitch from "./IASwitch";
 import PrivateSearchSwitch from "./PrivateSearchSwitch";
@@ -37,11 +35,6 @@ const SettingsGeneral = () => {
         <SettingsRow
           icon={<IconFavicon color={theme.colors.gray["5"]} />}
           desc="pages.settings.general.toggle_favicon"
-          tooltip={
-            <Tooltip label="This will ping DuckDuckGo's favicon service, a lot">
-              <IconInfoCircle style={getIconStyle(20)} />
-            </Tooltip>
-          }
           control={<FaviconSwitch />}
         />
 

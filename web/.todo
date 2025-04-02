@@ -22,22 +22,18 @@ Fix up lyrics ( deployed not working )
 
 Finish time zone IA
 
-Media in general video finish on click
+Update all favicon urls to use apiDomain
 
 Docs page for lyrics worker
 
 ? Docs page for widgets
+? Save search history in LS
 
 Ideas for v0.8:
 
 More options for downloader
 More AI
-More popularDomainNameMap stuff
 More engines
 A few IAs
-Save search history in LS
 Add "h" to open hotkey modal and add missing hotkeys
 More responsive fixes
-
-Dynamically set which _Row is gonna get displayed if query starts with !_ ...
-will need new CategoryMultiple for this

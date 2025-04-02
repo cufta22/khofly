@@ -3,15 +3,18 @@ import { Anchor, Image, Modal, Text, UnstyledButton } from "@mantine/core";
 import classes from "../styles.module.scss";
 
 import { useDisclosure, useHover } from "@mantine/hooks";
-import { IShortcut } from "@store/startpage";
+import type { IShortcut } from "@store/startpage";
 import ShortcutEdit from "./ShortcutEdit";
 import ShortcutMenu from "./ShortcutMenu";
+import { useFaviconAPI } from "src/api/favicon";
 
 interface Props extends IShortcut {
   idx: number;
 }
 
 const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
+  const { getFaviconUrl } = useFaviconAPI();
+
   const { hovered, ref } = useHover<HTMLAnchorElement>();
 
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
@@ -35,7 +38,7 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
         <UnstyledButton className={classes.item}>
           <Image
             className={classes.item_image}
-            src={imgUrl ? imgUrl : `https://favicone.com/${stripUrl}?s=64`}
+            src={imgUrl ? imgUrl : getFaviconUrl(stripUrl, "favicone")}
             alt="Shortcut icon"
             radius="sm"
           />

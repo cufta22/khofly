@@ -8,6 +8,7 @@ import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 import { IconLabelImportant } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { removeSubdomain } from "@module/Search/components/components/Organize/components/utils";
+import { useFaviconAPI } from "src/api/favicon";
 
 interface Props {
   rowData: ISearXNGResultsGeneral["results"][0];
@@ -16,12 +17,13 @@ interface Props {
 const GeneralRow: React.FC<Props> = ({ rowData }) => {
   const { title, url, parsed_url, content, engines } = rowData;
 
+  const { displayFavicon, getFaviconUrl } = useFaviconAPI();
+
   const theme = useMantineTheme();
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
   const showEngines = useSettingsStore((state) => state.showEngines);
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
 
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
 
@@ -32,14 +34,7 @@ const GeneralRow: React.FC<Props> = ({ rowData }) => {
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
-          {displayFavicon && (
-            <Image
-              w={16}
-              h={16}
-              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
-              alt=""
-            />
-          )}
+          {displayFavicon && <Image w={16} h={16} src={getFaviconUrl(parsed_url[1])} alt="" />}
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}
             {parsed_url[2]}

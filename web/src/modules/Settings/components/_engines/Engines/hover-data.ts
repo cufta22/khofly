@@ -218,11 +218,51 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!cloudflareai", "!cfai"],
     bangsCategory: ["!general"],
   },
+  yep: {
+    description:
+      "Yep is the brainchild of Dmytro Gerasymenko, and was brought to life by the Ahrefs team. Ahrefs runs an internet-scale bot that’s been crawling the entire web 24/7 since 2010, storing, indexing and structuring petabytes of information. With this data, we created one of the leading SEO toolsets worldwide. Our aim has always been to build good products faster than the giants and avoid feeding them endlessly by leaving money in the community.",
+    linkUrl: "https://yep.com/",
+    wikiUrl: "",
+    bangsEngine: {
+      general: ["!yep", "!yep"],
+      images: ["!yep_images", "!yepi"],
+      news: ["!yep_news", "!yepn"],
+    },
+    bangsCategory: {
+      general: ["!general"],
+      images: ["!images"],
+      news: ["!news"],
+    },
+  },
 
   // -------------------------------------------------------------------------------------------------------------------------------
   // IMAGES
   // -------------------------------------------------------------------------------------------------------------------------------
 
+  "1x": {
+    description:
+      "1x.com is the world's biggest curated photo gallery online. Each photo is selected by professional curators. In Pursuit Of The Sublime (Source: https://1x.com/)",
+    linkUrl: "https://1x.com",
+    wikiUrl: "",
+    bangsEngine: ["!1x", "!1x"],
+    bangsCategory: ["!images"],
+  },
+  adobestock: {
+    description:
+      "Adobe Creative Suite (CS) is a discontinued software suite of graphic design, video editing, and web development applications developed by Adobe Systems. (Source: wikipedia)",
+    linkUrl: "https://stock.adobe.com",
+    wikiUrl: "wikidata.org/wiki/Q5977430",
+    bangsEngine: {
+      images: ["!adobe_stock", "!asi"],
+      videos: ["!adobe_stock_video", "!asv"],
+      music: ["!adobe_stock_audio", "!asa"],
+    },
+    bangsCategory: {
+      images: ["!images"],
+      videos: ["!videos"],
+      music: ["!music"],
+    },
+  },
   deviantart: {
     description:
       "DeviantArt is an American online community that features artwork, videography, photography, and literature, launched on August 7, 2000, by Angelo Sotira, Scott Jarkoff, and Matthew Stephens, among others. (Source: wikipedia)",
@@ -239,12 +279,28 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!flickr", "!fl"],
     bangsCategory: ["!images"],
   },
+  imgur: {
+    description:
+      "Imgur is an American online image sharing and image hosting service with a focus on social gossip that was founded by Alan Schaaf in 2009. The service has hosted viral images and memes, particularly those posted on Reddit. (Source: wikipedia)",
+    linkUrl: "https://imgur.com",
+    wikiUrl: "wikidata.org/wiki/Q355022",
+    bangsEngine: ["!imgur", "!img"],
+    bangsCategory: ["!images"],
+  },
   pinterest: {
     description:
       "Pinterest is an American social media service for publishing and discovery of information in the form of pinboards. This includes recipes, home, style, motivation, and inspiration on the Internet using image sharing. Pinterest, Inc. was founded by Ben Silbermann, Paul Sciarra, and Evan Sharp, and is headquartered in San Francisco. (Source: wikipedia)",
     linkUrl: "https://www.pinterest.com",
     wikiUrl: "wikidata.org/wiki/Q255381",
     bangsEngine: ["!pinterest", "!pin"],
+    bangsCategory: ["!images"],
+  },
+  svgrepo: {
+    description:
+      "Free Vectors and Icons in SVG format. ✅ Download free mono or multi color vectors for commercial use. Search in 500.000+ Free SVG Vectors and Icons. (Source: https://www.svgrepo.com)",
+    linkUrl: "https://www.svgrepo.com",
+    wikiUrl: "",
+    bangsEngine: ["!svgrepo", "!svg"],
     bangsCategory: ["!images"],
   },
   unsplash: {
@@ -255,11 +311,27 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!unsplash", "!us"],
     bangsCategory: ["!images"],
   },
+  wallhaven: {
+    description:
+      "Your source for the best high quality wallpapers on the Net! (Source: https://wallhaven.cc/)",
+    linkUrl: "https://wallhaven.cc",
+    wikiUrl: "",
+    bangsEngine: ["!wallhaven", "!wh"],
+    bangsCategory: ["!images"],
+  },
 
   // -------------------------------------------------------------------------------------------------------------------------------
   // VIDEOS
   // -------------------------------------------------------------------------------------------------------------------------------
 
+  bilibili: {
+    description:
+      "Bilibili, nicknamed B Site, is a Chinese online video sharing website based in Shanghai where users can submit, view, and add overlaid commentary on videos. Bilibili hosts videos on various themes, including anime, music, dance, science and technology, movies, drama, fashion, and video games, but it is also known for its extensive kuso-style parodies by subcultural content creators. Since the mid-2010s, Bilibili began to expand to a broader audience from its original niche market that focused on animation, comics, and games (ACG), and it has become a major Chinese over-the-top streaming platform serving videos on demand such as documentaries, variety shows, and other original programming. Bilibili is known for its scrolling danmu commenting system. Bilibili also provides a live streaming service where the audience can interact with streamers. Bilibili also offers games, mostly ACG-themed mobile games, such as the Chinese version of Fate/Grand Order and the Chinese game Azur Lane. In the third quarter of 2022, the number of average monthly active users reached about 332.6 million, including 28.5 million paying users. (Source: wikipedia)",
+    linkUrl: "https://www.bilibili.com",
+    wikiUrl: "wikidata.org/wiki/Q3077586",
+    bangsEngine: ["!bilibili", "!bil"],
+    bangsCategory: ["!videos"],
+  },
   dailymotion: {
     description:
       "Dailymotion is a French online video sharing platform owned by Canal+. Prior to 2024, the company was owned by Vivendi. North American launch partners included Vice Media, Bloomberg, and Hearst Digital Media. It is among the earliest known platforms to support HD (720p) resolution video. Dailymotion is available worldwide in 183 languages and 43 localised versions featuring local home pages and local content. (Source: wikipedia)",
@@ -268,12 +340,27 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!dailymotion", "!dm"],
     bangsCategory: ["!videos"],
   },
+  invidious: {
+    description: "Invidious Instances (Source: https://api.invidious.io/)",
+    linkUrl: "https://api.invidious.io",
+    wikiUrl: "wikidata.org/wiki/Q79343316",
+    bangsEngine: ["!invidious", "!iv"],
+    bangsCategory: ["!videos", "!music"],
+  },
   odysee: {
     description:
       "Odysee is an American decentralized video hosting platform built on the LBRY blockchain. It positions itself as an alternative to mainstream services like YouTube, but with a focus on free speech and decentralization. (Source: wikipedia)",
     linkUrl: "https://odysee.com",
     wikiUrl: "wikidata.org/wiki/Q102046570",
     bangsEngine: ["!odysee", "!od"],
+    bangsCategory: ["!videos"],
+  },
+  peertube: {
+    description:
+      "PeerTube is a free and open-source, decentralized, ActivityPub federated video platform. It can use peer-to-peer technology to reduce load on individual servers when videos get popular. (Source: wikipedia)",
+    linkUrl: "https://joinpeertube.org",
+    wikiUrl: "wikidata.org/wiki/Q50938515",
+    bangsEngine: ["!peertube", "!ptb"],
     bangsCategory: ["!videos"],
   },
   piped: {
@@ -294,6 +381,14 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     linkUrl: "https://rumble.com",
     wikiUrl: "wikidata.org/wiki/Q104765127",
     bangsEngine: ["!rumble", "!ru"],
+    bangsCategory: ["!videos"],
+  },
+  sepiasearch: {
+    description:
+      "A search engine of PeerTube videos, channels and playlists, developed by Framasoft (Source: https://sepiasearch.org)",
+    linkUrl: "https://sepiasearch.org",
+    wikiUrl: "",
+    bangsEngine: ["!sepiasearch", "!sep"],
     bangsCategory: ["!videos"],
   },
   vimeo: {
@@ -520,7 +615,7 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
   },
   hackernews: {
     description: `Hacker News (HN) is a social news website focusing on computer science and entrepreneurship. It is run by the investment fund and startup incubator Y Combinator. In general, content that can be submitted is defined as "anything that gratifies one's intellectual curiosity." (Source: wikipedia)`,
-    linkUrl: "https://news.ycombinator.com/",
+    linkUrl: "https://news.ycombinator.com",
     wikiUrl: "wikidata.org/wiki/Q686797",
     bangsEngine: ["!hackernews", "!hn"],
     bangsCategory: ["!it"],
@@ -630,7 +725,7 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
   },
   fdroid: {
     description: `F-Droid is a free and open source app store and software repository for Android, serving a similar function to the Google Play store. The main repository, hosted by the project, contains only free and open source apps. Applications can be browsed, downloaded and installed from the F-Droid website or client app without the need to register an account. "Anti-features" such as advertising, user tracking, or dependence on non-free software are flagged in app descriptions. (Source: wikipedia)`,
-    linkUrl: "https://f-droid.org/",
+    linkUrl: "https://f-droid.org",
     wikiUrl: "wikidata.org/wiki/Q1386210",
     bangsEngine: ["!fdroid", "!fd"],
     bangsCategory: ["!files", "!apps"],

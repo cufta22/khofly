@@ -1,13 +1,6 @@
 import { usePrimaryColor } from "@hooks/use-primary-color";
-import { Anchor, Card, Container, Flex, List, Text, Title, useMantineTheme } from "@mantine/core";
-import {
-  IconCookie,
-  IconLock,
-  IconPhone,
-  IconPoint,
-  IconSpy,
-  IconUsers,
-} from "@tabler/icons-react";
+import { Anchor, Card, Container, Flex, Text, Title, useMantineTheme } from "@mantine/core";
+import { IconCookie, IconLock, IconPhone, IconUsers } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 const PagePrivacy = () => {
@@ -57,7 +50,7 @@ const PagePrivacy = () => {
         </Flex>
 
         <Text>
-          <strong>Cloudflare:</strong> Any Khofly requests are proxied through Cloudflare DNS, this
+          <strong>Cloudflare:</strong> All Khofly requests are proxied through Cloudflare DNS, this
           means that Cloudflare has access to all incoming requests, their privacy policy can be
           found{" "}
           <Anchor
@@ -99,17 +92,6 @@ const PagePrivacy = () => {
           </Anchor>
         </Text>
 
-        <Text component="span">
-          <strong>DuckDuckGo:</strong> If you decide to display website favicons in settings this
-          will send a request to DDGs servers, keep in mind that this option is disabled by default,
-          their privacy policy can be found{" "}
-          <Anchor href="https://duckduckgo.com/privacy" target="_blank" rel="noreferrer noopener">
-            <Text component="span" c={linkTextColor}>
-              here
-            </Text>
-          </Anchor>
-        </Text>
-
         <Flex mt="xl" mb="sm" align="center">
           <IconLock style={getIconStyle(32)} color={theme.colors.green["5"]} />
 
@@ -128,10 +110,6 @@ const PagePrivacy = () => {
 
         <Text component="span" fw={700}>
           change/self-host Nominatim instance
-        </Text>
-
-        <Text component="span" fw={700}>
-          disable website favicons in settings
         </Text>
 
         <Text mt="md">
@@ -169,7 +147,7 @@ const PagePrivacy = () => {
           </Anchor>
         </Text>
 
-        <Text ta="right">Last updated: February 1, 2025</Text>
+        {/* <Text ta="right">Last updated: February 1, 2025</Text> */}
       </Card>
     </Container>
   );
