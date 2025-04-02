@@ -46,6 +46,11 @@ const DocsResourcesSiteData = () => {
       </DocsText>
 
       <DocsText>
+        <Code>khofly-primary-color</Code>: if you change the primary color in settings it will be
+        saved in a cookie.
+      </DocsText>
+
+      <DocsText>
         These are stored in a cookie because they are important for server-side rendering.
       </DocsText>
 
@@ -79,6 +84,11 @@ const DocsResourcesSiteData = () => {
       <DocsText>
         <Code>settings-store</Code>: general store for settings options like autocomplete, display
         favicons, open in new tab, etc.
+      </DocsText>
+
+      <DocsText>
+        <Code>settings-startpage</Code>: startpage store for settings options like wallpaper,
+        shortcuts, widgets, etc.
       </DocsText>
 
       <DocsText>

@@ -43,6 +43,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
+  const isChat = pathname.startsWith("/chat");
   const isIndex = pathname === "/";
 
   const isFooterOffset = isIndex;
@@ -60,7 +61,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   }, [pathname]);
 
   // Adjust document title for query
-  useTitleQuery(isSearch);
+  useTitleQuery({ isSearch, isChat });
 
   // Initialize instance URLs
   useInstanceInit();

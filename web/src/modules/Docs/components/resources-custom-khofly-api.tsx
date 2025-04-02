@@ -7,7 +7,7 @@ import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightT
 import DocsNextPrev from "./common/DocsNextPrev";
 
 import { DOCS_CARD_DATA } from "./common/docsCardData";
-import { IconSearch } from "@tabler/icons-react";
+import { IconApiApp } from "@tabler/icons-react";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 
 const CODE_SEARXNG_CONFIG = `
@@ -20,15 +20,15 @@ server:
   secret_key: "sercet" # make sure to change this
 `;
 
-const DocsResourcesCustomSearxng = () => {
+const DocsResourcesCustomKhoflyAPI = () => {
   const theme = useMantineTheme();
 
   const linkTextColor = usePrimaryColor(4);
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle leftSection={<IconSearch color={theme.colors.blue[5]} />}>
-        Custom SearXNG instance
+      <DocsTitle leftSection={<IconApiApp color={theme.colors.blue[5]} />}>
+        Custom API instance
       </DocsTitle>
 
       <Blockquote
@@ -37,9 +37,9 @@ const DocsResourcesCustomSearxng = () => {
         mt="xl"
         radius="sm"
       >
-        This page will show you settings that you need if you want to use your own SearXNG instance
-        with Khofly. If you don't have your own SearXNG instance hosted check out{" "}
-        <RemixLink to="/docs/self-host-searxng">
+        This page will show you settings that you need if you want to use your own API instance with
+        Khofly. If you don't have your own API instance hosted check out{" "}
+        <RemixLink to="/docs/self-host-khofly-api">
           <Text component="span" c={linkTextColor}>
             the hosting guide
           </Text>
@@ -78,7 +78,7 @@ const DocsResourcesCustomSearxng = () => {
         Go to{" "}
         <RemixLink to="/settings?tab=instances">
           <Text component="span" c={linkTextColor}>
-            Settings/Instances/SearXNG URL
+            Settings/Instances/API URL
           </Text>
         </RemixLink>{" "}
         and set your instances domain in the following format <Code>https://example.com</Code>
@@ -92,4 +92,4 @@ const DocsResourcesCustomSearxng = () => {
   );
 };
 
-export default DocsResourcesCustomSearxng;
+export default DocsResourcesCustomKhoflyAPI;

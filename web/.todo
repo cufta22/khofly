@@ -8,23 +8,14 @@ move meta to /meta & add meta for every page that needs
 
 see why most results are in DE ( server region )
 
-engine row add !bangs
-engine row add all hover data
-
-try to move favicons to api side
-
 Check if all api call 400s are handled well
-
-Add gallery-dl section to self-host-API
-Install gallery-dl on VPS
-
-Fix up lyrics ( deployed not working )
 
 Finish time zone IA
 
-Update all favicon urls to use apiDomain
+Improve all themes
 
-Docs page for lyrics worker
+Responsive: index search bar with css
+Responsive: search page bigger text & spacing
 
 ? Docs page for widgets
 ? Save search history in LS
