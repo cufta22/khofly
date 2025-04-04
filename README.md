@@ -35,6 +35,17 @@
 |     [api](./api)     |     Bun API for getting 3rd party data     |
 | [scripts](./scripts) | Shell scripts for installing/updating apps |
 
+## URLs
+
+|                                       Codebase |         Description          |
+| ---------------------------------------------: | :--------------------------: |
+|                        [@](https://khofly.com) |   Web client - production    |
+|         [staging.](https://staging.khofly.com) |     Web client - staging     |
+|         [api-eu1.](https://api-eu1.khofly.com) | API - from staging in EU, DE |
+| [searxng-eu1.](https://searxng-eu1.khofly.com) | SearXNG instance - in EU, DE |
+
+If you want latest changes use the staging url but it might have some bugs.
+
 ## Branches
 
 - staging -> pr this branch for everything

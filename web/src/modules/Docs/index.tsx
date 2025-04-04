@@ -1,5 +1,5 @@
 import DocsIndex from "./components";
-import DocsWIP from "./components/wip";
+// import DocsWIP from "./components/wip";
 import { useParams } from "react-router";
 
 import DocsSearchSearchSyntax from "./components/search-search-syntax";
@@ -21,6 +21,7 @@ import DocsSelfHostKhoflyAPI from "./components/self-host-khofly-api";
 import Docs3rdPartyWeather from "./components/3rdparty-weather";
 import Docs3rdPartyCurrency from "./components/3rdparty-currency";
 import Docs3rdPartyLyrics from "./components/3rdparty-lyrics";
+import DocsResourcesCustomKhoflyAPI from "./components/resources-custom-khofly-api";
 
 const Docs = () => {
   const params = useParams();
@@ -39,6 +40,7 @@ const Docs = () => {
 
     "set-default": <DocsResourcesSetDefault />,
     "custom-searxng": <DocsResourcesCustomSearxng />,
+    "custom-khofly-api": <DocsResourcesCustomKhoflyAPI />,
     internationalization: <DocsResourcesInternationalization />,
     "site-data": <DocsResourcesSiteData />,
 

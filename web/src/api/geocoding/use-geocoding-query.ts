@@ -27,23 +27,26 @@ const useGeocodingSWR = () => {
     `api-geocoding`,
     fetcher,
     {
+      // Error handling
       onSuccess(res) {
-        console.log(res);
-
         if (!res?.data) {
-          toast.show({ message: "Location not found!", color: "red" });
+          toast.show({
+            title: "Something went wrong",
+            message: "Location not found",
+            color: "red",
+          });
           return;
         }
         if (res?.error) {
-          toast.show({ message: res.message, color: "red" });
-          return;
+          toast.show({ title: "Something went wrong", message: res?.message, color: "red" });
         }
       },
-      onError(res) {
-        if (res?.error) {
-          toast.show({ message: res.message, color: "red" });
-          return;
-        }
+      onError() {
+        toast.show({
+          title: "Something went wrong",
+          message: "Unable to fetch location",
+          color: "red",
+        });
       },
     }
   );

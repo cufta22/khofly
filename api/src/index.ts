@@ -6,6 +6,8 @@ import * as router from "./api/router";
 import { middleware_Error } from "./middleware/error";
 // import staticPlugin from "@elysiajs/static";
 
+import packageJson from "../package.json";
+
 const app = new Elysia({ serve: { idleTimeout: 100 } })
   // Plugins
   .use(cors(CORS_OPTIONS))
@@ -14,10 +16,9 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .use(cron(CRON_CLEAR_MEDIA)) // Clear downloaded media every 30min
 
   // Middlewares
-  // .on("error", middleware_Error) // Handle errors
-  .onError(({ error }) => {}) // Handle errors
+  .onError(middleware_Error) // Handle errors
 
-  .get("/", () => "Khofly API")
+  .get("/", () => `Khofly API v${packageJson.version}`)
 
   .get("/media/*", ({ params }) => file(`temp/media/${params["*"]}`)) // Download media files, temp fix for staticPlugin
 
@@ -27,7 +28,8 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .get("/weather", router.handleWeather) // Fetch weather data
   .get("/download", router.handleDownload) // Download media file
   .get("/ip", router.handleIP) // Get IP from headers
+  .get("/favicon", router.handleFavicon) // Fetch website favicon
 
-  .listen(4000);
+  .listen(process.env.PORT || 4000);
 
 console.log(`🦊 Khofly API is running at ${app.server?.hostname}:${app.server?.port}`);

@@ -5,12 +5,12 @@ import classes from "./styles.module.scss";
 import { useInViewport } from "@mantine/hooks";
 
 interface Props {
+  rowData: ISearXNGResultsImages["results"][0];
   openImageInView: (img: ISearXNGResultsImages["results"][0]) => void;
-  imageData: ISearXNGResultsImages["results"][0];
 }
 
-const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
-  const { thumbnail_src, img_src, resolution, parsed_url, title } = imageData;
+const ImageCell: React.FC<Props> = ({ rowData, openImageInView }) => {
+  const { thumbnail_src, img_src, resolution, parsed_url, title } = rowData;
 
   // Lazy load images
   const [visible, setVisible] = useState(false);
@@ -26,23 +26,12 @@ const ImageCell: React.FC<Props> = ({ openImageInView, imageData }) => {
     <Flex
       className={classes.image_container}
       direction="column"
-      onClick={() => openImageInView(imageData)}
+      onClick={() => openImageInView(rowData)}
       ref={ref}
     >
-      <Flex
-        className={classes.image_cell}
-        direction="column"
-        // w={getDynamicWidth()}
-        px={6}
-      >
+      <Flex className={classes.image_cell} direction="column" px={6}>
         {visible ? (
-          <Image
-            src={thumbnail_src || img_src}
-            width={200}
-            height={220}
-            alt={title}
-            // unoptimized
-          />
+          <Image src={thumbnail_src || img_src} width={200} height={220} alt={title} />
         ) : (
           <Flex w={200} h={220} />
         )}

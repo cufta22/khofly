@@ -72,13 +72,13 @@ const DocsResourcesCustomSearxng = () => {
         <Code>sudo service uwsgi restart searxng</Code>
       </DocsText>
 
-      <DocsSubtitle>2. Add your instance to Khofly</DocsSubtitle>
+      <DocsSubtitle>Finally - Add your instance to Khofly</DocsSubtitle>
 
       <DocsText>
         Go to{" "}
         <RemixLink to="/settings?tab=instances">
           <Text component="span" c={linkTextColor}>
-            Settings/Instances/SearXNG Domain
+            Settings/Instances/SearXNG URL
           </Text>
         </RemixLink>{" "}
         and set your instances domain in the following format <Code>https://example.com</Code>

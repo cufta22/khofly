@@ -1,4 +1,3 @@
-
 import type { IDataEngine } from ".";
 
 export const DATA_ENGINES_NEWS: IDataEngine[] = [
@@ -132,6 +131,16 @@ export const DATA_ENGINES_NEWS: IDataEngine[] = [
     label: "pages.settings.engines.engine_yahoo_news",
     bang: "!yhn",
     safeSearch: false,
+    timeRange: false,
+  },
+  {
+    type: "engine",
+    value: "yep",
+    alt: "Yep logo",
+    icon: "/assets/engines/yep-icon.svg",
+    label: "pages.settings.engines.engine_yep_news",
+    bang: "!yepn",
+    safeSearch: true,
     timeRange: false,
   },
 ];

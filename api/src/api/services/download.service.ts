@@ -16,15 +16,15 @@ export const handleDownload = async (ctx: Context) => {
   // Error handling
   if (!url) {
     ctx.set.status = 400;
-    return { error: true, message: "URL is required!", data: null };
+    return { error: true, message: "URL is required", data: null };
   }
   if (!["youtube", "instagram"].includes(from)) {
     ctx.set.status = 400;
-    return { error: true, message: "Invalid platform!", data: null };
+    return { error: true, message: "Invalid platform", data: null };
   }
   if (from === "youtube" && !["mp4", "mp3"].includes(format)) {
     ctx.set.status = 400;
-    return { error: true, message: "Invalid arguments!", data: null };
+    return { error: true, message: "Invalid arguments", data: null };
   }
 
   const tempDir = path.join(__dirname, `/../temp/media`);

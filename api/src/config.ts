@@ -6,6 +6,7 @@ import { cron_clearMedia } from "./cron/clearMedia";
 export const __dirname = new URL(".", import.meta.url).pathname;
 
 export const IS_SELF_HOST = process.env.IS_SELF_HOST === "1";
+export const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
 
 export const STATIC_OPTIONS = {
   assets: path.join(__dirname, `/../temp/media`),
@@ -15,7 +16,9 @@ export const STATIC_OPTIONS = {
 
 const whitelist = IS_SELF_HOST
   ? process.env.WEB_CLIENT_URL?.split(", ")
-  : ["http://localhost:3000", "https://staging.khofly.com", "https://khofly.com"];
+  : IS_DEVELOPMENT
+  ? ["http://localhost:3000"]
+  : ["https://staging.khofly.com", "https://khofly.com"];
 
 export const CORS_OPTIONS = {
   origin(req: Request) {

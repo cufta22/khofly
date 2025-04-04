@@ -1,7 +1,6 @@
 import { Flex, Image, Space, Table, Text } from "@mantine/core";
-import React from "react";
 import classes from "./styles.module.scss";
-import { ISearXNGResultsIT } from "@ts/searxng.types";
+import type { ISearXNGResultsIT } from "@ts/searxng.types";
 import clsx from "clsx";
 import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
@@ -10,25 +9,26 @@ import SearchAnchor from "@module/Search/components/components/SearchAnchor";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import { useFaviconAPI } from "src/api/favicon";
 
 dayjs.extend(relativeTime);
 
 interface Props {
-  data: ISearXNGResultsIT["results"][0];
+  rowData: ISearXNGResultsIT["results"][0];
 }
 
-const ITRow: React.FC<Props> = ({ data }) => {
+const ITRow: React.FC<Props> = ({ rowData }) => {
   const {
     title,
     url,
     parsed_url,
     content,
     engines,
-    engine,
+    // engine,
 
     homepage,
     license_name,
-    img_src,
+    // img_src,
     license_url,
     maintainer,
     package_name,
@@ -37,11 +37,12 @@ const ITRow: React.FC<Props> = ({ data }) => {
     tags,
     version,
     publishedDate,
-  } = data;
+  } = rowData;
+
+  const { displayFavicon, getFaviconUrl } = useFaviconAPI();
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
 
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
   const showEngines = useSettingsStore((state) => state.showEngines);
 
   const linkTextColor = usePrimaryColor(4);
@@ -51,14 +52,7 @@ const ITRow: React.FC<Props> = ({ data }) => {
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
-          {displayFavicon && (
-            <Image
-              w={16}
-              h={16}
-              src={`https://icons.duckduckgo.com/ip3/${parsed_url[1]}.ico`}
-              alt=""
-            />
-          )}
+          {displayFavicon && <Image w={16} h={16} src={getFaviconUrl(parsed_url[1])} alt="" />}
 
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}

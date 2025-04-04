@@ -1,4 +1,4 @@
-import { ActionIcon, Divider, Flex, Paper, Stack, Text, useMantineTheme } from "@mantine/core";
+import { ActionIcon, Divider, Flex, Paper, Stack, useMantineTheme } from "@mantine/core";
 
 import LanguageSelect from "./LanguageSelect/LanguageSelect";
 import ThemeSelect from "./ThemeSelect/ThemeSelect";

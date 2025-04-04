@@ -16,7 +16,7 @@ export const cron_fetchRates = async () => {
 
   // Make sure that API key exists
   if (!process.env.OPEN_EXCHANGE_RATES_API_KEY) {
-    // console.log("Missing OXR API key!");
+    // console.log("Missing OXR API key");
     return;
   }
 

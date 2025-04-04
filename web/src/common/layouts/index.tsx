@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import clsx from "clsx";
-import { useDisclosure, useHeadroom } from "@mantine/hooks";
+import { useDisclosure, useHeadroom, useHotkeys } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
 import { getMantineTheme } from "@utils/resources/mantineTheme";
 import NProgress from "@module/NProgress";
@@ -18,12 +18,15 @@ import { useStatrpageStore } from "@store/startpage";
 import Footer from "@components/Footer";
 import Header from "@components/Header";
 import DocsNavbar from "@components/Navbar/Docs";
+import ModalHotkeys from "@components/ModalHotkeys";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const { theme, primaryColor } = useClientServerState();
 
   const error = useRouteError();
   const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
+
+  const [openHotkeyModal, { toggle: toggleHotkeyModal }] = useDisclosure(false);
 
   const resetVisitedLinks = useSearchStore((state) => state.resetVisitedLinks);
 
@@ -40,6 +43,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
+  const isChat = pathname.startsWith("/chat");
   const isIndex = pathname === "/";
 
   const isFooterOffset = isIndex;
@@ -57,10 +61,13 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   }, [pathname]);
 
   // Adjust document title for query
-  useTitleQuery(isSearch);
+  useTitleQuery({ isSearch, isChat });
 
   // Initialize instance URLs
   useInstanceInit();
+
+  // HOTKEYS: Global
+  useHotkeys([["h", () => toggleHotkeyModal()]]);
 
   return (
     <MantineProvider
@@ -70,6 +77,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
       })}
       defaultColorScheme="dark"
     >
+      <ModalHotkeys isOpen={openHotkeyModal} onClose={toggleHotkeyModal} />
+
       <Notifications />
 
       <NProgress />

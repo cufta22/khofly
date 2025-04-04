@@ -1,4 +1,4 @@
-import { MetaFunction } from "react-router";
+import type { MetaFunction } from "react-router";
 
 export const ROOT_META_FUNCTION: MetaFunction = () => [
   {
@@ -6,13 +6,11 @@ export const ROOT_META_FUNCTION: MetaFunction = () => [
   },
   {
     name: "description",
-    content:
-      "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
+    content: "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
   },
   {
     name: "keywords",
-    content:
-      "Khofly, Search, Khofly Search, SearXNG, FOSS, open source, meta search engine",
+    content: "Khofly, Search, Khofly Search, SearXNG, FOSS, open source, meta search engine",
   },
   // Open Graph stuff
   {
@@ -21,8 +19,7 @@ export const ROOT_META_FUNCTION: MetaFunction = () => [
   },
   {
     property: "og:description",
-    content:
-      "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
+    content: "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
   },
   {
     property: "og:type",

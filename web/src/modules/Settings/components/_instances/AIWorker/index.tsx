@@ -47,7 +47,7 @@ const SettingsAIWorker = () => {
 
   const handleSubmit = (values: typeof form.values) => {
     setWorkerDomain(values.domain);
-    toast.show({ message: "URL changed!", color: "green" });
+    toast.show({ message: "URL changed", color: "green" });
   };
 
   useEffect(() => {

@@ -7,12 +7,12 @@ import { useSettingsStore } from "@store/settings";
 import { useInViewport } from "@mantine/hooks";
 
 interface Props {
-  videoData: ISearXNGResultsVideos["results"][0];
+  rowData: ISearXNGResultsVideos["results"][0];
   setPrivatePlayerURL: Dispatch<SetStateAction<string>>;
 }
 
-const VideoCell: React.FC<Props> = ({ videoData, setPrivatePlayerURL }) => {
-  const { parsed_url, title, thumbnail, url } = videoData;
+const VideoCell: React.FC<Props> = ({ rowData, setPrivatePlayerURL }) => {
+  const { parsed_url, title, thumbnail, url } = rowData;
 
   const privatePlayer = useSettingsStore((state) => state.privatePlayer);
 

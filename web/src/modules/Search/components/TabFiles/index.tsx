@@ -41,7 +41,7 @@ const TabFiles = () => {
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
               {res?.results.map((r, i) => (
-                <FilesRow key={i} data={r} />
+                <FilesRow key={i} rowData={r} />
               ))}
             </Stack>
           );

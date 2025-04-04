@@ -1,5 +1,5 @@
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
-import { ISearXNGResultsNews } from "@ts/searxng.types";
+import type { ISearXNGResultsNews } from "@ts/searxng.types";
 import { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 
@@ -37,7 +37,7 @@ const TabNews = () => {
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
               {res?.results.map((r, i) => (
-                <NewsRow key={i} data={r} />
+                <NewsRow key={i} rowData={r} />
               ))}
             </Stack>
           );

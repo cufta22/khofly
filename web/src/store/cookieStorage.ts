@@ -1,7 +1,7 @@
-// Custom cookie storage object because of SSR
+// Test: Custom cookie storage object because of SSR
 
 import { getCookie, removeCookie, setCookie } from "@utils/functions/cookies";
-import { StateStorage } from "zustand/middleware";
+import type { StateStorage } from "zustand/middleware";
 
 export const cookieStorage: StateStorage = {
   getItem: (name: string): string | null => {

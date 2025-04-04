@@ -26,7 +26,8 @@ export type IGeneralEngines =
   | "ask"
   | "cloudflareai"
   | "wikipedia"
-  | "wikidata";
+  | "wikidata"
+  | "yep";
 
 export type IImagesEngines =
   | "google"
@@ -36,11 +37,17 @@ export type IImagesEngines =
   | "qwant"
   | "startpage"
   | "presearch"
+  | "1x"
+  | "adobestock"
   | "deviantart"
   | "flickr"
+  | "imgur"
   | "pinterest"
+  | "svgrepo"
   | "unsplash"
-  | "wikicommons";
+  | "wallhaven"
+  | "wikicommons"
+  | "yep";
 
 export type IVideosEngines =
   | "google"
@@ -48,10 +55,15 @@ export type IVideosEngines =
   | "bing"
   | "brave"
   | "qwant"
+  | "adobestock"
+  | "bilibili"
   | "dailymotion"
+  | "invidious"
   | "odysee"
+  | "peertube"
   | "piped"
   | "rumble"
+  | "sepiasearch"
   | "vimeo"
   | "youtube";
 
@@ -65,18 +77,21 @@ export type INewsEngines =
   | "startpage"
   | "yahoo"
   | "presearch"
-  | "wikinews";
+  | "wikinews"
+  | "yep";
 
 export type IMusicEngines =
   | "genius"
   | "radiobrowser"
+  | "adobestock"
   | "bandcamp"
+  | "deezer"
+  | "invidious"
   | "mixcloud"
   | "piped"
   | "soundcloud"
-  | "youtube"
-  | "deezer"
-  | "wikicommons";
+  | "wikicommons"
+  | "youtube";
 
 export type IITEngines =
   | "crates"

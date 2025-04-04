@@ -5,6 +5,7 @@ import * as weatherSvc from "./services/weather.service";
 import * as downlaodSvc from "./services/download.service";
 import * as ipSvc from "./services/ip.service";
 import * as geocodingSvc from "./services/geocoding.service";
+import * as faviconSvc from "./services/favicon.service";
 
 // GET - /rates
 export const handleRates = async (ctx: Context) => {
@@ -33,4 +34,9 @@ export const handleDownload = async (ctx: Context) => {
 // GET - /ip
 export const handleIP = async (ctx: Context) => {
   return await ipSvc.handleGetIP(ctx);
+};
+
+// GET - /favicon
+export const handleFavicon = async (ctx: Context) => {
+  return await faviconSvc.handleFavicon(ctx);
 };

@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router";
 import { useInstanceStore } from "@store/instance";
 import { type IOtherEngines, useEnginesStore } from "@store/engines";
 import type { ICategories } from "@store/settings";
+import useToast from "@hooks/use-toast";
 
 const getKey = (
   pageIndex: number,
@@ -39,6 +40,7 @@ const getKey = (
 
 const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
   const { fetchData } = useFetch();
+  const { toast } = useToast();
 
   const searXNGDomain = useInstanceStore((state) => state.searXNGDomain);
 
@@ -101,6 +103,15 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
       revalidateOnFocus: false,
       revalidateFirstPage: false,
       keepPreviousData: false,
+
+      // Error handling
+      onError() {
+        toast.show({
+          title: "Something went wrong",
+          message: "Unable to fetch results",
+          color: "red",
+        });
+      },
     }
   );
 };

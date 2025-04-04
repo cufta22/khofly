@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Center, Divider, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
@@ -10,22 +10,30 @@ import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
 import type { ICategories } from "@store/settings";
-import type { ISearXNGResultsGeneral } from "@ts/searxng.types";
-import { useSearchStore } from "@store/search";
-import Lyricsbox from "../components/Lyricsbox";
+import type { ISearXNGResultsGeneral, ISearXNGResultsImages } from "@ts/searxng.types";
 import AIAnswer from "../TabGeneral/components/AIAnswer";
 import InstantAnswer from "../TabGeneral/components/InstantAnswer";
 import GeneralSkeleton from "../TabGeneral/components/GeneralSkeleton";
 import { CATEGORY_TO_COMPONENTS } from "./utils";
+import { useDisclosure } from "@mantine/hooks";
+import ImageView from "../TabImages/components/ImageView";
+import PrivateVideoPlayer from "../components/PrivatePlayer/videos";
 
-const TabGeneral = () => {
+const TabMultiple = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
-
-  const domainsPriority = useSearchStore((state) => state.domainsPriority);
-  const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
+
+  const [isOpenImageView, { open: openImageView, close: closeImageView }] = useDisclosure(false);
+  const [viewImage, setViewImage] = useState<ISearXNGResultsImages["results"][0] | null>(null);
+
+  const [privatePlayerURL, setPrivatePlayerURL] = useState("");
+
+  const openImageInView = (img: ISearXNGResultsImages["results"][0]) => {
+    setViewImage(img);
+    openImageView();
+  };
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
@@ -37,11 +45,11 @@ const TabGeneral = () => {
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
   return (
-    <Flex className={classes.tab_general} align="flex-start">
+    <Flex className={classes.tab_multiple} align="flex-start">
       {/* Search results */}
       <Stack className={classes.stack} py="xl">
         {/* Search Options */}
-        <SearchOptions className={classes.search_options_general} />
+        <SearchOptions className={classes.search_options_multiple} />
 
         {/* AI Answer, optional */}
         <AIAnswer />
@@ -54,40 +62,25 @@ const TabGeneral = () => {
 
           if (!res?.results) return;
 
-          const organizedResults = [...res.results]
-            // Blacklist
-            .filter((item) => {
-              return !domainsBlacklist.some((domain) => item.parsed_url?.[1]?.includes(domain));
-            })
-            // Priority
-            .sort((a, b) => {
-              // Check if URL a is in priority domains
-              const aIsPriority = domainsPriority.some((domain) =>
-                a.parsed_url?.[1]?.includes(domain)
-              );
-              // Check if URL b is in priority domains
-              const bIsPriority = domainsPriority.some((domain) =>
-                b.parsed_url?.[1]?.includes(domain)
-              );
-
-              if (aIsPriority && !bIsPriority) {
-                return -1; // a comes before b
-              } else if (!aIsPriority && bIsPriority) {
-                return 1; // b comes before a
-              }
-              return 0; // Keep original order if both are priority or neither is priority
-            });
-
           return (
-            <Stack gap="lg" key={i}>
+            <Flex gap="lg" key={i} direction="row" wrap={"wrap"}>
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
               {res?.results.map((r, i) => {
-                const MultipleRow = CATEGORY_TO_COMPONENTS[r.category as ICategories].row;
+                const MultipleRow = CATEGORY_TO_COMPONENTS[r.category as ICategories];
 
-                return <MultipleRow key={i} data={r} />;
+                return (
+                  <MultipleRow
+                    key={i}
+                    rowData={r}
+                    // For images
+                    openImageInView={openImageInView}
+                    // For videos
+                    setPrivatePlayerURL={setPrivatePlayerURL}
+                  />
+                );
               })}
-            </Stack>
+            </Flex>
           );
         })}
 
@@ -138,8 +131,6 @@ const TabGeneral = () => {
           data &&
           data?.[0]?.infoboxes?.length >= 1 && <Infobox {...data[0].infoboxes[0]} />}
 
-        <Lyricsbox />
-
         {!isLoading &&
           !isValidating &&
           !isRateLimit &&
@@ -151,8 +142,19 @@ const TabGeneral = () => {
           <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />
         ) : null}
       </Flex>
+
+      {/* For images */}
+      <ImageView isOpen={isOpenImageView} handleClose={closeImageView} viewImage={viewImage} />
+
+      {/* Private Video Player */}
+      <PrivateVideoPlayer
+        url={privatePlayerURL}
+        onClose={() => {
+          setPrivatePlayerURL("");
+        }}
+      />
     </Flex>
   );
 };
 
-export default TabGeneral;
+export default TabMultiple;

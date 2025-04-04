@@ -44,7 +44,7 @@ const SettingsAPI = () => {
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
-    toast.show({ message: "URL changed!", color: "green" });
+    toast.show({ message: "URL changed", color: "green" });
   };
 
   useEffect(() => {
@@ -113,7 +113,7 @@ const SettingsAPI = () => {
           <Text size="sm" c="dimmed">
             Change this to your own url for better privacy & less load for default instance.{" "}
             <Text component="span" c={linkTextColor}>
-              <RemixLink to={"/docs/self-host-searxng"}>Read more</RemixLink>
+              <RemixLink to={"/docs/self-host-khofly-api"}>Read more</RemixLink>
             </Text>
           </Text>
 

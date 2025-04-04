@@ -64,7 +64,9 @@
           "dark": "Dark"
         },
 
-        "toggle_open_in_new_tab": "Open links in new tab"
+        "toggle_open_in_new_tab": "Open links in new tab",
+
+        "toggle_search_on_category": "Search on category select"
       },
 
       "general": {
@@ -158,6 +160,7 @@
         "engine_alexandria": "Alexandria",
         "engine_wikipedia": "Wikipedia",
         "engine_wikidata": "Wikidata",
+        "engine_yep": "Yep",
 
         "title_img": "Image engines",
         "title_img2": "web",
@@ -169,11 +172,17 @@
         "engine_bing_img": "Bing images",
         "engine_brave_img": "Brave images",
         "engine_presearch_img": "Presearch images",
+        "engine_1x_img": "1x",
+        "engine_adobe_img": "Adobe Stock",
         "engine_deviantArt_img": "DeviantArt",
         "engine_flickr_img": "Flickr",
+        "engine_imgur_img": "Imgur",
         "engine_pinterest_img": "Pinterest",
+        "engine_svgrepo_img": "SVG Repo",
         "engine_unsplash_img": "Unsplash",
+        "engine_wallhaven_img": "Wallhaven",
         "engine_wikicommons_img": "Wikicommons",
+        "engine_yep_img": "Yep images",
 
         "title_vid": "Video engines",
         "title_vid2": "web",
@@ -183,11 +192,15 @@
         "engine_qwant_vid": "Qwant videos",
         "engine_bing_vid": "Bing videos",
         "engine_brave_vid": "Brave videos",
-
+        "engine_adobe_vid": "Adobe Stock video",
+        "engine_bilibili_vid": "Bilibili",
         "engine_dailymotion_vid": "Dailymotion",
+        "engine_invidious_vid": "Invidious",
         "engine_odysee_vid": "Odysee",
+        "engine_peertube_vid": "PeerTube",
         "engine_piped_vid": "Piped",
         "engine_rumble_vid": "Rumble",
+        "engine_sepiasearch_vid": "Sepia Search",
         "engine_vimeo_vid": "Vimeo",
         "engine_youtube_vid": "YouTube",
 
@@ -204,17 +217,19 @@
         "engine_startpage_news": "Startpage news",
         "engine_yahoo_news": "Yahoo! news",
         "engine_presearch_news": "Presearch news",
-
         "engine_wikinews": "Wikinews",
+        "engine_yep_news": "Yep news",
 
         "title_music": "Music engines",
         "title_music2": "lyrics",
         "title_music3": "radio search",
 
+        "engine_adobe_music": "Adobe Stock audio",
         "engine_genius_music": "Genius",
         "engine_RB_music": "Radio Browser",
         "engine_bandcamp_music": "Bandcamp",
         "engine_deezer_music": "Deezer",
+        "engine_invidious_music": "Invidious",
         "engine_mixcloud_music": "Mixcloud",
         "engine_piped_music": "Piped",
         "engine_SC_music": "Soundcloud",

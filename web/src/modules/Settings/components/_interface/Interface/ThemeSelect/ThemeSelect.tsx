@@ -18,32 +18,32 @@ const THEME_DATA: IThemeData[] = [
   {
     label: "pages.settings.interface.select_theme_options.mantine_old",
     value: "Mantine-Old",
-    image: "/assets/mantine.png",
+    image: "/assets/themes/mantine.png",
   },
   {
     label: "pages.settings.interface.select_theme_options.mantine_new",
     value: "Mantine-New",
-    image: "/assets/mantine.png",
+    image: "/assets/themes/mantine.png",
   },
   {
     label: "pages.settings.interface.select_theme_options.catppuccin",
     value: "Catppuccin",
-    image: "/assets/catppuccin.png",
+    image: "/assets/themes/catppuccin.png",
   },
   {
     label: "pages.settings.interface.select_theme_options.tokyo_night",
     value: "Tokyo-Night",
-    image: "/assets/tokyonight.png",
+    image: "/assets/themes/tokyonight.png",
   },
   {
     label: "pages.settings.interface.select_theme_options.rosepine",
     value: "Rose-Pine",
-    image: "/assets/rosepine.png",
+    image: "/assets/themes/rosepine.png",
   },
   // {
   //   label: "pages.settings.interface.select_theme_options.nord",
   //   value: "Nord",
-  //   image: "/assets/rosepine.png",
+  //   image: "/assets/themes/rosepine.png",
   // },
 ];
 

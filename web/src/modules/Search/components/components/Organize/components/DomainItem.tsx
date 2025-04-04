@@ -3,7 +3,7 @@ import { popularDomainNameMap } from "./utils";
 import { useHover } from "@mantine/hooks";
 import { IconForbid, IconLabelImportant, IconTrash } from "@tabler/icons-react";
 import { useSearchStore } from "@store/search";
-import { useSettingsStore } from "@store/settings";
+import { useFaviconAPI } from "src/api/favicon";
 
 interface Props {
   domain: string;
@@ -16,7 +16,7 @@ const DomainItem: React.FC<Props> = ({ domain, isCurrent }) => {
   const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
   const setDomainsBlacklist = useSearchStore((state) => state.setDomainsBlacklist);
 
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
+  const { displayFavicon, getFaviconUrl } = useFaviconAPI();
 
   const { hovered, ref } = useHover();
 
@@ -54,7 +54,7 @@ const DomainItem: React.FC<Props> = ({ domain, isCurrent }) => {
           <Image
             w={isCurrent ? 42 : 34}
             h={isCurrent ? 42 : 34}
-            src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
+            src={getFaviconUrl(domain)}
             alt=""
             radius="sm"
           />

@@ -18,7 +18,7 @@ import { KEYWORDS_CURRENCY } from "../../_utils/keywords_currency";
 import useCurrencySWR from "src/api/currency/use-currency-query";
 import { convertCurrency } from "./utils";
 
-import dayjs, { unix } from "dayjs";
+import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 dayjs.extend(utc);
@@ -30,7 +30,7 @@ interface Props {
 }
 
 const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) => {
-  const { data, isLoading } = useCurrencySWR();
+  const { data: dataRates, isLoading } = useCurrencySWR();
 
   const [state, setState] = useState({
     input: 1,
@@ -42,31 +42,31 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
   const linkTextColor = usePrimaryColor(4);
 
   const handleChangeInput = (val: string | number) => {
-    if (!data) return;
+    if (!dataRates?.data) return;
 
     const numVal = typeof val === "number" ? val : Number.parseFloat(val);
-    const res = convertCurrency(numVal, state.from, state.to, data?.rates);
+    const res = convertCurrency(numVal, state.from, state.to, dataRates?.data?.rates);
 
     setState((s) => ({ ...s, input: numVal, result: res }));
   };
 
   const handleChangeCurrency = (val: string, field: "from" | "to") => {
-    if (!data) return;
+    if (!dataRates?.data) return;
 
     const res = convertCurrency(
       state.input,
       field === "from" ? val : state.from,
       field === "to" ? val : state.to,
-      data?.rates,
+      dataRates?.data?.rates
     );
 
     setState((s) => ({ ...s, [field]: val, result: res }));
   };
 
   const handleSwapCurrencies = () => {
-    if (!data) return;
+    if (!dataRates?.data) return;
 
-    const res = convertCurrency(state.input, state.to, state.from, data?.rates);
+    const res = convertCurrency(state.input, state.to, state.from, dataRates?.data?.rates);
 
     setState((s) => ({
       ...s,
@@ -77,11 +77,11 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
   };
 
   useEffect(() => {
-    if (!data?.rates || state.result !== 0) return;
+    if (!dataRates?.data?.rates || state.result !== 0) return;
 
-    const res = convertCurrency(1, state.from, state.to, data?.rates);
+    const res = convertCurrency(1, state.from, state.to, dataRates?.data?.rates);
     setState((prev) => ({ ...prev, result: res }));
-  }, [data?.rates]);
+  }, [dataRates?.data?.rates]);
 
   const currencyComponent = (
     <Center>
@@ -132,14 +132,16 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
           </Flex>
         </Flex>
 
-        {data?.timestamp && (
+        {dataRates?.data?.timestamp && (
           <Text size="sm" c="dimmed" mt="lg">
             {`1 ${state.from} ≈ ${convertCurrency(
               1,
               state.from,
               state.to,
-              data.rates,
-            )} ${state.to} • ${dayjs.unix(data.timestamp).format("MMM DD, hh:mm A [UTC]Z")}`}
+              dataRates?.data.rates
+            )} ${state.to} • ${dayjs
+              .unix(dataRates?.data.timestamp)
+              .format("MMM DD, hh:mm A [UTC]Z")}`}
           </Text>
         )}
 

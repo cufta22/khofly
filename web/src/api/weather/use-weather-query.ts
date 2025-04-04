@@ -38,11 +38,19 @@ const useWeatherSWR = (args: Args) => {
     revalidateIfStale: false,
     revalidateOnReconnect: false,
     keepPreviousData: true,
+
+    // Error handling
     onSuccess(res) {
       if (res?.error) {
-        toast.show({ message: res.message, color: "red" });
-        return;
+        toast.show({ title: "Something went wrong", message: res?.message, color: "red" });
       }
+    },
+    onError() {
+      toast.show({
+        title: "Something went wrong",
+        message: "Unable to fetch weather data",
+        color: "red",
+      });
     },
   });
 };

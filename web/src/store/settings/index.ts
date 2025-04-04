@@ -16,16 +16,13 @@ export type ICategories =
   | "social_media"
   | "other";
 
-export type IFaviconAPI = "duckduckgo" | "favicone" | "google";
+export type IFaviconAPI = "duckduckgo" | "google" | "favicone";
 
 interface SettingsState {
   hydrated: boolean;
 
   categories: ICategories[];
   setCategories: (next: ICategories[]) => void;
-
-  autocompleteEngine: IAutocompleteEngines;
-  setAutocompleteEngine: (next: IAutocompleteEngines) => void;
 
   showEngines: boolean;
   setShowEngines: (next: boolean) => void;
@@ -37,9 +34,13 @@ interface SettingsState {
 
   displayFavicon: boolean;
   setDisplayFavicon: (next: boolean) => void;
+  faviconProvider: IFaviconAPI;
+  setFaviconProvider: (next: IFaviconAPI) => void;
 
   useAutocomplete: boolean;
   setUseAutocomplete: (next: boolean) => void;
+  autocompleteEngine: IAutocompleteEngines;
+  setAutocompleteEngine: (next: IAutocompleteEngines) => void;
 
   useInstantAnswers: boolean;
   setUseInstantAnswers: (next: boolean) => void;
@@ -65,9 +66,6 @@ export const useSettingsStore = create<SettingsState>()(
       categories: ["general", "images", "videos", "news", "maps"],
       setCategories: (next) => set({ categories: next }),
 
-      autocompleteEngine: "google",
-      setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
-
       showEngines: false,
       setShowEngines: (next) => set({ showEngines: next }),
 
@@ -77,11 +75,14 @@ export const useSettingsStore = create<SettingsState>()(
       setDisplayMedia: (next) => set({ displayMedia: next }),
 
       displayFavicon: false,
-      setDisplayFavicon: (displayFavicon) => set({ displayFavicon }),
+      setDisplayFavicon: (next) => set({ displayFavicon: next }),
+      faviconProvider: "duckduckgo",
+      setFaviconProvider: (next) => set({ faviconProvider: next }),
 
       useAutocomplete: true,
       setUseAutocomplete: (next) => set({ useAutocomplete: next }),
-
+      autocompleteEngine: "google",
+      setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
       useInstantAnswers: true,
       setUseInstantAnswers: (next) => set({ useInstantAnswers: next }),
 
@@ -107,6 +108,7 @@ export const useSettingsStore = create<SettingsState>()(
       // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
         displayFavicon: state.displayFavicon,
+        faviconProvider: state.faviconProvider,
         openInNewTab: state.openInNewTab,
         useAutocomplete: state.useAutocomplete,
         autocompleteEngine: state.autocompleteEngine,

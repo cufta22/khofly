@@ -1,16 +1,6 @@
-import useToast from "@hooks/use-toast";
-
 const useFetch = () => {
-  const { toast } = useToast();
-
   const fetchData = async (url: string, init?: RequestInit) => {
-    const res = await fetch(url, init).catch(() => {
-      toast.show({
-        title: "Something went wrong!",
-        message: "An error has occurred while processing the request",
-        color: "red",
-      });
-    });
+    const res = await fetch(url, init).catch(() => {});
 
     if (!res) return;
 

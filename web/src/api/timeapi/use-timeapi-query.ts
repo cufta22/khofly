@@ -1,6 +1,7 @@
 import useSWRMutation from "swr/mutation";
 import useFetch from "../use-fetch";
 import type { ITimeAPITimeInResponse, ITimeAPITimeZoneResponse } from "./types";
+import useToast from "@hooks/use-toast";
 
 interface Args {
   timezone1: string;
@@ -11,6 +12,7 @@ interface Args {
 
 export const useTimeApiSWR = () => {
   const { fetchData } = useFetch();
+  const { toast } = useToast();
 
   const apiDomain = "https://timeapi.io";
 
@@ -38,6 +40,15 @@ export const useTimeApiSWR = () => {
   return useSWRMutation<ITimeAPITimeInResponse | ITimeAPITimeZoneResponse, any, any, Args>(
     apiDomain,
     fetcher,
-    {}
+    {
+      // Error handling
+      onError() {
+        toast.show({
+          title: "Something went wrong",
+          message: "Unable to fetch time data",
+          color: "red",
+        });
+      },
+    }
   );
 };

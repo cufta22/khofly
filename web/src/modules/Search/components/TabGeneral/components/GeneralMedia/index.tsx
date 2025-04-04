@@ -24,8 +24,7 @@ const GeneralMedia = () => {
 
   const isSm = useResponsive("max", "sm");
 
-  const { data, isLoading, isValidating, mutate } =
-    useSearXNGSWR<ISearXNGResultsBlank>(selectedMedia);
+  const { data, mutate } = useSearXNGSWR<ISearXNGResultsBlank>(selectedMedia);
 
   const navigate = useNavigate();
   const q = useSearchQuery();
@@ -73,7 +72,7 @@ const GeneralMedia = () => {
                     w="100%"
                     radius="xs"
                     src={img?.thumbnail_src}
-                    onClick={() => handleOpenMedia(img?.thumbnail_src || "")}
+                    onClick={() => handleOpenMedia(img?.img_src || "")}
                   />
                 </Grid.Col>
               ));

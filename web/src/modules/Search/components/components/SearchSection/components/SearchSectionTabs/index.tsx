@@ -55,6 +55,7 @@ const SearchSectionTabs = () => {
     if (paramsTab !== selectedTab) setSelectedTab(paramsTab);
   }, [paramsTab]);
 
+  // HOTKEYS: Tabs
   useHotkeys([
     [
       "ArrowLeft",

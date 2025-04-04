@@ -1,5 +1,5 @@
 import { Button, Center, Flex, Text } from "@mantine/core";
-import { ISearXNGResultsImages } from "@ts/searxng.types";
+import type { ISearXNGResultsImages } from "@ts/searxng.types";
 import { useEffect, useState } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 import ImageCell from "./components/ImageCell";
@@ -14,7 +14,8 @@ import { useSearchParams } from "react-router";
 const TabImages = () => {
   const hydrated = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, mutate, setSize, size } = useSearXNGSWR<ISearXNGResultsImages>();
+  const { data, error, isLoading, isValidating, mutate, setSize, size } =
+    useSearXNGSWR<ISearXNGResultsImages>();
 
   const [isOpenImageView, { open: openImageView, close: closeImageView }] = useDisclosure(false);
   const [viewImage, setViewImage] = useState<ISearXNGResultsImages["results"][0] | null>(null);
@@ -33,10 +34,11 @@ const TabImages = () => {
 
   const paramsMediaSrc = searchParams.get("media_src");
   useEffect(() => {
-    // const foundImg = data?.find((res) => res.results.find((img) => img.thumbnail_src === paramsMediaSrc))
+    const foundImg = data?.[0].results.find((res) => res.img_src === paramsMediaSrc);
+
     // Open image initially if media_src param exists
-    if (paramsMediaSrc) {
-      // setViewImage(foundImg)
+    if (foundImg && paramsMediaSrc) {
+      openImageInView(foundImg);
     }
   }, [paramsMediaSrc, data]);
 
@@ -55,7 +57,9 @@ const TabImages = () => {
       <Flex className={classes.image_gallery} wrap="wrap" p="lg" gap="md" justify="center">
         {data?.map((res) => {
           if (!res) return;
-          return res?.results.map((img, i) => <ImageCell key={i} imageData={img} openImageInView={openImageInView} />);
+          return res?.results.map((img, i) => (
+            <ImageCell key={i} rowData={img} openImageInView={openImageInView} />
+          ));
         })}
 
         {(isLoading || isValidating || !hydrated) &&
@@ -63,20 +67,24 @@ const TabImages = () => {
           Array.from(Array(30).keys()).map((e, i) => <ImageSkeleton key={i} />)}
       </Flex>
 
-      {!isLoading && data && data?.length >= 1 && data?.[0]?.results?.length >= 1 && !isRateLimit && (
-        <Center py="xl">
-          <Button
-            variant="filled"
-            onClick={() => {
-              setSize(size + 1);
-            }}
-            size="lg"
-            color="dark.5"
-          >
-            Load more
-          </Button>
-        </Center>
-      )}
+      {!isLoading &&
+        data &&
+        data?.length >= 1 &&
+        data?.[0]?.results?.length >= 1 &&
+        !isRateLimit && (
+          <Center py="xl">
+            <Button
+              variant="filled"
+              onClick={() => {
+                setSize(size + 1);
+              }}
+              size="lg"
+              color="dark.5"
+            >
+              Load more
+            </Button>
+          </Center>
+        )}
 
       <ImageView isOpen={isOpenImageView} handleClose={closeImageView} viewImage={viewImage} />
     </Flex>

@@ -1,7 +1,7 @@
 import type { Context } from "elysia";
 import type { IGeniusSearchResponse, ILyricsResponse } from "../../../types/lyrics.types";
 
-import html from "node-html-parser/dist/index";
+import html, { type HTMLElement } from "node-html-parser/dist/index";
 
 const GENIUS_HEADERS = {
   "User-Agent":
@@ -20,6 +20,8 @@ export const getLyricsFromGenius = async (
   ctx: Context,
   firstRes: IGeniusSearchResponse["response"]["hits"][0]
 ): Promise<ILyricsResponse> => {
+  console.log(firstRes.result.url);
+
   // Fetch the song html
   const songRes = await fetch(firstRes.result.url, {
     headers: GENIUS_HEADERS,
@@ -31,9 +33,15 @@ export const getLyricsFromGenius = async (
 
   const lyricsRoot = document?.getElementById("lyrics-root");
 
+  // First, remove any contributor/translation elements
+  const contributorElements = lyricsRoot?.querySelectorAll('[data-exclude-from-selection="true"]');
+  for (const el of contributorElements || []) {
+    el.remove();
+  }
+  // Then extract just the lyrics
   const lyrics = lyricsRoot
     ?.querySelectorAll("[data-lyrics-container='true']")
-    .map((x: any) => {
+    .map((x: HTMLElement) => {
       for (const y of x.querySelectorAll("br")) {
         y.replaceWith(new html.TextNode("\n"));
       }
@@ -44,14 +52,18 @@ export const getLyricsFromGenius = async (
     .trim();
 
   if (!lyrics) {
-    throw ctx.error(400, "Lyrics not found, try another song!");
+    throw ctx.error(400, "Lyrics not found, try another song");
   }
 
   return {
-    lyrics: lyrics,
-    title: firstRes?.result.title,
-    artist: firstRes?.result.artist_names,
-    releaseDate: firstRes?.result?.release_date_for_display,
-    image: firstRes?.result?.header_image_url,
+    error: false,
+    message: "Data from Genius",
+    data: {
+      lyrics: lyrics,
+      title: firstRes?.result.title,
+      artist: firstRes?.result.artist_names,
+      releaseDate: firstRes?.result?.release_date_for_display,
+      image: firstRes?.result?.header_image_url,
+    },
   };
 };

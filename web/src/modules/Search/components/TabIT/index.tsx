@@ -41,7 +41,7 @@ const TabIT = () => {
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
               {res?.results.map((r, i) => (
-                <ITRow key={i} data={r} />
+                <ITRow key={i} rowData={r} />
               ))}
             </Stack>
           );

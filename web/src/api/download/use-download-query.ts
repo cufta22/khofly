@@ -33,7 +33,7 @@ const useDownloadSWR = ({ shouldDownload }: { shouldDownload: boolean }) => {
   return useSWRMutation<IAPIResponse<ResData>, any, any, Args>("api-download", fetcher, {
     onSuccess(res) {
       if (res?.error) {
-        toast.show({ message: res.message, color: "red" });
+        toast.show({ title: "Something went wrong", message: res.message, color: "red" });
         return;
       }
 
@@ -49,7 +49,7 @@ const useDownloadSWR = ({ shouldDownload }: { shouldDownload: boolean }) => {
       }
     },
     onError(err) {
-      toast.show({ message: "Download failed", color: "red" });
+      toast.show({ title: "Something went wrong", message: "Download failed", color: "red" });
     },
   });
 };

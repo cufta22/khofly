@@ -9,9 +9,12 @@ export const handleGetRates = async (ctx: Context) => {
   const resultJson = await Bun.file(path.join(tempDir, `/exchange_rates.json`)).json();
 
   if (!resultJson) {
-    ctx.set.status = 400;
-    return "Data not found";
+    throw ctx.error(400, "exchange_rates.json not found");
   }
 
-  return resultJson;
+  return {
+    error: false,
+    message: "Open Exchange Rates data",
+    data: resultJson,
+  };
 };

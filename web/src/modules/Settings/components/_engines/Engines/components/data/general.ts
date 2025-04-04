@@ -281,4 +281,14 @@ export const DATA_ENGINES_GENERAL: IDataEngine[] = [
     safeSearch: false,
     timeRange: false,
   },
+  {
+    type: "engine",
+    value: "yep",
+    alt: "Yep logo",
+    icon: "/assets/engines/yep-icon.svg",
+    label: "pages.settings.engines.engine_yep",
+    bang: "!yep",
+    safeSearch: true,
+    timeRange: false,
+  },
 ];
