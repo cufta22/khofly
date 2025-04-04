@@ -100,7 +100,7 @@ const EngineComponent: React.FC<Props> = ({
                   h={20}
                   alt={iconAlt}
                   fit="contain"
-                  fallbackSrc="https://placehold.co/200x200?text=Placeholder"
+                  fallbackSrc="/assets/placeholder.svg"
                 />
               </Box>
 

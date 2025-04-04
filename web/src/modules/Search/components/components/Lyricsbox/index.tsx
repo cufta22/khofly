@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import useSearchQuery from "@hooks/use-search-query";
 
 const Lyricsbox: React.FC = () => {
-  const { data, mutate, isLoading, isValidating } = useLyricsSWR({ initialQ: "" });
+  const { data: dataLyrics, mutate, isLoading, isValidating } = useLyricsSWR({ initialQ: "" });
 
   const linkTextColor = usePrimaryColor(4);
 
@@ -21,7 +21,7 @@ const Lyricsbox: React.FC = () => {
     if (q?.includes("lyrics") && hydrated) mutate();
   }, [hydrated]);
 
-  if (!data?.title || !q.includes("lyrics")) return null;
+  if (!dataLyrics?.data?.title || !q.includes("lyrics")) return null;
 
   return (
     <Paper className={classes.search_lyricsbox} ml={80} withBorder radius="md">
@@ -29,22 +29,22 @@ const Lyricsbox: React.FC = () => {
 
       <Flex p="md" direction="column">
         <Flex direction="row" align="flex-start" gap="md" mb="xl">
-          <Image src={data.image} w={60} h={60} radius="md" fit="contain" />
+          <Image src={dataLyrics?.data.image} w={60} h={60} radius="md" fit="contain" />
 
           <Flex className={classes.top_part} direction="column">
             <Text className={classes.song_title} fz={22} fw={600} truncate="end">
-              {data.title}
+              {dataLyrics?.data.title}
             </Text>
 
             <Text size="md" truncate="end">
-              {data.artist}
+              {dataLyrics?.data.artist}
             </Text>
           </Flex>
         </Flex>
 
         <Spoiler maxHeight={120} showLabel="Show more" hideLabel="Hide">
           <Text className={classes.song_lyrics} size="sm">
-            {data?.lyrics}
+            {dataLyrics?.data?.lyrics}
           </Text>
         </Spoiler>
 

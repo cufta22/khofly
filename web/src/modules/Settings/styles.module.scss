@@ -9,6 +9,10 @@
     1px solid var(--mantine-color-gray-3),
     1px solid var(--mantine-color-dark-4)
   );
+
+  button {
+    min-width: 72px;
+  }
 }
 
 .settings_input {

@@ -18,16 +18,20 @@ export const getLyricsFromLyricsOvh = async (
   const lyrics: ILyricsOvhResponse = await lyricsOvhRes.json();
 
   if (!lyrics?.lyrics) {
-    throw ctx.error(400, "Lyrics not found, try another song!");
+    throw ctx.error(400, "Lyrics not found, try another song");
   }
 
   const fixedLyrics = lyrics.lyrics.replaceAll("\n\n", "\n");
 
   return {
-    lyrics: fixedLyrics,
-    title: title,
-    artist: firstRes.result?.artist_names,
-    releaseDate: firstRes?.result?.release_date_for_display,
-    image: firstRes?.result?.header_image_url,
+    error: false,
+    message: "Data from lyrics.ovh",
+    data: {
+      lyrics: fixedLyrics,
+      title: title,
+      artist: firstRes.result?.artist_names,
+      releaseDate: firstRes?.result?.release_date_for_display,
+      image: firstRes?.result?.header_image_url,
+    },
   };
 };

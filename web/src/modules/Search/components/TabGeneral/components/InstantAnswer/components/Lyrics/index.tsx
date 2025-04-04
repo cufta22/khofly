@@ -13,7 +13,7 @@ interface Props {
 }
 
 const IALyrics: React.FC<Props> = ({ initialQ }) => {
-  const { data, mutate, isLoading, isValidating } = useLyricsSWR({ initialQ });
+  const { data: dataLyrics, mutate, isLoading, isValidating } = useLyricsSWR({ initialQ });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
 
@@ -24,13 +24,13 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
   const queryToUse = initialQ || q;
 
   useEffect(() => {
-    if (data || isLoading || isValidating) return;
+    if (dataLyrics?.data || isLoading || isValidating) return;
 
     // Trigger for query change
     if (queryToUse?.includes("lyrics") && hydrated) mutate();
   }, [hydrated]);
 
-  if (!data?.title || !queryToUse.includes("lyrics")) return null;
+  if (!dataLyrics?.data?.title || !queryToUse.includes("lyrics")) return null;
 
   return (
     <IAWrapper
@@ -48,16 +48,16 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
     >
       <LoadingOverlay visible={isLoading || isValidating} />
 
-      {data && (
+      {dataLyrics?.data && (
         <Spoiler maxHeight={170} showLabel="Show more" hideLabel="Hide">
           <Text className={classes.song_title} fz={22} fw={600}>
-            {data?.title}
+            {dataLyrics?.data?.title}
           </Text>
           <Text size="md" mb="xl">
-            {data?.artist}
+            {dataLyrics?.data?.artist}
           </Text>
 
-          <Text className={classes.song_lyrics}>{data?.lyrics}</Text>
+          <Text className={classes.song_lyrics}>{dataLyrics?.data?.lyrics}</Text>
         </Spoiler>
       )}
     </IAWrapper>

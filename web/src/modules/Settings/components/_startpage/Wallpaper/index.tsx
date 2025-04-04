@@ -30,7 +30,7 @@ const SettingsWallpaper = () => {
 
   const handleSubmit = (values: typeof form.values) => {
     setBackground(values.background);
-    toast.show({ message: "URL changed!", color: "green" });
+    toast.show({ message: "URL changed", color: "green" });
   };
 
   useEffect(() => {

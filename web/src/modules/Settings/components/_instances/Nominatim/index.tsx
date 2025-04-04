@@ -30,7 +30,7 @@ const SettingsNominatim = () => {
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
-    toast.show({ message: "URL changed!", color: "green" });
+    toast.show({ message: "URL changed", color: "green" });
   };
 
   useEffect(() => {

@@ -41,7 +41,7 @@ export const getLyricsFromAZ = async (
   const lyricsRoot = document?.querySelector("div.col-xs-12.col-lg-8.text-center");
 
   if (!lyricsRoot) {
-    throw ctx.error(400, "Lyrics not found, try another song!");
+    throw ctx.error(400, "Lyrics not found, try another song");
   }
 
   const lyrics = lyricsRoot
@@ -53,14 +53,18 @@ export const getLyricsFromAZ = async (
     .replaceAll("&quot;", `"`);
 
   if (!lyrics) {
-    throw ctx.error(400, "Lyrics not found, try another song!");
+    throw ctx.error(400, "Lyrics not found, try another song");
   }
 
   return {
-    lyrics: lyrics,
-    title: firstRes?.result.title,
-    artist: firstRes?.result.artist_names,
-    releaseDate: firstRes?.result?.release_date_for_display,
-    image: firstRes?.result?.header_image_url,
+    error: false,
+    message: "Data from AZLyrics",
+    data: {
+      lyrics: lyrics,
+      title: firstRes?.result.title,
+      artist: firstRes?.result.artist_names,
+      releaseDate: firstRes?.result?.release_date_for_display,
+      image: firstRes?.result?.header_image_url,
+    },
   };
 };

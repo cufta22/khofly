@@ -10,7 +10,7 @@ export const handleGetLyrics = async (ctx: Context) => {
   const q = searchParams.get("q") || "";
 
   if (!q) {
-    throw ctx.error(400, "No query provided!");
+    throw ctx.error(400, "No query provided");
   }
 
   const searchRes = await fetch(`https://api.genius.com/search?q=${q}`, {
@@ -22,7 +22,7 @@ export const handleGetLyrics = async (ctx: Context) => {
   const searchData = (await searchRes.json()) as IGeniusSearchResponse;
 
   if (!searchData) {
-    throw ctx.error(400, "Song not found, try another song!");
+    throw ctx.error(400, "Song not found, try another song");
   }
 
   // Find one with lyrics
@@ -31,7 +31,7 @@ export const handleGetLyrics = async (ctx: Context) => {
   )[0];
 
   if (!firstRes) {
-    throw ctx.error(400, "Song not found, try another song!");
+    throw ctx.error(400, "Song not found, try another song");
   }
 
   if (process.env.LYRICS_FETCH_METHOD === "genius") {
@@ -39,7 +39,7 @@ export const handleGetLyrics = async (ctx: Context) => {
     const lyricsData = await getLyricsFromGenius(ctx, firstRes);
     return lyricsData;
   } else if (process.env.LYRICS_FETCH_METHOD === "lyrics-ovh") {
-    // Works on VPS
+    // Works on VPS, hopefully
     const lyricsData = await getLyricsFromLyricsOvh(ctx, firstRes);
     return lyricsData;
   } else if (process.env.LYRICS_FETCH_METHOD === "az") {
@@ -47,6 +47,6 @@ export const handleGetLyrics = async (ctx: Context) => {
     const lyricsData = await getLyricsFromAZ(ctx, firstRes);
     return lyricsData;
   } else {
-    return ctx.error(400, "Blocked by Genius");
+    return ctx.error(400, "LYRICS_FETCH_METHOD not defined in .env.local");
   }
 };

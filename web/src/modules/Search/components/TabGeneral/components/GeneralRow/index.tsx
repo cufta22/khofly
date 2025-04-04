@@ -34,7 +34,15 @@ const GeneralRow: React.FC<Props> = ({ rowData }) => {
       <SearchAnchor url={url}>
         {/* Website url */}
         <Flex align="center" gap="xs">
-          {displayFavicon && <Image w={16} h={16} src={getFaviconUrl(parsed_url[1])} alt="" />}
+          {displayFavicon && (
+            <Image
+              w={16}
+              h={16}
+              src={getFaviconUrl(parsed_url[1])}
+              fallbackSrc="/assets/placeholder.svg"
+              alt=""
+            />
+          )}
           <Text size="xs" truncate="end">
             {parsed_url[0]}://{parsed_url[1]}
             {parsed_url[2]}

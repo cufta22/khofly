@@ -21,15 +21,15 @@ const ImageView: React.FC<Props> = ({ isOpen, handleClose, viewImage }) => {
 
   const handleCopyToClipboard = () => {
     copy(viewImage?.url);
-    toast.show({ message: "URL Copied!" });
+    toast.show({ message: "URL Copied" });
   };
 
   const isXs = useResponsive("max", "xs");
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
     ? "_blank"
     : openInNewTab
-      ? "_blank"
-      : "_self";
+    ? "_blank"
+    : "_self";
 
   return (
     <Drawer

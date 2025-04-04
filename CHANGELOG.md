@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Search multiple engine categories at once
 - Multiple missing search engines
 
+### Fixed
+
+- Some responsive issues
+
 ## [0.7.0] - 01.04.2025
 
 ### Added

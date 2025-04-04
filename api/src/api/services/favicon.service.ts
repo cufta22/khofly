@@ -16,13 +16,13 @@ export const handleFavicon = async (ctx: Context) => {
   const resolver = (searchParams.get("resolver") as IFaviconAPI) || "duckduckgo";
 
   if (!url) {
-    throw ctx.error(400, "URL is required!");
+    throw ctx.error(400, "URL is required");
   }
 
   // Validate URL format
   const urlRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
   if (!urlRegex.test(url)) {
-    throw ctx.error(400, "Invalid URL format!");
+    throw ctx.error(400, "Invalid URL format");
   }
 
   // Construct the DuckDuckGo favicon URL

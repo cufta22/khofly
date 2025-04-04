@@ -2,6 +2,7 @@ import { useInstanceStore } from "@store/instance";
 import type { IWorkerTranslateResponse } from "../ai/types";
 import useFetch from "../use-fetch";
 import useSWRMutation from "swr/mutation";
+import useToast from "@hooks/use-toast";
 
 interface Args {
   data: string;
@@ -11,6 +12,7 @@ interface Args {
 
 const useTranslateSWR = () => {
   const { fetchData } = useFetch();
+  const { toast } = useToast();
 
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
@@ -25,7 +27,16 @@ const useTranslateSWR = () => {
     ) as Promise<IWorkerTranslateResponse>;
   };
 
-  return useSWRMutation<IWorkerTranslateResponse, any, any, Args>(`api-translate`, fetcher);
+  return useSWRMutation<IWorkerTranslateResponse, any, any, Args>(`api-translate`, fetcher, {
+    // Error handling
+    onError() {
+      toast.show({
+        title: "Something went wrong",
+        message: "Unable to fetch translations",
+        color: "red",
+      });
+    },
+  });
 };
 
 export default useTranslateSWR;

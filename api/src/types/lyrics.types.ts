@@ -1,9 +1,13 @@
 export interface ILyricsResponse {
-  lyrics: string;
-  title: string;
-  artist: string;
-  releaseDate: string;
-  image: string;
+  error: boolean;
+  message: string;
+  data: {
+    lyrics: string;
+    title: string;
+    artist: string;
+    releaseDate: string;
+    image: string;
+  };
 }
 
 export interface IGeniusSearchResponse {

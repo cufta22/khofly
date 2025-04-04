@@ -17,7 +17,7 @@ import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
 import { IconSearch } from "@tabler/icons-react";
 import { useEffect } from "react";
-import { DEFlag, USFlag } from "@components/Icons/Flags";
+import { DEFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
@@ -43,7 +43,7 @@ const SettingsSearXNG = () => {
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
-    toast.show({ message: "URL changed!", color: "green" });
+    toast.show({ message: "URL changed", color: "green" });
   };
 
   useEffect(() => {

@@ -10,11 +10,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     server: {
-      port: 3000,
+      port: Number.parseInt(env.PORT),
     },
 
     preview: {
-      port: 3000,
+      port: Number.parseInt(env.PORT),
     },
 
     plugins: [reactRouter(), tsconfigPaths()],
