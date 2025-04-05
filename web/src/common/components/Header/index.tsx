@@ -1,7 +1,6 @@
 import classes from "./styles.module.scss";
 import { Group, Text } from "@mantine/core";
 
-import React from "react";
 import clsx from "clsx";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useLocation, useSearchParams } from "react-router";
@@ -31,6 +30,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
+  const isChat = pathname.startsWith("/chat");
 
   const isIndex = pathname === "/";
 
@@ -42,6 +42,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     ? "Privacy"
     : isDocs
     ? "Docs"
+    : isChat
+    ? "AI Chat"
     : "";
 
   // If /search
@@ -62,9 +64,14 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {isSearch && <SearchSection />}
 
       {/* Header with title */}
-      {(isDocs || isSettings || isChangelog || isPrivacy) && (
+      {(isDocs || isSettings || isChangelog || isPrivacy || isChat) && (
         <>
-          <HeaderLogo hasBurger={isDocs} openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
+          <HeaderLogo
+            isChat={isChat}
+            hasBurger={isDocs || isChat}
+            openNavbar={openNavbar}
+            toggleNavbar={toggleNavbar}
+          />
           <Text className={classes.header_title} ml="sm" fw={700}>
             / {pageTitle}
           </Text>

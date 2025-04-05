@@ -1,4 +1,4 @@
-import { MantineSize, useMantineTheme } from "@mantine/core";
+import { type MantineSize, useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 // Usage example:

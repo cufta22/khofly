@@ -1,5 +1,56 @@
+import { Container, Flex, LoadingOverlay } from "@mantine/core";
+import ChatInput from "./components/ChatInput";
+import classes from "./styles.module.scss";
+import ChatMessages from "./components/ChatMessages";
+import useAIConfigSWR from "src/api/ai/use-ai-config-query";
+import useAIChatAPI from "src/api/ai/use-ai-chat-api";
+import { useAIChatStore } from "@store/aichat";
+import { getAIChatModelSource } from "./utils";
+import { profanityFilter } from "@utils/functions/profanityFilter";
+
 const Chat = () => {
-  return <div>index</div>;
+  const { isLoading: isLoadingConfig } = useAIConfigSWR();
+  const {
+    streamData,
+    trigger: triggerChat,
+    isLoading: isLoadingChat,
+    stopStreaming,
+  } = useAIChatAPI();
+
+  const chat = useAIChatStore((state) => state.chat);
+  const addToChat = useAIChatStore((state) => state.addToChat);
+
+  const model = useAIChatStore((state) => state.model);
+
+  const handleAskQuestion = async (input: string) => {
+    if (!model.value) return;
+
+    addToChat({ role: "user", content: profanityFilter(input) });
+
+    const messages = [...chat, { role: "user", content: profanityFilter(input) }];
+
+    triggerChat({
+      model: model.value,
+      messages,
+      source: getAIChatModelSource(model.value),
+    });
+  };
+
+  return (
+    <Container className={classes.chat_page} size="lg">
+      <Flex className={classes.inner} direction="column" justify="space-between">
+        <LoadingOverlay visible={isLoadingConfig} />
+
+        <ChatMessages messages={chat} streamData={streamData} isLoadingChat={isLoadingChat} />
+
+        <ChatInput
+          handleAskQuestion={handleAskQuestion}
+          stopStreaming={stopStreaming}
+          isLoadingChat={isLoadingChat}
+        />
+      </Flex>
+    </Container>
+  );
 };
 
 export default Chat;

@@ -52,14 +52,7 @@ const PageIndex = () => {
   useSettingsParams();
 
   return (
-    <Container
-      className={classes.index_page}
-      size="lg"
-      // pb={80 + 70 + 70}
-      // p="xl"
-      // pb={170}
-      // pt={240}
-    >
+    <Container className={classes.index_page} size="lg">
       {/* <Center className={classes.center}> */}
       <Flex className={classes.flex} align="center" direction="column">
         <Title className={classes.app_name} mb="sm">

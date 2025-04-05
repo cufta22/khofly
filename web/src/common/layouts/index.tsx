@@ -19,6 +19,7 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 import DocsNavbar from "@components/Navbar/Docs";
 import ModalHotkeys from "@components/ModalHotkeys";
+import ChatNavbar from "@components/Navbar/Chat";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const { theme, primaryColor } = useClientServerState();
@@ -97,6 +98,12 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
                 breakpoint: "sm",
                 collapsed: { mobile: !openNavbar, desktop: false },
               }
+            : isChat
+            ? {
+                width: { xs: isChat ? 200 : 0, sm: isChat ? 300 : 0 },
+                breakpoint: "sm",
+                collapsed: { mobile: !openNavbar, desktop: !openNavbar },
+              }
             : undefined
         }
         classNames={{
@@ -128,6 +135,11 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
         {isDocs && (
           <AppShell.Navbar p="md">
             <DocsNavbar />
+          </AppShell.Navbar>
+        )}
+        {isChat && (
+          <AppShell.Navbar p="md">
+            <ChatNavbar />
           </AppShell.Navbar>
         )}
 

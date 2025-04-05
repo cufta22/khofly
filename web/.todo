@@ -8,7 +8,11 @@ move meta to /meta & add meta for every page that needs
 
 see why most results are in DE ( server region )
 
-Check if all api call 400s are handled well
+update .env on deployments
+
+update ai worker code in Docs
+
+Add 3rd party section in Docs for gemini
 
 Finish time zone IA
 

@@ -1,10 +1,10 @@
 import { Flex, Paper, Skeleton, Text, useMantineTheme } from "@mantine/core";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import classes from "./styles.module.scss";
 import { IconSparkles } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import useAISWR from "src/api/ai/use-ai-query";
+import useAIAnswerSWR from "src/api/ai/use-ai-answer-query";
 import { useInstanceStore } from "@store/instance";
 import useSearchQuery from "@hooks/use-search-query";
 import RemixLink from "@components/RemixLink";
@@ -24,7 +24,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   const q = useSearchQuery();
   const queryToUse = propsQuery || q || "";
 
-  const { data, isLoading, mutate } = useAISWR({ prompt: queryToUse });
+  const { data, isLoading, mutate } = useAIAnswerSWR({ prompt: queryToUse });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);

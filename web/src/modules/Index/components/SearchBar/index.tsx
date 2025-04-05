@@ -1,12 +1,11 @@
 import { ActionIcon, Autocomplete, Flex, Loader, rem, useMantineTheme } from "@mantine/core";
-import { IconArrowRight, IconKeyboard, IconSearch, IconSparkles } from "@tabler/icons-react";
+import { IconArrowRight, IconSearch, IconSparkles } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
-import { useDebouncedValue, useDisclosure } from "@mantine/hooks";
-import VirtualKeyboard from "../VirtualKeyboard";
+import { useDebouncedValue } from "@mantine/hooks";
+// import VirtualKeyboard from "../VirtualKeyboard";
 
-import { getIconStyle } from "@utils/functions/iconStyle";
 import { useResponsive } from "@hooks/use-responsive";
 import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
 import { nprogress } from "@mantine/nprogress";
@@ -15,6 +14,7 @@ import { useSettingsStore } from "@store/settings";
 import { useSearchStore } from "@store/search";
 import { useNavigate } from "react-router";
 import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
+import clsx from "clsx";
 
 const SearchBar = () => {
   const t = useTranslate();
@@ -29,13 +29,22 @@ const SearchBar = () => {
 
   const navigate = useNavigate();
 
-  const [openKeyboard, { toggle: toggleKeyboard }] = useDisclosure();
+  // const [openKeyboard, { toggle: toggleKeyboard }] = useDisclosure();
 
   const [q, setQ] = useState("");
   const [debouncedQ] = useDebouncedValue(q, 300);
 
   const isXs = useResponsive("max", "xs");
   const isXl = useResponsive("min", 1921);
+
+  // Sizes
+  const rsNoOfIconsBase = 1;
+  const rsNoOfIconsAll = useAIAnswers ? rsNoOfIconsBase + 1 : rsNoOfIconsBase;
+  const rsWidth = {
+    1: isXs ? 38 : isXl ? 54 : 44,
+    2: isXs ? 76 : isXl ? 108 : 88,
+    // 3: isXs ? 114 : isXl ? 162 : 132,
+  }[rsNoOfIconsAll];
 
   // Autocomplete API
   const { data: autocompleteData, isMutating, trigger, reset } = useAutocompleteSWR();
@@ -70,10 +79,19 @@ const SearchBar = () => {
   return (
     <>
       <Autocomplete
-        className={classes.search_bar}
+        // Responsive styles
+        classNames={{
+          root: classes.search_bar,
+          input: classes.input,
+        }}
+        leftSectionProps={{
+          className: classes.left_section,
+        }}
+        rightSectionProps={{
+          className: classes[`rigth_section_w_${rsNoOfIconsAll}`],
+        }}
         placeholder={t("pages.index.search_placeholder")}
         radius="xl"
-        size={isXs ? "md" : isXl ? "xl" : "lg"}
         value={q}
         onChange={(val) => {
           setQ(val);
@@ -83,58 +101,63 @@ const SearchBar = () => {
           if (e.key === "Enter") handleSearch(q, false);
         }}
         leftSection={
-          !isXs &&
-          (isMutating ? (
-            <Loader size={rem(24)} />
+          isMutating ? (
+            <Loader
+              classNames={{
+                root: clsx("desktop_only"),
+              }}
+              size={rem(24)}
+            />
           ) : (
-            <IconSearch style={getIconStyle(24)} stroke={1.5} />
-          ))
+            <IconSearch
+              className={clsx("desktop_only", classes.search_normal_icon)}
+              // style={getIconStyle(24)}
+              // stroke={1.5}
+            />
+          )
         }
         // leftSectionWidth="auto"
         rightSection={
-          <Flex align="center" justify="flex-end">
-            {!isXs && (
-              <ActionIcon
-                size={isXs ? 32 : 38}
-                mr={6}
-                radius="xl"
-                color={"white"}
-                variant="subtle"
-                onClick={toggleKeyboard}
-              >
-                <IconKeyboard style={getIconStyle(18)} color={"white"} />
-              </ActionIcon>
-            )}
+          <Flex align="flex-end" justify="flex-end" w="100%" gap={6} pr={6}>
+            {/* <ActionIcon
+              className={clsx("desktop_only", classes.search_action_icon)}
+              // size={isXs ? 32 : 38}
+              radius="xl"
+              color={"white"}
+              variant="subtle"
+              onClick={toggleKeyboard}
+            >
+              <IconKeyboard color={theme.colors.gray["4"]} stroke={2} />
+            </ActionIcon> */}
 
             <ActionIcon
-              size={isXs ? 32 : 38}
-              mr={6}
+              className={classes.search_action_icon}
+              // size={isXs ? 32 : 38}
               radius="xl"
               color={theme.colors[theme.primaryColor][6]}
               variant="subtle"
               onClick={() => handleSearch(q, false)}
               disabled={!q}
             >
-              <IconArrowRight style={getIconStyle(22)} />
+              <IconArrowRight />
             </ActionIcon>
 
             {useAIAnswers && (
               <ActionIcon
-                size={isXs ? 32 : 38}
-                mr={6}
+                className={classes.search_action_icon}
+                // size={isXs ? 32 : 38}
                 radius="xl"
                 color={theme.colors.pink[6]}
                 variant="subtle"
                 onClick={() => handleSearch(q, true)}
                 disabled={!q}
               >
-                <IconSparkles style={getIconStyle(22)} />
+                <IconSparkles />
               </ActionIcon>
             )}
           </Flex>
         }
-        // rightSectionWidth={isXs ? 40 : 170}
-        rightSectionWidth="fit-content"
+        rightSectionWidth={rsWidth}
         maxLength={250}
         autoFocus
         // Autocomplete props
@@ -153,7 +176,7 @@ const SearchBar = () => {
         data-protonpass-form="false"
       />
 
-      {openKeyboard && <VirtualKeyboard value={q} onChange={setQ} toggle={toggleKeyboard} />}
+      {/* {openKeyboard && <VirtualKeyboard value={q} onChange={setQ} toggle={toggleKeyboard} />} */}
     </>
   );
 };

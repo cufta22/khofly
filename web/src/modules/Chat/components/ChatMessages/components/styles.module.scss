@@ -1,0 +1,21 @@
+.message_user {
+  width: 100%;
+  justify-content: flex-end;
+
+  .message_wrapper {
+    background-color: var(--mantine-color-dark-5);
+    padding: var(--mantine-spacing-sm);
+    border-radius: var(--mantine-radius-md) var(--mantine-radius-xs) var(--mantine-radius-md)
+      var(--mantine-radius-md);
+  }
+}
+
+.message_bot {
+  width: 100%;
+  align-items: flex-start;
+
+  .message_wrapper {
+    padding: var(--mantine-spacing-xs);
+    flex-direction: column;
+  }
+}

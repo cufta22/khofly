@@ -69,6 +69,9 @@ const SettingsAIWorker = () => {
     if (label.includes("deepseek")) {
       return <Image src="/assets/engines/deepseek-icon.svg" w={16} h={16} />;
     }
+    if (label.includes("qwen")) {
+      return <Image src="/assets/engines/qwen-icon.svg" w={16} h={16} />;
+    }
   };
 
   const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
@@ -116,7 +119,7 @@ const SettingsAIWorker = () => {
                 Cloudflare AI Workers
               </Text>
             </Anchor>{" "}
-            are used to display AI answers in /search. Click read more below to learn how to set up
+            are used to display AI Answers in /search. Click read more below to learn how to set up
             your own worker.
           </Text>
         </Stack>

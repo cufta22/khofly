@@ -1,5 +1,9 @@
 @use "variables" as vars;
 
+.link {
+  display: flex;
+}
+
 .header_logo {
   width: 32px;
   height: 32px;

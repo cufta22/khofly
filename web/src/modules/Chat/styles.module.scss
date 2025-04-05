@@ -1,0 +1,11 @@
+@use "functions" as func;
+@use "variables" as vars;
+
+.chat_page {
+  height: calc(100dvh - 70px);
+
+  .inner {
+    height: 100%;
+    padding-bottom: var(--mantine-spacing-sm);
+  }
+}

@@ -9,7 +9,7 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 const CODE_WORKER = `
 const corsHeaders = {
   'Access-Control-Allow-Headers': '*',
-  'Access-Control-Allow-Methods': 'GET, OPTIONS', 
+  'Access-Control-Allow-Methods': 'POST, OPTIONS', 
   'Access-Control-Allow-Origin': 'https://khofly.com', // Replace if you need with appropriate domain 
 };
 
@@ -53,6 +53,93 @@ export default {
       return Response.json(response, {
         headers: corsHeaders
       });
+    } catch (error) {
+      // Handle error
+      return new Response('Error: ' + error?.message, { 
+        status: 500, 
+        headers: corsHeaders 
+      });
+    }
+  }
+};
+`;
+
+const CODE_WORKER_2 = `const getCorsHeaders = (origin) => ({
+  'Access-Control-Allow-Headers': '*', 
+  'Access-Control-Allow-Methods': 'POST, OPTIONS', 
+  'Access-Control-Allow-Origin': origin, 
+});
+
+export default {
+  async fetch(request, env) {
+    const { method } = request;
+
+    const originUrl = new URL(request.headers.get("origin"));
+    const { hostname, origin } = originUrl;
+    const corsHeaders = getCorsHeaders(["localhost", "staging.khofly.com", "khofly.com"].includes(hostname) ? origin : "https://khofly.com")
+
+
+    if (request.method === "OPTIONS") {
+      return new Response("OK", {
+        headers: corsHeaders
+      });
+    }
+
+    if (method !== "POST") {
+      return new Response('Method not allowed', { 
+        status: 405, 
+        headers: corsHeaders 
+      });
+    }
+
+    const body = await request.json(); // parses JSON body
+
+    const model = body.model; // For everything
+    const messages = body?.messages; // For AI Chat
+    const max_tokens = body?.max_tokens; // For AI Chat
+    const temperature = body?.temperature; // For AI Chat
+    const prompt = body?.prompt; // For AI Answers
+    const source_lang = body?.source_lang; // For translate
+    const target_lang = body?.target_lang; // For translate
+
+    if (!model) return new Response('Model is missing', { status: 400 });
+
+    const shouldStream = messages?.length;
+
+    try {
+      // Different reqBody for different scenarios
+      const reqBody = model.includes("m2m100") ? {
+        // For translations
+        text: prompt,
+        source_lang: source_lang,
+        target_lang: target_lang
+      } : shouldStream ? {
+        // For AI Chat
+        messages: messages,
+        stream: true,
+        max_tokens: max_tokens || 2048,
+        temperature: temperature || 0.5
+      } : {
+        // For AI Answer
+        prompt: prompt,
+        max_tokens: 512,
+        temperature: 0.2
+      };
+
+      let response = await env.AI.run(model, reqBody);
+
+      if(shouldStream) {
+        return new Response(response, {
+          headers: {
+            ...corsHeaders,
+            "content-type": "text/event-stream"
+           },
+        });
+      } else {
+        return Response.json(response, {
+          headers: corsHeaders
+        });
+      }
     } catch (error) {
       // Handle error
       return new Response('Error: ' + error?.message, { 
@@ -133,8 +220,9 @@ const SectionAIWorker = () => {
       <DocsSubtitle>AI Worker Code</DocsSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_WORKER} language="javascript" />
+        <DocsCodeHighlight code={CODE_WORKER_2} language="javascript" />
       </Paper>
+      <DocsText>Last updated: 06.04.2025</DocsText>
     </>
   );
 };

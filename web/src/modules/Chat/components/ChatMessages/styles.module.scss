@@ -1,0 +1,7 @@
+.scroll_area {
+  height: calc(100dvh - 70px - 50px - 12px);
+
+  .messages {
+    gap: var(--mantine-spacing-sm);
+  }
+}

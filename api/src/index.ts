@@ -29,6 +29,8 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .get("/download", router.handleDownload) // Download media file
   .get("/ip", router.handleIP) // Get IP from headers
   .get("/favicon", router.handleFavicon) // Fetch website favicon
+  .get("/ai/config", router.handleAIConfig) // Fetch available models
+  .post("/ai/chat", router.handleAIChat) // Chat with selected model
 
   .listen(process.env.PORT || 4000);
 
