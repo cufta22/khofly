@@ -47,6 +47,8 @@ interface SettingsState {
 
   useAIAnswers: boolean;
   setUseAIAnswers: (next: boolean) => void;
+  enableAIChat: boolean;
+  setEnablAIChat: (next: boolean) => void;
 
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;
@@ -88,6 +90,8 @@ export const useSettingsStore = create<SettingsState>()(
 
       useAIAnswers: false,
       setUseAIAnswers: (next) => set({ useAIAnswers: next }),
+      enableAIChat: false,
+      setEnablAIChat: (next) => set({ enableAIChat: next }),
 
       openInNewTab: false,
       setOpenInNewTab: (next) => set({ openInNewTab: next }),
@@ -107,19 +111,20 @@ export const useSettingsStore = create<SettingsState>()(
       name: "settings-store", // name of the item in the storage (must be unique)
       // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
+        categories: state.categories,
+        showEngines: state.showEngines,
+        selectedMedia: state.selectedMedia,
+        displayMedia: state.displayMedia,
         displayFavicon: state.displayFavicon,
         faviconProvider: state.faviconProvider,
-        openInNewTab: state.openInNewTab,
         useAutocomplete: state.useAutocomplete,
         autocompleteEngine: state.autocompleteEngine,
-        categories: state.categories,
-        privateSearch: state.privateSearch,
-        privatePlayer: state.privatePlayer,
-        displayMedia: state.displayMedia,
-        selectedMedia: state.selectedMedia,
         useInstantAnswers: state.useInstantAnswers,
         useAIAnswers: state.useAIAnswers,
-        showEngines: state.showEngines,
+        enableAIChat: state.enableAIChat,
+        openInNewTab: state.openInNewTab,
+        privateSearch: state.privateSearch,
+        privatePlayer: state.privatePlayer,
       }),
     }
   )

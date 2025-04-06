@@ -99,6 +99,8 @@
 
         "toggle_ai_answers": "Enable AI Answers",
 
+        "toggle_ai_chat": "Enable AI Chat",
+
         "toggle_private_search": "Enable Private Search",
 
         "toggle_private_player": "Enable Private Player",

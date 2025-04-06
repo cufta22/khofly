@@ -23,9 +23,15 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
         <priority>1.00</priority>
     </url>
 
-    <!-- STATIC PAGES -->
+    <!-- OTHER PAGES -->
     <url>
         <loc>${loc}/settings</loc>
+        <lastmod>${lastMod}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>${loc}/chat</loc>
         <lastmod>${lastMod}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -52,7 +58,7 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-    `,
+    `
     )}
 </urlset>
 `;

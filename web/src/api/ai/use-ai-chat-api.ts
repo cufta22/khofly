@@ -14,12 +14,10 @@ interface Args {
 const useAIChatAPI = () => {
   const { toast } = useToast();
 
-  const [streamData, setStreamData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string>("");
 
   // Ref to keep track of the response being streamed
-  const currentStreamedResponseRef = useRef("");
   const abortControllerRef = useRef<AbortController>(null);
 
   const workerDomain = useInstanceStore((state) => state.workerDomain);
@@ -29,6 +27,8 @@ const useAIChatAPI = () => {
   const temperature = useAIChatStore((state) => state.temperature);
 
   const addToChat = useAIChatStore((state) => state.addToChat);
+  const streamToChat = useAIChatStore((state) => state.streamToChat);
+  const stopStreamToChat = useAIChatStore((state) => state.stopStreamToChat);
 
   const processSSE = async (
     decoder: TextDecoder,
@@ -61,7 +61,8 @@ const useAIChatAPI = () => {
 
           // Handle the special [DONE] message if the API sends it
           if (jsonString === "[DONE]") {
-            addToChat({ role: "assistant", content: currentStreamedResponseRef.current });
+            // addToChat({ role: "assistant", content: currentStreamedResponseRef.current });
+            stopStreamToChat();
 
             // No more data expected after this in standard SSE patterns
             // The reader.read() loop will terminate eventually anyway
@@ -72,8 +73,9 @@ const useAIChatAPI = () => {
             const parsed = JSON.parse(jsonString);
             if (parsed.response) {
               // console.log("Parsed chunk:", parsed.response); // Debugging: See the text chunk
-              currentStreamedResponseRef.current += parsed.response;
-              setStreamData((prev) => prev + parsed.response); // Append *only* the text response
+              // currentStreamedResponseRef.current += parsed.response;
+              // setStreamData((prev) => prev + parsed.response); // Append *only* the text response
+              streamToChat({ content: parsed.response, isGenerating: true });
             } else {
               // Handle cases where JSON is valid but doesn't have 'response'
             }
@@ -93,8 +95,8 @@ const useAIChatAPI = () => {
 
   const trigger = async ({ model, source, messages }: Args) => {
     // Reset state
-    setStreamData("");
-    currentStreamedResponseRef.current = "";
+    // setStreamData("");
+    // currentStreamedResponseRef.current = "";
     setError("");
     setIsLoading(true);
 
@@ -173,24 +175,18 @@ const useAIChatAPI = () => {
 
   const reset = () => {
     // Reset state
-    setStreamData("");
-    currentStreamedResponseRef.current = "";
+    stopStreamToChat();
     setError("");
     setIsLoading(false);
     abortControllerRef.current = null;
   };
 
   const stopStreaming = () => {
+    stopStreamToChat();
+
     if (abortControllerRef.current) {
       abortControllerRef.current?.abort();
       abortControllerRef.current = null;
-
-      // Add current streamed response to messages
-      if (streamData) {
-        addToChat({ role: "assistant", content: streamData });
-        setStreamData("");
-        currentStreamedResponseRef.current = "";
-      }
 
       setIsLoading(false);
     }
@@ -206,7 +202,6 @@ const useAIChatAPI = () => {
   }, []);
 
   return {
-    streamData,
     isLoading,
     error,
     trigger,

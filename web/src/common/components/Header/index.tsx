@@ -13,6 +13,8 @@ import HeaderSearchSettings from "./components/HeaderSearchSettings";
 import HeaderOrganize from "./components/HeaderOrganize";
 import HeaderCode from "./components/HeaderCode";
 import HeaderIndexSettings from "./components/HeaderIndexSettings";
+import HeaderIndexChat from "./components/HeaderIndexChat";
+import { useSettingsStore } from "@store/settings";
 
 interface Props {
   openNavbar: boolean;
@@ -24,6 +26,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const { pathname } = useLocation();
 
   const [searchParams] = useSearchParams();
+
+  const enableAIChat = useSettingsStore((state) => state.enableAIChat);
 
   const isChangelog = pathname.startsWith("/changelog");
   const isSettings = pathname.startsWith("/settings");
@@ -80,6 +84,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       <div className={classes.divider} />
 
+      {isIndex && enableAIChat && <HeaderIndexChat />}
       {isIndex && <HeaderIndexSettings />}
 
       {isSearch && tab === "general" && <HeaderOrganize />}

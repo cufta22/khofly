@@ -10,12 +10,7 @@ import { profanityFilter } from "@utils/functions/profanityFilter";
 
 const Chat = () => {
   const { isLoading: isLoadingConfig } = useAIConfigSWR();
-  const {
-    streamData,
-    trigger: triggerChat,
-    isLoading: isLoadingChat,
-    stopStreaming,
-  } = useAIChatAPI();
+  const { trigger: triggerChat, isLoading: isLoadingChat, stopStreaming } = useAIChatAPI();
 
   const chat = useAIChatStore((state) => state.chat);
   const addToChat = useAIChatStore((state) => state.addToChat);
@@ -25,9 +20,12 @@ const Chat = () => {
   const handleAskQuestion = async (input: string) => {
     if (!model.value) return;
 
-    addToChat({ role: "user", content: profanityFilter(input) });
-
     const messages = [...chat, { role: "user", content: profanityFilter(input) }];
+
+    addToChat([
+      { role: "user", content: profanityFilter(input), isGenerating: false },
+      { role: "assistant", content: "", isGenerating: true },
+    ]);
 
     triggerChat({
       model: model.value,
@@ -41,7 +39,7 @@ const Chat = () => {
       <Flex className={classes.inner} direction="column" justify="space-between">
         <LoadingOverlay visible={isLoadingConfig} />
 
-        <ChatMessages messages={chat} streamData={streamData} isLoadingChat={isLoadingChat} />
+        <ChatMessages />
 
         <ChatInput
           handleAskQuestion={handleAskQuestion}

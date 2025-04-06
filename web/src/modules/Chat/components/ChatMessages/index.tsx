@@ -3,16 +3,13 @@ import MessageUser from "./components/MessageUser";
 import MessageBot from "./components/MessageBot";
 
 import classes from "./styles.module.scss";
+import { useAIChatStore } from "@store/aichat";
 
-import type { IAIChatMessage } from "@ts/chat.types";
+// interface Props {}
 
-interface Props {
-  messages: IAIChatMessage[];
-  streamData: string;
-  isLoadingChat: boolean;
-}
+const ChatMessages = () => {
+  const messages = useAIChatStore((state) => state.chat);
 
-const ChatMessages: React.FC<Props> = ({ messages, streamData, isLoadingChat }) => {
   return (
     <ScrollArea className={classes.scroll_area}>
       <Flex className={classes.messages} direction="column">
@@ -26,7 +23,7 @@ const ChatMessages: React.FC<Props> = ({ messages, streamData, isLoadingChat }) 
           }
         })}
 
-        {isLoadingChat && <MessageBot content={streamData} />}
+        {/* {isLoadingChat && <MessageBot content={streamData} />} */}
 
         <Space h={40} />
       </Flex>

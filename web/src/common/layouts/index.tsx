@@ -100,7 +100,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
               }
             : isChat
             ? {
-                width: { xs: isChat ? 200 : 0, sm: isChat ? 300 : 0 },
+                width: { xs: isChat ? 200 : 0, sm: isChat ? 325 : 0 },
                 breakpoint: "sm",
                 collapsed: { mobile: !openNavbar, desktop: !openNavbar },
               }

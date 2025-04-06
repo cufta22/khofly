@@ -1,11 +1,15 @@
 import { create } from "zustand";
 import type { IAIChatMessage } from "@ts/chat.types";
 
+export type IAIProvider = "" | "cf" | "google";
+
 interface IAIConfig {
   hasGeminiKey: boolean;
 }
 
 interface AIChatState {
+  provider: IAIProvider;
+  setProvider: (next: IAIProvider) => void;
   model: {
     label: string;
     value: string;
@@ -22,11 +26,15 @@ interface AIChatState {
   setConfig: (next: IAIConfig) => void;
 
   chat: IAIChatMessage[];
-  addToChat: (next: IAIChatMessage) => void;
+  addToChat: (next: IAIChatMessage[]) => void;
   clearChat: () => void;
+  streamToChat: (next: { content: string; isGenerating: boolean }) => void;
+  stopStreamToChat: () => void;
 }
 
 export const useAIChatStore = create<AIChatState>()((set, get) => ({
+  provider: "",
+  setProvider: (next) => set({ provider: next }),
   model: {
     label: "",
     value: "",
@@ -48,7 +56,29 @@ export const useAIChatStore = create<AIChatState>()((set, get) => ({
   addToChat: (next) => {
     const current = get();
 
-    set({ chat: [...current.chat, next] });
+    set({ chat: [...current.chat, ...next] });
   },
   clearChat: () => set({ chat: [] }),
+  streamToChat: (next) => {
+    const current = get();
+
+    set({
+      chat: current.chat.map((msg) =>
+        msg.isGenerating
+          ? {
+              role: msg.role,
+              content: msg.content + next.content,
+              isGenerating: next.isGenerating,
+            }
+          : msg
+      ),
+    });
+  },
+  stopStreamToChat: () => {
+    const current = get();
+
+    set({
+      chat: current.chat.map((msg) => (msg.isGenerating ? { ...msg, isGenerating: false } : msg)),
+    });
+  },
 }));

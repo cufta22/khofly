@@ -106,7 +106,7 @@ export const DATA_ENGINES_VIDEOS: IDataEngine[] = [
     type: "engine",
     value: "invidious",
     alt: "Invidious logo",
-    icon: "",
+    icon: "/assets/engines/invidious-icon.svg",
     label: "pages.settings.engines.engine_invidious_vid",
     bang: "!iv",
     safeSearch: false,
