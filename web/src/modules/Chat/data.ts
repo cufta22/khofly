@@ -173,7 +173,7 @@ export const getAIChatModels = (provider: IAIProvider) => {
     case "google":
       return [
         {
-          group: "Google AI",
+          group: "Text Generation",
           items: [
             {
               label: "Gemini 2.5 Pro Preview",
@@ -186,6 +186,19 @@ export const getAIChatModels = (provider: IAIProvider) => {
             {
               label: "Gemini 2.0 Flash-Lite",
               value: "gemini-2.0-flash-lite",
+            },
+          ],
+        },
+        {
+          group: "Image Generation",
+          items: [
+            {
+              label: "Gemini 2.0 Flash Exp.",
+              value: "gemini-2.0-flash-exp-image-generation",
+            },
+            {
+              label: "Imagen 3",
+              value: "imagen-3.0-generate-002",
             },
           ],
         },

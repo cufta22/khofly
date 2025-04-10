@@ -3,11 +3,12 @@ import useToast from "@hooks/use-toast";
 
 import { useEffect, useRef, useState } from "react";
 import { useAIChatStore } from "@store/aichat";
+import type { IAIChatMessage } from "@ts/chat.types";
 
 interface Args {
   source: "cf" | "google";
   model: string;
-  messages: any;
+  messages: IAIChatMessage[];
 }
 
 // Not an swr this time
@@ -26,7 +27,6 @@ const useAIChatAPI = () => {
   const maxTokens = useAIChatStore((state) => state.maxTokens);
   const temperature = useAIChatStore((state) => state.temperature);
 
-  const addToChat = useAIChatStore((state) => state.addToChat);
   const streamToChat = useAIChatStore((state) => state.streamToChat);
   const stopStreamToChat = useAIChatStore((state) => state.stopStreamToChat);
 
@@ -46,6 +46,7 @@ const useAIChatAPI = () => {
 
       // Decode and process the chunk
       chunk += decoder.decode(value, { stream: true });
+      console.log(chunk);
 
       // Process complete SSE messages in the buffer
       // SSE messages are separated by double newlines "\n\n"
@@ -61,21 +62,18 @@ const useAIChatAPI = () => {
 
           // Handle the special [DONE] message if the API sends it
           if (jsonString === "[DONE]") {
-            // addToChat({ role: "assistant", content: currentStreamedResponseRef.current });
             stopStreamToChat();
-
-            // No more data expected after this in standard SSE patterns
-            // The reader.read() loop will terminate eventually anyway
             continue; // Skip to next message or loop iteration
           }
 
           try {
             const parsed = JSON.parse(jsonString);
-            if (parsed.response) {
-              // console.log("Parsed chunk:", parsed.response); // Debugging: See the text chunk
-              // currentStreamedResponseRef.current += parsed.response;
-              // setStreamData((prev) => prev + parsed.response); // Append *only* the text response
+            if (parsed?.response) {
+              // Handle CF stream
               streamToChat({ content: parsed.response, isGenerating: true });
+            } else if (parsed?.text) {
+              // Handle Gemini stream
+              streamToChat({ content: parsed.text, isGenerating: true });
             } else {
               // Handle cases where JSON is valid but doesn't have 'response'
             }
@@ -94,9 +92,6 @@ const useAIChatAPI = () => {
   };
 
   const trigger = async ({ model, source, messages }: Args) => {
-    // Reset state
-    // setStreamData("");
-    // currentStreamedResponseRef.current = "";
     setError("");
     setIsLoading(true);
 
@@ -107,8 +102,8 @@ const useAIChatAPI = () => {
       // ------------------------------------------------------
       // Handle Cloudflare AI Worker
       // ------------------------------------------------------
-
       if (source === "cf") {
+        // Check CF config
         if (temperature > 5 || maxTokens > 4096) {
           toast.show({
             title: "Something went wrong",
@@ -118,7 +113,7 @@ const useAIChatAPI = () => {
           return;
         }
 
-        const res = await fetch(workerDomain, {
+        const workerRes = await fetch(workerDomain, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -133,34 +128,52 @@ const useAIChatAPI = () => {
           signal: abortControllerRef.current.signal,
         });
 
-        if (!res.body) {
+        if (!workerRes.body) {
           return "";
         }
 
-        const reader = res?.body?.getReader();
+        const reader = workerRes?.body?.getReader();
         const decoder = new TextDecoder();
 
         await processSSE(decoder, reader);
-
-        // Reset state
-        // setStreamData("");
-        // currentStreamedResponseRef.current = "";
-        // setError("");
-        // setIsLoading(false);
-        // abortControllerRef.current = null;
       }
 
       // ------------------------------------------------------
       // Handle Google AI
       // ------------------------------------------------------
       if (source === "google") {
-        // return fetchData(`${apiDomain}/ai/chat`, {
-        //   method: "POST",
-        //   body: JSON.stringify({
-        //     model,
-        //     prompt,
-        //   }),
-        // }) as Promise<IAPIResponse<any>>;
+        // Check Google config
+        if (temperature > 2 || maxTokens > 4096) {
+          toast.show({
+            title: "Something went wrong",
+            message: "Invalid params",
+            color: "yellow",
+          });
+          return;
+        }
+
+        const googleRes = await fetch(`${apiDomain}/ai/chat`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: model,
+            messages: messages.filter((msg) => msg.content),
+            max_tokens: maxTokens,
+            temperature: temperature,
+          }),
+          signal: abortControllerRef.current.signal,
+        });
+
+        if (!googleRes.body) {
+          return "";
+        }
+
+        const reader = googleRes?.body?.getReader();
+        const decoder = new TextDecoder();
+
+        await processSSE(decoder, reader);
       }
     } catch (err: any) {
       if (err?.name !== "AbortError") {

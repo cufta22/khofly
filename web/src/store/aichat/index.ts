@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import type { IAIChatMessage } from "@ts/chat.types";
 
 export type IAIProvider = "" | "cf" | "google";
@@ -8,6 +9,8 @@ interface IAIConfig {
 }
 
 interface AIChatState {
+  hydrated: boolean;
+
   provider: IAIProvider;
   setProvider: (next: IAIProvider) => void;
   model: {
@@ -32,53 +35,74 @@ interface AIChatState {
   stopStreamToChat: () => void;
 }
 
-export const useAIChatStore = create<AIChatState>()((set, get) => ({
-  provider: "",
-  setProvider: (next) => set({ provider: next }),
-  model: {
-    label: "",
-    value: "",
-  },
-  setModel: (next) => set({ model: next }),
+export const useAIChatStore = create<AIChatState>()(
+  persist(
+    (set, get) => ({
+      hydrated: false,
 
-  maxTokens: 2056,
-  setMaxTokens: (next) => set({ maxTokens: next }),
+      provider: "",
+      setProvider: (next) => set({ provider: next }),
+      model: {
+        label: "",
+        value: "",
+      },
+      setModel: (next) => set({ model: next }),
 
-  temperature: 0.5,
-  setTemperature: (next) => set({ temperature: next }),
+      maxTokens: 2048,
+      setMaxTokens: (next) => set({ maxTokens: next }),
 
-  config: {
-    hasGeminiKey: false,
-  },
-  setConfig: (next) => set({ config: next }),
+      temperature: 0.5,
+      setTemperature: (next) => set({ temperature: next }),
 
-  chat: [],
-  addToChat: (next) => {
-    const current = get();
+      config: {
+        hasGeminiKey: false,
+      },
+      setConfig: (next) => set({ config: next }),
 
-    set({ chat: [...current.chat, ...next] });
-  },
-  clearChat: () => set({ chat: [] }),
-  streamToChat: (next) => {
-    const current = get();
+      chat: [],
+      addToChat: (next) => {
+        const current = get();
 
-    set({
-      chat: current.chat.map((msg) =>
-        msg.isGenerating
-          ? {
-              role: msg.role,
-              content: msg.content + next.content,
-              isGenerating: next.isGenerating,
-            }
-          : msg
-      ),
-    });
-  },
-  stopStreamToChat: () => {
-    const current = get();
+        set({ chat: [...current.chat, ...next] });
+      },
+      clearChat: () => set({ chat: [] }),
+      streamToChat: (next) => {
+        const current = get();
 
-    set({
-      chat: current.chat.map((msg) => (msg.isGenerating ? { ...msg, isGenerating: false } : msg)),
-    });
-  },
-}));
+        set({
+          chat: current.chat.map((msg) =>
+            msg.isGenerating
+              ? {
+                  role: msg.role,
+                  content: msg.content + next.content,
+                  isGenerating: next.isGenerating,
+                }
+              : msg
+          ),
+        });
+      },
+      stopStreamToChat: () => {
+        const current = get();
+
+        set({
+          chat: current.chat.map((msg) =>
+            msg.isGenerating ? { ...msg, isGenerating: false } : msg
+          ),
+        });
+      },
+    }),
+    {
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.hydrated = true;
+        }
+      },
+      name: "aichat-store", // name of the item in the storage (must be unique)
+      // storage: createJSONStorage(() => cookieStorage), // Test for SSR
+      partialize: (state) => ({
+        provider: state.provider,
+        model: state.model,
+      }),
+    }
+  )
+);

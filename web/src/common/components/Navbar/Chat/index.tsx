@@ -13,7 +13,7 @@ import {
 } from "@mantine/core";
 import { useInstanceStore } from "@store/instance";
 import { type IAIProvider, useAIChatStore } from "@store/aichat";
-import { IconTrash } from "@tabler/icons-react";
+import { IconCurrencyDollar, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useEffect } from "react";
 import { getAIChatModelSource } from "@module/Chat/utils";
@@ -21,6 +21,8 @@ import { getAIChatModelSource } from "@module/Chat/utils";
 const ChatNavbar = () => {
   const theme = useMantineTheme();
   const workerDomain = useInstanceStore((state) => state.workerDomain);
+
+  const hydrated = useAIChatStore((state) => state.hydrated);
 
   const provider = useAIChatStore((state) => state.provider);
   const setProvider = useAIChatStore((state) => state.setProvider);
@@ -72,6 +74,9 @@ const ChatNavbar = () => {
     if (value.includes("gemini")) {
       return <Image src="/assets/engines/gemini-icon.svg" w={16} h={16} />;
     }
+    if (value.includes("imagen")) {
+      return <Image src="/assets/engines/deepmind-icon.svg" w={16} h={16} />;
+    }
   };
 
   const renderSelectOptionProvider: SelectProps["renderOption"] = ({ option }) => (
@@ -84,11 +89,21 @@ const ChatNavbar = () => {
     <Group flex="1" gap="xs">
       {getIconModel(option.value)}
       {option.label}
+
+      {option.value.includes("imagen") && (
+        <>
+          <div style={{ flex: 1 }} />
+          <IconCurrencyDollar style={getIconStyle(20)} color={theme.colors.green[6]} />
+        </>
+      )}
     </Group>
   );
 
   // Select model if not selected
   useEffect(() => {
+    if (!hydrated) return;
+    if (provider) return;
+
     if (workerDomain.length && modelData) {
       setProvider("cf");
       setModel({
@@ -102,7 +117,7 @@ const ChatNavbar = () => {
         value: "gemini-2.0-flash",
       });
     }
-  }, [config]);
+  }, [config, hydrated]);
 
   return (
     <Flex className={classes.navbar} direction="column">
@@ -116,6 +131,10 @@ const ChatNavbar = () => {
           if (val) {
             clearChat();
             setProvider(val as IAIProvider);
+
+            // Reset params
+            setTemperature(0.5);
+            setMaxTokens(2048);
 
             if (val === "cf") {
               setModel({
@@ -161,9 +180,9 @@ const ChatNavbar = () => {
         }}
       />
 
-      {["cf"].includes(aiSource) && <Divider mt="lg" />}
+      {["cf", "google"].includes(aiSource) && <Divider mt="lg" />}
 
-      {aiSource === "cf" && (
+      {["cf", "google"].includes(aiSource) && (
         <NumberInput
           mt="md"
           label="max_tokens"
@@ -175,14 +194,19 @@ const ChatNavbar = () => {
         />
       )}
 
-      {aiSource === "cf" && (
+      {["cf", "google"].includes(aiSource) && (
         <NumberInput
           mt="lg"
           label="temperature"
           value={temperature}
           onChange={(val) => setTemperature(typeof val === "string" ? Number.parseInt(val) : val)}
           min={0.1}
-          max={5}
+          max={
+            {
+              cf: 5,
+              google: 2,
+            }[aiSource]
+          }
           step={0.1}
         />
       )}

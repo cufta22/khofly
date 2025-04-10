@@ -7,6 +7,7 @@ import useAIChatAPI from "src/api/ai/use-ai-chat-api";
 import { useAIChatStore } from "@store/aichat";
 import { getAIChatModelSource } from "./utils";
 import { profanityFilter } from "@utils/functions/profanityFilter";
+import type { IAIChatMessage } from "@ts/chat.types";
 
 const Chat = () => {
   const { isLoading: isLoadingConfig } = useAIConfigSWR();
@@ -20,7 +21,10 @@ const Chat = () => {
   const handleAskQuestion = async (input: string) => {
     if (!model.value) return;
 
-    const messages = [...chat, { role: "user", content: profanityFilter(input) }];
+    const messages: IAIChatMessage[] = [
+      ...chat,
+      { role: "user", content: profanityFilter(input), isGenerating: false },
+    ];
 
     addToChat([
       { role: "user", content: profanityFilter(input), isGenerating: false },
