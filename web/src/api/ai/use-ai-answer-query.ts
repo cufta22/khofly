@@ -27,9 +27,13 @@ const useAIAnswerSWR = (args: Args) => {
     return fetchData(`${workerDomain}`, {
       method: "POST",
       body: JSON.stringify({
-        prompt: profanityFilter(args?.prompt),
+        prompt: `give me a short answer to the following question:  ${profanityFilter(
+          args?.prompt
+        )}`,
         model: workerModel,
         messages: [],
+        max_tokens: 512,
+        temperature: 0.2,
       }),
     }) as Promise<IWorkerTextGenResponse>;
   };

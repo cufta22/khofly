@@ -19,7 +19,6 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 import DocsNavbar from "@components/Navbar/Docs";
 import ModalHotkeys from "@components/ModalHotkeys";
-import ChatNavbar from "@components/Navbar/Chat";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const { theme, primaryColor } = useClientServerState();
@@ -51,7 +50,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isSearchMaps = isSearch && tab === "maps";
   const headerHeight = isSearch ? 100 : 70;
   const isHeaderCollapsed = isSearch && !pinned;
-  const isHeaderOffset = !isSearch;
+  const isHeaderOffset = !isSearch && !isChat;
 
   useEffect(() => {
     if (!["/search"].includes(pathname)) {
@@ -98,12 +97,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
                 breakpoint: "sm",
                 collapsed: { mobile: !openNavbar, desktop: false },
               }
-            : isChat
-            ? {
-                width: { xs: isChat ? 200 : 0, sm: isChat ? 325 : 0 },
-                breakpoint: "sm",
-                collapsed: { mobile: !openNavbar, desktop: !openNavbar },
-              }
             : undefined
         }
         classNames={{
@@ -111,7 +104,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           main: classes.app_main,
           navbar: classes.app_navbar,
           header: clsx(classes.app_header, {
-            [classes.app_header_transparent]: ["/"].includes(pathname),
+            [classes.app_header_transparent]: isIndex,
+            [classes.chat_header_transparent]: isChat,
           }),
           footer: classes.app_footer,
         }}
@@ -135,11 +129,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
         {isDocs && (
           <AppShell.Navbar p="md">
             <DocsNavbar />
-          </AppShell.Navbar>
-        )}
-        {isChat && (
-          <AppShell.Navbar p="md">
-            <ChatNavbar />
           </AppShell.Navbar>
         )}
 

@@ -177,7 +177,11 @@ export const getAIChatModels = (provider: IAIProvider) => {
           items: [
             {
               label: "Gemini 2.5 Pro Preview",
-              value: "gemini-2.5-pro-preview-03-25",
+              value: "gemini-2.5-pro-preview",
+            },
+            {
+              label: "Gemini 2.5 Pro Exp.",
+              value: "gemini-2.5-pro-experimental",
             },
             {
               label: "Gemini 2.0 Flash",

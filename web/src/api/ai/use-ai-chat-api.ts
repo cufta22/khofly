@@ -26,6 +26,7 @@ const useAIChatAPI = () => {
 
   const maxTokens = useAIChatStore((state) => state.maxTokens);
   const temperature = useAIChatStore((state) => state.temperature);
+  const systemInstruction = useAIChatStore((state) => state.systemInstruction);
 
   const streamToChat = useAIChatStore((state) => state.streamToChat);
   const stopStreamToChat = useAIChatStore((state) => state.stopStreamToChat);
@@ -46,7 +47,6 @@ const useAIChatAPI = () => {
 
       // Decode and process the chunk
       chunk += decoder.decode(value, { stream: true });
-      console.log(chunk);
 
       // Process complete SSE messages in the buffer
       // SSE messages are separated by double newlines "\n\n"
@@ -162,6 +162,7 @@ const useAIChatAPI = () => {
             messages: messages.filter((msg) => msg.content),
             max_tokens: maxTokens,
             temperature: temperature,
+            system_instruction: systemInstruction,
           }),
           signal: abortControllerRef.current.signal,
         });
@@ -181,6 +182,8 @@ const useAIChatAPI = () => {
         console.error("Streaming error:", err);
       }
       setIsLoading(false);
+
+      toast.show({ title: "Gemini API Error", message: err?.message, color: "red" });
     }
 
     return "";

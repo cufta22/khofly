@@ -25,6 +25,11 @@ const THEME_DATA: IThemeData[] = [
     value: "Mantine-New",
     image: "/assets/themes/mantine.png",
   },
+  // {
+  //   label: "pages.settings.interface.select_theme_options.frutiger_aero",
+  //   value: "Frutiger-Aero",
+  //   image: "/assets/themes/frutiger-aero.png",
+  // },
   {
     label: "pages.settings.interface.select_theme_options.catppuccin",
     value: "Catppuccin",

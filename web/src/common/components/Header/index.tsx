@@ -15,6 +15,7 @@ import HeaderCode from "./components/HeaderCode";
 import HeaderIndexSettings from "./components/HeaderIndexSettings";
 import HeaderIndexChat from "./components/HeaderIndexChat";
 import { useSettingsStore } from "@store/settings";
+import HeaderAISettings from "./components/HeaderAISettings";
 
 interface Props {
   openNavbar: boolean;
@@ -72,7 +73,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
         <>
           <HeaderLogo
             isChat={isChat}
-            hasBurger={isDocs || isChat}
+            hasBurger={isDocs}
             openNavbar={openNavbar}
             toggleNavbar={toggleNavbar}
           />
@@ -89,6 +90,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       {isSearch && tab === "general" && <HeaderOrganize />}
       {isSearch && <HeaderSearchSettings />}
+
+      {isChat && <HeaderAISettings />}
 
       {(isDocs || isChangelog) && <HeaderCode />}
     </Group>

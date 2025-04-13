@@ -1,25 +1,34 @@
-import { getAIChatModels, getAIChatProviders } from "@module/Chat/data";
-import classes from "./styles.module.scss";
 import {
   Button,
+  Center,
   Divider,
+  Drawer,
   Flex,
   Group,
   Image,
   NumberInput,
+  ScrollArea,
   Select,
+  type SelectProps,
+  Text,
   Textarea,
   useMantineTheme,
-  type SelectProps,
 } from "@mantine/core";
+import classes from "./styles.module.scss";
+import { useEffect } from "react";
 import { useInstanceStore } from "@store/instance";
 import { type IAIProvider, useAIChatStore } from "@store/aichat";
+import { getAIChatModelSource } from "@module/Chat/utils";
+import { getAIChatModels, getAIChatProviders } from "@module/Chat/data";
 import { IconCurrencyDollar, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useEffect } from "react";
-import { getAIChatModelSource } from "@module/Chat/utils";
 
-const ChatNavbar = () => {
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
   const theme = useMantineTheme();
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
@@ -92,7 +101,7 @@ const ChatNavbar = () => {
       {getIconModel(option.value)}
       {option.label}
 
-      {option.value.includes("imagen") && (
+      {["imagen-3.0-generate-002", "gemini-2.5-pro-preview"].includes(option.value) && (
         <>
           <div style={{ flex: 1 }} />
           <IconCurrencyDollar style={getIconStyle(20)} color={theme.colors.green[6]} />
@@ -122,9 +131,32 @@ const ChatNavbar = () => {
   }, [config, hydrated]);
 
   return (
-    <Flex className={classes.navbar} direction="column">
+    <Drawer
+      offset={8}
+      size="md"
+      radius="md"
+      opened={isOpen}
+      onClose={onClose}
+      title={
+        <Flex align="center" gap="sm">
+          <Text size="xl">AI Settings</Text>
+        </Flex>
+      }
+      position="right"
+      padding="xl"
+      closeButtonProps={{
+        size: "lg",
+      }}
+      classNames={{
+        header: classes.drawer_header,
+        content: classes.drawer_root,
+      }}
+      scrollAreaComponent={ScrollArea.Autosize}
+    >
       <Select
+        mt="md"
         label="Select provider"
+        variant="default"
         renderOption={renderSelectOptionProvider}
         leftSection={getIconProvider(provider)}
         data={providerData}
@@ -222,17 +254,19 @@ const ChatNavbar = () => {
         />
       )}
 
-      <Button
-        mt="lg"
-        variant="light"
-        leftSection={<IconTrash style={getIconStyle(22)} />}
-        color="red"
-        onClick={clearChat}
-      >
-        Clear chat
-      </Button>
-    </Flex>
+      <Center>
+        <Button
+          mt="lg"
+          variant="light"
+          leftSection={<IconTrash style={getIconStyle(22)} />}
+          color="red"
+          onClick={clearChat}
+        >
+          Clear chat
+        </Button>
+      </Center>
+    </Drawer>
   );
 };
 
-export default ChatNavbar;
+export default AISettings;

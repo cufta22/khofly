@@ -22,6 +22,16 @@
   &.app_header_transparent {
     border-bottom: none !important;
     background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  &.chat_header_transparent {
+    // Adjust on small devices
+    @media (min-width: vars.$mantine-breakpoint-xs) {
+      border-bottom: none !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
   }
 }
 

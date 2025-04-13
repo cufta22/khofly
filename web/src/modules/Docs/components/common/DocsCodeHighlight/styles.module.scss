@@ -44,6 +44,10 @@
   }
 }
 
+.header {
+  border-bottom: 1px solid var(--mantine-color-dark-4);
+}
+
 .copy {
   position: absolute;
   top: 5px;
@@ -70,10 +74,7 @@
   white-space: nowrap;
   margin: 0;
   color: light-dark(var(--mantine-color-gray-8), var(--mantine-color-dark-0));
-  border-color: light-dark(
-    var(--mantine-color-gray-2),
-    var(--mantine-color-dark-4)
-  );
+  border-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
 
   &:hover {
     opacity: 1;
@@ -91,10 +92,7 @@
     opacity: 1;
 
     color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-    background-color: light-dark(
-      var(--mantine-color-white),
-      var(--mantine-color-dark-6)
-    );
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
   }
 }
 
@@ -113,11 +111,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: linear-gradient(
-      0deg,
-      var(--code-background) 16%,
-      rgba(0, 0, 0, 0) 100%
-    );
+    background-image: linear-gradient(0deg, var(--code-background) 16%, rgba(0, 0, 0, 0) 100%);
     border-radius: calc(var(--mantine-radius-md) - 1px);
   }
 

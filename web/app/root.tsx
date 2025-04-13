@@ -1,4 +1,5 @@
 import "@styles/base.scss";
+import "@styles/frutiger-aero.scss"; // for theme
 import "@styles/utility.scss";
 
 import "@mantine/core/styles.css";

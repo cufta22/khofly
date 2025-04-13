@@ -1,0 +1,61 @@
+import hljs from "highlight.js/lib/core";
+
+// A few more popular ones for /chat
+import bash from "highlight.js/lib/languages/bash";
+import nginx from "highlight.js/lib/languages/nginx";
+import yaml from "highlight.js/lib/languages/yaml";
+import dockerfile from "highlight.js/lib/languages/dockerfile";
+import javascript from "highlight.js/lib/languages/javascript";
+import typescript from "highlight.js/lib/languages/typescript";
+import markdown from "highlight.js/lib/languages/markdown";
+import python from "highlight.js/lib/languages/python";
+import java from "highlight.js/lib/languages/java";
+import c from "highlight.js/lib/languages/c";
+import cpp from "highlight.js/lib/languages/cpp";
+import csharp from "highlight.js/lib/languages/csharp";
+import css from "highlight.js/lib/languages/css";
+import xml from "highlight.js/lib/languages/xml";
+import lua from "highlight.js/lib/languages/lua";
+import elixir from "highlight.js/lib/languages/elixir";
+import swift from "highlight.js/lib/languages/swift";
+import ruby from "highlight.js/lib/languages/ruby";
+import php from "highlight.js/lib/languages/php";
+import sql from "highlight.js/lib/languages/sql";
+import pgsql from "highlight.js/lib/languages/pgsql";
+import go from "highlight.js/lib/languages/go";
+import json from "highlight.js/lib/languages/json";
+import nix from "highlight.js/lib/languages/nix";
+import haskell from "highlight.js/lib/languages/haskell";
+import kotlin from "highlight.js/lib/languages/kotlin";
+import powershell from "highlight.js/lib/languages/powershell";
+
+// A few more popular ones for /chat
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("nginx", nginx);
+hljs.registerLanguage("yaml", yaml);
+hljs.registerLanguage("dockerfile", dockerfile);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("markdown", markdown);
+hljs.registerLanguage("python", python);
+hljs.registerLanguage("java", java);
+hljs.registerLanguage("c", c);
+hljs.registerLanguage("cpp", cpp);
+hljs.registerLanguage("csharp", csharp);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("lua", lua);
+hljs.registerLanguage("elixir", elixir);
+hljs.registerLanguage("swift", swift);
+hljs.registerLanguage("ruby", ruby);
+hljs.registerLanguage("php", php);
+hljs.registerLanguage("sql", sql);
+hljs.registerLanguage("pgsql", pgsql);
+hljs.registerLanguage("go", go);
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("nix", nix);
+hljs.registerLanguage("haskell", haskell);
+hljs.registerLanguage("kotlin", kotlin);
+hljs.registerLanguage("powershell", powershell);
+
+export default hljs;

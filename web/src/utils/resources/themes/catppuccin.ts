@@ -6,6 +6,7 @@ import {
   Autocomplete,
   InputBase,
   type MantineThemeOverride,
+  NumberInput,
   Paper,
   Select,
   TextInput,
@@ -19,120 +20,6 @@ export const THEME_CATPPUCCIN: MantineThemeOverride = {
   fontFamily: `'Inter', sans-serif`,
   cursorType: "pointer",
   autoContrast: true,
-
-  components: {
-    // Disable border for Quick settings items
-    AccordionItem: AccordionItem.extend({
-      defaultProps: {
-        styles: {
-          item: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-
-    // Disable border for Search bar
-    Autocomplete: Autocomplete.extend({
-      defaultProps: {
-        styles: {
-          input: {
-            borderColor: "transparent",
-          },
-          dropdown: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-
-    // Disable border for Categories
-    UnstyledButton: UnstyledButton.extend({
-      defaultProps: {
-        styles: {
-          root: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-
-    // Disable border for Header/Footer/Navbar
-    AppShellHeader: AppShellHeader.extend({
-      defaultProps: {
-        styles: {
-          header: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-    AppShellFooter: AppShellFooter.extend({
-      defaultProps: {
-        styles: {
-          footer: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-    AppShellNavbar: AppShellNavbar.extend({
-      defaultProps: {
-        styles: {
-          navbar: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-
-    // Disable border for comboboxes
-    InputBase: InputBase.extend({
-      defaultProps: {
-        styles: {
-          input: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-
-    // Disable border for selects
-    Select: Select.extend({
-      defaultProps: {
-        styles: {
-          input: {
-            borderColor: "transparent",
-          },
-          dropdown: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-
-    // Disable border for text input
-    TextInput: TextInput.extend({
-      defaultProps: {
-        styles: {
-          input: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-
-    // Disable border for paper elements
-    Paper: Paper.extend({
-      defaultProps: {
-        styles: {
-          root: {
-            borderColor: "transparent",
-          },
-        },
-      },
-    }),
-  },
 
   black: "#11111b", // Text color on light color scheme
   white: "#cdd6f4", // Background color for some elements on light color scheme
@@ -306,5 +193,130 @@ export const THEME_CATPPUCCIN: MantineThemeOverride = {
       "#363a4f",
       "#1e1e2e",
     ],
+  },
+
+  components: {
+    // Disable border for Quick settings items
+    AccordionItem: AccordionItem.extend({
+      defaultProps: {
+        styles: {
+          item: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for Search bar
+    Autocomplete: Autocomplete.extend({
+      defaultProps: {
+        styles: {
+          input: {
+            borderColor: "transparent",
+          },
+          dropdown: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for Categories
+    UnstyledButton: UnstyledButton.extend({
+      defaultProps: {
+        styles: {
+          root: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for Header/Footer/Navbar
+    AppShellHeader: AppShellHeader.extend({
+      defaultProps: {
+        styles: {
+          header: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+    AppShellFooter: AppShellFooter.extend({
+      defaultProps: {
+        styles: {
+          footer: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+    AppShellNavbar: AppShellNavbar.extend({
+      defaultProps: {
+        styles: {
+          navbar: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for comboboxes
+    InputBase: InputBase.extend({
+      defaultProps: {
+        styles: {
+          input: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for selects
+    Select: Select.extend({
+      defaultProps: {
+        styles: {
+          input: {
+            borderColor: "transparent",
+          },
+          dropdown: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for text input
+    TextInput: TextInput.extend({
+      defaultProps: {
+        styles: {
+          input: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for number input
+    NumberInput: NumberInput.extend({
+      defaultProps: {
+        styles: {
+          input: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
+
+    // Disable border for paper elements
+    Paper: Paper.extend({
+      defaultProps: {
+        styles: {
+          root: {
+            borderColor: "transparent",
+          },
+        },
+      },
+    }),
   },
 };

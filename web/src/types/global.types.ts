@@ -15,7 +15,8 @@ export type IAppTheme =
   | "Rose-Pine"
   | "Custom"
   | "Nord"
-  | "Tokyo-Night";
+  | "Tokyo-Night"
+  | "Frutiger-Aero";
 
 // For translations
 type DotPrefix<T extends string> = T extends "" ? "" : `.${T}`;

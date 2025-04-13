@@ -1,7 +1,6 @@
 import { Text, UnstyledButton } from "@mantine/core";
 import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { IconProps } from "@tabler/icons-react";
 
 interface CategoryCheckboxProps {
   checked: boolean;
@@ -30,6 +29,7 @@ export function CategoryCheckbox({
       {...others}
       onClick={() => onChange(!checked, id)}
       data-checked={checked || undefined}
+      aria-selected={checked || undefined}
       className={classes.button}
     >
       {/* <Image src={image} alt={title} width={40} height={40} /> */}

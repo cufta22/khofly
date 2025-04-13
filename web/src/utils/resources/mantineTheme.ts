@@ -5,9 +5,10 @@ import { THEME_MANTINE_OLD } from "./themes/mantine-old";
 import { THEME_MANTINE_NEW } from "./themes/mantine-new";
 import { THEME_TOKYO_NIGHT } from "./themes/tokyo-night";
 import { THEME_ROSE_PINE } from "./themes/rose-pine";
+import { THEME_FRUTIGER_AERO } from "./themes/frutiger-aero";
 
 export const getMantineTheme = (
-  appTheme: IAppTheme,
+  appTheme: IAppTheme
   // colorScheme: MantineColorScheme
 ): MantineThemeOverride => {
   switch (appTheme) {
@@ -41,6 +42,10 @@ export const getMantineTheme = (
 
     case "Tokyo-Night": {
       return THEME_TOKYO_NIGHT;
+    }
+
+    case "Frutiger-Aero": {
+      return THEME_FRUTIGER_AERO;
     }
 
     // case "Nord": {

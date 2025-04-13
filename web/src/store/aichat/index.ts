@@ -21,14 +21,16 @@ interface AIChatState {
 
   maxTokens: number;
   setMaxTokens: (next: number) => void;
-
   temperature: number;
   setTemperature: (next: number) => void;
+  systemInstruction: string;
+  setSystemInstruction: (next: string) => void;
 
   config: IAIConfig;
   setConfig: (next: IAIConfig) => void;
 
   chat: IAIChatMessage[];
+  setChat: (next: IAIChatMessage[]) => void;
   addToChat: (next: IAIChatMessage[]) => void;
   clearChat: () => void;
   streamToChat: (next: { content: string; isGenerating: boolean }) => void;
@@ -50,9 +52,10 @@ export const useAIChatStore = create<AIChatState>()(
 
       maxTokens: 2048,
       setMaxTokens: (next) => set({ maxTokens: next }),
-
       temperature: 0.5,
       setTemperature: (next) => set({ temperature: next }),
+      systemInstruction: "",
+      setSystemInstruction: (next) => set({ systemInstruction: next }),
 
       config: {
         hasGeminiKey: false,
@@ -60,6 +63,7 @@ export const useAIChatStore = create<AIChatState>()(
       setConfig: (next) => set({ config: next }),
 
       chat: [],
+      setChat: (next) => set({ chat: next }),
       addToChat: (next) => {
         const current = get();
 

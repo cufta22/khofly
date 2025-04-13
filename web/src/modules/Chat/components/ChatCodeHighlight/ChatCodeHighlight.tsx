@@ -5,16 +5,18 @@ import {
   CopyButton,
   type ElementProps,
   type Factory,
+  Flex,
   ScrollArea,
   type StylesApiProps,
-  Tooltip,
+  Text,
   useProps,
 } from "@mantine/core";
-import { CopyIcon } from "./CopyIcon";
-import classes from "./styles.module.scss";
-import themeClasses from "./theme.module.scss";
+import themeClasses from "@module/Docs/components/common/DocsCodeHighlight/theme.module.scss";
+import classes from "@module/Docs/components/common/DocsCodeHighlight/styles.module.scss";
 import hljs from "./hljs";
 import clsx from "clsx";
+import { CopyIcon } from "@module/Docs/components/common/DocsCodeHighlight/CopyIcon";
+import { getChatLangName, getChatSupportedLang } from "./utils";
 
 export type CodeHighlightStylesNames = "root" | "code" | "pre" | "copy";
 
@@ -43,7 +45,7 @@ const defaultProps: Partial<CodeHighlightProps> = {
   withCopyButton: true,
 };
 
-const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
+const ChatCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   const props = useProps("CodeHighlight", defaultProps, _props);
   const {
     classNames,
@@ -62,21 +64,29 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
     ...others
   } = props;
 
-  const highlighted = hljs.highlight(code.trim(), { language }).value;
+  const highlighted = hljs.highlight(code.trim(), {
+    language: getChatSupportedLang(language),
+  }).value;
+
+  const { langIcon, langName } = getChatLangName(language);
+  const LangIcon = langIcon;
 
   return (
     <Box className={clsx(classes.root, themeClasses.theme)} {...others} dir="ltr">
-      {withCopyButton && (
+      <Flex className={classes.header} p="sm" justify="space-between">
+        <Flex gap="xs">
+          {LangIcon && <LangIcon />}
+          <Text fw="bold">{langName}</Text>
+        </Flex>
+
         <CopyButton value={code.trim()}>
           {({ copied, copy }) => (
-            <Tooltip label={copied ? copiedLabel : copyLabel} fz="sm" position="left">
-              <ActionIcon onClick={copy} variant="none" className={classes.copy}>
-                <CopyIcon copied={copied} />
-              </ActionIcon>
-            </Tooltip>
+            <ActionIcon onClick={copy} variant="light">
+              <CopyIcon copied={copied} />
+            </ActionIcon>
           )}
         </CopyButton>
-      )}
+      </Flex>
 
       <ScrollArea type="hover" dir="ltr" offsetScrollbars={false}>
         <pre className={classes.pre}>
@@ -87,4 +97,4 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   );
 };
 
-export default DocsCodeHighlight;
+export default ChatCodeHighlight;

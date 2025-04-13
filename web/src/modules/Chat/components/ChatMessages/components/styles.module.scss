@@ -15,7 +15,10 @@
   align-items: flex-start;
 
   .message_wrapper {
+    max-width: 100%;
     padding: var(--mantine-spacing-xs);
     flex-direction: column;
+    overflow-y: hidden;
+    text-wrap: wrap;
   }
 }

@@ -11,9 +11,10 @@ const ChatMessages = () => {
   const messages = useAIChatStore((state) => state.chat);
 
   return (
-    <ScrollArea className={classes.scroll_area}>
+    <ScrollArea className={classes.scroll_area} type="never">
       <Flex className={classes.messages} direction="column">
         <Space h={20} />
+        <Space h={70} />
 
         {messages.map((item, i) => {
           if (item.role === "user") {
@@ -25,7 +26,7 @@ const ChatMessages = () => {
 
         {/* {isLoadingChat && <MessageBot content={streamData} />} */}
 
-        <Space h={40} />
+        <Space h={70} />
       </Flex>
     </ScrollArea>
   );
