@@ -15,10 +15,22 @@
   align-items: flex-start;
 
   .message_wrapper {
-    max-width: 100%;
-    padding: var(--mantine-spacing-xs);
+    width: 100%;
+    // padding: var(--mantine-spacing-xs);
     flex-direction: column;
     overflow-y: hidden;
     text-wrap: wrap;
+
+    .thinking_container {
+      width: 100%;
+
+      .thinking_content {
+        max-width: 100%;
+        margin: 0;
+        white-space: pre-wrap;
+        font-size: 14px;
+        font-family: "Inter", sans-serif;
+      }
+    }
   }
 }

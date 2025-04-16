@@ -1,7 +1,9 @@
 import {
+  IconBrandHtml5,
   IconBrandJavascript,
   IconBrandKotlin,
   IconBrandPython,
+  IconBrandRust,
   IconBrandSwift,
   IconBrandTypescript,
   IconMarkdown,
@@ -50,10 +52,20 @@ export const getChatLangName = (
         langIcon: IconBrandJavascript,
         langName: "JavaScript",
       };
+    case "jsx":
+      return {
+        langIcon: IconBrandJavascript,
+        langName: "JSX",
+      };
     case "typescript":
       return {
         langIcon: IconBrandTypescript,
         langName: "TypeScript",
+      };
+    case "tsx":
+      return {
+        langIcon: IconBrandJavascript,
+        langName: "TSX",
       };
     case "markdown":
       return {
@@ -94,6 +106,11 @@ export const getChatLangName = (
       return {
         langIcon: null,
         langName: "XML",
+      };
+    case "html":
+      return {
+        langIcon: IconBrandHtml5,
+        langName: "HTML",
       };
     case "lua":
       return {
@@ -159,6 +176,11 @@ export const getChatLangName = (
       return {
         langIcon: IconBrandKotlin,
         langName: "PowerShell",
+      };
+    case "rust":
+      return {
+        langIcon: IconBrandRust,
+        langName: "Rust",
       };
 
     default:

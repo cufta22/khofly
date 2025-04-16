@@ -287,7 +287,7 @@ export const THEME_FRUTIGER_AERO: MantineThemeOverride = {
       },
 
       styles(theme, props) {
-        const color = props.color;
+        const color = props.color || "blue";
 
         return {
           root: {
@@ -415,44 +415,44 @@ export const THEME_FRUTIGER_AERO: MantineThemeOverride = {
     }),
 
     // Adjust UnstyledButton ( Categories, Tabs??? ) for Aero
-    UnstyledButton: UnstyledButton.extend({
-      styles(theme, props, ctx) {
-        if (props?.className?.includes("tab")) {
-          // @ts-ignore
-          const isTabSelected = props?.["aria-selected"];
+    // UnstyledButton: UnstyledButton.extend({
+    //   styles(theme, props, ctx) {
+    //     if (props?.className?.includes("tab")) {
+    //       // @ts-ignore
+    //       const isTabSelected = props?.["aria-selected"];
 
-          // For Tabs
-          return {
-            root: {
-              backgroundImage: isTabSelected
-                ? `linear-gradient(to bottom, ${theme.colors.aeroBlue[3]}, ${theme.colors.aeroBlue[5]})`
-                : "none",
-              // border: `1px solid ${theme.colors.aeroBlue[6]}`,
-              border: "none",
-              boxShadow: theme.shadows.sm,
-              color: theme.colors.dark[7],
-            },
-          };
-        } else {
-          // @ts-ignore
-          const isTabSelected = props?.["aria-selected"];
+    //       // For Tabs
+    //       return {
+    //         root: {
+    //           backgroundImage: isTabSelected
+    //             ? `linear-gradient(to bottom, ${theme.colors.aeroBlue[3]}, ${theme.colors.aeroBlue[5]})`
+    //             : "none",
+    //           // border: `1px solid ${theme.colors.aeroBlue[6]}`,
+    //           border: "none",
+    //           boxShadow: theme.shadows.sm,
+    //           color: theme.colors.dark[7],
+    //         },
+    //       };
+    //     } else {
+    //       // @ts-ignore
+    //       const isTabSelected = props?.["aria-selected"];
 
-          // For Categories
-          return {
-            root: {
-              backgroundColor: "transparent",
-              backgroundImage: isTabSelected
-                ? `linear-gradient(to bottom, ${theme.colors.aeroBlue[3]}, ${theme.colors.aeroBlue[5]})`
-                : `linear-gradient(to bottom, ${theme.colors.gray[3]}, ${theme.colors.gray[5]})`,
-              // border: `1px solid ${theme.colors.aeroBlue[6]}`,
-              border: "none",
-              boxShadow: theme.shadows.sm,
-              color: theme.colors.dark[7],
-            },
-          };
-        }
-      },
-    }),
+    //       // For Categories
+    //       return {
+    //         root: {
+    //           backgroundColor: "transparent",
+    //           backgroundImage: isTabSelected
+    //             ? `linear-gradient(to bottom, ${theme.colors.aeroBlue[3]}, ${theme.colors.aeroBlue[5]})`
+    //             : `linear-gradient(to bottom, ${theme.colors.gray[3]}, ${theme.colors.gray[5]})`,
+    //           // border: `1px solid ${theme.colors.aeroBlue[6]}`,
+    //           border: "none",
+    //           boxShadow: theme.shadows.sm,
+    //           color: theme.colors.dark[7],
+    //         },
+    //       };
+    //     }
+    //   },
+    // }),
 
     Tabs: Tabs.extend({
       classNames: {

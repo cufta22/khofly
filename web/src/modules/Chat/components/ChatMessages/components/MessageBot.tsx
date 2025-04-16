@@ -1,6 +1,6 @@
-import { Flex, Table, Text, useMantineTheme } from "@mantine/core";
+import { Accordion, Flex, Loader, Table, Text, useMantineTheme } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconSparkles } from "@tabler/icons-react";
+import { IconBulb } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { useAIChatStore } from "@store/aichat";
 
@@ -9,6 +9,8 @@ import remarkGfm from "remark-gfm"; // Plugin for GFM
 
 // For code highlight
 import ChatCodeHighlight from "../../ChatCodeHighlight/ChatCodeHighlight";
+import { useMemo } from "react";
+import { getAIChatModelIcon } from "@module/Chat/utils";
 
 interface Props {
   content: string;
@@ -18,18 +20,59 @@ const MessageBot: React.FC<Props> = ({ content }) => {
   const theme = useMantineTheme();
 
   const model = useAIChatStore((state) => state.model);
+  console.log(model.value);
+
+  const isReasoning = content.startsWith("<think>");
+
+  // Process the content to handle the <thinking> tags
+  const { visibleContent, thinkContent } = useMemo(() => {
+    if (!isReasoning) return { visibleContent: content, thinkContent: "" };
+
+    // Match content inside <thinking> tags
+    const thinkMatch = content.match(/<think>([\s\S]*?)<\/think>/);
+
+    // Extract thinking content if found
+    const thinkContent = thinkMatch ? thinkMatch[1].trim() : null;
+
+    // Remove the <thinking> section from the visible content
+    const visibleContent = content.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
+
+    return { visibleContent, thinkContent };
+  }, [content]);
 
   return (
     <Flex className={classes.message_bot} direction="column">
       <Flex className={classes.message_header}>
         <Flex align="center" gap="sm">
-          <IconSparkles style={getIconStyle(26)} color={theme.colors.pink[5]} />
+          {getAIChatModelIcon(model.value, 26)}
 
           <Text>{model.label}</Text>
         </Flex>
       </Flex>
 
-      <Flex className={classes.message_wrapper}>
+      <Flex className={classes.message_wrapper} direction="column">
+        {isReasoning && (
+          <Accordion className={classes.thinking_container} variant="separated" mt="md">
+            <Accordion.Item value="photos">
+              <Accordion.Control
+                icon={
+                  thinkContent ? (
+                    <IconBulb style={getIconStyle(26)} color={theme.colors.blue[6]} />
+                  ) : (
+                    <Loader size={26} />
+                  )
+                }
+              >
+                Thinking
+              </Accordion.Control>
+              <Accordion.Panel>
+                <pre className={classes.thinking_content}>
+                  {thinkContent ? thinkContent : visibleContent}
+                </pre>
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+        )}
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
@@ -64,10 +107,8 @@ const MessageBot: React.FC<Props> = ({ content }) => {
             },
           }}
         >
-          {content}
+          {isReasoning ? (thinkContent ? visibleContent : "") : content}
         </ReactMarkdown>
-
-        {/* {content} */}
       </Flex>
     </Flex>
   );

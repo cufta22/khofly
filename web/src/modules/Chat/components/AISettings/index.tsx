@@ -18,7 +18,7 @@ import classes from "./styles.module.scss";
 import { useEffect } from "react";
 import { useInstanceStore } from "@store/instance";
 import { type IAIProvider, useAIChatStore } from "@store/aichat";
-import { getAIChatModelSource } from "@module/Chat/utils";
+import { getAIChatModelIcon, getAIChatModelSource } from "@module/Chat/utils";
 import { getAIChatModels, getAIChatProviders } from "@module/Chat/data";
 import { IconCurrencyDollar, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -66,30 +66,6 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
     }
   };
 
-  const getIconModel = (value: string) => {
-    if (value.includes("llama-") || value.includes("m2m100")) {
-      return <Image src="/assets/engines/meta-icon.svg" fit="contain" w={16} h={16} />;
-    }
-    if (value.includes("gemma-")) {
-      return <Image src="/assets/engines/google-icon.svg" w={16} h={16} />;
-    }
-    if (value.includes("mistral-")) {
-      return <Image src="/assets/engines/mistral-icon.svg" w={16} h={16} />;
-    }
-    if (value.includes("deepseek")) {
-      return <Image src="/assets/engines/deepseek-icon.svg" w={16} h={16} />;
-    }
-    if (value.includes("qwen")) {
-      return <Image src="/assets/engines/qwen-icon.svg" w={16} h={16} />;
-    }
-    if (value.includes("gemini")) {
-      return <Image src="/assets/engines/gemini-icon.svg" w={16} h={16} />;
-    }
-    if (value.includes("imagen")) {
-      return <Image src="/assets/engines/deepmind-icon.svg" w={16} h={16} />;
-    }
-  };
-
   const renderSelectOptionProvider: SelectProps["renderOption"] = ({ option }) => (
     <Group flex="1" gap="xs">
       {getIconProvider(option.value)}
@@ -98,7 +74,7 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
   );
   const renderSelectOptionModel: SelectProps["renderOption"] = ({ option }) => (
     <Group flex="1" gap="xs">
-      {getIconModel(option.value)}
+      {getAIChatModelIcon(option.value, 16)}
       {option.label}
 
       {["imagen-3.0-generate-002", "gemini-2.5-pro-preview"].includes(option.value) && (
@@ -188,7 +164,7 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
       <Select
         label="Model"
         renderOption={renderSelectOptionModel}
-        leftSection={getIconModel(model.value)}
+        leftSection={getAIChatModelIcon(model.value, 16)}
         mt="sm"
         data={modelData}
         value={model.value}

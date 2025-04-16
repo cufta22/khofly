@@ -112,6 +112,10 @@ export const getAIChatModels = (provider: IAIProvider) => {
               label: "Gemma 7b - it",
               value: "@hf/google/gemma-7b-it",
             },
+            {
+              label: "Gemma 3 12b - it",
+              value: "@cf/google/gemma-3-12b-it",
+            },
           ],
         },
 
@@ -165,6 +169,14 @@ export const getAIChatModels = (provider: IAIProvider) => {
             {
               label: "Qwen1.5 14b - chat, awq",
               value: "@cf/qwen/qwen1.5-14b-chat-awq",
+            },
+            {
+              label: "Qwen2.5 Coder 32b - instruct",
+              value: "@cf/qwen/qwen2.5-coder-32b-instruct",
+            },
+            {
+              label: "QwQ 32b",
+              value: "@cf/qwen/qwq-32b",
             },
           ],
         },

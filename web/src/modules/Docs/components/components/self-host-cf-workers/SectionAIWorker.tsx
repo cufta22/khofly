@@ -17,68 +17,6 @@ export default {
   async fetch(request, env) {
     const { method } = request;
 
-    const url = new URL(request.url); // Get the URL of the request
-    const prompt = url.searchParams.get('prompt'); // Retrieve the 'prompt' query parameter
-    const model = url.searchParams.get('model'); // Retrieve the 'model' query parameter
-
-    const source_lang = url.searchParams.get('source_lang'); // For translate
-    const target_lang = url.searchParams.get('target_lang'); // For translate
-
-    if (request.method === "OPTIONS") {
-      return new Response("OK", {
-        headers: corsHeaders
-      });
-    }
-
-    if (method !== "GET") {
-      return new Response('Method not allowed', { 
-        status: 405, 
-        headers: corsHeaders 
-      });
-    }
-
-    if (!prompt) return new Response('Prompt is missing', { status: 400 });
-
-    try {
-      // Different body for different models
-      const body = model.includes("m2m100") ? {
-        text: prompt,
-        source_lang: source_lang,
-        target_lang: target_lang
-      } : {
-        prompt: prompt
-      };
-
-      let response = await env.AI.run(model, body);
-      return Response.json(response, {
-        headers: corsHeaders
-      });
-    } catch (error) {
-      // Handle error
-      return new Response('Error: ' + error?.message, { 
-        status: 500, 
-        headers: corsHeaders 
-      });
-    }
-  }
-};
-`;
-
-const CODE_WORKER_2 = `const getCorsHeaders = (origin) => ({
-  'Access-Control-Allow-Headers': '*', 
-  'Access-Control-Allow-Methods': 'POST, OPTIONS', 
-  'Access-Control-Allow-Origin': origin, 
-});
-
-export default {
-  async fetch(request, env) {
-    const { method } = request;
-
-    const originUrl = new URL(request.headers.get("origin"));
-    const { hostname, origin } = originUrl;
-    const corsHeaders = getCorsHeaders(["localhost", "staging.khofly.com", "khofly.com"].includes(hostname) ? origin : "https://khofly.com")
-
-
     if (request.method === "OPTIONS") {
       return new Response("OK", {
         headers: corsHeaders
@@ -220,7 +158,7 @@ const SectionAIWorker = () => {
       <DocsSubtitle>AI Worker Code</DocsSubtitle>
 
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_WORKER_2} language="javascript" />
+        <DocsCodeHighlight code={CODE_WORKER} language="javascript" />
       </Paper>
       <DocsText>Last updated: 06.04.2025</DocsText>
     </>

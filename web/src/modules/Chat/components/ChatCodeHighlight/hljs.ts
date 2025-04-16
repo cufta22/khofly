@@ -28,6 +28,9 @@ import nix from "highlight.js/lib/languages/nix";
 import haskell from "highlight.js/lib/languages/haskell";
 import kotlin from "highlight.js/lib/languages/kotlin";
 import powershell from "highlight.js/lib/languages/powershell";
+import rust from "highlight.js/lib/languages/rust";
+import scala from "highlight.js/lib/languages/scala";
+import r from "highlight.js/lib/languages/r";
 
 // A few more popular ones for /chat
 hljs.registerLanguage("bash", bash);
@@ -35,7 +38,9 @@ hljs.registerLanguage("nginx", nginx);
 hljs.registerLanguage("yaml", yaml);
 hljs.registerLanguage("dockerfile", dockerfile);
 hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("jsx", javascript);
 hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("tsx", typescript);
 hljs.registerLanguage("markdown", markdown);
 hljs.registerLanguage("python", python);
 hljs.registerLanguage("java", java);
@@ -44,6 +49,7 @@ hljs.registerLanguage("cpp", cpp);
 hljs.registerLanguage("csharp", csharp);
 hljs.registerLanguage("css", css);
 hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("html", xml);
 hljs.registerLanguage("lua", lua);
 hljs.registerLanguage("elixir", elixir);
 hljs.registerLanguage("swift", swift);
@@ -57,5 +63,8 @@ hljs.registerLanguage("nix", nix);
 hljs.registerLanguage("haskell", haskell);
 hljs.registerLanguage("kotlin", kotlin);
 hljs.registerLanguage("powershell", powershell);
+hljs.registerLanguage("rust", rust);
+hljs.registerLanguage("scala", scala);
+hljs.registerLanguage("r", r);
 
 export default hljs;
