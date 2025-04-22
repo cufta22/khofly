@@ -35,7 +35,7 @@ const DocsResourcesInternationalization = () => {
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["customSearXNG"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["customKhoflyAPI"] }}
         next={{ ...DOCS_CARD_DATA(theme)["siteData"] }}
       />
     </Container>

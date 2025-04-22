@@ -92,18 +92,20 @@ export const shouldDisplayEquation = (query: string) => {
 export const shouldDisplayCurrency = (query: string) => {
   const currency1 = query.split(" ")[0]?.toLocaleLowerCase();
   const currency2 = query.split(" ")[2]?.toLocaleLowerCase();
+  const to = query.split(" ")[1]?.toLocaleLowerCase();
 
   let sdCurr = false;
 
   const currencyArray = Object.keys(KEYWORDS_CURRENCY).map((val) => val.toLocaleLowerCase());
 
-  // Display currency convertor if query is unclear
-  if (currencyArray.includes(query)) sdCurr = true;
+  // Display for exact query
+  if (query === "currency convert") sdCurr = true;
 
-  if (
-    (query?.includes("to") && currencyArray.includes(currency1?.toLocaleLowerCase())) ||
-    currencyArray.includes(currency2?.toLocaleLowerCase())
-  ) {
+  // Display currency convertor if query is unclear, ex. USD
+  if (currencyArray.includes(query?.toLocaleLowerCase())) sdCurr = true;
+
+  // Display for ex. USD to EUR
+  if (to === "to" && currencyArray.includes(currency1) && currencyArray.includes(currency2)) {
     sdCurr = true;
   }
 
@@ -169,4 +171,3 @@ export const shouldDisplayCowsay = (query: string) => {
     message: query.replace(/^cowsay\s*/, ""),
   };
 };
-

@@ -1,12 +1,5 @@
-import { LinksGroupProps } from "@components/Navbar/Docs/components/LinksGroup";
-import {
-  IconApi,
-  IconBox,
-  IconPackage,
-  IconPick,
-  IconSearch,
-  IconServer,
-} from "@tabler/icons-react";
+import type { LinksGroupProps } from "@components/Navbar/Docs/components/LinksGroup";
+import { IconApi, IconBox, IconSearch, IconServer } from "@tabler/icons-react";
 
 export const NAVBAR_DATA: LinksGroupProps[] = [
   {
@@ -82,6 +75,11 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
       {
         label: "Lyrics",
         link: "/docs/3rd-party-lyrics",
+        isWip: false,
+      },
+      {
+        label: "AI Providers",
+        link: "/docs/3rd-party-ai",
         isWip: false,
       },
       // Nominatim stuff

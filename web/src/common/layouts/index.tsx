@@ -61,7 +61,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   }, [pathname]);
 
   // Adjust document title for query
-  useTitleQuery({ isSearch, isChat });
+  useTitleQuery({ isSearch, isIndex });
 
   // Initialize instance URLs
   useInstanceInit();

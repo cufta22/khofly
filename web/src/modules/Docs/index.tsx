@@ -12,6 +12,7 @@ import DocsResourcesSetDefault from "./components/resources-set-default";
 import DocsResourcesCustomSearxng from "./components/resources-custom-searxng";
 import DocsResourcesInternationalization from "./components/resources-i18n";
 import DocsResourcesSiteData from "./components/resources-site-data";
+import DocsResourcesCustomKhoflyAPI from "./components/resources-custom-khofly-api";
 
 import DocsSelfHostSearxng from "./components/self-host-searxng";
 import DocsSelfHostCFWorkers from "./components/self-host-cf-workers";
@@ -21,7 +22,7 @@ import DocsSelfHostKhoflyAPI from "./components/self-host-khofly-api";
 import Docs3rdPartyWeather from "./components/3rdparty-weather";
 import Docs3rdPartyCurrency from "./components/3rdparty-currency";
 import Docs3rdPartyLyrics from "./components/3rdparty-lyrics";
-import DocsResourcesCustomKhoflyAPI from "./components/resources-custom-khofly-api";
+import Docs3rdPartyAI from "./components/3rd-party-ai";
 
 const Docs = () => {
   const params = useParams();
@@ -52,6 +53,7 @@ const Docs = () => {
     "3rd-party-weather": <Docs3rdPartyWeather />,
     "3rd-party-currency": <Docs3rdPartyCurrency />,
     "3rd-party-lyrics": <Docs3rdPartyLyrics />,
+    "3rd-party-ai": <Docs3rdPartyAI />,
   }[page];
 
   return <>{docsPage || <DocsIndex />}</>;

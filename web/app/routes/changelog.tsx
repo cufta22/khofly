@@ -1,5 +1,6 @@
 import PageChangelog from "@module/Changelog";
 import type { Route } from "./+types/changelog";
+import { CHANGELOG_META_FUNCTION } from "app/meta/changelog";
 
 export interface ILoaderData_Changelog {
   data: string;
@@ -18,6 +19,9 @@ export async function loader() {
 
   return { data: changelog };
 }
+
+// Meta tags
+export const meta = CHANGELOG_META_FUNCTION;
 
 const Changelog = ({ loaderData }: Route.ComponentProps) => {
   return <PageChangelog loaderData={loaderData} />;

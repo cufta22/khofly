@@ -1,24 +1,13 @@
-import { Blockquote, Code, Container, Paper, Text, useMantineTheme } from "@mantine/core";
+import { Blockquote, Code, Container, Text, useMantineTheme } from "@mantine/core";
 import DocsText from "./common/DocsText";
 import DocsSubtitle from "./common/DocsSubtitle";
 import RemixLink from "@components/RemixLink";
 import DocsTitle from "./common/DocsTitle";
-import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
 import DocsNextPrev from "./common/DocsNextPrev";
 
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 import { IconApiApp } from "@tabler/icons-react";
 import { usePrimaryColor } from "@hooks/use-primary-color";
-
-const CODE_SEARXNG_CONFIG = `
-search:
-  formats:
-    - html
-    - json # add this
-
-server:
-  secret_key: "sercet" # make sure to change this
-`;
 
 const DocsResourcesCustomKhoflyAPI = () => {
   const theme = useMantineTheme();
@@ -47,29 +36,20 @@ const DocsResourcesCustomKhoflyAPI = () => {
         .
       </Blockquote>
 
-      <DocsSubtitle>1. Change settings yaml to include the following changes</DocsSubtitle>
+      <DocsSubtitle>1. Make sure that you have ENV set up correctly</DocsSubtitle>
 
       <DocsText>
-        Add output format <Code>json</Code>, this will allow you to use the search as API and return
-        a JSON response, and make sure to set a long randomly generated string for server secret (
-        ex. run <Code>openssl rand -hex 32</Code> )
+        Check if you have <Code>.env.local</Code> or just <Code>.env</Code> file in{" "}
+        <Code>/api</Code> folder.
       </DocsText>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlightTabs
-          code={[
-            {
-              code: CODE_SEARXNG_CONFIG,
-              language: "yaml",
-              fileName: "/etc/searxng/settings.yml",
-            },
-          ]}
-        />
-      </Paper>
+      <DocsText>
+        Get all the necessary API keys, the guides can be found in 3rd-party section.
+      </DocsText>
 
       <DocsText>
-        After this change restart your SearXNG instance with{" "}
-        <Code>sudo service uwsgi restart searxng</Code>
+        Make sure that <Code>IS_SELF_HOST</Code> is set to <Code>1</Code> and you have all your web
+        client domains added in <Code>CORS_URLS</Code>.
       </DocsText>
 
       <DocsSubtitle>Finally - Add your instance to Khofly</DocsSubtitle>
@@ -85,7 +65,7 @@ const DocsResourcesCustomKhoflyAPI = () => {
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)["customSearXNG"] }}
         next={{ ...DOCS_CARD_DATA(theme)["i18n"] }}
       />
     </Container>

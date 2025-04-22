@@ -1,0 +1,12 @@
+{
+  "hosts": [
+    {
+      "name": "Khofly - prod",
+      "url": "https://khofly.com"
+    },
+    {
+      "name": "Khofly - staging",
+      "url": "https://staging.khofly.com"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ import { setCookie } from "@utils/functions/cookies";
 
 import { useClientServerState } from "@store/client-server";
 import type { FlagProps } from "@components/Icons/types";
-import { USFlag, DEFlag } from "@components/Icons/Flags";
+import { GBFlag } from "@components/Icons/Flags";
 
 interface ILangData {
   label: DotNestedKeys<ITranslations>;
@@ -23,7 +23,7 @@ const LANG_DATA: ILangData[] = [
   {
     label: "pages.settings.interface.select_lang_options.en",
     value: "en",
-    icon: USFlag,
+    icon: GBFlag, // USFlag | GBFlag
   },
   // {
   //   label: "pages.settings.interface.select_lang_options.de",

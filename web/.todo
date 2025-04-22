@@ -4,15 +4,7 @@ reduce file sizes
 
 add all translations
 
-move meta to /meta & add meta for every page that needs
-
 see why most results are in DE ( server region )
-
-update .env on deployments
-
-update ai worker code in Docs
-
-Add 3rd party section in Docs for gemini
 
 Finish time zone IA
 
@@ -20,9 +12,10 @@ Improve all themes
 
 See how to get rid of static.cloudflareinsights.com script
 
-Corrency convert gets displayed for "what are all the planets in our solar system" with AI Answer
+Fix up Private Video Player
 
-3rd party - Gemini
+Display OrganizeResults if tab === "general" || tab === ""
+OrganizeResults borked on staging???
 
 Responsive: index search bar with css
 Responsive: search page bigger text & spacing

@@ -1,12 +1,13 @@
 import type { MetaFunction } from "react-router";
 
-export const CHAT_META_FUNCTION: MetaFunction = () => [
+export const DOCS_META_FUNCTION: MetaFunction = () => [
   {
-    title: "Khofly | AI Chat",
+    title: "Khofly | Docs",
   },
   {
     name: "description",
-    content: "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
+    content:
+      "Here you'll find all the important technical information regarding Khofly. Documentation is always being updated so if you notice any missing/wrong information make sure to report it either on GitHub or Discord.",
   },
   {
     name: "keywords",
@@ -19,7 +20,8 @@ export const CHAT_META_FUNCTION: MetaFunction = () => [
   },
   {
     property: "og:description",
-    content: "Khofly - a modern SearXNG front-end, focused on speed and user experience.",
+    content:
+      "Here you'll find all the important technical information regarding Khofly. Documentation is always being updated so if you notice any missing/wrong information make sure to report it either on GitHub or Discord.",
   },
   {
     property: "og:type",

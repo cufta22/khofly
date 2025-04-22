@@ -4,8 +4,8 @@ import { DOCS_META_FUNCTION } from "app/meta/docs";
 // Meta tags
 export const meta = DOCS_META_FUNCTION;
 
-const Docs = () => {
+const Instances = () => {
   return <PageDocs />;
 };
 
-export default Docs;
+export default Instances;

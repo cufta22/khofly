@@ -16,6 +16,8 @@ const Docs3rdPartyLyrics = () => {
         This applies only if you want to self-host Khofly API.
       </Blockquote>
 
+      <DocsSubtitle>Genius</DocsSubtitle>
+
       <DocsText>
         Genius Search API is used to find song data before lyrics are fetched. To use this API go to{" "}
         <DocsLink href="https://genius.com/api-clients" label="this link" /> , sign up, create new

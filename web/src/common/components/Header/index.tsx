@@ -52,7 +52,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     : "";
 
   // If /search
-  const tab = searchParams.get("tab");
+  const tab = searchParams.get("tab") || "general";
 
   return (
     <Group

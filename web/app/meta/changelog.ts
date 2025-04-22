@@ -1,8 +1,8 @@
 import type { MetaFunction } from "react-router";
 
-export const CHAT_META_FUNCTION: MetaFunction = () => [
+export const CHANGELOG_META_FUNCTION: MetaFunction = () => [
   {
-    title: "Khofly | AI Chat",
+    title: "Khofly | Changelog",
   },
   {
     name: "description",
