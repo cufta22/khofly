@@ -43,6 +43,10 @@ const Footer = () => {
       </Flex>
 
       <Group gap="sm" justify="flex-end">
+        <RemixLink to="/instances" prefetch="intent">
+          <Text className={classes.footer_text}>Instances</Text>
+        </RemixLink>
+
         <RemixLink to="/docs" prefetch="intent">
           <Text className={classes.footer_text}>Docs</Text>
         </RemixLink>

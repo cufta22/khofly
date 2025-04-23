@@ -1,5 +1,5 @@
 {
-  "hosts": [
+  "instances": [
     {
       "name": "Khofly - prod",
       "url": "https://khofly.com"

@@ -9,7 +9,7 @@ import { getAIChatModelSource } from "./utils";
 import { profanityFilter } from "@utils/functions/profanityFilter";
 import type { IAIChatMessage } from "@ts/chat.types";
 
-const Chat = () => {
+const PageChat = () => {
   const { isLoading: isLoadingConfig } = useAIConfigSWR();
   const { trigger: triggerChat, isLoading: isLoadingChat, stopStreaming } = useAIChatAPI();
 
@@ -55,4 +55,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default PageChat;

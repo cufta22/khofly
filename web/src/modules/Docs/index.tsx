@@ -24,7 +24,7 @@ import Docs3rdPartyCurrency from "./components/3rdparty-currency";
 import Docs3rdPartyLyrics from "./components/3rdparty-lyrics";
 import Docs3rdPartyAI from "./components/3rd-party-ai";
 
-const Docs = () => {
+const PageDocs = () => {
   const params = useParams();
 
   const page = params.page;
@@ -59,4 +59,4 @@ const Docs = () => {
   return <>{docsPage || <DocsIndex />}</>;
 };
 
-export default Docs;
+export default PageDocs;

@@ -9,22 +9,17 @@ export default defineConfig(({ mode }) => {
   const nodeVersion = process.version;
 
   return {
-    // pnpm run dev
     server: {
       port: Number.parseInt(env.PORT),
+      // Example security headers, set in nginx for prod
       headers: {
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains", // 1 year
         "x-frame-options": "SAMEORIGIN",
       },
     },
 
-    // pnpm run start
     preview: {
       port: Number.parseInt(env.PORT),
-      headers: {
-        "Strict-Transport-Security": "max-age=31536000; includeSubDomains", // 1 year
-        "X-Frame-Options": "SAMEORIGIN",
-      },
     },
 
     plugins: [reactRouter(), tsconfigPaths()],
