@@ -9,7 +9,7 @@ import MediaSwitch from "@module/Settings/components/_general/General/MediaSwitc
 import IASwitch from "@module/Settings/components/_general/General/IASwitch";
 import PrivateSearchSwitch from "@module/Settings/components/_general/General/PrivateSearchSwitch";
 import PrivatePlayerSwitch from "@module/Settings/components/_general/General/PrivarePlayerSwitch";
-import AISwitch from "@module/Settings/components/_general/General/AISwitch";
+import AISwitch from "@module/Settings/components/_general/General/AIAnswerSwitch";
 
 const QSGeneral = () => {
   const t = useTranslate();

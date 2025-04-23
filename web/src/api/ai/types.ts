@@ -15,3 +15,7 @@ export interface IWorkerTranslateResponse {
     total_tokens: number;
   };
 }
+
+export interface IApiAIConfigResponse {
+  hasGeminiKey: boolean;
+}

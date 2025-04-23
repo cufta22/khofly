@@ -3,6 +3,7 @@ import useFetch from "../use-fetch";
 import type { IWorkerTextGenResponse } from "./types";
 import useSWR from "swr";
 import useToast from "@hooks/use-toast";
+import { profanityFilter } from "@utils/functions/profanityFilter";
 
 interface Args {
   prompt: any;
@@ -14,7 +15,7 @@ const getKey = (domain: string, model?: string) => {
   return `api-ai-${domain}-${model}`;
 };
 
-const useAISWR = (args: Args) => {
+const useAIAnswerSWR = (args: Args) => {
   const { fetchData } = useFetch();
   const { toast } = useToast();
 
@@ -23,8 +24,17 @@ const useAISWR = (args: Args) => {
 
   const fetcher = (_key: string) => {
     // Cloudflare AI Worker
-    return fetchData(`${workerDomain}?prompt=${args?.prompt}&model=${workerModel}`, {
-      method: "GET",
+    return fetchData(`${workerDomain}`, {
+      method: "POST",
+      body: JSON.stringify({
+        prompt: `give me a short answer to the following question:  ${profanityFilter(
+          args?.prompt
+        )}`,
+        model: workerModel,
+        messages: [],
+        max_tokens: 512,
+        temperature: 0.2,
+      }),
     }) as Promise<IWorkerTextGenResponse>;
   };
 
@@ -45,4 +55,4 @@ const useAISWR = (args: Args) => {
   });
 };
 
-export default useAISWR;
+export default useAIAnswerSWR;

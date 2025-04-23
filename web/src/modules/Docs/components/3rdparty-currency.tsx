@@ -3,6 +3,7 @@ import DocsTitle from "./common/DocsTitle";
 import { IconCash } from "@tabler/icons-react";
 import DocsText from "./common/DocsText";
 import DocsLink from "./common/DocsLink";
+import DocsSubtitle from "./common/DocsSubtitle";
 
 const Docs3rdPartyCurrency = () => {
   const theme = useMantineTheme();
@@ -16,6 +17,8 @@ const Docs3rdPartyCurrency = () => {
       <Blockquote color="yellow" mt="xl" radius="sm">
         This applies only if you want to self-host Khofly API.
       </Blockquote>
+
+      <DocsSubtitle>Open Exchange Rates</DocsSubtitle>
 
       <DocsText>
         Open Exchange Rates API is used to fetch the latest data on the server. To save on cost

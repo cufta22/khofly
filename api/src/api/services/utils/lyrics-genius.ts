@@ -20,8 +20,6 @@ export const getLyricsFromGenius = async (
   ctx: Context,
   firstRes: IGeniusSearchResponse["response"]["hits"][0]
 ): Promise<ILyricsResponse> => {
-  console.log(firstRes.result.url);
-
   // Fetch the song html
   const songRes = await fetch(firstRes.result.url, {
     headers: GENIUS_HEADERS,

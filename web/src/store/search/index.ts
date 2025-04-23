@@ -1,4 +1,3 @@
-import { ICategories } from "@store/settings";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

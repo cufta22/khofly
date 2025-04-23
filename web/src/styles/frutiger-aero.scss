@@ -1,0 +1,75 @@
+// -------------------------------------------
+// Adjust ActionIcon for Aero
+// -------------------------------------------
+.frutiger-aero-theme-actionIcon {
+  &:hover {
+    color: var(--mantine-color-white);
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-aeroBlue-2),
+      var(--mantine-color-aeroBlue-4)
+    ) !important;
+  }
+  &:active {
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-aeroBlue-5),
+      var(--mantine-color-aeroBlue-4)
+    ) !important;
+  }
+  &:where([data-disabled="true"]) {
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-gray-4),
+      var(--mantine-color-gray-5)
+    ) !important;
+  }
+  &:where([data-disabled="true"]):hover {
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-gray-4),
+      var(--mantine-color-gray-5)
+    ) !important;
+  }
+}
+
+// -------------------------------------------
+// Adjust Button for Aero
+// -------------------------------------------
+.frutiger-aero-theme-button {
+  border: none !important;
+  &:hover {
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-aeroBlue-2),
+      var(--mantine-color-aeroBlue-4)
+    ) !important;
+  }
+  &:active {
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-aeroBlue-5),
+      var(--mantine-color-aeroBlue-4)
+    ) !important;
+  }
+  &:where([data-disabled="true"]) {
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-gray-4),
+      var(--mantine-color-gray-5)
+    ) !important;
+  }
+  &:where([data-disabled="true"]):hover {
+    background-image: linear-gradient(
+      to bottom,
+      var(--mantine-color-gray-4),
+      var(--mantine-color-gray-5)
+    ) !important;
+  }
+}
+
+.frutiger-aero-theme-tabs {
+  ::before {
+    display: none;
+  }
+}

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- AI Chat
 - Favicon proxy through API
 - Search multiple engine categories at once
 - Multiple missing search engines
@@ -16,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Some responsive issues
+- Organize results bugs
+- IACoinFlip bugs
 
 ## [0.7.0] - 01.04.2025
 
@@ -36,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Some responsive issues
+- IACoinFlip bugs
 
 ## [0.6.0] - 01.03.2025
 
@@ -91,7 +95,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tabs - Music, IT, Science
 - Settings - media in general, show search engines in results
 - Quick settings on /search page
-- --X-- Cloudflare Pages as main deployment target
 - Multiple missing search engines
 
 ## [0.2.0] - 01.05.2024
@@ -99,7 +102,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Instant answers - Weather, Stopwatch, Calendar, etc.
-- --X-- SearXNG region - US
 - Shortcuts for home page
 - Private Search option in settings
 - Multiple missing search engines

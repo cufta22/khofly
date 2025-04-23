@@ -2,6 +2,7 @@ import type { CronConfig } from "@elysiajs/cron";
 import { cron_fetchRates } from "./cron/fetchRates";
 import path from "node:path";
 import { cron_clearMedia } from "./cron/clearMedia";
+import { cron_updateInstances } from "./cron/updateInstances";
 
 export const __dirname = new URL(".", import.meta.url).pathname;
 
@@ -49,5 +50,14 @@ export const CRON_CLEAR_MEDIA: CronConfig = {
   pattern: "0 * * * *", // every hour at 0 minutes
   run() {
     cron_clearMedia();
+  },
+};
+
+export const CRON_UPDATE_INSTANCES: CronConfig = {
+  name: "update public instances",
+  // pattern: "* * * * *", // every 1 min, for testing
+  pattern: "0 */12 * * *", // every 12 hours at 0 minutes
+  run() {
+    cron_updateInstances();
   },
 };

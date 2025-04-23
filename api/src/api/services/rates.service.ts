@@ -6,11 +6,13 @@ import { __dirname } from "../../config";
 export const handleGetRates = async (ctx: Context) => {
   const tempDir = path.join(__dirname, `/../temp`);
 
-  const resultJson = await Bun.file(path.join(tempDir, `/exchange_rates.json`)).json();
+  const resultFile = Bun.file(path.join(tempDir, `/exchange_rates.json`));
 
-  if (!resultJson) {
+  if (!resultFile.size) {
     throw ctx.error(400, "exchange_rates.json not found");
   }
+
+  const resultJson = await resultFile.json();
 
   return {
     error: false,

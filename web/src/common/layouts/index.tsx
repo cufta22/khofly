@@ -50,7 +50,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isSearchMaps = isSearch && tab === "maps";
   const headerHeight = isSearch ? 100 : 70;
   const isHeaderCollapsed = isSearch && !pinned;
-  const isHeaderOffset = !isSearch;
+  const isHeaderOffset = !isSearch && !isChat;
 
   useEffect(() => {
     if (!["/search"].includes(pathname)) {
@@ -61,7 +61,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   }, [pathname]);
 
   // Adjust document title for query
-  useTitleQuery({ isSearch, isChat });
+  useTitleQuery({ isSearch, isIndex });
 
   // Initialize instance URLs
   useInstanceInit();
@@ -104,7 +104,8 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
           main: classes.app_main,
           navbar: classes.app_navbar,
           header: clsx(classes.app_header, {
-            [classes.app_header_transparent]: ["/"].includes(pathname),
+            [classes.app_header_transparent]: isIndex,
+            [classes.chat_header_transparent]: isChat,
           }),
           footer: classes.app_footer,
         }}

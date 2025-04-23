@@ -5,7 +5,7 @@ import { Flex, Switch, Text } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 import commonClasses from "../../../common/styles.module.scss";
 
-const AISwitch = () => {
+const AIAnswerSwitch = () => {
   const t = useTranslate();
 
   const useAIAnswers = useSettingsStore((state) => state.useAIAnswers);
@@ -26,4 +26,4 @@ const AISwitch = () => {
   );
 };
 
-export default AISwitch;
+export default AIAnswerSwitch;

@@ -3,6 +3,7 @@ import type { IWorkerTranslateResponse } from "../ai/types";
 import useFetch from "../use-fetch";
 import useSWRMutation from "swr/mutation";
 import useToast from "@hooks/use-toast";
+import { profanityFilter } from "@utils/functions/profanityFilter";
 
 interface Args {
   data: string;
@@ -19,12 +20,16 @@ const useTranslateSWR = () => {
   const fetcher = (_key: string, { arg }: { arg: Args }) => {
     const { data, from, to } = arg;
 
-    return fetchData(
-      `${workerDomain}?prompt=${data}&source_lang=${from}&target_lang=${to}&model=@cf/meta/m2m100-1.2b`,
-      {
-        method: "GET",
-      }
-    ) as Promise<IWorkerTranslateResponse>;
+    return fetchData(`${workerDomain}`, {
+      method: "POST",
+      body: JSON.stringify({
+        prompt: profanityFilter(data),
+        model: "@cf/meta/m2m100-1.2b",
+        source_lang: from,
+        target_lang: to,
+        messages: [],
+      }),
+    }) as Promise<IWorkerTranslateResponse>;
   };
 
   return useSWRMutation<IWorkerTranslateResponse, any, any, Args>(`api-translate`, fetcher, {

@@ -1,12 +1,6 @@
-import { Accordion, Alert, Button, Center, Drawer, Flex, ScrollArea, Text } from "@mantine/core";
-import { IconChevronRight, IconInfoCircle } from "@tabler/icons-react";
+import { Accordion, Alert, Drawer, Flex, ScrollArea, Text } from "@mantine/core";
+import { IconInfoCircle } from "@tabler/icons-react";
 import classes from "./styles.module.scss";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import RemixLink from "@components/RemixLink";
-import { useSWRConfig } from "swr";
-import { useEffect, useState } from "react";
-import useSearchQuery from "@hooks/use-search-query";
 import OCurrent from "./components/OCurrent";
 import OPriority from "./components/OPriority";
 import OBlacklist from "./components/OBlacklist";
@@ -18,7 +12,7 @@ interface Props {
 }
 
 const Organize: React.FC<Props> = ({ isOpen, onClose }) => {
-  const t = useTranslate();
+  // const t = useTranslate();
 
   const [openAlert, { close }] = useDisclosure(true);
 

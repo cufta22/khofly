@@ -1,0 +1,9 @@
+@use "functions" as func;
+@use "variables" as vars;
+
+.chat_input {
+  position: absolute;
+  bottom: var(--mantine-spacing-sm);
+  left: 0;
+  width: 100%;
+}

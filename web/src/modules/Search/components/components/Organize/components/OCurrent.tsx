@@ -37,7 +37,7 @@ const OCurrent = () => {
     });
 
     setCurrentDomains([...new Set(uniqueDomains)]);
-  }, []);
+  }, [q, cacheKeys]);
 
   return (
     <Accordion.Item className={classes.acc_item} value="current">

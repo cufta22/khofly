@@ -1,7 +1,6 @@
 import classes from "./styles.module.scss";
 import { Group, Text } from "@mantine/core";
 
-import React from "react";
 import clsx from "clsx";
 import { useTranslate } from "@hooks/translate/use-translate";
 import { useLocation, useSearchParams } from "react-router";
@@ -14,6 +13,9 @@ import HeaderSearchSettings from "./components/HeaderSearchSettings";
 import HeaderOrganize from "./components/HeaderOrganize";
 import HeaderCode from "./components/HeaderCode";
 import HeaderIndexSettings from "./components/HeaderIndexSettings";
+import HeaderIndexChat from "./components/HeaderIndexChat";
+import { useSettingsStore } from "@store/settings";
+import HeaderAISettings from "./components/HeaderAISettings";
 
 interface Props {
   openNavbar: boolean;
@@ -26,11 +28,14 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
   const [searchParams] = useSearchParams();
 
+  const enableAIChat = useSettingsStore((state) => state.enableAIChat);
+
   const isChangelog = pathname.startsWith("/changelog");
   const isSettings = pathname.startsWith("/settings");
   const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
+  const isChat = pathname.startsWith("/chat");
 
   const isIndex = pathname === "/";
 
@@ -42,10 +47,12 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     ? "Privacy"
     : isDocs
     ? "Docs"
+    : isChat
+    ? "AI Chat"
     : "";
 
   // If /search
-  const tab = searchParams.get("tab");
+  const tab = searchParams.get("tab") || "general";
 
   return (
     <Group
@@ -62,9 +69,14 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {isSearch && <SearchSection />}
 
       {/* Header with title */}
-      {(isDocs || isSettings || isChangelog || isPrivacy) && (
+      {(isDocs || isSettings || isChangelog || isPrivacy || isChat) && (
         <>
-          <HeaderLogo hasBurger={isDocs} openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
+          <HeaderLogo
+            isChat={isChat}
+            hasBurger={isDocs}
+            openNavbar={openNavbar}
+            toggleNavbar={toggleNavbar}
+          />
           <Text className={classes.header_title} ml="sm" fw={700}>
             / {pageTitle}
           </Text>
@@ -73,10 +85,13 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       <div className={classes.divider} />
 
+      {isIndex && enableAIChat && <HeaderIndexChat />}
       {isIndex && <HeaderIndexSettings />}
 
       {isSearch && tab === "general" && <HeaderOrganize />}
       {isSearch && <HeaderSearchSettings />}
+
+      {isChat && <HeaderAISettings />}
 
       {(isDocs || isChangelog) && <HeaderCode />}
     </Group>

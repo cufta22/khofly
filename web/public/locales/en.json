@@ -17,6 +17,10 @@
       "title": "Changelog"
     },
 
+    "instances": {
+      "title": "Instances"
+    },
+
     "settings": {
       "interface": {
         "title": "User interface",
@@ -33,6 +37,7 @@
           "custom": "Custom",
           "mantine_old": "Mantine Old",
           "mantine_new": "Mantine New",
+          "frutiger_aero": "Frutiger Aero",
           "material": "Material",
           "catppuccin": "Catppuccin",
           "rosepine": "Rosé Pine",
@@ -98,6 +103,8 @@
         "toggle_ia": "Enable Instant Answers",
 
         "toggle_ai_answers": "Enable AI Answers",
+
+        "toggle_ai_chat": "Enable AI Chat",
 
         "toggle_private_search": "Enable Private Search",
 

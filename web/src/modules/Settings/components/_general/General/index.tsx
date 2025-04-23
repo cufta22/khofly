@@ -1,9 +1,11 @@
-import { Divider, Paper, Stack, useMantineTheme } from "@mantine/core";
+import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
 
 import {
   IconCursorText,
   IconFavicon,
+  IconFlaskFilled,
   IconLayoutCollage,
+  IconMessage,
   IconMessageCode,
   IconPlayerPlay,
   IconRadar,
@@ -17,11 +19,12 @@ import IASwitch from "./IASwitch";
 import PrivateSearchSwitch from "./PrivateSearchSwitch";
 import MediaSwitch from "./MediaSwitch";
 import ShowEnginesSwitch from "./ShowEnginesSwitch";
-import AISwitch from "./AISwitch";
+import AIAnswerSwitch from "./AIAnswerSwitch";
 import PrivatePlayerSwitch from "./PrivarePlayerSwitch";
 import SettingsRow from "../../common/SettingsRow";
 import SettingsTitle from "../../common/SettingsTitle";
 import SetDefaultButton from "./SetDefaultButton";
+import AIChatSwitch from "./AIChatSwitch";
 
 const SettingsGeneral = () => {
   const theme = useMantineTheme();
@@ -75,7 +78,20 @@ const SettingsGeneral = () => {
         <SettingsRow
           icon={<IconSparkles color={theme.colors.pink["5"]} />}
           desc="pages.settings.general.toggle_ai_answers"
-          control={<AISwitch />}
+          control={<AIAnswerSwitch />}
+        />
+
+        <Divider my="xs" w="100%" />
+
+        <SettingsRow
+          icon={<IconMessage color={theme.colors.pink["5"]} />}
+          desc="pages.settings.general.toggle_ai_chat"
+          tooltip={
+            <Tooltip label="Experimental">
+              <IconFlaskFilled color={theme.colors.cyan["5"]} />
+            </Tooltip>
+          }
+          control={<AIChatSwitch />}
         />
 
         <Divider my="xs" w="100%" />

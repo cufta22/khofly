@@ -1,12 +1,12 @@
 import {
   ActionIcon,
   Box,
-  BoxProps,
+  type BoxProps,
   CopyButton,
-  ElementProps,
-  Factory,
+  type ElementProps,
+  type Factory,
   ScrollArea,
-  StylesApiProps,
+  type StylesApiProps,
   Tooltip,
   useProps,
 } from "@mantine/core";

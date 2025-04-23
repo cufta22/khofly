@@ -86,7 +86,7 @@ const DocsResourcesCustomSearxng = () => {
 
       <DocsNextPrev
         prev={{ ...DOCS_CARD_DATA(theme)["setDefault"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["i18n"] }}
+        next={{ ...DOCS_CARD_DATA(theme)["customKhoflyAPI"] }}
       />
     </Container>
   );

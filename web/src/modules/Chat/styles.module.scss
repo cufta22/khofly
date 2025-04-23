@@ -1,0 +1,11 @@
+@use "functions" as func;
+@use "variables" as vars;
+
+.chat_page {
+  height: calc(100dvh);
+
+  .inner {
+    position: relative;
+    height: 100%;
+  }
+}

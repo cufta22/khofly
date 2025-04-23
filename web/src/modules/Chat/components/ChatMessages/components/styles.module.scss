@@ -1,0 +1,36 @@
+.message_user {
+  width: 100%;
+  justify-content: flex-end;
+
+  .message_wrapper {
+    background-color: var(--mantine-color-dark-5);
+    padding: var(--mantine-spacing-sm);
+    border-radius: var(--mantine-radius-md) var(--mantine-radius-xs) var(--mantine-radius-md)
+      var(--mantine-radius-md);
+  }
+}
+
+.message_bot {
+  width: 100%;
+  align-items: flex-start;
+
+  .message_wrapper {
+    width: 100%;
+    // padding: var(--mantine-spacing-xs);
+    flex-direction: column;
+    overflow-y: hidden;
+    text-wrap: wrap;
+
+    .thinking_container {
+      width: 100%;
+
+      .thinking_content {
+        max-width: 100%;
+        margin: 0;
+        white-space: pre-wrap;
+        font-size: 14px;
+        font-family: "Inter", sans-serif;
+      }
+    }
+  }
+}

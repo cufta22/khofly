@@ -23,7 +23,7 @@ const PageChangelog: React.FC<Props> = ({ loaderData }) => {
         {t("pages.changelog.title")}
       </Title>
 
-      <Accordion variant="separated" defaultValue="customization">
+      <Accordion variant="separated" defaultValue="">
         {formatChangelog(loaderData.data).map((obj, i) => {
           return (
             <Accordion.Item key={i} value={obj.title}>

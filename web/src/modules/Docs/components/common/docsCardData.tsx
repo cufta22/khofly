@@ -1,5 +1,6 @@
-import { MantineTheme } from "@mantine/core";
+import type { MantineTheme } from "@mantine/core";
 import {
+  IconApiApp,
   IconBracketsAngle,
   IconBrandCloudflare,
   IconCookie,
@@ -56,6 +57,12 @@ export const DOCS_CARD_DATA = (theme: MantineTheme) => ({
     icon: <IconSearch style={getIconStyle(28)} color={theme.colors.blue[5]} />,
     title: "Custom SearXNG",
     description: "Change the default SearXNG instance to your own",
+  },
+  customKhoflyAPI: {
+    href: "/docs/custom-khofly-api",
+    icon: <IconApiApp style={getIconStyle(28)} color={theme.colors.blue[5]} />,
+    title: "Custom Khofly API",
+    description: "Change the default API instance to your own",
   },
   i18n: {
     href: "/docs/internationalization",

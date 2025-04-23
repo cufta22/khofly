@@ -1,6 +1,6 @@
 import { Blockquote, Code, Container, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import {  IconHaze } from "@tabler/icons-react";
+import { IconHaze } from "@tabler/icons-react";
 import DocsText from "./common/DocsText";
 import DocsLink from "./common/DocsLink";
 import DocsSubtitle from "./common/DocsSubtitle";
@@ -18,11 +18,6 @@ const Docs3rdPartyWeather = () => {
         This applies only if you want to self-host Khofly API.
       </Blockquote>
 
-      <DocsText>
-        If <Code>OPEN_WEATHER_API_KEY</Code> is set in API .env it will use OpenWeatherMap API
-        otherwise it will default to Open Meteo.
-      </DocsText>
-
       <DocsSubtitle>OpenWeatherMap</DocsSubtitle>
 
       <DocsText>
@@ -39,6 +34,11 @@ const Docs3rdPartyWeather = () => {
         One Call API is "pay as you call" but you still get 1000 free requests per day and you can
         set a limit to how many requests are allowed in the dashboard so you can ensure that you
         don't go over the 1000 requests if you don't want to pay anything.
+      </DocsText>
+
+      <DocsText>
+        If <Code>OPEN_WEATHER_API_KEY</Code> is set in API .env it will use OpenWeatherMap API
+        otherwise it will default to Open Meteo.
       </DocsText>
 
       <DocsSubtitle>Open Meteo</DocsSubtitle>

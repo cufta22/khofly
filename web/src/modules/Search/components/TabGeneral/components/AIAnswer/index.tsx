@@ -1,16 +1,17 @@
-import { Flex, Paper, Skeleton, Text, useMantineTheme } from "@mantine/core";
-import React, { useEffect } from "react";
+import { Button, Flex, Paper, Skeleton, Text, useMantineTheme } from "@mantine/core";
+import { useEffect } from "react";
 
 import classes from "./styles.module.scss";
-import { IconSparkles } from "@tabler/icons-react";
+import { IconExternalLink, IconSparkles } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import useAISWR from "src/api/ai/use-ai-query";
+import useAIAnswerSWR from "src/api/ai/use-ai-answer-query";
 import { useInstanceStore } from "@store/instance";
 import useSearchQuery from "@hooks/use-search-query";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { useSettingsStore } from "@store/settings";
+import { useAIChatStore } from "@store/aichat";
 
 interface Props {
   propsQuery?: string;
@@ -19,21 +20,35 @@ interface Props {
 const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   const theme = useMantineTheme();
 
+  const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
 
   const q = useSearchQuery();
   const queryToUse = propsQuery || q || "";
 
-  const { data, isLoading, mutate } = useAISWR({ prompt: queryToUse });
+  const { data, isLoading, mutate } = useAIAnswerSWR({ prompt: queryToUse });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
   const useAIAnswers = useSettingsStore((state) => state.useAIAnswers);
 
+  const setChat = useAIChatStore((state) => state.setChat);
+
   const linkTextColor = usePrimaryColor(4);
 
   const shouldTrigger = searchParams.get("ai") === "1";
+
+  const handleOpenInChat = () => {
+    // Init conversation
+    setChat([
+      { role: "user", content: queryToUse, isGenerating: false },
+      { role: "assistant", content: data?.response || "", isGenerating: false },
+    ]);
+
+    navigate("/chat");
+  };
 
   useEffect(() => {
     if (!hydrated || !useAIAnswers || !workerDomain || !queryToUse) return;
@@ -70,14 +85,28 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
         </Flex>
       )}
 
-      <Text size="sm" mt="lg" ta="right">
-        Answer provided by AI,{" "}
-        <RemixLink to="/docs/ai-answers">
-          <Text c={linkTextColor} component="span">
-            learn more
+      {data?.response && (
+        <Flex justify="space-between" mt="lg">
+          <Button
+            size="xs"
+            variant="light"
+            color="pink.4"
+            leftSection={<IconExternalLink style={getIconStyle(16)} />}
+            onClick={handleOpenInChat}
+          >
+            Chat
+          </Button>
+
+          <Text size="sm">
+            Answer provided by AI,{" "}
+            <RemixLink to="/docs/ai-answers">
+              <Text c={linkTextColor} component="span">
+                learn more
+              </Text>
+            </RemixLink>
           </Text>
-        </RemixLink>
-      </Text>
+        </Flex>
+      )}
     </Paper>
   );
 };

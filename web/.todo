@@ -4,17 +4,23 @@ reduce file sizes
 
 add all translations
 
-move meta to /meta & add meta for every page that needs
-
 see why most results are in DE ( server region )
-
-Check if all api call 400s are handled well
 
 Finish time zone IA
 
 Improve all themes
 
 See how to get rid of static.cloudflareinsights.com script
+
+Fix up Private Video Player
+
+Add security headers in nginx
+
+Add public instances page
+
+Make search work with JS disabled
+
+Add appName to all meta tags like in instances.ts
 
 Responsive: index search bar with css
 Responsive: search page bigger text & spacing
