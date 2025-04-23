@@ -17,6 +17,10 @@
       "title": "Changelog"
     },
 
+    "instances": {
+      "title": "Instances"
+    },
+
     "settings": {
       "interface": {
         "title": "User interface",

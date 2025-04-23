@@ -8,6 +8,7 @@ interface Props {
 
 const PageInstances: React.FC<Props> = ({ loaderData }) => {
   const t = useTranslate();
+  console.log(loaderData.data);
 
   if (!loaderData.data)
     return (
@@ -25,14 +26,16 @@ const PageInstances: React.FC<Props> = ({ loaderData }) => {
       <Table>
         <Table.Thead>
           <Table.Tr>
-            <Table.Th>Instance name</Table.Th>
+            <Table.Th>Name</Table.Th>
             <Table.Th>URL</Table.Th>
-            <Table.Th>val 1</Table.Th>
-            <Table.Th>val 2</Table.Th>
+            <Table.Th>Version</Table.Th>
+            <Table.Th>TLS</Table.Th>
+            <Table.Th>CSP</Table.Th>
+            <Table.Th>Modified</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {loaderData?.data?.instances.map((element) => (
+          {loaderData?.data?.instances?.map((element) => (
             <Table.Tr key={element.name}>
               <Table.Td>{element.name}</Table.Td>
               <Table.Td>{element.url}</Table.Td>

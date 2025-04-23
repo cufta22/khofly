@@ -19,7 +19,7 @@ const useTitleQuery = (args: Args) => {
 
   const q = useSearchQuery();
 
-  const appName = (!IS_SELF_HOST ? t("_common.app_name") : process.env.APP_NAME) || "Khofly";
+  const appName = (IS_SELF_HOST ? process.env.APP_NAME : t("_common.app_name")) || "Khofly";
 
   useIsomorphicEffect(() => {
     // Reset for index

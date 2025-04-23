@@ -10,8 +10,9 @@ export interface ILoaderData_Changelog {
 export async function loader() {
   const envUrl =
     process.env.HOST === "https://khofly.com"
-      ? "https://raw.githubusercontent.com/cufta22/khofly/master/CHANGELOG.md"
-      : "https://raw.githubusercontent.com/cufta22/khofly/staging/CHANGELOG.md";
+      ? "https://raw.githubusercontent.com/cufta22/khofly/refs/heads/master/CHANGELOG.md"
+      : "https://raw.githubusercontent.com/cufta22/khofly/refs/heads/staging/CHANGELOG.md";
+  const a = "https://raw.githubusercontent.com/cufta22/khofly/refs/heads/staging/instances.json";
 
   const data = await fetch(envUrl);
 

@@ -4,7 +4,7 @@ const appName = process.env.IS_SELF_HOST === "1" ? process.env.APP_NAME : "Khofl
 
 export const INSTANCES_META_FUNCTION: MetaFunction = () => [
   {
-    title: `${appName} | AI Chat`,
+    title: `${appName} | Instances`,
   },
   {
     name: "description",
@@ -17,7 +17,7 @@ export const INSTANCES_META_FUNCTION: MetaFunction = () => [
   // Open Graph stuff
   {
     property: "og:title",
-    content: "Khofly",
+    content: `${appName} | Instances`,
   },
   {
     property: "og:description",

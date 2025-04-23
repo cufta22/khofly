@@ -1,8 +1,10 @@
 import type { MetaFunction } from "react-router";
 
+const appName = process.env.IS_SELF_HOST === "1" ? process.env.APP_NAME : "Khofly";
+
 export const PRIVACY_META_FUNCTION: MetaFunction = () => [
   {
-    title: "Khofly | Privacy",
+    title: `${appName} | Privacy`,
   },
   {
     name: "description",
@@ -15,7 +17,7 @@ export const PRIVACY_META_FUNCTION: MetaFunction = () => [
   // Open Graph stuff
   {
     property: "og:title",
-    content: "Khofly",
+    content: `${appName} | Privacy`,
   },
   {
     property: "og:description",

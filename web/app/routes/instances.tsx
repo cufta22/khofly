@@ -13,9 +13,10 @@ export interface ILoaderData_Instances {
 
 // Get instances info
 export async function loader() {
-  const jsonUrl = "https://raw.githubusercontent.com/cufta22/khofly/staging/instances.json";
+  const apiUrl =
+    process.env.IS_SELF_HOST === "1" ? process.env.API_URL_SELF_HOST : process.env.API_URL_EU1;
 
-  const data = await fetch(jsonUrl);
+  const data = await fetch(`${apiUrl}/instances`);
 
   const instances = await data.json();
 

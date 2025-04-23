@@ -16,7 +16,9 @@ export const cron_fetchRates = async () => {
     if (file === ".gitkeep") continue; // Keep on git
     if (file === "media") continue; // For media files
 
-    await fs.unlink(path.join(tempDir, file));
+    if (file === "exchange_rates.json") {
+      await fs.unlink(path.join(tempDir, file));
+    }
   }
 
   // Make sure that API key exists
