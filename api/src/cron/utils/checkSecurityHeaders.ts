@@ -13,7 +13,7 @@ const securityHeaders = {
   "cache-control": { weight: 0.5 },
 };
 
-const checkSecurityHeaders = (headers: Headers) => {
+export const checkSecurityHeaders = (headers: Headers) => {
   let score = 0;
 
   for (const [headerName, headerInfo] of Object.entries(securityHeaders)) {

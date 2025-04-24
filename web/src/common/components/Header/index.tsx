@@ -31,6 +31,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const enableAIChat = useSettingsStore((state) => state.enableAIChat);
 
   const isChangelog = pathname.startsWith("/changelog");
+  const isInstances = pathname.startsWith("/instances");
   const isSettings = pathname.startsWith("/settings");
   const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
@@ -49,6 +50,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     ? "Docs"
     : isChat
     ? "AI Chat"
+    : isInstances
+    ? "Public Instances"
     : "";
 
   // If /search
@@ -69,7 +72,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {isSearch && <SearchSection />}
 
       {/* Header with title */}
-      {(isDocs || isSettings || isChangelog || isPrivacy || isChat) && (
+      {(isDocs || isSettings || isChangelog || isPrivacy || isChat || isInstances) && (
         <>
           <HeaderLogo
             isChat={isChat}
