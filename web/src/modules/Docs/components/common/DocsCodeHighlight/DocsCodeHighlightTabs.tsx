@@ -4,12 +4,12 @@ import "highlight.js/styles/tokyo-night-dark.css";
 import {
   ActionIcon,
   Box,
-  BoxProps,
+  type BoxProps,
   CopyButton,
-  ElementProps,
-  Factory,
+  type ElementProps,
+  type Factory,
   ScrollArea,
-  StylesApiProps,
+  type StylesApiProps,
   Tooltip,
   UnstyledButton,
   createVarsResolver,
@@ -88,11 +88,9 @@ const defaultProps: Partial<CodeHighlightTabsProps> = {
   withCopyButton: true,
 };
 
-const varsResolver = createVarsResolver<CodeHighlightTabsFactory>(
-  (_, { maxCollapsedHeight }) => ({
-    root: { "--ch-max-collapsed-height": rem(maxCollapsedHeight) },
-  })
-);
+const varsResolver = createVarsResolver<CodeHighlightTabsFactory>((_, { maxCollapsedHeight }) => ({
+  root: { "--ch-max-collapsed-height": rem(maxCollapsedHeight) },
+}));
 
 const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
   const props = useProps("CodeHighlightTabs", defaultProps, _props);
@@ -170,7 +168,7 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
       className={clsx(classes.root, themeClasses.theme)}
     >
       {withHeader && (
-        <div className={classes.header}>
+        <div className={classes.docs_header}>
           <ScrollArea type="never" dir="ltr" offsetScrollbars={false}>
             <div className={classes.files}>{files}</div>
           </ScrollArea>
@@ -195,11 +193,7 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
             {withCopyButton && (
               <CopyButton value={currentCode.code.trim()}>
                 {({ copied, copy }) => (
-                  <Tooltip
-                    label={copied ? copiedLabel : copyLabel}
-                    fz="sm"
-                    position="left"
-                  >
+                  <Tooltip label={copied ? copiedLabel : copyLabel} fz="sm" position="left">
                     <ActionIcon
                       onClick={copy}
                       variant="transparent"
@@ -219,10 +213,7 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
       <ScrollArea type="auto" dir="ltr" offsetScrollbars={false}>
         <Box className={classes.codeWrapper} mod={{ expanded: _expanded }}>
           <pre className={classes.pre}>
-            <code
-              className={classes.code}
-              dangerouslySetInnerHTML={{ __html: highlighted }}
-            />
+            <code className={classes.code} dangerouslySetInnerHTML={{ __html: highlighted }} />
           </pre>
         </Box>
       </ScrollArea>

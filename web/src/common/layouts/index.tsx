@@ -127,7 +127,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
         <AppShell.Main>{children}</AppShell.Main>
 
         {isDocs && (
-          <AppShell.Navbar p="md">
+          <AppShell.Navbar>
             <DocsNavbar />
           </AppShell.Navbar>
         )}
