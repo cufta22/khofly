@@ -17,12 +17,7 @@ const OCurrent = () => {
   const [currentDomains, setCurrentDomains] = useState<string[]>([]);
 
   useEffect(() => {
-    console.log("Cache keys");
-    console.log(cacheKeys);
-
     if (currentDomains.length) return;
-    console.log("Step 1");
-    console.log(`currentDomains length: ${currentDomains.length}`);
 
     // Find the current cacke key with the matching query
     const findPageDataKey = cacheKeys
@@ -37,14 +32,8 @@ const OCurrent = () => {
       });
     if (!findPageDataKey) return;
 
-    console.log("Step 2");
-    console.log(`findPageDataKey: ${findPageDataKey}`);
-
     const cacheHit = cache.get(findPageDataKey) as State<ISearXNGResultsGeneral[]>;
     if (!cacheHit.data) return;
-
-    console.log("Step 3");
-    console.log(`cacheHit data length: ${cacheHit.data.length}`);
 
     // Extract all the results from the
     const pageData = cacheHit.data?.reduce<ISearXNGResultsGeneral["results"][0][]>(
@@ -57,9 +46,6 @@ const OCurrent = () => {
       []
     );
     if (!pageData) return;
-
-    console.log("Step 4");
-    console.log(`pageData length: ${pageData.length}`);
 
     const uniqueDomains: string[] = pageData.map((result: ISearXNGResultsGeneral["results"][0]) => {
       return removeSubdomain(result?.parsed_url?.[1]);
