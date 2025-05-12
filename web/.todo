@@ -18,10 +18,6 @@ Add security headers in nginx
 
 Make search work with JS disabled
 
-Organize results logic change:
-
-- instead of looking through cache, store current domains in zustand every time search in general is performed???
-
 Responsive: index search bar with css
 Responsive: search page bigger text & spacing
 Responsive: add scroll to Docs sidebar
