@@ -13,7 +13,12 @@ interface Props {
 }
 
 const IALyrics: React.FC<Props> = ({ initialQ }) => {
-  const { data: dataLyrics, mutate, isLoading, isValidating } = useLyricsSWR({ initialQ });
+  const {
+    data: dataLyrics,
+    mutate,
+    isLoading,
+    isValidating,
+  } = useLyricsSWR({ initialQ: initialQ || "" });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
 
@@ -25,6 +30,7 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
 
   useEffect(() => {
     if (dataLyrics?.data || isLoading || isValidating) return;
+    // console.log(`Query: ${queryToUse}`);
 
     // Trigger for query change
     if (queryToUse?.includes("lyrics") && hydrated) mutate();

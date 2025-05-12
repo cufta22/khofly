@@ -20,7 +20,7 @@ const PageInstances: React.FC<Props> = ({ loaderData }) => {
   return (
     <Container size="lg" py="xl" pt={40} pb={40}>
       <Title ta="center" mt="md" mb="xl">
-        {t("pages.changelog.title")}
+        {t("pages.instances.title")}
       </Title>
 
       <Table>
@@ -29,18 +29,19 @@ const PageInstances: React.FC<Props> = ({ loaderData }) => {
             <Table.Th>Name</Table.Th>
             <Table.Th>URL</Table.Th>
             <Table.Th>Version</Table.Th>
-            <Table.Th>TLS</Table.Th>
+            {/* <Table.Th>TLS</Table.Th> */}
             <Table.Th>CSP</Table.Th>
-            <Table.Th>Modified</Table.Th>
+            <Table.Th>HTML</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {loaderData?.data?.instances?.map((element) => (
-            <Table.Tr key={element.name}>
-              <Table.Td>{element.name}</Table.Td>
-              <Table.Td>{element.url}</Table.Td>
-              <Table.Td>123</Table.Td>
-              <Table.Td>456</Table.Td>
+          {loaderData?.data?.instances?.map((item) => (
+            <Table.Tr key={item.url}>
+              <Table.Td>{item.name}</Table.Td>
+              <Table.Td>{item.url}</Table.Td>
+              <Table.Td>{item.version}</Table.Td>
+              <Table.Td>{item.csp}</Table.Td>
+              <Table.Td>{item.html}</Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>

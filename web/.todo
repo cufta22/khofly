@@ -16,20 +16,17 @@ Fix up Private Video Player
 
 Add security headers in nginx
 
-Add public instances page
-
 Make search work with JS disabled
-
-Add appName to all meta tags like in instances.ts
 
 Responsive: index search bar with css
 Responsive: search page bigger text & spacing
 Responsive: add scroll to Docs sidebar
+Check for more responsive stuff
 
 ? Docs page for widgets
 ? Save search history in LS
 
-Ideas for v0.8:
+Ideas for v0.9:
 
 More options for downloader
 More AI

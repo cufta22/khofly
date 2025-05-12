@@ -73,7 +73,7 @@ const ChatCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
 
   return (
     <Box className={clsx(classes.root, themeClasses.theme)} {...others} dir="ltr">
-      <Flex className={classes.header} p="sm" justify="space-between">
+      <Flex className={classes.chat_header} p="sm" justify="space-between">
         <Flex gap="xs">
           {LangIcon && <LangIcon />}
           <Text fw="bold">{langName}</Text>

@@ -29,6 +29,8 @@ interface SearchState {
   resetVisitedLinks: () => void;
 
   // Organize search results
+  domainsCurrent: string[];
+  setDomainsCurrent: (next: string[]) => void;
   domainsBlacklist: string[];
   setDomainsBlacklist: (next: string[]) => void;
   domainsPriority: string[];
@@ -60,6 +62,8 @@ export const useSearchStore = create<SearchState>()(
       resetVisitedLinks: () => set({ visitedLinks: [] }),
 
       // Organize search results
+      domainsCurrent: [],
+      setDomainsCurrent: (next) => set({ domainsCurrent: next }),
       domainsBlacklist: [],
       setDomainsBlacklist: (next) => set({ domainsBlacklist: next }),
       domainsPriority: [],

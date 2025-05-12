@@ -2,6 +2,7 @@ import path from "node:path";
 import fs from "node:fs/promises";
 
 import { __dirname } from "../config";
+import { checkSecurityHeaders } from "./utils/checkSecurityHeaders";
 
 interface IInstancesRes {
   instances: {
@@ -53,7 +54,7 @@ export const cron_updateInstances = async () => {
     modInstances.push({
       name: item.name,
       url: item.url,
-      version: `v${resVersionData}${isBeta ? " beta" : ""}`,
+      version: `v${resVersionData.version}${isBeta ? " beta" : ""}`,
       csp: cspScore,
       html: item.html || "Vanilla",
     });
@@ -62,5 +63,10 @@ export const cron_updateInstances = async () => {
   // Create new rates file
   const inputPath = path.join(__dirname, `/../temp/instances.json`);
 
-  await Bun.write(inputPath, JSON.stringify(resData));
+  await Bun.write(
+    inputPath,
+    JSON.stringify({
+      instances: modInstances,
+    })
+  );
 };

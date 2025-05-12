@@ -7,6 +7,9 @@ export interface ILoaderData_Instances {
     instances: {
       name: string;
       url: string;
+      version: string;
+      csp: string;
+      html: string;
     }[];
   };
 }
@@ -20,7 +23,7 @@ export async function loader() {
 
   const instances = await data.json();
 
-  return { data: instances };
+  return { data: instances?.data || [] };
 }
 
 // Meta tags

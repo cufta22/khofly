@@ -19,6 +19,7 @@ import Lyricsbox from "../components/Lyricsbox";
 
 import GeneralRow from "./components/GeneralRow";
 import GeneralSkeleton from "./components/GeneralSkeleton";
+import { removeSubdomain } from "../components/Organize/components/utils";
 
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
@@ -28,6 +29,7 @@ const TabGeneral = () => {
 
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
   const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
+  const setDomainsCurrent = useSearchStore((state) => state.setDomainsCurrent);
 
   const { data, error, isLoading, isValidating, size, setSize, mutate } =
     useSearXNGSWR<ISearXNGResultsGeneral>();
@@ -38,6 +40,34 @@ const TabGeneral = () => {
       mutate();
     }
   }, [hydratedEngines]);
+
+  // Update current domains for organize
+  useEffect(() => {
+    if (!data?.length) return;
+
+    const dataCopy = [...data];
+
+    const pageData = dataCopy.reduce<ISearXNGResultsGeneral["results"][0][]>(
+      (accumulator, currentObject) => {
+        if (currentObject?.results) {
+          accumulator.push(...currentObject.results);
+        }
+        return accumulator;
+      },
+      []
+    );
+    if (!pageData) return;
+
+    const uniqueDomains: string[] = pageData.map((result: ISearXNGResultsGeneral["results"][0]) => {
+      return removeSubdomain(result?.parsed_url?.[1]);
+    });
+
+    setDomainsCurrent([...new Set(uniqueDomains)]);
+
+    return () => {
+      setDomainsCurrent([]);
+    };
+  }, [data]);
 
   const isRateLimit = data?.includes("Too Many Requests" as any);
 
