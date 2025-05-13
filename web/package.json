@@ -1,6 +1,6 @@
 {
   "name": "khofly-search",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "author": "cufta22",
   "private": false,
   "sideEffects": false,
@@ -17,30 +17,30 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@mantine/charts": "^7.17.4",
-    "@mantine/core": "^7.17.4",
-    "@mantine/dates": "^7.17.4",
-    "@mantine/hooks": "^7.17.4",
-    "@mantine/notifications": "^7.17.4",
-    "@mantine/nprogress": "^7.17.4",
-    "@react-router/fs-routes": "^7.5.1",
-    "@react-router/node": "^7.5.1",
-    "@react-router/serve": "^7.5.1",
+    "@mantine/charts": "^8.0.0",
+    "@mantine/core": "^8.0.0",
+    "@mantine/dates": "^8.0.0",
+    "@mantine/hooks": "^8.0.0",
+    "@mantine/notifications": "^8.0.0",
+    "@mantine/nprogress": "^8.0.0",
+    "@react-router/fs-routes": "^7.6.0",
+    "@react-router/node": "^7.6.0",
+    "@react-router/serve": "^7.6.0",
     "@tabler/icons-react": "^3.31.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "highlight.js": "^11.11.1",
-    "isbot": "^5.1.25",
+    "isbot": "^5.1.28",
     "leaflet": "^1.9.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-leaflet": "^5.0.0",
     "react-markdown": "^10.1.0",
-    "react-router": "^7.5.1",
+    "react-router": "^7.6.0",
     "recharts": "2.15.3",
     "remark-gfm": "^4.0.1",
     "swr": "^2.3.3",
-    "zustand": "^5.0.3"
+    "zustand": "^5.0.4"
   },
   "overrides": {
     "react-is": "^19.1.0 "
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@react-router/dev": "^7.5.1",
+    "@react-router/dev": "^7.6.0",
     "@types/leaflet": "^1.9.17",
     "@types/node": "^22",
     "@types/react": "^19.1.2",
@@ -60,9 +60,9 @@
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "sass": "^1.87.0",
+    "sass": "^1.88.0",
     "typescript": "^5.8.3",
-    "vite": "^6.3.2",
+    "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "engines": {

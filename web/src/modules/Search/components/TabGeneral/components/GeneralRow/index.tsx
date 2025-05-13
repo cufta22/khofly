@@ -9,6 +9,7 @@ import { IconLabelImportant } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { removeSubdomain } from "@module/Search/components/components/Organize/components/utils";
 import { useFaviconAPI } from "src/api/favicon";
+import ResultMenu from "./ResultMenu";
 
 interface Props {
   rowData: ISearXNGResultsGeneral["results"][0];
@@ -22,10 +23,9 @@ const GeneralRow: React.FC<Props> = ({ rowData }) => {
   const theme = useMantineTheme();
 
   const visitedLinks = useSearchStore((state) => state.visitedLinks);
+  const domainsPriority = useSearchStore((state) => state.domainsPriority);
 
   const showEngines = useSettingsStore((state) => state.showEngines);
-
-  const domainsPriority = useSearchStore((state) => state.domainsPriority);
 
   const isPriority = domainsPriority.find((item) => item === removeSubdomain(parsed_url?.[1]));
 
@@ -53,6 +53,8 @@ const GeneralRow: React.FC<Props> = ({ rowData }) => {
           {isPriority && (
             <IconLabelImportant style={getIconStyle(24)} color={theme.colors.green["6"]} />
           )}
+
+          <ResultMenu url={url} domain={parsed_url[1]} />
         </Flex>
 
         {/* Website title */}

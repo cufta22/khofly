@@ -45,11 +45,6 @@ interface SettingsState {
   useInstantAnswers: boolean;
   setUseInstantAnswers: (next: boolean) => void;
 
-  useAIAnswers: boolean;
-  setUseAIAnswers: (next: boolean) => void;
-  enableAIChat: boolean;
-  setEnablAIChat: (next: boolean) => void;
-
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;
 
@@ -58,6 +53,17 @@ interface SettingsState {
 
   privatePlayer: boolean;
   setPrivatePlayer: (next: boolean) => void;
+
+  useAIAnswers: boolean;
+  setUseAIAnswers: (next: boolean) => void;
+
+  useAIChat: boolean;
+  setUseAIChat: (next: boolean) => void;
+
+  useAISummary: boolean;
+  setUseAISummary: (next: boolean) => void;
+  aiSummaryLength: "short" | "long";
+  setAISummaryLenght: (next: "short" | "long") => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -88,11 +94,6 @@ export const useSettingsStore = create<SettingsState>()(
       useInstantAnswers: true,
       setUseInstantAnswers: (next) => set({ useInstantAnswers: next }),
 
-      useAIAnswers: false,
-      setUseAIAnswers: (next) => set({ useAIAnswers: next }),
-      enableAIChat: false,
-      setEnablAIChat: (next) => set({ enableAIChat: next }),
-
       openInNewTab: false,
       setOpenInNewTab: (next) => set({ openInNewTab: next }),
 
@@ -101,6 +102,17 @@ export const useSettingsStore = create<SettingsState>()(
 
       privatePlayer: false,
       setPrivatePlayer: (next) => set({ privatePlayer: next }),
+
+      useAIAnswers: false,
+      setUseAIAnswers: (next) => set({ useAIAnswers: next }),
+
+      useAIChat: false,
+      setUseAIChat: (next) => set({ useAIChat: next }),
+
+      useAISummary: false,
+      setUseAISummary: (next) => set({ useAISummary: next }),
+      aiSummaryLength: "short",
+      setAISummaryLenght: (next) => set({ aiSummaryLength: next }),
     }),
     {
       onRehydrateStorage: () => (state) => {
@@ -120,11 +132,12 @@ export const useSettingsStore = create<SettingsState>()(
         useAutocomplete: state.useAutocomplete,
         autocompleteEngine: state.autocompleteEngine,
         useInstantAnswers: state.useInstantAnswers,
-        useAIAnswers: state.useAIAnswers,
-        enableAIChat: state.enableAIChat,
         openInNewTab: state.openInNewTab,
         privateSearch: state.privateSearch,
         privatePlayer: state.privatePlayer,
+        useAIAnswers: state.useAIAnswers,
+        useAIChat: state.useAIChat,
+        useAISummary: state.useAISummary,
       }),
     }
   )

@@ -46,15 +46,19 @@ const PrivateVideoPlayer: React.FC<Props> = ({ url, onClose }) => {
         size: "lg",
       }}
     >
-      {data?.data.url ? (
+      {isMutating ? (
+        <Center className={classes.media_player} p="xl">
+          <Loader size="xl" />
+        </Center>
+      ) : data?.error && !data?.data?.url ? (
+        <Center className={classes.media_player} p="xl">
+          <Text>Download failed</Text>
+        </Center>
+      ) : (
         <video className={classes.media_player} controls>
           <source src={data?.data.url} type="video/mp4" />
           {/* <track kind="captions" /> */}
         </video>
-      ) : (
-        <Center className={classes.media_player} p="xl">
-          <Loader size="xl" />
-        </Center>
       )}
     </Modal>
   );

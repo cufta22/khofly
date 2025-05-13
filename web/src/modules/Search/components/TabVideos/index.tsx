@@ -11,7 +11,7 @@ import { useEnginesStore } from "@store/engines";
 import PrivateVideoPlayer from "../components/PrivatePlayer/videos";
 
 const TabVideos = () => {
-  const hydrated = useEnginesStore((state) => state.hydrated);
+  const hydratedEngines = useEnginesStore((state) => state.hydrated);
 
   const [privatePlayerURL, setPrivatePlayerURL] = useState("");
 
@@ -20,8 +20,8 @@ const TabVideos = () => {
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length && hydrated) mutate();
-  }, [hydrated]);
+    if (!data?.length && hydratedEngines) mutate();
+  }, [hydratedEngines]);
 
   return (
     <Flex className={classes.tab_videos} direction="column">
@@ -46,7 +46,7 @@ const TabVideos = () => {
           ));
         })}
 
-        {(isLoading || isValidating || !hydrated) &&
+        {(isLoading || isValidating || !hydratedEngines) &&
           // Loading state
           Array.from(Array(30).keys()).map((e, i) => <VideoSkeleton key={i} />)}
       </SimpleGrid>

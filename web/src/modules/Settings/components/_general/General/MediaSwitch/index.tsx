@@ -15,6 +15,7 @@ const MediaSwitch = () => {
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
       {displayMedia && (
         <Select
+          allowDeselect={false}
           data={[
             {
               label: t("pages.settings.general.display_media_options.images"),

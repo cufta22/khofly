@@ -69,11 +69,10 @@ export const handleDownload = async (ctx: Context) => {
       if (format === "mp4") {
         ytCommand.push("-f");
         // Takes forever to download ~2min
-        // ytCommand.push("bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]");
-
+        // ytCommand.push(`"bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"`);
         // Should be normal
         ytCommand.push(
-          "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]"
+          `"bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]"`
         );
       }
 
@@ -94,7 +93,7 @@ export const handleDownload = async (ctx: Context) => {
 
       // Output path
       ytCommand.push("-o");
-      ytCommand.push(outputPathYT);
+      ytCommand.push(`"${outputPathYT}"`);
       ytCommand.push(url);
 
       // Run command

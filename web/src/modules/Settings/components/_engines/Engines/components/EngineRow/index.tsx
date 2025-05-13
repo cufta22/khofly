@@ -16,7 +16,7 @@ import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 import classes from "./styles.module.scss";
 import type { IHoverData } from "../../hover-data";
 import { useTranslate } from "@hooks/translate/use-translate";
-import { IconCheck, IconX } from "@tabler/icons-react";
+import { IconCheck } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import type { ICategories } from "@store/settings";
@@ -209,13 +209,13 @@ const EngineComponent: React.FC<Props> = ({
             checked={checked}
             onChange={(e) => onChange(e.currentTarget.checked)}
             color="teal"
-            thumbIcon={
-              checked ? (
-                <IconCheck style={getIconStyle(12)} color={theme.colors.teal[6]} stroke={3} />
-              ) : (
-                <IconX style={getIconStyle(12)} color={theme.colors.red[6]} stroke={3} />
-              )
-            }
+            // thumbIcon={
+            //   checked ? (
+            //     <IconCheck style={getIconStyle(12)} color={theme.colors.teal[6]} stroke={3} />
+            //   ) : (
+            //     <IconX style={getIconStyle(12)} color={theme.colors.red[6]} stroke={3} />
+            //   )
+            // }
           />
         )}
       </Table.Td>

@@ -19,6 +19,7 @@ import SettingsShortcuts from "./components/_startpage/Shortcuts";
 import SettingsWidgets from "./components/_startpage/Widgets";
 import SettingsAPI from "./components/_instances/API";
 import SettingsWallpaper from "./components/_startpage/Wallpaper";
+import SettingsAI from "./components/_general/AI";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -69,6 +70,8 @@ const PageSettings = () => {
           <SettingsCategories />
           <Space h={40} />
           <SettingsGeneral />
+          <Space h={40} />
+          <SettingsAI />
         </Tabs.Panel>
 
         <Tabs.Panel value="instances">

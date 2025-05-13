@@ -35,6 +35,10 @@ interface SearchState {
   setDomainsBlacklist: (next: string[]) => void;
   domainsPriority: string[];
   setDomainsPriority: (next: string[]) => void;
+
+  // Drawers
+  aiSummaryURL: string;
+  setAISummaryURL: (next: string) => void;
 }
 
 export const useSearchStore = create<SearchState>()(
@@ -68,6 +72,10 @@ export const useSearchStore = create<SearchState>()(
       setDomainsBlacklist: (next) => set({ domainsBlacklist: next }),
       domainsPriority: [],
       setDomainsPriority: (next) => set({ domainsPriority: next }),
+
+      // Drawers
+      aiSummaryURL: "",
+      setAISummaryURL: (next) => set({ aiSummaryURL: next }),
     }),
     {
       onRehydrateStorage: () => (state) => {

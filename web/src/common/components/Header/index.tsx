@@ -28,7 +28,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
   const [searchParams] = useSearchParams();
 
-  const enableAIChat = useSettingsStore((state) => state.enableAIChat);
+  const useAIChat = useSettingsStore((state) => state.useAIChat);
 
   const isChangelog = pathname.startsWith("/changelog");
   const isInstances = pathname.startsWith("/instances");
@@ -88,7 +88,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       <div className={classes.divider} />
 
-      {isIndex && enableAIChat && <HeaderIndexChat />}
+      {isIndex && useAIChat && <HeaderIndexChat />}
       {isIndex && <HeaderIndexSettings />}
 
       {isSearch && tab === "general" && <HeaderOrganize />}

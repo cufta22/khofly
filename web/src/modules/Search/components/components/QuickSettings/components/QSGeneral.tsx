@@ -9,7 +9,8 @@ import MediaSwitch from "@module/Settings/components/_general/General/MediaSwitc
 import IASwitch from "@module/Settings/components/_general/General/IASwitch";
 import PrivateSearchSwitch from "@module/Settings/components/_general/General/PrivateSearchSwitch";
 import PrivatePlayerSwitch from "@module/Settings/components/_general/General/PrivarePlayerSwitch";
-import AISwitch from "@module/Settings/components/_general/General/AIAnswerSwitch";
+import AIAnswerSwitch from "@module/Settings/components/_general/AI/AIAnswerSwitch";
+import AISummarySwitch from "@module/Settings/components/_general/AI/AISummarySwitch";
 
 const QSGeneral = () => {
   const t = useTranslate();
@@ -53,14 +54,6 @@ const QSGeneral = () => {
           <Divider my={6} w="100%" />
 
           <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.toggle_ai_answers")}</Text>
-
-            <AISwitch />
-          </Flex>
-
-          <Divider my={6} w="100%" />
-
-          <Flex align="center" justify="space-between">
             <Text>{t("pages.settings.general.toggle_private_search")}</Text>
 
             <PrivateSearchSwitch />
@@ -72,6 +65,22 @@ const QSGeneral = () => {
             <Text>{t("pages.settings.general.toggle_private_player")}</Text>
 
             <PrivatePlayerSwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
+          <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.ai.toggle_ai_answers")}</Text>
+
+            <AIAnswerSwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
+          <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.ai.toggle_ai_summary")}</Text>
+
+            <AISummarySwitch />
           </Flex>
         </Stack>
       </Accordion.Panel>

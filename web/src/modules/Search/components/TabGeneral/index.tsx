@@ -20,6 +20,7 @@ import Lyricsbox from "../components/Lyricsbox";
 import GeneralRow from "./components/GeneralRow";
 import GeneralSkeleton from "./components/GeneralSkeleton";
 import { removeSubdomain } from "../components/Organize/components/utils";
+import AISummary from "../components/AISummary";
 
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
@@ -198,6 +199,9 @@ const TabGeneral = () => {
           <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />
         ) : null}
       </Flex>
+
+      {/* AI Summary */}
+      <AISummary />
     </Flex>
   );
 };

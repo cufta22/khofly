@@ -15,6 +15,7 @@ const AutocompleteSwitch = () => {
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
       {useAutocomplete && (
         <Select
+          allowDeselect={false}
           data={[
             {
               label: t("pages.settings.general.toggle_autocomplete_options.google"),

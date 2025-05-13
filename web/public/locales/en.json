@@ -102,10 +102,6 @@
 
         "toggle_ia": "Enable Instant Answers",
 
-        "toggle_ai_answers": "Enable AI Answers",
-
-        "toggle_ai_chat": "Enable AI Chat",
-
         "toggle_private_search": "Enable Private Search",
 
         "toggle_private_player": "Enable Private Player",
@@ -114,6 +110,16 @@
         "set_as_default_btn": "Set default",
 
         "learn_more": "Learn more"
+      },
+
+      "ai": {
+        "title": "AI settings",
+
+        "toggle_ai_answers": "Enable AI Answers",
+
+        "toggle_ai_chat": "Enable AI Chat",
+
+        "toggle_ai_summary": "Enable AI Summary"
       },
 
       "categories": {
