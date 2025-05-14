@@ -28,28 +28,26 @@ export const handleFavicon = async (ctx: Context) => {
   // Construct the DuckDuckGo favicon URL
   const faviconUrl = RESOLVERS[resolver](url);
 
-  try {
-    // Fetch the favicon
-    const response = await fetch(faviconUrl, {
-      method: "GET",
-    });
+  // Fetch the favicon
+  const response = await fetch(faviconUrl, {
+    method: "GET",
+  });
 
-    // If we got a successful response
-    if (response.ok) {
-      // Get the content type
-      const contentType = response.headers.get("content-type") || "image/x-icon";
+  // If we got a successful response
+  if (response.ok) {
+    // Get the content type
+    const contentType = response.headers.get("content-type") || "image/x-icon";
 
-      // Get the favicon data as ArrayBuffer
-      const faviconData = await response.arrayBuffer();
+    // Get the favicon data as ArrayBuffer
+    const faviconData = await response.arrayBuffer();
 
-      // Set appropriate headers
-      ctx.set.headers["content-type"] = contentType;
-      ctx.set.headers["cache-control"] = "public, max-age=86400"; // Cache for 24 hours
+    // Set appropriate headers
+    ctx.set.headers["content-type"] = contentType;
+    ctx.set.headers["cache-control"] = "public, max-age=86400"; // Cache for 24 hours
 
-      // Send the favicon data
-      return Buffer.from(faviconData);
-    } else {
-      throw ctx.error(400, "Failed to fetch favicon");
-    }
-  } catch (error) {}
+    // Send the favicon data
+    return Buffer.from(faviconData);
+  } else {
+    throw ctx.error(400, "Failed to fetch favicon");
+  }
 };

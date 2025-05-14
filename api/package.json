@@ -1,6 +1,6 @@
 {
   "name": "khofly-api",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "build": "bun build --compile --minify-whitespace --minify-syntax --target bun --packages external --outfile ./build/server ./src/index.ts",

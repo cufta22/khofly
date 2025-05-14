@@ -1,0 +1,14 @@
+.private_view_header {
+  height: 40px;
+  background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
+}
+
+.loading_state {
+  height: calc(100dvh - 40px);
+}
+
+.private_iframe {
+  width: 100%;
+  height: calc(100dvh - 40px);
+  border: none;
+}

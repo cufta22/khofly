@@ -7,7 +7,7 @@ import {
   IconDotsVertical,
   IconForbid,
   IconLabelImportant,
-  IconList,
+  IconTextScan2,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
@@ -71,8 +71,6 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Label>Organize</Menu.Label>
-
         <Menu.Item
           leftSection={<IconLabelImportant size={18} color={theme.colors.green["5"]} />}
           rightSection={isPriority ? <IconCheck size={18} /> : null}
@@ -90,11 +88,9 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
 
         {hasAIFeatures && <Menu.Divider />}
 
-        {hasAIFeatures && <Menu.Label>AI</Menu.Label>}
-
         {useAISummary && (
           <Menu.Item
-            leftSection={<IconList size={18} color={theme.colors.pink["5"]} />}
+            leftSection={<IconTextScan2 size={18} color={theme.colors.pink["5"]} />}
             onClick={() => setAISummaryURL(url)}
           >
             AI Summary

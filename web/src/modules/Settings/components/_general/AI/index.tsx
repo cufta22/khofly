@@ -1,6 +1,6 @@
 import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
 
-import { IconFlaskFilled, IconList, IconMessage, IconSparkles } from "@tabler/icons-react";
+import { IconFlaskFilled, IconMessage, IconSparkles, IconTextScan2 } from "@tabler/icons-react";
 import AIAnswerSwitch from "./AIAnswerSwitch";
 import SettingsRow from "../../common/SettingsRow";
 import SettingsTitle from "../../common/SettingsTitle";
@@ -38,7 +38,7 @@ const SettingsAI = () => {
         <Divider my="xs" w="100%" />
 
         <SettingsRow
-          icon={<IconList color={theme.colors.pink["5"]} />}
+          icon={<IconTextScan2 color={theme.colors.pink["5"]} />}
           desc="pages.settings.ai.toggle_ai_summary"
           control={<AISummarySwitch />}
         />

@@ -42,6 +42,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
+  const isProxy = pathname.startsWith("/proxy");
   const isDocs = pathname.startsWith("/docs");
   const isChat = pathname.startsWith("/chat");
   const isIndex = pathname === "/";
@@ -50,7 +51,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
   const isSearchMaps = isSearch && tab === "maps";
   const headerHeight = isSearch ? 100 : 70;
   const isHeaderCollapsed = isSearch && !pinned;
-  const isHeaderOffset = !isSearch && !isChat;
+  const isHeaderOffset = !isSearch && !isChat && !isProxy;
 
   useEffect(() => {
     if (!["/search"].includes(pathname)) {
@@ -118,7 +119,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
         }}
         id="root"
       >
-        {!isSearchMaps && (
+        {!isSearchMaps && !isProxy && (
           <AppShell.Header>
             <Header openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
           </AppShell.Header>
