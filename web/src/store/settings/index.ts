@@ -37,13 +37,13 @@ interface SettingsState {
   faviconProvider: IFaviconAPI;
   setFaviconProvider: (next: IFaviconAPI) => void;
 
-  useAutocomplete: boolean;
-  setUseAutocomplete: (next: boolean) => void;
+  enableAutocomplete: boolean;
+  setEnableAutocomplete: (next: boolean) => void;
   autocompleteEngine: IAutocompleteEngines;
   setAutocompleteEngine: (next: IAutocompleteEngines) => void;
 
-  useInstantAnswers: boolean;
-  setUseInstantAnswers: (next: boolean) => void;
+  enableInstantAnswers: boolean;
+  setEnableInstantAnswers: (next: boolean) => void;
 
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;
@@ -54,14 +54,29 @@ interface SettingsState {
   privatePlayer: boolean;
   setPrivatePlayer: (next: boolean) => void;
 
-  useAIAnswers: boolean;
-  setUseAIAnswers: (next: boolean) => void;
+  privateView: {
+    enabled: boolean;
+    openByDefault: boolean;
+    allowScripts: boolean;
+    allowSameOrigin: boolean;
+    allowForms: boolean;
+  };
+  setPrivateView: (next: {
+    enabled?: boolean;
+    openByDefault?: boolean;
+    allowScripts?: boolean;
+    allowSameOrigin?: boolean;
+    allowForms?: boolean;
+  }) => void;
 
-  useAIChat: boolean;
-  setUseAIChat: (next: boolean) => void;
+  enableAIAnswers: boolean;
+  setEnableAIAnswers: (next: boolean) => void;
 
-  useAISummary: boolean;
-  setUseAISummary: (next: boolean) => void;
+  enableAIChat: boolean;
+  setEnableAIChat: (next: boolean) => void;
+
+  enableAISummary: boolean;
+  setEnableAISummary: (next: boolean) => void;
   aiSummaryLength: "short" | "long";
   setAISummaryLenght: (next: "short" | "long") => void;
 }
@@ -87,12 +102,13 @@ export const useSettingsStore = create<SettingsState>()(
       faviconProvider: "duckduckgo",
       setFaviconProvider: (next) => set({ faviconProvider: next }),
 
-      useAutocomplete: true,
-      setUseAutocomplete: (next) => set({ useAutocomplete: next }),
+      enableAutocomplete: true,
+      setEnableAutocomplete: (next) => set({ enableAutocomplete: next }),
       autocompleteEngine: "google",
       setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
-      useInstantAnswers: true,
-      setUseInstantAnswers: (next) => set({ useInstantAnswers: next }),
+
+      enableInstantAnswers: true,
+      setEnableInstantAnswers: (next) => set({ enableInstantAnswers: next }),
 
       openInNewTab: false,
       setOpenInNewTab: (next) => set({ openInNewTab: next }),
@@ -103,14 +119,23 @@ export const useSettingsStore = create<SettingsState>()(
       privatePlayer: false,
       setPrivatePlayer: (next) => set({ privatePlayer: next }),
 
-      useAIAnswers: false,
-      setUseAIAnswers: (next) => set({ useAIAnswers: next }),
+      privateView: {
+        enabled: false,
+        openByDefault: false,
+        allowScripts: false,
+        allowSameOrigin: false,
+        allowForms: false,
+      },
+      setPrivateView: (next) => set((prev) => ({ privateView: { ...prev.privateView, ...next } })),
 
-      useAIChat: false,
-      setUseAIChat: (next) => set({ useAIChat: next }),
+      enableAIAnswers: false,
+      setEnableAIAnswers: (next) => set({ enableAIAnswers: next }),
 
-      useAISummary: false,
-      setUseAISummary: (next) => set({ useAISummary: next }),
+      enableAIChat: false,
+      setEnableAIChat: (next) => set({ enableAIChat: next }),
+
+      enableAISummary: false,
+      setEnableAISummary: (next) => set({ enableAISummary: next }),
       aiSummaryLength: "short",
       setAISummaryLenght: (next) => set({ aiSummaryLength: next }),
     }),
@@ -129,15 +154,17 @@ export const useSettingsStore = create<SettingsState>()(
         displayMedia: state.displayMedia,
         displayFavicon: state.displayFavicon,
         faviconProvider: state.faviconProvider,
-        useAutocomplete: state.useAutocomplete,
+        enableAutocomplete: state.enableAutocomplete,
         autocompleteEngine: state.autocompleteEngine,
-        useInstantAnswers: state.useInstantAnswers,
+        enableInstantAnswers: state.enableInstantAnswers,
         openInNewTab: state.openInNewTab,
         privateSearch: state.privateSearch,
         privatePlayer: state.privatePlayer,
-        useAIAnswers: state.useAIAnswers,
-        useAIChat: state.useAIChat,
-        useAISummary: state.useAISummary,
+        privateView: state.privateView,
+        enableAIAnswers: state.enableAIAnswers,
+        enableAIChat: state.enableAIChat,
+        enableAISummary: state.enableAISummary,
+        aiSummaryLength: state.aiSummaryLength,
       }),
     }
   )

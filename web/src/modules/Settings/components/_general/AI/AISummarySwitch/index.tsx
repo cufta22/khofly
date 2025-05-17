@@ -5,8 +5,8 @@ import commonClasses from "../../../common/styles.module.scss";
 const AISummarySwitch = () => {
   //   const t = useTranslate();
 
-  const useAISummary = useSettingsStore((state) => state.useAISummary);
-  const setUseAISummary = useSettingsStore((state) => state.setUseAISummary);
+  const enableAISummary = useSettingsStore((state) => state.enableAISummary);
+  const setEnableAISummary = useSettingsStore((state) => state.setEnableAISummary);
   const aiSummaryLength = useSettingsStore((state) => state.aiSummaryLength);
   const setAISummaryLenght = useSettingsStore((state) => state.setAISummaryLenght);
 
@@ -20,7 +20,7 @@ const AISummarySwitch = () => {
         </Text>
       </RemixLink> */}
 
-      {useAISummary && (
+      {enableAISummary && (
         <Select
           allowDeselect={false}
           data={[
@@ -39,7 +39,10 @@ const AISummarySwitch = () => {
         />
       )}
 
-      <Switch checked={useAISummary} onChange={(e) => setUseAISummary(e.currentTarget.checked)} />
+      <Switch
+        checked={enableAISummary}
+        onChange={(e) => setEnableAISummary(e.currentTarget.checked)}
+      />
     </Flex>
   );
 };

@@ -6,7 +6,8 @@ interface CustomErrorHandlerArgs {
     | "UNKNOWN"
     | "VALIDATION"
     | "PARSE"
-    | "INVALID_COOKIE_SIGNATURE";
+    | "INVALID_COOKIE_SIGNATURE"
+    | "INVALID_FILE_TYPE";
   set: any;
   error: any;
 }

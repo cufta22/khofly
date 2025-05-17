@@ -32,7 +32,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
-  const useAIAnswers = useSettingsStore((state) => state.useAIAnswers);
+  const enableAIAnswers = useSettingsStore((state) => state.enableAIAnswers);
 
   const setChat = useAIChatStore((state) => state.setChat);
 
@@ -51,14 +51,14 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   };
 
   useEffect(() => {
-    if (!hydrated || !useAIAnswers || !workerDomain || !queryToUse) return;
+    if (!hydrated || !enableAIAnswers || !workerDomain || !queryToUse) return;
 
     if (!isLoading && shouldTrigger) {
       mutate();
     }
   }, [hydrated, queryToUse]);
 
-  if (!shouldTrigger || !useAIAnswers) return null;
+  if (!shouldTrigger || !enableAIAnswers) return null;
 
   return (
     <Paper className={classes.ai_answer} withBorder radius="md" p="md">

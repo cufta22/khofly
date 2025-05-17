@@ -13,8 +13,8 @@ export default defineConfig(({ mode }) => {
       port: Number.parseInt(env.PORT),
       // Example security headers, set in nginx for prod
       headers: {
-        "Strict-Transport-Security": "max-age=31536000; includeSubDomains", // 1 year
-        "x-frame-options": "SAMEORIGIN",
+        // "Strict-Transport-Security": "max-age=31536000; includeSubDomains", // 1 year
+        // "x-frame-options": "SAMEORIGIN",
       },
     },
 

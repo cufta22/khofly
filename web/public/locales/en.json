@@ -106,6 +106,8 @@
 
         "toggle_private_player": "Enable Private Player",
 
+        "toggle_private_view": "Enable Private View",
+
         "set_as_default": "Set Khofly as default search engine",
         "set_as_default_btn": "Set default",
 

@@ -101,8 +101,9 @@ const PagePrivateView = () => {
       ) : (
         <iframe
           srcDoc={content}
+          // src={`${apiDomain}/proxy/view?url=${encodeURIComponent(url || "")}`}
           title="Anonymous Content"
-          sandbox={SANDBOX_CONFIG.join(" ")}
+          // sandbox={SANDBOX_CONFIG.join(" ")}
           className={classes.private_iframe}
         />
       )}

@@ -21,9 +21,9 @@ const SearchBar = () => {
 
   const theme = useMantineTheme();
 
-  const useAutocomplete = useSettingsStore((state) => state.useAutocomplete);
+  const enableAutocomplete = useSettingsStore((state) => state.enableAutocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
-  const useAIAnswers = useSettingsStore((state) => state.useAIAnswers);
+  const enableAIAnswers = useSettingsStore((state) => state.enableAIAnswers);
 
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
 
@@ -39,7 +39,7 @@ const SearchBar = () => {
 
   // Sizes
   const rsNoOfIconsBase = 1;
-  const rsNoOfIconsAll = useAIAnswers ? rsNoOfIconsBase + 1 : rsNoOfIconsBase;
+  const rsNoOfIconsAll = enableAIAnswers ? rsNoOfIconsBase + 1 : rsNoOfIconsBase;
   const rsWidth = {
     1: isXs ? 38 : isXl ? 54 : 44,
     2: isXs ? 76 : isXl ? 108 : 88,
@@ -71,7 +71,7 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    if (!useAutocomplete || !debouncedQ) return;
+    if (!enableAutocomplete || !debouncedQ) return;
 
     trigger(debouncedQ);
   }, [debouncedQ]);
@@ -142,7 +142,7 @@ const SearchBar = () => {
               <IconArrowRight />
             </ActionIcon>
 
-            {useAIAnswers && (
+            {enableAIAnswers && (
               <ActionIcon
                 className={classes.search_action_icon}
                 // size={isXs ? 32 : 38}

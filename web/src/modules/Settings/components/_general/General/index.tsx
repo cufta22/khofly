@@ -1,6 +1,7 @@
 import { Divider, Paper, Stack, useMantineTheme } from "@mantine/core";
 
 import {
+  IconAppWindow,
   IconCursorText,
   IconFavicon,
   IconLayoutCollage,
@@ -20,6 +21,8 @@ import PrivatePlayerSwitch from "./PrivarePlayerSwitch";
 import SettingsRow from "../../common/SettingsRow";
 import SettingsTitle from "../../common/SettingsTitle";
 import SetDefaultButton from "./SetDefaultButton";
+import PrivateViewSwitch from "./PrivateViewSwitch";
+import MorePrivateViewOptions from "./PrivateViewSwitch/MorePrivateViewOptions";
 
 const SettingsGeneral = () => {
   const theme = useMantineTheme();
@@ -83,6 +86,15 @@ const SettingsGeneral = () => {
           desc="pages.settings.general.toggle_private_player"
           control={<PrivatePlayerSwitch />}
         />
+
+        <Divider my="xs" w="100%" />
+
+        <SettingsRow
+          icon={<IconAppWindow color={theme.colors.indigo["5"]} />}
+          desc="pages.settings.general.toggle_private_view"
+          control={<PrivateViewSwitch />}
+        />
+        <MorePrivateViewOptions />
 
         <Divider my="xs" w="100%" />
 

@@ -19,7 +19,7 @@ interface Props {
 const ResultMenu: React.FC<Props> = ({ url, domain }) => {
   const theme = useMantineTheme();
 
-  const useAISummary = useSettingsStore((state) => state.useAISummary);
+  const enableAISummary = useSettingsStore((state) => state.enableAISummary);
 
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
   const setDomainsPriority = useSearchStore((state) => state.setDomainsPriority);
@@ -33,7 +33,7 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
   const isPriority = domainsPriority.find((item) => item === strippedDomain);
   const isBlacklist = domainsBlacklist.find((item) => item === strippedDomain);
 
-  const hasAIFeatures = useAISummary;
+  const hasAIFeatures = enableAISummary;
 
   const addToPriority = () => {
     if (isPriority) return;
@@ -88,7 +88,7 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
 
         {hasAIFeatures && <Menu.Divider />}
 
-        {useAISummary && (
+        {enableAISummary && (
           <Menu.Item
             leftSection={<IconTextScan2 size={18} color={theme.colors.pink["5"]} />}
             onClick={() => setAISummaryURL(url)}
