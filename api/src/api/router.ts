@@ -11,6 +11,7 @@ import * as aiConfigSvc from "./services/aiConfig.service";
 import * as instancesSvc from "./services/instances.service";
 import * as proxyViewSvc from "./services/proxyView.service";
 import * as proxyResourcesSvc from "./services/proxyResources.service";
+import * as pvProxySvc from "./services/pvProxy.service";
 
 // GET - /rates
 export const handleRates = async (ctx: Context) => {
@@ -67,4 +68,9 @@ export const handleProxyView = async (ctx: Context) => {
 // GET - /proxy/resource
 export const handleProxyResources = async (ctx: Context) => {
   return await proxyResourcesSvc.handleProxyResources(ctx);
+};
+
+// GET - /pv/proxy
+export const handlePvProxy = async (ctx: Context) => {
+  return await pvProxySvc.handlePrivateView(ctx);
 };

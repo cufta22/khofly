@@ -40,6 +40,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .post("/ai/chat", router.handleAIChat) // Chat with selected model
   .get("/proxy/view", router.handleProxyView) // Proxy webpage privately
   .get("/proxy/resource", router.handleProxyResources) // Proxy webpage assets privately
+  .get("/pv/proxy", router.handlePvProxy) // Proxy webpage assets privately
 
   .listen(process.env.PORT || 4000);
 

@@ -3,6 +3,7 @@ import { removeSubdomain } from "@module/Search/components/components/Organize/c
 import { useSearchStore } from "@store/search";
 import { useSettingsStore } from "@store/settings";
 import {
+  IconAppWindow,
   IconCheck,
   IconDotsVertical,
   IconForbid,
@@ -10,6 +11,7 @@ import {
   IconTextScan2,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { useNavigate } from "react-router";
 
 interface Props {
   domain: string;
@@ -17,9 +19,11 @@ interface Props {
 }
 
 const ResultMenu: React.FC<Props> = ({ url, domain }) => {
+  const navigate = useNavigate();
   const theme = useMantineTheme();
 
   const enableAISummary = useSettingsStore((state) => state.enableAISummary);
+  const privateView = useSettingsStore((state) => state.privateView);
 
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
   const setDomainsPriority = useSearchStore((state) => state.setDomainsPriority);
@@ -57,6 +61,13 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
     setDomainsBlacklist(newItems);
   };
 
+  const openInPrivateView = () => {
+    // window.location.href = `http://localhost:4000/proxy/view?url=${url}`;
+    navigate(`/pv/proxy?url=${url}`);
+    // console.log(url);
+    // console.log(domain);
+  };
+
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
@@ -87,13 +98,22 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
         </Menu.Item>
 
         {hasAIFeatures && <Menu.Divider />}
-
         {enableAISummary && (
           <Menu.Item
             leftSection={<IconTextScan2 size={18} color={theme.colors.pink["5"]} />}
             onClick={() => setAISummaryURL(url)}
           >
             AI Summary
+          </Menu.Item>
+        )}
+
+        {privateView.enabled && <Menu.Divider />}
+        {privateView.enabled && (
+          <Menu.Item
+            leftSection={<IconAppWindow size={18} color={theme.colors.indigo["5"]} />}
+            onClick={() => openInPrivateView()}
+          >
+            Private View
           </Menu.Item>
         )}
       </Menu.Dropdown>

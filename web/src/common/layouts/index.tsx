@@ -42,7 +42,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
   // Adjust layout for pages
   const isSearch = pathname.startsWith("/search");
-  const isProxy = pathname.startsWith("/proxy");
+  const isProxy = pathname.startsWith("/pv/proxy");
   const isDocs = pathname.startsWith("/docs");
   const isChat = pathname.startsWith("/chat");
   const isIndex = pathname === "/";

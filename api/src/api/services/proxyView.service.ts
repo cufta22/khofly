@@ -1,6 +1,7 @@
 import type { Context } from "elysia";
 import { parse } from "node-html-parser";
-import { isTrackingScript } from "./utils/isTrackingScript";
+import { isTrackingScript } from "./utils/proxy/isTrackingScript";
+import { scriptInterceptorCode } from "./utils/proxy/scriptInterceptorCode";
 
 // GET - /proxy/view
 export const handleProxyView = async (ctx: Context) => {
@@ -11,12 +12,12 @@ export const handleProxyView = async (ctx: Context) => {
   const reqOrigin = ctx.request.headers?.get("origin");
 
   if (!targetUrl) {
-    throw ctx.error(400, "URL is required");
+    throw ctx.status(400, "URL is required");
   }
 
   // Security check: prevent server-side request forgery
   if (!protocol || !host) {
-    throw ctx.error(400, "Invalid URL");
+    throw ctx.status(400, "Invalid URL");
   }
 
   // Don't send cookies or other identifying information
@@ -44,6 +45,8 @@ export const handleProxyView = async (ctx: Context) => {
     // Process HTML content
     const root = parse(htmlData);
 
+    root.prepend(scriptInterceptorCode);
+
     // Remove possible tracking elements
     const elementsToRemove = [
       ...root.querySelectorAll("iframe"),
@@ -56,21 +59,21 @@ export const handleProxyView = async (ctx: Context) => {
 
     // Replace URLs in anchor tags
     const links = root.querySelectorAll("a");
-    // for (const link of links) {
-    //   const href = link.getAttribute("href");
-    //   if (href) {
-    //     try {
-    //       let absoluteUrl = href;
-    //       if (!href.startsWith("http://") && !href.startsWith("https://")) {
-    //         absoluteUrl = new URL(href, targetUrl).href;
-    //       }
-    //       link.setAttribute("href", `${reqOrigin}/proxy?url=${encodeURIComponent(absoluteUrl)}`);
-    //       link.setAttribute("target", `_parent`);
-    //     } catch (e) {
-    //       // Invalid URL, leave as is
-    //     }
-    //   }
-    // }
+    for (const link of links) {
+      const href = link.getAttribute("href");
+      if (href) {
+        try {
+          let absoluteUrl = href;
+          if (!href.startsWith("http://") && !href.startsWith("https://")) {
+            absoluteUrl = new URL(href, targetUrl).href;
+          }
+          link.setAttribute("href", `${reqOrigin}/proxy?url=${encodeURIComponent(absoluteUrl)}`);
+          link.setAttribute("target", `_parent`);
+        } catch (e) {
+          // Invalid URL, leave as is
+        }
+      }
+    }
 
     // Rewrite script src attributes
     for (const script of root.querySelectorAll("script")) {
