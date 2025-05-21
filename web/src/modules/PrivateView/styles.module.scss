@@ -3,6 +3,13 @@
   background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
 }
 
+.iframe_container {
+  position: relative;
+  width: 100%;
+  height: calc(100dvh - 40px);
+  overflow: hidden;
+}
+
 .loading_state {
   height: calc(100dvh - 40px);
 }

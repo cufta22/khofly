@@ -69,6 +69,7 @@ export default defineConfig(({ mode }) => {
       // "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_EU1),
       "process.env.API_URL_EU1": JSON.stringify(env.API_URL_EU1),
       // "process.env.API_URL_US1": JSON.stringify(env.API_URL_EU1),
+      "process.env.PV_URL_EU1": JSON.stringify(env.PV_URL_EU1),
       "process.env.WORKER_URL": JSON.stringify(env.WORKER_URL),
       "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
       "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),

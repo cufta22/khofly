@@ -9,9 +9,6 @@ import * as faviconSvc from "./services/favicon.service";
 import * as aiChatSvc from "./services/aiChat.service";
 import * as aiConfigSvc from "./services/aiConfig.service";
 import * as instancesSvc from "./services/instances.service";
-import * as proxyViewSvc from "./services/proxyView.service";
-import * as proxyResourcesSvc from "./services/proxyResources.service";
-import * as pvProxySvc from "./services/pvProxy.service";
 
 // GET - /rates
 export const handleRates = async (ctx: Context) => {
@@ -59,18 +56,4 @@ export const handleAIConfig = async (ctx: Context) => {
 // POST - /ai/chat
 export const handleAIChat = async (ctx: Context) => {
   return await aiChatSvc.handleAIChat(ctx);
-};
-
-// GET - /proxy/view
-export const handleProxyView = async (ctx: Context) => {
-  return await proxyViewSvc.handleProxyView(ctx);
-};
-// GET - /proxy/resource
-export const handleProxyResources = async (ctx: Context) => {
-  return await proxyResourcesSvc.handleProxyResources(ctx);
-};
-
-// GET - /pv/proxy
-export const handlePvProxy = async (ctx: Context) => {
-  return await pvProxySvc.handlePrivateView(ctx);
 };

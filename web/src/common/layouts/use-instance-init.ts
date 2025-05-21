@@ -1,5 +1,10 @@
 import { useInstanceStore } from "@store/instance";
-import { getDefaultApi, getDefaultSearXNG, getDefaultWorker } from "@store/instance/utils";
+import {
+  getDefaultApi,
+  getDefaultSearXNG,
+  getDefaultWorker,
+  getDefaultPv,
+} from "@store/instance/utils";
 import { useEffect } from "react";
 
 // Initialize instance domains
@@ -18,6 +23,9 @@ const useInstanceInit = () => {
   const workerDomain = useInstanceStore((state) => state.workerDomain);
   const setWorkerDomain = useInstanceStore((state) => state.setWorkerDomain);
 
+  const pvDomain = useInstanceStore((state) => state.pvDomain);
+  const setPvDomain = useInstanceStore((state) => state.setPvDomain);
+
   useEffect(() => {
     if (!hydrated) return;
 
@@ -26,6 +34,7 @@ const useInstanceInit = () => {
     if (!searXNGDomain) setSearXNGDomain(getDefaultSearXNG());
     if (!apiDomain) setApiDomain(getDefaultApi());
     if (!workerDomain) setWorkerDomain(getDefaultWorker());
+    if (!pvDomain) setPvDomain(getDefaultPv());
   }, [hydrated]);
 };
 

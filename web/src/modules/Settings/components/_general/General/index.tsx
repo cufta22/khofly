@@ -1,9 +1,10 @@
-import { Divider, Paper, Stack, useMantineTheme } from "@mantine/core";
+import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
 
 import {
   IconAppWindow,
   IconCursorText,
   IconFavicon,
+  IconFlaskFilled,
   IconLayoutCollage,
   IconMessageCode,
   IconPlayerPlay,
@@ -92,6 +93,11 @@ const SettingsGeneral = () => {
         <SettingsRow
           icon={<IconAppWindow color={theme.colors.indigo["5"]} />}
           desc="pages.settings.general.toggle_private_view"
+          tooltip={
+            <Tooltip label="Experimental">
+              <IconFlaskFilled color={theme.colors.cyan["5"]} />
+            </Tooltip>
+          }
           control={<PrivateViewSwitch />}
         />
         <MorePrivateViewOptions />
