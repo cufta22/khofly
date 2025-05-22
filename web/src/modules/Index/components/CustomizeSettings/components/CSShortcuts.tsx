@@ -9,7 +9,7 @@ const CSShortcuts = () => {
         <Text size="xl">Shortcuts</Text>
       </Flex>
 
-      <SettingsRow desc="pages.settings.startpage.toggle_shortcuts" control={<ShortcutsSwitch />} />
+      <SettingsRow desc="pages.settings.homepage.toggle_shortcuts" control={<ShortcutsSwitch />} />
     </>
   );
 };

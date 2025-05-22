@@ -61,6 +61,7 @@ export const handleProxyOther = async (ctx: Context) => {
       const jsContent = await response.text();
 
       const injection = getJsInjectImport();
+      //const injection = "";
 
       const injectedJsContent = injection + jsContent;
 

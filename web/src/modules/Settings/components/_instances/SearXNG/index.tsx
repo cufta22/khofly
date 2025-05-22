@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   TextInput,
+  useMantineTheme,
   type SelectProps,
 } from "@mantine/core";
 
@@ -24,6 +25,8 @@ import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 import SettingsTitle from "../../common/SettingsTitle";
 
 const SettingsSearXNG = () => {
+  const theme = useMantineTheme();
+
   const domain = useInstanceStore((state) => state.searXNGDomain);
   const setDomain = useInstanceStore((state) => state.setSearXNGDomain);
 
@@ -69,7 +72,10 @@ const SettingsSearXNG = () => {
   return (
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <SettingsTitle icon={<IconSearch />} title="pages.settings.instances.title_searxng" />
+        <SettingsTitle
+          icon={<IconSearch color={theme.colors.blue["5"]} />}
+          title="pages.settings.instances.title_searxng"
+        />
 
         {/* Settings content */}
         <Stack px="lg" mb="xl">

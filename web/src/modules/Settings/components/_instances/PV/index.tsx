@@ -1,34 +1,35 @@
 import {
-  Anchor,
   Button,
   Flex,
+  Group,
   Paper,
   Stack,
   Text,
   TextInput,
   useMantineTheme,
+  type SelectProps,
 } from "@mantine/core";
-import { IconWorld } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
 import useToast from "@hooks/use-toast";
+import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
-import useForm from "@hooks/use-form";
+import { IconAppWindow } from "@tabler/icons-react";
 import { useEffect } from "react";
-import ExternalLink from "@components/ExternalLink";
+// import { DEFlag, USFlag } from "@components/Icons/Flags";
+import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import SettingsTitle from "../../common/SettingsTitle";
 
-const SettingsNominatim = () => {
+const SettingsPV = () => {
   const theme = useMantineTheme();
 
-  const hydrated = useInstanceStore((state) => state.hydrated);
-  const domain = useInstanceStore((state) => state.nominatimDomain);
-  const setDomain = useInstanceStore((state) => state.setNominatimDomain);
+  const domain = useInstanceStore((state) => state.pvDomain);
+  const setDomain = useInstanceStore((state) => state.setPvDomain);
 
   const form = useForm({
     initialValues: {
-      domain: domain,
+      domain: "",
     },
     validate: {
       domain: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
@@ -45,17 +46,27 @@ const SettingsNominatim = () => {
   };
 
   useEffect(() => {
-    if (hydrated && !form.values.domain) {
-      form.setFieldValue("domain", domain);
-    }
-  }, [hydrated]);
+    form.setFieldValue("domain", domain);
+  }, [domain]);
+
+  // const icons: Record<string, React.ReactNode> = {
+  //   [process.env.SEARXNG_URL_EU1 || ""]: <DEFlag style={getIconStyle(20)} />,
+  //   // [process.env.SEARXNG_URL_US1]: <USFlag style={getIconStyle(20)} />,
+  // };
+
+  const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
+    <Group flex="1" gap="xs">
+      {/* {icons[option.value]} */}
+      {option.label}
+    </Group>
+  );
 
   return (
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <SettingsTitle
-          icon={<IconWorld color={theme.colors.blue["5"]} />}
-          title="pages.settings.instances.title_nominatim"
+          icon={<IconAppWindow color={theme.colors.indigo["5"]} />}
+          title="pages.settings.instances.title_pv"
         />
 
         {/* Settings content */}
@@ -66,11 +77,6 @@ const SettingsNominatim = () => {
             className={classes.settings_input}
             {...form.getInputProps("domain")}
           />
-
-          <Text size="sm">
-            <ExternalLink href="https://nominatim.org/">Nominatim</ExternalLink> uses OpenStreetMap
-            data to find locations on Earth by name and address (geocoding).
-          </Text>
         </Stack>
 
         <Flex
@@ -83,9 +89,7 @@ const SettingsNominatim = () => {
           <Text size="sm" c="dimmed">
             Change this to your own url for better privacy & less load for default instance.{" "}
             <Text component="span" c={linkTextColor}>
-              <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
-                Read more
-              </Anchor>
+              <RemixLink to={"/docs/self-host-khofly-pv"}>Read more</RemixLink>
             </Text>
           </Text>
 
@@ -96,4 +100,4 @@ const SettingsNominatim = () => {
   );
 };
 
-export default SettingsNominatim;
+export default SettingsPV;

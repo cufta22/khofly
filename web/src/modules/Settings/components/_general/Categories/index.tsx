@@ -1,4 +1,4 @@
-import { Flex, Paper, Text } from "@mantine/core";
+import { Flex, Paper, Text, useMantineTheme } from "@mantine/core";
 import {
   IconCategory,
   IconCpu,
@@ -30,6 +30,8 @@ const CATEGORIES_DATA = [
 ];
 
 const SettingsCategories = () => {
+  const theme = useMantineTheme();
+
   const categories = useSettingsStore((state) => state.categories);
   const setCategories = useSettingsStore((state) => state.setCategories);
 
@@ -57,7 +59,7 @@ const SettingsCategories = () => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={<IconCategory />}
+        icon={<IconCategory color={theme.colors.blue["5"]} />}
         title="pages.settings.categories.title"
         rightSection={<Text>Currently enabled search categories</Text>}
       />

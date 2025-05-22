@@ -29,9 +29,15 @@ export const handleProxyAssets = async (ctx: Context) => {
     ctx.set.headers["cache-control"] = "public, max-age=86400"; // Cache for 24 hours
 
     // -----------------------------------------------------------
-    // Handle icons
+    // Handle icons, fonts, etc.
     // -----------------------------------------------------------
-    if (contentType.includes("application/octet-stream")) {
+    if (
+      // Icons
+      contentType.includes("application/octet-stream") ||
+      // Fonts
+      contentType.includes("font") ||
+      resourceUrl.match(/\.(woff2?|ttf|otf|eot)$/i)
+    ) {
       // Get the asset data as ArrayBuffer
       const resourceData = await response.arrayBuffer();
 

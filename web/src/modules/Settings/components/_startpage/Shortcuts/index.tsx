@@ -1,8 +1,6 @@
-import { Button, Divider, Flex, LoadingOverlay, Paper, Stack, Text } from "@mantine/core";
+import { Divider, Flex, LoadingOverlay, Paper, Stack, Text, useMantineTheme } from "@mantine/core";
 
-import { IconApps, IconDevices, IconExternalLink } from "@tabler/icons-react";
-
-import classes from "../../../styles.module.scss";
+import { IconDevices, IconExternalLink } from "@tabler/icons-react";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import ShortcutsSwitch from "./components/ShortcutsSwitch";
@@ -13,6 +11,8 @@ import SettingsTitle from "../../common/SettingsTitle";
 import SettingsRow from "../../common/SettingsRow";
 
 const SettingsShortcuts = () => {
+  const theme = useMantineTheme();
+
   const t = useTranslate();
 
   const hydrated = useStatrpageStore((state) => state.hydrated);
@@ -21,8 +21,8 @@ const SettingsShortcuts = () => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={<IconExternalLink />}
-        title="pages.settings.startpage.title_shortcuts"
+        icon={<IconExternalLink color={theme.colors.blue["5"]} />}
+        title="pages.settings.homepage.title_shortcuts"
         rightSection={
           <Flex className="desktop_only" align="center">
             <IconDevices />
@@ -36,7 +36,7 @@ const SettingsShortcuts = () => {
       <Stack w="100%" align="start" px="lg" mb="xl">
         <SettingsRow
           // icon={null}
-          desc="pages.settings.startpage.toggle_shortcuts"
+          desc="pages.settings.homepage.toggle_shortcuts"
           control={<ShortcutsSwitch />}
         />
 

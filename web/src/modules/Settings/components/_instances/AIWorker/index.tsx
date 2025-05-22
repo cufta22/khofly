@@ -12,7 +12,7 @@ import {
   TextInput,
   useMantineTheme,
 } from "@mantine/core";
-import { IconSparkles } from "@tabler/icons-react";
+import { IconBrandCloudflare } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
 import useToast from "@hooks/use-toast";
@@ -25,13 +25,14 @@ import { WORKER_MODELS_DATA } from "./data";
 import SettingsTitle from "../../common/SettingsTitle";
 
 const SettingsAIWorker = () => {
+  const theme = useMantineTheme();
+
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
   const setWorkerDomain = useInstanceStore((state) => state.setWorkerDomain);
   const workerModel = useInstanceStore((state) => state.workerModel);
   const setWorkerModel = useInstanceStore((state) => state.setWorkerModel);
 
-  const theme = useMantineTheme();
   const linkTextColor = usePrimaryColor(4);
 
   const form = useForm({
@@ -84,7 +85,10 @@ const SettingsAIWorker = () => {
   return (
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <SettingsTitle icon={<IconSparkles />} title="pages.settings.instances.title_ai" />
+        <SettingsTitle
+          icon={<IconBrandCloudflare color={theme.colors.orange["5"]} />}
+          title="pages.settings.instances.title_ai"
+        />
 
         {/* Settings content */}
         <Stack px="lg" mb="xl">

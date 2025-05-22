@@ -1,4 +1,4 @@
-import { Button, Flex, Paper, Stack, Text, TextInput } from "@mantine/core";
+import { Button, Flex, Paper, Stack, Text, TextInput, useMantineTheme } from "@mantine/core";
 
 import { IconDevices, IconPhoto } from "@tabler/icons-react";
 
@@ -12,6 +12,8 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 import { useEffect } from "react";
 
 const SettingsWallpaper = () => {
+  const theme = useMantineTheme();
+
   const background = useStatrpageStore((state) => state.wallpaper);
   const setBackground = useStatrpageStore((state) => state.setWallpaper);
 
@@ -41,8 +43,8 @@ const SettingsWallpaper = () => {
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <SettingsTitle
-          icon={<IconPhoto />}
-          title="pages.settings.startpage.title_background"
+          icon={<IconPhoto color={theme.colors.blue["5"]} />}
+          title="pages.settings.homepage.title_background"
           rightSection={
             <Flex className="desktop_only" align="center">
               <IconDevices />
@@ -56,7 +58,7 @@ const SettingsWallpaper = () => {
         <Stack w="100%" align="start" px="lg" mb="xl">
           {/* <SettingsRow
           // icon={null}
-          desc="pages.settings.startpage.toggle_shortcuts"
+          desc="pages.settings.homepage.toggle_shortcuts"
           control={<ShortcutsSwitch />}
         />
 

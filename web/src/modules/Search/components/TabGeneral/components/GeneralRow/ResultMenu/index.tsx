@@ -63,8 +63,8 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
 
   const openInPrivateView = () => {
     // window.location.href = `http://localhost:4000/proxy/view?url=${url}`;
-    window.open(`http://localhost:4000/proxy/view?url=${url}`, "_blank");
-    // navigate(`/pv/proxy?url=${url}`);
+    //window.open(`http://localhost:4000/proxy/view?url=${url}`, "_blank");
+    navigate(`/pv/proxy?url=${url}`);
     // console.log(url);
     // console.log(domain);
   };

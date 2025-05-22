@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   TextInput,
+  useMantineTheme,
   type SelectProps,
 } from "@mantine/core";
 
@@ -23,6 +24,8 @@ import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 import SettingsTitle from "../../common/SettingsTitle";
 
 const SettingsAPI = () => {
+  const theme = useMantineTheme();
+
   const domain = useInstanceStore((state) => state.apiDomain);
   const setDomain = useInstanceStore((state) => state.setApiDomain);
 
@@ -66,7 +69,10 @@ const SettingsAPI = () => {
   return (
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <SettingsTitle icon={<IconApiApp />} title="pages.settings.instances.title_api" />
+        <SettingsTitle
+          icon={<IconApiApp color={theme.colors.blue["5"]} />}
+          title="pages.settings.instances.title_api"
+        />
 
         {/* Settings content */}
         <Stack px="lg" mb="xl">

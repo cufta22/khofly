@@ -1,4 +1,4 @@
-import { Button, Flex, Paper, Space, Stack, Tabs, Text } from "@mantine/core";
+import { Button, Flex, Paper, Space, Stack, Tabs, Text, useMantineTheme } from "@mantine/core";
 import {
   IconCpu,
   IconDotsCircleHorizontal,
@@ -47,53 +47,53 @@ export const TAB_DATA: {
 } = {
   general: {
     label: "pages.settings.engines.title",
-    icon: <IconSearch size={32} />,
+    icon: IconSearch,
     data: DATA_ENGINES_GENERAL,
   },
   images: {
     label: "pages.settings.engines.title_img",
-    icon: <IconPhoto size={32} />,
+    icon: IconPhoto,
     data: DATA_ENGINES_IMAGES,
   },
   videos: {
     label: "pages.settings.engines.title_vid",
-    icon: <IconPlayerPlay size={32} />,
+    icon: IconPlayerPlay,
     data: DATA_ENGINES_VIDEOS,
   },
   news: {
     label: "pages.settings.engines.title_news",
-    icon: <IconNews size={32} />,
+    icon: IconNews,
     data: DATA_ENGINES_NEWS,
   },
   music: {
     label: "pages.settings.engines.title_music",
-    icon: <IconMusic size={32} />,
+    icon: IconMusic,
     data: DATA_ENGINES_MUSIC,
   },
   it: {
     label: "pages.settings.engines.title_IT",
-    icon: <IconCpu size={32} />,
+    icon: IconCpu,
     data: DATA_ENGINES_IT,
   },
   science: {
     label: "pages.settings.engines.title_science",
-    icon: <IconSchool size={32} />,
+    icon: IconSchool,
     data: DATA_ENGINES_SCIENCE,
   },
   files: {
     label: "pages.settings.engines.title_files",
-    icon: <IconFiles size={32} />,
+    icon: IconFiles,
     data: DATA_ENGINES_FILES,
   },
   social_media: {
     label: "pages.settings.engines.title_SM",
-    icon: <IconUsers size={32} />,
+    icon: IconUsers,
     data: DATA_ENGINES_SOCIAL_MEDIA,
   },
 
   other: {
     label: "pages.settings.engines.title_other",
-    icon: <IconDotsCircleHorizontal size={32} />,
+    icon: IconDotsCircleHorizontal,
     data: DATA_ENGINES_OTHER,
   },
 
@@ -106,6 +106,8 @@ export const TAB_DATA: {
 };
 
 const Engines = () => {
+  const theme = useMantineTheme();
+
   const t = useTranslate();
 
   const [tab, setTab] = useState<ICategories>("general");
@@ -115,10 +117,12 @@ const Engines = () => {
     (state) => state[CATEGORY_TO_STORE[tab].set] as (next: string[]) => void
   );
 
+  const IconCurrnetEngine = TAB_DATA[tab].icon;
+
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={TAB_DATA[tab].icon}
+        icon={<IconCurrnetEngine size={32} color={theme.colors.blue["5"]} />}
         title={TAB_DATA[tab].label}
         rightSection={
           <Flex align="center" justify="flex-end" gap="sm">

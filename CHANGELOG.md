@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - AI Summary
+- Private View
+
+### Changed
+
+- Improved settings with more options
 
 ## [0.8.0] - 01.05.2025
 

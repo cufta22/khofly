@@ -26,8 +26,8 @@ const SettingsWidgets = () => {
   return (
     <Paper className="desktop_only" radius="md" withBorder>
       <SettingsTitle
-        icon={<IconApps />}
-        title="pages.settings.startpage.title_widgets"
+        icon={<IconApps color={theme.colors.blue["5"]} />}
+        title="pages.settings.homepage.title_widgets"
         rightSection={
           <Flex className="desktop_only" align="center">
             <IconDeviceDesktop />
@@ -42,7 +42,7 @@ const SettingsWidgets = () => {
         {/* Weather widget */}
         <SettingsRow
           icon={<IconHaze style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.startpage.toggle_weather"
+          desc="pages.settings.homepage.toggle_weather"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
               {/* <PositionSelect type="weather" /> */}
@@ -57,7 +57,7 @@ const SettingsWidgets = () => {
         {/* To-Do widget */}
         <SettingsRow
           icon={<IconListCheck style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.startpage.toggle_todos"
+          desc="pages.settings.homepage.toggle_todos"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
               {/* <PositionSelect type="todos" /> */}
@@ -72,7 +72,7 @@ const SettingsWidgets = () => {
         {/* Notes widget */}
         <SettingsRow
           icon={<IconNote style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.startpage.toggle_notes"
+          desc="pages.settings.homepage.toggle_notes"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
               {/* <PositionSelect type="notes" /> */}
@@ -87,7 +87,7 @@ const SettingsWidgets = () => {
         {/* Analog clock widget */}
         <SettingsRow
           icon={<IconClock style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.startpage.toggle_clock"
+          desc="pages.settings.homepage.toggle_clock"
           control={
             <Flex className={commonClasses.settings_control} align="center" gap="sm">
               {/* <PositionSelect type="clock" /> */}

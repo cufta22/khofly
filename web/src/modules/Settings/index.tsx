@@ -20,6 +20,7 @@ import SettingsWidgets from "./components/_startpage/Widgets";
 import SettingsAPI from "./components/_instances/API";
 import SettingsWallpaper from "./components/_startpage/Wallpaper";
 import SettingsAI from "./components/_general/AI";
+import SettingsPV from "./components/_instances/PV";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -55,8 +56,8 @@ const PageSettings = () => {
           <Tabs.Tab value="engines" leftSection={<IconRadar style={getIconStyle(20)} />}>
             Engines
           </Tabs.Tab>
-          <Tabs.Tab value="startpage" leftSection={<IconBrowser style={getIconStyle(20)} />}>
-            Startpage
+          <Tabs.Tab value="homepage" leftSection={<IconBrowser style={getIconStyle(20)} />}>
+            Homepage
           </Tabs.Tab>
         </Tabs.List>
 
@@ -79,6 +80,8 @@ const PageSettings = () => {
           <Space h={40} />
           <SettingsAPI />
           <Space h={40} />
+          <SettingsPV />
+          <Space h={40} />
           <SettingsAIWorker />
           <Space h={40} />
           <SettingsNominatim />
@@ -88,7 +91,7 @@ const PageSettings = () => {
           <SettingsEngines />
         </Tabs.Panel>
 
-        <Tabs.Panel value="startpage">
+        <Tabs.Panel value="homepage">
           <SettingsWallpaper />
           <Space h={40} />
           <SettingsShortcuts />

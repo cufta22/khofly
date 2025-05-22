@@ -138,7 +138,8 @@
         "title_searxng": "SearXNG URL",
         "title_api": "API URL",
         "title_ai": "AI Worker",
-        "title_nominatim": "Nominatim URL"
+        "title_nominatim": "Nominatim URL",
+        "title_pv": "PV URL"
       },
 
       "engines": {
@@ -341,7 +342,7 @@
         "engine_podcastindex": "The Podcast Index"
       },
 
-      "startpage": {
+      "homepage": {
         "title_background": "Wallpaper",
 
         "title_shortcuts": "Shortcuts",

@@ -12,7 +12,10 @@ const SettingsAI = () => {
 
   return (
     <Paper radius="md" withBorder>
-      <SettingsTitle icon={<IconSparkles />} title="pages.settings.ai.title" />
+      <SettingsTitle
+        icon={<IconSparkles color={theme.colors.pink["5"]} />}
+        title="pages.settings.ai.title"
+      />
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">

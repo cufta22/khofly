@@ -10,7 +10,7 @@ export const scriptInterceptorCode = `
   const originalXHROpen = XMLHttpRequest.prototype.open;
   
   // Proxy base URL
-  const PROXY_BASE =  'http://localhost:/4000/proxy';
+  const PROXY_BASE = 'http://localhost:/4000/proxy';
   
   // Helper to rewrite URLs
   function rewriteUrl(url) {

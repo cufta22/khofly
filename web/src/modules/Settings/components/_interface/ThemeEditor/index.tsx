@@ -7,6 +7,7 @@ import {
   Paper,
   Stack,
   Text,
+  useMantineTheme,
 } from "@mantine/core";
 
 import { IconCheck, IconMinus, IconPalette, IconPlus } from "@tabler/icons-react";
@@ -26,6 +27,8 @@ interface Props {
 }
 
 const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
+  const theme = useMantineTheme();
+
   const t = useTranslate();
   const mounted = useMounted();
 
@@ -73,7 +76,7 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   return (
     <Paper radius="md" withBorder>
       <Flex align="center" p="lg" mb={16} justify="space-between">
-        <IconPalette size={32} />
+        <IconPalette size={32} color={theme.colors.blue["5"]} />
 
         <Text fz={26} fw={600} ml="sm">
           {t("pages.settings.theme.title")}

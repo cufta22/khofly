@@ -17,6 +17,7 @@ import type { LayoutRouteProps } from "react-router";
 import ErrorPage from "@module/Error";
 import { useClientServerState } from "@store/client-server";
 import { ROOT_META_FUNCTION } from "./meta/root";
+import { getJsInjectResolve } from "./script";
 
 // Meta tags
 export const meta = ROOT_META_FUNCTION;
@@ -26,6 +27,7 @@ export function Layout({ children }: LayoutRouteProps) {
   return (
     <html lang={language} data-mantine-color-scheme="dark">
       <head>
+        <script>{getJsInjectResolve(process.env?.PV_URL_EU1 || "")}</script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />

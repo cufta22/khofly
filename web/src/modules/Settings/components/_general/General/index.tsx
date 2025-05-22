@@ -30,7 +30,10 @@ const SettingsGeneral = () => {
 
   return (
     <Paper radius="md" withBorder>
-      <SettingsTitle icon={<IconSettings2 />} title="pages.settings.general.title" />
+      <SettingsTitle
+        icon={<IconSettings2 color={theme.colors.blue["5"]} />}
+        title="pages.settings.general.title"
+      />
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
