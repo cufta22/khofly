@@ -27,6 +27,11 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
         link: "/docs/private-player",
         isWip: false,
       },
+      {
+        label: "Private View",
+        link: "/docs/private-view",
+        isWip: true,
+      },
     ],
   },
   {
@@ -59,6 +64,11 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
         label: "Khofly API",
         link: "/docs/self-host-khofly-api",
         isWip: false,
+      },
+      {
+        label: "Khofly PV",
+        link: "/docs/self-host-khofly-pv",
+        isWip: true,
       },
     ],
   },

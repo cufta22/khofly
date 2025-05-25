@@ -1,7 +1,7 @@
 import type { Context } from "elysia";
 import { parse } from "node-html-parser";
 import { isTrackingScript } from "../utils/isTrackingScript";
-import { getJsInjectResolve } from "../utils/jsInject";
+import { getImportResolve } from "../utils/js/getImportResolve";
 
 export const handleProxyHtml = async (ctx: Context) => {
   const { searchParams, protocol, host } = new URL(ctx.request.url);
@@ -31,7 +31,9 @@ export const handleProxyHtml = async (ctx: Context) => {
       Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
       "Accept-Language": "en-US,en;q=0.5",
       DNT: "1",
-      Referer: `${protocol}//${host}`,
+      Cookie: "",
+      // Referer: `${protocol}//${host}`,
+      Referer: "",
       Connection: "keep-alive",
       "Upgrade-Insecure-Requests": "1",
     },
@@ -48,13 +50,10 @@ export const handleProxyHtml = async (ctx: Context) => {
     const root = parse(htmlData);
     const head = root.querySelector("head");
 
-    // root.prepend(scriptInterceptorCode);
-
     // Inject global import resolve code
     if (head) {
-      const jsInjectResolve = getJsInjectResolve(`${ASSET_BASE_URL}?url=`);
-
-      head?.insertAdjacentHTML("afterbegin", jsInjectResolve);
+      const jsInjectResolve = getImportResolve(`${ASSET_BASE_URL}?url=`);
+      // head?.insertAdjacentHTML("afterbegin", jsInjectResolve);
     }
 
     // -------------------------------------------------------------------------

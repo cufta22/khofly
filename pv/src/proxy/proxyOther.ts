@@ -2,8 +2,6 @@ import type { Context } from "elysia";
 import { getJsInjectImport } from "../utils/jsInject";
 
 export const handleProxyOther = async (ctx: Context) => {
-  console.log(ctx.headers.referer);
-
   // Super scuffed way to get original origin
   // ex. http://localhost:4001/proxy/asset?url=https://example.com/entry/app.js
   const refererHeader = ctx.headers?.referer;
@@ -18,7 +16,6 @@ export const handleProxyOther = async (ctx: Context) => {
 
   const resourceUrl = originalUrl?.origin;
   const resourcePath = ctx.params["*"];
-  console.log(`${resourceUrl}/${resourcePath}`);
 
   if (!resourceUrl) return "";
 
@@ -60,8 +57,8 @@ export const handleProxyOther = async (ctx: Context) => {
     if (contentType.includes("application/javascript") || contentType.includes("text/javascript")) {
       const jsContent = await response.text();
 
-      const injection = getJsInjectImport();
-      //const injection = "";
+      //const injection = getJsInjectImport();
+      const injection = "";
 
       const injectedJsContent = injection + jsContent;
 

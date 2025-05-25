@@ -109,7 +109,7 @@ const CODE_NGINX_FILE = `server {
 }
 `;
 
-const DocsSelfHostKhoflyAPI = () => {
+const DocsSelfHostKhoflyPV = () => {
   const theme = useMantineTheme();
 
   const linkTextColor = usePrimaryColor(4);
@@ -358,4 +358,4 @@ const DocsSelfHostKhoflyAPI = () => {
   );
 };
 
-export default DocsSelfHostKhoflyAPI;
+export default DocsSelfHostKhoflyPV;

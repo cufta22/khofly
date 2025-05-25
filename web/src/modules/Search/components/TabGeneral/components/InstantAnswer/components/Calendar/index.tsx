@@ -11,9 +11,11 @@ const IACalendar = () => {
     <IAWrapper>
       <Center>
         <MantineCalendar
-          getDayProps={(date) => ({
-            selected: date.toISOString().substring(0, 10) === todayDate,
-          })}
+          getDayProps={(date) => {
+            return {
+              selected: date === todayDate,
+            };
+          }}
         />
       </Center>
     </IAWrapper>

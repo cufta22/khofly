@@ -1,5 +1,7 @@
 import type { Context } from "elysia";
-import { getJsInjectImport } from "../utils/jsInject";
+import { getPerScriptResolve } from "../utils/js/getPerScriptResolve";
+import { getImportResolve } from "../utils/js/getImportResolve";
+import { getPerScriptResolveTest } from "../utils/js/getPerScriptResolveTest";
 
 export const handleProxyAssets = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
@@ -14,6 +16,8 @@ export const handleProxyAssets = async (ctx: Context) => {
   const response = await fetch(resourceUrl, {
     method: "GET",
     headers: {
+      Referer: "",
+      Cookie: "",
       "User-Agent":
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36",
     },
@@ -51,9 +55,12 @@ export const handleProxyAssets = async (ctx: Context) => {
     if (contentType.includes("application/javascript") || contentType.includes("text/javascript")) {
       const jsContent = await response.text();
 
-      const injection = getJsInjectImport();
-
-      const injectedJsContent = injection + jsContent;
+      const injectionResolve = getPerScriptResolve();
+      const injectionResolve2 = getImportResolve(`${ASSET_BASE_URL}?url=`);
+      const injectionResolve3 = getPerScriptResolveTest();
+      //const injection = "";
+      const injectionTest = `console.log("TESTING");`;
+      const injectedJsContent = injectionResolve3 + jsContent;
 
       // Regex to find import("*");
       const importRegex = /(import\s*\(\s*["'`])(https?:\/\/[^"')`]+)(["'`]\s*\))/gi;

@@ -82,9 +82,6 @@ const PagePrivateView = () => {
             }}
           />
         )}
-
-        {/* Extra scripts */}
-        <script>const a = 123;</script>
       </Flex>
     </>
   );

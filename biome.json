@@ -37,7 +37,8 @@
         "useImportType": "warn"
       },
       "complexity": {
-        "useLiteralKeys": "off"
+        "useLiteralKeys": "off",
+        "useArrowFunction": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "warn"

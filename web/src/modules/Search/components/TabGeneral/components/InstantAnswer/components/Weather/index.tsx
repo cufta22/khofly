@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 import { IAWrapper } from "../../wrapper";
-import {
-  Anchor,
-  Flex,
-  LoadingOverlay,
-  ScrollArea,
-  SegmentedControl,
-  Space,
-  Text,
-} from "@mantine/core";
+import { Anchor, Flex, LoadingOverlay, ScrollArea, SegmentedControl, Text } from "@mantine/core";
 import {
   IconLetterK,
   IconTemperatureCelsius,

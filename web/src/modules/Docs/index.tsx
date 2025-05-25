@@ -23,6 +23,8 @@ import Docs3rdPartyWeather from "./components/3rdparty-weather";
 import Docs3rdPartyCurrency from "./components/3rdparty-currency";
 import Docs3rdPartyLyrics from "./components/3rdparty-lyrics";
 import Docs3rdPartyAI from "./components/3rd-party-ai";
+import DocsSearchPrivateView from "./components/search-private-view";
+import DocsSelfHostKhoflyPV from "./components/self-host-khofly-pv";
 
 const PageDocs = () => {
   const params = useParams();
@@ -38,6 +40,7 @@ const PageDocs = () => {
     "ai-answers": <DocsSearchAIAnswers />,
     "private-search": <DocsSearchPrivateSearch />,
     "private-player": <DocsSearchPrivatePlayer />,
+    "private-view": <DocsSearchPrivateView />,
 
     "set-default": <DocsResourcesSetDefault />,
     "custom-searxng": <DocsResourcesCustomSearxng />,
@@ -49,6 +52,7 @@ const PageDocs = () => {
     "self-host-cf-workers": <DocsSelfHostCFWorkers />,
     "self-host-khofly": <DocsSelfHostKhofly />,
     "self-host-khofly-api": <DocsSelfHostKhoflyAPI />,
+    "self-host-khofly-pv": <DocsSelfHostKhoflyPV />,
 
     "3rd-party-weather": <Docs3rdPartyWeather />,
     "3rd-party-currency": <Docs3rdPartyCurrency />,
