@@ -9,7 +9,6 @@ export const handleProxy = async (ctx: Context) => {
   const targetUrl = searchParams.get("url") || "";
 
   // For <a href="..." />
-  const { origin: targetOrigin } = new URL(targetUrl);
   const reqOrigin = ctx.request.headers?.get("origin");
 
   // For assets loaded after initial html
@@ -19,9 +18,6 @@ export const handleProxy = async (ctx: Context) => {
   if (!protocol || !host) {
     throw ctx.status(400, "Invalid URL");
   }
-  console.log(fullParams);
-  console.log(targetUUID);
-  console.log(targetUrl);
 
   // Set KV UUID for initial domain
   if (targetUrl) {
@@ -38,9 +34,7 @@ export const handleProxy = async (ctx: Context) => {
   if (targetUrl) {
     const { contentType, html } = await handleProcessHtml({
       targetUrl,
-      targetOrigin,
       targetUUID,
-      ASSET_BASE_URL,
       ANCHOR_BASE_URL,
     });
 

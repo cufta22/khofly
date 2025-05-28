@@ -17,7 +17,7 @@ export const createProxyURL = (args: Args) => {
   // If it's same origin link
   if (source && !source.startsWith("http") && !source.startsWith("//")) {
     // Create proxied URL
-    return `/${targetUUID}/${source}`;
+    return `/proxy/${targetUUID}/${source}`;
   }
 
   // If it's 3rd party link, still proxy
@@ -30,12 +30,12 @@ export const createProxyURL = (args: Args) => {
 
     // Create proxied URL
     if (existingKV) {
-      return `/${existingKV.key}/${hrefPathname}`;
+      return `/proxy/${existingKV.key}${hrefPathname}`;
     } else {
       const newKey = randomUUIDv7();
       kv_Actions.set({ key: newKey, value: hrefOrigin });
 
-      return `/${newKey}/${hrefPathname}`;
+      return `/proxy/${newKey}${hrefPathname}`;
     }
   }
 };

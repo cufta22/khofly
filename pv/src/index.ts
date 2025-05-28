@@ -2,17 +2,17 @@ import { Elysia } from "elysia";
 import packageJson from "../package.json";
 
 import { handleProxy } from "./proxy/index";
+import { kv_Actions } from "./kv";
 
 const app = new Elysia({ serve: { idleTimeout: 100 } })
 
-  .get("/", () => `Khofly PV proxy v${packageJson.version}`)
+  .get("/", () => {
+    kv_Actions.getAll();
 
-  .get("/proxy", handleProxy)
-  .get("/proxy/*", handleProxy)
+    return `Khofly PV proxy v${packageJson.version}`;
+  })
 
-  // .get("/*", proxy.proxyOther) // Proxy any other page asset/request that isn't loaded initially
-  // .get("/proxy/page", proxy.proxyHtml) // Proxy webpage HTML privately
-  // .get("/proxy/asset/", proxy.proxyAssets) // Proxy webpage assets privately
+  .get("/proxy/*", handleProxy) // Handle proxy
 
   .listen(process.env.PORT || 4001);
 

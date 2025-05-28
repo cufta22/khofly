@@ -37,6 +37,10 @@ const STATEMENTS = {
     FROM items
     WHERE value = $value
   `) as Statement<Record>,
+  getAll: db.query(`
+    SELECT key, value, expires
+    FROM items
+  `) as Statement,
 
   setItem: db.query(`
     INSERT OR REPLACE INTO items (
@@ -91,6 +95,10 @@ export const kv_Actions = {
       }
     }
     return record;
+  },
+  getAll: () => {
+    const records = STATEMENTS.getAll.get();
+    console.log(records);
   },
   delete: (key: string) => {
     STATEMENTS.delete.run({ key: key });

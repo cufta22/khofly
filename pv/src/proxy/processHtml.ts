@@ -4,14 +4,12 @@ import { createProxyURL } from "../utils/createProxyURL";
 
 interface Args {
   targetUrl: string;
-  targetOrigin: string;
   targetUUID: string;
-  ASSET_BASE_URL: string;
   ANCHOR_BASE_URL: string;
 }
 
 export const handleProcessHtml = async (args: Args) => {
-  const { targetUrl, targetOrigin, targetUUID, ASSET_BASE_URL, ANCHOR_BASE_URL } = args;
+  const { targetUrl, targetUUID, ANCHOR_BASE_URL } = args;
 
   // Don't send cookies or other identifying information
   const response = await fetch(targetUrl, {
