@@ -1,26 +1,17 @@
-import type { Context } from "elysia";
 import { parse } from "node-html-parser";
 import { isTrackingScript } from "../utils/isTrackingScript";
-import { getImportResolve } from "../utils/js/getImportResolve";
+import { createProxyURL } from "../utils/createProxyURL";
 
-export const handleProxyHtml = async (ctx: Context) => {
-  const { searchParams, protocol, host } = new URL(ctx.request.url);
-  const targetUrl = searchParams.get("url") || "";
+interface Args {
+  targetUrl: string;
+  targetOrigin: string;
+  targetUUID: string;
+  ASSET_BASE_URL: string;
+  ANCHOR_BASE_URL: string;
+}
 
-  const { origin: targetOrigin } = new URL(targetUrl);
-  const reqOrigin = ctx.request.headers?.get("origin");
-
-  if (!targetUrl) {
-    throw ctx.status(400, "URL is required");
-  }
-
-  if (!protocol || !host) {
-    throw ctx.status(400, "Invalid URL");
-  }
-
-  // Base URLs
-  const ASSET_BASE_URL = `${process.env.HOST}/proxy/asset`;
-  const ANCHOR_BASE_URL = `${reqOrigin}/pv/proxy`;
+export const handleProcessHtml = async (args: Args) => {
+  const { targetUrl, targetOrigin, targetUUID, ASSET_BASE_URL, ANCHOR_BASE_URL } = args;
 
   // Don't send cookies or other identifying information
   const response = await fetch(targetUrl, {
@@ -41,7 +32,6 @@ export const handleProxyHtml = async (ctx: Context) => {
 
   // Determine content type
   const contentType = response.headers.get("content-type") || "text/html";
-  ctx.set.headers["content-type"] = contentType;
 
   if (contentType.includes("text/html")) {
     const htmlData = await response.text();
@@ -52,7 +42,7 @@ export const handleProxyHtml = async (ctx: Context) => {
 
     // Inject global import resolve code
     if (head) {
-      const jsInjectResolve = getImportResolve(`${ASSET_BASE_URL}?url=`);
+      // const jsInjectResolve = getImportResolve(`${ASSET_BASE_URL}?url=`);
       // head?.insertAdjacentHTML("afterbegin", jsInjectResolve);
     }
 
@@ -110,7 +100,7 @@ export const handleProxyHtml = async (ctx: Context) => {
           // p1 = import("
           // p2 = original url
           // p3 = ")
-          const proxiedUrl = `${ASSET_BASE_URL}?url=${p2}`;
+          const proxiedUrl = createProxyURL({ source: p2, targetUUID });
 
           return `${p1}${proxiedUrl}${p3}`;
         });
@@ -119,10 +109,10 @@ export const handleProxyHtml = async (ctx: Context) => {
         script.set_content(modifiedScriptContent);
       }
 
-      // Replace src attribute with proxy
-      if (src && !src.startsWith("http") && !src.startsWith("//")) {
-        const proxiedUrl = `${ASSET_BASE_URL}?url=${targetOrigin}${encodeURIComponent(src)}`;
-        script.setAttribute("src", proxiedUrl);
+      // Create proxied URL
+      if (src) {
+        const proxiedUrl = createProxyURL({ source: src, targetUUID });
+        if (proxiedUrl) script.setAttribute("src", proxiedUrl);
       }
     }
 
@@ -135,9 +125,13 @@ export const handleProxyHtml = async (ctx: Context) => {
 
       // Replace URLs within the style tag
       cssContent = cssContent.replace(urlRegex, (match, url) => {
-        const proxiedUrl = `${ASSET_BASE_URL}?url=${url}`;
+        // Create proxied URL
+        if (url) {
+          const proxiedUrl = createProxyURL({ source: url, targetUUID });
+          if (proxiedUrl) return `url('${proxiedUrl}')`;
+        }
 
-        return `url(${proxiedUrl})`; // Ensure it's wrapped in quotes for CSS
+        return `url('${url}')`;
       });
 
       // Update the innerHTML of the style tag
@@ -153,9 +147,13 @@ export const handleProxyHtml = async (ctx: Context) => {
 
       if (inlineStyle) {
         inlineStyle = inlineStyle.replace(urlRegex, (match, url) => {
-          const proxiedUrl = `${ASSET_BASE_URL}?url=${url}`;
+          // Create proxied URL
+          if (url) {
+            const proxiedUrl = createProxyURL({ source: url, targetUUID });
+            if (proxiedUrl) return `url('${proxiedUrl}')`;
+          }
 
-          return `url('${proxiedUrl}')`;
+          return `url('${url}')`;
         });
         element.setAttribute("style", inlineStyle);
       }
@@ -166,10 +164,11 @@ export const handleProxyHtml = async (ctx: Context) => {
     // -------------------------------------------------------------------------
     for (const img of root.querySelectorAll("img")) {
       const src = img.getAttribute("src");
-      if (src && !src.startsWith("http") && !src.startsWith("//")) {
-        const proxiedUrl = `${ASSET_BASE_URL}?url=${targetOrigin}${encodeURIComponent(src)}`;
 
-        img.setAttribute("src", proxiedUrl);
+      // Create proxied URL
+      if (src) {
+        const proxiedUrl = createProxyURL({ source: src, targetUUID });
+        if (proxiedUrl) img.setAttribute("src", proxiedUrl);
       }
     }
 
@@ -189,27 +188,19 @@ export const handleProxyHtml = async (ctx: Context) => {
       // Favicon not needed
       if (link.getAttribute("rel") === "icon") link.remove();
 
-      // If it's same origin link
-      if (href && !href.startsWith("http") && !href.startsWith("//")) {
-        const proxiedUrl = `${ASSET_BASE_URL}?url=${targetOrigin}${encodeURIComponent(href)}`;
-
-        link.setAttribute("href", proxiedUrl);
-      }
-
-      // If it's 3rd party link, still proxy
-      if (href?.startsWith("http")) {
-        const proxiedUrl = `${ASSET_BASE_URL}?url=${encodeURIComponent(href)}`;
-
-        link.setAttribute("href", proxiedUrl);
+      // Create proxied URL
+      if (href) {
+        const proxiedUrl = createProxyURL({ source: href, targetUUID });
+        if (proxiedUrl) link.setAttribute("href", proxiedUrl);
       }
     }
 
     // Return processed HTML
-    return root.toString();
+    return { contentType, html: root.toString() };
   } else {
     // For non-HTML content (images, PDFs, etc.), pass through
     const otherData = await response.text();
 
-    return otherData;
+    return { contentType, html: otherData };
   }
 };

@@ -1,19 +1,23 @@
-import type { Context } from "elysia";
 import { getPerScriptResolve } from "../utils/js/getPerScriptResolve";
 import { getImportResolve } from "../utils/js/getImportResolve";
 import { getPerScriptResolveTest } from "../utils/js/getPerScriptResolveTest";
+import { kv_Actions } from "../kv";
 
-export const handleProxyAssets = async (ctx: Context) => {
-  const { searchParams } = new URL(ctx.request.url);
-  const resourceUrl = searchParams.get("url") || "";
+interface Args {
+  targetUUID: string;
+  targetAssetPath: string;
+  ASSET_BASE_URL: string;
+}
 
-  if (!resourceUrl) return "";
+export const handleProcessAssets = async (args: Args) => {
+  const { targetUUID, targetAssetPath, ASSET_BASE_URL } = args;
 
-  // Base URLs
-  const ASSET_BASE_URL = `${process.env.HOST}/proxy/asset`;
+  const resourceOrigin = kv_Actions.get({ by: "key", val: targetUUID });
+
+  const assetUrl = `${resourceOrigin}/${targetAssetPath}`;
 
   // Fetch the resource
-  const response = await fetch(resourceUrl, {
+  const response = await fetch(assetUrl, {
     method: "GET",
     headers: {
       Referer: "",
@@ -28,10 +32,6 @@ export const handleProxyAssets = async (ctx: Context) => {
     // Get the content type
     const contentType = response.headers.get("content-type") || "application/octet-stream";
 
-    // Set appropriate headers
-    ctx.set.headers["content-type"] = contentType;
-    ctx.set.headers["cache-control"] = "public, max-age=86400"; // Cache for 24 hours
-
     // -----------------------------------------------------------
     // Handle icons, fonts, etc.
     // -----------------------------------------------------------
@@ -40,13 +40,13 @@ export const handleProxyAssets = async (ctx: Context) => {
       contentType.includes("application/octet-stream") ||
       // Fonts
       contentType.includes("font") ||
-      resourceUrl.match(/\.(woff2?|ttf|otf|eot)$/i)
+      assetUrl.match(/\.(woff2?|ttf|otf|eot)$/i)
     ) {
       // Get the asset data as ArrayBuffer
       const resourceData = await response.arrayBuffer();
 
       // Send the resource data
-      return Buffer.from(resourceData);
+      return { contentType: contentType, asset: Buffer.from(resourceData) };
     }
 
     // -----------------------------------------------------------
@@ -65,16 +65,16 @@ export const handleProxyAssets = async (ctx: Context) => {
       // Regex to find import("*");
       const importRegex = /(import\s*\(\s*["'`])(https?:\/\/[^"')`]+)(["'`]\s*\))/gi;
 
-      const modifiedJsContent = injectedJsContent.replace(importRegex, (match, p1, p2, p3) => {
-        // p1 = import("
-        // p2 = original url
-        // p3 = ")
-        const proxiedUrl = `${ASSET_BASE_URL}?url=${p2}`;
+      // const modifiedJsContent = injectedJsContent.replace(importRegex, (match, p1, p2, p3) => {
+      //   // p1 = import("
+      //   // p2 = original url
+      //   // p3 = ")
+      //   const proxiedUrl = `${ASSET_BASE_URL}?url=${p2}`;
 
-        return `${p1}${proxiedUrl}${p3}`;
-      });
+      //   return `${p1}${proxiedUrl}${p3}`;
+      // });
 
-      return modifiedJsContent;
+      return { contentType: "application/javascript", asset: jsContent };
     }
 
     // -----------------------------------------------------------
@@ -85,7 +85,7 @@ export const handleProxyAssets = async (ctx: Context) => {
       const resourceData = await response.json();
 
       // Send the resource data
-      return resourceData;
+      return { contentType, asset: resourceData };
     }
 
     // -----------------------------------------------------------
@@ -93,8 +93,8 @@ export const handleProxyAssets = async (ctx: Context) => {
     // -----------------------------------------------------------
 
     const resourceData = await response.text();
-    return resourceData;
+    return { contentType, asset: resourceData };
   } else {
-    throw ctx.status(400, "Failed to fetch resource");
+    return { contentType: "", asset: "" };
   }
 };
