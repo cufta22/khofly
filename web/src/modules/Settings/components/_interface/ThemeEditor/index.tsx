@@ -20,7 +20,7 @@ import { useClientServerState } from "@store/client-server";
 import useToast from "@hooks/use-toast";
 import { setCookie } from "@utils/functions/cookies";
 import { useMounted } from "@mantine/hooks";
-import ExternalLink from "@components/ExternalLink";
+import ExternalLink from "@components/Links/ExternalLink";
 
 interface Props {
   setDisplayThemeEdit: Dispatch<SetStateAction<boolean>>;

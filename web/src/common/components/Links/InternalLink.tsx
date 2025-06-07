@@ -10,7 +10,7 @@ interface Props extends LinkProps, IFC {
   target?: React.HTMLAttributeAnchorTarget;
 }
 
-const RemixLink: React.FC<Props> = ({ children, ...linkProps }) => {
+const InternalLink: React.FC<Props> = ({ children, ...linkProps }) => {
   const { pathname } = useLocation();
 
   // Handle NProgress
@@ -27,4 +27,4 @@ const RemixLink: React.FC<Props> = ({ children, ...linkProps }) => {
   );
 };
 
-export default RemixLink;
+export default InternalLink;

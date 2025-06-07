@@ -85,10 +85,5 @@ export default defineConfig(({ mode }) => {
 
       "process.env.NODE_VERSION": JSON.stringify(nodeVersion),
     },
-
-    // Testing for Vercel edge functions
-    // ssr: {
-    //   noExternal: true,
-    // },
   };
 });

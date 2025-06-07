@@ -6,21 +6,23 @@ import { useNavigate, useSearchParams } from "react-router";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import SettingsGeneral from "./components/_general/General";
+import SettingsAI from "./components/_general/AI";
+
+import SettingsCategories from "./components/_interface/Categories";
 import SettingsInterface from "./components/_interface/Interface";
-import SettingsEngines from "./components/_engines/Engines";
-import SettingsCategories from "./components/_general/Categories";
 import SettingsThemeEditor from "./components/_interface/ThemeEditor";
 
 import SettingsSearXNG from "./components/_instances/SearXNG";
 import SettingsAIWorker from "./components/_instances/AIWorker";
 import SettingsNominatim from "./components/_instances/Nominatim";
+import SettingsAPI from "./components/_instances/API";
+import SettingsPV from "./components/_instances/PV";
+
+import SettingsEngines from "./components/_engines/Engines";
 
 import SettingsShortcuts from "./components/_startpage/Shortcuts";
 import SettingsWidgets from "./components/_startpage/Widgets";
-import SettingsAPI from "./components/_instances/API";
 import SettingsWallpaper from "./components/_startpage/Wallpaper";
-import SettingsAI from "./components/_general/AI";
-import SettingsPV from "./components/_instances/PV";
 
 const PageSettings = () => {
   const navigate = useNavigate();
@@ -61,18 +63,18 @@ const PageSettings = () => {
           </Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="interface">
-          <SettingsInterface setDisplayThemeEdit={setDisplayThemeEdit} />
-          <Space h={40} />
-          {displayThemeEdit && <SettingsThemeEditor setDisplayThemeEdit={setDisplayThemeEdit} />}
-        </Tabs.Panel>
-
         <Tabs.Panel value="general">
-          <SettingsCategories />
-          <Space h={40} />
           <SettingsGeneral />
           <Space h={40} />
           <SettingsAI />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="interface">
+          <SettingsCategories />
+          <Space h={40} />
+          <SettingsInterface setDisplayThemeEdit={setDisplayThemeEdit} />
+          <Space h={40} />
+          {displayThemeEdit && <SettingsThemeEditor setDisplayThemeEdit={setDisplayThemeEdit} />}
         </Tabs.Panel>
 
         <Tabs.Panel value="instances">

@@ -15,7 +15,7 @@ import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
 import { useEffect } from "react";
-import ExternalLink from "@components/ExternalLink";
+import ExternalLink from "@components/Links/ExternalLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import SettingsTitle from "../../common/SettingsTitle";
 

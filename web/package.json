@@ -9,24 +9,22 @@
     "dev": "react-router dev",
     "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "lint:fix": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --fix .",
     "biome:format": "",
     "biome:lint": "",
     "typegen": "react-router typegen",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@mantine/charts": "^8.0.0",
-    "@mantine/core": "^8.0.0",
-    "@mantine/dates": "^8.0.0",
-    "@mantine/hooks": "^8.0.0",
-    "@mantine/notifications": "^8.0.0",
-    "@mantine/nprogress": "^8.0.0",
-    "@react-router/fs-routes": "^7.6.0",
-    "@react-router/node": "^7.6.0",
-    "@react-router/serve": "^7.6.0",
-    "@tabler/icons-react": "^3.31.0",
+    "@mantine/charts": "^8.0.2",
+    "@mantine/core": "^8.0.2",
+    "@mantine/dates": "^8.0.2",
+    "@mantine/hooks": "^8.0.2",
+    "@mantine/notifications": "^8.0.2",
+    "@mantine/nprogress": "^8.0.2",
+    "@react-router/fs-routes": "^7.6.2",
+    "@react-router/node": "^7.6.2",
+    "@react-router/serve": "^7.6.2",
+    "@tabler/icons-react": "^3.34.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "highlight.js": "^11.11.1",
@@ -36,36 +34,36 @@
     "react-dom": "19.1.0",
     "react-leaflet": "^5.0.0",
     "react-markdown": "^10.1.0",
-    "react-router": "^7.6.0",
+    "react-router": "^7.6.2",
     "recharts": "2.15.3",
     "remark-gfm": "^4.0.1",
     "swr": "^2.3.3",
-    "zustand": "^5.0.4"
+    "zustand": "^5.0.5"
   },
   "overrides": {
-    "react-is": "^19.1.0 "
+    "react-is": "^19.1.0"
   },
   "pnpm": {
     "overrides": {
-      "react-is": "^19.1.0 "
+      "react-is": "^19.1.0"
     }
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@react-router/dev": "^7.6.0",
-    "@types/leaflet": "^1.9.17",
+    "@react-router/dev": "^7.6.2",
+    "@types/leaflet": "^1.9.18",
     "@types/node": "^22",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "postcss": "^8.5.3",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "postcss": "^8.5.4",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "sass": "^1.88.0",
+    "sass": "^1.89.1",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }
