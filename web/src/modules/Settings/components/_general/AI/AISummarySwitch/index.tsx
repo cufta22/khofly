@@ -5,10 +5,8 @@ import commonClasses from "../../../common/styles.module.scss";
 const AISummarySwitch = () => {
   //   const t = useTranslate();
 
-  const enableAISummary = useSettingsStore((state) => state.enableAISummary);
-  const setEnableAISummary = useSettingsStore((state) => state.setEnableAISummary);
-  const aiSummaryLength = useSettingsStore((state) => state.aiSummaryLength);
-  const setAISummaryLenght = useSettingsStore((state) => state.setAISummaryLenght);
+  const AISummary = useSettingsStore((state) => state.AISummary);
+  const setAISummary = useSettingsStore((state) => state.setAISummary);
 
   //   const linkTextColor = usePrimaryColor(4);
 
@@ -20,7 +18,7 @@ const AISummarySwitch = () => {
         </Text>
       </RemixLink> */}
 
-      {enableAISummary && (
+      {AISummary.enabled && (
         <Select
           allowDeselect={false}
           data={[
@@ -33,15 +31,15 @@ const AISummarySwitch = () => {
               value: "long",
             },
           ]}
-          value={aiSummaryLength}
-          onChange={(val) => setAISummaryLenght(val as "short" | "long")}
+          value={AISummary.length}
+          onChange={(val) => setAISummary({ length: val as "short" | "long" })}
           w={150}
         />
       )}
 
       <Switch
-        checked={enableAISummary}
-        onChange={(e) => setEnableAISummary(e.currentTarget.checked)}
+        checked={AISummary.enabled}
+        onChange={(e) => setAISummary({ enabled: e.currentTarget.checked })}
       />
     </Flex>
   );

@@ -6,14 +6,12 @@ import commonClasses from "../../../common/styles.module.scss";
 const MediaSwitch = () => {
   const t = useTranslate();
 
-  const selectedMedia = useSettingsStore((state) => state.selectedMedia);
-  const setSelectedMedia = useSettingsStore((state) => state.setSelectedMedia);
-  const displayMedia = useSettingsStore((state) => state.displayMedia);
-  const setDisplayMedia = useSettingsStore((state) => state.setDisplayMedia);
+  const generalMedia = useSettingsStore((state) => state.generalMedia);
+  const setGeneralMedia = useSettingsStore((state) => state.setGeneralMedia);
 
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
-      {displayMedia && (
+      {generalMedia.enabled && (
         <Select
           allowDeselect={false}
           data={[
@@ -26,13 +24,16 @@ const MediaSwitch = () => {
               value: "videos",
             },
           ]}
-          value={selectedMedia}
-          onChange={(val) => setSelectedMedia(val as "images" | "videos")}
+          value={generalMedia.type}
+          onChange={(val) => setGeneralMedia({ type: val as "images" | "videos" })}
           w={150}
         />
       )}
 
-      <Switch checked={displayMedia} onChange={(e) => setDisplayMedia(e.currentTarget.checked)} />
+      <Switch
+        checked={generalMedia.enabled}
+        onChange={(e) => setGeneralMedia({ enabled: e.currentTarget.checked })}
+      />
     </Flex>
   );
 };

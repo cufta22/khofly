@@ -8,8 +8,8 @@ import commonClasses from "../../../common/styles.module.scss";
 const AIAnswerSwitch = () => {
   const t = useTranslate();
 
-  const enableAIAnswers = useSettingsStore((state) => state.enableAIAnswers);
-  const setEnableAIAnswers = useSettingsStore((state) => state.setEnableAIAnswers);
+  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
+  const setAIAnswer = useSettingsStore((state) => state.setAIAnswer);
 
   const linkTextColor = usePrimaryColor(4);
 
@@ -22,8 +22,8 @@ const AIAnswerSwitch = () => {
       </RemixLink>
 
       <Switch
-        checked={enableAIAnswers}
-        onChange={(e) => setEnableAIAnswers(e.currentTarget.checked)}
+        checked={AIAnswer.enabled}
+        onChange={(e) => setAIAnswer({ enabled: e.currentTarget.checked })}
       />
     </Flex>
   );

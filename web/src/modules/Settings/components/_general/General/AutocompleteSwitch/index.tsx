@@ -6,14 +6,14 @@ import commonClasses from "../../../common/styles.module.scss";
 const AutocompleteSwitch = () => {
   const t = useTranslate();
 
-  const enableAutocomplete = useSettingsStore((state) => state.enableAutocomplete);
-  const setEnableAutocomplete = useSettingsStore((state) => state.setEnableAutocomplete);
-  const autocompleteEngine = useSettingsStore((state) => state.autocompleteEngine);
-  const setAutocompleteEngine = useSettingsStore((state) => state.setAutocompleteEngine);
+  const autocomplete = useSettingsStore((state) => state.autocomplete);
+  const setAutocomplete = useSettingsStore((state) => state.setAutocomplete);
+
+  const { enabled, provider } = autocomplete;
 
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
-      {enableAutocomplete && (
+      {enabled && (
         <Select
           allowDeselect={false}
           data={[
@@ -34,15 +34,15 @@ const AutocompleteSwitch = () => {
               value: "qwant",
             },
           ]}
-          value={autocompleteEngine}
-          onChange={(val) => setAutocompleteEngine(val as IAutocompleteEngines)}
+          value={provider}
+          onChange={(val) => setAutocomplete({ provider: val as IAutocompleteEngines })}
           w={150}
         />
       )}
 
       <Switch
-        checked={enableAutocomplete}
-        onChange={(e) => setEnableAutocomplete(e.currentTarget.checked)}
+        checked={enabled}
+        onChange={(e) => setAutocomplete({ enabled: e.currentTarget.checked })}
       />
     </Flex>
   );

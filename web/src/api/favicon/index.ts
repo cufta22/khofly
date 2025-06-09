@@ -4,11 +4,10 @@ import { type IFaviconAPI, useSettingsStore } from "@store/settings";
 export const useFaviconAPI = () => {
   const apiDomain = useInstanceStore((state) => state.apiDomain);
 
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
-  const faviconProvider = useSettingsStore((state) => state.faviconProvider);
+  const favicon = useSettingsStore((state) => state.favicon);
 
   const getFaviconUrl = (url: string, provider?: IFaviconAPI) =>
-    `${apiDomain}/favicon?url=${url}&provider=${provider || faviconProvider}`;
+    `${apiDomain}/favicon?url=${url}&provider=${provider || favicon.provider}`;
 
-  return { displayFavicon, getFaviconUrl };
+  return { displayFavicon: favicon.enabled, getFaviconUrl };
 };

@@ -25,7 +25,7 @@ import AISummary from "../components/AISummary";
 const TabGeneral = () => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
 
-  const displayMedia = useSettingsStore((state) => state.displayMedia);
+  const generalMedia = useSettingsStore((state) => state.generalMedia);
   const hydratedSettings = useSettingsStore((state) => state.hydrated);
 
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
@@ -118,7 +118,7 @@ const TabGeneral = () => {
             <Stack gap="lg" key={i}>
               {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
 
-              {displayMedia && i === 0 && hydratedSettings ? (
+              {generalMedia.enabled && i === 0 && hydratedSettings ? (
                 // Display images/videos in between results
                 <>
                   {organizedResults.slice(0, 2).map((r, i) => (

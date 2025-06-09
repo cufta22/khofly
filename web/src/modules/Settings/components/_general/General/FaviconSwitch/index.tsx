@@ -6,14 +6,12 @@ import { useTranslate } from "@hooks/translate/use-translate";
 const FaviconSwitch = () => {
   const t = useTranslate();
 
-  const displayFavicon = useSettingsStore((state) => state.displayFavicon);
-  const setDisplayFavicon = useSettingsStore((state) => state.setDisplayFavicon);
-  const faviconProvider = useSettingsStore((state) => state.faviconProvider);
-  const setFaviconProvider = useSettingsStore((state) => state.setFaviconProvider);
+  const favicon = useSettingsStore((state) => state.favicon);
+  const setFavicon = useSettingsStore((state) => state.setFavicon);
 
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
-      {displayFavicon && (
+      {favicon.enabled && (
         <Select
           data={[
             {
@@ -29,15 +27,15 @@ const FaviconSwitch = () => {
               value: "favicone",
             },
           ]}
-          value={faviconProvider}
-          onChange={(val) => setFaviconProvider(val as IFaviconAPI)}
+          value={favicon.provider}
+          onChange={(val) => setFavicon({ provider: val as IFaviconAPI })}
           w={150}
         />
       )}
 
       <Switch
-        checked={displayFavicon}
-        onChange={(e) => setDisplayFavicon(e.currentTarget.checked)}
+        checked={favicon.enabled}
+        onChange={(e) => setFavicon({ enabled: e.currentTarget.checked })}
       />
     </Flex>
   );

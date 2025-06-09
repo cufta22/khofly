@@ -5,8 +5,8 @@ import commonClasses from "../../../common/styles.module.scss";
 const AIChatSwitch = () => {
   //   const t = useTranslate();
 
-  const enableAIChat = useSettingsStore((state) => state.enableAIChat);
-  const setEnableAIChat = useSettingsStore((state) => state.setEnableAIChat);
+  const AIChat = useSettingsStore((state) => state.AIChat);
+  const setAIChat = useSettingsStore((state) => state.setAIChat);
 
   //   const linkTextColor = usePrimaryColor(4);
 
@@ -18,7 +18,10 @@ const AIChatSwitch = () => {
         </Text>
       </RemixLink> */}
 
-      <Switch checked={enableAIChat} onChange={(e) => setEnableAIChat(e.currentTarget.checked)} />
+      <Switch
+        checked={AIChat.enabled}
+        onChange={(e) => setAIChat({ enabled: e.currentTarget.checked })}
+      />
     </Flex>
   );
 };

@@ -1,3 +1,4 @@
+import { IAIProvider } from "@store/aichat";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -18,32 +19,40 @@ export type ICategories =
 
 export type IFaviconAPI = "duckduckgo" | "google" | "favicone";
 
+export type IWeatherSource = "owm" | "om";
+
 interface SettingsState {
   hydrated: boolean;
 
   categories: ICategories[];
   setCategories: (next: ICategories[]) => void;
 
+  favicon: {
+    enabled: boolean;
+    provider: IFaviconAPI;
+  };
+  setFavicon: (next: { enabled?: boolean; provider?: IFaviconAPI }) => void;
+
+  autocomplete: {
+    enabled: boolean;
+    provider: IAutocompleteEngines;
+  };
+  setAutocomplete: (next: { enabled?: boolean; provider?: IAutocompleteEngines }) => void;
+
   showEngines: boolean;
   setShowEngines: (next: boolean) => void;
 
-  selectedMedia: "images" | "videos";
-  setSelectedMedia: (next: "images" | "videos") => void;
-  displayMedia: boolean;
-  setDisplayMedia: (next: boolean) => void;
+  generalMedia: {
+    enabled: boolean;
+    type: "images" | "videos";
+  };
+  setGeneralMedia: (next: { enabled?: boolean; type?: "images" | "videos" }) => void;
 
-  displayFavicon: boolean;
-  setDisplayFavicon: (next: boolean) => void;
-  faviconProvider: IFaviconAPI;
-  setFaviconProvider: (next: IFaviconAPI) => void;
-
-  enableAutocomplete: boolean;
-  setEnableAutocomplete: (next: boolean) => void;
-  autocompleteEngine: IAutocompleteEngines;
-  setAutocompleteEngine: (next: IAutocompleteEngines) => void;
-
-  enableInstantAnswers: boolean;
-  setEnableInstantAnswers: (next: boolean) => void;
+  instantAnswers: {
+    enabled: boolean;
+    weatherDataSource: IWeatherSource;
+  };
+  setInstantAnswers: (next: { enabled?: boolean }) => void;
 
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;
@@ -69,16 +78,33 @@ interface SettingsState {
     allowForms?: boolean;
   }) => void;
 
-  enableAIAnswers: boolean;
-  setEnableAIAnswers: (next: boolean) => void;
+  AIAnswer: {
+    enabled: boolean;
+    provider: IAIProvider;
+    model: {
+      label: string;
+      value: string;
+    };
+  };
+  setAIAnswer: (next: {
+    enabled?: boolean;
+    provider?: IAIProvider;
+    model?: {
+      label: string;
+      value: string;
+    };
+  }) => void;
 
-  enableAIChat: boolean;
-  setEnableAIChat: (next: boolean) => void;
+  AIChat: {
+    enabled: boolean;
+  };
+  setAIChat: (next: { enabled?: boolean }) => void;
 
-  enableAISummary: boolean;
-  setEnableAISummary: (next: boolean) => void;
-  aiSummaryLength: "short" | "long";
-  setAISummaryLenght: (next: "short" | "long") => void;
+  AISummary: {
+    enabled: boolean;
+    length: "short" | "long";
+  };
+  setAISummary: (next: { enabled?: boolean; length?: "short" | "long" }) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -89,26 +115,35 @@ export const useSettingsStore = create<SettingsState>()(
       categories: ["general", "images", "videos", "news", "maps"],
       setCategories: (next) => set({ categories: next }),
 
+      favicon: {
+        enabled: false,
+        provider: "duckduckgo",
+      },
+      setFavicon: (next) => set((prev) => ({ favicon: { ...prev.favicon, ...next } })),
+
+      autocomplete: {
+        enabled: true,
+        provider: "google",
+      },
+      setAutocomplete: (next) =>
+        set((prev) => ({ autocomplete: { ...prev.autocomplete, ...next } })),
+
       showEngines: false,
       setShowEngines: (next) => set({ showEngines: next }),
 
-      selectedMedia: "images",
-      setSelectedMedia: (next) => set({ selectedMedia: next }),
-      displayMedia: true,
-      setDisplayMedia: (next) => set({ displayMedia: next }),
+      generalMedia: {
+        enabled: true,
+        type: "images",
+      },
+      setGeneralMedia: (next) =>
+        set((prev) => ({ generalMedia: { ...prev.generalMedia, ...next } })),
 
-      displayFavicon: false,
-      setDisplayFavicon: (next) => set({ displayFavicon: next }),
-      faviconProvider: "duckduckgo",
-      setFaviconProvider: (next) => set({ faviconProvider: next }),
-
-      enableAutocomplete: true,
-      setEnableAutocomplete: (next) => set({ enableAutocomplete: next }),
-      autocompleteEngine: "google",
-      setAutocompleteEngine: (next) => set({ autocompleteEngine: next }),
-
-      enableInstantAnswers: true,
-      setEnableInstantAnswers: (next) => set({ enableInstantAnswers: next }),
+      instantAnswers: {
+        enabled: true,
+        weatherDataSource: "owm",
+      },
+      setInstantAnswers: (next) =>
+        set((prev) => ({ instantAnswers: { ...prev.instantAnswers, ...next } })),
 
       openInNewTab: false,
       setOpenInNewTab: (next) => set({ openInNewTab: next }),
@@ -128,16 +163,26 @@ export const useSettingsStore = create<SettingsState>()(
       },
       setPrivateView: (next) => set((prev) => ({ privateView: { ...prev.privateView, ...next } })),
 
-      enableAIAnswers: false,
-      setEnableAIAnswers: (next) => set({ enableAIAnswers: next }),
+      AIAnswer: {
+        enabled: false,
+        provider: "cf",
+        model: {
+          label: "Llama 3.2 3b - instruct",
+          value: "@cf/meta/llama-3.2-3b-instruct",
+        },
+      },
+      setAIAnswer: (next) => set((prev) => ({ AIAnswer: { ...prev.AIAnswer, ...next } })),
 
-      enableAIChat: false,
-      setEnableAIChat: (next) => set({ enableAIChat: next }),
+      AIChat: {
+        enabled: false,
+      },
+      setAIChat: (next) => set((prev) => ({ AIChat: { ...prev.AIChat, ...next } })),
 
-      enableAISummary: false,
-      setEnableAISummary: (next) => set({ enableAISummary: next }),
-      aiSummaryLength: "short",
-      setAISummaryLenght: (next) => set({ aiSummaryLength: next }),
+      AISummary: {
+        enabled: false,
+        length: "short",
+      },
+      setAISummary: (next) => set((prev) => ({ AISummary: { ...prev.AISummary, ...next } })),
     }),
     {
       onRehydrateStorage: () => (state) => {
@@ -150,21 +195,17 @@ export const useSettingsStore = create<SettingsState>()(
       partialize: (state) => ({
         categories: state.categories,
         showEngines: state.showEngines,
-        selectedMedia: state.selectedMedia,
-        displayMedia: state.displayMedia,
-        displayFavicon: state.displayFavicon,
-        faviconProvider: state.faviconProvider,
-        enableAutocomplete: state.enableAutocomplete,
-        autocompleteEngine: state.autocompleteEngine,
-        enableInstantAnswers: state.enableInstantAnswers,
+        generalMedia: state.generalMedia,
+        favicon: state.favicon,
+        autocomplete: state.autocomplete,
+        instantAnswers: state.instantAnswers,
         openInNewTab: state.openInNewTab,
         privateSearch: state.privateSearch,
         privatePlayer: state.privatePlayer,
         privateView: state.privateView,
-        enableAIAnswers: state.enableAIAnswers,
-        enableAIChat: state.enableAIChat,
-        enableAISummary: state.enableAISummary,
-        aiSummaryLength: state.aiSummaryLength,
+        AIAnswer: state.AIAnswer,
+        AIChat: state.AIChat,
+        AISummary: state.AISummary,
       }),
     }
   )

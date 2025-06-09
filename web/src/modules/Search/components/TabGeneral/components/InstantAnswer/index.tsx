@@ -37,12 +37,13 @@ import IACowsay from "./_commands/Cowsay";
 const InstantAnswer = () => {
   const isLg = useResponsive("min", "lg", true);
 
-  const enableInstantAnswers = useSettingsStore((state) => state.enableInstantAnswers);
+  const hydrated = useSettingsStore((state) => state.hydrated);
+  const instantAnswers = useSettingsStore((state) => state.instantAnswers);
 
   const q = useSearchQuery();
 
   // Instant Answers disabled in settings
-  if (!enableInstantAnswers) return null;
+  if (!hydrated || !instantAnswers.enabled) return null;
 
   // Instant answer - Calculator WIP
   if (shouldDisplayIAExact(q, KEYWORDS_IA.calculator)) return <IACalculator />;

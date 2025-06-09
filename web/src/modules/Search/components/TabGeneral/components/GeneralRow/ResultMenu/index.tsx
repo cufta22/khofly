@@ -22,7 +22,7 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
   const navigate = useNavigate();
   const theme = useMantineTheme();
 
-  const enableAISummary = useSettingsStore((state) => state.enableAISummary);
+  const AISummary = useSettingsStore((state) => state.AISummary);
   const privateView = useSettingsStore((state) => state.privateView);
 
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
@@ -37,7 +37,7 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
   const isPriority = domainsPriority.find((item) => item === strippedDomain);
   const isBlacklist = domainsBlacklist.find((item) => item === strippedDomain);
 
-  const hasAIFeatures = enableAISummary;
+  const hasAIFeatures = AISummary.enabled;
 
   const addToPriority = () => {
     if (isPriority) return;
@@ -99,7 +99,7 @@ const ResultMenu: React.FC<Props> = ({ url, domain }) => {
         </Menu.Item>
 
         {hasAIFeatures && <Menu.Divider />}
-        {enableAISummary && (
+        {AISummary.enabled && (
           <Menu.Item
             leftSection={<IconTextScan2 size={18} color={theme.colors.pink["5"]} />}
             onClick={() => setAISummaryURL(url)}

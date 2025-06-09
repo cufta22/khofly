@@ -27,9 +27,9 @@ const SearchSectionInput = () => {
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const enableAutocomplete = useSettingsStore((state) => state.enableAutocomplete);
+  const autocomplete = useSettingsStore((state) => state.autocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
-  const enableAIAnswers = useSettingsStore((state) => state.enableAIAnswers);
+  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
 
   const searchQuery = useSearchStore((state) => state.searchQuery);
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
@@ -86,7 +86,11 @@ const SearchSectionInput = () => {
   }, [searchParams]);
 
   useEffect(() => {
-    if (!enableAutocomplete || !debouncedQ || document.activeElement !== combobox.targetRef.current)
+    if (
+      !autocomplete.enabled ||
+      !debouncedQ ||
+      document.activeElement !== combobox.targetRef.current
+    )
       return;
 
     trigger(debouncedQ);
@@ -173,7 +177,7 @@ const SearchSectionInput = () => {
                 />
               </ActionIcon>
 
-              {enableAIAnswers && (
+              {AIAnswer.enabled && (
                 <ActionIcon
                   size="lg"
                   radius="sm"

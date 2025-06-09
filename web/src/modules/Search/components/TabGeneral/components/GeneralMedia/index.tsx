@@ -17,14 +17,14 @@ import { useNavigate } from "react-router";
 import { useResponsive } from "@hooks/use-responsive";
 
 const GeneralMedia = () => {
-  const selectedMedia = useSettingsStore((state) => state.selectedMedia);
+  const generalMedia = useSettingsStore((state) => state.generalMedia);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
 
   const hydrated = useEnginesStore((state) => state.hydrated);
 
   const isSm = useResponsive("max", "sm");
 
-  const { data, mutate } = useSearXNGSWR<ISearXNGResultsBlank>(selectedMedia);
+  const { data, mutate } = useSearXNGSWR<ISearXNGResultsBlank>(generalMedia.type);
 
   const navigate = useNavigate();
   const q = useSearchQuery();
@@ -36,10 +36,10 @@ const GeneralMedia = () => {
 
     // Handle Private Search
     if (privateSearch) {
-      return navigate(`/search?tab=${selectedMedia}${mediaParam}`);
+      return navigate(`/search?tab=${generalMedia.type}${mediaParam}`);
     }
 
-    navigate(`/search?q=${encodeURIComponent(q)}&tab=${selectedMedia}${mediaParam}`);
+    navigate(`/search?q=${encodeURIComponent(q)}&tab=${generalMedia.type}${mediaParam}`);
   };
 
   useEffect(() => {
@@ -50,14 +50,14 @@ const GeneralMedia = () => {
   return (
     <Stack>
       <Flex align="center" gap="sm">
-        {selectedMedia === "images" && <IconPhoto />}
-        {selectedMedia === "images" && <Text>Images for {q}</Text>}
+        {generalMedia.type === "images" && <IconPhoto />}
+        {generalMedia.type === "images" && <Text>Images for {q}</Text>}
 
-        {selectedMedia === "videos" && <IconPlayerPlay />}
-        {selectedMedia === "videos" && <Text>Videos for {q}</Text>}
+        {generalMedia.type === "videos" && <IconPlayerPlay />}
+        {generalMedia.type === "videos" && <Text>Videos for {q}</Text>}
       </Flex>
 
-      {selectedMedia === "images" && (
+      {generalMedia.type === "images" && (
         <Grid grow gutter="xs" columns={isSm ? 2 : 5}>
           {data?.map((res) => {
             if (!res) return null;
@@ -80,7 +80,7 @@ const GeneralMedia = () => {
         </Grid>
       )}
 
-      {selectedMedia === "videos" && (
+      {generalMedia.type === "videos" && (
         <Grid grow gutter="xs" columns={isSm ? 2 : 4}>
           {data?.map((res) => {
             if (!res) return null;
@@ -114,7 +114,7 @@ const GeneralMedia = () => {
         labelPosition="center"
         label={
           <Button variant="default" size="xs" onClick={() => handleOpenMedia()}>
-            More {selectedMedia}
+            More {generalMedia.type}
           </Button>
         }
       />
