@@ -4,7 +4,7 @@ import type { DotNestedKeys, ITranslations } from "@ts/global.types";
 import classes from "./styles.module.scss";
 
 interface Props {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   title: DotNestedKeys<ITranslations>;
   rightSection?: React.ReactNode;
 }
@@ -20,12 +20,10 @@ const SettingsTitle: React.FC<Props> = ({ icon, title, rightSection }) => {
       p="lg"
       mb={16}
     >
-      <Flex className={classes.settings_title_content} align="center">
+      <Flex className={classes.settings_title_content} align="center" gap="sm">
         {icon && icon}
 
-        <Text className={classes.settings_title_text} ml="sm">
-          {t(title)}
-        </Text>
+        <Text className={classes.settings_title_text}>{t(title)}</Text>
       </Flex>
 
       {rightSection && <Flex className={classes.hide_mobile}>{rightSection}</Flex>}

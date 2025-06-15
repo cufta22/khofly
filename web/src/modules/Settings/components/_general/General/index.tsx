@@ -31,7 +31,7 @@ const SettingsGeneral = () => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={<IconSettings2 color={theme.colors.blue["5"]} />}
+        // icon={<IconSettings2 color={theme.colors.blue["5"]} />}
         title="pages.settings.general.title"
       />
 

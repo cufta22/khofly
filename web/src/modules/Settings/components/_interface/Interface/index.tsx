@@ -33,7 +33,7 @@ const SettingsInterface: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={<IconBrush color={theme.colors.blue["5"]} />}
+        // icon={<IconBrush color={theme.colors.blue["5"]} />}
         title="pages.settings.interface.title"
       />
 

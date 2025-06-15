@@ -13,7 +13,7 @@ const SettingsAI = () => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={<IconSparkles color={theme.colors.pink["5"]} />}
+        // icon={<IconSparkles color={theme.colors.pink["5"]} />}
         title="pages.settings.ai.title"
       />
 

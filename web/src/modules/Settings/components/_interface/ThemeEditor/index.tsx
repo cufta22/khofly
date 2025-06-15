@@ -75,10 +75,10 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
 
   return (
     <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16} justify="space-between">
-        <IconPalette size={32} color={theme.colors.blue["5"]} />
+      <Flex align="center" p="lg" mb={16} justify="space-between" gap="sm">
+        {/* <IconPalette size={32} color={theme.colors.blue["5"]} /> */}
 
-        <Text fz={26} fw={600} ml="sm">
+        <Text fz={26} fw={600}>
           {t("pages.settings.theme.title")}
         </Text>
 
