@@ -3,13 +3,13 @@ import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
 import {
   IconAppWindow,
   IconCursorText,
+  IconExternalLink,
   IconFavicon,
   IconFlaskFilled,
   IconLayoutCollage,
   IconMessageCode,
   IconPlayerPlay,
   IconRadar,
-  IconSettings2,
   IconShield,
 } from "@tabler/icons-react";
 import FaviconSwitch from "./FaviconSwitch";
@@ -24,6 +24,7 @@ import SettingsTitle from "../../common/SettingsTitle";
 import SetDefaultButton from "./SetDefaultButton";
 import PrivateViewSwitch from "./PrivateViewSwitch";
 import MorePrivateViewOptions from "./PrivateViewSwitch/MorePrivateViewOptions";
+import NewTabSwitch from "./NewTabSwitch";
 
 const SettingsGeneral = () => {
   const theme = useMantineTheme();
@@ -37,6 +38,14 @@ const SettingsGeneral = () => {
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
+        <SettingsRow
+          icon={<IconExternalLink color={theme.colors.gray["5"]} />}
+          desc="pages.settings.interface.toggle_open_in_new_tab"
+          control={<NewTabSwitch />}
+        />
+
+        <Divider my="xs" w="100%" />
+
         <SettingsRow
           icon={<IconFavicon color={theme.colors.gray["5"]} />}
           desc="pages.settings.general.toggle_favicon"

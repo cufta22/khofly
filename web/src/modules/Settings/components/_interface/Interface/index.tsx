@@ -5,17 +5,14 @@ import ThemeSelect from "./ThemeSelect/ThemeSelect";
 import ColorSchemeSwitch from "./ColorThemeSwitch/ColorThemeSwitch";
 
 import {
-  IconBrush,
   IconColorPicker,
   IconEdit,
-  IconExternalLink,
   IconLanguage,
   IconPalette,
   IconSunMoon,
 } from "@tabler/icons-react";
 
 import { getIconStyle } from "@utils/functions/iconStyle";
-import NewTabSwitch from "./NewTabSwitch";
 import type { Dispatch, SetStateAction } from "react";
 import PrimaryColorSelect from "./PrimaryColorSelect/PrimaryColorSelect";
 import SettingsTitle from "../../common/SettingsTitle";
@@ -75,14 +72,6 @@ const SettingsInterface: React.FC<Props> = ({ setDisplayThemeEdit }) => {
           icon={<IconSunMoon color={theme.colors.gray["5"]} />}
           desc="pages.settings.interface.select_color"
           control={<ColorSchemeSwitch />}
-        />
-
-        <Divider my="xs" w="100%" />
-
-        <SettingsRow
-          icon={<IconExternalLink color={theme.colors.gray["5"]} />}
-          desc="pages.settings.interface.toggle_open_in_new_tab"
-          control={<NewTabSwitch />}
         />
       </Stack>
     </Paper>

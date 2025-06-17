@@ -1,0 +1,28 @@
+@use "variables" as vars;
+
+.settings_m_init_row {
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.settings_m_title_wrapper {
+  .settings_title_content {
+    svg {
+      width: 32px;
+      min-width: 32px;
+      height: 32px;
+    }
+
+    .settings_title_text {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  .hide_mobile {
+    @media (max-width: vars.$mantine-breakpoint-xs) {
+      display: none;
+    }
+  }
+}

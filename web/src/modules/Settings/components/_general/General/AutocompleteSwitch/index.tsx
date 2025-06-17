@@ -1,9 +1,14 @@
 import { useTranslate } from "@hooks/translate/use-translate";
-import { Flex, Select, Switch } from "@mantine/core";
+import { Flex, MenuDivider, Select, Switch } from "@mantine/core";
 import { type IAutocompleteEngines, useSettingsStore } from "@store/settings";
 import commonClasses from "../../../common/styles.module.scss";
 
-const AutocompleteSwitch = () => {
+interface Props {
+  isM?: boolean;
+  mDisplay?: "switch" | "dropdown";
+}
+
+const AutocompleteSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
   const t = useTranslate();
 
   const autocomplete = useSettingsStore((state) => state.autocomplete);
@@ -11,10 +16,14 @@ const AutocompleteSwitch = () => {
 
   const { enabled, provider } = autocomplete;
 
+  if (isM && mDisplay === "switch") {
+  }
+
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
-      {enabled && (
+      {((!isM && enabled) || (isM && mDisplay === "dropdown")) && (
         <Select
+          disabled={isM && !enabled}
           allowDeselect={false}
           data={[
             {
@@ -40,10 +49,14 @@ const AutocompleteSwitch = () => {
         />
       )}
 
-      <Switch
-        checked={enabled}
-        onChange={(e) => setAutocomplete({ enabled: e.currentTarget.checked })}
-      />
+      {(!isM || (isM && mDisplay === "switch")) && (
+        <Switch
+          checked={enabled}
+          onChange={(e) => setAutocomplete({ enabled: e.currentTarget.checked })}
+          withThumbIndicator={isM ? false : true}
+          size={isM ? "md" : "sm"}
+        />
+      )}
     </Flex>
   );
 };

@@ -6,7 +6,7 @@ import classes from "../styles.module.scss";
 import LanguageSelect from "@module/Settings/components/_interface/Interface/LanguageSelect/LanguageSelect";
 import ThemeSelect from "@module/Settings/components/_interface/Interface/ThemeSelect/ThemeSelect";
 import ColorSchemeSwitch from "@module/Settings/components/_interface/Interface/ColorThemeSwitch/ColorThemeSwitch";
-import NewTabSwitch from "@module/Settings/components/_interface/Interface/NewTabSwitch";
+import NewTabSwitch from "@module/Settings/components/_general/General/NewTabSwitch";
 
 const QSInterface = () => {
   const t = useTranslate();

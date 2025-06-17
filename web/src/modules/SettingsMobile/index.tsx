@@ -1,0 +1,70 @@
+import { Container, Transition } from "@mantine/core";
+import classes from "./styles.module.scss";
+import { useState } from "react";
+
+import SettingsMSearchBar from "./components/common/SettingsMSearchBar";
+import SettingsMInitial from "./components/initial";
+import SettingsMGeneral from "./components/_general/General";
+import clsx from "clsx";
+
+export type IOpenSection =
+  // Initial layout
+  | "initial"
+  // General
+  | "general"
+  | "ai"
+  // Interface
+  | "categories"
+  | "interface"
+  // Instances
+  | "searxng"
+  | "api"
+  | "pv"
+  | "worker"
+  | "nominatim"
+  // Engines
+  | "engines"
+  // Homepage
+  | "wallpaper"
+  | "shortcuts";
+
+const PageSettingsMobile = () => {
+  // Keep local state so app feels faster
+  const [openSection, setOpenSection] = useState<IOpenSection>("initial");
+
+  const handleChangeSection = (next: IOpenSection) => {
+    if (!next) return;
+
+    setOpenSection(next);
+  };
+
+  return (
+    <Container className={classes.settings_m_page} size="sm" pt={40} pb={80}>
+      <SettingsMSearchBar handleChangeSection={handleChangeSection} />
+
+      <div className={clsx(classes.settings_m_container)}>
+        {/* Initial navigation */}
+        <div
+          className={clsx(classes.left, {
+            [classes.hidden]: openSection !== "initial",
+          })}
+        >
+          <SettingsMInitial handleChangeSection={handleChangeSection} />
+        </div>
+
+        {/* Settings options */}
+        <div
+          className={clsx(classes.right, {
+            [classes.visible]: openSection !== "initial",
+          })}
+        >
+          {openSection === "general" ? (
+            <SettingsMGeneral handleChangeSection={handleChangeSection} />
+          ) : null}
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default PageSettingsMobile;

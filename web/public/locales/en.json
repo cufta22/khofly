@@ -78,6 +78,7 @@
         "title": "General settings",
 
         "toggle_favicon": "Display website favicon",
+        "favicon_provider": "Favicon provider",
         "toggle_favicon_options": {
           "DDG": "DuckDuckGo",
           "google": "Google",
@@ -93,6 +94,7 @@
         },
 
         "toggle_autocomplete": "Enable search autocomplete",
+        "autocomplete_engine": "Autocomplete engine",
         "toggle_autocomplete_options": {
           "google": "Google",
           "DDG": "DuckDuckGo",
