@@ -2,13 +2,20 @@ import { Flex, Select, Switch } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 import commonClasses from "../../../common/styles.module.scss";
 
-const AISummarySwitch = () => {
+interface Props {
+  isM?: boolean;
+  mDisplay?: "switch" | "dropdown";
+}
+
+const AISummarySwitch: React.FC<Props> = ({ isM, mDisplay }) => {
   //   const t = useTranslate();
 
   const AISummary = useSettingsStore((state) => state.AISummary);
   const setAISummary = useSettingsStore((state) => state.setAISummary);
 
   //   const linkTextColor = usePrimaryColor(4);
+
+  const { enabled, length } = AISummary;
 
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
@@ -18,8 +25,9 @@ const AISummarySwitch = () => {
         </Text>
       </RemixLink> */}
 
-      {AISummary.enabled && (
+      {((!isM && enabled) || (isM && mDisplay === "dropdown")) && (
         <Select
+          disabled={isM && !enabled}
           allowDeselect={false}
           data={[
             {
@@ -31,16 +39,20 @@ const AISummarySwitch = () => {
               value: "long",
             },
           ]}
-          value={AISummary.length}
+          value={length}
           onChange={(val) => setAISummary({ length: val as "short" | "long" })}
           w={150}
         />
       )}
 
-      <Switch
-        checked={AISummary.enabled}
-        onChange={(e) => setAISummary({ enabled: e.currentTarget.checked })}
-      />
+      {(!isM || (isM && mDisplay === "switch")) && (
+        <Switch
+          checked={enabled}
+          onChange={(e) => setAISummary({ enabled: e.currentTarget.checked })}
+          withThumbIndicator={isM ? false : true}
+          size={isM ? "md" : "sm"}
+        />
+      )}
     </Flex>
   );
 };

@@ -50,14 +50,14 @@ const SettingsMInitial: React.FC<Props> = ({ handleChangeSection }) => {
             icon={<IconCategory color={theme.colors.blue["5"]} />}
             desc="pages.settings.categories.title"
             onClick={() => {
-              handleChangeSection("general");
+              handleChangeSection("categories");
             }}
           />
           <SettingsMInitRow
             icon={<IconBrush color={theme.colors.blue["5"]} />}
             desc="pages.settings.interface.title"
             onClick={() => {
-              handleChangeSection("ai");
+              handleChangeSection("interface");
             }}
           />
         </Flex>

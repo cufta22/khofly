@@ -6,6 +6,14 @@ import SettingsMSearchBar from "./components/common/SettingsMSearchBar";
 import SettingsMInitial from "./components/initial";
 import SettingsMGeneral from "./components/_general/General";
 import clsx from "clsx";
+import SettingsMAI from "./components/_general/AI";
+import SettingsMCategories from "./components/_interface/Categories";
+import SettingsMInterface from "./components/_interface/Interface";
+import SettingsSearXNG from "@module/Settings/components/_instances/SearXNG";
+import SettingsAPI from "@module/Settings/components/_instances/API";
+import SettingsAI from "@module/Settings/components/_general/AI";
+import SettingsAIWorker from "@module/Settings/components/_instances/AIWorker";
+import SettingsNominatim from "@module/Settings/components/_instances/Nominatim";
 
 export type IOpenSection =
   // Initial layout
@@ -60,6 +68,20 @@ const PageSettingsMobile = () => {
         >
           {openSection === "general" ? (
             <SettingsMGeneral handleChangeSection={handleChangeSection} />
+          ) : openSection === "ai" ? (
+            <SettingsMAI handleChangeSection={handleChangeSection} />
+          ) : openSection === "categories" ? (
+            <SettingsMCategories handleChangeSection={handleChangeSection} />
+          ) : openSection === "interface" ? (
+            <SettingsMInterface handleChangeSection={handleChangeSection} />
+          ) : openSection === "searxng" ? (
+            <SettingsSearXNG isM={true} handleChangeSection={handleChangeSection} />
+          ) : openSection === "api" ? (
+            <SettingsAPI isM={true} handleChangeSection={handleChangeSection} />
+          ) : openSection === "worker" ? (
+            <SettingsAIWorker isM={true} handleChangeSection={handleChangeSection} />
+          ) : openSection === "nominatim" ? (
+            <SettingsNominatim isM={true} handleChangeSection={handleChangeSection} />
           ) : null}
         </div>
       </div>

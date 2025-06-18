@@ -1,18 +1,5 @@
-import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
+import { Divider, Paper, Stack } from "@mantine/core";
 
-import {
-  IconAppWindow,
-  IconCursorText,
-  IconExternalLink,
-  IconFavicon,
-  IconFlaskFilled,
-  IconLayoutCollage,
-  IconMessageCode,
-  IconPlayerPlay,
-  IconRadar,
-  IconSettings2,
-  IconShield,
-} from "@tabler/icons-react";
 import SettingsMTitle from "../../common/SettingsTitle";
 import SettingsMRow from "../../common/SettingsMRow";
 import NewTabSwitch from "@module/Settings/components/_general/General/NewTabSwitch";
@@ -29,8 +16,6 @@ interface Props {
 }
 
 const SettingsMGeneral: React.FC<Props> = ({ handleChangeSection }) => {
-  const theme = useMantineTheme();
-
   return (
     <>
       <SettingsMTitle
@@ -41,7 +26,7 @@ const SettingsMGeneral: React.FC<Props> = ({ handleChangeSection }) => {
         {/* Settings content */}
         <Stack w="100%" align="start" px="lg" my="xl">
           <SettingsMRow
-            icon={<IconExternalLink color={theme.colors.gray["5"]} />}
+            // icon={<IconExternalLink color={theme.colors.gray["5"]} />}
             desc="pages.settings.interface.toggle_open_in_new_tab"
             control={<NewTabSwitch isM={true} />}
           />
@@ -49,12 +34,12 @@ const SettingsMGeneral: React.FC<Props> = ({ handleChangeSection }) => {
           <Divider my="xs" w="100%" />
 
           <SettingsMRow
-            icon={<IconFavicon color={theme.colors.gray["5"]} />}
+            // icon={<IconFavicon color={theme.colors.gray["5"]} />}
             desc="pages.settings.general.toggle_favicon"
             control={<FaviconSwitch isM={true} mDisplay="switch" />}
           />
           <SettingsMRow
-            icon={<IconFavicon color={theme.colors.gray["5"]} />}
+            // icon={<IconFavicon color={theme.colors.gray["5"]} />}
             desc="pages.settings.general.favicon_provider"
             control={<FaviconSwitch isM={true} mDisplay="dropdown" />}
           />
@@ -62,12 +47,12 @@ const SettingsMGeneral: React.FC<Props> = ({ handleChangeSection }) => {
           <Divider my="xs" w="100%" />
 
           <SettingsMRow
-            icon={<IconCursorText color={theme.colors.gray["5"]} />}
+            // icon={<IconCursorText color={theme.colors.gray["5"]} />}
             desc="pages.settings.general.toggle_autocomplete"
             control={<AutocompleteSwitch isM={true} mDisplay="switch" />}
           />
           <SettingsMRow
-            icon={<IconCursorText color={theme.colors.gray["5"]} />}
+            // icon={<IconCursorText color={theme.colors.gray["5"]} />}
             desc="pages.settings.general.autocomplete_engine"
             control={<AutocompleteSwitch isM={true} mDisplay="dropdown" />}
           />
@@ -75,33 +60,39 @@ const SettingsMGeneral: React.FC<Props> = ({ handleChangeSection }) => {
           <Divider my="xs" w="100%" />
 
           <SettingsMRow
-            icon={<IconRadar color={theme.colors.gray["5"]} />}
+            // icon={<IconRadar color={theme.colors.gray["5"]} />}
             desc="pages.settings.general.show_engines"
-            control={<ShowEnginesSwitch />}
+            control={<ShowEnginesSwitch isM={true} />}
           />
 
           <Divider my="xs" w="100%" />
 
           <SettingsMRow
-            icon={<IconLayoutCollage color={theme.colors.gray["5"]} />}
+            // icon={<IconLayoutCollage color={theme.colors.gray["5"]} />}
             desc="pages.settings.general.display_media"
-            control={<MediaSwitch />}
+            control={<MediaSwitch isM={true} mDisplay="switch" />}
+          />
+
+          <SettingsMRow
+            // icon={<IconLayoutCollage color={theme.colors.gray["5"]} />}
+            desc="pages.settings.general.media_type"
+            control={<MediaSwitch isM={true} mDisplay="dropdown" />}
           />
 
           <Divider my="xs" w="100%" />
 
           <SettingsMRow
-            icon={<IconMessageCode color={theme.colors.grape["5"]} />}
+            // icon={<IconMessageCode color={theme.colors.grape["5"]} />}
             desc="pages.settings.general.toggle_ia"
-            control={<IASwitch />}
+            control={<IASwitch isM={true} />}
           />
 
           <Divider my="xs" w="100%" />
 
           <SettingsMRow
-            icon={<IconShield color={theme.colors.green["5"]} />}
+            // icon={<IconShield color={theme.colors.green["5"]} />}
             desc="pages.settings.general.toggle_private_search"
-            control={<PrivateSearchSwitch />}
+            control={<PrivateSearchSwitch isM={true} />}
           />
         </Stack>
       </Paper>

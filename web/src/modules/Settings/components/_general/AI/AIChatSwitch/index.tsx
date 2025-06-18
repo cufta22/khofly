@@ -2,13 +2,17 @@ import { Flex, Switch } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 import commonClasses from "../../../common/styles.module.scss";
 
-const AIChatSwitch = () => {
-  //   const t = useTranslate();
+interface Props {
+  isM?: boolean;
+}
+
+const AIChatSwitch: React.FC<Props> = ({ isM }) => {
+  // const t = useTranslate();
 
   const AIChat = useSettingsStore((state) => state.AIChat);
   const setAIChat = useSettingsStore((state) => state.setAIChat);
 
-  //   const linkTextColor = usePrimaryColor(4);
+  // const linkTextColor = usePrimaryColor(4);
 
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
@@ -21,6 +25,8 @@ const AIChatSwitch = () => {
       <Switch
         checked={AIChat.enabled}
         onChange={(e) => setAIChat({ enabled: e.currentTarget.checked })}
+        withThumbIndicator={isM ? false : true}
+        size={isM ? "md" : "sm"}
       />
     </Flex>
   );

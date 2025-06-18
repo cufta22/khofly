@@ -88,6 +88,7 @@
         "show_engines": "Show engines for each search result",
 
         "display_media": "Display media in general search",
+        "media_type": "Media type",
         "display_media_options": {
           "images": "Images",
           "videos": "Videos"
@@ -123,7 +124,8 @@
 
         "toggle_ai_chat": "Enable AI Chat",
 
-        "toggle_ai_summary": "Enable AI Summary"
+        "toggle_ai_summary": "Enable AI Summary",
+        "ai_summary_length": "Summary length"
       },
 
       "categories": {

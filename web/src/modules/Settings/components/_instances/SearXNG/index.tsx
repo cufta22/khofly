@@ -17,14 +17,21 @@ import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
 import { IconSearch } from "@tabler/icons-react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { DEFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 import SettingsTitle from "../../common/SettingsTitle";
+import { IOpenSection } from "@module/SettingsMobile";
+import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
 
-const SettingsSearXNG = () => {
+interface Props {
+  isM?: boolean;
+  handleChangeSection?: (next: IOpenSection) => void;
+}
+
+const SettingsSearXNG: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const theme = useMantineTheme();
 
   const domain = useInstanceStore((state) => state.searXNGDomain);
@@ -70,67 +77,78 @@ const SettingsSearXNG = () => {
   );
 
   return (
-    <Paper radius="md" withBorder>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <SettingsTitle
-          icon={<IconSearch color={theme.colors.blue["5"]} />}
+    <>
+      {isM && handleChangeSection && (
+        <SettingsMTitle
           title="pages.settings.instances.title_searxng"
+          handleChangeSection={handleChangeSection}
         />
+      )}
 
-        {/* Settings content */}
-        <Stack px="lg" mb="xl">
-          <TextInput
-            placeholder="https://example.com"
-            size="md"
-            className={classes.settings_input}
-            {...form.getInputProps("domain")}
-          />
-
-          {!IS_SELF_HOST && (
-            <Select
-              className={classes.settings_select}
-              label="Default instances"
-              description="Pick one based on your location"
-              placeholder="Instance location"
-              value={form.values.select}
-              onChange={(val) => {
-                form.setFieldValue("select", val || "");
-                form.setFieldValue("domain", val || "");
-              }}
-              data={[
-                {
-                  label: "Nuremberg, Germany",
-                  value: process.env.SEARXNG_URL_EU1 || "1",
-                },
-                // {
-                //   label: "Ashburn, USA",
-                //   value: process.env.SEARXNG_URL_US1 || "2",
-                // },
-              ]}
-              renderOption={renderSelectOption}
-              leftSection={icons[form.values.select]}
+      <Paper radius="md" withBorder>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          {!isM && (
+            <SettingsTitle
+              icon={<IconSearch color={theme.colors.blue["5"]} />}
+              title="pages.settings.instances.title_searxng"
             />
           )}
-        </Stack>
 
-        <Flex
-          align="center"
-          justify="space-between"
-          py="sm"
-          px="lg"
-          className={classes.settings_footer}
-        >
-          <Text size="sm" c="dimmed">
-            Change this to your own url for better privacy & less load for default instance.{" "}
-            <Text component="span" c={linkTextColor}>
-              <RemixLink to={"/docs/self-host-searxng"}>Read more</RemixLink>
+          {/* Settings content */}
+          <Stack px="lg" mb="xl" mt={isM ? "lg" : 0}>
+            <TextInput
+              placeholder="https://example.com"
+              size="md"
+              className={classes.settings_input}
+              {...form.getInputProps("domain")}
+            />
+
+            {!IS_SELF_HOST && (
+              <Select
+                className={classes.settings_select}
+                label="Default instances"
+                description="Pick one based on your location"
+                placeholder="Instance location"
+                value={form.values.select}
+                onChange={(val) => {
+                  form.setFieldValue("select", val || "");
+                  form.setFieldValue("domain", val || "");
+                }}
+                data={[
+                  {
+                    label: "Nuremberg, Germany",
+                    value: process.env.SEARXNG_URL_EU1 || "1",
+                  },
+                  // {
+                  //   label: "Ashburn, USA",
+                  //   value: process.env.SEARXNG_URL_US1 || "2",
+                  // },
+                ]}
+                renderOption={renderSelectOption}
+                leftSection={icons[form.values.select]}
+              />
+            )}
+          </Stack>
+
+          <Flex
+            align="center"
+            justify="space-between"
+            py="sm"
+            px="lg"
+            className={classes.settings_footer}
+          >
+            <Text size="sm" c="dimmed">
+              Change this to your own url for better privacy & less load for default instance.{" "}
+              <Text component="span" c={linkTextColor}>
+                <RemixLink to={"/docs/self-host-searxng"}>Read more</RemixLink>
+              </Text>
             </Text>
-          </Text>
 
-          <Button type="submit">Save</Button>
-        </Flex>
-      </form>
-    </Paper>
+            <Button type="submit">Save</Button>
+          </Flex>
+        </form>
+      </Paper>
+    </>
   );
 };
 

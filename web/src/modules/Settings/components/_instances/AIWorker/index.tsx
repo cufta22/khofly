@@ -18,13 +18,20 @@ import classes from "../../../styles.module.scss";
 import useToast from "@hooks/use-toast";
 import { type IWorkerModels, useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { WORKER_MODELS_DATA } from "./data";
 import SettingsTitle from "../../common/SettingsTitle";
+import { IOpenSection } from "@module/SettingsMobile";
+import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
 
-const SettingsAIWorker = () => {
+interface Props {
+  isM?: boolean;
+  handleChangeSection?: (next: IOpenSection) => void;
+}
+
+const SettingsAIWorker: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const theme = useMantineTheme();
 
   const hydrated = useInstanceStore((state) => state.hydrated);
@@ -83,71 +90,82 @@ const SettingsAIWorker = () => {
   );
 
   return (
-    <Paper radius="md" withBorder>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <SettingsTitle
-          icon={<IconBrandCloudflare color={theme.colors.orange["5"]} />}
+    <>
+      {isM && handleChangeSection && (
+        <SettingsMTitle
           title="pages.settings.instances.title_ai"
+          handleChangeSection={handleChangeSection}
         />
+      )}
 
-        {/* Settings content */}
-        <Stack px="lg" mb="xl">
-          <TextInput
-            placeholder="https://example.com"
-            size="md"
-            className={classes.settings_input}
-            {...form.getInputProps("domain")}
-          />
+      <Paper radius="md" withBorder>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          {!isM && (
+            <SettingsTitle
+              icon={<IconBrandCloudflare color={theme.colors.orange["5"]} />}
+              title="pages.settings.instances.title_ai"
+            />
+          )}
 
-          <Select
-            className={classes.settings_select}
-            label="CF Worker model"
-            // description=""
-            placeholder="CF Worker model"
-            value={workerModel}
-            onChange={(val) => {
-              setWorkerModel(val as IWorkerModels);
-            }}
-            data={WORKER_MODELS_DATA}
-            renderOption={renderSelectOption}
-            leftSection={getIcon(workerModel)}
-          />
+          {/* Settings content */}
+          <Stack px="lg" mb="xl" mt={isM ? "lg" : 0}>
+            <TextInput
+              placeholder="https://example.com"
+              size="md"
+              className={classes.settings_input}
+              {...form.getInputProps("domain")}
+            />
 
-          <Text size="sm">
-            <Anchor
-              href="https://developers.cloudflare.com/workers-ai/get-started/dashboard/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <Text component="span" c={linkTextColor}>
-                Cloudflare AI Workers
-              </Text>
-            </Anchor>{" "}
-            are used to display AI Answers in /search. Click read more below to learn how to set up
-            your own worker.
-          </Text>
-        </Stack>
+            <Select
+              className={classes.settings_select}
+              label="CF Worker model"
+              // description=""
+              placeholder="CF Worker model"
+              value={workerModel}
+              onChange={(val) => {
+                setWorkerModel(val as IWorkerModels);
+              }}
+              data={WORKER_MODELS_DATA}
+              renderOption={renderSelectOption}
+              leftSection={getIcon(workerModel)}
+            />
 
-        <Flex
-          align="center"
-          justify="space-between"
-          py="sm"
-          px="lg"
-          className={classes.settings_footer}
-        >
-          <Text size="sm" c="dimmed">
-            Change this to your own url for better privacy & less load for default instance.{" "}
-            <RemixLink to={"/docs/self-host-cf-workers"}>
-              <Text component="span" c={linkTextColor}>
-                Read more
-              </Text>
-            </RemixLink>
-          </Text>
+            <Text size="sm">
+              <Anchor
+                href="https://developers.cloudflare.com/workers-ai/get-started/dashboard/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <Text component="span" c={linkTextColor}>
+                  Cloudflare AI Workers
+                </Text>
+              </Anchor>{" "}
+              are used to display AI Answers in /search. Click read more below to learn how to set
+              up your own worker.
+            </Text>
+          </Stack>
 
-          <Button type="submit">Save</Button>
-        </Flex>
-      </form>
-    </Paper>
+          <Flex
+            align="center"
+            justify="space-between"
+            py="sm"
+            px="lg"
+            className={classes.settings_footer}
+          >
+            <Text size="sm" c="dimmed">
+              Change this to your own url for better privacy & less load for default instance.{" "}
+              <RemixLink to={"/docs/self-host-cf-workers"}>
+                <Text component="span" c={linkTextColor}>
+                  Read more
+                </Text>
+              </RemixLink>
+            </Text>
+
+            <Button type="submit">Save</Button>
+          </Flex>
+        </form>
+      </Paper>
+    </>
   );
 };
 

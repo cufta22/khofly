@@ -16,14 +16,21 @@ import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";
 import { type IWeatherSource, useInstanceStore } from "@store/instance";
 import { IconApiApp } from "@tabler/icons-react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 // import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 import SettingsTitle from "../../common/SettingsTitle";
+import { IOpenSection } from "@module/SettingsMobile";
+import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
 
-const SettingsAPI = () => {
+interface Props {
+  isM?: boolean;
+  handleChangeSection?: (next: IOpenSection) => void;
+}
+
+const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const theme = useMantineTheme();
 
   const domain = useInstanceStore((state) => state.apiDomain);
@@ -67,66 +74,77 @@ const SettingsAPI = () => {
   );
 
   return (
-    <Paper radius="md" withBorder>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <SettingsTitle
-          icon={<IconApiApp color={theme.colors.blue["5"]} />}
+    <>
+      {isM && handleChangeSection && (
+        <SettingsMTitle
           title="pages.settings.instances.title_api"
+          handleChangeSection={handleChangeSection}
         />
+      )}
 
-        {/* Settings content */}
-        <Stack px="lg" mb="xl">
-          <TextInput
-            placeholder="https://example.com"
-            size="md"
-            className={classes.settings_input}
-            {...form.getInputProps("domain")}
-          />
-
-          {!IS_SELF_HOST && (
-            <Select
-              className={classes.settings_select}
-              label="Weather data source"
-              description="Pick one based on accuracy"
-              placeholder="Weather data source"
-              value={weatherSource}
-              onChange={(val) => {
-                setWeatherSource(val as IWeatherSource);
-              }}
-              data={[
-                {
-                  label: "OpenWeather",
-                  value: "owm",
-                },
-                {
-                  label: "Open-Meteo",
-                  value: "om",
-                },
-              ]}
-              renderOption={renderSelectOption}
-              // leftSection={icons[form.values.select]}
+      <Paper radius="md" withBorder>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          {!isM && (
+            <SettingsTitle
+              icon={<IconApiApp color={theme.colors.blue["5"]} />}
+              title="pages.settings.instances.title_api"
             />
           )}
-        </Stack>
 
-        <Flex
-          align="center"
-          justify="space-between"
-          py="sm"
-          px="lg"
-          className={classes.settings_footer}
-        >
-          <Text size="sm" c="dimmed">
-            Change this to your own url for better privacy & less load for default instance.{" "}
-            <Text component="span" c={linkTextColor}>
-              <RemixLink to={"/docs/self-host-khofly-api"}>Read more</RemixLink>
+          {/* Settings content */}
+          <Stack px="lg" mb="xl" mt={isM ? "lg" : 0}>
+            <TextInput
+              placeholder="https://example.com"
+              size="md"
+              className={classes.settings_input}
+              {...form.getInputProps("domain")}
+            />
+
+            {!IS_SELF_HOST && (
+              <Select
+                className={classes.settings_select}
+                label="Weather data source"
+                description="Pick one based on accuracy"
+                placeholder="Weather data source"
+                value={weatherSource}
+                onChange={(val) => {
+                  setWeatherSource(val as IWeatherSource);
+                }}
+                data={[
+                  {
+                    label: "OpenWeather",
+                    value: "owm",
+                  },
+                  {
+                    label: "Open-Meteo",
+                    value: "om",
+                  },
+                ]}
+                renderOption={renderSelectOption}
+                // leftSection={icons[form.values.select]}
+              />
+            )}
+          </Stack>
+
+          <Flex
+            align="center"
+            justify="space-between"
+            py="sm"
+            px="lg"
+            className={classes.settings_footer}
+          >
+            <Text size="sm" c="dimmed">
+              Change this to your own url for better privacy & less load for default instance.{" "}
+              <Text component="span" c={linkTextColor}>
+                <RemixLink to={"/docs/self-host-khofly-api"}>Read more</RemixLink>
+              </Text>
             </Text>
-          </Text>
 
-          <Button type="submit">Save</Button>
-        </Flex>
-      </form>
-    </Paper>
+            <Button type="submit">Save</Button>
+          </Flex>
+        </form>
+      </Paper>
+    </>
   );
 };
 

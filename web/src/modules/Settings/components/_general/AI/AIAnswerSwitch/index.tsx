@@ -4,8 +4,13 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 import { Flex, Switch, Text } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 import commonClasses from "../../../common/styles.module.scss";
+import React from "react";
 
-const AIAnswerSwitch = () => {
+interface Props {
+  isM?: boolean;
+}
+
+const AIAnswerSwitch: React.FC<Props> = ({ isM }) => {
   const t = useTranslate();
 
   const AIAnswer = useSettingsStore((state) => state.AIAnswer);
@@ -15,15 +20,19 @@ const AIAnswerSwitch = () => {
 
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
-      <RemixLink to="/docs/ai-answers" target="_blank">
-        <Text component="span" c={linkTextColor}>
-          {t("pages.settings.general.learn_more")}
-        </Text>
-      </RemixLink>
+      {!isM && (
+        <RemixLink to="/docs/ai-answers" target="_blank">
+          <Text component="span" c={linkTextColor}>
+            {t("pages.settings.general.learn_more")}
+          </Text>
+        </RemixLink>
+      )}
 
       <Switch
         checked={AIAnswer.enabled}
         onChange={(e) => setAIAnswer({ enabled: e.currentTarget.checked })}
+        withThumbIndicator={isM ? false : true}
+        size={isM ? "md" : "sm"}
       />
     </Flex>
   );

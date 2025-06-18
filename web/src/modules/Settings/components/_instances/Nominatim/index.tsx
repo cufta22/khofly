@@ -14,12 +14,19 @@ import classes from "../../../styles.module.scss";
 import useToast from "@hooks/use-toast";
 import { useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import ExternalLink from "@components/Links/ExternalLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import SettingsTitle from "../../common/SettingsTitle";
+import { IOpenSection } from "@module/SettingsMobile";
+import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
 
-const SettingsNominatim = () => {
+interface Props {
+  isM?: boolean;
+  handleChangeSection?: (next: IOpenSection) => void;
+}
+
+const SettingsNominatim: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const theme = useMantineTheme();
 
   const hydrated = useInstanceStore((state) => state.hydrated);
@@ -51,48 +58,59 @@ const SettingsNominatim = () => {
   }, [hydrated]);
 
   return (
-    <Paper radius="md" withBorder>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <SettingsTitle
-          icon={<IconWorld color={theme.colors.blue["5"]} />}
+    <>
+      {isM && handleChangeSection && (
+        <SettingsMTitle
           title="pages.settings.instances.title_nominatim"
+          handleChangeSection={handleChangeSection}
         />
+      )}
 
-        {/* Settings content */}
-        <Stack px="lg" mb="xl">
-          <TextInput
-            placeholder="https://example.com"
-            size="md"
-            className={classes.settings_input}
-            {...form.getInputProps("domain")}
-          />
+      <Paper radius="md" withBorder>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          {!isM && (
+            <SettingsTitle
+              icon={<IconWorld color={theme.colors.blue["5"]} />}
+              title="pages.settings.instances.title_nominatim"
+            />
+          )}
 
-          <Text size="sm">
-            <ExternalLink href="https://nominatim.org/">Nominatim</ExternalLink> uses OpenStreetMap
-            data to find locations on Earth by name and address (geocoding).
-          </Text>
-        </Stack>
+          {/* Settings content */}
+          <Stack px="lg" mb="xl" mt={isM ? "lg" : 0}>
+            <TextInput
+              placeholder="https://example.com"
+              size="md"
+              className={classes.settings_input}
+              {...form.getInputProps("domain")}
+            />
 
-        <Flex
-          align="center"
-          justify="space-between"
-          py="sm"
-          px="lg"
-          className={classes.settings_footer}
-        >
-          <Text size="sm" c="dimmed">
-            Change this to your own url for better privacy & less load for default instance.{" "}
-            <Text component="span" c={linkTextColor}>
-              <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
-                Read more
-              </Anchor>
+            <Text size="sm">
+              <ExternalLink href="https://nominatim.org/">Nominatim</ExternalLink> uses
+              OpenStreetMap data to find locations on Earth by name and address (geocoding).
             </Text>
-          </Text>
+          </Stack>
 
-          <Button type="submit">Save</Button>
-        </Flex>
-      </form>
-    </Paper>
+          <Flex
+            align="center"
+            justify="space-between"
+            py="sm"
+            px="lg"
+            className={classes.settings_footer}
+          >
+            <Text size="sm" c="dimmed">
+              Change this to your own url for better privacy & less load for default instance.{" "}
+              <Text component="span" c={linkTextColor}>
+                <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
+                  Read more
+                </Anchor>
+              </Text>
+            </Text>
+
+            <Button type="submit">Save</Button>
+          </Flex>
+        </form>
+      </Paper>
+    </>
   );
 };
 

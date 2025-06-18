@@ -5,7 +5,11 @@ import { Flex, Switch, Text } from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 import commonClasses from "../../../common/styles.module.scss";
 
-const IASwitch = () => {
+interface Props {
+  isM?: boolean;
+}
+
+const IASwitch: React.FC<Props> = ({ isM }) => {
   const t = useTranslate();
 
   const instantAnswers = useSettingsStore((state) => state.instantAnswers);
@@ -15,15 +19,19 @@ const IASwitch = () => {
 
   return (
     <Flex className={commonClasses.settings_control} align="center" gap="sm">
-      <RemixLink to="/docs/instant-answers" target="_blank">
-        <Text component="span" c={linkTextColor}>
-          {t("pages.settings.general.learn_more")}
-        </Text>
-      </RemixLink>
+      {!isM && (
+        <RemixLink to="/docs/instant-answers" target="_blank">
+          <Text component="span" c={linkTextColor}>
+            {t("pages.settings.general.learn_more")}
+          </Text>
+        </RemixLink>
+      )}
 
       <Switch
         checked={instantAnswers.enabled}
         onChange={(e) => setInstantAnswers({ enabled: e.currentTarget.checked })}
+        withThumbIndicator={isM ? false : true}
+        size={isM ? "md" : "sm"}
       />
     </Flex>
   );
