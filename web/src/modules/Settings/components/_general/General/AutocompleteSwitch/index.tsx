@@ -14,7 +14,7 @@ const AutocompleteSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
   const autocomplete = useSettingsStore((state) => state.autocomplete);
   const setAutocomplete = useSettingsStore((state) => state.setAutocomplete);
 
-  const { enabled, provider } = autocomplete;
+  const { enabled, engine } = autocomplete;
 
   if (isM && mDisplay === "switch") {
   }
@@ -43,8 +43,8 @@ const AutocompleteSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
               value: "qwant",
             },
           ]}
-          value={provider}
-          onChange={(val) => setAutocomplete({ provider: val as IAutocompleteEngines })}
+          value={engine}
+          onChange={(val) => setAutocomplete({ engine: val as IAutocompleteEngines })}
           w={150}
         />
       )}

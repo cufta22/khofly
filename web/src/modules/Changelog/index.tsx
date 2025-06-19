@@ -1,4 +1,4 @@
-import { Accordion, Center, Container, Loader, Title } from "@mantine/core";
+import { Accordion, Center, Container, Loader, Space, Title } from "@mantine/core";
 import { formatChangelog } from "./formatChangelog";
 import { useTranslate } from "@hooks/translate/use-translate";
 import type { ILoaderData_Changelog } from "app/routes/changelog";
@@ -28,7 +28,8 @@ const PageChangelog: React.FC<Props> = ({ loaderData }) => {
           return (
             <Accordion.Item key={i} value={obj.title}>
               <Accordion.Control>{obj.title}</Accordion.Control>
-              <Accordion.Panel style={{ whiteSpace: "pre" }} mt={12}>
+              <Accordion.Panel style={{ whiteSpace: "pre" }}>
+                <Space h="sm" />
                 {obj.content.replace(/^\s+/g, "")}
               </Accordion.Panel>
             </Accordion.Item>

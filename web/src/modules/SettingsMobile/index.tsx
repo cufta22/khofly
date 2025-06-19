@@ -14,6 +14,10 @@ import SettingsAPI from "@module/Settings/components/_instances/API";
 import SettingsAI from "@module/Settings/components/_general/AI";
 import SettingsAIWorker from "@module/Settings/components/_instances/AIWorker";
 import SettingsNominatim from "@module/Settings/components/_instances/Nominatim";
+import SettingsMEngines from "./components/_engines/Engines";
+import SettingsWallpaper from "@module/Settings/components/_homepage/Wallpaper";
+import SettingsShortcuts from "@module/Settings/components/_homepage/Shortcuts";
+import SettingsMTitle from "./components/common/SettingsTitle";
 
 export type IOpenSection =
   // Initial layout
@@ -82,7 +86,18 @@ const PageSettingsMobile = () => {
             <SettingsAIWorker isM={true} handleChangeSection={handleChangeSection} />
           ) : openSection === "nominatim" ? (
             <SettingsNominatim isM={true} handleChangeSection={handleChangeSection} />
-          ) : null}
+          ) : openSection === "engines" ? (
+            <SettingsMEngines handleChangeSection={handleChangeSection} />
+          ) : openSection === "wallpaper" ? (
+            <SettingsWallpaper isM={true} handleChangeSection={handleChangeSection} />
+          ) : openSection === "shortcuts" ? (
+            <SettingsShortcuts isM={true} handleChangeSection={handleChangeSection} />
+          ) : (
+            <SettingsMTitle
+              title="pages.settings._common.general"
+              handleChangeSection={handleChangeSection}
+            />
+          )}
         </div>
       </div>
     </Container>

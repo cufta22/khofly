@@ -3,12 +3,23 @@ import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import ReactMarkdown from "react-markdown";
 import { useSearchStore } from "@store/search";
-import useAISummaryAPI from "src/api/ai/use-ai-summary-api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import useAICommonAPI from "src/api/ai/use-ai-common-api";
+import { useSettingsStore } from "@store/settings";
 
 const AISummary = () => {
-  const { data, trigger, reset, isLoading } = useAISummaryAPI();
+  const [data, setData] = useState("");
 
+  const { trigger, isLoading, reset } = useAICommonAPI({
+    variant: "ai-answer",
+    temperature: 0.4,
+    maxTokens: 2048,
+    systemInstruction: "",
+    handleUpdateStream: (val) => setData(val),
+    handleDONE: () => {},
+  });
+
+  const AISummary = useSettingsStore((state) => state.AISummary);
   const aiSummaryURL = useSearchStore((state) => state.aiSummaryURL);
   const setAISummaryURL = useSearchStore((state) => state.setAISummaryURL);
 
@@ -16,7 +27,22 @@ const AISummary = () => {
 
   useEffect(() => {
     if (!isLoading && aiSummaryURL.length) {
-      trigger(aiSummaryURL);
+      const msgContent = {
+        short: `Can you give me a summary of this website: ${aiSummaryURL}`,
+        long: `Can you give me an in depth summary of this website: ${aiSummaryURL}`,
+      }[AISummary.length];
+
+      trigger({
+        messages: [
+          {
+            role: "user",
+            content: msgContent,
+            isGenerating: false,
+          },
+        ],
+        model: "gemini-2.0-flash",
+        source: "google",
+      });
     }
   }, [aiSummaryURL]);
 

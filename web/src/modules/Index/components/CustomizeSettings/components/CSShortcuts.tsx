@@ -1,5 +1,5 @@
 import { Flex, Text } from "@mantine/core";
-import ShortcutsSwitch from "@module/Settings/components/_startpage/Shortcuts/components/ShortcutsSwitch";
+import ShortcutsSwitch from "@module/Settings/components/_homepage/Shortcuts/components/ShortcutsSwitch";
 import SettingsRow from "@module/Settings/components/common/SettingsRow";
 
 const CSShortcuts = () => {

@@ -100,7 +100,7 @@ const SettingsMInitial: React.FC<Props> = ({ handleChangeSection }) => {
         <Flex direction="column" gap="xl" py="lg">
           <SettingsMInitRow
             icon={<IconRadar color={theme.colors.blue["5"]} />}
-            desc="pages.settings.engines.title"
+            desc="pages.settings._common.engines"
             onClick={() => {
               handleChangeSection("engines");
             }}

@@ -22,6 +22,14 @@
     },
 
     "settings": {
+      "_common": {
+        "general": "General",
+        "interface": "Interface",
+        "instances": "Instances",
+        "engines": "Engines",
+        "homepage": "Homepage"
+      },
+
       "interface": {
         "title": "User interface",
 

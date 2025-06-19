@@ -9,14 +9,14 @@ import { useSettingsStore } from "@store/settings";
 const useAutocompleteSWR = () => {
   const { fetchData } = useFetch();
 
-  const autocompleteEngine = useSettingsStore((state) => state.autocompleteEngine);
+  const autocomplete = useSettingsStore((state) => state.autocomplete);
 
   // ----------------------------------------------------------------------------
   // General search results - default
   // ----------------------------------------------------------------------------
 
   const fetcher = async (_key: string, { arg }: { arg: string }) => {
-    const res = await fetchData(`/api/autocomplete?q=${arg}&engine=${autocompleteEngine}`);
+    const res = await fetchData(`/api/autocomplete?q=${arg}&engine=${autocomplete.engine}`);
 
     return res as string[];
   };

@@ -35,9 +35,9 @@ interface SettingsState {
 
   autocomplete: {
     enabled: boolean;
-    provider: IAutocompleteEngines;
+    engine: IAutocompleteEngines;
   };
-  setAutocomplete: (next: { enabled?: boolean; provider?: IAutocompleteEngines }) => void;
+  setAutocomplete: (next: { enabled?: boolean; engine?: IAutocompleteEngines }) => void;
 
   showEngines: boolean;
   setShowEngines: (next: boolean) => void;
@@ -52,7 +52,7 @@ interface SettingsState {
     enabled: boolean;
     weatherDataSource: IWeatherSource;
   };
-  setInstantAnswers: (next: { enabled?: boolean }) => void;
+  setInstantAnswers: (next: { enabled?: boolean; weatherDataSource: IWeatherSource }) => void;
 
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;
@@ -123,7 +123,7 @@ export const useSettingsStore = create<SettingsState>()(
 
       autocomplete: {
         enabled: true,
-        provider: "google",
+        engine: "google",
       },
       setAutocomplete: (next) =>
         set((prev) => ({ autocomplete: { ...prev.autocomplete, ...next } })),

@@ -6,6 +6,7 @@ import SettingsRow from "../../common/SettingsRow";
 import SettingsTitle from "../../common/SettingsTitle";
 import AIChatSwitch from "./AIChatSwitch";
 import AISummarySwitch from "./AISummarySwitch";
+import MoreAIAnswerOptions from "./AIAnswerSwitch/MoreAIAnswerOptions";
 
 const SettingsAI = () => {
   const theme = useMantineTheme();
@@ -24,6 +25,7 @@ const SettingsAI = () => {
           desc="pages.settings.ai.toggle_ai_answers"
           control={<AIAnswerSwitch />}
         />
+        <MoreAIAnswerOptions />
 
         <Divider my="xs" w="100%" />
 

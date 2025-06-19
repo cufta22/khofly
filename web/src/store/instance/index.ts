@@ -13,8 +13,6 @@ interface InstanceState {
 
   apiDomain: string;
   setApiDomain: (domain: string) => void;
-  weatherSource: IWeatherSource;
-  setWeatherSource: (source: IWeatherSource) => void;
 
   pvDomain: string;
   setPvDomain: (domain: string) => void;
@@ -39,8 +37,6 @@ export const useInstanceStore = create<InstanceState>()(
 
       apiDomain: "", // Will be set initially in layout
       setApiDomain: (domain) => set({ apiDomain: domain }),
-      weatherSource: "owm",
-      setWeatherSource: (source) => set({ weatherSource: source }),
 
       pvDomain: "", // Will be set initially in layout
       setPvDomain: (domain) => set({ pvDomain: domain }),

@@ -2,11 +2,7 @@ import {
   Anchor,
   Button,
   Flex,
-  Group,
-  Image,
   Paper,
-  Select,
-  type SelectProps,
   Stack,
   Text,
   TextInput,
@@ -16,12 +12,11 @@ import { IconBrandCloudflare } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
 import useToast from "@hooks/use-toast";
-import { type IWorkerModels, useInstanceStore } from "@store/instance";
+import { useInstanceStore } from "@store/instance";
 import useForm from "@hooks/use-form";
 import React, { useEffect } from "react";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
-import { WORKER_MODELS_DATA } from "./data";
 import SettingsTitle from "../../common/SettingsTitle";
 import { IOpenSection } from "@module/SettingsMobile";
 import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
@@ -37,8 +32,6 @@ const SettingsAIWorker: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
   const setWorkerDomain = useInstanceStore((state) => state.setWorkerDomain);
-  const workerModel = useInstanceStore((state) => state.workerModel);
-  const setWorkerModel = useInstanceStore((state) => state.setWorkerModel);
 
   const linkTextColor = usePrimaryColor(4);
 
@@ -63,31 +56,6 @@ const SettingsAIWorker: React.FC<Props> = ({ isM, handleChangeSection }) => {
       form.setFieldValue("domain", workerDomain);
     }
   }, [hydrated]);
-
-  const getIcon = (label: string) => {
-    if (label.includes("llama-") || label.includes("m2m100")) {
-      return <Image src="/assets/engines/meta-icon.svg" fit="contain" w={16} h={16} />;
-    }
-    if (label.includes("gemma-")) {
-      return <Image src="/assets/engines/google-icon.svg" w={16} h={16} />;
-    }
-    if (label.includes("mistral-")) {
-      return <Image src="/assets/engines/mistral-icon.svg" w={16} h={16} />;
-    }
-    if (label.includes("deepseek")) {
-      return <Image src="/assets/engines/deepseek-icon.svg" w={16} h={16} />;
-    }
-    if (label.includes("qwen")) {
-      return <Image src="/assets/engines/qwen-icon.svg" w={16} h={16} />;
-    }
-  };
-
-  const renderSelectOption: SelectProps["renderOption"] = ({ option }) => (
-    <Group flex="1" gap="xs">
-      {getIcon(option.label)}
-      {option.label}
-    </Group>
-  );
 
   return (
     <>
@@ -116,20 +84,6 @@ const SettingsAIWorker: React.FC<Props> = ({ isM, handleChangeSection }) => {
               {...form.getInputProps("domain")}
             />
 
-            <Select
-              className={classes.settings_select}
-              label="CF Worker model"
-              // description=""
-              placeholder="CF Worker model"
-              value={workerModel}
-              onChange={(val) => {
-                setWorkerModel(val as IWorkerModels);
-              }}
-              data={WORKER_MODELS_DATA}
-              renderOption={renderSelectOption}
-              leftSection={getIcon(workerModel)}
-            />
-
             <Text size="sm">
               <Anchor
                 href="https://developers.cloudflare.com/workers-ai/get-started/dashboard/"
@@ -140,8 +94,8 @@ const SettingsAIWorker: React.FC<Props> = ({ isM, handleChangeSection }) => {
                   Cloudflare AI Workers
                 </Text>
               </Anchor>{" "}
-              are used to display AI Answers in /search. Click read more below to learn how to set
-              up your own worker.
+              are used in AI Chat and to display AI Answers in /search. Click read more below to
+              learn how to set up your own worker.
             </Text>
           </Stack>
 

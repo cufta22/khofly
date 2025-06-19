@@ -25,6 +25,7 @@ import SetDefaultButton from "./SetDefaultButton";
 import PrivateViewSwitch from "./PrivateViewSwitch";
 import MorePrivateViewOptions from "./PrivateViewSwitch/MorePrivateViewOptions";
 import NewTabSwitch from "./NewTabSwitch";
+import MoreIAOptions from "./IASwitch/MoreIAOptions";
 
 const SettingsGeneral = () => {
   const theme = useMantineTheme();
@@ -83,6 +84,7 @@ const SettingsGeneral = () => {
           desc="pages.settings.general.toggle_ia"
           control={<IASwitch />}
         />
+        <MoreIAOptions />
 
         <Divider my="xs" w="100%" />
 

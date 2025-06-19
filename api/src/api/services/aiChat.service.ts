@@ -9,6 +9,7 @@ interface IBody {
     content: string;
     isGenerating: boolean;
   }[];
+
   // Model params
   temperature: number;
   max_tokens: number;
@@ -38,7 +39,7 @@ export const handleAIChat = async (ctx: Context) => {
   const { model, messages, temperature, max_tokens, system_instruction } = ctx.body as IBody;
 
   if (!model || !prompt) {
-    throw ctx.error(400, "Missing data in request");
+    throw ctx.status(400, "Missing data in request");
   }
 
   // --------------------------------------------------------------------------------------------------------------
@@ -52,12 +53,7 @@ export const handleAIChat = async (ctx: Context) => {
       "gemini-2.0-flash-lite",
     ].includes(model)
   ) {
-    if (!process.env.GEMINI_API_KEY) throw ctx.error(400, "Gemini API key is missing");
-
-    // Set up headers for Server-Sent Events (SSE)
-    ctx.set.headers["content-type"] = "text/event-stream";
-    ctx.set.headers["cache-control"] = "no-cache";
-    ctx.set.headers["connection"] = "keep-alive";
+    if (!process.env.GEMINI_API_KEY) throw ctx.status(400, "Gemini API key is missing");
 
     // Prepare the request payload for Gemini API
     const payload = {
@@ -88,6 +84,11 @@ export const handleAIChat = async (ctx: Context) => {
 
     // Get gemini URL
     const geminiApiUrl = GEMINI_API_URLS[model];
+
+    // Set up headers for Server-Sent Events (SSE)
+    ctx.set.headers["content-type"] = "text/event-stream";
+    ctx.set.headers["cache-control"] = "no-cache";
+    ctx.set.headers["connection"] = "keep-alive";
 
     // Create a streaming response
     const stream = new ReadableStream({

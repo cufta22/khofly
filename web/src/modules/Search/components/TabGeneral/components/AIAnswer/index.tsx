@@ -1,10 +1,9 @@
 import { Button, Flex, Paper, Skeleton, Text, useMantineTheme } from "@mantine/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import classes from "./styles.module.scss";
 import { IconExternalLink, IconSparkles } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import useAIAnswerSWR from "src/api/ai/use-ai-answer-query";
 import { useInstanceStore } from "@store/instance";
 import useSearchQuery from "@hooks/use-search-query";
 import RemixLink from "@components/RemixLink";
@@ -12,6 +11,8 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 import { useNavigate, useSearchParams } from "react-router";
 import { useSettingsStore } from "@store/settings";
 import { useAIChatStore } from "@store/aichat";
+import useAICommonAPI from "src/api/ai/use-ai-common-api";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   propsQuery?: string;
@@ -27,12 +28,21 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   const q = useSearchQuery();
   const queryToUse = propsQuery || q || "";
 
-  const { data, isLoading, mutate } = useAIAnswerSWR({ prompt: queryToUse });
+  const [data, setData] = useState("");
+
+  const { trigger, isLoading } = useAICommonAPI({
+    variant: "ai-answer",
+    temperature: 0.2,
+    maxTokens: 2048,
+    systemInstruction: "",
+    handleUpdateStream: (val) => setData((prev) => `${prev}${val}`),
+    handleDONE: () => {},
+  });
 
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
-  const enableAIAnswers = useSettingsStore((state) => state.enableAIAnswers);
+  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
 
   const setChat = useAIChatStore((state) => state.setChat);
 
@@ -41,24 +51,36 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   const shouldTrigger = searchParams.get("ai") === "1";
 
   const handleOpenInChat = () => {
+    // TODO, update AIChat model and provider to be the same as AIAnswer here
+
     // Init conversation
     setChat([
       { role: "user", content: queryToUse, isGenerating: false },
-      { role: "assistant", content: data?.response || "", isGenerating: false },
+      { role: "assistant", content: data, isGenerating: false },
     ]);
 
     navigate("/chat");
   };
 
   useEffect(() => {
-    if (!hydrated || !enableAIAnswers || !workerDomain || !queryToUse) return;
+    if (!hydrated || !AIAnswer.enabled || !workerDomain || !queryToUse) return;
 
-    if (!isLoading && shouldTrigger) {
-      mutate();
+    if (!isLoading && shouldTrigger && AIAnswer.provider) {
+      trigger({
+        messages: [
+          {
+            role: "user",
+            content: queryToUse,
+            isGenerating: false,
+          },
+        ],
+        model: AIAnswer.model.value,
+        source: AIAnswer.provider,
+      });
     }
   }, [hydrated, queryToUse]);
 
-  if (!shouldTrigger || !enableAIAnswers) return null;
+  if (!shouldTrigger || !AIAnswer.enabled) return null;
 
   return (
     <Paper className={classes.ai_answer} withBorder radius="md" p="md">
@@ -73,9 +95,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
       </Flex>
 
       {data && !isLoading ? (
-        <Text className={classes.ai_text} size="sm" c="dimmed">
-          {data?.response}
-        </Text>
+        <ReactMarkdown>{data}</ReactMarkdown>
       ) : (
         <Flex direction="column" gap="xs">
           <Skeleton h={10} />
@@ -85,7 +105,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
         </Flex>
       )}
 
-      {data?.response && (
+      {data && (
         <Flex justify="space-between" mt="lg">
           <Button
             size="xs"

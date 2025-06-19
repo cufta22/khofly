@@ -5,7 +5,6 @@ import SettingsMRow from "../../common/SettingsMRow";
 import { IOpenSection } from "@module/SettingsMobile";
 import AIAnswerSwitch from "@module/Settings/components/_general/AI/AIAnswerSwitch";
 import AIChatSwitch from "@module/Settings/components/_general/AI/AIChatSwitch";
-import AISummarySwitch from "@module/Settings/components/_general/AI/AISummarySwitch";
 
 interface Props {
   handleChangeSection: (next: IOpenSection) => void;
@@ -34,7 +33,9 @@ const SettingsMAI: React.FC<Props> = ({ handleChangeSection }) => {
             control={<AIChatSwitch isM={true} />}
           />
 
-          <Divider my="xs" w="100%" />
+          {/* AI summary not on mobile for now */}
+
+          {/* <Divider my="xs" w="100%" />
 
           <SettingsMRow
             // icon={<IconExternalLink color={theme.colors.gray["5"]} />}
@@ -45,7 +46,7 @@ const SettingsMAI: React.FC<Props> = ({ handleChangeSection }) => {
             // icon={<IconFavicon color={theme.colors.gray["5"]} />}
             desc="pages.settings.ai.ai_summary_length"
             control={<AISummarySwitch isM={true} mDisplay="dropdown" />}
-          />
+          /> */}
         </Stack>
       </Paper>
     </>

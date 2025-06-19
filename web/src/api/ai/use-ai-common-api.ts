@@ -2,17 +2,32 @@ import { useInstanceStore } from "@store/instance";
 import useToast from "@hooks/use-toast";
 
 import { useEffect, useRef, useState } from "react";
-import { useAIChatStore } from "@store/aichat";
-import type { IAIChatMessage } from "@ts/chat.types";
+import { processSSE } from "./utils";
+import { IAIChatMessage } from "@ts/chat.types";
 
-interface Args {
+interface TriggerArgs {
   source: "cf" | "google";
   model: string;
   messages: IAIChatMessage[];
 }
+interface Args {
+  variant: "ai-answer" | "ai-chat" | "ai-summary";
+  temperature: number;
+  maxTokens: number;
+  systemInstruction: string;
+  handleUpdateStream: (val: string) => void;
+  handleDONE: () => void;
+}
 
 // Not an swr this time
-const useAIChatAPI = () => {
+const useAICommonAPI = ({
+  variant,
+  maxTokens,
+  temperature,
+  systemInstruction,
+  handleDONE,
+  handleUpdateStream,
+}: Args) => {
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -24,79 +39,17 @@ const useAIChatAPI = () => {
   const workerDomain = useInstanceStore((state) => state.workerDomain);
   const apiDomain = useInstanceStore((state) => state.apiDomain);
 
-  const maxTokens = useAIChatStore((state) => state.maxTokens);
-  const temperature = useAIChatStore((state) => state.temperature);
-  const systemInstruction = useAIChatStore((state) => state.systemInstruction);
-
-  const streamToChat = useAIChatStore((state) => state.streamToChat);
-  const stopStreamToChat = useAIChatStore((state) => state.stopStreamToChat);
-
-  const processSSE = async (
-    decoder: TextDecoder,
-    reader: ReadableStreamDefaultReader<Uint8Array<ArrayBufferLike>>
-  ) => {
-    let chunk = ""; // Buffer for partial SSE messages
-
-    while (true) {
-      const { done, value } = await reader.read();
-
-      if (done) {
-        setIsLoading(false);
-        break;
-      }
-
-      // Decode and process the chunk
-      chunk += decoder.decode(value, { stream: true });
-
-      // Process complete SSE messages in the buffer
-      // SSE messages are separated by double newlines "\n\n"
-      let boundary = chunk.indexOf("\n\n");
-      while (boundary !== -1) {
-        const message = chunk.substring(0, boundary); // Get one complete message block
-        chunk = chunk.substring(boundary + 2); // Remove message block from buffer
-
-        // Find the start of the JSON data after "data: "
-        const dataPrefix = "data: ";
-        if (message.startsWith(dataPrefix)) {
-          const jsonString = message.substring(dataPrefix.length).trim();
-
-          // Handle the special [DONE] message if the API sends it
-          if (jsonString === "[DONE]") {
-            stopStreamToChat();
-            continue; // Skip to next message or loop iteration
-          }
-
-          try {
-            const parsed = JSON.parse(jsonString);
-            if (parsed?.response) {
-              // Handle CF stream
-              streamToChat({ content: parsed.response, isGenerating: true });
-            } else if (parsed?.text) {
-              // Handle Gemini stream
-              streamToChat({ content: parsed.text, isGenerating: true });
-            } else {
-              // Handle cases where JSON is valid but doesn't have 'response'
-            }
-          } catch (parseError) {
-            // Handle JSON parsing errors - maybe log them, maybe show an error
-          }
-        } else if (message.trim()) {
-          // Optional: Handle other SSE lines like comments (starting with ':') or event types ('event: ...') if needed
-          // console.log("Received non-data SSE line:", message);
-        }
-
-        // Check for the next message boundary in the updated buffer
-        boundary = chunk.indexOf("\n\n");
-      }
-    }
-  };
-
-  const trigger = async ({ model, source, messages }: Args) => {
+  const trigger = async ({ model, source, messages }: TriggerArgs) => {
     setError("");
     setIsLoading(true);
 
     // Create a new abort controller
     abortControllerRef.current = new AbortController();
+    console.log(model);
+    console.log(source);
+    console.log(messages);
+    console.log(temperature);
+    console.log(maxTokens);
 
     try {
       // ------------------------------------------------------
@@ -135,7 +88,13 @@ const useAIChatAPI = () => {
         const reader = workerRes?.body?.getReader();
         const decoder = new TextDecoder();
 
-        await processSSE(decoder, reader);
+        await processSSE({
+          decoder,
+          reader,
+          setIsLoading,
+          handleUpdateStream,
+          handleDONE,
+        });
       }
 
       // ------------------------------------------------------
@@ -174,16 +133,26 @@ const useAIChatAPI = () => {
         const reader = googleRes?.body?.getReader();
         const decoder = new TextDecoder();
 
-        await processSSE(decoder, reader);
+        await processSSE({
+          decoder,
+          reader,
+          setIsLoading,
+          handleUpdateStream,
+          handleDONE,
+        });
       }
     } catch (err: any) {
       if (err?.name !== "AbortError") {
         setError(err?.message || "An error occurred while streaming");
-        console.error("Streaming error:", err);
       }
       setIsLoading(false);
 
-      toast.show({ title: "Gemini API Error", message: err?.message, color: "red" });
+      const errMsg = {
+        cf: "Cloudflare Worker API Error",
+        google: "Gemini API Error",
+      }[source];
+
+      toast.show({ title: errMsg, message: err?.message, color: "red" });
     }
 
     return "";
@@ -191,14 +160,14 @@ const useAIChatAPI = () => {
 
   const reset = () => {
     // Reset state
-    stopStreamToChat();
+    handleDONE();
     setError("");
     setIsLoading(false);
     abortControllerRef.current = null;
   };
 
   const stopStreaming = () => {
-    stopStreamToChat();
+    handleDONE();
 
     if (abortControllerRef.current) {
       abortControllerRef.current?.abort();
@@ -226,4 +195,4 @@ const useAIChatAPI = () => {
   };
 };
 
-export default useAIChatAPI;
+export default useAICommonAPI;

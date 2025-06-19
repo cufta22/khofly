@@ -22,6 +22,7 @@ const SettingsMGeneral: React.FC<Props> = ({ handleChangeSection }) => {
         title="pages.settings.general.title"
         handleChangeSection={handleChangeSection}
       />
+
       <Paper radius="md" withBorder>
         {/* Settings content */}
         <Stack w="100%" align="start" px="lg" my="xl">

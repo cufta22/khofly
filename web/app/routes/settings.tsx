@@ -20,9 +20,9 @@ export const meta = SETTINGS_META_FUNCTION;
 const Settings = ({ loaderData }: Route.ComponentProps) => {
   const isMobileSSR = loaderData.isMobile;
 
-  // return <PageSettings />;
-  return <PageSettingsMobile />;
-  // return isMobileSSR ? <PageSettingsMobile /> : <PageSettings />;
+  //return <PageSettings />;
+  //return <PageSettingsMobile />;
+  return isMobileSSR ? <PageSettingsMobile /> : <PageSettings />;
 };
 
 export default Settings;

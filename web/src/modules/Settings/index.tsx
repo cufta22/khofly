@@ -20,11 +20,14 @@ import SettingsPV from "./components/_instances/PV";
 
 import SettingsEngines from "./components/_engines/Engines";
 
-import SettingsShortcuts from "./components/_startpage/Shortcuts";
-import SettingsWidgets from "./components/_startpage/Widgets";
-import SettingsWallpaper from "./components/_startpage/Wallpaper";
+import SettingsShortcuts from "./components/_homepage/Shortcuts";
+import SettingsWidgets from "./components/_homepage/Widgets";
+import SettingsWallpaper from "./components/_homepage/Wallpaper";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 const PageSettings = () => {
+  const t = useTranslate();
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -47,19 +50,19 @@ const PageSettings = () => {
       <Tabs variant="default" value={stateTab} onChange={handleChangeTab} keepMounted={false}>
         <Tabs.List mb="xl" className={classes.tabs_scroll}>
           <Tabs.Tab value="general" leftSection={<IconSettings2 style={getIconStyle(20)} />}>
-            General
+            {t("pages.settings._common.general")}
           </Tabs.Tab>
           <Tabs.Tab value="interface" leftSection={<IconBrush style={getIconStyle(20)} />}>
-            Interface
+            {t("pages.settings._common.interface")}
           </Tabs.Tab>
           <Tabs.Tab value="instances" leftSection={<IconLink style={getIconStyle(20)} />}>
-            Instances
+            {t("pages.settings._common.instances")}
           </Tabs.Tab>
           <Tabs.Tab value="engines" leftSection={<IconRadar style={getIconStyle(20)} />}>
-            Engines
+            {t("pages.settings._common.engines")}
           </Tabs.Tab>
           <Tabs.Tab value="homepage" leftSection={<IconBrowser style={getIconStyle(20)} />}>
-            Homepage
+            {t("pages.settings._common.homepage")}
           </Tabs.Tab>
         </Tabs.List>
 

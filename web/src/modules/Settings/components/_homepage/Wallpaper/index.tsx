@@ -1,14 +1,15 @@
 import { Button, Flex, Paper, Stack, Text, TextInput, useMantineTheme } from "@mantine/core";
 
+import { IconDevices, IconPhoto } from "@tabler/icons-react";
+
 import classes from "../../../styles.module.scss";
-import useToast from "@hooks/use-toast";
-import RemixLink from "@components/RemixLink";
-import { useInstanceStore } from "@store/instance";
-import { IconApiApp } from "@tabler/icons-react";
-import React, { useEffect } from "react";
-import useForm from "@hooks/use-form";
-import { usePrimaryColor } from "@hooks/use-primary-color";
+
+import { useStatrpageStore } from "@store/startpage";
 import SettingsTitle from "../../common/SettingsTitle";
+import useForm from "@hooks/use-form";
+import useToast from "@hooks/use-toast";
+import { usePrimaryColor } from "@hooks/use-primary-color";
+import { useEffect } from "react";
 import { IOpenSection } from "@module/SettingsMobile";
 import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
 
@@ -17,18 +18,19 @@ interface Props {
   handleChangeSection?: (next: IOpenSection) => void;
 }
 
-const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
+const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const theme = useMantineTheme();
 
-  const domain = useInstanceStore((state) => state.apiDomain);
-  const setDomain = useInstanceStore((state) => state.setApiDomain);
+  const background = useStatrpageStore((state) => state.wallpaper);
+  const setBackground = useStatrpageStore((state) => state.setWallpaper);
 
   const form = useForm({
     initialValues: {
-      domain: "",
+      background: "",
     },
     validate: {
-      domain: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
+      background: (value) =>
+        /^(ftp|http|https):\/\/[^ "]+$/.test(value) || value.length === 0 ? null : "Invalid URL",
     },
   });
 
@@ -37,19 +39,19 @@ const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const linkTextColor = usePrimaryColor(4);
 
   const handleSubmit = (values: typeof form.values) => {
-    setDomain(values.domain);
+    setBackground(values.background);
     toast.show({ message: "URL changed", color: "green" });
   };
 
   useEffect(() => {
-    form.setFieldValue("domain", domain);
-  }, [domain]);
+    form.setFieldValue("background", background);
+  }, [background]);
 
   return (
     <>
       {isM && handleChangeSection && (
         <SettingsMTitle
-          title="pages.settings.instances.title_api"
+          title="pages.settings.homepage.title_background"
           handleChangeSection={handleChangeSection}
         />
       )}
@@ -58,18 +60,34 @@ const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {!isM && (
             <SettingsTitle
-              icon={<IconApiApp color={theme.colors.blue["5"]} />}
-              title="pages.settings.instances.title_api"
+              icon={<IconPhoto color={theme.colors.blue["5"]} />}
+              title="pages.settings.homepage.title_background"
+              rightSection={
+                <Flex className="desktop_only" align="center">
+                  <IconDevices />
+
+                  <Text ml="sm">Desktop & Mobile</Text>
+                </Flex>
+              }
             />
           )}
 
           {/* Settings content */}
-          <Stack px="lg" mb="xl" mt={isM ? "lg" : 0}>
+          <Stack w="100%" align="start" px="lg" mb="xl" mt={isM ? "xl" : 0}>
+            {/* <SettingsRow
+          // icon={null}
+          desc="pages.settings.homepage.toggle_shortcuts"
+          control={<ShortcutsSwitch />}
+        />
+
+        <Divider my="sm" w="100%" /> */}
+
             <TextInput
+              label="Wallpaper URL"
               placeholder="https://example.com"
               size="md"
               className={classes.settings_input}
-              {...form.getInputProps("domain")}
+              {...form.getInputProps("background")}
             />
           </Stack>
 
@@ -80,12 +98,7 @@ const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
             px="lg"
             className={classes.settings_footer}
           >
-            <Text size="sm" c="dimmed">
-              Change this to your own url for better privacy & less load for default instance.{" "}
-              <Text component="span" c={linkTextColor}>
-                <RemixLink to={"/docs/self-host-khofly-api"}>Read more</RemixLink>
-              </Text>
-            </Text>
+            <div />
 
             <Button type="submit">Save</Button>
           </Flex>
@@ -95,4 +108,4 @@ const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
   );
 };
 
-export default SettingsAPI;
+export default SettingsWallpaper;

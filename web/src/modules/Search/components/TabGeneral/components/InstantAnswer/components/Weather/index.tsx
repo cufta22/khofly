@@ -22,6 +22,7 @@ import utc from "dayjs/plugin/utc";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { useInstanceStore } from "@store/instance";
 import useGeocodingSWR from "src/api/geocoding/use-geocoding-query";
+import { useSettingsStore } from "@store/settings";
 
 dayjs.extend(utc);
 
@@ -44,7 +45,7 @@ const IAWeather: React.FC<Props> = ({ propLocation }) => {
   // Get geo data dynamically for location
   const { trigger: triggerGeo, data: dataGeo } = useGeocodingSWR();
 
-  const weatherSource = useInstanceStore((state) => state.weatherSource);
+  const instantAnswers = useSettingsStore((state) => state.instantAnswers);
 
   const [unit, setUnit] = useState<"standard" | "metric" | "imperial">("metric");
   const [areaChart, setAreaChart] = useState<string>("temp");
@@ -63,7 +64,7 @@ const IAWeather: React.FC<Props> = ({ propLocation }) => {
     lat: latToUse,
     lon: lonToUse,
     units: unit,
-    src: weatherSource,
+    src: instantAnswers.weatherDataSource,
   });
   const data = resData?.data;
   const message = resData?.message;
@@ -148,7 +149,7 @@ const IAWeather: React.FC<Props> = ({ propLocation }) => {
                 {
                   value: "standard",
                   label: <IconLetterK style={getIconStyle(20)} stroke={2} />,
-                  disabled: weatherSource === "om",
+                  disabled: instantAnswers.weatherDataSource === "om",
                 },
               ]}
             />
