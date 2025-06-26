@@ -4,33 +4,36 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import classes from "./styles.module.scss";
 import useDownloadSWR from "src/api/download/use-download-query";
 import { useEffect } from "react";
+import { useSettingsStore } from "@store/settings";
 
-interface Props {
-  url: string;
-  onClose: () => void;
-}
-
-const PrivateVideoPlayer: React.FC<Props> = ({ url, onClose }) => {
+const PrivateVideoPlayer = () => {
   const { data, trigger, isMutating, reset } = useDownloadSWR({ shouldDownload: false });
 
   const theme = useMantineTheme();
 
+  const privatePlayer = useSettingsStore((state) => state.privatePlayer);
+  const setPrivatePlayer = useSettingsStore((state) => state.setPrivatePlayer);
+  const { videoData } = privatePlayer;
+
   useEffect(() => {
-    if (url && !isMutating) {
+    if (videoData?.url && !isMutating) {
       trigger({
         format: "mp4",
         from: "youtube",
-        url: url,
+        url: videoData?.url,
       });
     }
-  }, [url]);
+  }, [videoData]);
+
+  if (!videoData) return null;
 
   return (
     <Modal
-      opened={!!url}
+      withinPortal={true}
+      opened={!!videoData?.url}
       onClose={() => {
         reset();
-        onClose();
+        setPrivatePlayer({ videoData: null });
       }}
       closeOnClickOutside={false}
       size="60%"

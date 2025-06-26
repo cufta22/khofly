@@ -36,6 +36,8 @@ const SearchSectionTabs = () => {
   const iconSize = 16;
 
   const handleChangeTab = (tab: ICategories) => {
+    if (tab === selectedTab) return;
+
     nprogress.start();
 
     setSelectedTab(tab);

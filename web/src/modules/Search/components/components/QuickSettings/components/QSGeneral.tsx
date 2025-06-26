@@ -1,4 +1,4 @@
-import { Accordion, Divider, Flex, Stack, Text } from "@mantine/core";
+import { Accordion, Divider, Flex, Stack, Text, useMantineTheme } from "@mantine/core";
 import { IconSettings2 } from "@tabler/icons-react";
 import { useTranslate } from "@hooks/translate/use-translate";
 import classes from "../styles.module.scss";
@@ -11,16 +11,31 @@ import PrivateSearchSwitch from "@module/Settings/components/_general/General/Pr
 import PrivatePlayerSwitch from "@module/Settings/components/_general/General/PrivarePlayerSwitch";
 import AIAnswerSwitch from "@module/Settings/components/_general/AI/AIAnswerSwitch";
 import AISummarySwitch from "@module/Settings/components/_general/AI/AISummarySwitch";
+import NewTabSwitch from "@module/Settings/components/_general/General/NewTabSwitch";
 
 const QSGeneral = () => {
+  const theme = useMantineTheme();
+
   const t = useTranslate();
+
   return (
     <Accordion.Item className={classes.acc_item} value="general">
-      <Accordion.Control className={classes.acc_control} icon={<IconSettings2 />}>
+      <Accordion.Control
+        className={classes.acc_control}
+        icon={<IconSettings2 color={theme.colors.blue["5"]} />}
+      >
         <Text size="lg">{t("pages.settings.general.title")}</Text>
       </Accordion.Control>
       <Accordion.Panel>
         <Stack mt="lg">
+          <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.interface.toggle_open_in_new_tab")}</Text>
+
+            <NewTabSwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
           <Flex align="center" justify="space-between">
             <Text>{t("pages.settings.general.toggle_favicon")}</Text>
 

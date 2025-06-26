@@ -11,27 +11,27 @@ import DocsNextPrev from "./common/DocsNextPrev";
 
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 
-import IACalculator from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Calculator";
-import IACalendar from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Calendar";
-import IACoinFlip from "@module/Search/components/TabGeneral/components/InstantAnswer/components/CoinFilp";
-import IACurrency from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Currency";
-import IADiceRoll from "@module/Search/components/TabGeneral/components/InstantAnswer/components/DiceRoll";
-import IADownloader from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Downloader";
-import IAEquation from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Equation";
-import IALyrics from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Lyrics";
-import IAPassword from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Password";
-import IARNG from "@module/Search/components/TabGeneral/components/InstantAnswer/components/RNG";
-import IAStopwatch from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Stopwatch";
-import IATicTacToe from "@module/Search/components/TabGeneral/components/InstantAnswer/components/TicTacToe";
-import IATimeIn from "@module/Search/components/TabGeneral/components/InstantAnswer/components/TimeIn";
-import IATimer from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Timer";
-import IATimeZone from "@module/Search/components/TabGeneral/components/InstantAnswer/components/TimeZone";
-import IATranslate from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Translate";
-import IAUnit from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Unit";
-import IAUUID from "@module/Search/components/TabGeneral/components/InstantAnswer/components/UUID";
-import IAWeather from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Weather";
-import { KEYWORDS_IA } from "@module/Search/components/TabGeneral/components/InstantAnswer/_utils/keywords";
-import IAIP from "@module/Search/components/TabGeneral/components/InstantAnswer/components/IP";
+import IACalculator from "@module/Search/components/components/InstantAnswer/components/Calculator";
+import IACalendar from "@module/Search/components/components/InstantAnswer/components/Calendar";
+import IACoinFlip from "@module/Search/components/components/InstantAnswer/components/CoinFilp";
+import IACurrency from "@module/Search/components/components/InstantAnswer/components/Currency";
+import IADiceRoll from "@module/Search/components/components/InstantAnswer/components/DiceRoll";
+import IADownloader from "@module/Search/components/components/InstantAnswer/components/Downloader";
+import IAEquation from "@module/Search/components/components/InstantAnswer/components/Equation";
+import IALyrics from "@module/Search/components/components/InstantAnswer/components/Lyrics";
+import IAPassword from "@module/Search/components/components/InstantAnswer/components/Password";
+import IARNG from "@module/Search/components/components/InstantAnswer/components/RNG";
+import IAStopwatch from "@module/Search/components/components/InstantAnswer/components/Stopwatch";
+import IATicTacToe from "@module/Search/components/components/InstantAnswer/components/TicTacToe";
+import IATimeIn from "@module/Search/components/components/InstantAnswer/components/TimeIn";
+import IATimer from "@module/Search/components/components/InstantAnswer/components/Timer";
+import IATimeZone from "@module/Search/components/components/InstantAnswer/components/TimeZone";
+import IATranslate from "@module/Search/components/components/InstantAnswer/components/Translate";
+import IAUnit from "@module/Search/components/components/InstantAnswer/components/Unit";
+import IAUUID from "@module/Search/components/components/InstantAnswer/components/UUID";
+import IAWeather from "@module/Search/components/components/InstantAnswer/components/Weather";
+import { KEYWORDS_IA } from "@module/Search/components/components/InstantAnswer/_utils/keywords";
+import IAIP from "@module/Search/components/components/InstantAnswer/components/IP";
 
 const DocsSearchInstantAnswer = () => {
   const theme = useMantineTheme();
@@ -54,7 +54,7 @@ const DocsSearchInstantAnswer = () => {
 
       <DocsText>
         All instant answers code is located in{" "}
-        <Code>/src/modules/Search/components/TabGeneral/components/InstantAnswer</Code>
+        <Code>/src/modules/Search/components/components/InstantAnswer</Code>
       </DocsText>
 
       <DocsText>

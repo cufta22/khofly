@@ -1,0 +1,6 @@
+.image_gallery {
+  &::after {
+    content: "";
+    flex-grow: 999;
+  }
+}

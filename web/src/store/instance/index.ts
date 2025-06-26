@@ -20,11 +20,8 @@ interface InstanceState {
   nominatimDomain: string;
   setNominatimDomain: (domain: string) => void;
 
-  // AI Stuff
   workerDomain: string;
   setWorkerDomain: (domain: string) => void;
-  workerModel: IWorkerModels;
-  setWorkerModel: (model: IWorkerModels) => void;
 }
 
 export const useInstanceStore = create<InstanceState>()(
@@ -46,8 +43,6 @@ export const useInstanceStore = create<InstanceState>()(
 
       workerDomain: "", // Will be set initially in layout
       setWorkerDomain: (domain) => set({ workerDomain: domain }),
-      workerModel: "@cf/meta/llama-3.2-3b-instruct",
-      setWorkerModel: (domain) => set({ workerModel: domain }),
     }),
     {
       onRehydrateStorage: () => (state) => {
@@ -61,7 +56,6 @@ export const useInstanceStore = create<InstanceState>()(
         apiDomain: state.apiDomain,
         nominatimDomain: state.nominatimDomain,
         workerDomain: state.workerDomain,
-        workerModel: state.workerModel,
       }),
     }
   )

@@ -5,9 +5,9 @@ import { useGeneralStore } from "@store/general";
 import useGeolocation from "@hooks/use-geolocation";
 import clsx from "clsx";
 import { IS_DAY } from "@utils/resources/isDay";
-import WeatherIcon from "@module/Search/components/TabGeneral/components/InstantAnswer/components/Weather/components/WeatherIcon";
 import type { OpenWeatherCode } from "src/api/weather/types";
 import { useEffect } from "react";
+import WeatherIcon from "@module/Search/components/components/InstantAnswer/components/Weather/components/WeatherIcon";
 
 const WidgetWeather = () => {
   // Get data either from localStorage or Geolocation

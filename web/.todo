@@ -23,6 +23,9 @@ Responsive: search page bigger text & spacing
 Responsive: add scroll to Docs sidebar
 Check for more responsive stuff
 
+AI summary url from search store to settings
+Move tab in search to local state
+
 ? Docs page for widgets
 ? Save search history in LS
 

@@ -1,5 +1,5 @@
 import { useTranslate } from "@hooks/translate/use-translate";
-import { Accordion, Stack, Text } from "@mantine/core";
+import { Accordion, Stack, Text, useMantineTheme } from "@mantine/core";
 import { IconRadar } from "@tabler/icons-react";
 import classes from "../styles.module.scss";
 import { TAB_DATA } from "@module/Settings/components/_engines/Engines";
@@ -8,6 +8,8 @@ import SettingsEnginesWrapper from "@module/Settings/components/_engines/Engines
 import { useSearchParams } from "react-router";
 
 const QSEngines = () => {
+  const theme = useMantineTheme();
+
   const t = useTranslate();
   const [params] = useSearchParams();
 
@@ -17,7 +19,10 @@ const QSEngines = () => {
 
   return (
     <Accordion.Item className={classes.acc_item} value="engines">
-      <Accordion.Control className={classes.acc_control} icon={<IconRadar />}>
+      <Accordion.Control
+        className={classes.acc_control}
+        icon={<IconRadar color={theme.colors.blue["5"]} />}
+      >
         <Text size="lg">{t(DATA.label)}</Text>
       </Accordion.Control>
       <Accordion.Panel>

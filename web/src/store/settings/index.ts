@@ -60,8 +60,30 @@ interface SettingsState {
   privateSearch: boolean;
   setPrivateSearch: (next: boolean) => void;
 
-  privatePlayer: boolean;
-  setPrivatePlayer: (next: boolean) => void;
+  privatePlayer: {
+    enabled: boolean;
+    musicData: {
+      url: string;
+      img_src: string;
+      thumbnail: string;
+      title: string;
+    } | null;
+    videoData: {
+      url: string;
+    } | null;
+  };
+  setPrivatePlayer: (next: {
+    enabled?: boolean;
+    musicData?: {
+      url: string;
+      img_src: string;
+      thumbnail: string;
+      title: string;
+    } | null;
+    videoData?: {
+      url: string;
+    } | null;
+  }) => void;
 
   privateView: {
     enabled: boolean;
@@ -151,8 +173,13 @@ export const useSettingsStore = create<SettingsState>()(
       privateSearch: false,
       setPrivateSearch: (next) => set({ privateSearch: next }),
 
-      privatePlayer: false,
-      setPrivatePlayer: (next) => set({ privatePlayer: next }),
+      privatePlayer: {
+        enabled: true,
+        musicData: null,
+        videoData: null,
+      },
+      setPrivatePlayer: (next) =>
+        set((prev) => ({ privatePlayer: { ...prev.privatePlayer, ...next } })),
 
       privateView: {
         enabled: false,

@@ -1,4 +1,4 @@
-import { Drawer, Flex, ScrollArea, Text } from "@mantine/core";
+import { Center, Drawer, Flex, Loader, ScrollArea, Text } from "@mantine/core";
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
 import ReactMarkdown from "react-markdown";
@@ -72,7 +72,13 @@ const AISummary = () => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
-      <ReactMarkdown>{data}</ReactMarkdown>
+      {isLoading ? (
+        <Center mt="xl" pt="xl">
+          <Loader size="xl" />
+        </Center>
+      ) : (
+        <ReactMarkdown>{data}</ReactMarkdown>
+      )}
     </Drawer>
   );
 };
