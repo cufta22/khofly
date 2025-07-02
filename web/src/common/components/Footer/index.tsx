@@ -27,7 +27,7 @@ const Footer = () => {
           className={classes.footer_text}
           onClick={() => setCount((prev) => prev + 1)}
         >
-          Version {packageJson.version} beta, powered by{" "}
+          Version {packageJson.version}, powered by{" "}
         </Text>
 
         <Text c="dimmed" className={classes.footer_text}>

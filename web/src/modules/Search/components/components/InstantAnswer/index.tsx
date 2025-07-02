@@ -8,9 +8,13 @@ import {
   shouldDisplayUnits,
   shouldDisplayWeather,
 } from "./_utils";
+import { KEYWORDS_IA } from "./_utils/keywords";
 import { useSettingsStore } from "@store/settings";
+import useSearchQuery from "@hooks/use-search-query";
+import { useResponsive } from "@hooks/use-responsive";
 
 import IACalculator from "./components/Calculator";
+import IAColorPicker from "./components/ColorPicker";
 import IAUUID from "./components/UUID";
 import IAWeather from "./components/Weather";
 import IACalendar from "./components/Calendar";
@@ -19,20 +23,16 @@ import IAEquation from "./components/Equation";
 import IARNG from "./components/RNG";
 import IADownloader from "./components/Downloader";
 import IALyrics from "./components/Lyrics";
+import IAIP from "./components/IP";
+import IATranslate from "./components/Translate";
 
 import IANeofetch from "./_commands/Neofetch";
+import IACowsay from "./_commands/Cowsay";
 
 import SharedConverter from "./_shared/SharedConverter";
 import SharedClock from "./_shared/SharedClock";
 import SharedGlobalTime from "./_shared/SharedGlobalTime";
 import SharedGames from "./_shared/SharedGames";
-
-import useSearchQuery from "@hooks/use-search-query";
-import { KEYWORDS_IA } from "./_utils/keywords";
-import IAIP from "./components/IP";
-import IATranslate from "./components/Translate";
-import { useResponsive } from "@hooks/use-responsive";
-import IACowsay from "./_commands/Cowsay";
 
 const InstantAnswer = () => {
   const isLg = useResponsive("min", "lg", true);
@@ -53,6 +53,9 @@ const InstantAnswer = () => {
 
   // Instant answer - Coin flip
   if (shouldDisplayIAExact(q, KEYWORDS_IA.coin_flip)) return <SharedGames type="coinflip" />;
+
+  // Instant answer - Color Picker
+  if (shouldDisplayIAExact(q, ["color picker"])) return <IAColorPicker withIAWrapper />;
 
   // Instant answer - Currency convertor
   const { sdCurr, ...restCurr } = shouldDisplayCurrency(q);

@@ -13,6 +13,7 @@ import WidgetTodo from "./components/_widgets/WidgetToDo";
 import WidgetClock from "./components/_widgets/WidgetClock";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 import WidgetNotes from "./components/_widgets/WidgetNotes";
+import ButtonWander from "./components/ButtonWander";
 
 const PageIndex = () => {
   const t = useTranslate();
@@ -60,7 +61,13 @@ const PageIndex = () => {
         </Title>
 
         <SearchBar />
-        {displayShortcuts && <Shortcuts />}
+        {displayShortcuts ? (
+          <Shortcuts />
+        ) : (
+          <Flex mt="xl">
+            <ButtonWander />
+          </Flex>
+        )}
 
         {/* Startpage widgets */}
         <Flex direction="column" gap={24} className={classes.widgets_left}>
