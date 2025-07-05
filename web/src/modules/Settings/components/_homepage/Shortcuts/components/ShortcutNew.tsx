@@ -29,9 +29,11 @@ const ShortcutNew = () => {
         <ShortcutEdit
           toggleModal={close}
           shortcut={{
+            type: "item",
             title: "",
             href: "",
             imgUrl: "",
+            items: [],
           }}
           idx={0}
           type="add"

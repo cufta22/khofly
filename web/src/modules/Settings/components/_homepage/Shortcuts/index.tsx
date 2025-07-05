@@ -11,6 +11,7 @@ import SettingsTitle from "../../common/SettingsTitle";
 import SettingsRow from "../../common/SettingsRow";
 import { IOpenSection } from "@module/SettingsMobile";
 import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
+import ShortcutGroup from "@module/Index/components/Shortcuts/components/ShortcutGroup";
 
 interface Props {
   isM?: boolean;
@@ -24,6 +25,14 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
 
   const hydrated = useStatrpageStore((state) => state.hydrated);
   const shortcuts = useStatrpageStore((state) => state.shortcuts);
+
+  const items = shortcuts.map((sc, i) => {
+    return sc.type === "item" ? (
+      <Shortcut key={i} idx={i} {...sc} />
+    ) : (
+      <ShortcutGroup key={i} idx={i} {...sc} />
+    );
+  });
 
   return (
     <>
@@ -60,9 +69,7 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
           <Divider my="sm" w="100%" />
 
           <Flex w="100%" align="center" justify="flex-start" gap="lg" pos="relative">
-            {shortcuts.map((data, i) => (
-              <Shortcut key={i} idx={i} {...data} />
-            ))}
+            {items}
             <ShortcutNew />
 
             <LoadingOverlay visible={!hydrated} />

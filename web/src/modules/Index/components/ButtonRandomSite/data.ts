@@ -22,4 +22,7 @@ export const COOL_WEBSITES = [
   "https://368chickens.com",
   "https://chaz.fun/phone/3250",
   "https://www.lingscars.com",
+  "https://zzz.zoomquilt.org",
+  "https://thisissand.com",
+  "https://littlealchemy2.com",
 ];

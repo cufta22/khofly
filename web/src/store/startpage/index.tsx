@@ -2,9 +2,15 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export interface IShortcut {
+  type: "item" | "group";
+
+  // Item
   title: string;
   href: string;
   imgUrl?: string;
+
+  // Group
+  items: { type: "item"; title: string; href: string; imgUrl?: string; items: [] }[];
 }
 
 export interface IToDo {
@@ -61,7 +67,37 @@ export const useStatrpageStore = create<StartpageState>()(
       wallpaper: "",
       setWallpaper: (next) => set({ wallpaper: next }),
 
-      shortcuts: [],
+      shortcuts: [
+        {
+          type: "item",
+          title: "YouTube",
+          href: "youtube.com",
+          imgUrl: "",
+          items: [],
+        },
+        {
+          type: "group",
+          title: "Group",
+          href: "",
+          imgUrl: "",
+          items: [
+            {
+              type: "item",
+              title: "GitHub",
+              href: "google.com",
+              imgUrl: "",
+              items: [],
+            },
+            {
+              type: "item",
+              title: "Instagram",
+              href: "instagram.com",
+              imgUrl: "",
+              items: [],
+            },
+          ],
+        },
+      ],
       setShortcuts: (next) => set({ shortcuts: next }),
       displayShortcuts: false,
       setDisplayShortcuts: (next) => set({ displayShortcuts: next }),
@@ -109,17 +145,13 @@ export const useStatrpageStore = create<StartpageState>()(
 
         todos: state.todos,
         displayTodos: state.displayTodos,
-        // todosPosition: state.todosPosition,
 
         notes: state.notes,
         displayNotes: state.displayNotes,
-        // notesPosition: state.notesPosition,
 
         displayWeather: state.displayWeather,
-        // weatherPosition: state.weatherPosition,
 
         displayClock: state.displayClock,
-        // clockPosition: state.clockPosition,
       }),
     }
   )

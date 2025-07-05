@@ -20,8 +20,8 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
   const [openModal, { toggle: toggleModal }] = useDisclosure(false);
 
-  const fullUrl = href.includes("https") ? href : `https://${href}`;
-  const stripUrl = href.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, "$1");
+  const fullUrl = href?.includes("https") ? href : `https://${href}` || "";
+  const stripUrl = href?.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, "$1") || "";
 
   return (
     <>
@@ -53,9 +53,11 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
         <ShortcutEdit
           toggleModal={toggleModal}
           shortcut={{
+            type: "item",
             title,
             href,
             imgUrl,
+            items: [],
           }}
           idx={idx}
           type="edit"

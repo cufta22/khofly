@@ -13,7 +13,7 @@ import WidgetTodo from "./components/_widgets/WidgetToDo";
 import WidgetClock from "./components/_widgets/WidgetClock";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 import WidgetNotes from "./components/_widgets/WidgetNotes";
-import ButtonWander from "./components/ButtonWander";
+import ButtonRandomSite from "./components/ButtonRandomSite";
 
 const PageIndex = () => {
   const t = useTranslate();
@@ -65,7 +65,7 @@ const PageIndex = () => {
           <Shortcuts />
         ) : (
           <Flex mt="xl">
-            <ButtonWander />
+            <ButtonRandomSite />
           </Flex>
         )}
 

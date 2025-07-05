@@ -71,3 +71,37 @@
     display: none;
   }
 }
+
+.group_container {
+  position: relative;
+
+  .group {
+    border: 1px solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+
+    .group_image {
+      transition: transform 100ms ease;
+    }
+
+    &.group_expanded {
+      transform: scale(2);
+      z-index: 4; // To not show behind other items
+
+      .group_image {
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  .group_actions {
+    position: absolute;
+    top: 0;
+    right: func.to-rem(4px);
+    z-index: 3;
+
+    @media (max-width: vars.$mantine-breakpoint-xs) {
+      display: none;
+    }
+  }
+}

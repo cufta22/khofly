@@ -1,9 +1,9 @@
 import { ActionIcon, Menu } from "@mantine/core";
 import React from "react";
 import classes from "../styles.module.scss";
-import { IconDots, IconEdit, IconExternalLink, IconTrash } from "@tabler/icons-react";
+import { IconDots, IconEdit, IconExternalLink, IconSquare, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useStatrpageStore } from "@store/startpage";
+import { IShortcut, useStatrpageStore } from "@store/startpage";
 
 interface Props {
   openMenu: boolean;
@@ -27,6 +27,33 @@ const ShortcutMenu: React.FC<Props> = ({
 
   const handleDelete = () => {
     const newShortcuts = [...shortcuts].filter((_val, i) => i !== idx);
+    setShortcuts(newShortcuts);
+
+    toggleMenu();
+  };
+
+  const handleGroup = () => {
+    const newShortcuts: IShortcut[] = [...shortcuts].map((sc, i) => {
+      if (i === idx) {
+        return {
+          type: "group",
+          title: sc.title,
+          href: "",
+          imgUrl: "",
+          items: [
+            {
+              type: "item",
+              title: sc.title,
+              href: sc.href,
+              imgUrl: sc.imgUrl,
+              items: [],
+            },
+          ],
+        };
+      } else {
+        return sc;
+      }
+    });
     setShortcuts(newShortcuts);
 
     toggleMenu();
@@ -65,6 +92,14 @@ const ShortcutMenu: React.FC<Props> = ({
           onClick={handleDelete}
         >
           Delete
+        </Menu.Item>
+
+        <Menu.Item
+          fz="xs"
+          leftSection={<IconSquare style={getIconStyle(14)} />}
+          onClick={handleGroup}
+        >
+          Group
         </Menu.Item>
 
         <Menu.Divider />
