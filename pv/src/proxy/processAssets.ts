@@ -14,7 +14,8 @@ export const handleProcessAssets = async (args: Args) => {
 
   const resourceOrigin = kv_Actions.get({ by: "key", val: targetUUID });
 
-  const assetUrl = `${resourceOrigin}/${targetAssetPath}`;
+  const assetUrl = `${resourceOrigin?.value}/${targetAssetPath}`;
+  console.log(assetUrl);
 
   // Fetch the resource
   const response = await fetch(assetUrl, {

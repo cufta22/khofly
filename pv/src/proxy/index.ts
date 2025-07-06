@@ -3,6 +3,8 @@ import { kv_Actions } from "../kv";
 import { handleProcessHtml } from "./processHtml";
 import { handleProcessAssets } from "./processAssets";
 import { extractParams } from "../utils/extractParams";
+import { randomUUIDv7 } from "bun";
+import { createInitialKVPair } from "../utils/createInitialKVPair";
 
 export const handleProxy = async (ctx: Context) => {
   const { searchParams, protocol, host } = new URL(ctx.request.url);
@@ -19,11 +21,6 @@ export const handleProxy = async (ctx: Context) => {
     throw ctx.status(400, "Invalid URL");
   }
 
-  // Set KV UUID for initial domain
-  if (targetUrl) {
-    kv_Actions.set({ key: targetUUID, value: targetUrl });
-  }
-
   // Base URLs
   const ASSET_BASE_URL = `${process.env.HOST}/proxy`;
   const ANCHOR_BASE_URL = `${reqOrigin}/pv/proxy`;
@@ -32,6 +29,9 @@ export const handleProxy = async (ctx: Context) => {
   // Handle initial html request
   // -------------------------------------------------------------------------
   if (targetUrl) {
+    // Set KV UUID for initial domain
+    createInitialKVPair(targetUrl);
+
     const { contentType, html } = await handleProcessHtml({
       targetUrl,
       targetUUID,

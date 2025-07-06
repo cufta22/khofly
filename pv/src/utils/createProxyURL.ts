@@ -27,6 +27,8 @@ export const createProxyURL = (args: Args) => {
     const hrefPathname = url.pathname;
 
     const existingKV = kv_Actions.get({ by: "value", val: hrefOrigin });
+    // console.log("-------------------------------------------------------");
+    // console.log(existingKV);
 
     // Create proxied URL
     if (existingKV) {
@@ -34,6 +36,10 @@ export const createProxyURL = (args: Args) => {
     } else {
       const newKey = randomUUIDv7();
       kv_Actions.set({ key: newKey, value: hrefOrigin });
+
+      // console.log(newKey);
+      // console.log(hrefOrigin);
+      // console.log("-------------------------------------------------------");
 
       return `/proxy/${newKey}${hrefPathname}`;
     }

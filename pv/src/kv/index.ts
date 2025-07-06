@@ -6,7 +6,7 @@ export interface Record {
   expires: number;
 }
 
-const db = new Database(":memory:");
+const db = new Database(":memory:", { strict: true });
 
 // Create items table
 db.run(`
@@ -43,7 +43,7 @@ const STATEMENTS = {
   `) as Statement,
 
   setItem: db.query(`
-    INSERT OR REPLACE INTO items (
+    INSERT INTO items (
         key, value, expires
     ) VALUES (
         $key, $value, $expires
@@ -71,7 +71,7 @@ export const kv_Actions = {
     const oneDayInSeconds = 24 * 60 * 60; // 86400
     const expiresAt = nowInSeconds + oneDayInSeconds;
 
-    STATEMENTS.setItem.run({ $key: key, $value: value, $expires: expiresAt });
+    STATEMENTS.setItem.run({ key: key, value: value, expires: expiresAt });
 
     return key;
   },
@@ -80,7 +80,7 @@ export const kv_Actions = {
     if (by === "key") {
       record = STATEMENTS.getByKey.get({ key: val });
     } else {
-      record = STATEMENTS.getByValue.get({ key: val });
+      record = STATEMENTS.getByValue.get({ value: val });
     }
 
     if (!record) return null;
@@ -97,7 +97,7 @@ export const kv_Actions = {
     return record;
   },
   getAll: () => {
-    const records = STATEMENTS.getAll.get();
+    const records = STATEMENTS.getAll.all();
     console.log(records);
   },
   delete: (key: string) => {

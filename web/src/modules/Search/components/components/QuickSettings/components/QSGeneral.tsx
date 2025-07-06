@@ -81,22 +81,6 @@ const QSGeneral = () => {
 
             <PrivatePlayerSwitch />
           </Flex>
-
-          <Divider my={6} w="100%" />
-
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.ai.toggle_ai_answers")}</Text>
-
-            <AIAnswerSwitch />
-          </Flex>
-
-          <Divider my={6} w="100%" />
-
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.ai.toggle_ai_summary")}</Text>
-
-            <AISummarySwitch />
-          </Flex>
         </Stack>
       </Accordion.Panel>
     </Accordion.Item>
