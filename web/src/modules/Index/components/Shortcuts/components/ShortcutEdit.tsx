@@ -38,14 +38,10 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => 
   });
 
   const handleSubmit = (values: typeof form.values) => {
-    console.log(shortcut.type);
-    console.log(type);
-
     let newShortcuts: IShortcut[] = [...shortcuts]; // Start with a copy
 
     if (shortcut.type === "item" && shortcut.itemIdx === undefined) {
       // Scenario 1: Add/Edit a top-level item
-      console.log("Add/Edit single item/group");
       if (type === "edit") {
         newShortcuts = updateItemInList(shortcuts, idx, values);
       } else {
@@ -58,13 +54,11 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => 
       shortcut.itemIdx === undefined
     ) {
       // Scenario 2: Edit a group
-      console.log("Edit group");
       if (type === "edit") {
         newShortcuts = updateItemInList(shortcuts, idx, values);
       }
     } else if (shortcut.type === "item" && shortcut.itemIdx !== undefined) {
       // Scenario 3: Edit an item within a group
-      console.log("Edit an item in the group");
       if (type === "edit") {
         newShortcuts = shortcuts.map((sc, i) => {
           if (i === idx) {
@@ -77,12 +71,8 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => 
         });
       }
     } else if (shortcut.type === "group") {
-      console.log("WE IN??");
-
       // Scenario 4: Add an item to an existing group
       if (type === "add") {
-        console.log("WE IN?");
-
         newShortcuts = shortcuts.map((sc, i) => {
           if (i === idx) {
             return {
@@ -94,8 +84,6 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => 
         });
       }
     }
-
-    console.log("WE OUT??");
 
     setShortcuts(newShortcuts);
 

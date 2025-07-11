@@ -108,7 +108,9 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
             [classes.app_header_transparent]: isIndex,
             [classes.chat_header_transparent]: isChat,
           }),
-          footer: classes.app_footer,
+          footer: clsx(classes.app_footer, {
+            [classes.app_footer_opacity]: !!wallpaper.length,
+          }),
         }}
         styles={{
           main: {

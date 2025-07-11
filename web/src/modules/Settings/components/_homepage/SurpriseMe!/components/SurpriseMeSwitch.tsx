@@ -6,21 +6,21 @@ interface Props {
   isM?: boolean;
 }
 
-const ShortcutsSwitch: React.FC<Props> = ({ isM }) => {
-  const displayShortcuts = useStatrpageStore((state) => state.displayShortcuts);
-  const setDisplayShortcuts = useStatrpageStore((state) => state.setDisplayShortcuts);
-
+const SurpriseMeSwitch: React.FC<Props> = ({ isM }) => {
+  const displaySurpriseButton = useStatrpageStore((state) => state.displaySurpriseButton);
   const setDisplaySurpriseButton = useStatrpageStore((state) => state.setDisplaySurpriseButton);
+
+  const setDisplayShortcuts = useStatrpageStore((state) => state.setDisplayShortcuts);
 
   return (
     <Switch
       className={commonClasses.settings_control}
-      checked={displayShortcuts}
+      checked={displaySurpriseButton}
       onChange={(e) => {
-        setDisplayShortcuts(e.currentTarget.checked);
+        setDisplaySurpriseButton(e.currentTarget.checked);
 
-        // Uncheck Surprise Me! if enabled
-        if (e.currentTarget.checked) setDisplaySurpriseButton(false);
+        // Uncheck Shortcuts if enabled
+        if (e.currentTarget.checked) setDisplayShortcuts(false);
       }}
       withThumbIndicator={isM ? false : true}
       size={isM ? "md" : "sm"}
@@ -28,4 +28,4 @@ const ShortcutsSwitch: React.FC<Props> = ({ isM }) => {
   );
 };
 
-export default ShortcutsSwitch;
+export default SurpriseMeSwitch;

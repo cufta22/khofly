@@ -359,6 +359,7 @@
 
         "title_shortcuts": "Shortcuts",
         "toggle_shortcuts": "Display shortcuts on start page",
+        "toggle_surprise": "Display Surprise Me! button",
 
         "favicon_api_favicone": "Favicone",
         "favicon_api_DDG": "DuckDuckGo",

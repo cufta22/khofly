@@ -34,6 +34,9 @@ interface StartpageState {
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;
 
+  displaySurpriseButton: boolean;
+  setDisplaySurpriseButton: (next: boolean) => void;
+
   todos: IToDo[];
   setTodos: (next: IToDo[]) => void;
   displayTodos: boolean;
@@ -103,6 +106,9 @@ export const useStatrpageStore = create<StartpageState>()(
       setDisplayShortcuts: (next) => set({ displayShortcuts: next }),
       openInNewTab: false,
       setOpenInNewTab: (next) => set({ openInNewTab: next }),
+
+      displaySurpriseButton: false,
+      setDisplaySurpriseButton: (next) => set({ displaySurpriseButton: next }),
 
       todos: [],
       setTodos: (next) => set({ todos: next }),

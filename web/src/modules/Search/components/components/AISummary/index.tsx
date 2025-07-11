@@ -15,7 +15,7 @@ const AISummary = () => {
     temperature: 0.4,
     maxTokens: 2048,
     systemInstruction: "",
-    handleUpdateStream: (val) => setData(val),
+    handleUpdateStream: (val) => setData((prev) => `${prev}${val}`),
     handleDONE: () => {},
   });
 
@@ -26,7 +26,7 @@ const AISummary = () => {
   const t = useTranslate();
 
   useEffect(() => {
-    if (!isLoading && aiSummaryURL.length) {
+    if (!isLoading && aiSummaryURL.length && !data.length) {
       const msgContent = {
         short: `Can you give me a summary of this website: ${aiSummaryURL}`,
         long: `Can you give me an in depth summary of this website: ${aiSummaryURL}`,
@@ -54,6 +54,7 @@ const AISummary = () => {
       opened={!!aiSummaryURL}
       onClose={() => {
         reset();
+        setData("");
         setAISummaryURL("");
       }}
       title={
@@ -72,7 +73,7 @@ const AISummary = () => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
-      {isLoading ? (
+      {!data.length && isLoading ? (
         <Center mt="xl" pt="xl">
           <Loader size="xl" />
         </Center>

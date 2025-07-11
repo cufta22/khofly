@@ -20,7 +20,6 @@ const MessageBot: React.FC<Props> = ({ content }) => {
   const theme = useMantineTheme();
 
   const model = useAIChatStore((state) => state.model);
-  console.log(model.value);
 
   const isReasoning = content.startsWith("<think>");
 

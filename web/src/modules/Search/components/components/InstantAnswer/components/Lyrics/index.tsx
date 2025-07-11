@@ -30,7 +30,6 @@ const IALyrics: React.FC<Props> = ({ initialQ }) => {
 
   useEffect(() => {
     if (dataLyrics?.data || isLoading || isValidating) return;
-    // console.log(`Query: ${queryToUse}`);
 
     // Trigger for query change
     if (queryToUse?.includes("lyrics") && hydrated) mutate();

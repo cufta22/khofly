@@ -45,11 +45,6 @@ const useAICommonAPI = ({
 
     // Create a new abort controller
     abortControllerRef.current = new AbortController();
-    console.log(model);
-    console.log(source);
-    console.log(messages);
-    console.log(temperature);
-    console.log(maxTokens);
 
     try {
       // ------------------------------------------------------

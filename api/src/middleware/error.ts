@@ -13,8 +13,6 @@ interface CustomErrorHandlerArgs {
 }
 
 export const middleware_Error = ({ code, set, error }: CustomErrorHandlerArgs) => {
-  // console.log(`Middleware: ${code}`);
-
   switch (code) {
     case "NOT_FOUND":
       set.status = 404;

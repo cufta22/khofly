@@ -8,7 +8,6 @@ interface Props {
 
 const PageInstances: React.FC<Props> = ({ loaderData }) => {
   const t = useTranslate();
-  console.log(loaderData.data);
 
   if (!loaderData.data)
     return (

@@ -48,6 +48,7 @@ export const processSSE = async ({
 
         try {
           const parsed = JSON.parse(jsonString);
+
           if (parsed?.response) {
             // Handle CF stream
             handleUpdateStream(parsed?.response);

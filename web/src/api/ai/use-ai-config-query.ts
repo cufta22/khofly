@@ -20,33 +20,41 @@ const useAIConfigSWR = () => {
 
   const setConfig = useAIChatStore((state) => state.setConfig);
 
+  const configUpdated = useAIChatStore((state) => state.configUpdated);
+  const setConfigUpdated = useAIChatStore((state) => state.setConfigUpdated);
+
   const fetcher = (_key: string) => {
     return fetchData(`${apiDomain}/ai/config`, {
       method: "GET",
     }) as Promise<IAPIResponse<IApiAIConfigResponse>>;
   };
 
-  return useSWR<IAPIResponse<IApiAIConfigResponse>>(getKey(apiDomain), fetcher, {
-    revalidateOnMount: true,
-    revalidateOnFocus: false,
-    revalidateIfStale: false,
-    revalidateOnReconnect: false,
+  return useSWR<IAPIResponse<IApiAIConfigResponse>>(
+    !configUpdated ? getKey(apiDomain) : null,
+    fetcher,
+    {
+      revalidateOnMount: true,
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+      revalidateOnReconnect: false,
 
-    onSuccess(data) {
-      if (data?.data) {
-        setConfig(data.data);
-      }
-    },
+      onSuccess(data) {
+        if (data?.data) {
+          setConfig(data.data);
+          setConfigUpdated(true);
+        }
+      },
 
-    // Error handling
-    onError() {
-      toast.show({
-        title: "Something went wrong",
-        message: "Unable to fetch AI config",
-        color: "red",
-      });
-    },
-  });
+      // Error handling
+      onError() {
+        toast.show({
+          title: "Something went wrong",
+          message: "Unable to fetch AI config",
+          color: "red",
+        });
+      },
+    }
+  );
 };
 
 export default useAIConfigSWR;

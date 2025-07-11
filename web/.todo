@@ -24,9 +24,19 @@ Responsive: add scroll to Docs sidebar
 Check for more responsive stuff
 
 AI summary url from search store to settings
+AI summary spinner on loading state
 Move tab in search to local state
 
+Clicking on Search row dropdown triggers visitedLinks
+
 Option in SearchRow dropdown to add to shortcuts
+
+add private view to self host script
+add redeploy-pv.sh
+
+Disable shortcuts on mobile
+
+fix up ia color picker
 
 ? Docs page for widgets
 ? Save search history in LS

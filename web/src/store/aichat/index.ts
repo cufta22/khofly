@@ -26,6 +26,8 @@ interface AIChatState {
   systemInstruction: string;
   setSystemInstruction: (next: string) => void;
 
+  configUpdated: boolean;
+  setConfigUpdated: (next: boolean) => void;
   config: IAIConfig;
   setConfig: (next: IAIConfig) => void;
 
@@ -57,6 +59,8 @@ export const useAIChatStore = create<AIChatState>()(
       systemInstruction: "",
       setSystemInstruction: (next) => set({ systemInstruction: next }),
 
+      configUpdated: false,
+      setConfigUpdated: (next) => set({ configUpdated: next }),
       config: {
         hasGeminiKey: false,
       },
@@ -106,6 +110,8 @@ export const useAIChatStore = create<AIChatState>()(
       partialize: (state) => ({
         provider: state.provider,
         model: state.model,
+        configUpdated: state.configUpdated,
+        config: state.config,
       }),
     }
   )

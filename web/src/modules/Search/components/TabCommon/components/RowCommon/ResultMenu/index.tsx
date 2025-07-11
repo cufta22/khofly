@@ -1,11 +1,14 @@
+import useToast from "@hooks/use-toast";
 import { ActionIcon, Menu, useMantineTheme } from "@mantine/core";
 import { removeSubdomain } from "@module/Search/components/components/Organize/components/utils";
 import { useSearchStore } from "@store/search";
 import { ICategories, useSettingsStore } from "@store/settings";
+import { useStatrpageStore } from "@store/startpage";
 import {
   IconAppWindow,
   IconCheck,
   IconDotsVertical,
+  IconExternalLink,
   IconForbid,
   IconLabelImportant,
   IconTextScan2,
@@ -20,6 +23,8 @@ interface Props {
 }
 
 const ResultMenu: React.FC<Props> = ({ url, domain, tab }) => {
+  const { toast } = useToast();
+
   const navigate = useNavigate();
   const theme = useMantineTheme();
 
@@ -33,6 +38,10 @@ const ResultMenu: React.FC<Props> = ({ url, domain, tab }) => {
   const setDomainsBlacklist = useSearchStore((state) => state.setDomainsBlacklist);
 
   const setAISummaryURL = useSearchStore((state) => state.setAISummaryURL);
+
+  const displayShortcuts = useStatrpageStore((state) => state.displayShortcuts);
+  const shortcuts = useStatrpageStore((state) => state.shortcuts);
+  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
 
   const strippedDomain = removeSubdomain(domain);
   const isPriority = domainsPriority.find((item) => item === strippedDomain);
@@ -64,15 +73,33 @@ const ResultMenu: React.FC<Props> = ({ url, domain, tab }) => {
     // window.location.href = `http://localhost:4000/proxy/view?url=${url}`;
     //window.open(`http://localhost:4000/proxy/view?url=${url}`, "_blank");
     navigate(`/pv/proxy?url=${url}`);
-    // console.log(url);
-    // console.log(domain);
+  };
+
+  const createShortcut = () => {
+    const found = shortcuts.find((sc) => sc.href.includes(url));
+    if (found) {
+      toast.show({ message: "Shortcut already exists", color: "red" });
+      return;
+    }
+
+    setShortcuts([
+      ...shortcuts,
+      {
+        type: "item",
+        title: "Shortcut",
+        href: url,
+        items: [],
+        imgUrl: "",
+      },
+    ]);
+
+    toast.show({ message: "Shortcut created", color: "green" });
   };
 
   const hasOrganizeResults = tab === "general";
-
   const hasAIFeatures = AISummary.enabled;
-
   const hasPrivateView = privateView.enabled && tab === "general";
+  const hasShortcuts = displayShortcuts && tab === "general";
 
   if (!hasOrganizeResults && !hasAIFeatures && !hasPrivateView) return null;
 
@@ -126,6 +153,15 @@ const ResultMenu: React.FC<Props> = ({ url, domain, tab }) => {
             onClick={() => openInPrivateView()}
           >
             Private View
+          </Menu.Item>
+        )}
+
+        {hasShortcuts && (hasAIFeatures || hasOrganizeResults || hasPrivateView) && (
+          <Menu.Divider />
+        )}
+        {hasShortcuts && (
+          <Menu.Item leftSection={<IconExternalLink size={18} />} onClick={() => createShortcut()}>
+            Create shortcut
           </Menu.Item>
         )}
       </Menu.Dropdown>

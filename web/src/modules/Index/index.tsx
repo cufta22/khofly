@@ -19,6 +19,7 @@ const PageIndex = () => {
   const t = useTranslate();
 
   const displayShortcuts = useStatrpageStore((state) => state.displayShortcuts);
+  const displaySurpriseButton = useStatrpageStore((state) => state.displaySurpriseButton);
 
   const displayTodos = useStatrpageStore((state) => state.displayTodos);
   const displayNotes = useStatrpageStore((state) => state.displayNotes);
@@ -61,9 +62,10 @@ const PageIndex = () => {
         </Title>
 
         <SearchBar />
-        {displayShortcuts ? (
-          <Shortcuts />
-        ) : (
+
+        {/* Stuff below search bar */}
+        {displayShortcuts && <Shortcuts />}
+        {displaySurpriseButton && (
           <Flex mt="xl">
             <ButtonRandomSite />
           </Flex>

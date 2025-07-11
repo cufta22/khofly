@@ -17,7 +17,7 @@ import RemixLink from "@components/RemixLink";
 import { useState } from "react";
 import CSWallpaperSelect from "./components/CSWallpaperSelect";
 import CSWallpaperCategory from "./components/CSWallpaperCategory";
-import CSShortcuts from "./components/CSShortcuts";
+import CSOptions from "./components/CSOptions";
 
 interface Props {
   isOpen: boolean;
@@ -59,7 +59,7 @@ const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
         <CSWallpaperCategory wpCategory={wpCategory} setWpCategory={setWpCategory} />
       )}
 
-      {wpCategory === "" && <CSShortcuts />}
+      {wpCategory === "" && <CSOptions />}
 
       {wpCategory === "" && (
         <Center my="xl">

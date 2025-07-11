@@ -22,14 +22,16 @@ const GEMINI_API_URLS = {
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse",
   "gemini-2.0-flash-lite":
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:streamGenerateContent?alt=sse",
-  "gemini-2.5-pro-preview":
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-preview-03-25:streamGenerateContent?alt=sse",
-  "gemini-2.5-pro-experimental":
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro-experimental-03-25:streamGenerateContent?alt=sse",
+  "gemini-2.5-flash":
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse",
+  "gemini-2.5-pro":
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:streamGenerateContent?alt=sse",
 
   // Image generation
   "gemini-2.0-flash-exp-image-generation":
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent",
+  "imagen-4.0-generate-preview-06-06":
+    "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-preview-06-06:predict",
   "imagen-3.0-generate-002":
     "https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict",
 };
@@ -47,8 +49,9 @@ export const handleAIChat = async (ctx: Context) => {
   // --------------------------------------------------------------------------------------------------------------
   if (
     [
-      "gemini-2.5-pro-preview",
-      "gemini-2.5-pro-experimental",
+      // Text generation
+      "gemini-2.5-pro",
+      "gemini-2.5-flash",
       "gemini-2.0-flash",
       "gemini-2.0-flash-lite",
     ].includes(model)
@@ -105,9 +108,8 @@ export const handleAIChat = async (ctx: Context) => {
 
           if (!response.ok) {
             const errorData = await response.json();
-            // console.log(errorData);
 
-            throw ctx.error(400, `${JSON.stringify(errorData?.message)}`);
+            throw ctx.status(400, `${JSON.stringify(errorData?.message)}`);
           }
 
           // Check if we have a readable stream from the response
@@ -160,23 +162,17 @@ export const handleAIChat = async (ctx: Context) => {
           controller.enqueue("data: [DONE]\n\n");
           controller.close();
         } catch (error: any) {
-          console.log(`Err in try catch`);
-          console.log(error);
-
           controller.enqueue(
             `data: ${JSON.stringify({ error: "An error occurred during streaming" })}\n\n`
           );
           controller.error(error);
           controller.close();
 
-          // throw ctx.error(400, error?.response || "Streaming error");
+          // throw ctx.status(400, error?.response || "Streaming error");
         }
       },
       cancel(reason) {
         // ... logic to handle cancellation ...
-        console.log("Cancelled");
-
-        console.log(reason);
       },
     });
 

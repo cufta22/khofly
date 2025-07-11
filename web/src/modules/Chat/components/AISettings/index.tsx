@@ -6,6 +6,7 @@ import {
   Flex,
   Group,
   Image,
+  LoadingOverlay,
   NumberInput,
   ScrollArea,
   Select,
@@ -20,8 +21,9 @@ import { useInstanceStore } from "@store/instance";
 import { type IAIProvider, useAIChatStore } from "@store/aichat";
 import { getAIChatModelIcon, getAIChatModelSource } from "@module/Chat/utils";
 import { getAIChatModels, getAIChatProviders } from "@module/Chat/data";
-import { IconCurrencyDollar, IconTrash } from "@tabler/icons-react";
+import { IconCurrencyDollar, IconRefresh, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import useAIConfigSWR from "src/api/ai/use-ai-config-query";
 
 interface Props {
   isOpen: boolean;
@@ -29,6 +31,8 @@ interface Props {
 }
 
 const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
+  const { isLoading: isLoadingConfig, mutate } = useAIConfigSWR();
+
   const theme = useMantineTheme();
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
@@ -40,6 +44,7 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
   const setModel = useAIChatStore((state) => state.setModel);
 
   const config = useAIChatStore((state) => state.config);
+  const setConfigUpdated = useAIChatStore((state) => state.setConfigUpdated);
 
   const clearChat = useAIChatStore((state) => state.clearChat);
 
@@ -56,6 +61,11 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
     hasGeminiKey: config.hasGeminiKey,
   });
   const modelData = getAIChatModels(provider);
+
+  const resetConfig = () => {
+    setConfigUpdated(false);
+    mutate();
+  };
 
   const getIconProvider = (value: string) => {
     if (value.includes("cf")) {
@@ -77,7 +87,11 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
       {getAIChatModelIcon(option.value, 16)}
       {option.label}
 
-      {["imagen-3.0-generate-002", "gemini-2.5-pro-preview"].includes(option.value) && (
+      {[
+        "imagen-3.0-generate-002",
+        "imagen-4.0-generate-preview-06-06",
+        "gemini-2.5-pro-preview",
+      ].includes(option.value) && (
         <>
           <div style={{ flex: 1 }} />
           <IconCurrencyDollar style={getIconStyle(20)} color={theme.colors.green[6]} />
@@ -129,6 +143,8 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
+      <LoadingOverlay visible={isLoadingConfig} />
+
       <Select
         mt="md"
         label="Select provider"
@@ -231,15 +247,27 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
       )}
 
       <Center>
-        <Button
-          mt="lg"
-          variant="light"
-          leftSection={<IconTrash style={getIconStyle(22)} />}
-          color="red"
-          onClick={clearChat}
-        >
-          Clear chat
-        </Button>
+        <Flex align="center" gap="sm">
+          <Button
+            mt="lg"
+            variant="light"
+            leftSection={<IconTrash style={getIconStyle(22)} />}
+            color="red"
+            onClick={clearChat}
+          >
+            Clear chat
+          </Button>
+
+          <Button
+            mt="lg"
+            variant="light"
+            leftSection={<IconRefresh style={getIconStyle(22)} />}
+            color="blue"
+            onClick={resetConfig}
+          >
+            Reset config
+          </Button>
+        </Flex>
       </Center>
     </Drawer>
   );

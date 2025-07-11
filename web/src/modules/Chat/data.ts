@@ -188,12 +188,12 @@ export const getAIChatModels = (provider: IAIProvider) => {
           group: "Text Generation",
           items: [
             {
-              label: "Gemini 2.5 Pro Preview",
-              value: "gemini-2.5-pro-preview",
+              label: "Gemini 2.5 Pro",
+              value: "gemini-2.5-pro",
             },
             {
-              label: "Gemini 2.5 Pro Exp.",
-              value: "gemini-2.5-pro-experimental",
+              label: "Gemini 2.5 Flash",
+              value: "gemini-2.5-flash",
             },
             {
               label: "Gemini 2.0 Flash",
@@ -211,6 +211,10 @@ export const getAIChatModels = (provider: IAIProvider) => {
             {
               label: "Gemini 2.0 Flash Exp.",
               value: "gemini-2.0-flash-exp-image-generation",
+            },
+            {
+              label: "Imagen 4",
+              value: "imagen-4.0-generate-preview-06-06",
             },
             {
               label: "Imagen 3",
