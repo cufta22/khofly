@@ -21,7 +21,7 @@ export interface IToDo {
 
 export type IWidgetPosition = "top-left" | "top-right";
 
-interface StartpageState {
+interface HomepageState {
   hydrated: boolean;
 
   wallpaper: string;
@@ -62,7 +62,7 @@ interface StartpageState {
   // setClockPosition: (next: IWidgetPosition) => void;
 }
 
-export const useStatrpageStore = create<StartpageState>()(
+export const useHomepageStore = create<HomepageState>()(
   persist(
     (set) => ({
       hydrated: false,

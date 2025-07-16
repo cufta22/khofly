@@ -3,7 +3,7 @@ import { ActionIcon, Menu, useMantineTheme } from "@mantine/core";
 import { removeSubdomain } from "@module/Search/components/components/Organize/components/utils";
 import { useSearchStore } from "@store/search";
 import { ICategories, useSettingsStore } from "@store/settings";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 import {
   IconAppWindow,
   IconCheck,
@@ -39,9 +39,9 @@ const ResultMenu: React.FC<Props> = ({ url, domain, tab }) => {
 
   const setAISummaryURL = useSearchStore((state) => state.setAISummaryURL);
 
-  const displayShortcuts = useStatrpageStore((state) => state.displayShortcuts);
-  const shortcuts = useStatrpageStore((state) => state.shortcuts);
-  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
+  const displayShortcuts = useHomepageStore((state) => state.displayShortcuts);
+  const shortcuts = useHomepageStore((state) => state.shortcuts);
+  const setShortcuts = useHomepageStore((state) => state.setShortcuts);
 
   const strippedDomain = removeSubdomain(domain);
   const isPriority = domainsPriority.find((item) => item === strippedDomain);

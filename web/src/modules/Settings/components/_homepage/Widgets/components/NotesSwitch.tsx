@@ -1,9 +1,9 @@
 import { Switch } from "@mantine/core";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 
 const NotesSwitch = () => {
-  const displayNotes = useStatrpageStore((state) => state.displayNotes);
-  const setDisplayNotes = useStatrpageStore((state) => state.setDisplayNotes);
+  const displayNotes = useHomepageStore((state) => state.displayNotes);
+  const setDisplayNotes = useHomepageStore((state) => state.setDisplayNotes);
 
   return (
     <Switch checked={displayNotes} onChange={(e) => setDisplayNotes(e.currentTarget.checked)} />

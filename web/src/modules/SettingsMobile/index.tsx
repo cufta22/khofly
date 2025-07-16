@@ -91,7 +91,8 @@ const PageSettingsMobile = () => {
           ) : openSection === "wallpaper" ? (
             <SettingsWallpaper isM={true} handleChangeSection={handleChangeSection} />
           ) : openSection === "shortcuts" ? (
-            <SettingsShortcuts isM={true} handleChangeSection={handleChangeSection} />
+            // <SettingsShortcuts isM={true} handleChangeSection={handleChangeSection} />
+            <>Not available on mobile for now</>
           ) : (
             <SettingsMTitle
               title="pages.settings._common.general"

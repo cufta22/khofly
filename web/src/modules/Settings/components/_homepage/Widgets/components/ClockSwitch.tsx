@@ -1,9 +1,9 @@
 import { Switch } from "@mantine/core";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 
 const ClockSwitch = () => {
-  const displayClock = useStatrpageStore((state) => state.displayClock);
-  const setDislpayClock = useStatrpageStore((state) => state.setDislpayClock);
+  const displayClock = useHomepageStore((state) => state.displayClock);
+  const setDislpayClock = useHomepageStore((state) => state.setDislpayClock);
 
   return (
     <Switch checked={displayClock} onChange={(e) => setDislpayClock(e.currentTarget.checked)} />

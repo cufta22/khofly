@@ -122,6 +122,20 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
       news: ["!news", "!web"],
     },
   },
+  mullvadletagoogle: {
+    description: `Mullvad is a commercial VPN service based in Sweden. The name "Mullvad" is the word for "mole" in the Swedish language. Mullvad operates using the WireGuard and OpenVPN protocols. It also supports Shadowsocks as a bridge protocol for censorship circumvention. Mullvad's VPN client software is publicly available under the GPLv3, a free and open-source software license. (Source: wikipedia)`,
+    linkUrl: "https://leta.mullvad.net",
+    wikiUrl: "wikidata.org/wiki/Q47008412",
+    bangsEngine: ["!mullvadleta", "!ml"],
+    bangsCategory: ["!general", "!web"],
+  },
+  mullvadletabrave: {
+    description: `Mullvad is a commercial VPN service based in Sweden. The name "Mullvad" is the word for "mole" in the Swedish language. Mullvad operates using the WireGuard and OpenVPN protocols. It also supports Shadowsocks as a bridge protocol for censorship circumvention. Mullvad's VPN client software is publicly available under the GPLv3, a free and open-source software license. (Source: wikipedia)`,
+    linkUrl: "https://leta.mullvad.net",
+    wikiUrl: "wikidata.org/wiki/Q47008412",
+    bangsEngine: ["!mullvadleta_brave", "!mlb"],
+    bangsCategory: ["!general", "!web"],
+  },
   presearch: {
     description:
       "Presearch is a decentralized search engine that provides search choice, quality results, privacy and rewards to those who want to end the search monopoly and take back the web. (Source: https://presearch.io)",
@@ -218,6 +232,36 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!cloudflareai", "!cfai"],
     bangsCategory: ["!general"],
   },
+  mwmbl: {
+    description:
+      "An open source, non-profit web search engine. Contribute to mwmbl/mwmbl development by creating an account on GitHub. (Source: https://github.com/mwmbl/mwmbl)",
+    linkUrl: "https://mwmbl.org",
+    wikiUrl: "",
+    bangsEngine: ["!mwmbl", "!mwm"],
+    bangsCategory: ["!general"],
+  },
+  rightdao: {
+    description: "",
+    linkUrl: "https://rightdao.com",
+    wikiUrl: "",
+    bangsEngine: ["!right_dao", "!rd"],
+    bangsCategory: ["!general"],
+  },
+  searchmysite: {
+    description:
+      "searchmysite.net - the open source search engine and search as a service for user-submitted personal and independent websites (Source: https://searchmysite.net)",
+    linkUrl: "https://searchmysite.net",
+    wikiUrl: "",
+    bangsEngine: ["!searchmysite", "!sms"],
+    bangsCategory: ["!general"],
+  },
+  stract: {
+    description: "",
+    linkUrl: "https://stract.com",
+    wikiUrl: "",
+    bangsEngine: ["!stract", "!str"],
+    bangsCategory: ["!general"],
+  },
   yep: {
     description:
       "Yep is the brainchild of Dmytro Gerasymenko, and was brought to life by the Ahrefs team. Ahrefs runs an internet-scale bot that’s been crawling the entire web 24/7 since 2010, storing, indexing and structuring petabytes of information. With this data, we created one of the leading SEO toolsets worldwide. Our aim has always been to build good products faster than the giants and avoid feeding them endlessly by leaving money in the community.",
@@ -239,6 +283,21 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
   // IMAGES
   // -------------------------------------------------------------------------------------------------------------------------------
 
+  material: {
+    description: "icon set by Google (Source: wikidata)",
+    linkUrl: "https://fonts.google.com/icons",
+    wikiUrl: "wikidata.org/wiki/Q107315222",
+    bangsEngine: ["!material_icons", "!mi"],
+    bangsCategory: ["!images", "!icons"],
+  },
+  svgrepo: {
+    description:
+      "Free Vectors and Icons in SVG format. ✅ Download free mono or multi color vectors for commercial use. Search in 500.000+ Free SVG Vectors and Icons. (Source: https://www.svgrepo.com)",
+    linkUrl: "https://www.svgrepo.com",
+    wikiUrl: "",
+    bangsEngine: ["!svgrepo", "!svg"],
+    bangsCategory: ["!images", "!icons"],
+  },
   "1x": {
     description:
       "1x.com is the world's biggest curated photo gallery online. Each photo is selected by professional curators. In Pursuit Of The Sublime (Source: https://1x.com/)",
@@ -293,14 +352,6 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     linkUrl: "https://www.pinterest.com",
     wikiUrl: "wikidata.org/wiki/Q255381",
     bangsEngine: ["!pinterest", "!pin"],
-    bangsCategory: ["!images"],
-  },
-  svgrepo: {
-    description:
-      "Free Vectors and Icons in SVG format. ✅ Download free mono or multi color vectors for commercial use. Search in 500.000+ Free SVG Vectors and Icons. (Source: https://www.svgrepo.com)",
-    linkUrl: "https://www.svgrepo.com",
-    wikiUrl: "",
-    bangsEngine: ["!svgrepo", "!svg"],
     bangsCategory: ["!images"],
   },
   unsplash: {
@@ -417,6 +468,15 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
   // -------------------------------------------------------------------------------------------------------------------------------
   // NEWS
   // -------------------------------------------------------------------------------------------------------------------------------
+
+  reuters: {
+    description:
+      "Reuters is a news agency owned by Thomson Reuters. It employs around 2,500 journalists and 600 photojournalists in about 200 locations worldwide writing in 16 languages. Reuters is one of the largest news agencies in the world. (Source: wikipedia)",
+    linkUrl: "https://www.reuters.com",
+    wikiUrl: "wikidata.org/wiki/Q130879",
+    bangsEngine: ["!reuters", "!reu"],
+    bangsCategory: ["!news"],
+  },
 
   // -------------------------------------------------------------------------------------------------------------------------------
   // MUSIC
@@ -872,7 +932,7 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
   },
 
   // -------------------------------------------------------------------------------------------------------------------------------
-  // Other
+  // OTHER
   // -------------------------------------------------------------------------------------------------------------------------------
 
   etymonline: {
@@ -912,6 +972,14 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     bangsEngine: ["!rottentomatoes", "!rt"],
     bangsCategory: ["!other", "!movies"],
   },
+  minecraftwiki: {
+    description:
+      "The wiki was founded by Citricsquid on June 17th, 2009, as a way to document information from Minecraft. From November 15th, 2010, it was hosted by Curse Media; first as a standalone wiki, and later as a part of Gamepedia. As Fandom purchased Curse Media on December 12th, 2018, the wiki also transferred ownership to Fandom, first remaining under the Gamepedia umbrella until all Gamepedia wikis eventually became part of the Fandom wiki platform. On September 24th, 2023, the wiki forked from Fandom and is since hosted by Weird Gloop.",
+    linkUrl: "https://minecraft.wiki",
+    wikiUrl: "wikidata.org/wiki/Q105533483",
+    bangsEngine: ["!minecraft_wiki", "!mcw"],
+    bangsCategory: ["!other", "!software_wikis"],
+  },
   openmeteo: {
     description:
       "Open-Source ☀️️️️️️️️️️️️️️️️️️️️️️️️️️️️️ Weather API with free access for non-commercial use. No API Key required ✅. Accurate weather forecasts for any location. Open-Meteo provides high-resolution open data ranging from 1 to 11 kilometers from national weather services. With a user-friendly JSON API, integrating weather data has never been easier. Experience the precision and convenience of Open-Meteo's Forecast API for reliable and comprehensive weather information worldwide. (Source: https://open-meteo.com)",
@@ -949,6 +1017,14 @@ export const HOVER_DATA: { [key in string]: IHoverData } = {
     linkUrl: "https://podcastindex.org",
     wikiUrl: "",
     bangsEngine: ["!podcastindex", "!podcast"],
+    bangsCategory: ["!other"],
+  },
+  steam: {
+    description:
+      "Steam is a digital distribution service and storefront developed by Valve. It was launched as a software client in September 2003 to provide video game updates automatically for Valve's games and expanded to distributing third-party titles in late 2005. Steam offers various features, such as game server matchmaking with Valve Anti-Cheat (VAC) measures, social networking, and game streaming services. The Steam client functions include update maintenance, cloud storage, and community features such as direct messaging, an in-game overlay, discussion forums, and a virtual collectable marketplace. The storefront also offers productivity software, game soundtracks, videos, and sells hardware made by Valve, such as the Valve Index and the Steam Deck. (Source: wikipedia)",
+    linkUrl: "https://store.steampowered.com",
+    wikiUrl: "wikidata.org/wiki/Q337535",
+    bangsEngine: ["!steam", "!stm"],
     bangsCategory: ["!other"],
   },
 

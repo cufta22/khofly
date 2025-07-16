@@ -3,7 +3,7 @@ import { Anchor, Image, Modal, Text, UnstyledButton } from "@mantine/core";
 import classes from "../styles.module.scss";
 
 import { useDisclosure, useHover } from "@mantine/hooks";
-import type { IShortcut } from "@store/startpage";
+import { useHomepageStore, type IShortcut } from "@store/homepage";
 import ShortcutEdit from "./ShortcutEdit";
 import ShortcutMenu from "./ShortcutMenu";
 import { useFaviconAPI } from "src/api/favicon";
@@ -20,12 +20,22 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
   const [openMenu, { toggle: toggleMenu }] = useDisclosure(false);
   const [openModal, { toggle: toggleModal }] = useDisclosure(false);
 
+  const openInNewTab = useHomepageStore((state) => state.openInNewTab);
+
   const fullUrl = href?.includes("https") ? href : `https://${href}` || "";
   const stripUrl = href?.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, "$1") || "";
 
+  const anchorTarget: React.HTMLAttributeAnchorTarget = openInNewTab ? "_blank" : "_self";
+
   return (
     <>
-      <Anchor ref={ref} href={fullUrl} target="_blank" rel="noreferrer noopener" pos="relative">
+      <Anchor
+        ref={ref}
+        href={fullUrl}
+        target={anchorTarget}
+        rel="noreferrer noopener"
+        pos="relative"
+      >
         <ShortcutMenu
           fullUrl={fullUrl}
           hovered={hovered}

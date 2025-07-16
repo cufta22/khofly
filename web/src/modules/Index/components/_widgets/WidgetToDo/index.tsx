@@ -12,14 +12,14 @@ import classes from "./styles.module.scss";
 
 import { IconPlus, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 import clsx from "clsx";
 
 const WidgetTodo = () => {
   const theme = useMantineTheme();
 
-  const todos = useStatrpageStore((state) => state.todos);
-  const setTodos = useStatrpageStore((state) => state.setTodos);
+  const todos = useHomepageStore((state) => state.todos);
+  const setTodos = useHomepageStore((state) => state.setTodos);
 
   const handleAddNew = () => {
     setTodos([

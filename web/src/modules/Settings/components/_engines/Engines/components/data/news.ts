@@ -125,6 +125,16 @@ export const DATA_ENGINES_NEWS: IDataEngine[] = [
   },
   {
     type: "engine",
+    value: "reuters",
+    alt: "Reuters logo",
+    icon: "/assets/engines/reuters-icon.svg",
+    label: "pages.settings.engines.engine_reuters_news",
+    bang: "!reu",
+    safeSearch: false,
+    timeRange: true,
+  },
+  {
+    type: "engine",
     value: "yahoo",
     alt: "Yahoo logo",
     icon: "/assets/engines/yahoo-icon.svg",

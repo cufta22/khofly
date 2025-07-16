@@ -13,7 +13,7 @@ import useInstanceInit from "./use-instance-init";
 import useTitleQuery from "./use-title-query";
 import { useLocation, useRouteError, useSearchParams } from "react-router";
 import { useClientServerState } from "@store/client-server";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 
 import Footer from "@components/Footer";
 import Header from "@components/Header";
@@ -30,7 +30,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
   const resetVisitedLinks = useSearchStore((state) => state.resetVisitedLinks);
 
-  const wallpaper = useStatrpageStore((state) => state.wallpaper);
+  const wallpaper = useHomepageStore((state) => state.wallpaper);
 
   const appTheme: IAppTheme = theme; // loaderData?.theme
 

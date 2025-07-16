@@ -11,7 +11,7 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { IShortcut, useStatrpageStore } from "@store/startpage";
+import { IShortcut, useHomepageStore } from "@store/homepage";
 import { GroupEditItem } from "./ShortcutGroup";
 
 interface Props {
@@ -33,8 +33,8 @@ const ShortcutGroupMenu: React.FC<Props> = ({
   setEditItem,
   idx,
 }) => {
-  const shortcuts = useStatrpageStore((state) => state.shortcuts);
-  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
+  const shortcuts = useHomepageStore((state) => state.shortcuts);
+  const setShortcuts = useHomepageStore((state) => state.setShortcuts);
 
   // Group actions
   const handleEditGroup = () => {

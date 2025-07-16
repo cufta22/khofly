@@ -114,34 +114,36 @@ const RowCommon: React.FC<Props> = ({ tab, rowData }) => {
       {/* ------------------------------------------ */}
       {/* TOP SIDE - website url */}
       {/* ------------------------------------------ */}
-      <SearchAnchor url={url} additionalOnClick={additionalOnClick}>
-        {/* Website url */}
-        <Flex align="center" gap="xs">
-          {displayFavicon && (
-            <Image
-              w={16}
-              h={16}
-              src={getFaviconUrl(parsed_url[1])}
-              fallbackSrc="/assets/placeholder.svg"
-              alt=""
-            />
-          )}
-          <Text size="xs" truncate="end">
-            {parsed_url[0]}://{parsed_url[1]}
-            {parsed_url[2]}
-          </Text>
+      <Flex align="center" gap="xs">
+        <SearchAnchor url={url} additionalOnClick={additionalOnClick}>
+          {/* Website url */}
+          <Flex align="center" gap="xs">
+            {displayFavicon && (
+              <Image
+                w={16}
+                h={16}
+                src={getFaviconUrl(parsed_url[1])}
+                fallbackSrc="/assets/placeholder.svg"
+                alt=""
+              />
+            )}
+            <Text size="xs" truncate="end">
+              {parsed_url[0]}://{parsed_url[1]}
+              {parsed_url[2]}
+            </Text>
+          </Flex>
+        </SearchAnchor>
 
-          <div style={{ flex: 1 }} />
+        <div style={{ flex: 1 }} />
 
-          {tab === "general" && isPriority && (
-            <IconLabelImportant style={getIconStyle(24)} color={theme.colors.green["6"]} />
-          )}
+        {tab === "general" && isPriority && (
+          <IconLabelImportant style={getIconStyle(24)} color={theme.colors.green["6"]} />
+        )}
 
-          {["general", "news", "science", "social_media"].includes(tab) && (
-            <ResultMenu url={url} domain={parsed_url[1]} tab={tab} />
-          )}
-        </Flex>
-      </SearchAnchor>
+        {["general", "news", "science", "social_media"].includes(tab) && (
+          <ResultMenu url={url} domain={parsed_url[1]} tab={tab} />
+        )}
+      </Flex>
 
       {/* ------------------------------------------ */}
       {/* CENTER - Title, content, other data */}

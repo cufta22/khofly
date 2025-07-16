@@ -3,7 +3,7 @@ import { Anchor, Flex, Image, Modal, SimpleGrid, Text, UnstyledButton } from "@m
 import classes from "../styles.module.scss";
 
 import { useClickOutside, useDisclosure, useHover } from "@mantine/hooks";
-import type { IShortcut } from "@store/startpage";
+import { useHomepageStore, type IShortcut } from "@store/homepage";
 import ShortcutEdit from "./ShortcutEdit";
 import ShortcutMenu from "./ShortcutMenu";
 import { useFaviconAPI } from "src/api/favicon";
@@ -29,6 +29,10 @@ const ShortcutGroup: React.FC<Props> = ({ title, items, idx }) => {
 
   const { hovered, ref: hoverRef } = useHover();
   const outsideRef = useClickOutside(() => closeExpand());
+
+  const openInNewTab = useHomepageStore((state) => state.openInNewTab);
+
+  const anchorTarget: React.HTMLAttributeAnchorTarget = openInNewTab ? "_blank" : "_self";
 
   return (
     <>
@@ -60,7 +64,7 @@ const ShortcutGroup: React.FC<Props> = ({ title, items, idx }) => {
                 <Anchor
                   key={i}
                   href={fullUrl}
-                  target="_blank"
+                  target={anchorTarget}
                   rel="noreferrer noopener"
                   pos="relative"
                 >

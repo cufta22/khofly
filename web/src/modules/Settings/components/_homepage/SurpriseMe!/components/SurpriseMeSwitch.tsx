@@ -1,5 +1,5 @@
 import { Switch } from "@mantine/core";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 import commonClasses from "../../../common/styles.module.scss";
 
 interface Props {
@@ -7,10 +7,10 @@ interface Props {
 }
 
 const SurpriseMeSwitch: React.FC<Props> = ({ isM }) => {
-  const displaySurpriseButton = useStatrpageStore((state) => state.displaySurpriseButton);
-  const setDisplaySurpriseButton = useStatrpageStore((state) => state.setDisplaySurpriseButton);
+  const displaySurpriseButton = useHomepageStore((state) => state.displaySurpriseButton);
+  const setDisplaySurpriseButton = useHomepageStore((state) => state.setDisplaySurpriseButton);
 
-  const setDisplayShortcuts = useStatrpageStore((state) => state.setDisplayShortcuts);
+  const setDisplayShortcuts = useHomepageStore((state) => state.setDisplayShortcuts);
 
   return (
     <Switch

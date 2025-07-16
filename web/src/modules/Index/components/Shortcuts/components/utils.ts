@@ -1,4 +1,4 @@
-import { IShortcut } from "@store/startpage";
+import { IShortcut } from "@store/homepage";
 
 // Helper function to update an item within a list
 export const updateItemInList = (list: IShortcut[], targetIdx: number, newValues: any) =>

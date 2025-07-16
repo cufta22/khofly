@@ -4,7 +4,7 @@ import { IAWrapper } from "../../wrapper";
 import { useState } from "react";
 
 import classes from "./styles.module.scss";
-import { cp_hexToHsl, cp_hexToRgb } from "./utils";
+import { cp_hexToRgb, cp_rgbToHex } from "./utils";
 
 interface Props {
   withIAWrapper?: boolean;
@@ -13,19 +13,41 @@ interface Props {
 const IAColorPicker: React.FC<Props> = ({ withIAWrapper }) => {
   const [hexValue, setHexValue] = useState("#fa5252");
   const [rgbValue, setRgbValue] = useState("250, 82, 82");
-  const [hslValue, setHslValue] = useState("0°, 94%, 65%");
 
   const handleChangeHEXValue = (val: string) => {
     setHexValue(val);
   };
+
   const handleChangeRGBValue = (val: string) => {
     setRgbValue(val);
   };
-  const handleChangeHSLValue = (val: string) => {
-    setHslValue(val);
-  };
 
-  const handleBlur = (type: "hex" | "rgb" | "hsv" | "hsl") => {};
+  const handleBlur = (type: "hex" | "rgb") => {
+    switch (type) {
+      // Update RGB when HEX changes
+      case "hex":
+        const rgbVal = cp_hexToRgb(hexValue);
+        if (rgbVal) setRgbValue(`${rgbVal.r}, ${rgbVal.g}, ${rgbVal.b}`);
+        break;
+
+      // Update HEX when RGB changes
+      case "rgb":
+        const rgb = rgbValue.split(", ");
+        if (rgb.length !== 3) return;
+
+        const hexVal = cp_rgbToHex({
+          r: parseInt(rgb[0]),
+          g: parseInt(rgb[1]),
+          b: parseInt(rgb[2]),
+        });
+
+        if (hexVal) setHexValue(hexVal);
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const colorPickerComponent = (
     <Flex className={classes.color_picker_container} direction="column">
@@ -41,11 +63,9 @@ const IAColorPicker: React.FC<Props> = ({ withIAWrapper }) => {
           onChange={(val) => {
             const hexVal = val;
             const rgbVal = cp_hexToRgb(val);
-            const hslVal = cp_hexToHsl(val);
 
             setHexValue(hexVal);
             if (rgbVal) setRgbValue(`${rgbVal.r}, ${rgbVal.g}, ${rgbVal.b}`);
-            if (hslVal) setHslValue(`${hslVal.h}°, ${hslVal.s}%, ${hslVal.l}%`);
           }}
           format="hex"
           size="xl"
@@ -59,21 +79,14 @@ const IAColorPicker: React.FC<Props> = ({ withIAWrapper }) => {
           label="HEX"
           value={hexValue}
           onChange={(e) => handleChangeHEXValue(e.currentTarget.value)}
+          onBlur={() => handleBlur("hex")}
         />
         <TextInput
           w="100%"
           label="RGB"
           value={rgbValue}
           onChange={(e) => handleChangeRGBValue(e.currentTarget.value)}
-        />
-      </Flex>
-
-      <Flex className={classes.cp_row} align="center" gap="sm" mt="md">
-        <TextInput
-          w="100%"
-          label="HSL"
-          value={hslValue}
-          onChange={(e) => handleChangeHSLValue(e.currentTarget.value)}
+          onBlur={() => handleBlur("rgb")}
         />
       </Flex>
     </Flex>

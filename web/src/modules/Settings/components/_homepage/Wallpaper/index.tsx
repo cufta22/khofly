@@ -4,7 +4,7 @@ import { IconDevices, IconPhoto } from "@tabler/icons-react";
 
 import classes from "../../../styles.module.scss";
 
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 import SettingsTitle from "../../common/SettingsTitle";
 import useForm from "@hooks/use-form";
 import useToast from "@hooks/use-toast";
@@ -21,8 +21,8 @@ interface Props {
 const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const theme = useMantineTheme();
 
-  const background = useStatrpageStore((state) => state.wallpaper);
-  const setBackground = useStatrpageStore((state) => state.setWallpaper);
+  const background = useHomepageStore((state) => state.wallpaper);
+  const setBackground = useHomepageStore((state) => state.setWallpaper);
 
   const form = useForm({
     initialValues: {

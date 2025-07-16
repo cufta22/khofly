@@ -8,6 +8,8 @@ export type IGeneralEngines =
   | "lingva"
   | "google"
   | "mojeek"
+  | "mullvadletagoogle"
+  | "mullvadletabrave"
   | "duckduckgo"
   | "bing"
   | "brave"
@@ -25,11 +27,17 @@ export type IGeneralEngines =
   | "alexandria"
   | "ask"
   | "cloudflareai"
-  | "wikipedia"
+  | "mwmbl"
+  | "rightdao"
+  | "searchmysite"
+  | "stract"
   | "wikidata"
+  | "wikipedia"
   | "yep";
 
 export type IImagesEngines =
+  | "material"
+  | "svgrepo"
   | "google"
   | "duckduckgo"
   | "bing"
@@ -43,7 +51,6 @@ export type IImagesEngines =
   | "flickr"
   | "imgur"
   | "pinterest"
-  | "svgrepo"
   | "unsplash"
   | "wallhaven"
   | "wikicommons"
@@ -68,16 +75,17 @@ export type IVideosEngines =
   | "youtube";
 
 export type INewsEngines =
-  | "google"
   | "duckduckgo"
   | "mojeek"
+  | "presearch"
+  | "startpage"
+  | "wikinews"
   | "bing"
   | "brave"
+  | "google"
   | "qwant"
-  | "startpage"
+  | "reuters"
   | "yahoo"
-  | "presearch"
-  | "wikinews"
   | "yep";
 
 export type IMusicEngines =
@@ -160,12 +168,14 @@ export type IOtherEngines =
   | "wordnik"
   | "imdb"
   | "rottentomatoes"
+  | "minecraftwiki"
   | "duckduckgo"
   | "openmeteo"
   | "emojipedia"
   | "goodreads"
   | "openlibrary"
-  | "podcastindex";
+  | "podcastindex"
+  | "steam";
 
 export interface EnginesState {
   hydrated: boolean;

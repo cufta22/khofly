@@ -1,6 +1,6 @@
 import useForm from "@hooks/use-form";
 import { Button, Center, Flex, Image, Paper, TextInput } from "@mantine/core";
-import { IShortcut, useStatrpageStore } from "@store/startpage";
+import { IShortcut, useHomepageStore } from "@store/homepage";
 import React from "react";
 import { createNewItem, updateItemInList } from "./utils";
 
@@ -16,8 +16,8 @@ interface Props {
 }
 
 const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => {
-  const shortcuts = useStatrpageStore((state) => state.shortcuts);
-  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
+  const shortcuts = useHomepageStore((state) => state.shortcuts);
+  const setShortcuts = useHomepageStore((state) => state.setShortcuts);
 
   const isEditGroup = shortcut.items.length > 0 && type === "edit";
 

@@ -22,6 +22,8 @@ const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
   duckduckgo: "!ddg",
   google: "!go",
   mojeek: "!mjk",
+  mullvadletagoogle: "!ml",
+  mullvadletabrave: "!mlb",
   presearch: "!ps",
   qwant: "!qw",
   startpage: "!sp",
@@ -38,12 +40,19 @@ const GENERAL_BANGS: { [key in IGeneralEngines]: string } = {
   alexandria: "!alx",
   ask: "!ask",
   cloudflareai: "!cfai",
+  mwmbl: "!mwm",
+  rightdao: "!rd",
+  searchmysite: "!sms",
+  stract: "!str",
   wikipedia: "!wp",
   wikidata: "!wd",
   yep: "!yep",
 };
 
 const IMAGES_BANGS: { [key in IImagesEngines]: string } = {
+  material: "!mi",
+  svgrepo: "!svg",
+
   bing: "!bii",
   brave: "!brimg",
   duckduckgo: "!ddi",
@@ -58,7 +67,6 @@ const IMAGES_BANGS: { [key in IImagesEngines]: string } = {
   flickr: "!fl",
   imgur: "!img",
   pinterest: "!pin",
-  svgrepo: "!svg",
   unsplash: "!us",
   wallhaven: "!wh",
   wikicommons: "!wc",
@@ -97,6 +105,7 @@ const NEWS_BANGS: { [key in INewsEngines]: string } = {
   brave: "!brnews",
   google: "!gon",
   qwant: "!qwn",
+  reuters: "!reu",
   yahoo: "!yhn",
   yep: "!yepn",
 };
@@ -195,12 +204,14 @@ const OTHER_BANGS: { [key in IOtherEngines]: string } = {
   wordnik: "!def",
   imdb: "!imdb",
   rottentomatoes: "!rt",
+  minecraftwiki: "!mcw",
   duckduckgo: "!ddw",
   openmeteo: "!om",
   emojipedia: "!em",
   goodreads: "!good",
   openlibrary: "!ol",
   podcastindex: "!podcast",
+  steam: "!stm",
 };
 
 export const getEngineBangs = (
@@ -224,7 +235,7 @@ export const getEngineBangs = (
     other: OTHER_BANGS,
 
     // unused
-    maps: GENERAL_BANGS,
+    maps: [],
   };
 
   // For selected category

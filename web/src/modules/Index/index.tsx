@@ -3,7 +3,7 @@ import SearchBar from "./components/SearchBar";
 
 import classes from "./styles.module.scss";
 import { useTranslate } from "@hooks/translate/use-translate";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 import DevInterface from "./components/DevInterface";
 import useSettingsParams from "./hooks/use-set-params";
 
@@ -18,18 +18,18 @@ import ButtonRandomSite from "./components/ButtonRandomSite";
 const PageIndex = () => {
   const t = useTranslate();
 
-  const displayShortcuts = useStatrpageStore((state) => state.displayShortcuts);
-  const displaySurpriseButton = useStatrpageStore((state) => state.displaySurpriseButton);
+  const displayShortcuts = useHomepageStore((state) => state.displayShortcuts);
+  const displaySurpriseButton = useHomepageStore((state) => state.displaySurpriseButton);
 
-  const displayTodos = useStatrpageStore((state) => state.displayTodos);
-  const displayNotes = useStatrpageStore((state) => state.displayNotes);
-  const displayWeather = useStatrpageStore((state) => state.displayWeather);
-  const displayClock = useStatrpageStore((state) => state.displayClock);
+  const displayTodos = useHomepageStore((state) => state.displayTodos);
+  const displayNotes = useHomepageStore((state) => state.displayNotes);
+  const displayWeather = useHomepageStore((state) => state.displayWeather);
+  const displayClock = useHomepageStore((state) => state.displayClock);
 
-  // const todosPosition = useStatrpageStore((state) => state.todosPosition);
-  // const notesPosition = useStatrpageStore((state) => state.notesPosition);
-  // const weatherPosition = useStatrpageStore((state) => state.weatherPosition);
-  // const clockPosition = useStatrpageStore((state) => state.clockPosition);
+  // const todosPosition = useHomepageStore((state) => state.todosPosition);
+  // const notesPosition = useHomepageStore((state) => state.notesPosition);
+  // const weatherPosition = useHomepageStore((state) => state.weatherPosition);
+  // const clockPosition = useHomepageStore((state) => state.clockPosition);
 
   const widgets = [
     {

@@ -170,13 +170,13 @@
         "engine_presearch": "Presearch",
         "engine_qwant": "Qwant",
         "engine_mojeek": "Mojeek",
+        "engine_mullvad_leta": "Mullvad Google",
+        "engine_mullvad_leta_brave": "Mullvad Brave",
         "engine_startpage": "Startpage",
         "engine_bing": "Bing",
         "engine_brave": "Brave",
         "engine_yahoo": "Yahoo!",
         "engine_wiby": "Wiby",
-        "engine_ask": "Ask",
-        "engine_cfai": "Cloudflare AI",
 
         "engine_wikibooks": "Wikibooks",
         "engine_wikiquote": "Wikiquote",
@@ -186,13 +186,22 @@
         "engine_wikivoyage": "Wikivoyage",
 
         "engine_alexandria": "Alexandria",
+        "engine_ask": "Ask",
+        "engine_cfai": "Cloudflare AI",
+        "engine_mwmbl": "Mwmbl",
+        "engine_rightdao": "Right Dao",
+        "engine_searchmysite": "Search My Site",
+        "engine_stract": "Stract",
         "engine_wikipedia": "Wikipedia",
         "engine_wikidata": "Wikidata",
         "engine_yep": "Yep",
 
         "title_img": "Image engines",
-        "title_img2": "web",
+        "title_img_web": "web",
+        "title_img_icons": "icons",
 
+        "engine_material_img": "Material icons",
+        "engine_svgrepo_img": "SVG Repo",
         "engine_google_img": "Google images",
         "engine_DDG_img": "DuckDuckGo images",
         "engine_qwant_img": "Qwant images",
@@ -206,7 +215,6 @@
         "engine_flickr_img": "Flickr",
         "engine_imgur_img": "Imgur",
         "engine_pinterest_img": "Pinterest",
-        "engine_svgrepo_img": "SVG Repo",
         "engine_unsplash_img": "Unsplash",
         "engine_wallhaven_img": "Wallhaven",
         "engine_wikicommons_img": "Wikicommons",
@@ -242,6 +250,7 @@
         "engine_bing_news": "Bing news",
         "engine_brave_news": "Brave news",
         "engine_qwant_news": "Qwant news",
+        "engine_reuters_news": "Reuters",
         "engine_startpage_news": "Startpage news",
         "engine_yahoo_news": "Yahoo! news",
         "engine_presearch_news": "Presearch news",
@@ -337,21 +346,24 @@
         "engine_tootfinder_SM": "Tootfinder",
 
         "title_other": "Other engines",
-        "title_other2": "dictionaries",
-        "title_other3": "movies",
-        "title_other4": "weather",
+        "title_other_dict": "dictionaries",
+        "title_other_movies": "movies",
+        "title_other_weather": "weather",
+        "title_other_software_wikis": "software_wikis",
 
         "engine_etymonline": "Etymonline",
         "engine_wiktionary": "Wiktionary",
         "engine_wordnik": "Wordnik",
         "engine_imdb": "IMDb",
         "engine_rottentomatoes": "Rotten Tomatoes",
+        "engine_minecraft_wiki": "Minecraft Wiki",
         "engine_DDG_weather": "DuckDuckGo Weather",
         "engine_openmeteo": "Open Meteo",
         "engine_emojipedia": "Emojipedia",
         "engine_goodreads": "Goodreads",
         "engine_openlibrary": "Open Library",
-        "engine_podcastindex": "The Podcast Index"
+        "engine_podcastindex": "The Podcast Index",
+        "engine_steam": "Steam"
       },
 
       "homepage": {
@@ -359,6 +371,7 @@
 
         "title_shortcuts": "Shortcuts",
         "toggle_shortcuts": "Display shortcuts on start page",
+        "toggle_open_in_new_tab": "Open shortcuts in new tab",
         "toggle_surprise": "Display Surprise Me! button",
 
         "favicon_api_favicone": "Favicone",

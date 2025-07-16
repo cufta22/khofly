@@ -1,17 +1,18 @@
 import { Divider, Flex, LoadingOverlay, Paper, Stack, Text, useMantineTheme } from "@mantine/core";
 
-import { IconDevices, IconExternalLink } from "@tabler/icons-react";
+import { IconDeviceDesktop, IconExternalLink } from "@tabler/icons-react";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import ShortcutsSwitch from "./components/ShortcutsSwitch";
 import Shortcut from "@module/Index/components/Shortcuts/components/Shortcut";
 import ShortcutNew from "./components/ShortcutNew";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 import SettingsTitle from "../../common/SettingsTitle";
 import SettingsRow from "../../common/SettingsRow";
 import { IOpenSection } from "@module/SettingsMobile";
 import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
 import ShortcutGroup from "@module/Index/components/Shortcuts/components/ShortcutGroup";
+import ShortcutsNewTabSwitch from "./components/ShortcutNewTabSwitch";
 
 interface Props {
   isM?: boolean;
@@ -23,8 +24,8 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
 
   const t = useTranslate();
 
-  const hydrated = useStatrpageStore((state) => state.hydrated);
-  const shortcuts = useStatrpageStore((state) => state.shortcuts);
+  const hydrated = useHomepageStore((state) => state.hydrated);
+  const shortcuts = useHomepageStore((state) => state.shortcuts);
 
   const items = shortcuts.map((sc, i) => {
     return sc.type === "item" ? (
@@ -50,9 +51,9 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
             title="pages.settings.homepage.title_shortcuts"
             rightSection={
               <Flex className="desktop_only" align="center">
-                <IconDevices />
+                <IconDeviceDesktop />
 
-                <Text ml="sm">Desktop & Mobile</Text>
+                <Text ml="sm">Desktop only</Text>
               </Flex>
             }
           />
@@ -64,6 +65,12 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
             // icon={null}
             desc="pages.settings.homepage.toggle_shortcuts"
             control={<ShortcutsSwitch isM={isM} />}
+          />
+
+          <SettingsRow
+            // icon={null}
+            desc="pages.settings.homepage.toggle_open_in_new_tab"
+            control={<ShortcutsNewTabSwitch isM={isM} />}
           />
 
           <Divider my="sm" w="100%" />

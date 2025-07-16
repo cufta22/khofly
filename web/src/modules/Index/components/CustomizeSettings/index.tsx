@@ -63,7 +63,7 @@ const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
 
       {wpCategory === "" && (
         <Center my="xl">
-          <RemixLink to="/settings?tab=startpage">
+          <RemixLink to="/settings?tab=homepage">
             <Button variant="outline" rightSection={<IconChevronRight style={getIconStyle(18)} />}>
               Show more
             </Button>

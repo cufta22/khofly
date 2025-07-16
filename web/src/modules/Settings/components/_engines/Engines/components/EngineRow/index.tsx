@@ -113,8 +113,14 @@ const EngineComponent: React.FC<Props> = ({
             <Stack gap={0}>
               <Text size="sm">{hoverData?.description}</Text>
 
-              <Anchor size="sm" href={hoverData?.linkUrl} target="_blank" rel="noreferrer noopener">
-                <Text mt="xs" component="span" c={linkTextColor}>
+              <Anchor
+                size="sm"
+                href={hoverData?.linkUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                mt={4}
+              >
+                <Text component="span" c={linkTextColor}>
                   {hoverData?.linkUrl}
                 </Text>
               </Anchor>
@@ -125,6 +131,7 @@ const EngineComponent: React.FC<Props> = ({
                   href={`https://www.${hoverData?.wikiUrl}`}
                   target="_blank"
                   rel="noreferrer noopener"
+                  mt={4}
                 >
                   <Text component="span" c={linkTextColor}>
                     {hoverData?.wikiUrl}
@@ -201,23 +208,21 @@ const EngineComponent: React.FC<Props> = ({
 
       {/* Active */}
       <Table.Td ta="right">
-        {category !== "other" && (
-          <Switch
-            ml="auto"
-            w={42}
-            style={{ cursor: "pointer" }}
-            checked={checked}
-            onChange={(e) => onChange(e.currentTarget.checked)}
-            color="teal"
-            // thumbIcon={
-            //   checked ? (
-            //     <IconCheck style={getIconStyle(12)} color={theme.colors.teal[6]} stroke={3} />
-            //   ) : (
-            //     <IconX style={getIconStyle(12)} color={theme.colors.red[6]} stroke={3} />
-            //   )
-            // }
-          />
-        )}
+        <Switch
+          ml="auto"
+          w={42}
+          style={{ cursor: "pointer" }}
+          checked={checked}
+          onChange={(e) => onChange(e.currentTarget.checked)}
+          color="teal"
+          // thumbIcon={
+          //   checked ? (
+          //     <IconCheck style={getIconStyle(12)} color={theme.colors.teal[6]} stroke={3} />
+          //   ) : (
+          //     <IconX style={getIconStyle(12)} color={theme.colors.red[6]} stroke={3} />
+          //   )
+          // }
+        />
       </Table.Td>
     </Table.Tr>
   );

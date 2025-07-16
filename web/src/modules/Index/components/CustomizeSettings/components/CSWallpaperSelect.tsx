@@ -3,14 +3,14 @@ import classes from "../styles.module.scss";
 import { WALLPAPERS_MINECRAFT, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from "../data";
 import type { Dispatch, SetStateAction } from "react";
 import type { IWallpaperCategory } from "..";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 
 interface Props {
   setWpCategory: Dispatch<SetStateAction<IWallpaperCategory>>;
 }
 
 const CSWallpaperSelect: React.FC<Props> = ({ setWpCategory }) => {
-  const setWallpaper = useStatrpageStore((state) => state.setWallpaper);
+  const setWallpaper = useHomepageStore((state) => state.setWallpaper);
 
   return (
     <>

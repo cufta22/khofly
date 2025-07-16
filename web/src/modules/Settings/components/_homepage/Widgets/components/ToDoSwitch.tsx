@@ -1,9 +1,9 @@
 import { Switch } from "@mantine/core";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 
 const ToDoSwitch = () => {
-  const displayTodos = useStatrpageStore((state) => state.displayTodos);
-  const setDisplayTodos = useStatrpageStore((state) => state.setDisplayTodos);
+  const displayTodos = useHomepageStore((state) => state.displayTodos);
+  const setDisplayTodos = useHomepageStore((state) => state.setDisplayTodos);
 
   return (
     <Switch checked={displayTodos} onChange={(e) => setDisplayTodos(e.currentTarget.checked)} />

@@ -3,7 +3,7 @@ import type { IWallpaperCategory } from "..";
 import { WALLPAPERS_MINECRAFT, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from "../data";
 import type { Dispatch, SetStateAction } from "react";
 import classes from "../styles.module.scss";
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 
 interface Props {
   wpCategory: IWallpaperCategory;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const CSWallpaperCategory: React.FC<Props> = ({ wpCategory, setWpCategory }) => {
-  const setWallpaper = useStatrpageStore((state) => state.setWallpaper);
+  const setWallpaper = useHomepageStore((state) => state.setWallpaper);
 
   const WP_DATA = {
     "": [],

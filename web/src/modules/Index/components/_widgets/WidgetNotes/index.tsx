@@ -1,11 +1,11 @@
 import { Flex, Paper, ScrollArea, Text, Textarea } from "@mantine/core";
 import classes from "./styles.module.scss";
 
-import { useStatrpageStore } from "@store/startpage";
+import { useHomepageStore } from "@store/homepage";
 
 const WidgetNotes = () => {
-  const notes = useStatrpageStore((state) => state.notes);
-  const setNotes = useStatrpageStore((state) => state.setNotes);
+  const notes = useHomepageStore((state) => state.notes);
+  const setNotes = useHomepageStore((state) => state.setNotes);
 
   return (
     <Paper className={classes.widget_notes} withBorder p="lg">

@@ -3,7 +3,7 @@ import React from "react";
 import classes from "../styles.module.scss";
 import { IconDots, IconEdit, IconExternalLink, IconSquare, IconTrash } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { IShortcut, useStatrpageStore } from "@store/startpage";
+import { IShortcut, useHomepageStore } from "@store/homepage";
 
 interface Props {
   openMenu: boolean;
@@ -22,8 +22,8 @@ const ShortcutMenu: React.FC<Props> = ({
   fullUrl,
   idx,
 }) => {
-  const shortcuts = useStatrpageStore((state) => state.shortcuts);
-  const setShortcuts = useStatrpageStore((state) => state.setShortcuts);
+  const shortcuts = useHomepageStore((state) => state.shortcuts);
+  const setShortcuts = useHomepageStore((state) => state.setShortcuts);
 
   const handleDelete = () => {
     const newShortcuts = [...shortcuts].filter((_val, i) => i !== idx);

@@ -117,13 +117,13 @@ const SettingsMInitial: React.FC<Props> = ({ handleChangeSection }) => {
               handleChangeSection("wallpaper");
             }}
           />
-          <SettingsMInitRow
+          {/* <SettingsMInitRow
             icon={<IconExternalLink color={theme.colors.blue["5"]} />}
             desc="pages.settings.homepage.title_shortcuts"
             onClick={() => {
               handleChangeSection("shortcuts");
             }}
-          />
+          /> */}
         </Flex>
       </Paper>
     </Stack>
