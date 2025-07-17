@@ -115,8 +115,8 @@ const SectionVPS = () => {
 
       <Blockquote color="red" mt="xl" radius="sm" icon={<IconBrandDebian />}>
         <Text>
-          This installs and runs both the web client and api, if you want just the web client move
-          to manual installation steps.
+          This installs and runs the web client, API and PV. If you want just the web client move to
+          manual installation steps.
         </Text>
         <Text mt="xs">
           install.sh works on debian based distros only, for now. If you're running any other system
@@ -168,33 +168,43 @@ const SectionVPS = () => {
         comments.
       </DocsText>
 
-      <DocsText>
+      {/* <DocsText>
         5.1. Run <Code>./scripts/redeploy-web.sh web</Code> ( <Code>web</Code> argument is the name
         of pm2 instance ) to rebuild the app since we changed the env file.
-      </DocsText>
+      </DocsText> */}
 
       <DocsText>
         6. Edit the .env file for api ( <Code>nano ./api/.env.local</Code> ) values per provided
         comments.
       </DocsText>
 
-      <DocsText>
+      {/* <DocsText>
         6.1. Run <Code>./scripts/redeploy-api.sh api</Code> ( <Code>api</Code> argument is the name
         of pm2 instance ) to rebuild the app since we changed the env file.
+      </DocsText> */}
+
+      <DocsText>
+        7. Edit the .env file for pv ( <Code>nano ./pv/.env.local</Code> ) values per provided
+        comments.
       </DocsText>
 
       <DocsText>
-        7. <Code>cd /etc/nginx/sites-available/</Code> and edit the domain names for{" "}
+        8. Run <Code>./scripts/update.sh</Code> to rebuild the everything since we changed the env
+        files.
+      </DocsText>
+
+      <DocsText>
+        9. <Code>cd /etc/nginx/sites-available/</Code> and edit the domain names for{" "}
         <Code>web</Code> and <Code>api</Code> files, and whatever other Nginx config you want to
         add.
       </DocsText>
 
       <DocsText>
-        8. Add SSL certificate for your domain <Code>certbot --nginx</Code>
+        10. Add SSL certificate for your domain <Code>certbot --nginx</Code>
       </DocsText>
 
       <DocsText>
-        9. <Code>sudo systemctl reload nginx</Code>
+        11. <Code>sudo systemctl reload nginx</Code>
       </DocsText>
 
       <DocsSubtitle>OPTION 2. Manual installation</DocsSubtitle>
@@ -286,12 +296,12 @@ const SectionVPS = () => {
       <DocsSubtitle>Updating</DocsSubtitle>
 
       <DocsText>
-        To update the web client run <Code>./scripts/redeploy-web.sh web</Code>, make sure to
-        replace "web" with pm2 instance name for your web client.
+        To update the web client, API and PV run <Code>./scripts/update.sh</Code>. This will fetch
+        the latest code and rebuild everything.
       </DocsText>
 
       <DocsText>
-        To get a list of all pm2 instances run <Code>pm2 ls</Code>
+        Make sure it is executable <Code>chmod +x ./scripts/update.sh</Code>.
       </DocsText>
     </>
   );

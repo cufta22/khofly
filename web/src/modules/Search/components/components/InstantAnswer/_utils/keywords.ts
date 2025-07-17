@@ -2,6 +2,7 @@ export const KEYWORDS_IA = {
   calculator: ["calculator", "calc"],
   calendar: ["calendar", "cal"],
   coin_flip: ["coinflip", "coin flip"],
+  color_picker: ["color picker"],
   dice_roll: ["dice", "dice roll"],
   downloader: [
     "downloader",

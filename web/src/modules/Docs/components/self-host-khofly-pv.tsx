@@ -14,23 +14,7 @@ import DocsLink from "./common/DocsLink";
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
-apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
-`;
-
-const CODE_YT_DLP = `
-# Install from binaries since the apt version is insanely out of date
-# You can also update it with yt-dlp -U when installing from binaries
-curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/bin/yt-dlp
-
-chmod a+rx /usr/bin/yt-dlp
-`;
-
-const CODE_GALLERY_DL = `
-# Install from binaries since the apt version is insanely out of date
-# You can also update it with gallery-dl -U when installing from binaries
-curl -L https://github.com/mikf/gallery-dl/releases/latest/download/gallery-dl.bin -o /usr/bin/gallery-dl
-
-chmod a+rx /usr/bin/gallery-dl
+apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx
 `;
 
 const CODE_PM2 = `
@@ -42,8 +26,8 @@ const CODE_BUN = `
 curl -fsSL https://bun.sh/install | bash
 `;
 
-const CODE_BUILD_API = `
-cd api
+const CODE_BUILD_PV = `
+cd pv
 
 # First create the .env.local file from example file
 cp .env.example .env.local
@@ -67,7 +51,7 @@ pm2 start
 `;
 const CODE_ECOSYSTEM_FILE = `module.exports = {
   apps : [{
-    name: 'api',
+    name: 'pv',
     script: 'bun',
     args: 'run start',
   }]
@@ -78,24 +62,24 @@ const CODE_NGINX = `
 cd /etc/nginx/sites-available/
 
 # Create the config for the API
-touch api
+touch pv
 
 # Paste the base config from below, edit whatever you want
-nano api
+nano pv
 
 # Link that file to /sites-enabled
-ln -s /etc/nginx/sites-available/api /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/pv /etc/nginx/sites-enabled/
 `;
 
 const CODE_NGINX_FILE = `server {
     server_name example.com;
 
-    root /root/api;
+    root /root/pv;
 
     location / {
-        # Proxy to pm2 server on 4000 for api
+        # Proxy to pm2 server on 4001 for pv
 
-        proxy_pass http://localhost:4000/;
+        proxy_pass http://localhost:4001/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -147,47 +131,37 @@ const DocsSelfHostKhoflyPV = () => {
         <DocsCodeHighlight code={CODE_DEPENDENCIES} language="bash" />
       </Paper>
 
-      <DocsText>2. Install yt-dlp</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_YT_DLP} language="bash" />
-      </Paper>
-
-      <DocsText>3. Install gallery-dl</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_GALLERY_DL} language="bash" />
-      </Paper>
-
-      <DocsText>4. Install pm2</DocsText>
+      <DocsText>2. Install pm2</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_PM2} language="bash" />
       </Paper>
 
-      <DocsText>5. Install Bun</DocsText>
+      <DocsText>3. Install Bun</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_BUN} language="bash" />
       </Paper>
 
       <DocsText>
-        6. Create an empty folder in your home directory, ex. <Code>mkdir khofly</Code>.
+        4. Create an empty folder in your home directory, ex. <Code>mkdir khofly</Code>.
       </DocsText>
 
       <DocsText>
-        7. <Code>cd khofly</Code> and type{" "}
+        5. <Code>cd khofly</Code> and type{" "}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
       <DocsText>
-        7.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
+        5.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
         frequent updates <Code>git fetch origin staging</Code> and{" "}
         <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
-      <DocsText>8. Build and run API</DocsText>
+      <DocsText>6. Build and run API</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_BUILD_API} language="bash" />
+        <DocsCodeHighlight code={CODE_BUILD_PV} language="bash" />
       </Paper>
 
-      <DocsText>9. Create the ecosystem.config file for pm2</DocsText>
+      <DocsText>7. Create the ecosystem.config file for pm2</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_ECOSYSTEM} language="bash" />
       </Paper>
@@ -195,7 +169,7 @@ const DocsSelfHostKhoflyPV = () => {
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/api/ecosystem.config.js",
+              fileName: "/pv/ecosystem.config.js",
               code: CODE_ECOSYSTEM_FILE,
               language: "javascript",
               icon: <IconFile style={getIconStyle(20)} />,
@@ -205,7 +179,7 @@ const DocsSelfHostKhoflyPV = () => {
       </Paper>
 
       <DocsText>
-        10. Create Nginx config for api, don't forget to update the server_name to your domain name.
+        8. Create Nginx config for PV, don't forget to update the server_name to your domain name.
       </DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_NGINX} language="bash" />
@@ -214,7 +188,7 @@ const DocsSelfHostKhoflyPV = () => {
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/nginx/sites-available/api",
+              fileName: "/etc/nginx/sites-available/pv",
               code: CODE_NGINX_FILE,
               language: "nginx",
               icon: <IconFile style={getIconStyle(20)} />,
@@ -224,130 +198,22 @@ const DocsSelfHostKhoflyPV = () => {
       </Paper>
 
       <DocsText>
-        11. Add SSL certificate for your domain <Code>certbot --nginx</Code>
+        9. Add SSL certificate for your domain <Code>certbot --nginx</Code>
       </DocsText>
 
       <DocsText>
-        12. <Code>sudo systemctl reload nginx</Code>
+        10. <Code>sudo systemctl reload nginx</Code>
       </DocsText>
 
       <DocsSubtitle>Updating</DocsSubtitle>
 
       <DocsText>
-        To update the API run <Code>./scripts/redeploy-api.sh api</Code>, make sure to replace "api"
-        with pm2 instance name for your API.
+        To update the PV run <Code>./scripts/redeploy-pv.sh pv</Code>, make sure to replace "pv"
+        with pm2 instance name for your PV.
       </DocsText>
 
       <DocsText>
         To get a list of all pm2 instances run <Code>pm2 ls</Code>
-      </DocsText>
-
-      <DocsText>
-        You should alse keep yt-dlp up to date with <Code>yt-dlp -U</Code>
-      </DocsText>
-
-      <DocsSubtitle>yt-dlp issues</DocsSubtitle>
-
-      <DocsText>
-        Sometimes when hosting API on a server YouTube can block download requests with captcha. To
-        try and avoid this we can pass cookies and PO Token arguments to yt-dlp.
-      </DocsText>
-
-      <DocsText>1. Cookies</DocsText>
-
-      <DocsText>
-        Read more about providing cookies on yt-dlp{" "}
-        <DocsLink
-          href="https://github.com/yt-dlp/yt-dlp/wiki/Extractors#youtube"
-          label="official wiki"
-        />
-        .
-      </DocsText>
-
-      <DocsText>
-        TL;DR With a browser extension like{" "}
-        <DocsLink
-          href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"
-          label="cookies.txt"
-        />{" "}
-        on Firefox or{" "}
-        <DocsLink
-          href="https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc"
-          label="Get cookies.txt LOCALLY"
-        />{" "}
-        on Chormium you can extract your YouTube cookies and add it to a <Code>cookies-yt.txt</Code>{" "}
-        file in the root of <Code>/api</Code> folder. So the path to your extracted cookies file
-        should be <Code>/api/cookies-yt.txt</Code>. Also make sure to use a burner google account
-        instead of your main one.
-      </DocsText>
-
-      <DocsText>2. PO Token</DocsText>
-
-      <DocsText>
-        Read more about providing PO Token on yt-dlp{" "}
-        <DocsLink
-          href="https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide"
-          label="official wiki"
-        />
-        .
-      </DocsText>
-
-      <DocsText>TL;DR</DocsText>
-
-      <List withPadding>
-        <List.Item>
-          Go to <DocsLink href="https://music.youtube.com" label="YouTube Music" /> in an incognito
-          tab
-        </List.Item>
-        <List.Item>Click on a video</List.Item>
-        <List.Item>Open DevTools (F12) - "Network" tab</List.Item>
-        <List.Item>
-          Filter requests by <Code>googlevideo.com</Code>
-        </List.Item>
-        <List.Item>
-          From the most recent <Code>googlevideo.com</Code> request, extract the <Code>pot</Code>{" "}
-          query parameter value from the URL
-        </List.Item>
-      </List>
-
-      <DocsText>
-        Paste that pot value in <Code>/api/.env.local</Code> - <Code>YT_DLP_PO_TOKEN</Code>. API
-        will now use that PO Token when calling <Code>yt-dlp</Code> command.
-      </DocsText>
-
-      <DocsSubtitle>gallery-dl issues</DocsSubtitle>
-
-      <DocsText>
-        Sometimes when hosting API on a server Instagram can block download requests with captcha.
-        To try and avoid this we can pass cookies argument to gallery-dl.
-      </DocsText>
-
-      <DocsText>1. Instagram Cookies</DocsText>
-
-      <DocsText>
-        Read more about providing cookies on yt-dlp{" "}
-        <DocsLink
-          href="https://github.com/mikf/gallery-dl?tab=readme-ov-file#cookies"
-          label="official wiki"
-        />
-        .
-      </DocsText>
-
-      <DocsText>
-        TL;DR With a browser extension like{" "}
-        <DocsLink
-          href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"
-          label="cookies.txt"
-        />{" "}
-        on Firefox or{" "}
-        <DocsLink
-          href="https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc"
-          label="Get cookies.txt LOCALLY"
-        />{" "}
-        on Chormium you can extract your Instagram cookies and add it to a{" "}
-        <Code>cookies-ig.txt</Code> file in the root of <Code>/api</Code> folder. So the path to
-        your extracted cookies file should be <Code>/api/cookies-ig.txt</Code>. Also make sure to
-        use a burner IG account instead of your main one.
       </DocsText>
 
       <DocsNextPrev

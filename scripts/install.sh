@@ -4,30 +4,30 @@
 apt update && apt upgrade
 
 # Dependencies
-echo -e "\e[32mInstalling all dependencies\e[0m"
+echo -e "\e[32m-- Installing all dependencies\e[0m"
 apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
 
-echo -e "\e[32mInstalling yt-dlp\e[0m"
+echo -e "\e[32m-- Installing yt-dlp\e[0m"
 curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/bin/yt-dlp
 chmod a+rx /usr/bin/yt-dlp
 
-echo -e "\e[32mInstalling nvm\e[0m"
+echo -e "\e[32m-- Installing nvm\e[0m"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 source ~/.bashrc
 nvm install 22
 
-echo -e "\e[32mInstalling pnpm\e[0m"
+echo -e "\e[32m-- Installing pnpm\e[0m"
 curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=10.0.0 sh -
 
-echo -e "\e[32mInstalling pm2\e[0m"
+echo -e "\e[32m-- Installing pm2\e[0m"
 npm install pm2 -g
 source ~/.bashrc
 
-echo -e "\e[32mInstalling Bun\e[0m"
+echo -e "\e[32m-- Installing Bun\e[0m"
 curl -fsSL https://bun.sh/install | bash
 
 # Web
-echo -e "\e[32mBuild and Run web client\e[0m"
+echo -e "\e[32m-- Build and Run web client\e[0m"
 cd web
 cp .env.example .env.local
 pnpm install
@@ -45,7 +45,7 @@ echo "module.exports = {
 pm2 start
 
 # Api
-echo -e "\e[32mBuild and Run API\e[0m"
+echo -e "\e[32m-- Build and Run API\e[0m"
 cd ../api
 cp .env.example .env.local
 bun install
@@ -58,8 +58,22 @@ echo "module.exports = {
 };" > ecosystem.config.js
 pm2 start
 
+# PV
+echo -e "\e[32m-- Build and Run PV\e[0m"
+cd ../api
+cp .env.example .env.local
+bun install
+echo "module.exports = {
+  apps : [{
+    name: 'pv',
+    script: 'bun',
+    args: 'run start'
+  }]
+};" > ecosystem.config.js
+pm2 start
+
 # Nginx
-echo -e "\e[32mCreating Nginx config files\e[0m"
+echo -e "\e[32m-- Creating Nginx config files\e[0m"
 cd /etc/nginx/sites-available/
 
 # Config for web client
@@ -104,5 +118,31 @@ echo "server {
     listen 80;
 }" > api
 
+# Config for bun pv
+echo "server {
+    server_name example.com;
+
+    root /root/pv;
+
+    location / {
+        # Proxy to pm2 server on 4001 for pv
+
+        proxy_pass http://localhost:4001/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header Origin $http_origin;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+
+    listen 80;
+}" > pv
+
 ln -s /etc/nginx/sites-available/web /etc/nginx/sites-enabled/
 ln -s /etc/nginx/sites-available/api /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/pv /etc/nginx/sites-enabled/
+
+echo -e "\e[34m!  You'll need to manually update .env files for web, api & pv and run ./scripts/update.sh\e[0m"
+echo -e "\e[32m-- Done\e[0m"

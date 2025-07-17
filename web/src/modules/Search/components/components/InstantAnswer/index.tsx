@@ -55,7 +55,7 @@ const InstantAnswer = () => {
   if (shouldDisplayIAExact(q, KEYWORDS_IA.coin_flip)) return <SharedGames type="coinflip" />;
 
   // Instant answer - Color Picker
-  if (shouldDisplayIAExact(q, ["color picker"])) return <IAColorPicker withIAWrapper />;
+  if (shouldDisplayIAExact(q, KEYWORDS_IA.color_picker)) return <IAColorPicker withIAWrapper />;
 
   // Instant answer - Currency convertor
   const { sdCurr, ...restCurr } = shouldDisplayCurrency(q);
@@ -94,6 +94,10 @@ const InstantAnswer = () => {
 
   // Instant answer - Timer WIP
   if (shouldDisplayIAExact(q, KEYWORDS_IA.timer)) return <SharedClock type="timer" />;
+
+  // Instant answer - Time In
+  if (shouldDisplayIAExact(q, KEYWORDS_IA.time_zone))
+    return <SharedGlobalTime type="time_zone" location="Paris" />;
 
   // Instant answer - Translate WIP
   if (shouldDisplayIAExact(q, KEYWORDS_IA.translate)) return <IATranslate />;

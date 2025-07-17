@@ -24,7 +24,7 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
 
   const [timezone1, setTimezone1] = useState("Europe/London");
   const [timezone2, setTimezone2] = useState("America/Chicago");
-  const [dateTime, setDateTime] = useState<Date | null>(null);
+  const [dateTime, setDateTime] = useState<string | null>(null);
 
   const linkTextColor = usePrimaryColor(4);
 
@@ -93,6 +93,11 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
               onChange={(value) => setDateTime(value)}
               label="Pick date and time"
               placeholder="Pick date and time"
+              timePickerProps={{
+                withDropdown: true,
+                popoverProps: { withinPortal: false },
+                format: "12h",
+              }}
             />
 
             <Button onClick={handleConvert}>Convert</Button>
