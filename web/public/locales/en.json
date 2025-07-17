@@ -136,6 +136,10 @@
         "ai_summary_length": "Summary length"
       },
 
+      "geolocation": {
+        "title": "Geolocation"
+      },
+
       "categories": {
         "title": "Search categories"
       },

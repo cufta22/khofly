@@ -140,7 +140,7 @@ export const useHomepageStore = create<HomepageState>()(
           state.hydrated = true;
         }
       },
-      name: "shortcuts-store", // name of the item in the storage (must be unique)
+      name: "homepage-store", // name of the item in the storage (must be unique)
       // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
         wallpaper: state.wallpaper,

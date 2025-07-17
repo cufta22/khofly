@@ -115,7 +115,7 @@ export const handleProcessHtml = async (args: Args) => {
     }
 
     // -------------------------------------------------------------------------
-    // Rewrite url in style tags
+    // Rewrite url in style tags ( embedded css )
     // -------------------------------------------------------------------------
     for (const style of root.querySelectorAll("style")) {
       let cssContent = style.innerHTML;

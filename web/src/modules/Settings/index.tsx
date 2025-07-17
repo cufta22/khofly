@@ -24,6 +24,7 @@ import SettingsShortcuts from "./components/_homepage/Shortcuts";
 import SettingsWidgets from "./components/_homepage/Widgets";
 import SettingsWallpaper from "./components/_homepage/Wallpaper";
 import { useTranslate } from "@hooks/translate/use-translate";
+import SettingsGeolocation from "./components/_general/Geolocation";
 
 const PageSettings = () => {
   const t = useTranslate();
@@ -70,6 +71,8 @@ const PageSettings = () => {
           <SettingsGeneral />
           <Space h={40} />
           <SettingsAI />
+          <Space h={40} />
+          <SettingsGeolocation />
         </Tabs.Panel>
 
         <Tabs.Panel value="interface">

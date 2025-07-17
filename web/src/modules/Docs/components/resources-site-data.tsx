@@ -17,14 +17,15 @@ const DocsResourcesSiteData = () => {
 
       <DocsText>
         Khofly uses site data mainly for storing user preferences that persist throughout sessions
-        so that next time you visit <Code>https://khofly.com</Code> all your settings will be saved.
+        so that next time you visit <Code>{`${process.env.HOST}`}</Code> all your settings will be
+        saved.
       </DocsText>
 
       <DocsText>
         If you have <Code>Clear site data</Code> option enabled in your browser settings, which you
         should, this will wipe all cookies and local storage data saved for Khofly. For best user
-        experience add <Code>https://khofly.com</Code> to exceptions to this rule in your browser
-        settings.
+        experience add <Code>{`${process.env.HOST}`}</Code> to exceptions to this rule in your
+        browser settings.
       </DocsText>
 
       <DocsText>Below is a list of data that Khofly uses.</DocsText>
@@ -61,6 +62,10 @@ const DocsResourcesSiteData = () => {
       </DocsSubtitle>
 
       <DocsText>
+        <Code>aichat-store</Code>: selected model and provider for AI Chat.
+      </DocsText>
+
+      <DocsText>
         <Code>engines-store</Code>: search engines selected in settings that are passed to SearXNG
         API.
       </DocsText>
@@ -72,8 +77,13 @@ const DocsResourcesSiteData = () => {
       </DocsText>
 
       <DocsText>
-        <Code>instance-store</Code>: domains for all instances ( SearXNG, Nominatim, etc. ) that
-        Khofly uses.
+        <Code>homepage-startpage</Code>: homepage store for settings options like wallpaper,
+        shortcuts, widgets, etc.
+      </DocsText>
+
+      <DocsText>
+        <Code>instance-store</Code>: domains for all instances ( SearXNG, API, Nominatim, etc. )
+        that Khofly uses.
       </DocsText>
 
       <DocsText>
@@ -84,11 +94,6 @@ const DocsResourcesSiteData = () => {
       <DocsText>
         <Code>settings-store</Code>: general store for settings options like autocomplete, display
         favicons, open in new tab, etc.
-      </DocsText>
-
-      <DocsText>
-        <Code>settings-startpage</Code>: startpage store for settings options like wallpaper,
-        shortcuts, widgets, etc.
       </DocsText>
 
       <DocsText>

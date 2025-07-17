@@ -12,6 +12,7 @@ import PrivatePlayerSwitch from "@module/Settings/components/_general/General/Pr
 import AIAnswerSwitch from "@module/Settings/components/_general/AI/AIAnswerSwitch";
 import AISummarySwitch from "@module/Settings/components/_general/AI/AISummarySwitch";
 import NewTabSwitch from "@module/Settings/components/_general/General/NewTabSwitch";
+import PrivateViewSwitch from "@module/Settings/components/_general/General/PrivateViewSwitch";
 
 const QSGeneral = () => {
   const theme = useMantineTheme();
@@ -80,6 +81,14 @@ const QSGeneral = () => {
             <Text>{t("pages.settings.general.toggle_private_player")}</Text>
 
             <PrivatePlayerSwitch />
+          </Flex>
+
+          <Divider my={6} w="100%" />
+
+          <Flex align="center" justify="space-between">
+            <Text>{t("pages.settings.general.toggle_private_view")}</Text>
+
+            <PrivateViewSwitch />
           </Flex>
         </Stack>
       </Accordion.Panel>
