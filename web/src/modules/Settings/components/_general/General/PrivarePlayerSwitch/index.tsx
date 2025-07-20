@@ -21,7 +21,10 @@ const PrivatePlayerSwitch = () => {
         </Text>
       </RemixLink>
 
-      <Switch checked={privatePlayer} onChange={(e) => setPrivatePlayer(e.currentTarget.checked)} />
+      <Switch
+        checked={privatePlayer.enabled}
+        onChange={(e) => setPrivatePlayer({ enabled: e.currentTarget.checked })}
+      />
     </Flex>
   );
 };

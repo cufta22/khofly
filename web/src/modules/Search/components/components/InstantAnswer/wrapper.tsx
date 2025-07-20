@@ -8,9 +8,10 @@ import { useLocation } from "react-router";
 interface Props extends IFC {
   label?: React.ReactElement;
   className?: string;
+  keepMounted?: boolean;
 }
 
-export const IAWrapper: React.FC<Props> = ({ children, label, className }) => {
+export const IAWrapper: React.FC<Props> = ({ children, label, className, keepMounted = false }) => {
   const { pathname } = useLocation();
   const isDocs = pathname.includes("docs");
 
@@ -22,7 +23,9 @@ export const IAWrapper: React.FC<Props> = ({ children, label, className }) => {
         {(transitionStyles) => <div style={transitionStyles}>{children}</div>}
       </Transition> */}
 
-      <Collapse in={visible}>{children}</Collapse>
+      <Collapse in={visible} keepMounted={keepMounted}>
+        {children}
+      </Collapse>
 
       <Flex mt="lg" align="center" justify="space-between">
         {label || (

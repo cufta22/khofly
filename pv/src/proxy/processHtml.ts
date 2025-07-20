@@ -1,15 +1,16 @@
 import { parse } from "node-html-parser";
 import { isTrackingScript } from "../utils/isTrackingScript";
 import { createProxyURL } from "../utils/createProxyURL";
+import { getPatchFetch } from "../utils/js/getPatchFetch";
 
 interface Args {
   targetUrl: string;
-  targetUUID: string;
+  targetHtmlUUID: string;
   ANCHOR_BASE_URL: string;
 }
 
 export const handleProcessHtml = async (args: Args) => {
-  const { targetUrl, targetUUID, ANCHOR_BASE_URL } = args;
+  const { targetUrl, targetHtmlUUID, ANCHOR_BASE_URL } = args;
 
   // Don't send cookies or other identifying information
   const response = await fetch(targetUrl, {
@@ -38,10 +39,10 @@ export const handleProcessHtml = async (args: Args) => {
     const root = parse(htmlData);
     const head = root.querySelector("head");
 
-    // Inject global import resolve code
+    // Inject global patch scripts
     if (head) {
-      // const jsInjectResolve = getImportResolve(`${ASSET_BASE_URL}?url=`);
-      // head?.insertAdjacentHTML("afterbegin", jsInjectResolve);
+      const patchFetchScript = getPatchFetch();
+      head?.insertAdjacentHTML("afterbegin", `<script>${patchFetchScript}</script>`);
     }
 
     // -------------------------------------------------------------------------
@@ -98,7 +99,7 @@ export const handleProcessHtml = async (args: Args) => {
           // p1 = import("
           // p2 = original url
           // p3 = ")
-          const proxiedUrl = createProxyURL({ source: p2, targetUUID });
+          const proxiedUrl = createProxyURL({ source: p2, targetHtmlUUID });
 
           return `${p1}${proxiedUrl}${p3}`;
         });
@@ -109,7 +110,7 @@ export const handleProcessHtml = async (args: Args) => {
 
       // Create proxied URL
       if (src) {
-        const proxiedUrl = createProxyURL({ source: src, targetUUID });
+        const proxiedUrl = createProxyURL({ source: src, targetHtmlUUID });
         if (proxiedUrl) script.setAttribute("src", proxiedUrl);
       }
     }
@@ -125,7 +126,7 @@ export const handleProcessHtml = async (args: Args) => {
       cssContent = cssContent.replace(urlRegex, (match, url) => {
         // Create proxied URL
         if (url) {
-          const proxiedUrl = createProxyURL({ source: url, targetUUID });
+          const proxiedUrl = createProxyURL({ source: url, targetHtmlUUID });
           if (proxiedUrl) return `url('${proxiedUrl}')`;
         }
 
@@ -147,7 +148,7 @@ export const handleProcessHtml = async (args: Args) => {
         inlineStyle = inlineStyle.replace(urlRegex, (match, url) => {
           // Create proxied URL
           if (url) {
-            const proxiedUrl = createProxyURL({ source: url, targetUUID });
+            const proxiedUrl = createProxyURL({ source: url, targetHtmlUUID });
             if (proxiedUrl) return `url('${proxiedUrl}')`;
           }
 
@@ -165,7 +166,7 @@ export const handleProcessHtml = async (args: Args) => {
 
       // Create proxied URL
       if (src) {
-        const proxiedUrl = createProxyURL({ source: src, targetUUID });
+        const proxiedUrl = createProxyURL({ source: src, targetHtmlUUID });
         if (proxiedUrl) img.setAttribute("src", proxiedUrl);
       }
     }
@@ -188,7 +189,8 @@ export const handleProcessHtml = async (args: Args) => {
 
       // Create proxied URL
       if (href) {
-        const proxiedUrl = createProxyURL({ source: href, targetUUID });
+        const proxiedUrl = createProxyURL({ source: href, targetHtmlUUID });
+
         if (proxiedUrl) link.setAttribute("href", proxiedUrl);
       }
     }

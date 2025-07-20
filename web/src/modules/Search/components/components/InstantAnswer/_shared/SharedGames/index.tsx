@@ -19,7 +19,7 @@ const SharedGames: React.FC<Props> = ({ type }) => {
   const [activeTab, setActiveTab] = useState<IGames>(type);
 
   return (
-    <IAWrapper>
+    <IAWrapper keepMounted>
       <Tabs
         value={activeTab}
         onChange={(val) => setActiveTab((val as IGames) || "coinflip")}

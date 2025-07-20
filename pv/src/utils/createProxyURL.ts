@@ -3,7 +3,7 @@ import { kv_Actions } from "../kv";
 
 interface Args {
   source: string;
-  targetUUID: string;
+  targetHtmlUUID: string;
 }
 
 // Create proxy URL
@@ -12,23 +12,22 @@ interface Args {
 // output: /12345/asset/index.js
 
 export const createProxyURL = (args: Args) => {
-  const { source, targetUUID } = args;
+  const { source, targetHtmlUUID } = args;
 
   // If it's same origin link
   if (source && !source.startsWith("http") && !source.startsWith("//")) {
     // Create proxied URL
-    return `/proxy/${targetUUID}/${source}`;
+    return `/proxy/${targetHtmlUUID}${source}`;
   }
 
   // If it's 3rd party link, still proxy
-  if (source?.startsWith("http")) {
-    const url = new URL(source);
+  if (source.startsWith("http") || source.startsWith("//")) {
+    const assetSrc = source.startsWith("//") ? `https:${source}` : source;
+    const url = new URL(assetSrc);
     const hrefOrigin = url.origin;
     const hrefPathname = url.pathname;
 
     const existingKV = kv_Actions.get({ by: "value", val: hrefOrigin });
-    // console.log("-------------------------------------------------------");
-    // console.log(existingKV);
 
     // Create proxied URL
     if (existingKV) {
@@ -36,10 +35,6 @@ export const createProxyURL = (args: Args) => {
     } else {
       const newKey = randomUUIDv7();
       kv_Actions.set({ key: newKey, value: hrefOrigin });
-
-      // console.log(newKey);
-      // console.log(hrefOrigin);
-      // console.log("-------------------------------------------------------");
 
       return `/proxy/${newKey}${hrefPathname}`;
     }

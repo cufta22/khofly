@@ -48,7 +48,7 @@ const IACoinFlip: React.FC<Props> = ({ withIAWrapper }) => {
     </Center>
   );
 
-  if (withIAWrapper) return <IAWrapper>{coinFlipComponent}</IAWrapper>;
+  if (withIAWrapper) return <IAWrapper keepMounted>{coinFlipComponent}</IAWrapper>;
 
   return coinFlipComponent;
 };

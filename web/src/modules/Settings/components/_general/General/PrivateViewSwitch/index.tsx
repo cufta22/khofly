@@ -8,7 +8,7 @@ import commonClasses from "../../../common/styles.module.scss";
 const PrivateViewSwitch = () => {
   const t = useTranslate();
 
-  const privateView = useSettingsStore((state) => state.privateView.enabled);
+  const privateView = useSettingsStore((state) => state.privateView);
   const setPrivateView = useSettingsStore((state) => state.setPrivateView);
 
   const linkTextColor = usePrimaryColor(4);
@@ -22,7 +22,7 @@ const PrivateViewSwitch = () => {
       </RemixLink>
 
       <Switch
-        checked={privateView}
+        checked={privateView.enabled}
         onChange={(e) => setPrivateView({ enabled: e.currentTarget.checked })}
       />
     </Flex>

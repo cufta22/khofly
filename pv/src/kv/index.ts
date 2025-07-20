@@ -98,6 +98,8 @@ export const kv_Actions = {
   },
   getAll: () => {
     const records = STATEMENTS.getAll.all();
+    console.log(records);
+
     return records;
   },
   delete: (key: string) => {

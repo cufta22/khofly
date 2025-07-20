@@ -174,7 +174,7 @@ export const useSettingsStore = create<SettingsState>()(
       setPrivateSearch: (next) => set({ privateSearch: next }),
 
       privatePlayer: {
-        enabled: true,
+        enabled: false,
         musicData: null,
         videoData: null,
       },

@@ -1,21 +1,21 @@
 import type { Context } from "elysia";
-import { kv_Actions } from "../kv";
 import { handleProcessHtml } from "./processHtml";
 import { handleProcessAssets } from "./processAssets";
-import { extractParams } from "../utils/extractParams";
-import { randomUUIDv7 } from "bun";
+import { extractAssetParams } from "../utils/extractAssetParams";
 import { createInitialKVPair } from "../utils/createInitialKVPair";
 
 export const handleProxy = async (ctx: Context) => {
-  const { searchParams, protocol, host } = new URL(ctx.request.url);
+  const { searchParams, search, protocol, host } = new URL(ctx.request.url);
   const targetUrl = searchParams.get("url") || "";
 
   // For <a href="..." />
   const reqOrigin = ctx.request.headers?.get("origin");
+  const reqReferrer = ctx.request.headers?.get("referer");
 
   // For assets loaded after initial html
-  const fullParams = ctx?.params?.["*"] || ""; // {uuid}/path/asset.js
-  const { targetUUID, targetAssetPath } = extractParams(fullParams);
+  const assetPathWithParams = `${ctx.params?.["*"]}${search}`; // {uuid}/path/asset.js?...
+
+  const { targetAssetUUID, targetAssetPath } = extractAssetParams(assetPathWithParams);
 
   if (!protocol || !host) {
     throw ctx.status(400, "Invalid URL");
@@ -23,18 +23,21 @@ export const handleProxy = async (ctx: Context) => {
 
   // Base URLs
   const ASSET_BASE_URL = `${process.env.HOST}/proxy`;
-  const ANCHOR_BASE_URL = `${reqOrigin}/pv/proxy`;
+  const ANCHOR_BASE_URL = reqOrigin ? `${reqOrigin}/pv/proxy` : `${reqReferrer}pv/proxy`;
 
   // -------------------------------------------------------------------------
   // Handle initial html request
   // -------------------------------------------------------------------------
   if (targetUrl) {
+    console.log(ctx.request.headers);
+
     // Set KV UUID for initial domain
-    createInitialKVPair(targetUrl);
+    const targetOrigin = new URL(targetUrl).origin; // Without any paths and params
+    const targetHtmlUUID = createInitialKVPair(targetOrigin);
 
     const { contentType, html } = await handleProcessHtml({
       targetUrl,
-      targetUUID,
+      targetHtmlUUID,
       ANCHOR_BASE_URL,
     });
 
@@ -47,9 +50,9 @@ export const handleProxy = async (ctx: Context) => {
   // -------------------------------------------------------------------------
   // Handle subsequent asset requests
   // -------------------------------------------------------------------------
-  if (targetUUID && targetAssetPath) {
+  if (targetAssetUUID && targetAssetPath) {
     const { contentType, asset } = await handleProcessAssets({
-      targetUUID,
+      targetAssetUUID,
       targetAssetPath,
       ASSET_BASE_URL,
     });
