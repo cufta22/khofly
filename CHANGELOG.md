@@ -11,10 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Instant answers - Color Picker
 - Multiple missing search engines
+- Manual Geolocation in settings
 
 ### Fixed
 
 - Private View bugs
+- IACoinFlip bugs
 
 ## [0.9.0] - 01.07.2025
 

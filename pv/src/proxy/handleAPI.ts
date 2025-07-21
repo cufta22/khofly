@@ -8,7 +8,6 @@ export const handleApi = async (ctx: Context) => {
 
   const requestUrl = searchParams.get("url") || "";
   const requestMethod = searchParams.get("method") || "GET";
-  const requestPath = ctx.params?.["*"] || "";
 
   // For assets loaded after initial html
   const assetPathWithParams = `${ctx.params?.["*"]}${search}`; // {uuid}/path/asset.js?...
@@ -25,8 +24,7 @@ export const handleApi = async (ctx: Context) => {
   if (requestUrl) {
     const { contentType, response } = await handleProcessApi({
       reqMethod: requestMethod,
-      targetApiPath: requestPath,
-      targetApiOrigin: requestUrl,
+      reqUrl: requestUrl,
     });
 
     // Set appropriate headers

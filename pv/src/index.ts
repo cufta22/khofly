@@ -16,7 +16,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
 
   .get("/proxy/*", handleProxy) // Handle proxy html & assets
 
-  .get("/api/*", handleApi) // Handle proxy API requests
+  .all("/api", handleApi) // Handle proxy API requests
 
   .listen(process.env.PORT || 4001);
 

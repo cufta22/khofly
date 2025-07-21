@@ -1,20 +1,17 @@
 import { kv_Actions } from "../kv";
 
 interface Args {
-  targetApiOrigin: string;
-  targetApiPath: string;
+  reqUrl: string;
   reqMethod: string;
 }
 
 export const handleProcessApi = async (args: Args) => {
-  const { targetApiPath, targetApiOrigin, reqMethod } = args;
+  const { reqUrl, reqMethod } = args;
 
-  const requestUrl = `${targetApiOrigin}/${targetApiPath}`;
-
-  if (!requestUrl) return { contentType: "", asset: "" };
+  if (!reqUrl) return { contentType: "", response: "" };
 
   // Fetch the resource
-  const response = await fetch(requestUrl, {
+  const response = await fetch(reqUrl, {
     method: reqMethod,
     headers: {
       // Referer: "",

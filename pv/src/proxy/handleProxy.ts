@@ -23,6 +23,7 @@ export const handleProxy = async (ctx: Context) => {
 
   // Base URLs
   const ASSET_BASE_URL = `${process.env.HOST}/proxy`;
+  const API_BASE_URL = `${process.env.HOST}/api`;
   const ANCHOR_BASE_URL = reqOrigin ? `${reqOrigin}/pv/proxy` : `${reqReferrer}pv/proxy`;
 
   // -------------------------------------------------------------------------
@@ -39,6 +40,7 @@ export const handleProxy = async (ctx: Context) => {
       targetUrl,
       targetHtmlUUID,
       ANCHOR_BASE_URL,
+      API_BASE_URL,
     });
 
     // Set appropriate headers

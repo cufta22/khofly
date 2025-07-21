@@ -7,10 +7,11 @@ interface Args {
   targetUrl: string;
   targetHtmlUUID: string;
   ANCHOR_BASE_URL: string;
+  API_BASE_URL: string;
 }
 
 export const handleProcessHtml = async (args: Args) => {
-  const { targetUrl, targetHtmlUUID, ANCHOR_BASE_URL } = args;
+  const { targetUrl, targetHtmlUUID, ANCHOR_BASE_URL, API_BASE_URL } = args;
 
   // Don't send cookies or other identifying information
   const response = await fetch(targetUrl, {
@@ -41,7 +42,7 @@ export const handleProcessHtml = async (args: Args) => {
 
     // Inject global patch scripts
     if (head) {
-      const patchFetchScript = getPatchFetch();
+      const patchFetchScript = getPatchFetch({ apiBase: API_BASE_URL, targetUrl: targetUrl });
       head?.insertAdjacentHTML("afterbegin", `<script>${patchFetchScript}</script>`);
     }
 
