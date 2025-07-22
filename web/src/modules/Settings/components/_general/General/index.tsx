@@ -1,7 +1,6 @@
 import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
 
 import {
-  IconAppWindow,
   IconCursorText,
   IconExternalLink,
   IconFavicon,
@@ -11,6 +10,7 @@ import {
   IconPlayerPlay,
   IconRadar,
   IconShield,
+  IconSpy,
 } from "@tabler/icons-react";
 import FaviconSwitch from "./FaviconSwitch";
 import AutocompleteSwitch from "./AutocompleteSwitch";
@@ -105,7 +105,7 @@ const SettingsGeneral = () => {
         <Divider my="xs" w="100%" />
 
         <SettingsRow
-          icon={<IconAppWindow color={theme.colors.indigo["5"]} />}
+          icon={<IconSpy color={theme.colors.indigo["5"]} />}
           desc="pages.settings.general.toggle_private_view"
           tooltip={
             <Tooltip label="Experimental">

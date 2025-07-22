@@ -96,6 +96,9 @@ const SearchSectionInput = () => {
     trigger(debouncedQ);
   }, [debouncedQ]);
 
+  // Calculate right section width
+  const rightSectionWidth = 40 + (q.length >= 1 ? 43 : 0) + (AIAnswer.enabled ? 40 : 0);
+
   return (
     <Combobox
       onOptionSubmit={(val) => {
@@ -184,7 +187,6 @@ const SearchSectionInput = () => {
                   color="pink"
                   variant="subtle"
                   onClick={() => handleSearch(q, true)}
-                  mr={4}
                 >
                   <IconSparkles
                     style={getIconStyle(22)}
@@ -195,8 +197,7 @@ const SearchSectionInput = () => {
               )}
             </Flex>
           }
-          // rightSectionWidth={q.length >= 1 ? 83 : 40}
-          rightSectionWidth="fit-content"
+          rightSectionWidth={rightSectionWidth}
           // onClick={() => combobox.openDropdown()}
           onFocus={() => combobox.openDropdown()}
           onBlur={() => combobox.closeDropdown()}

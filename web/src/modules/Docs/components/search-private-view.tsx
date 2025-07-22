@@ -9,7 +9,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import { IconAppWindow, IconBrandGithub, IconDots } from "@tabler/icons-react";
+import { IconBrandGithub, IconDots, IconSpy } from "@tabler/icons-react";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
 import DocsNextPrev from "./common/DocsNextPrev";
@@ -22,12 +22,11 @@ const DocsSearchPrivateView = () => {
   const theme = useMantineTheme();
 
   const pvDomain = useInstanceStore((state) => state.pvDomain);
+  const host = process.env.HOST;
 
   return (
     <Container size="lg" p="xl" pb={100}>
-      <DocsTitle leftSection={<IconAppWindow color={theme.colors.indigo[5]} />}>
-        Private View
-      </DocsTitle>
+      <DocsTitle leftSection={<IconSpy color={theme.colors.indigo[5]} />}>Private View</DocsTitle>
 
       <DocsSubtitle>What is it</DocsSubtitle>
 
@@ -46,7 +45,7 @@ const DocsSearchPrivateView = () => {
           size="sm"
           variant="subtle"
           color="gray"
-          leftSection={<IconAppWindow color={theme.colors.indigo[5]} />}
+          leftSection={<IconSpy color={theme.colors.indigo[5]} />}
         >
           Private View
         </Button>
@@ -63,7 +62,9 @@ const DocsSearchPrivateView = () => {
 
       <DocsSubtitle>How it works - technical stuff</DocsSubtitle>
 
-      <DocsText>1. The initial request to fetch the page document</DocsText>
+      <DocsText>
+        <strong>1. The initial request to fetch the page document</strong>
+      </DocsText>
 
       <DocsText>
         API url: <Code>{`${pvDomain}/proxy/page?url=*`}</Code>
@@ -73,8 +74,7 @@ const DocsSearchPrivateView = () => {
 
       <List mt="md" withPadding>
         <List.Item>
-          Rewrite all <Code>{`<a>`}</Code> tag hrefs with{" "}
-          <Code>{`${process.env.HOST}/pv/proxy?url=*`}</Code>
+          Rewrite all <Code>{`<a>`}</Code> tag hrefs with <Code>{`${host}/pv/proxy?url=*`}</Code>
         </List.Item>
 
         <List.Item>
@@ -108,7 +108,9 @@ const DocsSearchPrivateView = () => {
         sometimes load assets from external URLs, CDNs, etc.
       </DocsText>
 
-      <DocsText>2. Assets that are fetched after the initial document loads</DocsText>
+      <DocsText>
+        <strong>2. Assets that are fetched after the initial document loads</strong>
+      </DocsText>
 
       <DocsText>
         API url: <Code>{`${pvDomain}/proxy/{uuid}/{assetPath}`}</Code>
@@ -118,18 +120,30 @@ const DocsSearchPrivateView = () => {
 
       <List mt="md" withPadding>
         <List.Item>
-          Handle with <Code>{`response.arrayBuffer()`}</Code> for{" "}
-          <Code>content-type = font | application/octet-stream</Code> ( icons, fonts )
+          Handle with <Code>{`response.arrayBuffer()`}</Code> for images, icons, fonts, etc.
         </List.Item>
 
         <List.Item>
-          Handle with <Code>{`response.text()`}</Code> for{" "}
-          <Code>content-type = application/javascript | text/javascript</Code> ( JS files )
+          Handle with <Code>{`response.text()`}</Code> for JS files, CSS files, etc.
         </List.Item>
 
         <List.Item>
-          Handle with <Code>{`response.json()`}</Code> for{" "}
-          <Code>content-type = application/json</Code> ( JSON files )
+          Handle with <Code>{`response.json()`}</Code> for JSON files, etc.
+        </List.Item>
+      </List>
+
+      <DocsText>
+        <strong>3. API Requests</strong>
+      </DocsText>
+
+      <DocsText>
+        API url: <Code>{`${pvDomain}/api?url=*`}</Code>
+      </DocsText>
+
+      <List mt="md" withPadding>
+        <List.Item>
+          Override <Code>window.fetch</Code> with our own custom code to change the URL to our proxy
+          and keep the original in <Code>?url=*</Code> param
         </List.Item>
       </List>
 
@@ -145,11 +159,7 @@ const DocsSearchPrivateView = () => {
         </Anchor>
 
         <RemixLink to="/pv/proxy?url=https://en.wikipedia.org/wiki/Cat" target="_blank">
-          <Button
-            size="lg"
-            leftSection={<IconAppWindow color={theme.colors.indigo[5]} />}
-            color="dark.9"
-          >
+          <Button size="lg" leftSection={<IconSpy color={theme.colors.indigo[5]} />} color="dark.9">
             PV Example
           </Button>
         </RemixLink>

@@ -14,7 +14,7 @@ import classes from "../../../styles.module.scss";
 import useToast from "@hooks/use-toast";
 import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
-import { IconAppWindow } from "@tabler/icons-react";
+import { IconSpy } from "@tabler/icons-react";
 import { useEffect } from "react";
 // import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
@@ -65,7 +65,7 @@ const SettingsPV = () => {
     <Paper radius="md" withBorder>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <SettingsTitle
-          icon={<IconAppWindow color={theme.colors.indigo["5"]} />}
+          icon={<IconSpy color={theme.colors.indigo["5"]} />}
           title="pages.settings.instances.title_pv"
         />
 

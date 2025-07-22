@@ -5,12 +5,12 @@ import { useSearchStore } from "@store/search";
 import { ICategories, useSettingsStore } from "@store/settings";
 import { useHomepageStore } from "@store/homepage";
 import {
-  IconAppWindow,
   IconCheck,
   IconDotsVertical,
   IconExternalLink,
   IconForbid,
   IconLabelImportant,
+  IconSpy,
   IconTextScan2,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
@@ -149,7 +149,7 @@ const ResultMenu: React.FC<Props> = ({ url, domain, tab }) => {
         {hasPrivateView && (hasAIFeatures || hasOrganizeResults) && <Menu.Divider />}
         {hasPrivateView && (
           <Menu.Item
-            leftSection={<IconAppWindow size={18} color={theme.colors.indigo["5"]} />}
+            leftSection={<IconSpy size={18} color={theme.colors.indigo["5"]} />}
             onClick={() => openInPrivateView()}
           >
             Private View
