@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Instant answers - Color Picker
 - Multiple missing search engines
 - Manual Geolocation in settings
+- Support page
 
 ### Fixed
 

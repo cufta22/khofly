@@ -77,6 +77,15 @@ export default defineConfig(({ mode }) => {
       "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(env.SEARXNG_URL_SELF_HOST),
       "process.env.API_URL_SELF_HOST": JSON.stringify(env.API_URL_SELF_HOST),
 
+      // Support stuff
+      "process.env.HAS_SUPPORT": JSON.stringify(env.HAS_SUPPORT),
+      "process.env.ADDRESS_BITCOIN": JSON.stringify(env.ADDRESS_BITCOIN),
+      "process.env.ADDRESS_BITCOIN_CASH": JSON.stringify(env.ADDRESS_BITCOIN_CASH),
+      "process.env.ADDRESS_ETHEREUM": JSON.stringify(env.ADDRESS_ETHEREUM),
+      "process.env.ADDRESS_MONERO": JSON.stringify(env.ADDRESS_MONERO),
+      "process.env.ADDRESS_LITECOIN": JSON.stringify(env.ADDRESS_LITECOIN),
+      "process.env.ADDRESS_SOLANA": JSON.stringify(env.ADDRESS_SOLANA),
+
       // Platform specific
       "process.env.VERCEL_REGION": JSON.stringify(env?.VERCEL_REGION || ""),
       "process.env.FLY_APP_NAME": JSON.stringify(env?.FLY_APP_NAME || ""),

@@ -16,6 +16,8 @@ import HeaderIndexSettings from "./components/HeaderIndexSettings";
 import HeaderIndexChat from "./components/HeaderIndexChat";
 import { useSettingsStore } from "@store/settings";
 import HeaderAISettings from "./components/HeaderAISettings";
+import HeaderSupport from "./components/HeaderSupport";
+import { HAS_SUPPORT } from "@utils/resources/hasSupport";
 
 interface Props {
   openNavbar: boolean;
@@ -33,6 +35,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
   const isChangelog = pathname.startsWith("/changelog");
   const isInstances = pathname.startsWith("/instances");
   const isSettings = pathname.startsWith("/settings");
+  const isSupport = pathname.startsWith("/support");
   const isPrivacy = pathname.startsWith("/privacy");
   const isSearch = pathname.startsWith("/search");
   const isDocs = pathname.startsWith("/docs");
@@ -52,6 +55,8 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
     ? "AI Chat"
     : isInstances
     ? "Public Instances"
+    : isSupport
+    ? "Support"
     : "";
 
   // If /search
@@ -72,10 +77,11 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {isSearch && <SearchSection />}
 
       {/* Header with title */}
-      {(isDocs || isSettings || isChangelog || isPrivacy || isChat || isInstances) && (
+      {(isDocs || isSettings || isChangelog || isPrivacy || isChat || isInstances || isSupport) && (
         <>
           <HeaderLogo
             isChat={isChat}
+            isSupport={isSupport}
             hasBurger={isDocs}
             openNavbar={openNavbar}
             toggleNavbar={toggleNavbar}
@@ -96,6 +102,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
       {isChat && <HeaderAISettings />}
 
+      {isDocs && HAS_SUPPORT && <HeaderSupport />}
       {(isDocs || isChangelog) && <HeaderCode />}
     </Group>
   );

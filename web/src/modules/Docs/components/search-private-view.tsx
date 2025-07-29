@@ -105,7 +105,8 @@ const DocsSearchPrivateView = () => {
 
       <DocsText>
         <Code>{`{uuid}`}</Code> is saved as key-value for every unique domain since websites
-        sometimes load assets from external URLs, CDNs, etc.
+        sometimes load assets from external URLs, CDNs, etc. This also helps with relative JS module
+        import resolve.
       </DocsText>
 
       <DocsText>

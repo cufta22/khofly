@@ -1,16 +1,23 @@
 import RemixLink from "@components/RemixLink";
 import { Burger, Flex, Image, useMantineTheme } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconMessage } from "@tabler/icons-react";
+import { IconHeart, IconMessage } from "@tabler/icons-react";
 
 interface Props {
   isChat: boolean;
+  isSupport: boolean;
   hasBurger: boolean;
   openNavbar: boolean;
   toggleNavbar: () => void;
 }
 
-const HeaderLogo: React.FC<Props> = ({ isChat, hasBurger, openNavbar, toggleNavbar }) => {
+const HeaderLogo: React.FC<Props> = ({
+  isChat,
+  isSupport,
+  hasBurger,
+  openNavbar,
+  toggleNavbar,
+}) => {
   const theme = useMantineTheme();
 
   return (
@@ -29,6 +36,8 @@ const HeaderLogo: React.FC<Props> = ({ isChat, hasBurger, openNavbar, toggleNavb
 
         {isChat ? (
           <IconMessage className={classes.header_logo} color={theme.colors.pink[5]} />
+        ) : isSupport ? (
+          <IconHeart className={classes.header_logo} color={theme.colors.red[5]} />
         ) : (
           <Image className={classes.header_logo} src="/assets/logo.svg" />
         )}

@@ -26,6 +26,8 @@ Check for more responsive stuff
 add private view to self host script
 add redeploy-pv.sh
 
+Remove IS_SELF_HOST
+
 ? Docs page for widgets
 ? Save search history in LS
 
