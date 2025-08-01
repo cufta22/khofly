@@ -3,7 +3,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { IconSelector } from "@tabler/icons-react";
 import type { IFC } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
-import { useLocation } from "react-router";
 
 interface Props extends IFC {
   label?: React.ReactElement;
@@ -12,10 +11,10 @@ interface Props extends IFC {
 }
 
 export const IAWrapper: React.FC<Props> = ({ children, label, className, keepMounted = false }) => {
-  const { pathname } = useLocation();
-  const isDocs = pathname.includes("docs");
+  // const { pathname } = useLocation();
+  // const isDocs = pathname.includes("docs"); // Old logic
 
-  const [visible, { toggle }] = useDisclosure(!isDocs);
+  const [visible, { toggle }] = useDisclosure(true);
 
   return (
     <Stack gap={0} className={className && className} pos="relative">

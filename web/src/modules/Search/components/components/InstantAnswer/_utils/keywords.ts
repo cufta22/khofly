@@ -1,4 +1,6 @@
-export const KEYWORDS_IA = {
+import { IAllIAs } from "@ts/search.types";
+
+export const KEYWORDS_IA: { [key in IAllIAs]: string[] } = {
   calculator: ["calculator", "calc"],
   calendar: ["calendar", "cal"],
   coin_flip: ["coinflip", "coin flip"],
@@ -27,4 +29,12 @@ export const KEYWORDS_IA = {
   time_zone: ["time zone"],
   translate: ["translate"],
   uuid: ["random uuid", "uuid", "unique id"],
+
+  // Use more complicated logic that keywords
+  currency: [],
+  equation: [],
+  lyrics: [],
+  time_in: [],
+  unit: [],
+  weather: [],
 };

@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Manual Geolocation in settings
 - Support page
 
+### Changed
+
+- Improved Docs - IA, PV, self-host
+
 ### Fixed
 
 - Private View bugs

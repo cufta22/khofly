@@ -1,0 +1,53 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ia_gallery {
+  animation: fadeIn 0.25s normal forwards;
+
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mantine-spacing-md);
+  padding: var(--mantine-spacing-xl);
+}
+
+.ia_item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--mantine-radius-md);
+  width: 100px;
+  height: 100px;
+  background-color: var(--mantine-color-body);
+  transition: box-shadow 150ms ease, transform 100ms ease;
+
+  .ia_group_label {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+
+  &:hover {
+    box-shadow: var(--mantine-shadow-md);
+    transform: scale(1.05);
+  }
+}
+
+.ia_box {
+  max-width: 650px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}

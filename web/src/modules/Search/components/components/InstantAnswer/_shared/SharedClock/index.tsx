@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Tabs } from "@mantine/core";
-import { IconClock, IconHourglassLow } from "@tabler/icons-react";
+import { IconHourglassLow, IconStopwatch } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { IAWrapper } from "../../wrapper";
@@ -23,16 +23,10 @@ const SharedClock: React.FC<Props> = ({ type }) => {
         mt={-16}
       >
         <Tabs.List grow mb="lg">
-          <Tabs.Tab
-            value="stopwatch"
-            leftSection={<IconClock style={getIconStyle(20)} />}
-          >
+          <Tabs.Tab value="stopwatch" leftSection={<IconStopwatch style={getIconStyle(20)} />}>
             Stopwatch
           </Tabs.Tab>
-          <Tabs.Tab
-            value="timer"
-            leftSection={<IconHourglassLow style={getIconStyle(20)} />}
-          >
+          <Tabs.Tab value="timer" leftSection={<IconHourglassLow style={getIconStyle(20)} />}>
             Timer
           </Tabs.Tab>
         </Tabs.List>

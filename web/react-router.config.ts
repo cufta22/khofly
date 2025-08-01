@@ -11,6 +11,6 @@ export default {
 
   // return a list of URLs to prerender at build time
   async prerender() {
-    return ["/privacy", "/changelog", "/docs"];
+    return ["/privacy", "/changelog", "/docs", "/support"];
   },
 } satisfies Config;
