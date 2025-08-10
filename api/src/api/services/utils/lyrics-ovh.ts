@@ -18,7 +18,7 @@ export const getLyricsFromLyricsOvh = async (
   const lyrics: ILyricsOvhResponse = await lyricsOvhRes.json();
 
   if (!lyrics?.lyrics) {
-    throw ctx.error(400, "Lyrics not found, try another song");
+    throw ctx.status(400, "Lyrics not found, try another song");
   }
 
   const fixedLyrics = lyrics.lyrics.replaceAll("\n\n", "\n");

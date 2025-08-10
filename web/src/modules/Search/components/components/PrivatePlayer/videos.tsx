@@ -5,11 +5,14 @@ import classes from "./styles.module.scss";
 import useDownloadSWR from "src/api/download/use-download-query";
 import { useEffect } from "react";
 import { useSettingsStore } from "@store/settings";
+import { useResponsive } from "@hooks/use-responsive";
 
 const PrivateVideoPlayer = () => {
   const { data, trigger, isMutating, reset } = useDownloadSWR({ shouldDownload: false });
 
   const theme = useMantineTheme();
+
+  const isMobile = useResponsive("max", "sm");
 
   const privatePlayer = useSettingsStore((state) => state.privatePlayer);
   const setPrivatePlayer = useSettingsStore((state) => state.setPrivatePlayer);
@@ -36,8 +39,7 @@ const PrivateVideoPlayer = () => {
         setPrivatePlayer({ videoData: null });
       }}
       closeOnClickOutside={false}
-      size="60%"
-      h={500}
+      size={isMobile ? "90%" : "60%"}
       centered
       title={
         <Flex align="center" gap="sm">

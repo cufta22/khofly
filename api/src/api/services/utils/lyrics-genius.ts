@@ -50,7 +50,7 @@ export const getLyricsFromGenius = async (
     .trim();
 
   if (!lyrics) {
-    throw ctx.error(400, "Lyrics not found, try another song");
+    throw ctx.status(400, "Lyrics not found, try another song");
   }
 
   return {

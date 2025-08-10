@@ -225,7 +225,7 @@ const IAWeather: React.FC<Props> = ({ propLocation }) => {
       {data?.hourly?.length && (
         <ScrollArea>
           <AreaChart
-            h={120}
+            h={160}
             w={2500}
             pr="sm"
             dataKey="time"
@@ -238,7 +238,7 @@ const IAWeather: React.FC<Props> = ({ propLocation }) => {
             }))}
             yAxisProps={{
               tickMargin: 15,
-              orientation: "left",
+              // orientation: "left",
               //  domain: [, "dataMax + 5"],
               domain:
                 // Fix Kelvin temp display
@@ -247,8 +247,9 @@ const IAWeather: React.FC<Props> = ({ propLocation }) => {
                   : [0, "dataMax + 5"],
             }}
             xAxisProps={{ tickMargin: 15, orientation: "bottom" }}
-            areaChartProps={{ stackOffset: "expand" }}
+            // areaChartProps={{ stackOffset: "expand" }}
             // gridAxis="none"
+            type="stacked"
             series={[
               {
                 name: areaChart,

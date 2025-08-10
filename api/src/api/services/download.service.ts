@@ -72,7 +72,7 @@ export const handleDownload = async (ctx: Context) => {
         // ytCommand.push(`"bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"`);
         // Should be normal
         ytCommand.push(
-          `"bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]"`
+          `bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]`
         );
       }
 
@@ -86,14 +86,13 @@ export const handleDownload = async (ctx: Context) => {
 
       // Avoid captcha - add PO token
       if (process.env.YT_DLP_PO_TOKEN) {
-        ytCommand.push(
-          `--extractor-args "youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}"`
-        );
+        ytCommand.push(`--extractor-args`);
+        ytCommand.push(`youtube:po_token=web.gvs+${process.env.YT_DLP_PO_TOKEN}`);
       }
 
       // Output path
       ytCommand.push("-o");
-      ytCommand.push(`"${outputPathYT}"`);
+      ytCommand.push(`${outputPathYT}`);
       ytCommand.push(url);
 
       // Run command

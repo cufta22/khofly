@@ -41,7 +41,7 @@ export const getLyricsFromAZ = async (
   const lyricsRoot = document?.querySelector("div.col-xs-12.col-lg-8.text-center");
 
   if (!lyricsRoot) {
-    throw ctx.error(400, "Lyrics not found, try another song");
+    throw ctx.status(400, "Lyrics not found, try another song");
   }
 
   const lyrics = lyricsRoot

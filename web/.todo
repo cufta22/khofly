@@ -18,11 +18,14 @@ Make search work with JS disabled
 
 make instances page better
 
+Currency IA add error state if fetching rates fails
+
 Responsive: index search bar with css
 Responsive: search page bigger text & spacing
 Responsive: add scroll to Docs sidebar
 Responsive: docs search.suspended_times...
-Responsive: doce PV buttons
+Responsive: docs PV buttons
+Responsive: docs IA mobile gallery 3 cols, less padding
 Check for more responsive stuff
 
 add private view to self host script
@@ -40,8 +43,12 @@ PV
 Ideas for future:
 
 More options for downloader
-More AI
 More engines
 A few IAs
-Add "h" to open hotkey modal and add missing hotkeys
-More responsive fixes
+
+- Fact generator,
+- Joke generator,
+- Lorem ipsum generator,
+- Unix timestamp convert to time,
+- Days till christmas,
+- ?Hash Generator - MD5, SHA-1, SHA-256 hashes
