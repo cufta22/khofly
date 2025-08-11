@@ -23,7 +23,7 @@ const DocsSearchInstantAnswer = () => {
       </DocsTitle>
 
       <DocsText>
-        Instant answers (IA) provide a better user experience by providing direct information
+        Instant Answers (IA) provide a better user experience by providing direct information
         without the need for user to click on any result. This feature can easily be disabled in
         settings.
       </DocsText>

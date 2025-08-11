@@ -33,6 +33,7 @@ import SharedConverter from "./_shared/SharedConverter";
 import SharedClock from "./_shared/SharedClock";
 import SharedGlobalTime from "./_shared/SharedGlobalTime";
 import SharedGames from "./_shared/SharedGames";
+import IADaysTillChristmas from "./components/DaysTillChristmas";
 
 const InstantAnswer = () => {
   const isLg = useResponsive("min", "lg", true);
@@ -60,6 +61,9 @@ const InstantAnswer = () => {
   // Instant answer - Currency convertor
   const { sdCurr, ...restCurr } = shouldDisplayCurrency(q);
   if (sdCurr) return <SharedConverter type="currency" {...restCurr} />;
+
+  // Instant answer - Days Till Christmas
+  if (shouldDisplayIAExact(q, KEYWORDS_IA.days_till_christmas)) return <IADaysTillChristmas />;
 
   // Instant answer - Dice Roll
   if (shouldDisplayIAExact(q, KEYWORDS_IA.dice_roll)) return <SharedGames type="diceroll" />;

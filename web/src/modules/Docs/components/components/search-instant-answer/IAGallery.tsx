@@ -40,6 +40,7 @@ import IAWeather from "@module/Search/components/components/InstantAnswer/compon
 import { IconArrowsShuffle, IconClock, IconDeviceGamepad3, IconWorld } from "@tabler/icons-react";
 import clsx from "clsx";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import IADaysTillChristmas from "@module/Search/components/components/InstantAnswer/components/DaysTillChristmas";
 
 const IAGallery = () => {
   const theme = useMantineTheme();
@@ -166,6 +167,15 @@ const IAGallery = () => {
           </DocsText>
           <Box mt="xl" className={classes.ia_box}>
             <IACurrency currency1="usd" currency2="eur" withIAWrapper />
+          </Box>
+        </>
+      ) : selected === "days_till_christmas" ? (
+        <>
+          <DocsText>
+            Keywords: <Code>{KEYWORDS_IA.days_till_christmas.join(", ")}</Code>
+          </DocsText>
+          <Box mt="xl" className={classes.ia_box}>
+            <IADaysTillChristmas />
           </Box>
         </>
       ) : selected === "dice_roll" ? (

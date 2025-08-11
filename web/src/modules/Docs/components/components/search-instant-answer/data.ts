@@ -5,6 +5,7 @@ import {
   IconCalculator,
   IconCalendar,
   IconCash,
+  IconChristmasTree,
   IconCircle,
   IconCloudNetwork,
   IconDice,
@@ -68,6 +69,13 @@ export const DOCS_INSTANT_ANSWERS: {
     group: "converter",
     color: "green.6",
     icon: IconCash,
+  },
+  days_till_christmas: {
+    title: "Days Till Christmas",
+    title_short: "Christmas",
+    group: "",
+    color: "green.5",
+    icon: IconChristmasTree,
   },
   dice_roll: {
     title: "Dice Roll",

@@ -5,6 +5,7 @@ export const KEYWORDS_IA: { [key in IAllIAs]: string[] } = {
   calendar: ["calendar", "cal"],
   coin_flip: ["coinflip", "coin flip"],
   color_picker: ["color picker"],
+  days_till_christmas: ["christmas", "till christmas", "days till christmas"],
   dice_roll: ["dice", "dice roll"],
   downloader: [
     "downloader",

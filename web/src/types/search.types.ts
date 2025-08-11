@@ -4,6 +4,7 @@ export type IAllIAs =
   | "coin_flip"
   | "color_picker"
   | "currency"
+  | "days_till_christmas"
   | "dice_roll"
   | "downloader"
   | "equation"
