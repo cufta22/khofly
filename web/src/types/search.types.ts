@@ -9,6 +9,7 @@ export type IAllIAs =
   | "downloader"
   | "equation"
   | "ip"
+  | "lorem_ipsum"
   | "lyrics"
   | "password"
   | "rng"

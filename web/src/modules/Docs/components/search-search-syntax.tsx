@@ -8,6 +8,7 @@ import DocsNextPrev from "./common/DocsNextPrev";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 import RemixLink from "@components/RemixLink";
 import { usePrimaryColor } from "@hooks/use-primary-color";
+import DocsLink from "./common/DocsLink";
 
 const DocsSearchPrivatePlayer = () => {
   const linkTextColor = usePrimaryColor(4);
@@ -28,7 +29,7 @@ const DocsSearchPrivatePlayer = () => {
       </DocsText>
 
       <DocsSubtitle>
-        <Code fz={20}>!</Code> select engine and category
+        <Code fz={20}>!</Code> Select engine and category
       </DocsSubtitle>
 
       <DocsText>
@@ -87,7 +88,7 @@ const DocsSearchPrivatePlayer = () => {
       </DocsText>
 
       <DocsSubtitle>
-        <Code fz={20}>:</Code> select language
+        <Code fz={20}>:</Code> Select language
       </DocsSubtitle>
 
       <DocsText>
@@ -96,11 +97,34 @@ const DocsSearchPrivatePlayer = () => {
 
       <List mt="sm">
         <List.Item>
-          search Wikipedia by a custom language
+          search Wikipedia with a custom language:
           <List>
             <List.Item>
               <RemixLink to={`/search?q=:fr !wp Wau Holland&tab=general`}>
                 <Text c={linkTextColor}>:fr !wp Wau Holland</Text>
+              </RemixLink>
+            </List.Item>
+          </List>
+        </List.Item>
+      </List>
+
+      <DocsSubtitle>
+        <Code fz={20}>{`!!<bang>`}</Code> External bangs
+      </DocsSubtitle>
+
+      <DocsText>
+        SearXNG supports the external bangs from{" "}
+        <DocsLink href={`https://duckduckgo.com/bang`} label="DuckDuckGo"></DocsLink>. To directly
+        jump to a external search page use the <Code>!!</Code> prefix. To give an example:
+      </DocsText>
+
+      <List mt="sm">
+        <List.Item>
+          search Wikipedia with a custom language:
+          <List>
+            <List.Item>
+              <RemixLink to={`/search?q=!!wfr Wau Holland&tab=general`}>
+                <Text c={linkTextColor}>!!wfr Wau Holland</Text>
               </RemixLink>
             </List.Item>
           </List>

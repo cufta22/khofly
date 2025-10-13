@@ -41,6 +41,7 @@ import { IconArrowsShuffle, IconClock, IconDeviceGamepad3, IconWorld } from "@ta
 import clsx from "clsx";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import IADaysTillChristmas from "@module/Search/components/components/InstantAnswer/components/DaysTillChristmas";
+import IALoremIpsum from "@module/Search/components/components/InstantAnswer/components/LoremIpsum";
 
 const IAGallery = () => {
   const theme = useMantineTheme();
@@ -214,6 +215,15 @@ const IAGallery = () => {
           </DocsText>
           <Box mt="xl" className={classes.ia_box}>
             <IAIP />
+          </Box>
+        </>
+      ) : selected === "lorem_ipsum" ? (
+        <>
+          <DocsText>
+            Keywords: <Code>{KEYWORDS_IA.lorem_ipsum.join(", ")}</Code>
+          </DocsText>
+          <Box mt="xl" className={classes.ia_box}>
+            <IALoremIpsum />
           </Box>
         </>
       ) : selected === "lyrics" ? (

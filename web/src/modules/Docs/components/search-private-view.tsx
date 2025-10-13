@@ -1,6 +1,7 @@
 import {
   ActionIcon,
   Anchor,
+  Blockquote,
   Button,
   Code,
   Container,
@@ -9,7 +10,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import { IconBrandGithub, IconDots, IconSpy } from "@tabler/icons-react";
+import { IconBrandGithub, IconDots, IconFlaskFilled, IconSpy } from "@tabler/icons-react";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
 import DocsNextPrev from "./common/DocsNextPrev";
@@ -27,6 +28,11 @@ const DocsSearchPrivateView = () => {
   return (
     <Container size="lg" p="xl" pb={100}>
       <DocsTitle leftSection={<IconSpy color={theme.colors.indigo[5]} />}>Private View</DocsTitle>
+
+      <Blockquote color="cyan" mt="xl" radius="sm" icon={<IconFlaskFilled />}>
+        This feature is still WIP and probably doesn't fully proxy all of the assets on more
+        complicated websites.
+      </Blockquote>
 
       <DocsSubtitle>What is it</DocsSubtitle>
 

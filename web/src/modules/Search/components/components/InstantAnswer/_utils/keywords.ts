@@ -22,6 +22,7 @@ export const KEYWORDS_IA: { [key in IAllIAs]: string[] } = {
     // "tiktok download",
   ],
   ip: ["whats my ip", "what's my ip", "my ip"],
+  lorem_ipsum: ["lorem ipsum"],
   password: ["random password", "password"],
   rng: ["random number", "rng", "random number generator"],
   stopwatch: ["stopwatch"],

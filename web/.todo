@@ -26,10 +26,19 @@ Responsive: add scroll to Docs sidebar
 Responsive: docs search.suspended_times...
 Responsive: docs PV buttons
 Responsive: docs IA mobile gallery 3 cols, less padding
+Responsive: when URL is too long it overflows the layout in search page
 Check for more responsive stuff
+
+Code in external bangs
+Code inautomatic redirects ( Feeling Lucky )
 
 add private view to self host script
 add redeploy-pv.sh
+
+add .env option to turn off P Player
+add .env option to turn off P View
+
+Bot protection captcha
 
 ? Docs page for widgets
 ? Save search history in LS
@@ -40,6 +49,7 @@ PV
 
 Ideas for future:
 
+Widget - Calendar
 More options for downloader
 More engines
 A few IAs

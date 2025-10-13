@@ -34,6 +34,7 @@ import SharedClock from "./_shared/SharedClock";
 import SharedGlobalTime from "./_shared/SharedGlobalTime";
 import SharedGames from "./_shared/SharedGames";
 import IADaysTillChristmas from "./components/DaysTillChristmas";
+import IALoremIpsum from "./components/LoremIpsum";
 
 const InstantAnswer = () => {
   const isLg = useResponsive("min", "lg", true);
@@ -76,6 +77,9 @@ const InstantAnswer = () => {
 
   // Instant answer - IP
   if (shouldDisplayIAExact(q, KEYWORDS_IA.ip)) return <IAIP />;
+
+  // Instant answer - Lorem Ipsum
+  if (shouldDisplayIAExact(q, KEYWORDS_IA.lorem_ipsum)) return <IALoremIpsum />;
 
   // Instant answer - Lyrics by genius
   if (shouldDisplayIA(q, ["lyrics"]) && !isLg) return <IALyrics />;

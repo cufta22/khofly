@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Instant answers - Color Picker
+- Instant answers - Color Picker, Lorem Ipsum, etc.
 - Multiple missing search engines
 - Manual Geolocation in settings
 - Support page

@@ -1,6 +1,7 @@
 import { MantineColor } from "@mantine/core";
 import {
   Icon,
+  IconAlignLeft,
   IconArrowsShuffle,
   IconCalculator,
   IconCalendar,
@@ -104,6 +105,13 @@ export const DOCS_INSTANT_ANSWERS: {
     group: "",
     color: "cyan.5",
     icon: IconCloudNetwork,
+  },
+  lorem_ipsum: {
+    title: "Lorem Ipsum",
+    title_short: "Ipsum",
+    group: "",
+    color: "gray.5",
+    icon: IconAlignLeft,
   },
   lyrics: {
     title: "Song Lyrics",

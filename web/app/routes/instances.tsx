@@ -11,19 +11,24 @@ export interface ILoaderData_Instances {
       csp: string;
       html: string;
     }[];
-  };
+  } | null;
+  error: boolean;
 }
 
 // Get instances info
 export async function loader() {
-  const apiUrl =
-    process.env.IS_SELF_HOST === "1" ? process.env.API_URL_SELF_HOST : process.env.API_URL_EU1;
+  try {
+    const apiUrl =
+      process.env.IS_SELF_HOST === "1" ? process.env.API_URL_SELF_HOST : process.env.API_URL_EU1;
 
-  const data = await fetch(`${apiUrl}/instances`);
+    const data = await fetch(`${apiUrl}/instances`);
 
-  const instances = await data.json();
+    const instances = await data.json();
 
-  return { data: instances?.data || [] };
+    return { data: instances?.data || [], error: false };
+  } catch (error) {
+    return { data: null, error: true };
+  }
 }
 
 // Meta tags

@@ -41,6 +41,8 @@ const SettingsGeolocation = () => {
     form.setFieldValue("lat", data[0].lat);
     form.setFieldValue("lon", data[0].lon);
 
+    setGeolocation({ lat: data[0].lat, lon: data[0].lon });
+
     toast.show({ message: "Location updated", color: "green" });
 
     closeNominatim();

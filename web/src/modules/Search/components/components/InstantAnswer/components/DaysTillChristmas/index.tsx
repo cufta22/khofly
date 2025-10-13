@@ -39,7 +39,7 @@ const IADaysTillChristmas = () => {
         </Text>
       </Flex>
 
-      <Text size="sm" mt="md">
+      <Text size="sm" mt="md" c="dimmed">
         May be off by an hour because of{" "}
         <ExternalLink href="https://www.timeanddate.com/time/dst/about.html">DST</ExternalLink> :(
       </Text>
