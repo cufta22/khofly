@@ -89,7 +89,7 @@ general:
 
 search:
   safe_search: 0
-  autocomplete: ''
+  autocomplete: 'duckduckgo'
   formats:
     - html
     - json
@@ -104,31 +104,32 @@ server:
   # public URL of the instance, to ensure correct inbound links. Is overwritten
   # by $/{SEARXNG_URL}.
   # base_url: http://example.com/location
+  default_http_headers:
+    X-Content-Type-Options: nosniff
+    X-Download-Options: noopen
+    X-Robots-Tag: noindex, nofollow
+    Referrer-Policy: no-referrer
 
-  redis:
-  # URL to connect redis database. Is overwritten by $/{SEARXNG_REDIS_URL}.
-  url: unix:///usr/local/searxng-redis/run/redis.sock?db=0
-
-ui:
-  static_use_hash: true
+valkey:
+  # URL to connect valkey database. Is overwritten by $/{SEARXNG_VALKEY_URL}.
+  url: valkey://localhost:6379/0
 
 # preferences:
 #   lock:
 #     - autocomplete
 #     - method
 
-enabled_plugins:
-  - 'Hash plugin'
-  - 'Self Informations'
-  - 'Tracker URL remover'
-  - 'Ahmia blacklist'
-  # - 'Hostname replace'  # see hostname_replace configuration below
-  # - 'Open Access DOI rewrite'
-
-engines:
+# engines:
+#
 #   - name: fdroid
 #     disabled: false
-
+#
+#   - name: apk mirror
+#     disabled: false
+#
+#   - name: mediathekviewweb
+#     categories: TV
+#     disabled: false
 `;
 
 const CODE_CERTBOT = `

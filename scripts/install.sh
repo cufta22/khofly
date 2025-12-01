@@ -5,19 +5,19 @@ apt update && apt upgrade
 
 # Dependencies
 echo -e "\e[32m-- Installing all dependencies\e[0m"
-apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
+apt install git build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
 
 echo -e "\e[32m-- Installing yt-dlp\e[0m"
 curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/bin/yt-dlp
 chmod a+rx /usr/bin/yt-dlp
 
 echo -e "\e[32m-- Installing nvm\e[0m"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
-nvm install 22
+nvm install 25
 
 echo -e "\e[32m-- Installing pnpm\e[0m"
-curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=10.0.0 sh -
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 echo -e "\e[32m-- Installing pm2\e[0m"
 npm install pm2 -g
@@ -25,6 +25,13 @@ source ~/.bashrc
 
 echo -e "\e[32m-- Installing Bun\e[0m"
 curl -fsSL https://bun.sh/install | bash
+source ~/.bashrc
+
+# Clone git
+echo -e "\e[32m-- Cloning repo\e[0m"
+mkdir khofly
+cd khofly
+git clone https://github.com/cufta22/khofly.git .
 
 # Web
 echo -e "\e[32m-- Build and Run web client\e[0m"
@@ -35,14 +42,14 @@ pnpm run build
 echo "module.exports = {
   apps : [{
     name: 'web',
-    script: 'pnpm',
+    script: 'npm',
     args: 'run start',
     env: {
         PORT: 3001
     }
   }]
 };" > ecosystem.config.cjs
-pm2 start
+pm2 start ecosystem.config.cjs
 
 # Api
 echo -e "\e[32m-- Build and Run API\e[0m"

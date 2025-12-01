@@ -1,13 +1,8 @@
 {
   "instances": [
     {
-      "name": "Khofly - prod",
-      "url": "https://khofly.com",
-      "html": "Vanilla"
-    },
-    {
       "name": "Khofly - staging",
-      "url": "https://staging.khofly.com",
+      "url": "https://khofly.com",
       "html": "Vanilla"
     }
   ]

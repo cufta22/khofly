@@ -10,21 +10,26 @@ import classes from "./styles.module.scss";
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
-apt install nodejs npm build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
+apt install build-essential libssl-dev unzip nginx certbot python3-certbot-nginx ffmpeg
 `;
 
 const CODE_NVM = `
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.bashrc
-nvm install 22
+nvm install 25
 `;
 
 const CODE_PNPM = `
-curl -fsSL https://get.pnpm.io/install.sh | env PNPM_VERSION=10.0.0 sh -
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 `;
 
 const CODE_PM2 = `
 npm install pm2 -g
+source ~/.bashrc
+`;
+
+const CODE_BUN = `
+curl -fsSL https://bun.sh/install | bash
 source ~/.bashrc
 `;
 
@@ -55,10 +60,10 @@ pm2 start
 const CODE_ECOSYSTEM_FILE = `module.exports = {
   apps : [{
     name: 'web',
-    script: 'pnpm',
+    script: 'npm',
     args: 'run start',
     env: {
-        PORT: 3001
+        PORT: 3000
     }
   }]
 };
@@ -82,9 +87,9 @@ const CODE_NGINX_FILE = `server {
     root /root/web;
 
     location / {
-        # Proxy to pm2 server on 3001 for web
+        # Proxy to pm2 server on 3000 for web
 
-        proxy_pass http://localhost:3001;
+        proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -229,27 +234,32 @@ const SectionVPS = () => {
         <DocsCodeHighlight code={CODE_PM2} language="bash" />
       </Paper>
 
+      <DocsText>5. Install Bun</DocsText>
+      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+        <DocsCodeHighlight code={CODE_BUN} language="bash" />
+      </Paper>
+
       <DocsText>
-        5. Create an empty folder in your home directory, ex. <Code>mkdir khofly</Code>.
+        6. Create an empty folder in your home directory, ex. <Code>mkdir khofly</Code>.
       </DocsText>
 
       <DocsText>
-        6. <Code>cd khofly</Code> and type{" "}
+        7. <Code>cd khofly</Code> and type{" "}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
       <DocsText>
-        6.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
+        7.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
         frequent updates <Code>git fetch origin staging</Code> and{" "}
         <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
-      <DocsText>7. Build and run web client</DocsText>
+      <DocsText>8. Build and run web client</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_BUILD_WEB} language="bash" />
       </Paper>
 
-      <DocsText>8. Create the ecosystem.config file for pm2</DocsText>
+      <DocsText>9. Create the ecosystem.config file for pm2</DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_ECOSYSTEM} language="bash" />
       </Paper>
@@ -267,7 +277,7 @@ const SectionVPS = () => {
       </Paper>
 
       <DocsText>
-        9. Create Nginx config for web, don't forget to update the server_name to your domain name.
+        10. Create Nginx config for web, don't forget to update the server_name to your domain name.
       </DocsText>
       <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
         <DocsCodeHighlight code={CODE_NGINX} language="bash" />
@@ -286,11 +296,11 @@ const SectionVPS = () => {
       </Paper>
 
       <DocsText>
-        10. Add SSL certificate for your domain <Code>certbot --nginx</Code>
+        11. Add SSL certificate for your domain <Code>certbot --nginx</Code>
       </DocsText>
 
       <DocsText>
-        11. <Code>sudo systemctl reload nginx</Code>
+        12. <Code>sudo systemctl reload nginx</Code>
       </DocsText>
 
       <DocsSubtitle>Updating</DocsSubtitle>
