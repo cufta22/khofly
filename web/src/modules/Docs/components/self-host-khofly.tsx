@@ -3,18 +3,20 @@ import {
   IconAirBalloon,
   IconBrandCloudflare,
   IconBrandVercel,
+  IconPackage,
   IconServer,
 } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsWIP from "./wip";
+
 import SectionVercel from "./components/sefl-host-khofly/SectionVercel";
 import SectionFly from "./components/sefl-host-khofly/SectionFly";
 // import SectionCloudflare from "./components/sefl-host-khofly/SectionCloudflare";
-import SectionVPS from "./components/sefl-host-khofly/SectionVPS";
 import DocsNextPrev from "./common/DocsNextPrev";
 import { DOCS_CARD_DATA } from "./common/docsCardData";
 
 import classes from "./styles.module.scss";
+import SectionVPS from "./components/sefl-host-khofly/SectionVPS";
 
 const DocsSelfHostKhofly = () => {
   const theme = useMantineTheme();
@@ -75,6 +77,7 @@ const DocsSelfHostKhofly = () => {
         <Tabs.Panel value="vps">
           <SectionVPS />
         </Tabs.Panel>
+
         <Tabs.Panel value="vercel">
           <SectionVercel />
         </Tabs.Panel>

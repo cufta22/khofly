@@ -1,0 +1,29 @@
+[Unit]
+Description=Khofly Web
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=localhost/khofly-web:latest
+ContainerName=web
+PublishPort=127.0.0.1:3000:3000
+
+# Env
+EnvironmentFile=/home/khofly/khofly/web/.env.local
+
+# Security
+SecurityLabelDisable=false
+NoNewPrivileges=true
+DropCapability=ALL
+# AddCapability=NET_BIND_SERVICE
+ReadOnly=true
+Tmpfs=/tmp
+
+# Auto-restart
+Restart=always
+
+[Service]
+RestartSec=10s
+
+[Install]
+WantedBy=default.target

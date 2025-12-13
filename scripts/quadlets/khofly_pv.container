@@ -1,0 +1,29 @@
+[Unit]
+Description=Khofly PV
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=localhost/khofly-pv:latest
+ContainerName=api
+PublishPort=127.0.0.1:4001:4001
+
+# Env
+EnvironmentFile=/home/khofly/khofly/pv/.env.local
+
+# Security
+SecurityLabelDisable=false
+NoNewPrivileges=true
+DropCapability=ALL
+# AddCapability=NET_BIND_SERVICE
+ReadOnly=true
+Tmpfs=/tmp
+
+# Auto-restart
+Restart=always
+
+[Service]
+RestartSec=10s
+
+[Install]
+WantedBy=default.target
