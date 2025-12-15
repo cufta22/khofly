@@ -9,6 +9,11 @@ podman build -t localhost/khofly-pv:latest .
 # Reload systemd to pick up quadlet files
 systemctl --user daemon-reload
 
+# Additional stuff podman needs
+sudo apt install passt
+# List images
+podman images
+
 # Start services (systemd generates the actual service files from quadlets)
 systemctl --user start khofly-web.service
 systemctl --user start khofly-api.service
@@ -20,4 +25,5 @@ systemctl --user enable khofly-api.service
 systemctl --user enable khofly-pv.service
 
 # Make services persist when logged out
-loginctl enable-linger $USER
+# id - to get user id
+sudo loginctl enable-linger $USER

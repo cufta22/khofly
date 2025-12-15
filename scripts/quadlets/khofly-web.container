@@ -19,10 +19,9 @@ DropCapability=ALL
 ReadOnly=true
 Tmpfs=/tmp
 
+[Service]
 # Auto-restart
 Restart=always
-
-[Service]
 RestartSec=10s
 
 [Install]

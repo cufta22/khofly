@@ -1,15 +1,15 @@
 [Unit]
-Description=Khofly API
+Description=Khofly PV
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=localhost/khofly-api:latest
+Image=localhost/khofly-pv:latest
 ContainerName=api
-PublishPort=127.0.0.1:4000:4000
+PublishPort=127.0.0.1:4001:4001
 
 # Env
-EnvironmentFile=/home/khofly/khofly/api/.env.local
+EnvironmentFile=/home/khofly/khofly/pv/.env.local
 
 # Security
 SecurityLabelDisable=false
@@ -19,10 +19,9 @@ DropCapability=ALL
 ReadOnly=true
 Tmpfs=/tmp
 
+[Service]
 # Auto-restart
 Restart=always
-
-[Service]
 RestartSec=10s
 
 [Install]
