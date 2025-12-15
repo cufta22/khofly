@@ -10,9 +10,11 @@ podman build -t localhost/khofly-pv:latest .
 systemctl --user daemon-reload
 
 # Additional stuff podman needs
-sudo apt install passt
+sudo apt install passt uidmap
 # List images
 podman images
+# Remove dangling images
+podman images prune
 
 # Start services (systemd generates the actual service files from quadlets)
 systemctl --user start khofly-web.service
