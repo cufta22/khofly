@@ -16,7 +16,7 @@ RUN groupadd -g 1001 userpv && \
 WORKDIR /app/pv
 
 # Copy files from build stage
-COPY --from=build-stage /usr/local/bun-cache /usr/local/bun-cache
+# COPY --from=build-stage /usr/local/bun-cache /usr/local/bun-cache
 COPY --from=build-stage /app/pv/node_modules ./node_modules
 COPY --from=build-stage /app/pv/package.json ./package.json
 COPY --from=build-stage /app/pv/src ./src

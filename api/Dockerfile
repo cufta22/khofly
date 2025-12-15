@@ -37,7 +37,7 @@ COPY --from=build-stage /usr/local/bin/yt-dlp /usr/local/bin/yt-dlp
 COPY --from=build-stage /usr/local/bin/gallery-dl /usr/local/bin/gallery-dl
 
 # Copy files from build stage
-COPY --from=build-stage /usr/local/bun-cache /usr/local/bun-cache
+# COPY --from=build-stage /usr/local/bun-cache /usr/local/bun-cache
 COPY --from=build-stage /app/api/node_modules ./node_modules
 COPY --from=build-stage /app/api/package.json ./package.json
 COPY --from=build-stage /app/api/src ./src
