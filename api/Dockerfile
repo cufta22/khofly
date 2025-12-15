@@ -28,6 +28,11 @@ RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o 
 RUN curl -L https://github.com/mikf/gallery-dl/releases/latest/download/gallery-dl.bin -o /usr/local/bin/gallery-dl && \
     chmod a+rx /usr/local/bin/gallery-dl
 
+# Remove unnecessary stuff
+RUN apt-get remove -y curl && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copy files from build stage
 # COPY --from=build-stage /usr/local/bun-cache /usr/local/bun-cache
 COPY --from=build-stage /app/api/node_modules ./node_modules
