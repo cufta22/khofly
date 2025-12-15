@@ -23,8 +23,8 @@ COPY . .
 # Stage 2: Production Runtime
 FROM docker.io/oven/bun:debian AS final-stage
 
-RUN addgroup --gid 1001 userapi && \
-    adduser --uid 1001 --ingroup userapi --shell /bin/false --disabled-password userapi
+RUN groupadd -g 1001 userapi && \
+    useradd -u 1001 -g userapi -s /bin/false -M userapi
 
 WORKDIR /app/api
 

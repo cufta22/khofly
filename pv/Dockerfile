@@ -10,8 +10,8 @@ COPY . .
 # Stage 2: Production Runtime
 FROM docker.io/oven/bun:debian AS final-stage
 
-RUN addgroup --gid 1001 userpv && \
-    adduser --uid 1001 --ingroup userpv --shell /bin/false --disabled-password userpv
+RUN groupadd -g 1001 userpv && \
+    useradd -u 1001 -g userpv -s /bin/false -M userpv
 
 WORKDIR /app/pv
 
