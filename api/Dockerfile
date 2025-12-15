@@ -1,5 +1,5 @@
 # Stage 1: Install & Build
-FROM docker.io/oven/bun:latest AS build-stage
+FROM docker.io/oven/bun:debian AS build-stage
 
 # Install dependencies needed for stuff below
 RUN apt-get update && \
@@ -21,7 +21,7 @@ RUN bun install
 COPY . .
 
 # Stage 2: Production Runtime
-FROM docker.io/oven/bun:slim AS final-stage
+FROM docker.io/oven/bun:debian AS final-stage
 
 RUN addgroup --gid 1001 userapi && \
     adduser --uid 1001 --ingroup userapi --shell /bin/false --disabled-password userapi
