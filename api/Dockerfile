@@ -1,19 +1,6 @@
 # Stage 1: Install & Build
 FROM docker.io/oven/bun:debian AS build-stage
 
-# Install dependencies needed for stuff below
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates ffmpeg curl && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install yt-dlp as dependency
-RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && \
-    chmod a+rx /usr/local/bin/yt-dlp
-
-# Install gallery-dl as dependency
-RUN curl -L https://github.com/mikf/gallery-dl/releases/latest/download/gallery-dl.bin -o /usr/local/bin/gallery-dl && \
-    chmod a+rx /usr/local/bin/gallery-dl
-
 WORKDIR /app/api
 
 COPY package.json ./
@@ -28,13 +15,18 @@ RUN groupadd -g 1001 userapi && \
 
 WORKDIR /app/api
 
-# Copy yt-dlp and it's dependencies
-COPY --from=build-stage /usr/bin/ffmpeg /usr/bin/ffmpeg
-COPY --from=build-stage /usr/lib/x86_64-linux-gnu/lib* /usr/lib/x86_64-linux-gnu/
-COPY --from=build-stage /usr/local/bin/yt-dlp /usr/local/bin/yt-dlp
+# Install dependencies needed for stuff below
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates ffmpeg curl && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy gallery-dl and it's dependencies
-COPY --from=build-stage /usr/local/bin/gallery-dl /usr/local/bin/gallery-dl
+# Install yt-dlp as dependency
+RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && \
+    chmod a+rx /usr/local/bin/yt-dlp
+
+# Install gallery-dl as dependency
+RUN curl -L https://github.com/mikf/gallery-dl/releases/latest/download/gallery-dl.bin -o /usr/local/bin/gallery-dl && \
+    chmod a+rx /usr/local/bin/gallery-dl
 
 # Copy files from build stage
 # COPY --from=build-stage /usr/local/bun-cache /usr/local/bun-cache
