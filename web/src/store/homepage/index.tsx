@@ -1,5 +1,6 @@
+import { cookieStorage } from "@store/cookieStorage";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export interface IShortcut {
   type: "item" | "group";
@@ -135,13 +136,13 @@ export const useHomepageStore = create<HomepageState>()(
       // setClockPosition: (next) => set({ clockPosition: next }),
     }),
     {
+      name: "homepage-store", // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.hydrated = true;
         }
       },
-      name: "homepage-store", // name of the item in the storage (must be unique)
-      // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
         wallpaper: state.wallpaper,
 
@@ -159,6 +160,6 @@ export const useHomepageStore = create<HomepageState>()(
 
         displayClock: state.displayClock,
       }),
-    }
-  )
+    },
+  ),
 );

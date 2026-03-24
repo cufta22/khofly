@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button, Center, Flex, Stack, Text } from "@mantine/core";
+import { useEffect } from "react";
+import { Center, Flex, Stack, Text } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import ScrollToTop from "../../../../common/components/ScrollToTop";
@@ -9,10 +9,11 @@ import Infobox from "../components/Infobox";
 import SearchOptions from "../components/SearchOptions";
 import { useEnginesStore } from "@store/engines";
 import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
-import { ICategories, useSettingsStore } from "@store/settings";
+import { ICategories } from "@store/settings";
 import type {
   ISearXNGResultsGeneral,
   ISearXNGResultsImages,
+  ISearXNGResultsShared,
   ISearXNGResultsVideos,
 } from "@ts/searxng.types";
 import Lyricsbox from "../components/Lyricsbox";
@@ -20,29 +21,39 @@ import Lyricsbox from "../components/Lyricsbox";
 import AISummary from "../components/AISummary";
 import { useCurrentDomains } from "./hooks/use-current-domains";
 import LayoutGeneral from "./layouts/LayoutGeneral";
-import SkeletonCommon from "./components/SkeletonCommon";
 import AIAnswer from "../components/AIAnswer";
 import InstantAnswer from "../components/InstantAnswer";
 import LayoutImages from "./layouts/LayoutImages";
-import ImageView from "../components/ImageView";
-import { useDisclosure } from "@mantine/hooks";
 import clsx from "clsx";
 import LayoutVideos from "./layouts/LayoutVideos";
 import ButtonLoadMore from "./components/ButtonLoadMore";
 import LayoutCommon from "./layouts/LayoutCommon";
+import { type ILoaderData_Search } from "app/routes/search";
+import { useSWRConfig } from "swr";
 
 interface Props {
   tab: ICategories;
+  loaderData: ILoaderData_Search;
 }
 
-const TabCommon: React.FC<Props> = ({ tab }) => {
+const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
   const hydratedEngines = useEnginesStore((state) => state.hydrated);
 
-  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR<any>();
+  const { data, error, isLoading, isValidating, size, setSize, mutate } = useSearXNGSWR({
+    initialPageData: loaderData.data,
+    initialTab: tab,
+  });
+
+  const { cache } = useSWRConfig();
+
+  console.log("Current SWR Keys:", Array.from(cache.keys()));
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
-    if (!data?.length && hydratedEngines) {
+    // Run mutate if loaderData ends up empty
+    if (!data?.length && hydratedEngines && !loaderData) {
+      console.log("mutate(); called");
+
       mutate();
     }
   }, [hydratedEngines]);
@@ -50,37 +61,33 @@ const TabCommon: React.FC<Props> = ({ tab }) => {
   // Update current domains for organize
   useCurrentDomains(data || [], tab);
 
-  const isRateLimit = data?.includes("Too Many Requests" as any);
-
   // -----------------------------------------------------------------------------
   // Render logic
   // -----------------------------------------------------------------------------
   const renderLayout = () => {
-    const dataToUse = isLoading || isValidating || !hydratedEngines ? [] : data;
-
     switch (tab) {
       case "general":
         return (
           <LayoutGeneral
             tab={tab}
-            data={dataToUse || []}
-            showSkeleton={isLoading || isValidating || !hydratedEngines}
+            data={(data as ISearXNGResultsGeneral[]) || []}
+            showSkeleton={isLoading || isValidating}
           />
         );
       case "images":
         return (
           <LayoutImages
             tab={tab}
-            data={(dataToUse as ISearXNGResultsImages[]) || []}
-            showSkeleton={isLoading || isValidating || !hydratedEngines}
+            data={(data as ISearXNGResultsImages[]) || []}
+            showSkeleton={isLoading || isValidating}
           />
         );
       case "videos":
         return (
           <LayoutVideos
             tab={tab}
-            data={(dataToUse as ISearXNGResultsVideos[]) || []}
-            showSkeleton={isLoading || isValidating || !hydratedEngines}
+            data={(data as ISearXNGResultsVideos[]) || []}
+            showSkeleton={isLoading || isValidating}
           />
         );
 
@@ -88,12 +95,30 @@ const TabCommon: React.FC<Props> = ({ tab }) => {
         return (
           <LayoutCommon
             tab={tab}
-            data={(data as ISearXNGResultsVideos[]) || []}
-            showSkeleton={isLoading || isValidating || !hydratedEngines}
+            data={(data as ISearXNGResultsShared[]) || []}
+            showSkeleton={isLoading || isValidating}
           />
         );
     }
   };
+
+  // Render conditions
+  const isProcessing = isLoading || isValidating;
+  const firstPage = data?.[0];
+  const hasResults = !!((firstPage?.results?.length ?? 0) > 0);
+  const isRateLimit = data?.includes("Too Many Requests" as any);
+
+  const showSuggestions =
+    !isProcessing && !isRateLimit && firstPage && !!firstPage?.suggestions?.length;
+  const showUnresponsive =
+    !isProcessing && !isRateLimit && firstPage && !!firstPage?.unresponsive_engines?.length;
+  const showInfoboxes =
+    !isProcessing && !isRateLimit && firstPage && !!firstPage?.infoboxes?.length;
+  const showNoResults = !isProcessing && !isRateLimit && firstPage && !hasResults;
+  const showLoadMoreButton = !isProcessing && !isRateLimit && firstPage && hasResults;
+
+  // Everything but images and videos because of the layout
+  const hasInfoboxes = !["images", "videos"].includes(tab);
 
   return (
     <Flex
@@ -110,7 +135,7 @@ const TabCommon: React.FC<Props> = ({ tab }) => {
           ].includes(tab),
         },
         { [classes.tab_images]: tab === "images" },
-        { [classes.tab_videos]: tab === "videos" }
+        { [classes.tab_videos]: tab === "videos" },
       )}
       align="flex-start"
     >
@@ -135,7 +160,7 @@ const TabCommon: React.FC<Props> = ({ tab }) => {
               ].includes(tab),
             },
             { [classes.search_options_images]: tab === "images" },
-            { [classes.search_options_videos]: tab === "videos" }
+            { [classes.search_options_videos]: tab === "videos" },
           )}
         />
 
@@ -148,66 +173,45 @@ const TabCommon: React.FC<Props> = ({ tab }) => {
         {/* Layout based on current tab */}
         {renderLayout()}
 
-        {error && (
-          // Error state
-          <Text>An error has occurred</Text>
-        )}
-
-        {data?.[0]?.suggestions?.length && !isLoading && !isValidating ? (
+        {showSuggestions ? (
           <Suggestions suggestions={data?.[0]?.suggestions} type="search" />
         ) : null}
 
+        {error && (
+          <Text ta="center" py="xs">
+            An error has occurred
+          </Text>
+        )}
+
         {isRateLimit && (
-          // Rate limit
-          <Text>Too Many Requests</Text>
+          <Text ta="center" py="xs">
+            Too Many Requests
+          </Text>
         )}
 
-        {!isLoading &&
-          !isValidating &&
-          data &&
-          data?.length >= 1 &&
-          data?.[0]?.results?.length < 1 &&
-          !isRateLimit && <Center py="xs">No results, try with different query</Center>}
-
-        {!isLoading &&
-          !isValidating &&
-          data &&
-          data?.length >= 1 &&
-          data?.[0]?.results?.length >= 1 &&
-          !isRateLimit && <ButtonLoadMore tab={tab} onClick={() => setSize(size + 1)} />}
-
-        {["general", "news", "music", "it", "science", "files", "social_media"].includes(tab) && (
-          <ScrollToTop />
+        {showNoResults && (
+          <Text ta="center" py="xs">
+            No results, try with different query
+          </Text>
         )}
+
+        {showLoadMoreButton && <ButtonLoadMore tab={tab} onClick={() => setSize(size + 1)} />}
+
+        {hasInfoboxes && <ScrollToTop />}
       </Stack>
 
       {/* Infoboxes */}
-      <Flex direction="column" gap="xl" pt="xl">
-        {["general"].includes(tab) &&
-          !isLoading &&
-          !isValidating &&
-          !isRateLimit &&
-          data &&
-          data?.[0]?.infoboxes?.length >= 1 && <Infobox {...data[0].infoboxes[0]} />}
+      {hasInfoboxes && (
+        <Flex direction="column" gap="xl" pt="xl">
+          {showInfoboxes && <Infobox {...data[0].infoboxes[0]} />}
 
-        {["general", "music"].includes(tab) && <Lyricsbox />}
+          {<Lyricsbox />}
 
-        {["general", "news", "music", "it", "science", "files", "social_media"].includes(tab) &&
-          !isLoading &&
-          !isValidating &&
-          !isRateLimit &&
-          data &&
-          data?.[0]?.unresponsive_engines?.length >= 1 && (
+          {showUnresponsive && (
             <UnresponsiveInfobox unresponsive_engines={data?.[0]?.unresponsive_engines} />
           )}
-
-        {["general", "news", "music", "it", "science", "files", "social_media"].includes(tab) &&
-        data?.[0]?.suggestions?.length &&
-        !isLoading &&
-        !isValidating ? (
-          <Suggestions suggestions={data?.[0]?.suggestions} type="infobox" />
-        ) : null}
-      </Flex>
+        </Flex>
+      )}
 
       {/* AI Summary */}
       {["general"].includes(tab) && <AISummary />}

@@ -1,6 +1,7 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { DEFAULT_ENGINES } from "./default_engines";
+import { cookieStorage } from "@store/cookieStorage";
 
 export type IGeneralEngines =
   | "dictzone"
@@ -247,12 +248,13 @@ export const useEnginesStore = create<EnginesState>()(
       setEnginesOther: (next) => set({ enginesOther: next }),
     }),
     {
+      name: "engines-store", // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.hydrated = true;
         }
       },
-      name: "engines-store", // name of the item in the storage (must be unique)
       partialize: (state) => ({
         enginesGeneral: state.enginesGeneral,
         enginesImages: state.enginesImages,
@@ -265,6 +267,6 @@ export const useEnginesStore = create<EnginesState>()(
         enginesSocialMedia: state.enginesSocialMedia,
         enginesOther: state.enginesOther,
       }),
-    }
-  )
+    },
+  ),
 );

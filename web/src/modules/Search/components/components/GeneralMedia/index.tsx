@@ -1,12 +1,19 @@
 import useSearchQuery from "@hooks/use-search-query";
-import { Avatar, Button, Divider, Flex, Grid, Image, Stack, Text } from "@mantine/core";
+import {
+  Avatar,
+  Button,
+  Center,
+  Divider,
+  Flex,
+  Grid,
+  Image,
+  Paper,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { useSettingsStore } from "@store/settings";
 import { IconPhoto, IconPlayerPlay, IconPlayerPlayFilled } from "@tabler/icons-react";
-import type {
-  ISearXNGResultsBlank,
-  ISearXNGResultsImages,
-  ISearXNGResultsVideos,
-} from "@ts/searxng.types";
+import type { ISearXNGResultsShared } from "@ts/searxng.types";
 import { useEffect } from "react";
 import useSearXNGSWR from "src/api/searxng/use-searxng-query";
 
@@ -15,6 +22,7 @@ import { nprogress } from "@mantine/nprogress";
 import { useEnginesStore } from "@store/engines";
 import { useNavigate } from "react-router";
 import { useResponsive } from "@hooks/use-responsive";
+import { getIconStyle } from "@utils/functions/iconStyle";
 
 const GeneralMedia = () => {
   const generalMedia = useSettingsStore((state) => state.generalMedia);
@@ -24,7 +32,10 @@ const GeneralMedia = () => {
 
   const isSm = useResponsive("max", "sm");
 
-  const { data, mutate } = useSearXNGSWR<ISearXNGResultsBlank>(generalMedia.type);
+  const { data, mutate } = useSearXNGSWR({
+    initialPageData: null,
+    initialTab: generalMedia.type,
+  });
 
   const navigate = useNavigate();
   const q = useSearchQuery();
@@ -64,16 +75,24 @@ const GeneralMedia = () => {
 
             return res?.results
               .slice(0, isSm ? 4 : 10)
-              .map((img: ISearXNGResultsImages["results"][0], i: number) => (
+              .map((img: ISearXNGResultsShared["results"][0], i: number) => (
                 <Grid.Col key={i} span={1}>
-                  <Image
-                    className={classes.general_media_img}
-                    h={150}
-                    w="100%"
-                    radius="xs"
-                    src={img?.thumbnail_src}
-                    onClick={() => handleOpenMedia(img?.img_src || "")}
-                  />
+                  {img?.thumbnail_src ? (
+                    <Image
+                      className={classes.general_media_img}
+                      h={150}
+                      w="100%"
+                      radius="xs"
+                      src={img?.thumbnail_src}
+                      onClick={() => handleOpenMedia(img?.img_src || "")}
+                    />
+                  ) : (
+                    <Paper className={classes.general_media_img} h={150} w="100%" radius="xs">
+                      <Center h="100%">
+                        <IconPhoto style={getIconStyle(42)} />
+                      </Center>
+                    </Paper>
+                  )}
                 </Grid.Col>
               ));
           })}
@@ -87,22 +106,30 @@ const GeneralMedia = () => {
 
             return res?.results
               .slice(0, isSm ? 4 : 8)
-              .map((img: ISearXNGResultsVideos["results"][0], i: number) => (
+              .map((img: ISearXNGResultsShared["results"][0], i: number) => (
                 <Grid.Col key={i} span={1}>
-                  <div className={classes.general_media_vid}>
-                    <Image
-                      className={classes.image}
-                      // h={150}
-                      // w="100%"
-                      radius="xs"
-                      src={img?.thumbnail}
-                      onClick={() => handleOpenMedia("")}
-                    />
+                  {img?.thumbnail ? (
+                    <div className={classes.general_media_vid}>
+                      <Image
+                        className={classes.image}
+                        // h={150}
+                        // w="100%"
+                        radius="xs"
+                        src={img?.thumbnail}
+                        onClick={() => handleOpenMedia("")}
+                      />
 
-                    <Avatar className={classes.play_icon} variant="filled" color="dark.5">
-                      <IconPlayerPlayFilled />
-                    </Avatar>
-                  </div>
+                      <Avatar className={classes.play_icon} variant="filled" color="dark.5">
+                        <IconPlayerPlayFilled />
+                      </Avatar>
+                    </div>
+                  ) : (
+                    <Paper className={classes.general_media_img} h={150} w="100%" radius="xs">
+                      <Center h="100%">
+                        <IconPlayerPlayFilled style={getIconStyle(42)} />
+                      </Center>
+                    </Paper>
+                  )}
                 </Grid.Col>
               ));
           })}

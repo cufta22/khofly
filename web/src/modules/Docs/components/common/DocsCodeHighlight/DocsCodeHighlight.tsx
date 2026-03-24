@@ -19,9 +19,7 @@ import clsx from "clsx";
 export type CodeHighlightStylesNames = "root" | "code" | "pre" | "copy";
 
 export interface CodeHighlightProps
-  extends BoxProps,
-    StylesApiProps<CodeHighlightFactory>,
-    ElementProps<"div"> {
+  extends BoxProps, StylesApiProps<CodeHighlightFactory>, ElementProps<"div"> {
   code: string;
   language: string;
   withCopyButton?: boolean;
@@ -65,7 +63,7 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   const highlighted = hljs.highlight(code.trim(), { language }).value;
 
   return (
-    <Box className={clsx(classes.root, themeClasses.theme)} {...others} dir="ltr">
+    <Box className={clsx(classes.root, themeClasses.theme, className)} {...others} dir="ltr">
       {withCopyButton && (
         <CopyButton value={code.trim()}>
           {({ copied, copy }) => (
@@ -78,7 +76,7 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
         </CopyButton>
       )}
 
-      <ScrollArea type="hover" dir="ltr" offsetScrollbars={false}>
+      <ScrollArea className={className} type="hover" dir="ltr" offsetScrollbars={false}>
         <pre className={classes.pre}>
           <code className={classes.code} dangerouslySetInnerHTML={{ __html: highlighted }} />
         </pre>

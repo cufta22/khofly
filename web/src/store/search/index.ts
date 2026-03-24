@@ -1,5 +1,6 @@
+import { cookieStorage } from "@store/cookieStorage";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export type ISearchLang = "all" | "auto" | string;
 
@@ -78,17 +79,17 @@ export const useSearchStore = create<SearchState>()(
       setAISummaryURL: (next) => set({ aiSummaryURL: next }),
     }),
     {
+      name: "search-store", // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.hydrated = true;
         }
       },
-      name: "search-store", // name of the item in the storage (must be unique)
-      // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
         domainsPriority: state.domainsPriority,
         domainsBlacklist: state.domainsBlacklist,
       }),
-    }
-  )
+    },
+  ),
 );

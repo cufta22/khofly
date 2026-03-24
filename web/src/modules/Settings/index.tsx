@@ -1,12 +1,21 @@
 import { Container, Space, Tabs } from "@mantine/core";
 import classes from "./styles.module.scss";
-import { IconBrowser, IconBrush, IconLink, IconRadar, IconSettings2 } from "@tabler/icons-react";
+import {
+  IconBrowser,
+  IconBrush,
+  IconCookie,
+  IconLink,
+  IconRadar,
+  IconSettings2,
+} from "@tabler/icons-react";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 import SettingsGeneral from "./components/_general/General";
-import SettingsAI from "./components/_general/AI";
+// import SettingsAI from "./components/_general/AI";
+import SettingsGeolocation from "./components/_general/Geolocation";
 
 import SettingsCategories from "./components/_interface/Categories";
 import SettingsInterface from "./components/_interface/Interface";
@@ -23,8 +32,8 @@ import SettingsEngines from "./components/_engines/Engines";
 import SettingsShortcuts from "./components/_homepage/Shortcuts";
 import SettingsWidgets from "./components/_homepage/Widgets";
 import SettingsWallpaper from "./components/_homepage/Wallpaper";
-import { useTranslate } from "@hooks/translate/use-translate";
-import SettingsGeolocation from "./components/_general/Geolocation";
+
+import SettingsCookies from "./components/_cookies/Cookies";
 
 const PageSettings = () => {
   const t = useTranslate();
@@ -63,6 +72,9 @@ const PageSettings = () => {
             {t("pages.settings._common.engines")}
           </Tabs.Tab>
           <Tabs.Tab value="homepage" leftSection={<IconBrowser style={getIconStyle(20)} />}>
+            {t("pages.settings._common.homepage")}
+          </Tabs.Tab>
+          <Tabs.Tab value="cookies" leftSection={<IconCookie style={getIconStyle(20)} />}>
             {t("pages.settings._common.homepage")}
           </Tabs.Tab>
         </Tabs.List>
@@ -105,6 +117,10 @@ const PageSettings = () => {
           <SettingsShortcuts />
           <Space h={40} />
           <SettingsWidgets />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="cookies">
+          <SettingsCookies />
         </Tabs.Panel>
       </Tabs>
     </Container>

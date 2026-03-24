@@ -1,5 +1,6 @@
+import { cookieStorage } from "@store/cookieStorage";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export type IWeatherSource = "owm" | "om";
 
@@ -45,18 +46,19 @@ export const useInstanceStore = create<InstanceState>()(
       setWorkerDomain: (domain) => set({ workerDomain: domain }),
     }),
     {
+      name: "instance-store", // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.hydrated = true;
         }
       },
-      name: "instance-store", // name of the item in the storage (must be unique)
       partialize: (state) => ({
         searXNGDomain: state.searXNGDomain,
         apiDomain: state.apiDomain,
         nominatimDomain: state.nominatimDomain,
         workerDomain: state.workerDomain,
       }),
-    }
-  )
+    },
+  ),
 );

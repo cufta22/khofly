@@ -1,6 +1,6 @@
 import { Code, Container, useMantineTheme } from "@mantine/core";
 import DocsTitle from "./common/DocsTitle";
-import { IconCookie, IconLayoutRows } from "@tabler/icons-react";
+import { IconCookie } from "@tabler/icons-react";
 import { getIconStyle } from "@utils/functions/iconStyle";
 import DocsSubtitle from "./common/DocsSubtitle";
 import DocsText from "./common/DocsText";
@@ -37,6 +37,10 @@ const DocsResourcesSiteData = () => {
       </DocsSubtitle>
 
       <DocsText>
+        These are stored in a cookie because they are important for server-side rendering.
+      </DocsText>
+
+      <DocsText>
         <Code>khofly-language</Code>: if you change the app language in settings it will be saved in
         a cookie.
       </DocsText>
@@ -51,54 +55,41 @@ const DocsResourcesSiteData = () => {
         saved in a cookie.
       </DocsText>
 
-      <DocsText>
-        These are stored in a cookie because they are important for server-side rendering.
-      </DocsText>
-
-      <DocsSubtitle
-        leftSection={<IconLayoutRows style={getIconStyle(36)} color={theme.colors.blue[5]} />}
-      >
-        LocalStorage
-      </DocsSubtitle>
+      <DocsText>Values persisted in zustand store:</DocsText>
 
       <DocsText>
-        <Code>aichat-store</Code>: selected model and provider for AI Chat.
+        <Code>khofly-aichat-store</Code>: selected model and provider for AI Chat.
       </DocsText>
 
       <DocsText>
-        <Code>engines-store</Code>: search engines selected in settings that are passed to SearXNG
-        API.
+        <Code>khofly-engines-store</Code>: search engines selected in settings that are passed to
+        SearXNG API.
       </DocsText>
 
       <DocsText>
-        <Code>general-store</Code>: saves geolocation data for Weather Instant Answer so that it
-        doesn't prompt for location access every time it is used. Only gets saved once user gives
+        <Code>khofly-general-store</Code>: saves geolocation data for Weather Instant Answer so that
+        it doesn't prompt for location access every time it is used. Only gets saved once user gives
         permission for location access.
       </DocsText>
 
       <DocsText>
-        <Code>homepage-startpage</Code>: homepage store for settings options like wallpaper,
+        <Code>khofly-homepage-startpage</Code>: homepage store for settings options like wallpaper,
         shortcuts, widgets, etc.
       </DocsText>
 
       <DocsText>
-        <Code>instance-store</Code>: domains for all instances ( SearXNG, API, Nominatim, etc. )
-        that Khofly uses.
+        <Code>khofly-instance-store</Code>: domains for all instances ( SearXNG, API, Nominatim,
+        etc. ) that Khofly uses.
       </DocsText>
 
       <DocsText>
-        <Code>search-store</Code>: search settings like safe search, search language, date range,
-        visited links, etc.
+        <Code>khofly-search-store</Code>: search settings like safe search, search language, date
+        range, visited links, etc.
       </DocsText>
 
       <DocsText>
-        <Code>settings-store</Code>: general store for settings options like autocomplete, display
-        favicons, open in new tab, etc.
-      </DocsText>
-
-      <DocsText>
-        These are persisted in local storage by zustand because they are "not so" important for
-        server-side rendering.
+        <Code>khofly-settings-store</Code>: general store for settings options like autocomplete,
+        display favicons, open in new tab, etc.
       </DocsText>
 
       <DocsNextPrev

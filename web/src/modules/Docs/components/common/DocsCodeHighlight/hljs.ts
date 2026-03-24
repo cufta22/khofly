@@ -6,6 +6,7 @@ import nginx from "highlight.js/lib/languages/nginx";
 import yaml from "highlight.js/lib/languages/yaml";
 import dockerfile from "highlight.js/lib/languages/dockerfile";
 import javascript from "highlight.js/lib/languages/javascript";
+import json from "highlight.js/lib/languages/json";
 
 // For /docs
 hljs.registerLanguage("bash", bash);
@@ -13,5 +14,6 @@ hljs.registerLanguage("nginx", nginx);
 hljs.registerLanguage("yaml", yaml);
 hljs.registerLanguage("dockerfile", dockerfile);
 hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("json", json);
 
 export default hljs;

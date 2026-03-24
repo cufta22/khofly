@@ -1,6 +1,7 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import type { IAIChatMessage } from "@ts/chat.types";
+import { cookieStorage } from "@store/cookieStorage";
 
 export type IAIProvider = "" | "cf" | "google";
 
@@ -85,7 +86,7 @@ export const useAIChatStore = create<AIChatState>()(
                   content: msg.content + next.content,
                   isGenerating: next.isGenerating,
                 }
-              : msg
+              : msg,
           ),
         });
       },
@@ -94,25 +95,25 @@ export const useAIChatStore = create<AIChatState>()(
 
         set({
           chat: current.chat.map((msg) =>
-            msg.isGenerating ? { ...msg, isGenerating: false } : msg
+            msg.isGenerating ? { ...msg, isGenerating: false } : msg,
           ),
         });
       },
     }),
     {
+      name: "aichat-store", // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.hydrated = true;
         }
       },
-      name: "aichat-store", // name of the item in the storage (must be unique)
-      // storage: createJSONStorage(() => cookieStorage), // Test for SSR
       partialize: (state) => ({
         provider: state.provider,
         model: state.model,
         configUpdated: state.configUpdated,
         config: state.config,
       }),
-    }
-  )
+    },
+  ),
 );

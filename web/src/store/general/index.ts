@@ -1,5 +1,6 @@
+import { cookieStorage } from "@store/cookieStorage";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface GeneralState {
   hydrated: boolean;
@@ -20,19 +21,20 @@ export const useGeneralStore = create<GeneralState>()(
       // geolocation: { lat: "48.85661400", lon: "2.35222190" }, // Paris, for testing
       setGeolocation: (next) => set({ geolocation: next }),
 
-      devMode: false,
+      devMode: false, // Kinda unused
       setDevMode: (next) => set({ devMode: next }),
     }),
     {
+      name: "general-store", // name of the item in the storage (must be unique)
+      storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.hydrated = true;
         }
       },
-      name: "general-store", // name of the item in the storage (must be unique)
       partialize: (state) => ({
         geolocation: state.geolocation,
       }),
-    }
-  )
+    },
+  ),
 );

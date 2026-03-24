@@ -23,6 +23,8 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
   return (
     <>
       {data?.map((res, i) => {
+        console.log(`res?.results?.length: ${res?.results?.length}`);
+
         if (typeof res === "string") return;
 
         if (!res?.results) return;
@@ -36,11 +38,11 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
           .sort((a, b) => {
             // Check if URL a is in priority domains
             const aIsPriority = domainsPriority.some((domain) =>
-              a.parsed_url?.[1]?.includes(domain)
+              a.parsed_url?.[1]?.includes(domain),
             );
             // Check if URL b is in priority domains
             const bIsPriority = domainsPriority.some((domain) =>
-              b.parsed_url?.[1]?.includes(domain)
+              b.parsed_url?.[1]?.includes(domain),
             );
 
             if (aIsPriority && !bIsPriority) {

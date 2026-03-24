@@ -203,6 +203,7 @@ export interface ISearXNGResultsScience extends ISearXNGResultsCommon {
   }>;
 }
 
+// Files tab
 export interface ISearXNGResultsFiles extends ISearXNGResultsCommon {
   results: Array<{
     // common

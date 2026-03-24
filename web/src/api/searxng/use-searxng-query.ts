@@ -8,6 +8,7 @@ import { useInstanceStore } from "@store/instance";
 import { type IOtherEngines, useEnginesStore } from "@store/engines";
 import type { ICategories } from "@store/settings";
 import useToast from "@hooks/use-toast";
+import { ISearXNGResultsShared } from "@ts/searxng.types";
 
 const getKey = (
   pageIndex: number,
@@ -18,7 +19,7 @@ const getKey = (
   enginesOther: IOtherEngines[],
   safeSearch: ISafeSearch,
   dateRange: IDateRange,
-  searchLanguage: ISearchLang
+  searchLanguage: ISearchLang,
 ) => {
   if (previousPageData && !previousPageData?.results?.length) return null; // reached the end
   if (!q) return null; // prevent empty search
@@ -35,12 +36,19 @@ const getKey = (
   const langParam = searchLanguage === "all" ? "" : `&language=${searchLanguage}`;
 
   // SWR key
-  return `/search?q=${engineBangs}${query}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
+  return `/search?q=${engineBangs}${query}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}&format=json`;
 };
 
-const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
+interface Args {
+  initialPageData: ISearXNGResultsShared | null;
+  initialTab: ICategories;
+}
+
+const useSearXNGSWR = (args: Args) => {
   const { fetchData } = useFetch();
   const { toast } = useToast();
+
+  const { initialPageData, initialTab } = args;
 
   const searXNGDomain = useInstanceStore((state) => state.searXNGDomain);
 
@@ -65,7 +73,7 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
   const tab = initialTab || (searchParams.get("tab") as ICategories) || "general";
 
   const fetcher = (key: string) => {
-    return fetchData(`${searXNGDomain}${key}&format=json`) as Promise<IResults>;
+    return fetchData(`${searXNGDomain}${key}`) as Promise<ISearXNGResultsShared>;
   };
 
   const enginesSelected = {
@@ -83,7 +91,7 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
     maps: [], // Unused
   }[tab];
 
-  return useSWRInfinite<IResults>(
+  return useSWRInfinite<ISearXNGResultsShared>(
     (idx, prev) =>
       getKey(
         idx,
@@ -94,15 +102,16 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
         enginesOther,
         safeSearch,
         dateRange,
-        searchLanguage
+        searchLanguage,
       ),
     fetcher,
     {
-      // populateCache
       revalidateOnMount: false,
       revalidateOnFocus: false,
-      revalidateFirstPage: false,
       keepPreviousData: false,
+
+      fallbackData: initialPageData ? [initialPageData] : [],
+      revalidateFirstPage: false,
 
       // Error handling
       onError() {
@@ -112,7 +121,7 @@ const useSearXNGSWR = <IResults>(initialTab?: ICategories) => {
           color: "red",
         });
       },
-    }
+    },
   );
 };
 
