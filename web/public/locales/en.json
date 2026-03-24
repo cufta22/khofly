@@ -377,6 +377,7 @@
         "toggle_shortcuts": "Display shortcuts on start page",
         "toggle_open_in_new_tab": "Open shortcuts in new tab",
         "toggle_surprise": "Display Surprise Me! button",
+        "toggle_snow": "Let it snow",
 
         "favicon_api_favicone": "Favicone",
         "favicon_api_DDG": "DuckDuckGo",

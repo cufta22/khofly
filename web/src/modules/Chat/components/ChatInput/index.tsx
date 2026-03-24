@@ -25,7 +25,7 @@ const ChatInput: React.FC<Props> = ({ handleAskQuestion, stopStreaming, isLoadin
       disabled={!model.value}
       onKeyDown={(e) => {
         if (e.key === "Enter") {
-          if (!model.value || isLoadingChat) return;
+          if (!model.value || isLoadingChat || !val) return;
           setVal("");
           handleAskQuestion(val);
         }
@@ -38,13 +38,14 @@ const ChatInput: React.FC<Props> = ({ handleAskQuestion, stopStreaming, isLoadin
             if (isLoadingChat) {
               stopStreaming();
             } else {
-              if (!model.value) return;
+              if (!model.value || !val) return;
               setVal("");
               handleAskQuestion(val);
             }
           }}
           color={isLoadingChat ? "red" : "blue"}
           // disabled={isLoadingChat || !model.value}
+          disabled={!val}
         >
           {isLoadingChat ? <IconPlayerPause /> : <IconSend2 />}
         </ActionIcon>

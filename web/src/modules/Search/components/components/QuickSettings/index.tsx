@@ -43,7 +43,8 @@ const QuickSettings: React.FC<Props> = ({ isOpen, onClose }) => {
     >
       <Accordion defaultValue="general">
         <QSGeneral />
-        <QSAI />
+
+        {/* <QSAI /> */}
 
         <QSInterface />
 

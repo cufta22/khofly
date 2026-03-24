@@ -70,8 +70,8 @@ const PageSettings = () => {
         <Tabs.Panel value="general">
           <SettingsGeneral />
           <Space h={40} />
-          <SettingsAI />
-          <Space h={40} />
+          {/* <SettingsAI />
+          <Space h={40} /> */}
           <SettingsGeolocation />
         </Tabs.Panel>
 

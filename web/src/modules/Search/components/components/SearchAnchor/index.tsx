@@ -4,6 +4,7 @@ import { useSearchStore } from "@store/search";
 import { useSettingsStore } from "@store/settings";
 import { IFC } from "@ts/global.types";
 import React from "react";
+import classes from "./styles.module.scss";
 
 interface Props extends IFC {
   url: string;
@@ -25,11 +26,12 @@ const SearchAnchor: React.FC<Props> = ({
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
     ? "_blank"
     : openInNewTab
-    ? "_blank"
-    : "_self";
+      ? "_blank"
+      : "_self";
 
   return (
     <Anchor
+      className={classes.search_anchor}
       href={url}
       target={anchorTarget}
       onClick={(e) => {

@@ -117,7 +117,7 @@ const RowCommon: React.FC<Props> = ({ tab, rowData }) => {
       <Flex align="center" gap="xs">
         <SearchAnchor url={url} additionalOnClick={additionalOnClick}>
           {/* Website url */}
-          <Flex align="center" gap="xs">
+          <Flex align="center" gap="xs" style={{ minWidth: 0 }}>
             {displayFavicon && (
               <Image
                 w={16}
@@ -173,7 +173,7 @@ const RowCommon: React.FC<Props> = ({ tab, rowData }) => {
                 },
                 {
                   [classes.title_music]: tab === "music",
-                }
+                },
               )}
               mb={4}
               truncate="end"

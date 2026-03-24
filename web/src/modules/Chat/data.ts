@@ -188,6 +188,14 @@ export const getAIChatModels = (provider: IAIProvider) => {
           group: "Text Generation",
           items: [
             {
+              label: "Gemini 3 Pro",
+              value: "gemini-3-pro-preview",
+            },
+            {
+              label: "Gemini 3 Flash",
+              value: "gemini-3-flash-preview",
+            },
+            {
               label: "Gemini 2.5 Pro",
               value: "gemini-2.5-pro",
             },
@@ -195,30 +203,22 @@ export const getAIChatModels = (provider: IAIProvider) => {
               label: "Gemini 2.5 Flash",
               value: "gemini-2.5-flash",
             },
-            {
-              label: "Gemini 2.0 Flash",
-              value: "gemini-2.0-flash",
-            },
-            {
-              label: "Gemini 2.0 Flash-Lite",
-              value: "gemini-2.0-flash-lite",
-            },
           ],
         },
         {
           group: "Image Generation",
           items: [
             {
-              label: "Gemini 2.0 Flash Exp.",
-              value: "gemini-2.0-flash-exp-image-generation",
+              label: "Gemini 3 Pro Image",
+              value: "gemini-3-pro-image-preview",
+            },
+            {
+              label: "Gemini 2.5 Flash Image",
+              value: "gemini-2.5-flash-image",
             },
             {
               label: "Imagen 4",
-              value: "imagen-4.0-generate-preview-06-06",
-            },
-            {
-              label: "Imagen 3",
-              value: "imagen-3.0-generate-002",
+              value: "imagen-4.0-imagen-4.0-generate-001",
             },
           ],
         },

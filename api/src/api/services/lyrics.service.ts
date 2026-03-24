@@ -27,7 +27,7 @@ export const handleGetLyrics = async (ctx: Context) => {
 
   // Find one with lyrics
   const firstRes = searchData.response.hits.filter(
-    (song) => song.type === "song" && song.result.lyrics_state === "complete"
+    (song) => song.type === "song" && song.result.lyrics_state === "complete",
   )[0];
 
   if (!firstRes) {

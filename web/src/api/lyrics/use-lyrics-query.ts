@@ -18,7 +18,7 @@ interface Args {
 
 const getKey = (apiDomain: string, query: string) => {
   if (!apiDomain) return null;
-  if (!query) return;
+  if (!query) return null;
 
   return `api-lyrics-${encodeURIComponent(query)}`;
 };

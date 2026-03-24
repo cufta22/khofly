@@ -1,9 +1,7 @@
 import type { Context } from "elysia";
 
-export type IAIModel = "gemini-2.0-flash";
-
 interface IBody {
-  model: IAIModel;
+  model: string;
   messages: {
     role: "user" | "assistant" | "system" | "tool";
     content: string;
@@ -16,24 +14,24 @@ interface IBody {
   system_instruction: string;
 }
 
-const GEMINI_API_URLS = {
+const GEMINI_API_URLS: { [key in string]: string } = {
   // Text generation
-  "gemini-2.0-flash":
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse",
-  "gemini-2.0-flash-lite":
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:streamGenerateContent?alt=sse",
-  "gemini-2.5-flash":
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse",
+  "gemini-3-pro-preview":
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:streamGenerateContent?alt=sse",
+  "gemini-3-flash-preview":
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-preview:streamGenerateContent?alt=sse",
   "gemini-2.5-pro":
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:streamGenerateContent?alt=sse",
+  "gemini-2.5-flash":
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse",
 
   // Image generation
-  "gemini-2.0-flash-exp-image-generation":
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent",
-  "imagen-4.0-generate-preview-06-06":
-    "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-preview-06-06:predict",
-  "imagen-3.0-generate-002":
-    "https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict",
+  "gemini-3-pro-image-preview":
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro-image:generateContent",
+  "gemini-2.5-flash-image":
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent",
+  "imagen-4.0-imagen-4.0-generate-001":
+    "https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-imagen-4.0-generate-001:predict",
 };
 
 // POST - /ai/config
@@ -50,10 +48,10 @@ export const handleAIChat = async (ctx: Context) => {
   if (
     [
       // Text generation
+      "gemini-3-pro-preview",
+      "gemini-3-flash-preview",
       "gemini-2.5-pro",
       "gemini-2.5-flash",
-      "gemini-2.0-flash",
-      "gemini-2.0-flash-lite",
     ].includes(model)
   ) {
     if (!process.env.GEMINI_API_KEY) throw ctx.status(400, "Gemini API key is missing");
@@ -86,7 +84,9 @@ export const handleAIChat = async (ctx: Context) => {
     };
 
     // Get gemini URL
-    const geminiApiUrl = GEMINI_API_URLS[model];
+    const geminiApiUrl = GEMINI_API_URLS?.[model];
+
+    if (!geminiApiUrl) throw ctx.status(400, `No Gemini URL`);
 
     // Set up headers for Server-Sent Events (SSE)
     ctx.set.headers["content-type"] = "text/event-stream";
@@ -98,9 +98,10 @@ export const handleAIChat = async (ctx: Context) => {
       async start(controller) {
         try {
           // Make a direct API call to Gemini with streaming
-          const response = await fetch(`${geminiApiUrl}&key=${process.env.GEMINI_API_KEY}`, {
+          const response = await fetch(`${geminiApiUrl}`, {
             method: "POST",
             headers: {
+              "x-goog-api-key": process.env.GEMINI_API_KEY || "",
               "Content-Type": "application/json",
             },
             body: JSON.stringify(payload),
@@ -108,8 +109,9 @@ export const handleAIChat = async (ctx: Context) => {
 
           if (!response.ok) {
             const errorData = await response.json();
+            console.log(errorData);
 
-            throw ctx.status(400, `${JSON.stringify(errorData?.message)}`);
+            throw ctx.status(400, `${errorData?.status}`);
           }
 
           // Check if we have a readable stream from the response
@@ -130,15 +132,23 @@ export const handleAIChat = async (ctx: Context) => {
               const lines = chunk.split("\n").filter((line) => line.trim());
 
               for (const line of lines) {
+                console.log("line:");
+                console.log(line);
+
                 if (line.startsWith("data: ")) {
                   const jsonData = line.slice(6);
                   if (jsonData === "[DONE]") {
                     continue;
                   }
+                  console.log("jsonData");
+                  console.log(jsonData);
 
                   const data = JSON.parse(jsonData);
                   // Extract text from Gemini response structure
                   let text = "";
+
+                  console.log("data");
+                  console.log(data);
 
                   // Navigate through the response structure
                   if (data?.candidates?.[0]?.content?.parts) {
@@ -148,6 +158,7 @@ export const handleAIChat = async (ctx: Context) => {
                       }
                     }
                   }
+                  console.log(text);
 
                   if (text) {
                     // Send the extracted text to the client
@@ -162,13 +173,15 @@ export const handleAIChat = async (ctx: Context) => {
           controller.enqueue("data: [DONE]\n\n");
           controller.close();
         } catch (error: any) {
+          console.log(error);
+
           controller.enqueue(
             `data: ${JSON.stringify({ error: "An error occurred during streaming" })}\n\n`
           );
           controller.error(error);
           controller.close();
 
-          // throw ctx.status(400, error?.response || "Streaming error");
+          throw ctx.status(400, error?.response || "Streaming error");
         }
       },
       cancel(reason) {
