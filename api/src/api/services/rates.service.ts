@@ -9,7 +9,7 @@ export const handleGetRates = async (ctx: Context) => {
   const resultFile = Bun.file(path.join(tempDir, `/exchange_rates.json`));
 
   if (!resultFile.size) {
-    throw ctx.error(400, "exchange_rates.json not found");
+    throw new Error("exchange_rates.json not found");
   }
 
   const resultJson = await resultFile.json();

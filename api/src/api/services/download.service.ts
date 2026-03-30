@@ -15,16 +15,13 @@ export const handleDownload = async (ctx: Context) => {
 
   // Error handling
   if (!url) {
-    ctx.set.status = 400;
-    return { error: true, message: "URL is required", data: null };
+    throw new Error("URL is required");
   }
   if (!["youtube", "instagram"].includes(from)) {
-    ctx.set.status = 400;
-    return { error: true, message: "Invalid platform", data: null };
+    throw new Error("Invalid platform");
   }
   if (from === "youtube" && !["mp4", "mp3"].includes(format)) {
-    ctx.set.status = 400;
-    return { error: true, message: "Invalid arguments", data: null };
+    throw new Error("Invalid arguments");
   }
 
   const tempDir = path.join(__dirname, `/../temp/media`);
@@ -72,7 +69,7 @@ export const handleDownload = async (ctx: Context) => {
         // ytCommand.push(`"bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"`);
         // Should be normal
         ytCommand.push(
-          `bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]`
+          `bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]`,
         );
       }
 
@@ -116,8 +113,7 @@ export const handleDownload = async (ctx: Context) => {
           },
         };
       } else {
-        ctx.set.status = 400;
-        return { error: true, message: "Download failed", data: null };
+        throw new Error("Download failed");
       }
     }
 
@@ -181,12 +177,10 @@ export const handleDownload = async (ctx: Context) => {
           },
         };
       } else {
-        ctx.set.status = 400;
-        return { error: true, message: "Download failed", data: null };
+        throw new Error("Download failed");
       }
     }
   } catch (error) {
-    ctx.set.status = 400;
-    return { error: true, message: "Download failed", data: null };
+    throw new Error("Download failed");
   }
 };

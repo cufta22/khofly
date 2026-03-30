@@ -16,13 +16,13 @@ export const handleFavicon = async (ctx: Context) => {
   const resolver = (searchParams.get("resolver") as IFaviconAPI) || "duckduckgo";
 
   if (!url) {
-    throw ctx.error(400, "URL is required");
+    throw new Error("URL is required");
   }
 
   // Validate URL format
   const urlRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
   if (!urlRegex.test(url)) {
-    throw ctx.error(400, "Invalid URL format");
+    throw new Error("Invalid URL format");
   }
 
   // Construct the DuckDuckGo favicon URL
@@ -48,6 +48,6 @@ export const handleFavicon = async (ctx: Context) => {
     // Send the favicon data
     return Buffer.from(faviconData);
   } else {
-    throw ctx.error(400, "Failed to fetch favicon");
+    throw new Error("Failed to fetch favicon");
   }
 };

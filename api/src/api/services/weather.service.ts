@@ -24,7 +24,7 @@ export const handleGetWeather = async (ctx: Context) => {
       // -----------------------------------------------------------------------
 
       const res = await fetch(
-        `${OPEN_WEATHER_URL}/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${OPEN_WEATHER_API_KEY}&units=${units}`
+        `${OPEN_WEATHER_URL}/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${OPEN_WEATHER_API_KEY}&units=${units}`,
       );
 
       const resData = await res.json();
@@ -61,7 +61,7 @@ export const handleGetWeather = async (ctx: Context) => {
 &current=${params.current}
 &hourly=${params.hourly}
 &daily=${params.daily}
-&temperature_unit=${units === "imperial" ? "fahrenheit" : "celsius"}`
+&temperature_unit=${units === "imperial" ? "fahrenheit" : "celsius"}`,
       );
 
       const resData: IOpenMeteoResponse = await res.json();
@@ -70,7 +70,7 @@ export const handleGetWeather = async (ctx: Context) => {
       const formattedData: IOpenWeatherResponse | null = convertOMToOWMFormat(
         resData,
         Number.parseFloat(lat),
-        Number.parseFloat(lon)
+        Number.parseFloat(lon),
       );
 
       return {
@@ -79,17 +79,9 @@ export const handleGetWeather = async (ctx: Context) => {
         data: formattedData,
       };
     } else {
-      ctx.set.status = 400;
-      return {
-        error: true,
-        message: "Weather API url isn't set up",
-      };
+      throw new Error("Weather API url isn't set up");
     }
   } catch (error) {
-    ctx.set.status = 400;
-    return {
-      error: true,
-      message: "Error getting weather data",
-    };
+    throw new Error("Error getting weather data");
   }
 };

@@ -39,7 +39,7 @@ export const handleAIChat = async (ctx: Context) => {
   const { model, messages, temperature, max_tokens, system_instruction } = ctx.body as IBody;
 
   if (!model || !prompt) {
-    throw ctx.status(400, "Missing data in request");
+    throw new Error("Missing data in request");
   }
 
   // --------------------------------------------------------------------------------------------------------------
@@ -54,7 +54,9 @@ export const handleAIChat = async (ctx: Context) => {
       "gemini-2.5-flash",
     ].includes(model)
   ) {
-    if (!process.env.GEMINI_API_KEY) throw ctx.status(400, "Gemini API key is missing");
+    if (!process.env.GEMINI_API_KEY) {
+      throw new Error("Gemini API key is missing");
+    }
 
     // Prepare the request payload for Gemini API
     const payload = {
@@ -86,7 +88,9 @@ export const handleAIChat = async (ctx: Context) => {
     // Get gemini URL
     const geminiApiUrl = GEMINI_API_URLS?.[model];
 
-    if (!geminiApiUrl) throw ctx.status(400, `No Gemini URL`);
+    if (!geminiApiUrl) {
+      throw new Error("No Gemini URL");
+    }
 
     // Set up headers for Server-Sent Events (SSE)
     ctx.set.headers["content-type"] = "text/event-stream";
@@ -111,7 +115,7 @@ export const handleAIChat = async (ctx: Context) => {
             const errorData = await response.json();
             console.log(errorData);
 
-            throw ctx.status(400, `${errorData?.status}`);
+            throw new Error(`${errorData?.status}`);
           }
 
           // Check if we have a readable stream from the response
@@ -176,12 +180,12 @@ export const handleAIChat = async (ctx: Context) => {
           console.log(error);
 
           controller.enqueue(
-            `data: ${JSON.stringify({ error: "An error occurred during streaming" })}\n\n`
+            `data: ${JSON.stringify({ error: "An error occurred during streaming" })}\n\n`,
           );
           controller.error(error);
           controller.close();
 
-          throw ctx.status(400, error?.response || "Streaming error");
+          throw new Error(error?.response || "Streaming error");
         }
       },
       cancel(reason) {

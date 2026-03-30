@@ -18,7 +18,7 @@ export const handleProxy = async (ctx: Context) => {
   const { targetAssetUUID, targetAssetPath } = extractAssetParams(assetPathWithParams);
 
   if (!protocol || !host) {
-    throw ctx.status(400, "Invalid URL");
+    throw new Error("Invalid URL");
   }
 
   // Base URLs

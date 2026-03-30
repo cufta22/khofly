@@ -8,7 +8,7 @@ import type {
 // Get lyrics from Lyrics.ovh
 export const getLyricsFromLyricsOvh = async (
   ctx: Context,
-  firstRes: IGeniusSearchResponse["response"]["hits"][0]
+  firstRes: IGeniusSearchResponse["response"]["hits"][0],
 ): Promise<ILyricsResponse> => {
   const artist = firstRes.result?.primary_artist?.name || firstRes.result?.artist_names;
   const title = firstRes.result.title;
@@ -18,7 +18,7 @@ export const getLyricsFromLyricsOvh = async (
   const lyrics: ILyricsOvhResponse = await lyricsOvhRes.json();
 
   if (!lyrics?.lyrics) {
-    throw ctx.status(400, "Lyrics not found, try another song");
+    throw new Error("Lyrics not found, try another song");
   }
 
   const fixedLyrics = lyrics.lyrics.replaceAll("\n\n", "\n");

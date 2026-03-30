@@ -14,7 +14,7 @@ export const handleGetGeocoding = async (ctx: Context) => {
     // Handle OpenWeatherMap Geocoding
     // -----------------------------------------------------------------------
     const res = await fetch(
-      `${OPEN_WEATHER_URL}/geo/1.0/direct?q=${location}&limit=1&appid=${OPEN_WEATHER_API_KEY}`
+      `${OPEN_WEATHER_URL}/geo/1.0/direct?q=${location}&limit=1&appid=${OPEN_WEATHER_API_KEY}`,
     );
 
     const resData = await res.json();
@@ -25,11 +25,6 @@ export const handleGetGeocoding = async (ctx: Context) => {
       data: resData?.[0] || null,
     };
   } catch (error) {
-    ctx.set.status = 400;
-    return {
-      error: true,
-      message: "Error getting geocoding data",
-      data: null,
-    };
+    throw new Error("Error getting geocoding data");
   }
 };

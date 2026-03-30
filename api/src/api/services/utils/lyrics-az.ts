@@ -18,7 +18,7 @@ const AZ_HEADERS = {
 // Get lyrics from AZLyrics
 export const getLyricsFromAZ = async (
   ctx: Context,
-  firstRes: IGeniusSearchResponse["response"]["hits"][0]
+  firstRes: IGeniusSearchResponse["response"]["hits"][0],
 ): Promise<ILyricsResponse> => {
   const artist = firstRes.result.primary_artist.name
     .replaceAll(" ", "")
@@ -41,7 +41,7 @@ export const getLyricsFromAZ = async (
   const lyricsRoot = document?.querySelector("div.col-xs-12.col-lg-8.text-center");
 
   if (!lyricsRoot) {
-    throw ctx.status(400, "Lyrics not found, try another song");
+    throw new Error("Lyrics not found, try another song");
   }
 
   const lyrics = lyricsRoot
@@ -53,7 +53,7 @@ export const getLyricsFromAZ = async (
     .replaceAll("&quot;", `"`);
 
   if (!lyrics) {
-    throw ctx.error(400, "Lyrics not found, try another song");
+    throw new Error("Lyrics not found, try another song");
   }
 
   return {

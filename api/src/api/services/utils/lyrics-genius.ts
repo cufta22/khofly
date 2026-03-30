@@ -18,7 +18,7 @@ const GENIUS_HEADERS = {
 // Get lyrics from Genius
 export const getLyricsFromGenius = async (
   ctx: Context,
-  firstRes: IGeniusSearchResponse["response"]["hits"][0]
+  firstRes: IGeniusSearchResponse["response"]["hits"][0],
 ): Promise<ILyricsResponse> => {
   // Fetch the song html
   const songRes = await fetch(firstRes.result.url, {
@@ -50,7 +50,7 @@ export const getLyricsFromGenius = async (
     .trim();
 
   if (!lyrics) {
-    throw ctx.status(400, "Lyrics not found, try another song");
+    throw new Error("Lyrics not found, try another song");
   }
 
   return {
