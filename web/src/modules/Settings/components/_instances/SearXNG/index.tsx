@@ -25,6 +25,7 @@ import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
 import SettingsTitle from "../../common/SettingsTitle";
 import { IOpenSection } from "@module/SettingsMobile";
 import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 interface Props {
   isM?: boolean;
@@ -32,6 +33,7 @@ interface Props {
 }
 
 const SettingsSearXNG: React.FC<Props> = ({ isM, handleChangeSection }) => {
+  const t = useTranslate();
   const theme = useMantineTheme();
 
   const domain = useInstanceStore((state) => state.searXNGDomain);
@@ -106,9 +108,9 @@ const SettingsSearXNG: React.FC<Props> = ({ isM, handleChangeSection }) => {
             {!IS_SELF_HOST && (
               <Select
                 className={classes.settings_select}
-                label="Default instances"
-                description="Pick one based on your location"
-                placeholder="Instance location"
+                label={t("pages.settings.instances.default_instances")}
+                description={t("pages.settings.instances.pick_one")}
+                placeholder={t("pages.settings.instances.instance_location")}
                 value={form.values.select}
                 onChange={(val) => {
                   form.setFieldValue("select", val || "");
@@ -138,13 +140,13 @@ const SettingsSearXNG: React.FC<Props> = ({ isM, handleChangeSection }) => {
             className={classes.settings_footer}
           >
             <Text size="sm" c="dimmed">
-              Change this to your own url for better privacy & less load for default instance.{" "}
+              {t("pages.settings.instances.change_url")}{" "}
               <Text component="span" c={linkTextColor}>
-                <RemixLink to={"/docs/self-host-searxng"}>Read more</RemixLink>
+                <RemixLink to={"/docs/self-host-searxng"}>{t("_common.read_more")}</RemixLink>
               </Text>
             </Text>
 
-            <Button type="submit">Save</Button>
+            <Button type="submit">{t("pages.settings._common.save")}</Button>
           </Flex>
         </form>
       </Paper>

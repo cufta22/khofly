@@ -7,8 +7,11 @@ import useNominatimSWR from "src/api/nominatim/use-nominatim-query";
 import { useEffect, useState } from "react";
 import useToast from "@hooks/use-toast";
 import { useGeneralStore } from "@store/general";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 const SettingsGeolocation = () => {
+  const t = useTranslate();
+
   // Nomitanim stuff for geolocation
   const [openNominatim, { toggle: toggleNominatim, close: closeNominatim }] = useDisclosure(false);
   const { trigger, isMutating } = useNominatimSWR();
@@ -72,22 +75,27 @@ const SettingsGeolocation = () => {
           {/* Settings content */}
           <Stack w="100%" align="start" px="lg" mb="xl">
             <Flex align="flex-end" gap="md">
-              <TextInput label="Latitude" placeholder="00.0000000" {...form.getInputProps("lat")} />
+              <TextInput
+                label={t("pages.settings.geolocation.lat")}
+                placeholder="00.0000000"
+                {...form.getInputProps("lat")}
+              />
 
               <TextInput
-                label="Longitude"
+                label={t("pages.settings.geolocation.lon")}
                 placeholder="00.0000000"
                 {...form.getInputProps("lon")}
               />
 
               {!form.values.lat && !form.values.lon && (
-                <Button onClick={toggleNominatim}>Use Nominatim</Button>
+                <Button onClick={toggleNominatim}>
+                  {t("pages.settings.geolocation.use_nominatim")}
+                </Button>
               )}
             </Flex>
 
             <Text size="sm" c="dimmed">
-              If you don't want to use your browsers default Geolocation API ( probably uses Google
-              ), you can manually input your lat & lon or use Nominatim to find it for you.
+              {t("pages.settings.geolocation.description1")}
             </Text>
           </Stack>
 
@@ -99,10 +107,10 @@ const SettingsGeolocation = () => {
             className={classes.settings_footer}
           >
             <Text size="sm" c="dimmed">
-              This will get cached in local storage so you only need to set this up once.
+              {t("pages.settings.geolocation.description2")}
             </Text>
 
-            <Button type="submit">Save</Button>
+            <Button type="submit">{t("pages.settings._common.save")}</Button>
           </Flex>
         </form>
       </Paper>
@@ -119,14 +127,14 @@ const SettingsGeolocation = () => {
       >
         <Group align="flex-end">
           <TextInput
-            label="Your location"
-            placeholder="City, Country"
+            label={t("pages.settings.geolocation.your_location")}
+            placeholder={t("pages.settings.geolocation.city_country")}
             className="flex_1"
             value={nominatimVal}
             onChange={(e) => setNominatimVal(e.currentTarget.value)}
           />
           <Button onClick={handleSubmitNominatim} loading={isMutating} disabled={isMutating}>
-            Search
+            {t("_common.search")}
           </Button>
         </Group>
       </Modal>

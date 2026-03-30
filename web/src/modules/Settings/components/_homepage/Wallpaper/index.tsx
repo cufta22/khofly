@@ -12,6 +12,7 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 import { useEffect } from "react";
 import { IOpenSection } from "@module/SettingsMobile";
 import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 interface Props {
   isM?: boolean;
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
+  const t = useTranslate();
   const theme = useMantineTheme();
 
   const background = useHomepageStore((state) => state.wallpaper);
@@ -66,7 +68,7 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
                 <Flex className="desktop_only" align="center">
                   <IconDevices />
 
-                  <Text ml="sm">Desktop & Mobile</Text>
+                  <Text ml="sm">{t("pages.settings._common.desktop_mobile")}</Text>
                 </Flex>
               }
             />
@@ -83,7 +85,7 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
         <Divider my="sm" w="100%" /> */}
 
             <TextInput
-              label="Wallpaper URL"
+              label={t("pages.settings.homepage.wallpaper_url")}
               placeholder="https://example.com"
               size="md"
               className={classes.settings_input}
@@ -100,7 +102,7 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
           >
             <div />
 
-            <Button type="submit">Save</Button>
+            <Button type="submit">{t("pages.settings._common.save")}</Button>
           </Flex>
         </form>
       </Paper>

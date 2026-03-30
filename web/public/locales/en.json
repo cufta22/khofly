@@ -1,9 +1,36 @@
 {
   "_common": {
-    "app_name": "Khofly"
+    "app_name": "Khofly",
+
+    "category_general": "General",
+    "category_images": "Images",
+    "category_videos": "Videos",
+    "category_news": "News",
+    "category_maps": "Maps",
+    "category_music": "Music",
+    "category_it": "IT",
+    "category_science": "Science",
+    "category_files": "Files",
+    "category_social_media": "Social Media",
+    "category_other": "Other",
+
+    "read_more": "Read more",
+    "search": "Search"
   },
 
   "header": {},
+
+  "footer": {
+    "ver": "Version",
+    "powered": "powered by",
+
+    "link_instances": "Instances",
+    "link_docs": "Docs",
+    "link_privacy": "Privacy",
+    "link_changelog": "Changelog",
+    "link_settings": "Settings"
+  },
+
   "pages": {
     "index": {
       "search_placeholder": "Search for anything..."
@@ -27,7 +54,29 @@
         "interface": "Interface",
         "instances": "Instances",
         "engines": "Engines",
-        "homepage": "Homepage"
+        "homepage": "Homepage",
+        "cookies": "Cookies",
+
+        "desktop_mobile": "Desktop & Mobile",
+        "desktop_only": "Desktop only",
+        "save": "Save",
+
+        "title_grid_without": "other stuff",
+        "title_grid_i18n": "i18n",
+        "title_grid_web": "web",
+        "title_grid_wiki": "wiki stuff",
+        "title_grid_icons": "icons",
+        "title_grid_lyrics": "lyrics",
+        "title_grid_radio": "radio search",
+        "title_grid_packages": "packages",
+        "title_grid_q&a": "q&a",
+        "title_grid_repos": "repos",
+        "title_grid_software_wikis": "software wikis",
+        "title_grid_publications": "publications",
+        "title_grid_apps": "apps",
+        "title_grid_dict": "dictionaries",
+        "title_grid_movies": "movies",
+        "title_grid_weather": "weather"
       },
 
       "interface": {
@@ -137,7 +186,14 @@
       },
 
       "geolocation": {
-        "title": "Geolocation"
+        "title": "Geolocation",
+        "lat": "Latitude",
+        "lon": "Longitude",
+        "use_nominatim": "Use Nominatim",
+        "description1": "If you don't want to use your browsers default Geolocation API ( probably uses Google ), you can manually input your lat & lon or use Nominatim to find it for you.",
+        "description2": "This will get cached in a cookie so you only need to set this up once.",
+        "your_location": "Your location",
+        "city_country": "City, Country"
       },
 
       "categories": {
@@ -155,16 +211,22 @@
         "title_api": "API URL",
         "title_ai": "AI Worker",
         "title_nominatim": "Nominatim URL",
-        "title_pv": "PV URL"
+        "title_pv": "PV URL",
+
+        "default_instances": "Default instances",
+        "pick_one": "Pick one based on your location",
+        "instance_location": "Instance location",
+
+        "nominatim_explained": "uses OpenStreetMap data to find locations on Earth by name and address (geocoding).",
+        "change_url": "Change this to your own url for better privacy & less load for default instance."
       },
 
       "engines": {
-        "title_without": "other stuff",
+        "set_default": "Set default",
+        "enable_all": "Enable all",
+        "disable_all": "Disable all",
 
-        "title": "General engines",
-        "title2": "i18n",
-        "title3": "web",
-        "title4": "wiki stuff",
+        "title_general": "General engines",
 
         "engine_dictzone": "Dictzone",
         "engine_libre_translate": "LibreTranslate",
@@ -201,8 +263,6 @@
         "engine_yep": "Yep",
 
         "title_img": "Image engines",
-        "title_img_web": "web",
-        "title_img_icons": "icons",
 
         "engine_material_img": "Material icons",
         "engine_svgrepo_img": "SVG Repo",
@@ -225,7 +285,6 @@
         "engine_yep_img": "Yep images",
 
         "title_vid": "Video engines",
-        "title_vid2": "web",
 
         "engine_google_vid": "Google videos",
         "engine_DDG_vid": "DuckDuckGo videos",
@@ -245,8 +304,6 @@
         "engine_youtube_vid": "YouTube",
 
         "title_news": "News engines",
-        "title_news2": "web",
-        "title_news3": "wiki stuff",
 
         "engine_google_news": "Google news",
         "engine_DDG_news": "DuckDuckGo news",
@@ -262,8 +319,6 @@
         "engine_yep_news": "Yep news",
 
         "title_music": "Music engines",
-        "title_music2": "lyrics",
-        "title_music3": "radio search",
 
         "engine_adobe_music": "Adobe Stock audio",
         "engine_genius_music": "Genius",
@@ -278,10 +333,6 @@
         "engine_YT_music": "YouTube",
 
         "title_IT": "IT engines",
-        "title_IT2": "packages",
-        "title_IT3": "q&a",
-        "title_IT4": "repos",
-        "title_IT5": "software wikis",
 
         "engine_crates_IT": "crates.io",
         "engine_docker_hub_IT": "Docker hub",
@@ -307,8 +358,6 @@
         "engine_MDN_IT": "MDN",
 
         "title_science": "Science engines",
-        "title_science2": "publications",
-        "title_science3": "wiki stuff",
 
         "engine_arxiv_science": "arXiv",
         "engine_crossref_science": "Crossref",
@@ -321,7 +370,6 @@
         "engine_PDBe_science": "PDBe",
 
         "title_files": "Files engines",
-        "title_files2": "apps",
 
         "engine_APKMirror_files": "APKMirror",
         "engine_app_store_files": "Apple App Store",
@@ -350,10 +398,6 @@
         "engine_tootfinder_SM": "Tootfinder",
 
         "title_other": "Other engines",
-        "title_other_dict": "dictionaries",
-        "title_other_movies": "movies",
-        "title_other_weather": "weather",
-        "title_other_software_wikis": "software_wikis",
 
         "engine_etymonline": "Etymonline",
         "engine_wiktionary": "Wiktionary",
@@ -372,6 +416,7 @@
 
       "homepage": {
         "title_background": "Wallpaper",
+        "wallpaper_url": "Wallpaper URL",
 
         "title_shortcuts": "Shortcuts",
         "toggle_shortcuts": "Display shortcuts on start page",
@@ -388,6 +433,14 @@
         "toggle_notes": "Display Notes widget on start page",
         "toggle_weather": "Display Weather widget on start page",
         "toggle_clock": "Display Clock widget on start page"
+      },
+      "cookies": {
+        "title": "Cookies",
+        "all_saved": "All saved cookies:",
+        "searxng_pref_hash": "SearXNG preferrences hash",
+        "load_preferences": "Load Preferrences",
+        "load_hash_desc": "Use this to load settings from existing SearXNG preferrences hash",
+        "load_hash_desc_note": "Note: this might overwrite your current settings"
       }
     }
   }

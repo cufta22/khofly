@@ -38,7 +38,7 @@ const getSearXNGData = async (
   const searXNGDomain = process.env.SEARXNG_URL_LOCAL;
 
   const enginesStoreCookie = getCookie("app-engines-store", request);
-  const enginesStoreData = JSON.parse(enginesStoreCookie);
+  const enginesStoreData = enginesStoreCookie ? JSON.parse(enginesStoreCookie) : undefined;
 
   const enginesGeneral = enginesStoreData?.state?.enginesGeneral || [];
   const enginesImages = enginesStoreData?.state?.enginesImages || [];
@@ -52,7 +52,7 @@ const getSearXNGData = async (
   const enginesOther = enginesStoreData?.state?.enginesOther || [];
 
   const searchStoreCookie = getCookie("app-search-store", request);
-  const searchStoreData = JSON.parse(searchStoreCookie);
+  const searchStoreData = searchStoreCookie ? JSON.parse(searchStoreCookie) : undefined;
 
   const safeSearch = searchStoreData?.state?.safeSearch || "0";
   const dateRange = searchStoreData?.state?.dateRange || "all";
@@ -87,8 +87,6 @@ const getSearXNGData = async (
     dateRange,
     searchLanguage,
   );
-
-  console.log(`${searXNGDomain}${apiPath}&format=json`);
 
   const res = await fetch(`${searXNGDomain}${apiPath}&format=json`);
   const data = await res.json();

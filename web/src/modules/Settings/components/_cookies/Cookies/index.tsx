@@ -1,10 +1,12 @@
-import { Button, Flex, Paper, Stack, Text, TextInput } from "@mantine/core";
+import { Button, Flex, Paper, Stack, Text, TextInput, useMantineTheme } from "@mantine/core";
 import SettingsTitle from "../../common/SettingsTitle";
 import DocsCodeHighlight from "@module/Docs/components/common/DocsCodeHighlight/DocsCodeHighlight";
 import classes from "./styles.module.scss";
 import { useEffect, useState } from "react";
 import { decompressSearxngHash } from "./utils";
 import useToast from "@hooks/use-toast";
+import { IconCookie } from "@tabler/icons-react";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 const formatCookiesToText = (cookieString: string): string => {
   return cookieString
@@ -28,8 +30,12 @@ const formatCookiesToText = (cookieString: string): string => {
     .join("\n\n"); // 5. Join all cookies with double spacing
 };
 
-const Values = () => {
+const Cookies = () => {
+  const t = useTranslate();
+  const theme = useMantineTheme();
+
   const { toast } = useToast();
+
   const [cookieValue, setCookieValue] = useState<string>("");
   const [searXNGHash, setSearXNGHash] = useState<string>("");
 
@@ -53,13 +59,13 @@ const Values = () => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        // icon={<IconSettings2 color={theme.colors.blue["5"]} />}
-        title="pages.settings.general.title"
+        icon={<IconCookie color={theme.colors.yellow["5"]} />}
+        title="pages.settings.cookies.title"
       />
 
       {/* Settings content */}
       <Stack w="100%" align="start" px="lg" mb="xl">
-        <Text>All saved cookies:</Text>
+        <Text>{t("pages.settings.cookies.all_saved")}</Text>
         <DocsCodeHighlight
           className={classes.cookie_box}
           code={cookieValue ? formatCookiesToText(cookieValue) : "Loading cookies..."}
@@ -69,21 +75,21 @@ const Values = () => {
         <Flex className={classes.load_wrapper} align="flex-end" gap="md">
           <TextInput
             className={classes.load_input}
-            label="SearXNG preferrences hash"
+            label={t("pages.settings.cookies.searxng_pref_hash")}
             value={searXNGHash}
             onChange={(e) => setSearXNGHash(e.currentTarget.value)}
           />
 
           <Button onClick={handleSearXNGHash} disabled={!searXNGHash}>
-            Load Preferrences
+            {t("pages.settings.cookies.load_preferences")}
           </Button>
         </Flex>
 
-        <Text mt="md">Use this to load settings from existing SearXNG preferrences hash</Text>
-        <Text>Note: this might overwrite your current settings</Text>
+        <Text mt="md">{t("pages.settings.cookies.load_hash_desc")}</Text>
+        <Text>{t("pages.settings.cookies.load_hash_desc_note")}</Text>
       </Stack>
     </Paper>
   );
 };
 
-export default Values;
+export default Cookies;

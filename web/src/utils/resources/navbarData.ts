@@ -58,7 +58,7 @@ export const NAVBAR_DATA: LinksGroupProps[] = [
     icon: IconServer,
     links: [
       { label: "SearXNG", link: "/docs/self-host-searxng", isWip: false },
-      { label: "CF Workers", link: "/docs/self-host-cf-workers", isWip: false },
+      // { label: "CF Workers", link: "/docs/self-host-cf-workers", isWip: false },
       { label: "Khofly", link: "/docs/self-host-khofly", isWip: false },
       {
         label: "Khofly API",

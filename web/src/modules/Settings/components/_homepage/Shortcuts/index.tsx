@@ -20,9 +20,8 @@ interface Props {
 }
 
 const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
-  const theme = useMantineTheme();
-
   const t = useTranslate();
+  const theme = useMantineTheme();
 
   const hydrated = useHomepageStore((state) => state.hydrated);
   const shortcuts = useHomepageStore((state) => state.shortcuts);
@@ -53,7 +52,7 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
               <Flex className="desktop_only" align="center">
                 <IconDeviceDesktop />
 
-                <Text ml="sm">Desktop only</Text>
+                <Text ml="sm">{t("pages.settings._common.desktop_only")}</Text>
               </Flex>
             }
           />

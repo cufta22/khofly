@@ -75,7 +75,7 @@ const PageSettings = () => {
             {t("pages.settings._common.homepage")}
           </Tabs.Tab>
           <Tabs.Tab value="cookies" leftSection={<IconCookie style={getIconStyle(20)} />}>
-            {t("pages.settings._common.homepage")}
+            {t("pages.settings._common.cookies")}
           </Tabs.Tab>
         </Tabs.List>
 
@@ -102,8 +102,8 @@ const PageSettings = () => {
           <Space h={40} />
           <SettingsPV />
           <Space h={40} />
-          <SettingsAIWorker />
-          <Space h={40} />
+          {/* <SettingsAIWorker />
+          <Space h={40} /> */}
           <SettingsNominatim />
         </Tabs.Panel>
 

@@ -46,7 +46,7 @@ export const TAB_DATA: {
   };
 } = {
   general: {
-    label: "pages.settings.engines.title",
+    label: "pages.settings.engines.title_general",
     icon: IconSearch,
     data: DATA_ENGINES_GENERAL,
   },
@@ -106,15 +106,14 @@ export const TAB_DATA: {
 };
 
 const Engines = () => {
-  const theme = useMantineTheme();
-
   const t = useTranslate();
+  const theme = useMantineTheme();
 
   const [tab, setTab] = useState<ICategories>("general");
 
   //const engines = useEnginesStore((state) => state[CATEGORY_TO_STORE[tab].data] as string[])
   const setEngines = useEnginesStore(
-    (state) => state[CATEGORY_TO_STORE[tab].set] as (next: string[]) => void
+    (state) => state[CATEGORY_TO_STORE[tab].set] as (next: string[]) => void,
   );
 
   const IconCurrnetEngine = TAB_DATA[tab].icon;
@@ -132,7 +131,7 @@ const Engines = () => {
                 setEngines(DEFAULT_ENGINES[tab]);
               }}
             >
-              Set default
+              {t("pages.settings.engines.set_default")}
             </Button>
             <Button
               size="xs"
@@ -140,7 +139,7 @@ const Engines = () => {
                 setEngines(TAB_DATA[tab].data.filter((row) => row.value).map((eng) => eng.value));
               }}
             >
-              Enable all
+              {t("pages.settings.engines.enable_all")}
             </Button>
             <Button
               size="xs"
@@ -148,7 +147,7 @@ const Engines = () => {
                 setEngines([]);
               }}
             >
-              Disable all
+              {t("pages.settings.engines.disable_all")}
             </Button>
           </Flex>
         }
@@ -163,37 +162,37 @@ const Engines = () => {
         >
           <Tabs.List mb="lg" className={classesParent.tabs_scroll}>
             <Tabs.Tab value="general" leftSection={<IconSearch style={getIconStyle(20)} />}>
-              General
+              {t("_common.category_general")}
             </Tabs.Tab>
             <Tabs.Tab value="images" leftSection={<IconPhoto style={getIconStyle(20)} />}>
-              Images
+              {t("_common.category_images")}
             </Tabs.Tab>
             <Tabs.Tab value="videos" leftSection={<IconPlayerPlay style={getIconStyle(20)} />}>
-              Videos
+              {t("_common.category_videos")}
             </Tabs.Tab>
             <Tabs.Tab value="news" leftSection={<IconNews style={getIconStyle(20)} />}>
-              News
+              {t("_common.category_news")}
             </Tabs.Tab>
             <Tabs.Tab value="music" leftSection={<IconMusic style={getIconStyle(20)} />}>
-              Music
+              {t("_common.category_music")}
             </Tabs.Tab>
             <Tabs.Tab value="it" leftSection={<IconCpu style={getIconStyle(20)} />}>
-              IT
+              {t("_common.category_it")}
             </Tabs.Tab>
             <Tabs.Tab value="science" leftSection={<IconSchool style={getIconStyle(20)} />}>
-              Science
+              {t("_common.category_science")}
             </Tabs.Tab>
             <Tabs.Tab value="files" leftSection={<IconFiles style={getIconStyle(20)} />}>
-              Files
+              {t("_common.category_files")}
             </Tabs.Tab>
             <Tabs.Tab value="social_media" leftSection={<IconUsers style={getIconStyle(20)} />}>
-              Social Media
+              {t("_common.category_social_media")}
             </Tabs.Tab>
             <Tabs.Tab
               value="other"
               // leftSection={<IconDotsCircleHorizontal style={getIconStyle(20)} />}
             >
-              Other
+              {t("_common.category_other")}
             </Tabs.Tab>
           </Tabs.List>
 

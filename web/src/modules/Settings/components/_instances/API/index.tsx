@@ -11,6 +11,7 @@ import { usePrimaryColor } from "@hooks/use-primary-color";
 import SettingsTitle from "../../common/SettingsTitle";
 import { IOpenSection } from "@module/SettingsMobile";
 import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 interface Props {
   isM?: boolean;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
+  const t = useTranslate();
   const theme = useMantineTheme();
 
   const domain = useInstanceStore((state) => state.apiDomain);
@@ -81,13 +83,13 @@ const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
             className={classes.settings_footer}
           >
             <Text size="sm" c="dimmed">
-              Change this to your own url for better privacy & less load for default instance.{" "}
+              {t("pages.settings.instances.change_url")}{" "}
               <Text component="span" c={linkTextColor}>
-                <RemixLink to={"/docs/self-host-khofly-api"}>Read more</RemixLink>
+                <RemixLink to={"/docs/self-host-khofly-api"}>{t("_common.read_more")}</RemixLink>
               </Text>
             </Text>
 
-            <Button type="submit">Save</Button>
+            <Button type="submit">{t("pages.settings._common.save")}</Button>
           </Flex>
         </form>
       </Paper>

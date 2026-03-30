@@ -20,8 +20,10 @@ import { useEffect } from "react";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import SettingsTitle from "../../common/SettingsTitle";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 const SettingsPV = () => {
+  const t = useTranslate();
   const theme = useMantineTheme();
 
   const domain = useInstanceStore((state) => state.pvDomain);
@@ -87,13 +89,13 @@ const SettingsPV = () => {
           className={classes.settings_footer}
         >
           <Text size="sm" c="dimmed">
-            Change this to your own url for better privacy & less load for default instance.{" "}
+            {t("pages.settings.instances.change_url")}{" "}
             <Text component="span" c={linkTextColor}>
-              <RemixLink to={"/docs/self-host-khofly-pv"}>Read more</RemixLink>
+              <RemixLink to={"/docs/self-host-khofly-pv"}>{t("_common.read_more")}</RemixLink>
             </Text>
           </Text>
 
-          <Button type="submit">Save</Button>
+          <Button type="submit">{t("pages.settings._common.save")}</Button>
         </Flex>
       </form>
     </Paper>

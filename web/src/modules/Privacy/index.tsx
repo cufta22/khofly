@@ -128,8 +128,6 @@ const PagePrivacy = () => {
           </Text>
         </Flex>
 
-        <Text mb="md">You can contact us if you have any questions using methods below:</Text>
-
         <Text>
           <strong>Email:</strong>{" "}
           <Anchor href="mailto:contact@khofly.com" target="_blank" rel="noreferrer noopener">

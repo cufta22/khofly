@@ -1,13 +1,15 @@
 import { Text, UnstyledButton } from "@mantine/core";
 import classes from "./styles.module.scss";
 import { getIconStyle } from "@utils/functions/iconStyle";
+import { useTranslate } from "@hooks/translate/use-translate";
+import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 interface CategoryCheckboxProps {
   checked: boolean;
   defaultChecked?: boolean;
   onChange(checked: boolean, id: string): void;
   id: string;
-  title: string;
+  title: DotNestedKeys<ITranslations>;
   icon: any;
 }
 
@@ -22,6 +24,7 @@ export function CategoryCheckbox({
   ...others
 }: CategoryCheckboxProps &
   Omit<React.ComponentPropsWithoutRef<"button">, keyof CategoryCheckboxProps>) {
+  const t = useTranslate();
   const Icon = icon;
 
   return (
@@ -37,7 +40,7 @@ export function CategoryCheckbox({
 
       <div className={classes.body}>
         <Text fw={500} size="sm" lh={1}>
-          {title}
+          {t(title)}
         </Text>
       </div>
     </UnstyledButton>

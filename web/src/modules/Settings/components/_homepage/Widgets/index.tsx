@@ -19,8 +19,11 @@ import SettingsRow from "../../common/SettingsRow";
 
 import commonClasses from "../../common/styles.module.scss";
 import NotesSwitch from "./components/NotesSwitch";
+import { T } from "build/client/assets/iconStyle-kU3X2BP3";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 const SettingsWidgets = () => {
+  const t = useTranslate();
   const theme = useMantineTheme();
 
   return (
@@ -32,7 +35,7 @@ const SettingsWidgets = () => {
           <Flex className="desktop_only" align="center">
             <IconDeviceDesktop />
 
-            <Text ml="sm">Desktop only</Text>
+            <Text ml="sm">{t("pages.settings._common.desktop_only")}</Text>
           </Flex>
         }
       />

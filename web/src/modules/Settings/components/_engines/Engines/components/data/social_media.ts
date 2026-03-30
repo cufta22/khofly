@@ -6,7 +6,7 @@ export const DATA_ENGINES_SOCIAL_MEDIA: IDataEngine[] = [
     value: "",
     alt: "",
     icon: "",
-    label: "pages.settings.engines.title_without",
+    label: "pages.settings._common.title_grid_without",
     bang: "",
     safeSearch: false,
     timeRange: false,
