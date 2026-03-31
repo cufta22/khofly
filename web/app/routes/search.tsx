@@ -10,6 +10,9 @@ export interface ILoaderData_Search {
 
 export async function loader({ request }: Route.LoaderArgs) {
   try {
+    // Only SSR when not already on search pages
+    if (request.headers.get("Referer")?.includes("/search")) return { data: null, error: false };
+
     const data = await getSearXNGData(request);
 
     return { data: data, error: false };

@@ -5,16 +5,13 @@ import classes from "../styles.module.scss";
 
 const HeaderCode = () => {
   return (
-    <Anchor
-      href="https://github.com/cufta22/khofly"
-      target="_blank"
-      rel="noreferrer noopener"
-    >
+    <Anchor href="https://github.com/cufta22/khofly" target="_blank" rel="noreferrer noopener">
       <ActionIcon
         className={classes.action_button}
         variant="subtle"
         size={rem(36)}
         ml="md"
+        color="dark"
       >
         <IconBrandGithub style={getIconStyle(24)} />
       </ActionIcon>

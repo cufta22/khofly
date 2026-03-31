@@ -11,8 +11,11 @@ import { useHotkeys, useMounted } from "@mantine/hooks";
 import { useNavigate, useSearchParams } from "react-router";
 import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
 import useSearchQuery from "@hooks/use-search-query";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 const SearchSectionTabs = () => {
+  const t = useTranslate();
+
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const mounted = useMounted();
@@ -30,7 +33,7 @@ const SearchSectionTabs = () => {
   const { tab: tabFromSyntax } = getTabFromQuery(q);
 
   const [selectedTab, setSelectedTab] = useState(
-    tabFromSyntax || searchParams.get("tab") || "general"
+    tabFromSyntax || searchParams.get("tab") || "general",
   );
 
   const iconSize = 16;
@@ -95,7 +98,7 @@ const SearchSectionTabs = () => {
 
               return (
                 <Tabs.Tab key={i} value={cat} leftSection={<Icon style={getIconStyle(iconSize)} />}>
-                  {CATEGORIES_DATA[cat].title}
+                  {t(CATEGORIES_DATA[cat].title)}
                 </Tabs.Tab>
               );
             })}

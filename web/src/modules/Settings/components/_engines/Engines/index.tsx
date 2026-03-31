@@ -121,7 +121,7 @@ const Engines = () => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={<IconCurrnetEngine size={32} color={theme.colors.blue["5"]} />}
+        icon={<IconCurrnetEngine size={32} color={theme.colors[theme.primaryColor][5]} />}
         title={TAB_DATA[tab].label}
         rightSection={
           <Flex align="center" justify="flex-end" gap="sm">

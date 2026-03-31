@@ -34,13 +34,13 @@ const SettingsMInitial: React.FC<Props> = ({ handleChangeSection }) => {
               handleChangeSection("general");
             }}
           />
-          <SettingsMInitRow
+          {/* <SettingsMInitRow
             icon={<IconSparkles color={theme.colors.pink["5"]} />}
             desc="pages.settings.ai.title"
             onClick={() => {
               handleChangeSection("ai");
             }}
-          />
+          /> */}
         </Flex>
       </Paper>
 
@@ -79,13 +79,13 @@ const SettingsMInitial: React.FC<Props> = ({ handleChangeSection }) => {
               handleChangeSection("api");
             }}
           />
-          <SettingsMInitRow
+          {/* <SettingsMInitRow
             icon={<IconBrandCloudflare color={theme.colors.orange["5"]} />}
             desc="pages.settings.instances.title_ai"
             onClick={() => {
               handleChangeSection("worker");
             }}
-          />
+          /> */}
           <SettingsMInitRow
             icon={<IconWorld color={theme.colors.blue["5"]} />}
             desc="pages.settings.instances.title_nominatim"

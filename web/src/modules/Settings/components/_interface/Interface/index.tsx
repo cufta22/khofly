@@ -5,6 +5,7 @@ import ThemeSelect from "./ThemeSelect/ThemeSelect";
 import ColorSchemeSwitch from "./ColorThemeSwitch/ColorThemeSwitch";
 
 import {
+  IconBrush,
   IconColorPicker,
   IconEdit,
   IconLanguage,
@@ -30,7 +31,7 @@ const SettingsInterface: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        // icon={<IconBrush color={theme.colors.blue["5"]} />}
+        icon={<IconBrush color={theme.colors[theme.primaryColor][5]} />}
         title="pages.settings.interface.title"
       />
 

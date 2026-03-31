@@ -56,12 +56,12 @@
   }
 
   &.link_active {
-    border-left: 1px solid var(--mantine-color-blue-6);
-    background-color: rgba(24, 100, 171, 0.45);
+    border-left: 1px solid var(--mantine-primary-color-6);
+    background-color: var(--mantine-primary-color-light);
     border-radius: 0 4px 4px 0;
 
     &:hover {
-      background-color: rgba(24, 100, 171, 0.55);
+      background-color: var(--mantine-primary-color-light-hover);
     }
   }
 

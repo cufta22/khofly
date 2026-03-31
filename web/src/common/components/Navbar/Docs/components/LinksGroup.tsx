@@ -15,6 +15,7 @@ import { getIconStyle } from "@utils/functions/iconStyle";
 import RemixLink from "@components/RemixLink";
 import clsx from "clsx";
 import { useLocation } from "react-router";
+import { useResponsive } from "@hooks/use-responsive";
 
 export interface LinksGroupProps {
   icon: React.FC<any>;
@@ -23,12 +24,15 @@ export interface LinksGroupProps {
 }
 
 const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => {
+  const isXs = useResponsive("max", "xs");
+
   const theme = useMantineTheme();
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(false);
 
   const { pathname } = useLocation();
 
+  // Open initially if closed to show active link
   useEffect(() => {
     const shouldOpen = !!links?.find((link) => pathname === link.link);
     if (shouldOpen) setOpened(shouldOpen);
@@ -76,7 +80,7 @@ const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => 
           )}
         </Group>
       </UnstyledButton>
-      {hasLinks ? <Collapse in={opened}>{items}</Collapse> : null}
+      {hasLinks ? <Collapse expanded={opened}>{items}</Collapse> : null}
     </>
   );
 };

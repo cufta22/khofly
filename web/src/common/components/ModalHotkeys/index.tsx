@@ -1,16 +1,18 @@
 import { Kbd, Modal, Table, Text } from "@mantine/core";
-import React from "react";
+import { useHotkeys } from "@mantine/hooks";
+import { useGeneralStore } from "@store/general";
 
-interface Props {
-  isOpen: boolean;
-  onClose: () => void;
-}
+const ModalHotkeys = () => {
+  const openHotkeyModal = useGeneralStore((state) => state.openHotkeyModal);
+  const toggleOpenHotkeyModal = useGeneralStore((state) => state.toggleOpenHotkeyModal);
 
-const ModalHotkeys: React.FC<Props> = ({ isOpen, onClose }) => {
+  // HOTKEYS: Global
+  useHotkeys([["h", () => toggleOpenHotkeyModal()]]);
+
   return (
     <Modal
-      opened={isOpen}
-      onClose={onClose}
+      opened={openHotkeyModal}
+      onClose={toggleOpenHotkeyModal}
       title={<Text size="lg">How to navigate Khofly with hotkeys</Text>}
       withCloseButton={false}
       size="lg"

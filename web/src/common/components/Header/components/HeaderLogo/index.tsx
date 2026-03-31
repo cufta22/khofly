@@ -2,31 +2,27 @@ import RemixLink from "@components/RemixLink";
 import { Burger, Flex, Image, useMantineTheme } from "@mantine/core";
 import classes from "./styles.module.scss";
 import { IconHeart, IconMessage } from "@tabler/icons-react";
+import { useGeneralStore } from "@store/general";
 
 interface Props {
   isChat: boolean;
   isSupport: boolean;
   hasBurger: boolean;
-  openNavbar: boolean;
-  toggleNavbar: () => void;
 }
 
-const HeaderLogo: React.FC<Props> = ({
-  isChat,
-  isSupport,
-  hasBurger,
-  openNavbar,
-  toggleNavbar,
-}) => {
+const HeaderLogo: React.FC<Props> = ({ isChat, isSupport, hasBurger }) => {
   const theme = useMantineTheme();
+
+  const openNavbar = useGeneralStore((state) => state.openNavbar);
+  const toggleOpenNavbar = useGeneralStore((state) => state.toggleOpenNavbar);
 
   return (
     <Flex align="center" gap="md">
       {hasBurger && (
         <Burger
           opened={openNavbar}
-          onClick={toggleNavbar}
-          hiddenFrom={isChat ? "" : "sm"}
+          onClick={toggleOpenNavbar}
+          // hiddenFrom={isChat ? "" : "sm"}
           size="md"
         />
       )}

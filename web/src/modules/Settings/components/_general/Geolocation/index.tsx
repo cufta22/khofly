@@ -1,4 +1,15 @@
-import { Button, Dialog, Flex, Group, Modal, Paper, Stack, Text, TextInput } from "@mantine/core";
+import {
+  Button,
+  Dialog,
+  Flex,
+  Group,
+  Modal,
+  Paper,
+  Stack,
+  Text,
+  TextInput,
+  useMantineTheme,
+} from "@mantine/core";
 import SettingsTitle from "../../common/SettingsTitle";
 import classes from "../../../styles.module.scss";
 import useForm from "@hooks/use-form";
@@ -8,9 +19,11 @@ import { useEffect, useState } from "react";
 import useToast from "@hooks/use-toast";
 import { useGeneralStore } from "@store/general";
 import { useTranslate } from "@hooks/translate/use-translate";
+import { IconWorld } from "@tabler/icons-react";
 
 const SettingsGeolocation = () => {
   const t = useTranslate();
+  const theme = useMantineTheme();
 
   // Nomitanim stuff for geolocation
   const [openNominatim, { toggle: toggleNominatim, close: closeNominatim }] = useDisclosure(false);
@@ -68,7 +81,7 @@ const SettingsGeolocation = () => {
       <Paper radius="md" withBorder>
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <SettingsTitle
-            // icon={<IconSettings2 color={theme.colors.blue["5"]} />}
+            icon={<IconWorld color={theme.colors[theme.primaryColor][5]} />}
             title="pages.settings.geolocation.title"
           />
 

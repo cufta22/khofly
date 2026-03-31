@@ -62,7 +62,7 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {!isM && (
             <SettingsTitle
-              icon={<IconPhoto color={theme.colors.blue["5"]} />}
+              icon={<IconPhoto color={theme.colors[theme.primaryColor][5]} />}
               title="pages.settings.homepage.title_background"
               rightSection={
                 <Flex className="desktop_only" align="center">

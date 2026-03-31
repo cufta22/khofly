@@ -39,7 +39,7 @@ export function CategoryCheckbox({
       <Icon style={getIconStyle(20)} />
 
       <div className={classes.body}>
-        <Text fw={500} size="sm" lh={1}>
+        <Text className={classes.text} fw={500} size="sm" lh={1}>
           {t(title)}
         </Text>
       </div>

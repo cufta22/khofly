@@ -60,7 +60,7 @@ const SettingsAPI: React.FC<Props> = ({ isM, handleChangeSection }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {!isM && (
             <SettingsTitle
-              icon={<IconApiApp color={theme.colors.blue["5"]} />}
+              icon={<IconApiApp color={theme.colors[theme.primaryColor][5]} />}
               title="pages.settings.instances.title_api"
             />
           )}

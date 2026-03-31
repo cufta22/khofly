@@ -71,10 +71,7 @@ const PrimaryColorSelect = () => {
       <Combobox.Target>
         <InputBase
           w={200}
-          leftSection={
-            <ColorSwatch color={theme.colors[selected.value][6]} size={20} />
-            // <Image src={selected.image} w={20} h={20} alt={`${selected.label} logo`} />
-          }
+          leftSection={<ColorSwatch color={theme.colors[selected.value][6]} size={20} />}
           leftSectionWidth={25 + 20}
           leftSectionProps={{
             onClick: () => combobox.openDropdown(),

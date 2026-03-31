@@ -72,7 +72,7 @@ const SettingsNominatim: React.FC<Props> = ({ isM, handleChangeSection }) => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {!isM && (
             <SettingsTitle
-              icon={<IconWorld color={theme.colors.blue["5"]} />}
+              icon={<IconWorld color={theme.colors[theme.primaryColor][5]} />}
               title="pages.settings.instances.title_nominatim"
             />
           )}

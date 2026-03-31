@@ -46,7 +46,7 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
       <Paper radius="md" withBorder>
         {!isM && (
           <SettingsTitle
-            icon={<IconExternalLink color={theme.colors.blue["5"]} />}
+            icon={<IconExternalLink color={theme.colors[theme.primaryColor][5]} />}
             title="pages.settings.homepage.title_shortcuts"
             rightSection={
               <Flex className="desktop_only" align="center">

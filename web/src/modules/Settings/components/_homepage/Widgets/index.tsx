@@ -29,7 +29,7 @@ const SettingsWidgets = () => {
   return (
     <Paper className="desktop_only" radius="md" withBorder>
       <SettingsTitle
-        icon={<IconApps color={theme.colors.blue["5"]} />}
+        icon={<IconApps color={theme.colors[theme.primaryColor][5]} />}
         title="pages.settings.homepage.title_widgets"
         rightSection={
           <Flex className="desktop_only" align="center">

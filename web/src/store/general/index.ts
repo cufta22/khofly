@@ -10,6 +10,12 @@ interface GeneralState {
 
   devMode: boolean;
   setDevMode: (next: boolean) => void;
+
+  openNavbar: boolean;
+  toggleOpenNavbar: () => void;
+
+  openHotkeyModal: boolean;
+  toggleOpenHotkeyModal: () => void;
 }
 
 export const useGeneralStore = create<GeneralState>()(
@@ -23,6 +29,12 @@ export const useGeneralStore = create<GeneralState>()(
 
       devMode: false, // Kinda unused
       setDevMode: (next) => set({ devMode: next }),
+
+      openNavbar: false,
+      toggleOpenNavbar: () => set({ openNavbar: !get().openNavbar }),
+
+      openHotkeyModal: false,
+      toggleOpenHotkeyModal: () => set({ openHotkeyModal: !get().openHotkeyModal }),
     }),
     {
       name: "general-store", // name of the item in the storage (must be unique)

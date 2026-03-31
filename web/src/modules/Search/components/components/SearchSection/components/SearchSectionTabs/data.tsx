@@ -12,54 +12,58 @@ import {
   IconUsers,
   type IconProps,
 } from "@tabler/icons-react";
+import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 export const CATEGORIES_DATA: {
-  [key in ICategories]: { title: string; icon: React.ForwardRefExoticComponent<IconProps> };
+  [key in ICategories]: {
+    title: DotNestedKeys<ITranslations>;
+    icon: React.ForwardRefExoticComponent<IconProps>;
+  };
 } = {
   general: {
-    title: "General",
+    title: "_common.category_general",
     icon: IconSearch,
   },
   images: {
-    title: "Images",
+    title: "_common.category_images",
     icon: IconPhoto,
   },
   videos: {
-    title: "Videos",
+    title: "_common.category_videos",
     icon: IconPlayerPlay,
   },
   news: {
-    title: "News",
+    title: "_common.category_news",
     icon: IconNews,
   },
   maps: {
-    title: "Maps",
+    title: "_common.category_maps",
     icon: IconMapPin,
   },
   music: {
-    title: "Music",
+    title: "_common.category_music",
     icon: IconMusic,
   },
   it: {
-    title: "IT",
+    title: "_common.category_it",
     icon: IconCpu,
   },
   science: {
-    title: "Science",
+    title: "_common.category_science",
     icon: IconSchool,
   },
   files: {
-    title: "Files",
+    title: "_common.category_files",
     icon: IconFiles,
   },
   social_media: {
-    title: "Social Media",
+    title: "_common.category_social_media",
     icon: IconUsers,
   },
 
   // Unused
   other: {
-    title: "Other",
+    title: "_common.category_other",
     icon: IconSearch,
   },
 };

@@ -19,14 +19,14 @@ import Footer from "@components/Footer";
 import Header from "@components/Header";
 import DocsNavbar from "@components/Navbar/Docs";
 import ModalHotkeys from "@components/ModalHotkeys";
+import { useGeneralStore } from "@store/general";
 
 const AppLayout: React.FC<IFC> = ({ children }) => {
   const { theme, primaryColor } = useClientServerState();
 
   const error = useRouteError();
-  const [openNavbar, { toggle: toggleNavbar }] = useDisclosure(false);
 
-  const [openHotkeyModal, { toggle: toggleHotkeyModal }] = useDisclosure(false);
+  const openNavbar = useGeneralStore((state) => state.openNavbar);
 
   const resetVisitedLinks = useSearchStore((state) => state.resetVisitedLinks);
 
@@ -57,8 +57,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
     if (!["/search"].includes(pathname)) {
       resetVisitedLinks();
     }
-
-    if (openNavbar) toggleNavbar();
   }, [pathname]);
 
   // Adjust document title for query
@@ -66,9 +64,6 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
 
   // Initialize instance URLs
   useInstanceInit();
-
-  // HOTKEYS: Global
-  useHotkeys([["h", () => toggleHotkeyModal()]]);
 
   return (
     <MantineProvider
@@ -78,7 +73,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
       })}
       defaultColorScheme="dark"
     >
-      <ModalHotkeys isOpen={openHotkeyModal} onClose={toggleHotkeyModal} />
+      <ModalHotkeys />
 
       <Notifications />
 
@@ -96,7 +91,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
             ? {
                 width: { xs: isDocs ? 200 : 0, sm: isDocs ? 300 : 0 },
                 breakpoint: "sm",
-                collapsed: { mobile: !openNavbar, desktop: false },
+                collapsed: { mobile: !openNavbar, desktop: !openNavbar },
               }
             : undefined
         }
@@ -123,7 +118,7 @@ const AppLayout: React.FC<IFC> = ({ children }) => {
       >
         {!isSearchMaps && !isProxy && (
           <AppShell.Header>
-            <Header openNavbar={openNavbar} toggleNavbar={toggleNavbar} />
+            <Header />
           </AppShell.Header>
         )}
 

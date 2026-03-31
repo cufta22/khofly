@@ -19,12 +19,7 @@ import HeaderAISettings from "./components/HeaderAISettings";
 import HeaderSupport from "./components/HeaderSupport";
 import { HAS_SUPPORT } from "@utils/resources/hasSupport";
 
-interface Props {
-  openNavbar: boolean;
-  toggleNavbar: () => void;
-}
-
-const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
+const Header = () => {
   const t = useTranslate();
   const { pathname } = useLocation();
 
@@ -43,21 +38,19 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
 
   const isIndex = pathname === "/";
 
-  const pageTitle = isChangelog
-    ? "Changelog"
-    : isSettings
-    ? "Settings"
-    : isPrivacy
-    ? "Privacy"
-    : isDocs
-    ? "Docs"
-    : isChat
-    ? "AI Chat"
-    : isInstances
-    ? "Public Instances"
-    : isSupport
-    ? "Support"
-    : "";
+  const ROUTE_MAP: { [key in string]: string } = {
+    "/changelog": "Changelog",
+    "/instances": "Public Instances",
+    "/settings": "Settings",
+    "/support": "Support",
+    "/privacy": "Privacy",
+    "/search": "Search",
+    "/docs": "Docs",
+    "/chat": "AI Chat",
+  };
+
+  const matchedPath = Object.keys(ROUTE_MAP).find((path) => pathname.startsWith(path));
+  const pageTitle = matchedPath ? ROUTE_MAP[matchedPath] : "";
 
   // If /search
   const tab = searchParams.get("tab") || "general";
@@ -79,13 +72,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {/* Header with title */}
       {(isDocs || isSettings || isChangelog || isPrivacy || isChat || isInstances || isSupport) && (
         <>
-          <HeaderLogo
-            isChat={isChat}
-            isSupport={isSupport}
-            hasBurger={isDocs}
-            openNavbar={openNavbar}
-            toggleNavbar={toggleNavbar}
-          />
+          <HeaderLogo isChat={isChat} isSupport={isSupport} hasBurger={isDocs} />
           <Text className={classes.header_title} ml="sm" fw={700}>
             / {pageTitle}
           </Text>
@@ -103,7 +90,7 @@ const Header: React.FC<Props> = ({ openNavbar, toggleNavbar }) => {
       {isChat && <HeaderAISettings />}
 
       {isDocs && HAS_SUPPORT && <HeaderSupport />}
-      {(isDocs || isChangelog) && <HeaderCode />}
+      {(isDocs || isChangelog || isSettings) && <HeaderCode />}
     </Group>
   );
 };

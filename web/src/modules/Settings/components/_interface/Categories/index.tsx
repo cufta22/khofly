@@ -65,7 +65,7 @@ const SettingsCategories = () => {
   return (
     <Paper radius="md" withBorder>
       <SettingsTitle
-        icon={<IconCategory color={theme.colors.blue["5"]} />}
+        icon={<IconCategory color={theme.colors[theme.primaryColor][5]} />}
         title="pages.settings.categories.title"
         rightSection={<Text>Currently enabled search categories</Text>}
       />

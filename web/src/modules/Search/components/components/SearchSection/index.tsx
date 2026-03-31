@@ -22,7 +22,6 @@ const SearchSection = () => {
         {q.includes("doge") ? (
           <Image w={42} h={42} src={"/assets/doge.svg"} alt="Doge image" fit="contain" />
         ) : (
-          // <IconTriangleFilled style={getIconStyle(42)} />
           <Image src="/assets/logo.svg" w={42} h={42} />
         )}
       </RemixLink>
