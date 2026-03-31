@@ -1,3 +1,4 @@
+import { useTranslate } from "@hooks/translate/use-translate";
 import { Flex, Space, Text, useMantineTheme } from "@mantine/core";
 import ShortcutsSwitch from "@module/Settings/components/_homepage/Shortcuts/components/ShortcutsSwitch";
 import SurpriseMeSwitch from "@module/Settings/components/_homepage/SurpriseMe!/components/SurpriseMeSwitch";
@@ -5,12 +6,14 @@ import SettingsRow from "@module/Settings/components/common/SettingsRow";
 import { IconConfetti, IconExternalLink, IconSnowflake } from "@tabler/icons-react";
 
 const CSOptions = () => {
+  const t = useTranslate();
+
   const theme = useMantineTheme();
 
   return (
     <>
       <Flex mt="xl" mb="md" align="center" justify="space-between">
-        <Text size="xl">More options</Text>
+        <Text size="xl">{t("pages.index.more_options")}</Text>
       </Flex>
 
       <SettingsRow

@@ -1,0 +1,466 @@
+{
+  "_common": {
+    "app_name": "Khofly",
+
+    "category_general": "Opšte",
+    "category_images": "Slike",
+    "category_videos": "Video",
+    "category_news": "Vesti",
+    "category_maps": "Mape",
+    "category_music": "Muzika",
+    "category_it": "IT",
+    "category_science": "Nauka",
+    "category_files": "Datoteke",
+    "category_social_media": "Društvene mreže",
+    "category_other": "Ostalo",
+
+    "read_more": "Pročitaj više",
+    "search": "Pretraga",
+    "reset": "Resetuj",
+    "back": "Nazad",
+    "show_more": "Prikaži još"
+  },
+
+  "header": {
+    "changelog": "Changelog",
+    "instances": "Instance",
+    "settings": "Podešavanja",
+    "support": "Support",
+    "privacy": "Privatnost",
+    "search": "Pretraga",
+    "docs": "Dokumentacija",
+    "chat": "AI Chat"
+  },
+
+  "footer": {
+    "ver": "Verzija",
+    "powered": "pokreće",
+
+    "link_instances": "Instance",
+    "link_docs": "Dokumentacija",
+    "link_privacy": "Privatnost",
+    "link_changelog": "Changelog",
+    "link_settings": "Podešavanja"
+  },
+
+  "pages": {
+    "index": {
+      "search_placeholder": "Pretraži bilo šta...",
+
+      "surprise_me": "Iznenadi me!",
+
+      "customize": "Prilagodi",
+      "wallpapers": "Pozadine",
+      "more_options": "Više opcija"
+    },
+
+    "search": {
+      "search_placeholder": "Pretraži bilo šta..."
+    },
+
+    "changelog": {
+      "title": "Changelog"
+    },
+
+    "instances": {
+      "title": "Instance"
+    },
+
+    "settings": {
+      "_common": {
+        "general": "Opšte",
+        "interface": "Interfejs",
+        "instances": "Instance",
+        "engines": "Pretraživači",
+        "homepage": "Početna stranica",
+        "cookies": "Kolačići",
+
+        "desktop_mobile": "Desktop i Mobilni",
+        "desktop_only": "Samo Desktop",
+        "save": "Sačuvaj",
+
+        "title_grid_without": "ostalo",
+        "title_grid_i18n": "i18n",
+        "title_grid_web": "veb",
+        "title_grid_wiki": "viki stvari",
+        "title_grid_icons": "ikonice",
+        "title_grid_lyrics": "tekstovi pesama",
+        "title_grid_radio": "radio pretraga",
+        "title_grid_packages": "paketi",
+        "title_grid_q&a": "pitanja i odgovori",
+        "title_grid_repos": "repozitorijumi",
+        "title_grid_software_wikis": "softverski vikiji",
+        "title_grid_publications": "publikacije",
+        "title_grid_apps": "aplikacije",
+        "title_grid_dict": "rečnici",
+        "title_grid_movies": "filmovi",
+        "title_grid_weather": "vreme"
+      },
+
+      "interface": {
+        "title": "Korisnički interfejs",
+
+        "select_lang": "Izbor jezika",
+        "select_lang_options": {
+          "en": "Engleski",
+          "fr": "Francuski",
+          "de": "Nemački",
+          "sr": "Srpski"
+        },
+
+        "select_theme": "Izbor teme",
+        "select_theme_options": {
+          "custom": "Prilagođeno",
+          "mantine_old": "Mantine Old",
+          "mantine_new": "Mantine New",
+          "frutiger_aero": "Frutiger Aero",
+          "material": "Material",
+          "catppuccin": "Catppuccin",
+          "rosepine": "Rosé Pine",
+          "nord": "Nord",
+          "tokyo_night": "Tokyo Night"
+        },
+
+        "select_primary_color": "Izbor primarne boje",
+        "select_primary_color_options": {
+          "dark": "Tamna",
+          "gray": "Siva",
+          "red": "Crvena",
+          "pink": "Roze",
+          "grape": "Boja grožđa",
+          "violet": "Ljubičasta",
+          "indigo": "Indigo",
+          "blue": "Plava",
+          "cyan": "Cijan",
+          "teal": "Tirkizna",
+          "green": "Zelena",
+          "lime": "Lajm",
+          "yellow": "Žuta",
+          "orange": "Narandžasta"
+        },
+
+        "select_color": "Šema boja",
+        "select_color_options": {
+          "light": "Svetla",
+          "dark": "Tamna"
+        },
+
+        "toggle_open_in_new_tab": "Otvori linkove u novoj kartici",
+
+        "toggle_search_on_category": "Pretraži odmah pri izboru kategorije"
+      },
+
+      "general": {
+        "title": "Opšta podešavanja",
+
+        "toggle_favicon": "Prikaži ikonicu sajta (favicon)",
+        "favicon_provider": "Provajder ikonica",
+        "toggle_favicon_options": {
+          "DDG": "DuckDuckGo",
+          "google": "Google",
+          "favicone": "Favicone"
+        },
+
+        "show_engines": "Prikaži pretraživače za svaki rezultat",
+
+        "display_media": "Prikaži medije u opštoj pretrazi",
+        "media_type": "Tip medija",
+        "display_media_options": {
+          "images": "Slike",
+          "videos": "Video"
+        },
+
+        "toggle_autocomplete": "Omogući automatsko dopunjavanje",
+        "autocomplete_engine": "Servis za dopunjavanje",
+        "toggle_autocomplete_options": {
+          "google": "Google",
+          "DDG": "DuckDuckGo",
+          "brave": "Brave",
+          "qwant": "Qwant"
+        },
+
+        "toggle_ia": "Omogući brze odgovore (Instant Answers)",
+
+        "toggle_private_search": "Omogući privatnu pretragu",
+
+        "toggle_private_player": "Omogući privatni plejer",
+
+        "toggle_private_view": "Omogući privatni pregled",
+
+        "set_as_default": "Postavi Khofly kao podrazumevani pretraživač",
+        "set_as_default_btn": "Postavi kao podrazumevano",
+
+        "learn_more": "Saznaj više"
+      },
+
+      "ai": {
+        "title": "AI podešavanja",
+
+        "toggle_ai_answers": "Omogući AI odgovore",
+
+        "toggle_ai_chat": "Omogući AI ćaskanje",
+
+        "toggle_ai_summary": "Omogući AI sažetak",
+        "ai_summary_length": "Dužina sažetka"
+      },
+
+      "geolocation": {
+        "title": "Geolokacija",
+        "lat": "Geografska širina",
+        "lon": "Geografska dužina",
+        "use_nominatim": "Koristi Nominatim",
+        "description1": "Ako ne želite da koristite podrazumevani Geolocation API vašeg pretraživača (koji verovatno koristi Google), možete ručno uneti koordinate ili koristiti Nominatim.",
+        "description2": "Ovo će biti sačuvano u kolačiću, tako da je potrebno podesiti samo jednom.",
+        "your_location": "Vaša lokacija",
+        "city_country": "Grad, Država"
+      },
+
+      "categories": {
+        "title": "Kategorije pretrage"
+      },
+
+      "theme": {
+        "title": "Prilagodi temu",
+        "description": "Primeni trenutne promene teme",
+        "button": "Primeni"
+      },
+
+      "instances": {
+        "title_searxng": "SearXNG URL",
+        "title_api": "API URL",
+        "title_ai": "AI Worker",
+        "title_nominatim": "Nominatim URL",
+        "title_pv": "PV URL",
+
+        "default_instances": "Podrazumevane instance",
+        "pick_one": "Izaberite jednu na osnovu vaše lokacije",
+        "instance_location": "Lokacija instance",
+
+        "nominatim_explained": "koristi podatke OpenStreetMap-a za pronalaženje lokacija na Zemlji putem imena i adrese (geokodiranje).",
+        "change_url": "Promenite ovo u sopstveni URL za bolju privatnost i manje opterećenje podrazumevane instance."
+      },
+
+      "engines": {
+        "set_default": "Postavi kao podrazumevano",
+        "enable_all": "Omogući sve",
+        "disable_all": "Onemogući sve",
+
+        "title_general": "Opšti pretraživači",
+
+        "engine_dictzone": "Dictzone",
+        "engine_libre_translate": "LibreTranslate",
+        "engine_lingva": "Lingva",
+        "engine_google": "Google",
+        "engine_DDG": "DuckDuckGo",
+        "engine_presearch": "Presearch",
+        "engine_qwant": "Qwant",
+        "engine_mojeek": "Mojeek",
+        "engine_mullvad_leta": "Mullvad Google",
+        "engine_mullvad_leta_brave": "Mullvad Brave",
+        "engine_startpage": "Startpage",
+        "engine_bing": "Bing",
+        "engine_brave": "Brave",
+        "engine_yahoo": "Yahoo!",
+        "engine_wiby": "Wiby",
+
+        "engine_wikibooks": "Wikibooks",
+        "engine_wikiquote": "Wikiquote",
+        "engine_wikisource": "Wikisource",
+        "engine_wikispecies": "Wikispecies",
+        "engine_wikiversity": "Wikiversity",
+        "engine_wikivoyage": "Wikivoyage",
+
+        "engine_alexandria": "Alexandria",
+        "engine_ask": "Ask",
+        "engine_cfai": "Cloudflare AI",
+        "engine_mwmbl": "Mwmbl",
+        "engine_rightdao": "Right Dao",
+        "engine_searchmysite": "Search My Site",
+        "engine_stract": "Stract",
+        "engine_wikipedia": "Wikipedia",
+        "engine_wikidata": "Wikidata",
+        "engine_yep": "Yep",
+
+        "title_img": "Pretraživači slika",
+
+        "engine_material_img": "Material ikonice",
+        "engine_svgrepo_img": "SVG Repo",
+        "engine_google_img": "Google slike",
+        "engine_DDG_img": "DuckDuckGo slike",
+        "engine_qwant_img": "Qwant slike",
+        "engine_startpage_img": "Startpage slike",
+        "engine_bing_img": "Bing slike",
+        "engine_brave_img": "Brave slike",
+        "engine_presearch_img": "Presearch slike",
+        "engine_1x_img": "1x",
+        "engine_adobe_img": "Adobe Stock",
+        "engine_deviantArt_img": "DeviantArt",
+        "engine_flickr_img": "Flickr",
+        "engine_imgur_img": "Imgur",
+        "engine_pinterest_img": "Pinterest",
+        "engine_unsplash_img": "Unsplash",
+        "engine_wallhaven_img": "Wallhaven",
+        "engine_wikicommons_img": "Wikicommons",
+        "engine_yep_img": "Yep slike",
+
+        "title_vid": "Pretraživači video snimaka",
+
+        "engine_google_vid": "Google video",
+        "engine_DDG_vid": "DuckDuckGo video",
+        "engine_qwant_vid": "Qwant video",
+        "engine_bing_vid": "Bing video",
+        "engine_brave_vid": "Brave video",
+        "engine_adobe_vid": "Adobe Stock video",
+        "engine_bilibili_vid": "Bilibili",
+        "engine_dailymotion_vid": "Dailymotion",
+        "engine_invidious_vid": "Invidious",
+        "engine_odysee_vid": "Odysee",
+        "engine_peertube_vid": "PeerTube",
+        "engine_piped_vid": "Piped",
+        "engine_rumble_vid": "Rumble",
+        "engine_sepiasearch_vid": "Sepia Search",
+        "engine_vimeo_vid": "Vimeo",
+        "engine_youtube_vid": "YouTube",
+
+        "title_news": "Pretraživači vesti",
+
+        "engine_google_news": "Google vesti",
+        "engine_DDG_news": "DuckDuckGo vesti",
+        "engine_mojeek_news": "Mojeek vesti",
+        "engine_bing_news": "Bing vesti",
+        "engine_brave_news": "Brave vesti",
+        "engine_qwant_news": "Qwant vesti",
+        "engine_reuters_news": "Reuters",
+        "engine_startpage_news": "Startpage vesti",
+        "engine_yahoo_news": "Yahoo! vesti",
+        "engine_presearch_news": "Presearch vesti",
+        "engine_wikinews": "Wikinews",
+        "engine_yep_news": "Yep vesti",
+
+        "title_music": "Pretraživači muzike",
+
+        "engine_adobe_music": "Adobe Stock audio",
+        "engine_genius_music": "Genius",
+        "engine_RB_music": "Radio Browser",
+        "engine_bandcamp_music": "Bandcamp",
+        "engine_deezer_music": "Deezer",
+        "engine_invidious_music": "Invidious",
+        "engine_mixcloud_music": "Mixcloud",
+        "engine_piped_music": "Piped",
+        "engine_SC_music": "Soundcloud",
+        "engine_wikicommons_music": "Wikicommons",
+        "engine_YT_music": "YouTube",
+
+        "title_IT": "IT pretraživači",
+
+        "engine_crates_IT": "crates.io",
+        "engine_docker_hub_IT": "Docker hub",
+        "engine_NPM_IT": "NPM",
+        "engine_packagist_IT": "Packagist",
+        "engine_pkg_go_IT": "Go paketi",
+        "engine_pypi_IT": "PyPI",
+        "engine_ruby_gems_IT": "RubyGems",
+        "engine_void_IT": "Void Linux",
+        "engine_ask_ubuntu_IT": "Ask Ubuntu",
+        "engine_stack_overflow_IT": "StackOverflow",
+        "engine_superuser_IT": "Superuser",
+        "engine_bitbucket_IT": "Bitbucket",
+        "engine_codeberg_IT": "Codeberg",
+        "engine_github_IT": "GitHub",
+        "engine_gitlab_IT": "GitLab",
+        "engine_arch_IT": "Arch Wiki",
+        "engine_gentoo_IT": "Gentoo Wiki",
+        "engine_nixos_IT": "Nixos Wiki",
+
+        "engine_hackernews_IT": "Hacker News",
+        "engine_mankier_IT": "ManKier",
+        "engine_MDN_IT": "MDN",
+
+        "title_science": "Naučni pretraživači",
+
+        "engine_arxiv_science": "arXiv",
+        "engine_crossref_science": "Crossref",
+        "engine_google_scholar_science": "Google Scholar",
+        "engine_IAS_science": "Internet Archive Scholar",
+        "engine_pubmed_science": "PubMed",
+        "engine_semantic_scholar_science": "Semantic Scholar",
+        "engine_OA_datasets_science": "OpenAIRE podaci",
+        "engine_OA_publications_science": "OpenAIRE publikacije",
+        "engine_PDBe_science": "PDBe",
+
+        "title_files": "Pretraživači datoteka",
+
+        "engine_APKMirror_files": "APKMirror",
+        "engine_app_store_files": "Apple App Store",
+        "engine_fdriod_files": "F-Droid",
+        "engine_play_store_files": "Google Play Store",
+        "engine_1337x_files": "1337x",
+        "engine_annas_files": "Anna's Archive",
+        "engine_bt4g_files": "bt4g",
+        "engine_kickass_files": "Kickass",
+        "engine_library_genesis_files": "Library Genesis",
+        "engine_nyaa_files": "Nyaa",
+        "engine_piratebay_files": "The Pirate Bay",
+        "engine_wikicommons_files": "Wikicommons",
+        "engine_zlibrary_files": "Z-Library",
+
+        "title_SM": "Društvene mreže",
+
+        "engine_9gag_SM": "9gag",
+        "engine_lemmy_comments_SM": "Lemmy komentari",
+        "engine_lemmy_communities_SM": "Lemmy zajednice",
+        "engine_lemmy_posts_SM": "Lemmy objave",
+        "engine_lemmy_users_SM": "Lemmy korisnici",
+        "engine_mastodon_hashtags_SM": "Mastodon heštegovi",
+        "engine_mastodon_users_SM": "Mastodon korisnici",
+        "engine_reddit_SM": "Reddit",
+        "engine_tootfinder_SM": "Tootfinder",
+
+        "title_other": "Ostali pretraživači",
+
+        "engine_etymonline": "Etymonline",
+        "engine_wiktionary": "Wiktionary",
+        "engine_wordnik": "Wordnik",
+        "engine_imdb": "IMDb",
+        "engine_rottentomatoes": "Rotten Tomatoes",
+        "engine_minecraft_wiki": "Minecraft Wiki",
+        "engine_DDG_weather": "DuckDuckGo vreme",
+        "engine_openmeteo": "Open Meteo",
+        "engine_emojipedia": "Emojipedia",
+        "engine_goodreads": "Goodreads",
+        "engine_openlibrary": "Open Library",
+        "engine_podcastindex": "The Podcast Index",
+        "engine_steam": "Steam"
+      },
+
+      "homepage": {
+        "title_background": "Pozadina",
+        "wallpaper_url": "URL pozadine",
+
+        "title_shortcuts": "Prečice",
+        "toggle_shortcuts": "Prikaži prečice na početnoj stranici",
+        "toggle_open_in_new_tab": "Otvori prečice u novoj kartici",
+        "toggle_surprise": "Prikaži dugme 'Iznenadi me!'",
+        "toggle_snow": "Neka pada sneg",
+
+        "favicon_api_favicone": "Favicone",
+        "favicon_api_DDG": "DuckDuckGo",
+        "favicon_api_google": "Google",
+
+        "title_widgets": "Vidžeti",
+        "toggle_todos": "Prikaži To-Do vidžet",
+        "toggle_notes": "Prikaži beleške",
+        "toggle_weather": "Prikaži vremensku prognozu",
+        "toggle_clock": "Prikaži sat"
+      },
+      "cookies": {
+        "title": "Kolačići",
+        "all_saved": "Svi sačuvani kolačići:",
+        "searxng_pref_hash": "SearXNG hash podešavanja",
+        "load_preferences": "Učitaj podešavanja",
+        "load_hash_desc": "Koristite ovo da učitate podešavanja iz postojećeg SearXNG hash-a",
+        "load_hash_desc_note": "Napomena: ovo može prepisati vaša trenutna podešavanja"
+      }
+    }
+  }
+}

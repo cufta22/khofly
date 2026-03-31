@@ -16,7 +16,6 @@ import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
 import { IconSpy } from "@tabler/icons-react";
 import { useEffect } from "react";
-// import { DEFlag, USFlag } from "@components/Icons/Flags";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import SettingsTitle from "../../common/SettingsTitle";

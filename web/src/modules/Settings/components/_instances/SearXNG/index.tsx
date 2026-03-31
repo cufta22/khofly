@@ -18,7 +18,7 @@ import RemixLink from "@components/RemixLink";
 import { useInstanceStore } from "@store/instance";
 import { IconSearch } from "@tabler/icons-react";
 import React, { useEffect } from "react";
-import { DEFlag } from "@components/Icons/Flags";
+import { DEFlag } from "@components/Icons";
 import useForm from "@hooks/use-form";
 import { usePrimaryColor } from "@hooks/use-primary-color";
 import { IS_SELF_HOST } from "@utils/resources/isSelfHost";

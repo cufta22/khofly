@@ -19,18 +19,19 @@ export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  routerContext: EntryContext
+  routerContext: EntryContext,
   // loadContext: AppLoadContext
 ) {
+  // Check is bot
+  const userAgent = request.headers.get("user-agent");
+  const isBotRequest = userAgent && isbot(userAgent);
+
   // All i18n stuff - server side
   const userLang = getCookie("khofly-language", request, "");
   const prefLang = parseAcceptLanguage(request.headers.get("accept-language"));
 
-  // Check if user accept-language exists as option
-  const existingPrefLang = ["en"].includes(prefLang) ? prefLang : "en";
-
-  // Priority: 1. user selected lang, 2. browser default, 3. default to "en"
-  const appLang = userLang || existingPrefLang || "en";
+  // Priority: 1. user selected lang, 2. browser default | "en", 3. default to "en"
+  const appLang = userLang || prefLang || "en";
 
   // Get app theme
   const appTheme = getCookie("khofly-app-theme", request, "Mantine-Old");
@@ -44,7 +45,7 @@ export default async function handleRequest(
   const serverRouter = (
     <ClientServerProvider
       content={contentImport}
-      language={appLang}
+      language={isBotRequest ? "en" : appLang}
       theme={appTheme}
       primaryColor={primaryColor}
     >
@@ -67,12 +68,11 @@ export default async function handleRequest(
   return new Promise((resolve, reject) => {
     let statusCode = responseStatusCode || 200;
     let shellRendered = false;
-    const userAgent = request.headers.get("user-agent");
 
     // Ensure requests from bots and SPA Mode renders wait for all content to load before responding
     // https://react.dev/reference/react-dom/server/renderToPipeableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation
     const readyOption: keyof RenderToPipeableStreamOptions =
-      (userAgent && isbot(userAgent)) || routerContext.isSpaMode ? "onAllReady" : "onShellReady";
+      isBotRequest || routerContext.isSpaMode ? "onAllReady" : "onShellReady";
 
     const { pipe, abort } = renderToPipeableStream(serverRouter, {
       [readyOption]() {
@@ -90,7 +90,7 @@ export default async function handleRequest(
           new Response(stream, {
             headers: responseHeaders,
             status: statusCode,
-          })
+          }),
         );
 
         pipe(body);

@@ -2,10 +2,28 @@
   cursor: pointer !important;
 }
 
-.flag_icon {
+.flag_icon_lg {
+  width: 25px;
+  max-width: 25px;
   height: auto !important;
 
   svg {
-    display: block;
+    width: 25px;
+    max-width: 25px;
+    height: auto !important;
+    display: flex;
+  }
+}
+
+.flag_icon_sm {
+  width: 22px;
+  max-width: 22px;
+  height: auto !important;
+
+  svg {
+    width: 22px;
+    max-width: 22px;
+    height: auto !important;
+    display: flex;
   }
 }

@@ -4,21 +4,24 @@ import { WALLPAPERS_MINECRAFT, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from
 import type { Dispatch, SetStateAction } from "react";
 import type { IWallpaperCategory } from "..";
 import { useHomepageStore } from "@store/homepage";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 interface Props {
   setWpCategory: Dispatch<SetStateAction<IWallpaperCategory>>;
 }
 
 const CSWallpaperSelect: React.FC<Props> = ({ setWpCategory }) => {
+  const t = useTranslate();
+
   const setWallpaper = useHomepageStore((state) => state.setWallpaper);
 
   return (
     <>
       <Flex mt="xl" align="center" justify="space-between">
-        <Text size="xl">Wallpapers</Text>
+        <Text size="xl">{t("pages.index.wallpapers")}</Text>
 
         <Button variant="subtle" onClick={() => setWallpaper("")}>
-          Reset
+          {t("_common.reset")}
         </Button>
       </Flex>
 

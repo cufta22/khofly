@@ -18,6 +18,7 @@ import { useSettingsStore } from "@store/settings";
 import HeaderAISettings from "./components/HeaderAISettings";
 import HeaderSupport from "./components/HeaderSupport";
 import { HAS_SUPPORT } from "@utils/resources/hasSupport";
+import { DotNestedKeys, ITranslations } from "@ts/global.types";
 
 const Header = () => {
   const t = useTranslate();
@@ -38,15 +39,15 @@ const Header = () => {
 
   const isIndex = pathname === "/";
 
-  const ROUTE_MAP: { [key in string]: string } = {
-    "/changelog": "Changelog",
-    "/instances": "Public Instances",
-    "/settings": "Settings",
-    "/support": "Support",
-    "/privacy": "Privacy",
-    "/search": "Search",
-    "/docs": "Docs",
-    "/chat": "AI Chat",
+  const ROUTE_MAP: { [key in string]: DotNestedKeys<ITranslations> } = {
+    "/changelog": "header.changelog",
+    "/instances": "header.instances",
+    "/settings": "header.settings",
+    "/support": "header.support",
+    "/privacy": "header.privacy",
+    "/search": "header.search",
+    "/docs": "header.docs",
+    "/chat": "header.chat",
   };
 
   const matchedPath = Object.keys(ROUTE_MAP).find((path) => pathname.startsWith(path));
@@ -74,7 +75,7 @@ const Header = () => {
         <>
           <HeaderLogo isChat={isChat} isSupport={isSupport} hasBurger={isDocs} />
           <Text className={classes.header_title} ml="sm" fw={700}>
-            / {pageTitle}
+            / {pageTitle ? t(pageTitle) : ""}
           </Text>
         </>
       )}

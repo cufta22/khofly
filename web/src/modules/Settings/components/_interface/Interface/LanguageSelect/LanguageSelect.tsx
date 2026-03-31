@@ -1,41 +1,24 @@
-import { Combobox, Flex, InputBase, useCombobox } from "@mantine/core";
+import { Combobox, Flex, InputBase, useCombobox, useMantineTheme } from "@mantine/core";
 
 import classes from "./styles.module.scss";
 import commonClasses from "../../../common/styles.module.scss";
 
-import type { DotNestedKeys, ILanguage, ITranslations } from "@ts/global.types";
+import type { ILanguage } from "@ts/global.types";
 import { getIconStyle } from "@utils/functions/iconStyle";
 
 import { useTranslate } from "@hooks/translate/use-translate";
 import { setCookie } from "@utils/functions/cookies";
 
 import { useClientServerState } from "@store/client-server";
-import type { FlagProps } from "@components/Icons/types";
-import { GBFlag } from "@components/Icons/Flags";
-
-interface ILangData {
-  label: DotNestedKeys<ITranslations>;
-  value: string;
-  icon: React.FC<FlagProps>;
-}
-
-const LANG_DATA: ILangData[] = [
-  {
-    label: "pages.settings.interface.select_lang_options.en",
-    value: "en",
-    icon: GBFlag, // USFlag | GBFlag
-  },
-  // {
-  //   label: "pages.settings.interface.select_lang_options.de",
-  //   value: "de",
-  //   icon: DEFlag,
-  // },
-];
+import { IconBarrierBlock, IconBottle } from "@tabler/icons-react";
+import { LANG_DATA } from "./data";
 
 const LanguageSelect = () => {
   const { language, setLanguage } = useClientServerState();
 
   const t = useTranslate();
+
+  const theme = useMantineTheme();
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -68,9 +51,15 @@ const LanguageSelect = () => {
   const items = LANG_DATA.map((item) => (
     <Combobox.Option value={item.value} key={item.value}>
       <Flex align="center" gap="sm">
-        <item.icon style={getIconStyle(22)} className={classes.flag_icon} radius={1} />
+        <item.icon className={classes.flag_icon_sm} radius={1} />
 
         {t(item.label)}
+
+        <div className="flex_1"></div>
+
+        {item.isWip && (
+          <IconBarrierBlock style={getIconStyle(16)} color={theme.colors.orange["5"]} />
+        )}
       </Flex>
     </Combobox.Option>
   ));
@@ -80,9 +69,7 @@ const LanguageSelect = () => {
       <Combobox.Target>
         <InputBase
           w={200}
-          leftSection={
-            <selected.icon style={getIconStyle(25)} className={classes.flag_icon} radius={2} />
-          }
+          leftSection={<selected.icon className={classes.flag_icon_lg} radius={2} />}
           leftSectionWidth={27 + 20}
           leftSectionProps={{
             onClick: () => combobox.openDropdown(),

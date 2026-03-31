@@ -15,10 +15,22 @@
     "category_other": "Other",
 
     "read_more": "Read more",
-    "search": "Search"
+    "search": "Search",
+    "reset": "Reset",
+    "back": "Back",
+    "show_more": "Show more"
   },
 
-  "header": {},
+  "header": {
+    "changelog": "Changelog",
+    "instances": "Public Instances",
+    "settings": "Settings",
+    "support": "Support",
+    "privacy": "Privacy",
+    "search": "Search",
+    "docs": "Docs",
+    "chat": "AI Chat"
+  },
 
   "footer": {
     "ver": "Version",
@@ -33,7 +45,13 @@
 
   "pages": {
     "index": {
-      "search_placeholder": "Search for anything..."
+      "search_placeholder": "Search for anything...",
+
+      "surprise_me": "Surprise me!",
+
+      "customize": "Customize",
+      "wallpapers": "Wallpapers",
+      "more_options": "More options"
     },
 
     "search": {
@@ -86,7 +104,8 @@
         "select_lang_options": {
           "en": "English",
           "fr": "French",
-          "de": "German"
+          "de": "German",
+          "sr": "Serbian"
         },
 
         "select_theme": "Theme select",

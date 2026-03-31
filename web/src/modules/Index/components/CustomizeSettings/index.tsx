@@ -39,7 +39,7 @@ const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
       onClose={onClose}
       title={
         <Flex align="center" gap="sm">
-          <Text size="xl">Customize</Text>
+          <Text size="xl">{t("pages.index.customize")}</Text>
         </Flex>
       }
       position="right"
@@ -65,7 +65,7 @@ const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
         <Center my="xl">
           <RemixLink to="/settings?tab=homepage">
             <Button variant="outline" rightSection={<IconChevronRight style={getIconStyle(18)} />}>
-              Show more
+              {t("_common.show_more")}
             </Button>
           </RemixLink>
         </Center>

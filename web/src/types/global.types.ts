@@ -6,7 +6,7 @@ export interface IFC {
   children?: React.ReactNode;
 }
 
-export type ILanguage = "en" | "de";
+export type ILanguage = "en" | "sr" | "de";
 
 export type IAppTheme =
   | "Mantine-Old"

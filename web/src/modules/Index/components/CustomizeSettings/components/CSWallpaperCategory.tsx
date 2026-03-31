@@ -4,6 +4,7 @@ import { WALLPAPERS_MINECRAFT, WALLPAPERS_LANDSCAPE, WALLPAPERS_RETROWAVE } from
 import type { Dispatch, SetStateAction } from "react";
 import classes from "../styles.module.scss";
 import { useHomepageStore } from "@store/homepage";
+import { useTranslate } from "@hooks/translate/use-translate";
 
 interface Props {
   wpCategory: IWallpaperCategory;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const CSWallpaperCategory: React.FC<Props> = ({ wpCategory, setWpCategory }) => {
+  const t = useTranslate();
+
   const setWallpaper = useHomepageStore((state) => state.setWallpaper);
 
   const WP_DATA = {
@@ -33,7 +36,7 @@ const CSWallpaperCategory: React.FC<Props> = ({ wpCategory, setWpCategory }) => 
         <Text size="xl">{categoryLabel}</Text>
 
         <Button variant="subtle" onClick={() => setWpCategory("")}>
-          Back
+          {t("_common.back")}
         </Button>
       </Flex>
 
