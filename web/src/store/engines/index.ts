@@ -1,182 +1,182 @@
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
-import { DEFAULT_ENGINES } from "./default_engines";
-import { cookieStorage } from "@store/cookieStorage";
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import { DEFAULT_ENGINES } from './default_engines';
+import { cookieStorage } from '@store/cookieStorage';
 
 export type IGeneralEngines =
-  | "dictzone"
-  | "libretranslate"
-  | "lingva"
-  | "google"
-  | "mojeek"
-  | "mullvadletagoogle"
-  | "mullvadletabrave"
-  | "duckduckgo"
-  | "bing"
-  | "brave"
-  | "presearch"
-  | "qwant"
-  | "startpage"
-  | "yahoo"
-  | "wiby"
-  | "wikibooks"
-  | "wikiquote"
-  | "wikisource"
-  | "wikispecies"
-  | "wikiversity"
-  | "wikivoyage"
-  | "alexandria"
-  | "ask"
-  | "cloudflareai"
-  | "mwmbl"
-  | "rightdao"
-  | "searchmysite"
-  | "stract"
-  | "wikidata"
-  | "wikipedia"
-  | "yep";
+  | 'dictzone'
+  | 'libretranslate'
+  | 'lingva'
+  | 'google'
+  | 'mojeek'
+  | 'mullvadletagoogle'
+  | 'mullvadletabrave'
+  | 'duckduckgo'
+  | 'bing'
+  | 'brave'
+  | 'presearch'
+  | 'qwant'
+  | 'startpage'
+  | 'yahoo'
+  | 'wiby'
+  | 'wikibooks'
+  | 'wikiquote'
+  | 'wikisource'
+  | 'wikispecies'
+  | 'wikiversity'
+  | 'wikivoyage'
+  | 'alexandria'
+  | 'ask'
+  | 'cloudflareai'
+  | 'mwmbl'
+  | 'rightdao'
+  | 'searchmysite'
+  | 'stract'
+  | 'wikidata'
+  | 'wikipedia'
+  | 'yep';
 
 export type IImagesEngines =
-  | "material"
-  | "svgrepo"
-  | "google"
-  | "duckduckgo"
-  | "bing"
-  | "brave"
-  | "qwant"
-  | "startpage"
-  | "presearch"
-  | "1x"
-  | "adobestock"
-  | "deviantart"
-  | "flickr"
-  | "imgur"
-  | "pinterest"
-  | "unsplash"
-  | "wallhaven"
-  | "wikicommons"
-  | "yep";
+  | 'material'
+  | 'svgrepo'
+  | 'google'
+  | 'duckduckgo'
+  | 'bing'
+  | 'brave'
+  | 'qwant'
+  | 'startpage'
+  | 'presearch'
+  | '1x'
+  | 'adobestock'
+  | 'deviantart'
+  | 'flickr'
+  | 'imgur'
+  | 'pinterest'
+  | 'unsplash'
+  | 'wallhaven'
+  | 'wikicommons'
+  | 'yep';
 
 export type IVideosEngines =
-  | "google"
-  | "duckduckgo"
-  | "bing"
-  | "brave"
-  | "qwant"
-  | "adobestock"
-  | "bilibili"
-  | "dailymotion"
-  | "invidious"
-  | "odysee"
-  | "peertube"
-  | "piped"
-  | "rumble"
-  | "sepiasearch"
-  | "vimeo"
-  | "youtube";
+  | 'google'
+  | 'duckduckgo'
+  | 'bing'
+  | 'brave'
+  | 'qwant'
+  | 'adobestock'
+  | 'bilibili'
+  | 'dailymotion'
+  | 'invidious'
+  | 'odysee'
+  | 'peertube'
+  | 'piped'
+  | 'rumble'
+  | 'sepiasearch'
+  | 'vimeo'
+  | 'youtube';
 
 export type INewsEngines =
-  | "duckduckgo"
-  | "mojeek"
-  | "presearch"
-  | "startpage"
-  | "wikinews"
-  | "bing"
-  | "brave"
-  | "google"
-  | "qwant"
-  | "reuters"
-  | "yahoo"
-  | "yep";
+  | 'duckduckgo'
+  | 'mojeek'
+  | 'presearch'
+  | 'startpage'
+  | 'wikinews'
+  | 'bing'
+  | 'brave'
+  | 'google'
+  | 'qwant'
+  | 'reuters'
+  | 'yahoo'
+  | 'yep';
 
 export type IMusicEngines =
-  | "genius"
-  | "radiobrowser"
-  | "adobestock"
-  | "bandcamp"
-  | "deezer"
-  | "invidious"
-  | "mixcloud"
-  | "piped"
-  | "soundcloud"
-  | "wikicommons"
-  | "youtube";
+  | 'genius'
+  | 'radiobrowser'
+  | 'adobestock'
+  | 'bandcamp'
+  | 'deezer'
+  | 'invidious'
+  | 'mixcloud'
+  | 'piped'
+  | 'soundcloud'
+  | 'wikicommons'
+  | 'youtube';
 
 export type IITEngines =
-  | "crates"
-  | "dockerhub"
-  | "npm"
-  | "packagist"
-  | "pkggodev"
-  | "pypi"
-  | "rubygems"
-  | "void"
-  | "askubuntu"
-  | "stackoverflow"
-  | "superuser"
-  | "bitbucket"
-  | "codeberg"
-  | "github"
-  | "gitlab"
-  | "archwiki"
-  | "gentoo"
-  | "nixoswiki"
-  | "hackernews"
-  | "mankier"
-  | "mdn";
+  | 'crates'
+  | 'dockerhub'
+  | 'npm'
+  | 'packagist'
+  | 'pkggodev'
+  | 'pypi'
+  | 'rubygems'
+  | 'void'
+  | 'askubuntu'
+  | 'stackoverflow'
+  | 'superuser'
+  | 'bitbucket'
+  | 'codeberg'
+  | 'github'
+  | 'gitlab'
+  | 'archwiki'
+  | 'gentoo'
+  | 'nixoswiki'
+  | 'hackernews'
+  | 'mankier'
+  | 'mdn';
 
 export type IScienceEngines =
-  | "arxiv"
-  | "crossref"
-  | "googlescholar"
+  | 'arxiv'
+  | 'crossref'
+  | 'googlescholar'
   // | "archive" // Removed???
-  | "pubmed"
-  | "semanticscholar"
-  | "wikispecies"
-  | "openairedatasets"
-  | "openairepublications"
-  | "pdbe";
+  | 'pubmed'
+  | 'semanticscholar'
+  | 'wikispecies'
+  | 'openairedatasets'
+  | 'openairepublications'
+  | 'pdbe';
 
 export type IFilesEngines =
-  | "apkmirror"
-  | "appstore"
-  | "fdroid"
-  | "playstore"
-  | "1337x"
-  | "annas"
-  | "bt4g"
-  | "kickass"
-  | "librarygenesis"
-  | "nyaa"
-  | "piratebay"
-  | "wikicommons"
-  | "zlibrary";
+  | 'apkmirror'
+  | 'appstore'
+  | 'fdroid'
+  | 'playstore'
+  | '1337x'
+  | 'annas'
+  | 'bt4g'
+  | 'kickass'
+  | 'librarygenesis'
+  | 'nyaa'
+  | 'piratebay'
+  | 'wikicommons'
+  | 'zlibrary';
 
 export type ISocialMediaEngines =
-  | "9gag"
-  | "lemmycomments"
-  | "lemmycommunities"
-  | "lemmyposts"
-  | "lemmyusers"
-  | "mastodonhashtags"
-  | "mastodonusers"
-  | "reddit"
-  | "tootfinder";
+  | '9gag'
+  | 'lemmycomments'
+  | 'lemmycommunities'
+  | 'lemmyposts'
+  | 'lemmyusers'
+  | 'mastodonhashtags'
+  | 'mastodonusers'
+  | 'reddit'
+  | 'tootfinder';
 
 export type IOtherEngines =
-  | "etymonline"
-  | "wiktionary"
-  | "wordnik"
-  | "imdb"
-  | "rottentomatoes"
-  | "minecraftwiki"
-  | "duckduckgo"
-  | "openmeteo"
-  | "emojipedia"
-  | "goodreads"
-  | "openlibrary"
-  | "podcastindex"
-  | "steam";
+  | 'etymonline'
+  | 'wiktionary'
+  | 'wordnik'
+  | 'imdb'
+  | 'rottentomatoes'
+  | 'minecraftwiki'
+  | 'duckduckgo'
+  | 'openmeteo'
+  | 'emojipedia'
+  | 'goodreads'
+  | 'openlibrary'
+  | 'podcastindex'
+  | 'steam';
 
 export interface EnginesState {
   hydrated: boolean;
@@ -248,7 +248,7 @@ export const useEnginesStore = create<EnginesState>()(
       setEnginesOther: (next) => set({ enginesOther: next }),
     }),
     {
-      name: "engines-store", // name of the item in the storage (must be unique)
+      name: 'engines-store', // name of the item in the storage (must be unique)
       storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {

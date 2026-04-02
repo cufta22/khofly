@@ -1,10 +1,10 @@
-import { Ref, RefCallback } from "react";
+import type { Ref, RefCallback } from 'react';
 
 export function assignRef<T>(
   ref: Ref<T> | undefined | null,
-  value: T | null
+  value: T | null,
 ): ReturnType<RefCallback<T>> {
-  if (typeof ref === "function") {
+  if (typeof ref === 'function') {
     return ref(value);
   } else if (ref) {
     ref.current = value;
@@ -17,7 +17,7 @@ export function mergeRefsReact19<T>(refs: (Ref<T> | undefined)[]): Ref<T> {
 
     for (const ref of refs) {
       const cleanup = assignRef(ref, value);
-      const isCleanup = typeof cleanup === "function";
+      const isCleanup = typeof cleanup === 'function';
       cleanups.push(isCleanup ? cleanup : () => assignRef(ref, null));
     }
 

@@ -1,7 +1,7 @@
-import { Accordion, Center, Container, Loader, Space, Title } from "@mantine/core";
-import { formatChangelog } from "./formatChangelog";
-import { useTranslate } from "@hooks/translate/use-translate";
-import type { ILoaderData_Changelog } from "app/routes/changelog";
+import { Accordion, Center, Container, Loader, Space, Title } from '@mantine/core';
+import { formatChangelog } from './formatChangelog';
+import { useTranslate } from '@hooks/translate/use-translate';
+import type { ILoaderData_Changelog } from 'app/routes/changelog';
 
 interface Props {
   loaderData: ILoaderData_Changelog;
@@ -13,24 +13,24 @@ const PageChangelog: React.FC<Props> = ({ loaderData }) => {
   if (!loaderData.data)
     return (
       <Center mt={100}>
-        <Loader size="xl" />
+        <Loader size='xl' />
       </Center>
     );
 
   return (
-    <Container size="lg" py="xl" pt={40} pb={40}>
-      <Title ta="center" mt="md" mb="xl">
-        {t("pages.changelog.title")}
+    <Container size='lg' py='xl' pt={40} pb={40}>
+      <Title ta='center' mt='md' mb='xl'>
+        {t('pages.changelog.title')}
       </Title>
 
-      <Accordion variant="separated" defaultValue="">
+      <Accordion variant='separated' defaultValue=''>
         {formatChangelog(loaderData.data).map((obj, i) => {
           return (
             <Accordion.Item key={i} value={obj.title}>
               <Accordion.Control>{obj.title}</Accordion.Control>
-              <Accordion.Panel style={{ whiteSpace: "pre" }}>
-                <Space h="sm" />
-                {obj.content.replace(/^\s+/g, "")}
+              <Accordion.Panel style={{ whiteSpace: 'pre' }}>
+                <Space h='sm' />
+                {obj.content.replaceAll(/^\s+/g, '')}
               </Accordion.Panel>
             </Accordion.Item>
           );

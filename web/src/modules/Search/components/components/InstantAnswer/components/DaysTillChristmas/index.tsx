@@ -1,7 +1,7 @@
-import { IconChristmasBall, IconChristmasTree } from "@tabler/icons-react";
-import { IAWrapper } from "../../wrapper";
-import { Flex, Text, useMantineTheme } from "@mantine/core";
-import ExternalLink from "@components/Links/ExternalLink";
+import { IconChristmasBall, IconChristmasTree } from '@tabler/icons-react';
+import { IAWrapper } from '../../wrapper';
+import { Flex, Text, useMantineTheme } from '@mantine/core';
+import ExternalLink from '@components/Links/ExternalLink';
 
 const IADaysTillChristmas = () => {
   const theme = useMantineTheme();
@@ -27,21 +27,21 @@ const IADaysTillChristmas = () => {
   return (
     <IAWrapper
       label={
-        <Text size="sm" c="dimmed">
+        <Text size='sm' c='dimmed'>
           Days till christmas
         </Text>
       }
     >
-      <Flex align="center" gap="sm">
-        <IconChristmasTree color={theme.colors.green["4"]} />
-        <Text size="xl" fw={500}>
+      <Flex align='center' gap='sm'>
+        <IconChristmasTree color={theme.colors.green['4']} />
+        <Text size='xl' fw={500}>
           {timeTillChristmas}
         </Text>
       </Flex>
 
-      <Text size="sm" mt="md" c="dimmed">
-        May be off by an hour because of{" "}
-        <ExternalLink href="https://www.timeanddate.com/time/dst/about.html">DST</ExternalLink> :(
+      <Text size='sm' mt='md' c='dimmed'>
+        May be off by an hour because of{' '}
+        <ExternalLink href='https://www.timeanddate.com/time/dst/about.html'>DST</ExternalLink> :(
       </Text>
     </IAWrapper>
   );

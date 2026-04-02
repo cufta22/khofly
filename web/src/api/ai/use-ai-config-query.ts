@@ -1,10 +1,10 @@
-import { useInstanceStore } from "@store/instance";
-import useFetch from "../use-fetch";
-import type { IApiAIConfigResponse } from "./types";
-import useSWR from "swr";
-import useToast from "@hooks/use-toast";
-import { useAIChatStore } from "@store/aichat";
-import type { IAPIResponse } from "@ts/global.types";
+import { useInstanceStore } from '@store/instance';
+import useFetch from '../use-fetch';
+import type { IApiAIConfigResponse } from './types';
+import useSWR from 'swr';
+import useToast from '@hooks/use-toast';
+import { useAIChatStore } from '@store/aichat';
+import type { IAPIResponse } from '@ts/global.types';
 
 const getKey = (domain: string) => {
   if (!domain) return null;
@@ -25,7 +25,7 @@ const useAIConfigSWR = () => {
 
   const fetcher = (_key: string) => {
     return fetchData(`${apiDomain}/ai/config`, {
-      method: "GET",
+      method: 'GET',
     }) as Promise<IAPIResponse<IApiAIConfigResponse>>;
   };
 
@@ -48,12 +48,12 @@ const useAIConfigSWR = () => {
       // Error handling
       onError() {
         toast.show({
-          title: "Something went wrong",
-          message: "Unable to fetch AI config",
-          color: "red",
+          title: 'Something went wrong',
+          message: 'Unable to fetch AI config',
+          color: 'red',
         });
       },
-    }
+    },
   );
 };
 

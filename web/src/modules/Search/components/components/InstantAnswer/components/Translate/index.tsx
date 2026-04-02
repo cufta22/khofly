@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { IAWrapper } from "../../wrapper";
+import { useState } from 'react';
+import { IAWrapper } from '../../wrapper';
 import {
   ActionIcon,
   Box,
@@ -9,24 +9,24 @@ import {
   Select,
   Text,
   Textarea,
-} from "@mantine/core";
-import { LANG_DATA_1, LANG_DATA_2 } from "./data";
-import { IconLanguage, IconSwitchHorizontal } from "@tabler/icons-react";
+} from '@mantine/core';
+import { LANG_DATA_1, LANG_DATA_2 } from './data';
+import { IconLanguage, IconSwitchHorizontal } from '@tabler/icons-react';
 
-import classes from "./styles.module.scss";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import useTranslateSWR from "src/api/translate/use-translate-query";
-import useToast from "@hooks/use-toast";
+import classes from './styles.module.scss';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import useTranslateSWR from 'src/api/translate/use-translate-query';
+import useToast from '@hooks/use-toast';
 
 const IATranslate = () => {
   const { trigger, isMutating } = useTranslateSWR();
   const { toast } = useToast();
 
-  const [lang1, setLang1] = useState("auto");
-  const [lang2, setLang2] = useState("en");
+  const [lang1, setLang1] = useState('auto');
+  const [lang2, setLang2] = useState('en');
 
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [input1, setInput1] = useState('');
+  const [input2, setInput2] = useState('');
 
   const handleSwapLanguages = () => {
     const newLang1 = lang2;
@@ -48,39 +48,39 @@ const IATranslate = () => {
 
     if (!res?.translated_text)
       toast.show({
-        color: "yellow",
-        message: "Translation error",
+        color: 'yellow',
+        message: 'Translation error',
       });
   };
 
   return (
     <IAWrapper>
-      <Flex direction="row" align="center" justify="space-between" mb="sm">
-        <Flex align="center" gap={6}>
+      <Flex direction='row' align='center' justify='space-between' mb='sm'>
+        <Flex align='center' gap={6}>
           <IconLanguage style={getIconStyle(26)} />
 
-          <Text size="lg" fw={600}>
+          <Text size='lg' fw={600}>
             Translate
           </Text>
         </Flex>
 
-        <Button size="xs" onClick={handleSubmit} disabled={!input1 || !lang1 || !lang2}>
+        <Button size='xs' onClick={handleSubmit} disabled={!input1 || !lang1 || !lang2}>
           Translate
         </Button>
       </Flex>
 
       {/* Language select */}
-      <Flex direction="row" align="flex-start" justify="space-between" gap="sm">
+      <Flex direction='row' align='flex-start' justify='space-between' gap='sm'>
         <Select
           className={classes.flex_side}
           data={LANG_DATA_1}
           value={lang1}
-          onChange={(val) => setLang1(val || "")}
-          mb="md"
+          onChange={(val) => setLang1(val || '')}
+          mb='md'
           searchable
         />
 
-        <ActionIcon variant="subtle" onClick={handleSwapLanguages} mt={4}>
+        <ActionIcon variant='subtle' onClick={handleSwapLanguages} mt={4}>
           <IconSwitchHorizontal />
         </ActionIcon>
 
@@ -88,13 +88,13 @@ const IATranslate = () => {
           className={classes.flex_side}
           data={LANG_DATA_2}
           value={lang2}
-          onChange={(val) => setLang2(val || "")}
-          mb="md"
+          onChange={(val) => setLang2(val || '')}
+          mb='md'
           searchable
         />
       </Flex>
 
-      <Flex className={classes.flex_mobile} align="flex-start" justify="space-between">
+      <Flex className={classes.flex_mobile} align='flex-start' justify='space-between'>
         {/* User input */}
         <Textarea
           classNames={{
@@ -103,29 +103,29 @@ const IATranslate = () => {
           }}
           value={input1}
           onChange={(e) => setInput1(e.currentTarget.value)}
-          placeholder="Enter text"
-          variant="default"
-          size="md"
+          placeholder='Enter text'
+          variant='default'
+          size='md'
         />
 
         {/* API output */}
-        <Box className={classes.output_box} pos="relative">
+        <Box className={classes.output_box} pos='relative'>
           <Textarea
             classNames={{
               root: classes.textarea,
               input: classes.textarea,
             }}
             value={input2}
-            placeholder="Translation"
-            variant="filled"
-            size="md"
+            placeholder='Translation'
+            variant='filled'
+            size='md'
             readOnly
           />
 
           <LoadingOverlay
             visible={isMutating}
             zIndex={1000}
-            overlayProps={{ radius: "sm", blur: 2 }}
+            overlayProps={{ radius: 'sm', blur: 2 }}
           />
         </Box>
       </Flex>

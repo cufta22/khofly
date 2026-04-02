@@ -1,4 +1,4 @@
-import { Flex, useMantineTheme } from "@mantine/core";
+import { Flex, useMantineTheme } from '@mantine/core';
 import {
   IconCloud,
   IconCloudRain,
@@ -8,17 +8,17 @@ import {
   IconSnowflake,
   IconSunLow,
   IconTornado,
-} from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+} from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
 
-import classes from "../styles.module.scss";
-import type { OpenWeatherCode } from "src/api/weather/types";
-import { getIsDay } from "@utils/resources/isDay";
-import dayjs from "dayjs";
+import classes from '../styles.module.scss';
+import type { OpenWeatherCode } from 'src/api/weather/types';
+import { getIsDay } from '@utils/resources/isDay';
+import dayjs from 'dayjs';
 
 interface Props {
   code: OpenWeatherCode;
-  size: "normal" | "small" | "large";
+  size: 'normal' | 'small' | 'large';
   date: number;
   isWidget?: boolean;
 }
@@ -26,7 +26,7 @@ interface Props {
 const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
   const theme = useMantineTheme();
 
-  const hours = Number.parseInt(dayjs.unix(date).format("HH"));
+  const hours = Number.parseInt(dayjs.unix(date).format('HH'));
   const isDay = getIsDay(hours);
 
   const IconMain = isDay ? IconSunLow : IconMoon;
@@ -58,11 +58,11 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
 
     case 801:
       return (
-        <Flex w={sizeBig} h={sizeBig} pos="relative">
+        <Flex w={sizeBig} h={sizeBig} pos='relative'>
           <IconCloud
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               bottom: 0,
               left: 0,
               zIndex: 2,
@@ -73,7 +73,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
           <IconMain
             style={{
               ...getIconStyle(sizeSmall),
-              position: "absolute",
+              position: 'absolute',
               top: 0,
               right: 0,
             }}
@@ -97,11 +97,11 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
     case 803:
     case 804:
       return (
-        <Flex w={sizeBig} h={sizeBig} pos="relative">
+        <Flex w={sizeBig} h={sizeBig} pos='relative'>
           <IconCloud
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               top: 0,
               right: 0,
             }}
@@ -111,7 +111,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
           <IconCloud
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               bottom: 0,
               left: 0,
               zIndex: 2,
@@ -136,11 +136,11 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
     case 522:
     case 531:
       return (
-        <Flex w={sizeBig} h={sizeBig} pos="relative">
+        <Flex w={sizeBig} h={sizeBig} pos='relative'>
           <IconCloud
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               top: 0,
               right: 0,
             }}
@@ -150,7 +150,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
           <IconCloudRain
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               bottom: 0,
               left: 0,
               zIndex: 2,
@@ -168,11 +168,11 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
     case 503:
     case 504:
       return (
-        <Flex w={sizeBig} h={sizeBig} pos="relative">
+        <Flex w={sizeBig} h={sizeBig} pos='relative'>
           <IconMain
             style={{
               ...getIconStyle(sizeSmall),
-              position: "absolute",
+              position: 'absolute',
               top: 0,
               right: 0,
             }}
@@ -183,7 +183,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
           <IconCloudRain
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               bottom: 0,
               left: 0,
               zIndex: 2,
@@ -206,11 +206,11 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
     case 231:
     case 232:
       return (
-        <Flex w={sizeBig} h={sizeBig} pos="relative">
+        <Flex w={sizeBig} h={sizeBig} pos='relative'>
           <IconCloud
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               top: 0,
               right: 0,
             }}
@@ -220,7 +220,7 @@ const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
           <IconCloudStorm
             style={{
               ...getIconStyle(sizeNormal),
-              position: "absolute",
+              position: 'absolute',
               bottom: 0,
               left: 0,
               zIndex: 2,

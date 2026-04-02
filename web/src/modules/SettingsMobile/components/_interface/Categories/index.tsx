@@ -1,4 +1,4 @@
-import { Flex, Paper, SimpleGrid, Text, useMantineTheme } from "@mantine/core";
+import { Flex, Paper, SimpleGrid, Text, useMantineTheme } from '@mantine/core';
 import {
   IconCpu,
   IconFiles,
@@ -10,24 +10,24 @@ import {
   IconSchool,
   IconSearch,
   IconUsers,
-} from "@tabler/icons-react";
-import { type ICategories, useSettingsStore } from "@store/settings";
-import SettingsMTitle from "../../common/SettingsTitle";
-import { IOpenSection } from "@module/SettingsMobile";
-import React from "react";
-import { CategoryCheckbox } from "@module/Settings/components/_interface/Categories/components/CategoryCheckbox";
+} from '@tabler/icons-react';
+import { type ICategories, useSettingsStore } from '@store/settings';
+import SettingsMTitle from '../../common/SettingsTitle';
+import type { IOpenSection } from '@module/SettingsMobile';
+import React from 'react';
+import { CategoryCheckbox } from '@module/Settings/components/_interface/Categories/components/CategoryCheckbox';
 
 const CATEGORIES_DATA = [
-  { id: "general", title: "General", icon: IconSearch },
-  { id: "images", title: "Images", icon: IconPhoto },
-  { id: "videos", title: "Videos", icon: IconPlayerPlay },
-  { id: "news", title: "News", icon: IconNews },
-  { id: "maps", title: "Maps", icon: IconMapPin },
-  { id: "music", title: "Music", icon: IconMusic },
-  { id: "it", title: "IT", icon: IconCpu },
-  { id: "science", title: "Science", icon: IconSchool },
-  { id: "files", title: "Files", icon: IconFiles },
-  { id: "social_media", title: "Social Media", icon: IconUsers },
+  { id: 'general', title: 'General', icon: IconSearch },
+  { id: 'images', title: 'Images', icon: IconPhoto },
+  { id: 'videos', title: 'Videos', icon: IconPlayerPlay },
+  { id: 'news', title: 'News', icon: IconNews },
+  { id: 'maps', title: 'Maps', icon: IconMapPin },
+  { id: 'music', title: 'Music', icon: IconMusic },
+  { id: 'it', title: 'IT', icon: IconCpu },
+  { id: 'science', title: 'Science', icon: IconSchool },
+  { id: 'files', title: 'Files', icon: IconFiles },
+  { id: 'social_media', title: 'Social Media', icon: IconUsers },
 ];
 
 interface Props {
@@ -63,13 +63,13 @@ const SettingsMCategories: React.FC<Props> = ({ handleChangeSection }) => {
     <>
       <SettingsMTitle
         handleChangeSection={handleChangeSection}
-        title="pages.settings.categories.title"
+        title='pages.settings.categories.title'
       />
 
-      <Paper radius="md" withBorder>
+      <Paper radius='md' withBorder>
         {/* Settings content */}
         {/* <Flex align="center" gap={4} px="lg" mb="xl" wrap="wrap"> */}
-        <SimpleGrid p="lg" cols={2}>
+        <SimpleGrid p='lg' cols={2}>
           {items}
         </SimpleGrid>
         {/* </Flex> */}

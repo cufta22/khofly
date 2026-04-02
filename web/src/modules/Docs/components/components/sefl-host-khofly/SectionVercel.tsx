@@ -1,11 +1,11 @@
-import DocsText from "../../common/DocsText";
-import DocsLink from "../../common/DocsLink";
-import { IconInfoCircle } from "@tabler/icons-react";
-import { Alert, Badge, Code, Flex, Paper } from "@mantine/core";
-import DocsSubtitle from "../../common/DocsSubtitle";
-import DocsTitle from "../../common/DocsTitle";
-import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
-import classes from "./styles.module.scss";
+import DocsText from '../../common/DocsText';
+import DocsLink from '../../common/DocsLink';
+import { IconInfoCircle } from '@tabler/icons-react';
+import { Alert, Badge, Code, Flex, Paper } from '@mantine/core';
+import DocsSubtitle from '../../common/DocsSubtitle';
+import DocsTitle from '../../common/DocsTitle';
+import DocsCodeHighlight from '../../common/DocsCodeHighlight/DocsCodeHighlight';
+import classes from './styles.module.scss';
 
 const envVars = `
 HOST = # your domain, either set a custom domain or Vercel auto assigned one
@@ -24,11 +24,11 @@ HOST_TARGET = vercel
 const SectionVercel = () => {
   return (
     <>
-      <Flex className={classes.self_host_title_wrapper} align="center" justify="space-between">
+      <Flex className={classes.self_host_title_wrapper} align='center' justify='space-between'>
         <DocsTitle>Deploying to Vercel</DocsTitle>
 
-        <Flex align="center" gap="sm">
-          <Badge size="lg" color="green" variant="light">
+        <Flex align='center' gap='sm'>
+          <Badge size='lg' color='green' variant='light'>
             Has free tier
           </Badge>
         </Flex>
@@ -67,8 +67,8 @@ const SectionVercel = () => {
         Now go into Settings/Environment Variables and make sure to set the following:
       </DocsText>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={envVars} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={envVars} language='bash' />
       </Paper>
 
       <DocsSubtitle>5. Redeploy Vercel project so that env variables set in</DocsSubtitle>
@@ -78,14 +78,14 @@ const SectionVercel = () => {
       <DocsSubtitle>1. Get the latest code</DocsSubtitle>
 
       <DocsText>
-        Open the folder where you originally cloned Khofly and run{" "}
+        Open the folder where you originally cloned Khofly and run{' '}
         <Code>git pull origin master</Code>, after this push the code to your hosted repository and
         Vercel will automatically redeploy your app.
       </DocsText>
 
-      <Alert mt="xl" variant="light" color="blue" title="Learn more" icon={<IconInfoCircle />}>
-        You can read more about deploying a React Router app to Vercel at{" "}
-        <DocsLink href="https://vercel.com/docs/frameworks/react-router" label="official docs" />.
+      <Alert mt='xl' variant='light' color='blue' title='Learn more' icon={<IconInfoCircle />}>
+        You can read more about deploying a React Router app to Vercel at{' '}
+        <DocsLink href='https://vercel.com/docs/frameworks/react-router' label='official docs' />.
       </Alert>
     </>
   );

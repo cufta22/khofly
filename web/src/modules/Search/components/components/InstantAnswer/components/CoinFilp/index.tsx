@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
-import { Center, Paper } from "@mantine/core";
+import { useEffect, useState } from 'react';
+import { Center, Paper } from '@mantine/core';
 
-import classes from "./styles.module.scss";
-import { IconCampfireFilled, IconMoodSmileFilled } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import clsx from "clsx";
-import { cryptoRandomNumber } from "@utils/functions/cryptoRandomNumber";
-import { IAWrapper } from "../../wrapper";
+import classes from './styles.module.scss';
+import { IconCampfireFilled, IconMoodSmileFilled } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import clsx from 'clsx';
+import { cryptoRandomNumber } from '@utils/functions/cryptoRandomNumber';
+import { IAWrapper } from '../../wrapper';
 
 interface Props {
   withIAWrapper: boolean;
 }
 
 const IACoinFlip: React.FC<Props> = ({ withIAWrapper }) => {
-  const [side, setSide] = useState<"heads" | "tails" | "">("");
+  const [side, setSide] = useState<'heads' | 'tails' | ''>('');
   const [count, setCount] = useState(0);
 
   const handleToss = () => {
     setCount(count + 1);
-    setSide("");
+    setSide('');
   };
 
   useEffect(() => {
     if (!count) return;
 
     const landedOn = cryptoRandomNumber(0, 1);
-    setSide(landedOn === 0 ? "heads" : "tails");
+    setSide(landedOn === 0 ? 'heads' : 'tails');
   }, [count]);
 
   const coinFlipComponent = (
@@ -33,8 +33,8 @@ const IACoinFlip: React.FC<Props> = ({ withIAWrapper }) => {
       <Paper
         className={clsx(
           classes.coin,
-          { [classes.heads_win]: side === "heads" },
-          { [classes.tails_win]: side === "tails" }
+          { [classes.heads_win]: side === 'heads' },
+          { [classes.tails_win]: side === 'tails' },
         )}
         withBorder
       >

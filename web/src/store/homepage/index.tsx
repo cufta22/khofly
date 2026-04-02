@@ -1,9 +1,9 @@
-import { cookieStorage } from "@store/cookieStorage";
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { cookieStorage } from '@store/cookieStorage';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 export interface IShortcut {
-  type: "item" | "group";
+  type: 'item' | 'group';
 
   // Item
   title: string;
@@ -11,7 +11,7 @@ export interface IShortcut {
   imgUrl?: string;
 
   // Group
-  items: { type: "item"; title: string; href: string; imgUrl?: string; items: [] }[];
+  items: { type: 'item'; title: string; href: string; imgUrl?: string; items: [] }[];
 }
 
 export interface IToDo {
@@ -20,7 +20,7 @@ export interface IToDo {
   checked: boolean;
 }
 
-export type IWidgetPosition = "top-left" | "top-right";
+export type IWidgetPosition = 'top-left' | 'top-right';
 
 interface HomepageState {
   hydrated: boolean;
@@ -68,35 +68,35 @@ export const useHomepageStore = create<HomepageState>()(
     (set) => ({
       hydrated: false,
 
-      wallpaper: "",
+      wallpaper: '',
       setWallpaper: (next) => set({ wallpaper: next }),
 
       shortcuts: [
         {
-          type: "item",
-          title: "YouTube",
-          href: "youtube.com",
-          imgUrl: "",
+          type: 'item',
+          title: 'YouTube',
+          href: 'youtube.com',
+          imgUrl: '',
           items: [],
         },
         {
-          type: "group",
-          title: "Group",
-          href: "",
-          imgUrl: "",
+          type: 'group',
+          title: 'Group',
+          href: '',
+          imgUrl: '',
           items: [
             {
-              type: "item",
-              title: "GitHub",
-              href: "google.com",
-              imgUrl: "",
+              type: 'item',
+              title: 'GitHub',
+              href: 'google.com',
+              imgUrl: '',
               items: [],
             },
             {
-              type: "item",
-              title: "Instagram",
-              href: "instagram.com",
-              imgUrl: "",
+              type: 'item',
+              title: 'Instagram',
+              href: 'instagram.com',
+              imgUrl: '',
               items: [],
             },
           ],
@@ -118,7 +118,7 @@ export const useHomepageStore = create<HomepageState>()(
       // todosPosition: "top-left",
       // setTodosPosition: (next) => set({ todosPosition: next }),
 
-      notes: "",
+      notes: '',
       setNotes: (next) => set({ notes: next }),
       displayNotes: false,
       setDisplayNotes: (next) => set({ displayNotes: next }),
@@ -136,7 +136,7 @@ export const useHomepageStore = create<HomepageState>()(
       // setClockPosition: (next) => set({ clockPosition: next }),
     }),
     {
-      name: "homepage-store", // name of the item in the storage (must be unique)
+      name: 'homepage-store', // name of the item in the storage (must be unique)
       storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {

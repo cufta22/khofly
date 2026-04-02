@@ -1,6 +1,6 @@
-import { Flex, Text } from "@mantine/core";
-import { IFC } from "@ts/global.types";
-import React from "react";
+import { Flex, Text } from '@mantine/core';
+import type { IFC } from '@ts/global.types';
+import React from 'react';
 
 interface Props extends IFC {
   leftSection?: any;
@@ -8,10 +8,10 @@ interface Props extends IFC {
 
 const DocsSubtitle: React.FC<Props> = ({ children, leftSection }) => {
   return (
-    <Flex direction="row" align="center" gap="lg" mt="lg" mb="sm">
+    <Flex direction='row' align='center' gap='lg' mt='lg' mb='sm'>
       {leftSection && leftSection}
 
-      <Text size="xl" fw="bold">
+      <Text size='xl' fw='bold'>
         {children}
       </Text>
     </Flex>

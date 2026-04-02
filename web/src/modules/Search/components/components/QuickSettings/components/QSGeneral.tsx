@@ -1,18 +1,18 @@
-import { Accordion, Divider, Flex, Stack, Text, useMantineTheme } from "@mantine/core";
-import { IconSettings2 } from "@tabler/icons-react";
-import { useTranslate } from "@hooks/translate/use-translate";
-import classes from "../styles.module.scss";
+import { Accordion, Divider, Flex, Stack, Text, useMantineTheme } from '@mantine/core';
+import { IconSettings2 } from '@tabler/icons-react';
+import { useTranslate } from '@hooks/translate/use-translate';
+import classes from '../styles.module.scss';
 
-import FaviconSwitch from "@module/Settings/components/_general/General/FaviconSwitch";
-import ShowEnginesSwitch from "@module/Settings/components/_general/General/ShowEnginesSwitch";
-import MediaSwitch from "@module/Settings/components/_general/General/MediaSwitch";
-import IASwitch from "@module/Settings/components/_general/General/IASwitch";
-import PrivateSearchSwitch from "@module/Settings/components/_general/General/PrivateSearchSwitch";
-import PrivatePlayerSwitch from "@module/Settings/components/_general/General/PrivarePlayerSwitch";
-import AIAnswerSwitch from "@module/Settings/components/_general/AI/AIAnswerSwitch";
-import AISummarySwitch from "@module/Settings/components/_general/AI/AISummarySwitch";
-import NewTabSwitch from "@module/Settings/components/_general/General/NewTabSwitch";
-import PrivateViewSwitch from "@module/Settings/components/_general/General/PrivateViewSwitch";
+import FaviconSwitch from '@module/Settings/components/_general/General/FaviconSwitch';
+import ShowEnginesSwitch from '@module/Settings/components/_general/General/ShowEnginesSwitch';
+import MediaSwitch from '@module/Settings/components/_general/General/MediaSwitch';
+import IASwitch from '@module/Settings/components/_general/General/IASwitch';
+import PrivateSearchSwitch from '@module/Settings/components/_general/General/PrivateSearchSwitch';
+import PrivatePlayerSwitch from '@module/Settings/components/_general/General/PrivarePlayerSwitch';
+import AIAnswerSwitch from '@module/Settings/components/_general/AI/AIAnswerSwitch';
+import AISummarySwitch from '@module/Settings/components/_general/AI/AISummarySwitch';
+import NewTabSwitch from '@module/Settings/components/_general/General/NewTabSwitch';
+import PrivateViewSwitch from '@module/Settings/components/_general/General/PrivateViewSwitch';
 
 const QSGeneral = () => {
   const theme = useMantineTheme();
@@ -20,73 +20,73 @@ const QSGeneral = () => {
   const t = useTranslate();
 
   return (
-    <Accordion.Item className={classes.acc_item} value="general">
+    <Accordion.Item className={classes.acc_item} value='general'>
       <Accordion.Control
         className={classes.acc_control}
-        icon={<IconSettings2 color={theme.colors.blue["5"]} />}
+        icon={<IconSettings2 color={theme.colors.blue['5']} />}
       >
-        <Text size="lg">{t("pages.settings.general.title")}</Text>
+        <Text size='lg'>{t('pages.settings.general.title')}</Text>
       </Accordion.Control>
       <Accordion.Panel>
-        <Stack mt="lg">
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.interface.toggle_open_in_new_tab")}</Text>
+        <Stack mt='lg'>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.interface.toggle_open_in_new_tab')}</Text>
 
             <NewTabSwitch />
           </Flex>
 
-          <Divider my={6} w="100%" />
+          <Divider my={6} w='100%' />
 
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.toggle_favicon")}</Text>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.general.toggle_favicon')}</Text>
 
             <FaviconSwitch />
           </Flex>
 
-          <Divider my={6} w="100%" />
+          <Divider my={6} w='100%' />
 
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.show_engines")}</Text>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.general.show_engines')}</Text>
 
             <ShowEnginesSwitch />
           </Flex>
 
-          <Divider my={6} w="100%" />
+          <Divider my={6} w='100%' />
 
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.display_media")}</Text>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.general.display_media')}</Text>
 
             <MediaSwitch />
           </Flex>
 
-          <Divider my={6} w="100%" />
+          <Divider my={6} w='100%' />
 
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.toggle_ia")}</Text>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.general.toggle_ia')}</Text>
 
             <IASwitch />
           </Flex>
 
-          <Divider my={6} w="100%" />
+          <Divider my={6} w='100%' />
 
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.toggle_private_search")}</Text>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.general.toggle_private_search')}</Text>
 
             <PrivateSearchSwitch />
           </Flex>
 
-          <Divider my={6} w="100%" />
+          <Divider my={6} w='100%' />
 
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.toggle_private_player")}</Text>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.general.toggle_private_player')}</Text>
 
             <PrivatePlayerSwitch />
           </Flex>
 
-          <Divider my={6} w="100%" />
+          <Divider my={6} w='100%' />
 
-          <Flex align="center" justify="space-between">
-            <Text>{t("pages.settings.general.toggle_private_view")}</Text>
+          <Flex align='center' justify='space-between'>
+            <Text>{t('pages.settings.general.toggle_private_view')}</Text>
 
             <PrivateViewSwitch />
           </Flex>

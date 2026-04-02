@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from 'react-router';
 
 export const loader = ({ context }: LoaderFunctionArgs) => {
   // handle "GET" request
@@ -50,7 +50,7 @@ Sitemap: ${process.env.HOST}/sitemap.xml
   return new Response(robotText, {
     status: 200,
     headers: {
-      "Content-Type": "text/plain",
+      'Content-Type': 'text/plain',
     },
   });
 };

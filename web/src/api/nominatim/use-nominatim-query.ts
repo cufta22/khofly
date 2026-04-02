@@ -1,8 +1,8 @@
-import { useInstanceStore } from "@store/instance";
-import useFetch from "../use-fetch";
-import type { INominatimResults } from "@ts/nominatim.types";
-import useSWRMutation from "swr/mutation";
-import useToast from "@hooks/use-toast";
+import { useInstanceStore } from '@store/instance';
+import useFetch from '../use-fetch';
+import type { INominatimResults } from '@ts/nominatim.types';
+import useSWRMutation from 'swr/mutation';
+import useToast from '@hooks/use-toast';
 
 const getKey = (domain: string) => {
   if (!domain) return null;
@@ -24,9 +24,9 @@ const useNominatimSWR = () => {
     // Error handling
     onError() {
       toast.show({
-        title: "Something went wrong",
-        message: "Unable to fetch location",
-        color: "red",
+        title: 'Something went wrong',
+        message: 'Unable to fetch location',
+        color: 'red',
       });
     },
   });

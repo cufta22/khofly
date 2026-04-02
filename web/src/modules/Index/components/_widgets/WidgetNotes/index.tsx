@@ -1,17 +1,17 @@
-import { Flex, Paper, ScrollArea, Text, Textarea } from "@mantine/core";
-import classes from "./styles.module.scss";
+import { Flex, Paper, ScrollArea, Text, Textarea } from '@mantine/core';
+import classes from './styles.module.scss';
 
-import { useHomepageStore } from "@store/homepage";
+import { useHomepageStore } from '@store/homepage';
 
 const WidgetNotes = () => {
   const notes = useHomepageStore((state) => state.notes);
   const setNotes = useHomepageStore((state) => state.setNotes);
 
   return (
-    <Paper className={classes.widget_notes} withBorder p="lg">
-      <ScrollArea h={"100%"} type="never">
-        <Flex direction="column" align="center">
-          <Text fz={26} fw="bold" mb="md">
+    <Paper className={classes.widget_notes} withBorder p='lg'>
+      <ScrollArea h={'100%'} type='never'>
+        <Flex direction='column' align='center'>
+          <Text fz={26} fw='bold' mb='md'>
             Notes
           </Text>
 
@@ -20,11 +20,11 @@ const WidgetNotes = () => {
               root: classes.textarea_root,
               input: classes.textarea_input,
             }}
-            size="md"
-            variant="unstyled"
+            size='md'
+            variant='unstyled'
             autosize
             minRows={7}
-            c="black"
+            c='black'
             value={notes}
             onChange={(e) => setNotes(e.currentTarget.value)}
           />

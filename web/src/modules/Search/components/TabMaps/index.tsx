@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { MapContainer, TileLayer, useMap } from "react-leaflet";
+import { useState } from 'react';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 
-import classes from "./styles.module.scss";
-import MapControls from "./components/MapControls";
+import classes from './styles.module.scss';
+import MapControls from './components/MapControls';
 
 const TabMaps = () => {
   const [coords, setCoords] = useState({
@@ -32,7 +32,7 @@ const TabMaps = () => {
       >
         <TileLayer
           attribution='Map data and geocoding results &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         />
         <MapView />
       </MapContainer>

@@ -1,8 +1,8 @@
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import { Flex, Table, Text } from "@mantine/core";
-import SearchAnchor from "@module/Search/components/components/SearchAnchor";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import { Flex, Table, Text } from '@mantine/core';
+import SearchAnchor from '@module/Search/components/components/SearchAnchor';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 interface Props {
@@ -38,16 +38,16 @@ const ITDetails: React.FC<Props> = ({
   const linkTextColor = usePrimaryColor(4);
 
   return (
-    <Table withRowBorders={false} verticalSpacing={2} mt="sm">
+    <Table withRowBorders={false} verticalSpacing={2} mt='sm'>
       {/* <Table.Thead></Table.Thead> */}
       <Table.Tbody>
         {package_name && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Name:</Text>
+              <Text size='xs'>Name:</Text>
             </Table.Td>
             <Table.Td>
-              <Text size="xs">{package_name}</Text>
+              <Text size='xs'>{package_name}</Text>
             </Table.Td>
           </Table.Tr>
         )}
@@ -55,10 +55,10 @@ const ITDetails: React.FC<Props> = ({
         {version && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Version:</Text>
+              <Text size='xs'>Version:</Text>
             </Table.Td>
             <Table.Td>
-              <Text size="xs">{version}</Text>
+              <Text size='xs'>{version}</Text>
             </Table.Td>
           </Table.Tr>
         )}
@@ -66,10 +66,10 @@ const ITDetails: React.FC<Props> = ({
         {maintainer && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Maintainer:</Text>
+              <Text size='xs'>Maintainer:</Text>
             </Table.Td>
             <Table.Td>
-              <Text size="xs">{maintainer}</Text>
+              <Text size='xs'>{maintainer}</Text>
             </Table.Td>
           </Table.Tr>
         )}
@@ -77,10 +77,10 @@ const ITDetails: React.FC<Props> = ({
         {publishedDate && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Updated at:</Text>
+              <Text size='xs'>Updated at:</Text>
             </Table.Td>
             <Table.Td>
-              <Text size="xs">{dayjs(publishedDate).format("MMM D, YYYY")}</Text>
+              <Text size='xs'>{dayjs(publishedDate).format('MMM D, YYYY')}</Text>
             </Table.Td>
           </Table.Tr>
         )}
@@ -88,10 +88,10 @@ const ITDetails: React.FC<Props> = ({
         {tags && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Tags:</Text>
+              <Text size='xs'>Tags:</Text>
             </Table.Td>
             <Table.Td>
-              <Text size="xs">{tags.join(", ")}</Text>
+              <Text size='xs'>{tags.join(', ')}</Text>
             </Table.Td>
           </Table.Tr>
         )}
@@ -99,10 +99,10 @@ const ITDetails: React.FC<Props> = ({
         {!!popularity && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Popularity:</Text>
+              <Text size='xs'>Popularity:</Text>
             </Table.Td>
             <Table.Td>
-              <Text size="xs">{popularity}</Text>
+              <Text size='xs'>{popularity}</Text>
             </Table.Td>
           </Table.Tr>
         )}
@@ -110,11 +110,11 @@ const ITDetails: React.FC<Props> = ({
         {license_name && license_url && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Licence:</Text>
+              <Text size='xs'>Licence:</Text>
             </Table.Td>
             <Table.Td>
               <SearchAnchor url={license_url} updateVisited={false}>
-                <Text c={linkTextColor} size="xs">
+                <Text c={linkTextColor} size='xs'>
                   {license_name}
                 </Text>
               </SearchAnchor>
@@ -125,18 +125,18 @@ const ITDetails: React.FC<Props> = ({
         {homepage && source_code_url && (
           <Table.Tr>
             <Table.Td w={100}>
-              <Text size="xs">Project:</Text>
+              <Text size='xs'>Project:</Text>
             </Table.Td>
             <Table.Td>
-              <Flex align="center" gap="xs">
+              <Flex align='center' gap='xs'>
                 <SearchAnchor url={homepage}>
-                  <Text c={linkTextColor} size="xs">
+                  <Text c={linkTextColor} size='xs'>
                     Project homepage
                   </Text>
                 </SearchAnchor>
-                <Text size="xs">|</Text>
+                <Text size='xs'>|</Text>
                 <SearchAnchor url={source_code_url}>
-                  <Text c={linkTextColor} size="xs">
+                  <Text c={linkTextColor} size='xs'>
                     Project source code
                   </Text>
                 </SearchAnchor>

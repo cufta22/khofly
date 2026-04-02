@@ -1,16 +1,16 @@
-import { Container, Grid, useMantineTheme } from "@mantine/core";
-import DocsTitle from "./common/DocsTitle";
-import DocsCard from "./common/DocsCard";
-import DocsText from "./common/DocsText";
+import { Container, Grid, useMantineTheme } from '@mantine/core';
+import DocsTitle from './common/DocsTitle';
+import DocsCard from './common/DocsCard';
+import DocsText from './common/DocsText';
 
-import DocsSubtitle from "./common/DocsSubtitle";
-import { DOCS_CARD_DATA } from "./common/docsCardData";
+import DocsSubtitle from './common/DocsSubtitle';
+import { DOCS_CARD_DATA } from './common/docsCardData';
 
 const DocsIndex = () => {
   const theme = useMantineTheme();
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle>Khofly documentation</DocsTitle>
 
       <DocsText>
@@ -23,21 +23,21 @@ const DocsIndex = () => {
 
       <DocsText>You can start by following any of the links below:</DocsText>
 
-      <Grid gutter="lg" mt={50}>
+      <Grid gutter='lg' mt={50}>
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <DocsCard {...DOCS_CARD_DATA(theme)["IA"]} />
+          <DocsCard {...DOCS_CARD_DATA(theme)['IA']} />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <DocsCard {...DOCS_CARD_DATA(theme)["i18n"]} />
+          <DocsCard {...DOCS_CARD_DATA(theme)['i18n']} />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <DocsCard {...DOCS_CARD_DATA(theme)["privateSearch"]} />
+          <DocsCard {...DOCS_CARD_DATA(theme)['privateSearch']} />
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, md: 6 }}>
-          <DocsCard {...DOCS_CARD_DATA(theme)["selfHostSearXNG"]} />
+          <DocsCard {...DOCS_CARD_DATA(theme)['selfHostSearXNG']} />
         </Grid.Col>
       </Grid>
     </Container>

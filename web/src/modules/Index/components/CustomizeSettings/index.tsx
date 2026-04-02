@@ -8,44 +8,44 @@ import {
   ScrollArea,
   SimpleGrid,
   Text,
-} from "@mantine/core";
-import { IconChevronRight } from "@tabler/icons-react";
-import classes from "./styles.module.scss";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import RemixLink from "@components/RemixLink";
-import { useState } from "react";
-import CSWallpaperSelect from "./components/CSWallpaperSelect";
-import CSWallpaperCategory from "./components/CSWallpaperCategory";
-import CSOptions from "./components/CSOptions";
+} from '@mantine/core';
+import { IconChevronRight } from '@tabler/icons-react';
+import classes from './styles.module.scss';
+import { useTranslate } from '@hooks/translate/use-translate';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import RemixLink from '@components/RemixLink';
+import { useState } from 'react';
+import CSWallpaperSelect from './components/CSWallpaperSelect';
+import CSWallpaperCategory from './components/CSWallpaperCategory';
+import CSOptions from './components/CSOptions';
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
-export type IWallpaperCategory = "" | "retrowave" | "landscape" | "minecraft";
+export type IWallpaperCategory = '' | 'retrowave' | 'landscape' | 'minecraft';
 
 const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
   const t = useTranslate();
 
-  const [wpCategory, setWpCategory] = useState<IWallpaperCategory>("");
+  const [wpCategory, setWpCategory] = useState<IWallpaperCategory>('');
 
   return (
     <Drawer
       offset={8}
-      size="lg"
-      radius="md"
+      size='lg'
+      radius='md'
       opened={isOpen}
       onClose={onClose}
       title={
-        <Flex align="center" gap="sm">
-          <Text size="xl">{t("pages.index.customize")}</Text>
+        <Flex align='center' gap='sm'>
+          <Text size='xl'>{t('pages.index.customize')}</Text>
         </Flex>
       }
-      position="right"
-      padding="xl"
+      position='right'
+      padding='xl'
       closeButtonProps={{
-        size: "lg",
+        size: 'lg',
       }}
       classNames={{
         header: classes.drawer_header,
@@ -53,19 +53,19 @@ const CustomizeSettings: React.FC<Props> = ({ isOpen, onClose }) => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
-      {wpCategory === "" && <CSWallpaperSelect setWpCategory={setWpCategory} />}
+      {wpCategory === '' && <CSWallpaperSelect setWpCategory={setWpCategory} />}
 
-      {["retrowave", "landscape", "minecraft"].includes(wpCategory) && (
+      {['retrowave', 'landscape', 'minecraft'].includes(wpCategory) && (
         <CSWallpaperCategory wpCategory={wpCategory} setWpCategory={setWpCategory} />
       )}
 
-      {wpCategory === "" && <CSOptions />}
+      {wpCategory === '' && <CSOptions />}
 
-      {wpCategory === "" && (
-        <Center my="xl">
-          <RemixLink to="/settings?tab=homepage">
-            <Button variant="outline" rightSection={<IconChevronRight style={getIconStyle(18)} />}>
-              {t("_common.show_more")}
+      {wpCategory === '' && (
+        <Center my='xl'>
+          <RemixLink to='/settings?tab=homepage'>
+            <Button variant='outline' rightSection={<IconChevronRight style={getIconStyle(18)} />}>
+              {t('_common.show_more')}
             </Button>
           </RemixLink>
         </Center>

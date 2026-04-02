@@ -9,17 +9,17 @@ import {
   type StylesApiProps,
   Tooltip,
   useProps,
-} from "@mantine/core";
-import { CopyIcon } from "./CopyIcon";
-import classes from "./styles.module.scss";
-import themeClasses from "./theme.module.scss";
-import hljs from "./hljs";
-import clsx from "clsx";
+} from '@mantine/core';
+import { CopyIcon } from './CopyIcon';
+import classes from './styles.module.scss';
+import themeClasses from './theme.module.scss';
+import hljs from './hljs';
+import clsx from 'clsx';
 
-export type CodeHighlightStylesNames = "root" | "code" | "pre" | "copy";
+export type CodeHighlightStylesNames = 'root' | 'code' | 'pre' | 'copy';
 
 export interface CodeHighlightProps
-  extends BoxProps, StylesApiProps<CodeHighlightFactory>, ElementProps<"div"> {
+  extends BoxProps, StylesApiProps<CodeHighlightFactory>, ElementProps<'div'> {
   code: string;
   language: string;
   withCopyButton?: boolean;
@@ -35,14 +35,14 @@ export type CodeHighlightFactory = Factory<{
 }>;
 
 const defaultProps: Partial<CodeHighlightProps> = {
-  copyLabel: "Copy code",
-  copiedLabel: "Copied",
-  language: "bash",
+  copyLabel: 'Copy code',
+  copiedLabel: 'Copied',
+  language: 'bash',
   withCopyButton: true,
 };
 
 const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
-  const props = useProps("CodeHighlight", defaultProps, _props);
+  const props = useProps('CodeHighlight', defaultProps, _props);
   const {
     classNames,
     className,
@@ -63,12 +63,12 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   const highlighted = hljs.highlight(code.trim(), { language }).value;
 
   return (
-    <Box className={clsx(classes.root, themeClasses.theme, className)} {...others} dir="ltr">
+    <Box className={clsx(classes.root, themeClasses.theme, className)} {...others} dir='ltr'>
       {withCopyButton && (
         <CopyButton value={code.trim()}>
           {({ copied, copy }) => (
-            <Tooltip label={copied ? copiedLabel : copyLabel} fz="sm" position="left">
-              <ActionIcon onClick={copy} variant="none" className={classes.copy}>
+            <Tooltip label={copied ? copiedLabel : copyLabel} fz='sm' position='left'>
+              <ActionIcon onClick={copy} variant='none' className={classes.copy}>
                 <CopyIcon copied={copied} />
               </ActionIcon>
             </Tooltip>
@@ -76,7 +76,7 @@ const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
         </CopyButton>
       )}
 
-      <ScrollArea className={className} type="hover" dir="ltr" offsetScrollbars={false}>
+      <ScrollArea className={className} type='hover' dir='ltr' offsetScrollbars={false}>
         <pre className={classes.pre}>
           <code className={classes.code} dangerouslySetInnerHTML={{ __html: highlighted }} />
         </pre>

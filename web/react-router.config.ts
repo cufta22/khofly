@@ -1,4 +1,4 @@
-import type { Config } from "@react-router/dev/config";
+import type { Config } from '@react-router/dev/config';
 
 export default {
   // Config options...
@@ -11,6 +11,6 @@ export default {
 
   // return a list of URLs to prerender at build time
   async prerender() {
-    return ["/privacy", "/changelog", "/docs", "/support"];
+    return ['/privacy', '/changelog', '/docs', '/support'];
   },
 } satisfies Config;

@@ -1,5 +1,5 @@
-import { Flex } from "@mantine/core";
-import classes from "./styles.module.scss";
+import { Flex } from '@mantine/core';
+import classes from './styles.module.scss';
 
 interface Props {
   content: string;

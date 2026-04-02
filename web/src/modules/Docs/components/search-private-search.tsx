@@ -1,13 +1,13 @@
-import { Container, Text, useMantineTheme } from "@mantine/core";
-import DocsTitle from "./common/DocsTitle";
-import { IconShield } from "@tabler/icons-react";
-import DocsSubtitle from "./common/DocsSubtitle";
-import DocsText from "./common/DocsText";
-import RemixLink from "@components/RemixLink";
-import DocsNextPrev from "./common/DocsNextPrev";
+import { Container, Text, useMantineTheme } from '@mantine/core';
+import DocsTitle from './common/DocsTitle';
+import { IconShield } from '@tabler/icons-react';
+import DocsSubtitle from './common/DocsSubtitle';
+import DocsText from './common/DocsText';
+import RemixLink from '@components/RemixLink';
+import DocsNextPrev from './common/DocsNextPrev';
 
-import { DOCS_CARD_DATA } from "./common/docsCardData";
-import { usePrimaryColor } from "@hooks/use-primary-color";
+import { DOCS_CARD_DATA } from './common/docsCardData';
+import { usePrimaryColor } from '@hooks/use-primary-color';
 
 const DocsSearchPrivateSearch = () => {
   const theme = useMantineTheme();
@@ -15,7 +15,7 @@ const DocsSearchPrivateSearch = () => {
   const linkTextColor = usePrimaryColor(4);
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle leftSection={<IconShield color={theme.colors.green[5]} />}>
         Private Search
       </DocsTitle>
@@ -39,9 +39,9 @@ const DocsSearchPrivateSearch = () => {
 
       <DocsText>
         For complete privacy you should also setup your own SearXNG instance since the search data
-        is still sent to the default one, full guide{" "}
-        <RemixLink to="/docs/self-host-searxng">
-          <Text component="span" c={linkTextColor}>
+        is still sent to the default one, full guide{' '}
+        <RemixLink to='/docs/self-host-searxng'>
+          <Text component='span' c={linkTextColor}>
             here
           </Text>
         </RemixLink>
@@ -49,8 +49,8 @@ const DocsSearchPrivateSearch = () => {
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["AI"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["privatePlayer"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)['AI'] }}
+        next={{ ...DOCS_CARD_DATA(theme)['privatePlayer'] }}
       />
     </Container>
   );

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import classes from "./styles.module.scss";
-import { useMantineColorScheme, useMantineTheme } from "@mantine/core";
+import { useState, useEffect } from 'react';
+import classes from './styles.module.scss';
+import { useMantineColorScheme, useMantineTheme } from '@mantine/core';
 
 const WidgetClock = () => {
   const theme = useMantineTheme();
@@ -9,13 +9,13 @@ const WidgetClock = () => {
   const [time, setTime] = useState(new Date());
 
   // Colors
-  const colorSurface = colorScheme === "dark" ? theme.colors.dark["6"] : theme.white;
-  const colorHourMarks = colorScheme === "dark" ? theme.colors.dark["0"] : theme.colors.dark["7"];
-  const colorMinuteMarks = colorScheme === "dark" ? theme.colors.dark["2"] : theme.colors.dark["5"];
-  const colorHourHand = colorScheme === "dark" ? theme.colors.gray["0"] : theme.colors.dark["7"];
-  const colorMinuteHand = colorScheme === "dark" ? theme.colors.dark["0"] : theme.colors.dark["8"];
-  const colorSecondHand = colorScheme === "dark" ? theme.colors.red["7"] : theme.colors.red["7"];
-  const colorCenter = colorScheme === "dark" ? theme.colors.red["7"] : theme.colors.red["7"];
+  const colorSurface = colorScheme === 'dark' ? theme.colors.dark['6'] : theme.white;
+  const colorHourMarks = colorScheme === 'dark' ? theme.colors.dark['0'] : theme.colors.dark['7'];
+  const colorMinuteMarks = colorScheme === 'dark' ? theme.colors.dark['2'] : theme.colors.dark['5'];
+  const colorHourHand = colorScheme === 'dark' ? theme.colors.gray['0'] : theme.colors.dark['7'];
+  const colorMinuteHand = colorScheme === 'dark' ? theme.colors.dark['0'] : theme.colors.dark['8'];
+  const colorSecondHand = colorScheme === 'dark' ? theme.colors.red['7'] : theme.colors.red['7'];
+  const colorCenter = colorScheme === 'dark' ? theme.colors.red['7'] : theme.colors.red['7'];
 
   // Calculate the rotation angles for clock hands
   const secondRatio = time.getSeconds() / 60;
@@ -39,15 +39,15 @@ const WidgetClock = () => {
 
   return (
     <div className={classes.widget_clock}>
-      <svg viewBox="0 0 100 100">
+      <svg viewBox='0 0 100 100'>
         {/* Clock face */}
         <circle
-          cx="50"
-          cy="50"
-          r="50"
+          cx='50'
+          cy='50'
+          r='50'
           fill={colorSurface}
-          stroke={colorScheme === "dark" ? theme.colors.dark["8"] : theme.colors.gray["2"]}
-          strokeWidth={colorScheme === "dark" ? "0" : "1"}
+          stroke={colorScheme === 'dark' ? theme.colors.dark['8'] : theme.colors.gray['2']}
+          strokeWidth={colorScheme === 'dark' ? '0' : '1'}
         />
 
         {/* Hour marks */}
@@ -66,8 +66,8 @@ const WidgetClock = () => {
               x2={x2}
               y2={y2}
               stroke={colorHourMarks}
-              strokeWidth="2"
-              strokeLinecap="round"
+              strokeWidth='2'
+              strokeLinecap='round'
             />
           );
         })}
@@ -89,8 +89,8 @@ const WidgetClock = () => {
                 x2={x2}
                 y2={y2}
                 stroke={colorMinuteMarks}
-                strokeWidth="1"
-                strokeLinecap="round"
+                strokeWidth='1'
+                strokeLinecap='round'
               />
             );
           }
@@ -99,42 +99,42 @@ const WidgetClock = () => {
 
         {/* Hour hand */}
         <line
-          x1="50"
-          y1="50"
-          x2="50"
-          y2="30"
+          x1='50'
+          y1='50'
+          x2='50'
+          y2='30'
           stroke={colorHourHand}
-          strokeWidth="4"
-          strokeLinecap="round"
+          strokeWidth='4'
+          strokeLinecap='round'
           transform={`rotate(${hourHandRotation}, 50, 50)`}
         />
 
         {/* Minute hand */}
         <line
-          x1="50"
-          y1="50"
-          x2="50"
-          y2="20"
+          x1='50'
+          y1='50'
+          x2='50'
+          y2='20'
           stroke={colorMinuteHand}
-          strokeWidth="2"
-          strokeLinecap="round"
+          strokeWidth='2'
+          strokeLinecap='round'
           transform={`rotate(${minuteHandRotation}, 50, 50)`}
         />
 
         {/* Second hand */}
         <line
-          x1="50"
-          y1="50"
-          x2="50"
-          y2="15"
+          x1='50'
+          y1='50'
+          x2='50'
+          y2='15'
           stroke={colorSecondHand}
-          strokeWidth="1"
-          strokeLinecap="round"
+          strokeWidth='1'
+          strokeLinecap='round'
           transform={`rotate(${secondHandRotation}, 50, 50)`}
         />
 
         {/* Center dot */}
-        <circle cx="50" cy="50" r="2" fill={colorCenter} />
+        <circle cx='50' cy='50' r='2' fill={colorCenter} />
       </svg>
     </div>
   );

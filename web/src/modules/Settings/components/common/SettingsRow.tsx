@@ -1,8 +1,8 @@
-import { Flex, Text } from "@mantine/core";
-import type { DotNestedKeys, ITranslations } from "@ts/global.types";
+import { Flex, Text } from '@mantine/core';
+import type { DotNestedKeys, ITranslations } from '@ts/global.types';
 
-import classes from "./styles.module.scss";
-import { useTranslate } from "@hooks/translate/use-translate";
+import classes from './styles.module.scss';
+import { useTranslate } from '@hooks/translate/use-translate';
 
 interface Props {
   icon?: React.ReactNode;
@@ -15,11 +15,11 @@ const SettingsRow: React.FC<Props> = ({ icon, desc, tooltip, control }) => {
   const t = useTranslate();
 
   return (
-    <Flex w="100%" className={classes.settings_row} justify="space-between">
-      <Flex align="center" gap="sm">
+    <Flex w='100%' className={classes.settings_row} justify='space-between'>
+      <Flex align='center' gap='sm'>
         {icon && icon}
 
-        <Text size="md" fw={400}>
+        <Text size='md' fw={400}>
           {t(desc)}
         </Text>
 

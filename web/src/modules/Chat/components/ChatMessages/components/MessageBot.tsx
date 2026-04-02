@@ -1,16 +1,16 @@
-import { Accordion, Flex, Loader, Table, Text, useMantineTheme } from "@mantine/core";
-import classes from "./styles.module.scss";
-import { IconBulb } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useAIChatStore } from "@store/aichat";
+import { Accordion, Flex, Loader, Table, Text, useMantineTheme } from '@mantine/core';
+import classes from './styles.module.scss';
+import { IconBulb } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useAIChatStore } from '@store/aichat';
 
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm"; // Plugin for GFM
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'; // Plugin for GFM
 
 // For code highlight
-import ChatCodeHighlight from "../../ChatCodeHighlight/ChatCodeHighlight";
-import { useMemo } from "react";
-import { getAIChatModelIcon } from "@module/Chat/utils";
+import ChatCodeHighlight from '../../ChatCodeHighlight/ChatCodeHighlight';
+import { useMemo } from 'react';
+import { getAIChatModelIcon } from '@module/Chat/utils';
 
 interface Props {
   content: string;
@@ -21,11 +21,11 @@ const MessageBot: React.FC<Props> = ({ content }) => {
 
   const model = useAIChatStore((state) => state.model);
 
-  const isReasoning = content.startsWith("<think>");
+  const isReasoning = content.startsWith('<think>');
 
   // Process the content to handle the <thinking> tags
   const { visibleContent, thinkContent } = useMemo(() => {
-    if (!isReasoning) return { visibleContent: content, thinkContent: "" };
+    if (!isReasoning) return { visibleContent: content, thinkContent: '' };
 
     // Match content inside <thinking> tags
     const thinkMatch = content.match(/<think>([\s\S]*?)<\/think>/);
@@ -34,25 +34,25 @@ const MessageBot: React.FC<Props> = ({ content }) => {
     const thinkContent = thinkMatch ? thinkMatch[1].trim() : null;
 
     // Remove the <thinking> section from the visible content
-    const visibleContent = content.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
+    const visibleContent = content.replaceAll(/<think>[\s\S]*?<\/think>/g, '').trim();
 
     return { visibleContent, thinkContent };
   }, [content]);
 
   return (
-    <Flex className={classes.message_bot} direction="column">
+    <Flex className={classes.message_bot} direction='column'>
       <Flex className={classes.message_header}>
-        <Flex align="center" gap="sm">
+        <Flex align='center' gap='sm'>
           {getAIChatModelIcon(model.value, 26)}
 
           <Text>{model.label}</Text>
         </Flex>
       </Flex>
 
-      <Flex className={classes.message_wrapper} direction="column">
+      <Flex className={classes.message_wrapper} direction='column'>
         {isReasoning && (
-          <Accordion className={classes.thinking_container} variant="separated" mt="md">
-            <Accordion.Item value="photos">
+          <Accordion className={classes.thinking_container} variant='separated' mt='md'>
+            <Accordion.Item value='photos'>
               <Accordion.Control
                 icon={
                   thinkContent ? (
@@ -76,10 +76,10 @@ const MessageBot: React.FC<Props> = ({ content }) => {
           remarkPlugins={[remarkGfm]}
           components={{
             code({ className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || "");
+              const match = /language-(\w+)/.exec(className || '');
 
               return match ? (
-                <ChatCodeHighlight language={match[1]} code={String(children).replace(/\n$/, "")} />
+                <ChatCodeHighlight language={match[1]} code={String(children).replace(/\n$/, '')} />
               ) : (
                 <code className={className} {...props}>
                   {children}
@@ -106,7 +106,7 @@ const MessageBot: React.FC<Props> = ({ content }) => {
             },
           }}
         >
-          {isReasoning ? (thinkContent ? visibleContent : "") : content}
+          {isReasoning ? (thinkContent ? visibleContent : '') : content}
         </ReactMarkdown>
       </Flex>
     </Flex>

@@ -1,12 +1,12 @@
-import { Anchor, Image, Modal, Text, UnstyledButton } from "@mantine/core";
+import { Anchor, Image, Modal, Text, UnstyledButton } from '@mantine/core';
 
-import classes from "../styles.module.scss";
+import classes from '../styles.module.scss';
 
-import { useDisclosure, useHover } from "@mantine/hooks";
-import { useHomepageStore, type IShortcut } from "@store/homepage";
-import ShortcutEdit from "./ShortcutEdit";
-import ShortcutMenu from "./ShortcutMenu";
-import { useFaviconAPI } from "src/api/favicon";
+import { useDisclosure, useHover } from '@mantine/hooks';
+import { useHomepageStore, type IShortcut } from '@store/homepage';
+import ShortcutEdit from './ShortcutEdit';
+import ShortcutMenu from './ShortcutMenu';
+import { useFaviconAPI } from 'src/api/favicon';
 
 interface Props extends IShortcut {
   idx: number;
@@ -22,10 +22,10 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
 
   const openInNewTab = useHomepageStore((state) => state.openInNewTab);
 
-  const fullUrl = href?.includes("https") ? href : `https://${href}` || "";
-  const stripUrl = href?.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, "$1") || "";
+  const fullUrl = href?.includes('https') ? href : `https://${href}` || '';
+  const stripUrl = href?.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, '$1') || '';
 
-  const anchorTarget: React.HTMLAttributeAnchorTarget = openInNewTab ? "_blank" : "_self";
+  const anchorTarget: React.HTMLAttributeAnchorTarget = openInNewTab ? '_blank' : '_self';
 
   return (
     <>
@@ -33,8 +33,8 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
         ref={ref}
         href={fullUrl}
         target={anchorTarget}
-        rel="noreferrer noopener"
-        pos="relative"
+        rel='noreferrer noopener'
+        pos='relative'
       >
         <ShortcutMenu
           fullUrl={fullUrl}
@@ -48,29 +48,29 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
         <UnstyledButton className={classes.item}>
           <Image
             className={classes.item_image}
-            src={imgUrl ? imgUrl : getFaviconUrl(stripUrl, "favicone")}
-            alt="Shortcut icon"
-            radius="sm"
+            src={imgUrl ? imgUrl : getFaviconUrl(stripUrl, 'favicone')}
+            alt='Shortcut icon'
+            radius='sm'
           />
         </UnstyledButton>
 
-        <Text size="sm" fw="bold" mt={8} ta="center" truncate="end">
+        <Text size='sm' fw='bold' mt={8} ta='center' truncate='end'>
           {title}
         </Text>
       </Anchor>
 
-      <Modal opened={openModal} onClose={toggleModal} title="Edit shortcut">
+      <Modal opened={openModal} onClose={toggleModal} title='Edit shortcut'>
         <ShortcutEdit
           toggleModal={toggleModal}
           shortcut={{
-            type: "item",
+            type: 'item',
             title,
             href,
             imgUrl,
             items: [],
           }}
           idx={idx}
-          type="edit"
+          type='edit'
         />
       </Modal>
     </>

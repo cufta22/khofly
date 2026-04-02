@@ -1,26 +1,26 @@
-import { IAIProvider } from "@store/aichat";
-import { cookieStorage } from "@store/cookieStorage";
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import type { IAIProvider } from '@store/aichat';
+import { cookieStorage } from '@store/cookieStorage';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-export type IAutocompleteEngines = "google" | "duckduckgo" | "brave" | "qwant";
+export type IAutocompleteEngines = 'google' | 'duckduckgo' | 'brave' | 'qwant';
 
 export type ICategories =
-  | "general"
-  | "images"
-  | "videos"
-  | "news"
-  | "maps"
-  | "music"
-  | "it"
-  | "science"
-  | "files"
-  | "social_media"
-  | "other";
+  | 'general'
+  | 'images'
+  | 'videos'
+  | 'news'
+  | 'maps'
+  | 'music'
+  | 'it'
+  | 'science'
+  | 'files'
+  | 'social_media'
+  | 'other';
 
-export type IFaviconAPI = "duckduckgo" | "google" | "favicone";
+export type IFaviconAPI = 'duckduckgo' | 'google' | 'favicone';
 
-export type IWeatherSource = "owm" | "om";
+export type IWeatherSource = 'owm' | 'om';
 
 interface SettingsState {
   hydrated: boolean;
@@ -45,9 +45,9 @@ interface SettingsState {
 
   generalMedia: {
     enabled: boolean;
-    type: "images" | "videos";
+    type: 'images' | 'videos';
   };
-  setGeneralMedia: (next: { enabled?: boolean; type?: "images" | "videos" }) => void;
+  setGeneralMedia: (next: { enabled?: boolean; type?: 'images' | 'videos' }) => void;
 
   instantAnswers: {
     enabled: boolean;
@@ -125,9 +125,9 @@ interface SettingsState {
 
   AISummary: {
     enabled: boolean;
-    length: "short" | "long";
+    length: 'short' | 'long';
   };
-  setAISummary: (next: { enabled?: boolean; length?: "short" | "long" }) => void;
+  setAISummary: (next: { enabled?: boolean; length?: 'short' | 'long' }) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -135,18 +135,18 @@ export const useSettingsStore = create<SettingsState>()(
     (set) => ({
       hydrated: false,
 
-      categories: ["general", "images", "videos", "news", "maps"],
+      categories: ['general', 'images', 'videos', 'news', 'maps'],
       setCategories: (next) => set({ categories: next }),
 
       favicon: {
         enabled: false,
-        provider: "duckduckgo",
+        provider: 'duckduckgo',
       },
       setFavicon: (next) => set((prev) => ({ favicon: { ...prev.favicon, ...next } })),
 
       autocomplete: {
         enabled: true,
-        engine: "google",
+        engine: 'google',
       },
       setAutocomplete: (next) =>
         set((prev) => ({ autocomplete: { ...prev.autocomplete, ...next } })),
@@ -156,14 +156,14 @@ export const useSettingsStore = create<SettingsState>()(
 
       generalMedia: {
         enabled: true,
-        type: "images",
+        type: 'images',
       },
       setGeneralMedia: (next) =>
         set((prev) => ({ generalMedia: { ...prev.generalMedia, ...next } })),
 
       instantAnswers: {
         enabled: true,
-        weatherDataSource: "owm",
+        weatherDataSource: 'owm',
       },
       setInstantAnswers: (next) =>
         set((prev) => ({ instantAnswers: { ...prev.instantAnswers, ...next } })),
@@ -193,10 +193,10 @@ export const useSettingsStore = create<SettingsState>()(
 
       AIAnswer: {
         enabled: false,
-        provider: "cf",
+        provider: 'cf',
         model: {
-          label: "Llama 3.2 3b - instruct",
-          value: "@cf/meta/llama-3.2-3b-instruct",
+          label: 'Llama 3.2 3b - instruct',
+          value: '@cf/meta/llama-3.2-3b-instruct',
         },
       },
       setAIAnswer: (next) => set((prev) => ({ AIAnswer: { ...prev.AIAnswer, ...next } })),
@@ -208,12 +208,12 @@ export const useSettingsStore = create<SettingsState>()(
 
       AISummary: {
         enabled: false,
-        length: "short",
+        length: 'short',
       },
       setAISummary: (next) => set((prev) => ({ AISummary: { ...prev.AISummary, ...next } })),
     }),
     {
-      name: "settings-store", // name of the item in the storage (must be unique)
+      name: 'settings-store', // name of the item in the storage (must be unique)
       storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {

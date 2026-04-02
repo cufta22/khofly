@@ -1,16 +1,16 @@
-import { Code, Container, List, Paper, Text, useMantineTheme } from "@mantine/core";
-import DocsTitle from "./common/DocsTitle";
-import DocsText from "./common/DocsText";
-import DocsSubtitle from "./common/DocsSubtitle";
-import RemixLink from "@components/RemixLink";
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
-import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
-import { IconFile } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import DocsNextPrev from "./common/DocsNextPrev";
-import { DOCS_CARD_DATA } from "./common/docsCardData";
-import DocsLink from "./common/DocsLink";
+import { Code, Container, List, Paper, Text, useMantineTheme } from '@mantine/core';
+import DocsTitle from './common/DocsTitle';
+import DocsText from './common/DocsText';
+import DocsSubtitle from './common/DocsSubtitle';
+import RemixLink from '@components/RemixLink';
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import DocsCodeHighlight from './common/DocsCodeHighlight/DocsCodeHighlight';
+import DocsCodeHighlightTabs from './common/DocsCodeHighlight/DocsCodeHighlightTabs';
+import { IconFile } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import DocsNextPrev from './common/DocsNextPrev';
+import { DOCS_CARD_DATA } from './common/docsCardData';
+import DocsLink from './common/DocsLink';
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -99,7 +99,7 @@ const DocsSelfHostKhoflyPV = () => {
   const linkTextColor = usePrimaryColor(4);
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle>Installation guide</DocsTitle>
 
       <DocsText>Requirements:</DocsText>
@@ -111,12 +111,12 @@ const DocsSelfHostKhoflyPV = () => {
       <DocsSubtitle>OPTION 1. Install script ( Recommended )</DocsSubtitle>
 
       <DocsText>
-        This part is covered in{" "}
-        <RemixLink to="/docs/self-host-khofly">
-          <Text c={linkTextColor} component="span">
+        This part is covered in{' '}
+        <RemixLink to='/docs/self-host-khofly'>
+          <Text c={linkTextColor} component='span'>
             docs/self-host-khofly
           </Text>
-        </RemixLink>{" "}
+        </RemixLink>{' '}
         <Code>VPS</Code> section, the <Code>./scripts/install.sh</Code> script installs and runs
         both the web client and the API. If you've already run that script you probably don't need
         this page.
@@ -127,18 +127,18 @@ const DocsSelfHostKhoflyPV = () => {
       <DocsText>Follow these steps only if you've manually installed Khofly web client.</DocsText>
 
       <DocsText>1. Install dependencies</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_DEPENDENCIES} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_DEPENDENCIES} language='bash' />
       </Paper>
 
       <DocsText>2. Install pm2</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_PM2} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_PM2} language='bash' />
       </Paper>
 
       <DocsText>3. Install Bun</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_BUN} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_BUN} language='bash' />
       </Paper>
 
       <DocsText>
@@ -146,32 +146,32 @@ const DocsSelfHostKhoflyPV = () => {
       </DocsText>
 
       <DocsText>
-        5. <Code>cd khofly</Code> and type{" "}
+        5. <Code>cd khofly</Code> and type{' '}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
       <DocsText>
         5.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
-        frequent updates <Code>git fetch origin staging</Code> and{" "}
+        frequent updates <Code>git fetch origin staging</Code> and{' '}
         <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
       <DocsText>6. Build and run API</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_BUILD_PV} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_BUILD_PV} language='bash' />
       </Paper>
 
       <DocsText>7. Create the ecosystem.config file for pm2</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_ECOSYSTEM} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_ECOSYSTEM} language='bash' />
       </Paper>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/pv/ecosystem.config.js",
+              fileName: '/pv/ecosystem.config.js',
               code: CODE_ECOSYSTEM_FILE,
-              language: "javascript",
+              language: 'javascript',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -181,16 +181,16 @@ const DocsSelfHostKhoflyPV = () => {
       <DocsText>
         8. Create Nginx config for PV, don't forget to update the server_name to your domain name.
       </DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_NGINX} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_NGINX} language='bash' />
       </Paper>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/nginx/sites-available/pv",
+              fileName: '/etc/nginx/sites-available/pv',
               code: CODE_NGINX_FILE,
-              language: "nginx",
+              language: 'nginx',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -217,8 +217,8 @@ const DocsSelfHostKhoflyPV = () => {
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["selfHostCFWorker"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["selfHostKhofly"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)['selfHostCFWorker'] }}
+        next={{ ...DOCS_CARD_DATA(theme)['selfHostKhofly'] }}
       />
     </Container>
   );

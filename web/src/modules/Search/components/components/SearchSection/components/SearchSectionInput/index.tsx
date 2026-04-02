@@ -1,24 +1,24 @@
-import { ActionIcon, Combobox, Divider, Flex, TextInput, useCombobox } from "@mantine/core";
-import { IconChevronLeft, IconSearch, IconSparkles, IconX } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useEffect, useRef, useState } from "react";
+import { ActionIcon, Combobox, Divider, Flex, TextInput, useCombobox } from '@mantine/core';
+import { IconChevronLeft, IconSearch, IconSparkles, IconX } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useEffect, useRef, useState } from 'react';
 
-import classes from "./styles.module.scss";
-import { useDebouncedValue, useWindowScroll } from "@mantine/hooks";
-import { useResponsive } from "@hooks/use-responsive";
-import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { useSettingsStore } from "@store/settings";
-import { useSearchStore } from "@store/search";
-import { useNavigate, useSearchParams } from "react-router";
-import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
-import RemixLink from "@components/RemixLink";
+import classes from './styles.module.scss';
+import { useDebouncedValue, useWindowScroll } from '@mantine/hooks';
+import { useResponsive } from '@hooks/use-responsive';
+import useAutocompleteSWR from 'src/api/autocomplete/use-autocomplete-query';
+import { useTranslate } from '@hooks/translate/use-translate';
+import { useSettingsStore } from '@store/settings';
+import { useSearchStore } from '@store/search';
+import { useNavigate, useSearchParams } from 'react-router';
+import { getTabFromQuery } from '@utils/functions/getTabFromQuery';
+import RemixLink from '@components/RemixLink';
 
 const SearchSectionInput = () => {
   const t = useTranslate();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const isXs = useResponsive("max", "xs");
+  const isXs = useResponsive('max', 'xs');
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [scroll] = useWindowScroll();
@@ -34,21 +34,21 @@ const SearchSectionInput = () => {
   const searchQuery = useSearchStore((state) => state.searchQuery);
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
 
-  const [q, setQ] = useState(searchQuery || searchParams.get("q") || "");
+  const [q, setQ] = useState(searchQuery || searchParams.get('q') || '');
   const [debouncedQ] = useDebouncedValue(q, 400);
 
   // Autocomplete API
   const { data, trigger, reset } = useAutocompleteSWR();
 
   const handleSearch = (query: string, withAI: boolean) => {
-    const paramsTab = searchParams.get("tab") || "general";
-    const paramsQ = searchParams.get("q") || "";
+    const paramsTab = searchParams.get('tab') || 'general';
+    const paramsQ = searchParams.get('q') || '';
 
     // Infer tab from query syntax
     const { tab: tabFromSyntax } = getTabFromQuery(query);
 
     // Prevent unnecessary search
-    if (!query.length || query === paramsQ || query === searchQuery) {
+    if (query.length === 0 || query === paramsQ || query === searchQuery) {
       if (!withAI) return;
     }
 
@@ -57,7 +57,7 @@ const SearchSectionInput = () => {
 
     const qParam = `q=${encodeURIComponent(query)}`;
     const tabParam = `tab=${tabFromSyntax || paramsTab}`;
-    const aiParam = withAI ? "&ai=1" : "";
+    const aiParam = withAI ? '&ai=1' : '';
 
     // Handle Private Search
     // Handle Private Search
@@ -69,7 +69,7 @@ const SearchSectionInput = () => {
   };
 
   const handleClear = () => {
-    setQ("");
+    setQ('');
     reset();
   };
 
@@ -80,7 +80,7 @@ const SearchSectionInput = () => {
   ));
 
   useEffect(() => {
-    const query = searchParams.get("q");
+    const query = searchParams.get('q');
 
     if (query) setQ(query);
   }, [searchParams]);
@@ -97,7 +97,7 @@ const SearchSectionInput = () => {
   }, [debouncedQ]);
 
   // Calculate right section width
-  const rightSectionWidth = 40 + (q.length >= 1 ? 43 : 0) + (AIAnswer.enabled ? 40 : 0);
+  const rightSectionWidth = 40 + (q.length > 0 ? 43 : 0) + (AIAnswer.enabled ? 40 : 0);
 
   return (
     <Combobox
@@ -113,33 +113,33 @@ const SearchSectionInput = () => {
         <TextInput
           ref={inputRef}
           className={classes.search_bar}
-          placeholder={t("pages.search.search_placeholder")}
-          radius="md"
-          size="md"
+          placeholder={t('pages.search.search_placeholder')}
+          radius='md'
+          size='md'
           value={q}
           onChange={(e) => {
             const val = e.currentTarget.value;
 
             combobox.resetSelectedOption();
             setQ(val);
-            if (!val.length) reset();
+            if (val.length === 0) reset();
           }}
           onKeyDown={(e) => {
             const isSubmitOption = combobox.getSelectedOptionIndex() !== -1;
 
-            if (e.key === "Enter" && !isSubmitOption) {
+            if (e.key === 'Enter' && !isSubmitOption) {
               handleSearch(q, false);
             }
           }}
           leftSection={
             scroll.y < 10 &&
             isXs && (
-              <RemixLink to="/">
+              <RemixLink to='/'>
                 <ActionIcon
-                  size="lg"
-                  radius="sm"
-                  color="gray"
-                  variant="subtle"
+                  size='lg'
+                  radius='sm'
+                  color='gray'
+                  variant='subtle'
                   onClick={handleClear}
                 >
                   <IconChevronLeft style={getIconStyle(22)} stroke={1.5} />
@@ -148,28 +148,28 @@ const SearchSectionInput = () => {
             )
           }
           rightSection={
-            <Flex align="center" justify="flex-end">
-              {q.length >= 1 && (
+            <Flex align='center' justify='flex-end'>
+              {q.length > 0 && (
                 <>
                   <ActionIcon
-                    size="lg"
-                    radius="sm"
-                    color="gray"
-                    variant="subtle"
+                    size='lg'
+                    radius='sm'
+                    color='gray'
+                    variant='subtle'
                     onClick={handleClear}
                   >
                     <IconX style={getIconStyle(22)} stroke={1.5} />
                   </ActionIcon>
 
-                  <Divider orientation="vertical" w={1} my={9} mx={4} color="gray.7" />
+                  <Divider orientation='vertical' w={1} my={9} mx={4} color='gray.7' />
                 </>
               )}
 
               <ActionIcon
-                size="lg"
-                radius="sm"
-                color="blue"
-                variant="subtle"
+                size='lg'
+                radius='sm'
+                color='blue'
+                variant='subtle'
                 onClick={() => handleSearch(q, false)}
                 mr={4}
               >
@@ -182,10 +182,10 @@ const SearchSectionInput = () => {
 
               {AIAnswer.enabled && (
                 <ActionIcon
-                  size="lg"
-                  radius="sm"
-                  color="pink"
-                  variant="subtle"
+                  size='lg'
+                  radius='sm'
+                  color='pink'
+                  variant='subtle'
                   onClick={() => handleSearch(q, true)}
                 >
                   <IconSparkles
@@ -203,12 +203,12 @@ const SearchSectionInput = () => {
           onBlur={() => combobox.closeDropdown()}
           maxLength={250}
           // Disable password manager stuff
-          autoComplete="off"
+          autoComplete='off'
           data-1p-ignore
           data-bwignore
-          data-lpignore="true"
-          data-form-type="other"
-          data-protonpass-form="false"
+          data-lpignore='true'
+          data-form-type='other'
+          data-protonpass-form='false'
         />
       </Combobox.Target>
 

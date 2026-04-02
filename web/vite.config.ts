@@ -1,10 +1,9 @@
-import { reactRouter } from "@react-router/dev/vite";
-import { defineConfig, loadEnv } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
-import path from "node:path";
+import { reactRouter } from '@react-router/dev/vite';
+import { defineConfig, loadEnv } from 'vite';
+import path from 'node:path';
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
+  const env = loadEnv(mode, process.cwd(), '');
 
   const nodeVersion = process.version;
 
@@ -22,13 +21,14 @@ export default defineConfig(({ mode }) => {
       port: Number.parseInt(env.PORT),
     },
 
-    plugins: [reactRouter(), tsconfigPaths()],
+    plugins: [reactRouter()],
 
     // Fix tabler icons...
     resolve: {
+      tsconfigPaths: true,
       alias: {
         // /esm/icons/index.mjs only exports the icons statically, so no separate chunks are created
-        "@tabler/icons-react": "@tabler/icons-react/dist/esm/icons/index.mjs",
+        '@tabler/icons-react': '@tabler/icons-react/dist/esm/icons/index.mjs',
       },
     },
 
@@ -36,9 +36,9 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          api: "modern-compiler",
+          api: 'modern-compiler',
           quietDeps: true,
-          loadPaths: [path.join(__dirname, "src/styles")],
+          loadPaths: [path.join(__dirname, 'src/styles')],
         },
       },
     },
@@ -62,37 +62,37 @@ export default defineConfig(({ mode }) => {
 
     // ENV variables
     define: {
-      "process.env.NODE_ENV": JSON.stringify(env.NODE_ENV),
+      'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
 
-      "process.env.HOST": JSON.stringify(env.HOST),
-      "process.env.SEARXNG_URL_EU1": JSON.stringify(env.SEARXNG_URL_EU1),
+      'process.env.HOST': JSON.stringify(env.HOST),
+      'process.env.SEARXNG_URL_EU1': JSON.stringify(env.SEARXNG_URL_EU1),
       // "process.env.SEARXNG_URL_US1": JSON.stringify(env.SEARXNG_URL_EU1),
-      "process.env.API_URL_EU1": JSON.stringify(env.API_URL_EU1),
+      'process.env.API_URL_EU1': JSON.stringify(env.API_URL_EU1),
       // "process.env.API_URL_US1": JSON.stringify(env.API_URL_EU1),
-      "process.env.PV_URL_EU1": JSON.stringify(env.PV_URL_EU1),
-      "process.env.WORKER_URL": JSON.stringify(env.WORKER_URL),
-      "process.env.NOMINATIM_URL": JSON.stringify(env.NOMINATIM_URL),
-      "process.env.IS_SELF_HOST": JSON.stringify(env.IS_SELF_HOST),
-      "process.env.APP_NAME": JSON.stringify(env.APP_NAME),
-      "process.env.SEARXNG_URL_SELF_HOST": JSON.stringify(env.SEARXNG_URL_SELF_HOST),
-      "process.env.API_URL_SELF_HOST": JSON.stringify(env.API_URL_SELF_HOST),
+      'process.env.PV_URL_EU1': JSON.stringify(env.PV_URL_EU1),
+      'process.env.WORKER_URL': JSON.stringify(env.WORKER_URL),
+      'process.env.NOMINATIM_URL': JSON.stringify(env.NOMINATIM_URL),
+      'process.env.IS_SELF_HOST': JSON.stringify(env.IS_SELF_HOST),
+      'process.env.APP_NAME': JSON.stringify(env.APP_NAME),
+      'process.env.SEARXNG_URL_SELF_HOST': JSON.stringify(env.SEARXNG_URL_SELF_HOST),
+      'process.env.API_URL_SELF_HOST': JSON.stringify(env.API_URL_SELF_HOST),
 
       // Support stuff
-      "process.env.HAS_SUPPORT": JSON.stringify(env.HAS_SUPPORT),
-      "process.env.ADDRESS_BITCOIN": JSON.stringify(env.ADDRESS_BITCOIN),
-      "process.env.ADDRESS_BITCOIN_CASH": JSON.stringify(env.ADDRESS_BITCOIN_CASH),
-      "process.env.ADDRESS_ETHEREUM": JSON.stringify(env.ADDRESS_ETHEREUM),
-      "process.env.ADDRESS_MONERO": JSON.stringify(env.ADDRESS_MONERO),
-      "process.env.ADDRESS_LITECOIN": JSON.stringify(env.ADDRESS_LITECOIN),
-      "process.env.ADDRESS_SOLANA": JSON.stringify(env.ADDRESS_SOLANA),
+      'process.env.HAS_SUPPORT': JSON.stringify(env.HAS_SUPPORT),
+      'process.env.ADDRESS_BITCOIN': JSON.stringify(env.ADDRESS_BITCOIN),
+      'process.env.ADDRESS_BITCOIN_CASH': JSON.stringify(env.ADDRESS_BITCOIN_CASH),
+      'process.env.ADDRESS_ETHEREUM': JSON.stringify(env.ADDRESS_ETHEREUM),
+      'process.env.ADDRESS_MONERO': JSON.stringify(env.ADDRESS_MONERO),
+      'process.env.ADDRESS_LITECOIN': JSON.stringify(env.ADDRESS_LITECOIN),
+      'process.env.ADDRESS_SOLANA': JSON.stringify(env.ADDRESS_SOLANA),
 
       // Platform specific
-      "process.env.VERCEL_REGION": JSON.stringify(env?.VERCEL_REGION || ""),
-      "process.env.FLY_APP_NAME": JSON.stringify(env?.FLY_APP_NAME || ""),
-      "process.env.FLY_REGION": JSON.stringify(env?.FLY_REGION || ""),
-      "process.env.FLY_MACHINE_ID": JSON.stringify(env?.FLY_MACHINE_ID || ""),
+      'process.env.VERCEL_REGION': JSON.stringify(env?.VERCEL_REGION || ''),
+      'process.env.FLY_APP_NAME': JSON.stringify(env?.FLY_APP_NAME || ''),
+      'process.env.FLY_REGION': JSON.stringify(env?.FLY_REGION || ''),
+      'process.env.FLY_MACHINE_ID': JSON.stringify(env?.FLY_MACHINE_ID || ''),
 
-      "process.env.NODE_VERSION": JSON.stringify(nodeVersion),
+      'process.env.NODE_VERSION': JSON.stringify(nodeVersion),
     },
   };
 });

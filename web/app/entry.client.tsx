@@ -1,19 +1,19 @@
-import ClientServerProvider from "@store/client-server";
-import type { ILanguage, ITranslations } from "@ts/global.types";
-import { getCookie } from "@utils/functions/cookies";
-import { startTransition } from "react";
-import { hydrateRoot } from "react-dom/client";
-import { HydratedRouter } from "react-router/dom";
+import ClientServerProvider from '@store/client-server';
+import type { ILanguage, ITranslations } from '@ts/global.types';
+import { getCookie } from '@utils/functions/cookies';
+import { startTransition } from 'react';
+import { hydrateRoot } from 'react-dom/client';
+import { HydratedRouter } from 'react-router/dom';
 
 async function hydrate() {
   // All i18n stuff - client side
-  const htmlLang = document.querySelector("html")?.getAttribute("lang") as ILanguage;
+  const htmlLang = document.querySelector('html')?.getAttribute('lang') as ILanguage;
 
   // Get app theme
-  const appTheme = getCookie("khofly-app-theme", undefined, "Mantine-Old");
+  const appTheme = getCookie('khofly-app-theme', undefined, 'Mantine-Old');
 
   // Get primary color
-  const primaryColor = getCookie("khofly-primary-color", undefined, "blue");
+  const primaryColor = getCookie('khofly-primary-color', undefined, 'blue');
 
   // Dynamically fetch content JSON
   const contentFetch = await fetch(`/locales/${htmlLang}.json`);

@@ -1,13 +1,13 @@
-import { Anchor, Flex, Image, Text } from "@mantine/core";
-import type { ISearXNGResultsVideos } from "@ts/searxng.types";
-import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
-import classes from "./styles.module.scss";
-import { useResponsive } from "@hooks/use-responsive";
-import { useSettingsStore } from "@store/settings";
-import { useInViewport } from "@mantine/hooks";
+import { Anchor, Flex, Image, Text } from '@mantine/core';
+import type { ISearXNGResultsVideos } from '@ts/searxng.types';
+import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+import classes from './styles.module.scss';
+import { useResponsive } from '@hooks/use-responsive';
+import { useSettingsStore } from '@store/settings';
+import { useInViewport } from '@mantine/hooks';
 
 interface Props {
-  rowData: ISearXNGResultsVideos["results"][0];
+  rowData: ISearXNGResultsVideos['results'][0];
 }
 
 const CellVideo: React.FC<Props> = ({ rowData }) => {
@@ -18,7 +18,7 @@ const CellVideo: React.FC<Props> = ({ rowData }) => {
 
   const openInNewTab = useSettingsStore((state) => state.openInNewTab);
 
-  const isXs = useResponsive("max", "xs");
+  const isXs = useResponsive('max', 'xs');
 
   // Lazy load images
   const [visible, setVisible] = useState(false);
@@ -29,10 +29,10 @@ const CellVideo: React.FC<Props> = ({ rowData }) => {
   }, [inViewport]);
 
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
-    ? "_blank"
+    ? '_blank'
     : openInNewTab
-    ? "_blank"
-    : "_self";
+      ? '_blank'
+      : '_self';
 
   if (!title) return null;
 
@@ -40,34 +40,34 @@ const CellVideo: React.FC<Props> = ({ rowData }) => {
     <Anchor
       href={url}
       target={anchorTarget}
-      rel="noreferrer noopener"
+      rel='noreferrer noopener'
       onClick={(e) => {
-        if (privatePlayer && url.includes("youtube.com")) {
+        if (privatePlayer && url.includes('youtube.com')) {
           e.preventDefault();
           setPrivatePlayer({ videoData: { url } });
         }
       }}
     >
-      <Flex ref={ref} className={classes.video_container} direction="column" p="xs">
+      <Flex ref={ref} className={classes.video_container} direction='column' p='xs'>
         {visible ? (
           <Image
             src={thumbnail}
-            w="100%"
-            h="auto"
+            w='100%'
+            h='auto'
             alt={title}
-            fit="cover"
-            radius="md"
+            fit='cover'
+            radius='md'
             // unoptimized
           />
         ) : (
-          <Flex w="100%" h={100} />
+          <Flex w='100%' h={100} />
         )}
 
-        <Text component="span" size="sm" c="white" lineClamp={2} mt={4}>
+        <Text component='span' size='sm' c='white' lineClamp={2} mt={4}>
           {title}
         </Text>
 
-        <Text size="xs" lineClamp={1} mt="xs">
+        <Text size='xs' lineClamp={1} mt='xs'>
           {parsed_url[0]}://{parsed_url[1]}
         </Text>
       </Flex>

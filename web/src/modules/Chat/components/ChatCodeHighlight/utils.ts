@@ -9,178 +9,178 @@ import {
   IconMarkdown,
   type Icon,
   type IconProps,
-} from "@tabler/icons-react";
-import hljs from "./hljs";
+} from '@tabler/icons-react';
+import hljs from './hljs';
 
 export const getChatSupportedLang = (lang: string) => {
   const supportedLanguages = hljs.listLanguages();
 
   const foundLang = supportedLanguages.find((val) => lang.includes(val));
 
-  return foundLang || "markdown";
+  return foundLang || 'markdown';
 };
 
 export const getChatLangName = (
-  lang: string
+  lang: string,
 ): {
   langIcon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<Icon>> | null;
   langName: string;
 } => {
   switch (lang) {
-    case "bash":
+    case 'bash':
       return {
         langIcon: null,
-        langName: "Bash",
+        langName: 'Bash',
       };
-    case "nginx":
+    case 'nginx':
       return {
         langIcon: null,
-        langName: "nginx",
+        langName: 'nginx',
       };
-    case "yaml":
+    case 'yaml':
       return {
         langIcon: null,
-        langName: "YAML",
+        langName: 'YAML',
       };
-    case "dockerfile":
+    case 'dockerfile':
       return {
         langIcon: null,
-        langName: "Dockerfile",
+        langName: 'Dockerfile',
       };
-    case "javascript":
+    case 'javascript':
       return {
         langIcon: IconBrandJavascript,
-        langName: "JavaScript",
+        langName: 'JavaScript',
       };
-    case "jsx":
+    case 'jsx':
       return {
         langIcon: IconBrandJavascript,
-        langName: "JSX",
+        langName: 'JSX',
       };
-    case "typescript":
+    case 'typescript':
       return {
         langIcon: IconBrandTypescript,
-        langName: "TypeScript",
+        langName: 'TypeScript',
       };
-    case "tsx":
+    case 'tsx':
       return {
         langIcon: IconBrandJavascript,
-        langName: "TSX",
+        langName: 'TSX',
       };
-    case "markdown":
+    case 'markdown':
       return {
         langIcon: IconMarkdown,
-        langName: "Markdown",
+        langName: 'Markdown',
       };
-    case "python":
+    case 'python':
       return {
         langIcon: IconBrandPython,
-        langName: "Python",
+        langName: 'Python',
       };
-    case "java":
+    case 'java':
       return {
         langIcon: null,
-        langName: "Java",
+        langName: 'Java',
       };
-    case "c":
+    case 'c':
       return {
         langIcon: null,
-        langName: "C",
+        langName: 'C',
       };
-    case "cpp":
+    case 'cpp':
       return {
         langIcon: null,
-        langName: "C++",
+        langName: 'C++',
       };
-    case "csharp":
+    case 'csharp':
       return {
         langIcon: null,
-        langName: "C#",
+        langName: 'C#',
       };
-    case "css":
+    case 'css':
       return {
         langIcon: null,
-        langName: "CSS",
+        langName: 'CSS',
       };
-    case "xml":
+    case 'xml':
       return {
         langIcon: null,
-        langName: "XML",
+        langName: 'XML',
       };
-    case "html":
+    case 'html':
       return {
         langIcon: IconBrandHtml5,
-        langName: "HTML",
+        langName: 'HTML',
       };
-    case "lua":
+    case 'lua':
       return {
         langIcon: null,
-        langName: "Lua",
+        langName: 'Lua',
       };
-    case "elixir":
+    case 'elixir':
       return {
         langIcon: null,
-        langName: "Elixir",
+        langName: 'Elixir',
       };
-    case "swift":
+    case 'swift':
       return {
         langIcon: IconBrandSwift,
-        langName: "Swift",
+        langName: 'Swift',
       };
-    case "ruby":
+    case 'ruby':
       return {
         langIcon: null,
-        langName: "Ruby",
+        langName: 'Ruby',
       };
-    case "php":
+    case 'php':
       return {
         langIcon: null,
-        langName: "PHP",
+        langName: 'PHP',
       };
-    case "sql":
+    case 'sql':
       return {
         langIcon: null,
-        langName: "SQL",
+        langName: 'SQL',
       };
-    case "pgsql":
+    case 'pgsql':
       return {
         langIcon: null,
-        langName: "pgSQL",
+        langName: 'pgSQL',
       };
-    case "go":
+    case 'go':
       return {
         langIcon: null,
-        langName: "Go",
+        langName: 'Go',
       };
-    case "json":
+    case 'json':
       return {
         langIcon: null,
-        langName: "JSON",
+        langName: 'JSON',
       };
-    case "nix":
+    case 'nix':
       return {
         langIcon: null,
-        langName: "Nix",
+        langName: 'Nix',
       };
-    case "haskell":
+    case 'haskell':
       return {
         langIcon: null,
-        langName: "Haskell",
+        langName: 'Haskell',
       };
-    case "kotlin":
+    case 'kotlin':
       return {
         langIcon: IconBrandKotlin,
-        langName: "Kotlin",
+        langName: 'Kotlin',
       };
-    case "powershell":
+    case 'powershell':
       return {
         langIcon: IconBrandKotlin,
-        langName: "PowerShell",
+        langName: 'PowerShell',
       };
-    case "rust":
+    case 'rust':
       return {
         langIcon: IconBrandRust,
-        langName: "Rust",
+        langName: 'Rust',
       };
 
     default:

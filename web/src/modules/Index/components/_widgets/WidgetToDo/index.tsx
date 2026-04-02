@@ -7,13 +7,13 @@ import {
   Text,
   TextInput,
   useMantineTheme,
-} from "@mantine/core";
-import classes from "./styles.module.scss";
+} from '@mantine/core';
+import classes from './styles.module.scss';
 
-import { IconPlus, IconTrash } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useHomepageStore } from "@store/homepage";
-import clsx from "clsx";
+import { IconPlus, IconTrash } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useHomepageStore } from '@store/homepage';
+import clsx from 'clsx';
 
 const WidgetTodo = () => {
   const theme = useMantineTheme();
@@ -27,7 +27,7 @@ const WidgetTodo = () => {
       {
         id: self.crypto.randomUUID(),
         checked: false,
-        label: "New item",
+        label: 'New item',
       },
     ]);
   };
@@ -75,30 +75,30 @@ const WidgetTodo = () => {
   };
 
   return (
-    <Paper className={classes.widget_todo} withBorder p="lg">
-      <ScrollArea h={"100%"} type="never">
-        <Flex direction="column" align="center">
-          <Text fz={26} fw="bold" mb="md">
+    <Paper className={classes.widget_todo} withBorder p='lg'>
+      <ScrollArea h={'100%'} type='never'>
+        <Flex direction='column' align='center'>
+          <Text fz={26} fw='bold' mb='md'>
             To-Dos
           </Text>
 
           {todos.map((item) => (
-            <Flex key={item.id} align="center" w="100%" gap="xs">
+            <Flex key={item.id} align='center' w='100%' gap='xs'>
               <Checkbox
                 checked={item.checked}
                 onChange={(e) => handleCheck(item.id, e.currentTarget.checked)}
               />
               <TextInput
                 className={clsx({ [classes.line_through]: item.checked })}
-                w="100%"
-                variant="unstyled"
+                w='100%'
+                variant='unstyled'
                 value={item.label}
                 onChange={(e) => handleChange(item.id, e.currentTarget.value)}
               />
               <ActionIcon
-                color="red"
-                variant="light"
-                size="sm"
+                color='red'
+                variant='light'
+                size='sm'
                 onClick={() => handleDelete(item.id)}
               >
                 <IconTrash style={getIconStyle(16)} />
@@ -108,13 +108,13 @@ const WidgetTodo = () => {
 
           <Flex
             onClick={handleAddNew}
-            mt="sm"
+            mt='sm'
             className={classes.add_new}
-            align="center"
-            justify="center"
-            w="100%"
+            align='center'
+            justify='center'
+            w='100%'
           >
-            <IconPlus style={getIconStyle(24)} color={theme.colors.green["5"]} />{" "}
+            <IconPlus style={getIconStyle(24)} color={theme.colors.green['5']} />{' '}
           </Flex>
         </Flex>
       </ScrollArea>

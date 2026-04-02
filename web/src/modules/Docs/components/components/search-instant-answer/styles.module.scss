@@ -31,7 +31,9 @@
   width: 100px;
   height: 100px;
   background-color: var(--mantine-color-body);
-  transition: box-shadow 150ms ease, transform 100ms ease;
+  transition:
+    box-shadow 150ms ease,
+    transform 100ms ease;
 
   .ia_group_label {
     position: absolute;

@@ -1,8 +1,8 @@
-import { ActionIcon, rem } from "@mantine/core";
-import { IconSettings2 } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useDisclosure } from "@mantine/hooks";
-import AISettings from "@module/Chat/components/AISettings";
+import { ActionIcon, rem } from '@mantine/core';
+import { IconSettings2 } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useDisclosure } from '@mantine/hooks';
+import AISettings from '@module/Chat/components/AISettings';
 
 const HeaderAISettings = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -10,7 +10,7 @@ const HeaderAISettings = () => {
   return (
     <>
       <ActionIcon
-        variant="subtle"
+        variant='subtle'
         size={rem(36)}
         // ml="md"
         onClick={open}

@@ -1,9 +1,9 @@
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
-import type { IAIChatMessage } from "@ts/chat.types";
-import { cookieStorage } from "@store/cookieStorage";
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import type { IAIChatMessage } from '@ts/chat.types';
+import { cookieStorage } from '@store/cookieStorage';
 
-export type IAIProvider = "" | "cf" | "google";
+export type IAIProvider = '' | 'cf' | 'google';
 
 interface IAIConfig {
   hasGeminiKey: boolean;
@@ -45,11 +45,11 @@ export const useAIChatStore = create<AIChatState>()(
     (set, get) => ({
       hydrated: false,
 
-      provider: "",
+      provider: '',
       setProvider: (next) => set({ provider: next }),
       model: {
-        label: "",
-        value: "",
+        label: '',
+        value: '',
       },
       setModel: (next) => set({ model: next }),
 
@@ -57,7 +57,7 @@ export const useAIChatStore = create<AIChatState>()(
       setMaxTokens: (next) => set({ maxTokens: next }),
       temperature: 0.5,
       setTemperature: (next) => set({ temperature: next }),
-      systemInstruction: "",
+      systemInstruction: '',
       setSystemInstruction: (next) => set({ systemInstruction: next }),
 
       configUpdated: false,
@@ -101,7 +101,7 @@ export const useAIChatStore = create<AIChatState>()(
       },
     }),
     {
-      name: "aichat-store", // name of the item in the storage (must be unique)
+      name: 'aichat-store', // name of the item in the storage (must be unique)
       storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {

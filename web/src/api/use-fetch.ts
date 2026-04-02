@@ -4,11 +4,11 @@ const useFetch = () => {
 
     if (!res) return;
 
-    const contentType = res.headers.get("content-type");
-    let resData = undefined;
+    const contentType = res.headers.get('content-type');
+    let resData;
 
-    if (contentType?.startsWith("application/json")) resData = await res.json();
-    if (contentType?.startsWith("text/")) resData = await res.text();
+    if (contentType?.startsWith('application/json')) resData = await res.json();
+    if (contentType?.startsWith('text/')) resData = await res.text();
 
     return resData;
   };

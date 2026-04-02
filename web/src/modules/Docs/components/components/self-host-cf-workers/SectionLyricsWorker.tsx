@@ -1,10 +1,10 @@
-import { Blockquote, Code, Paper } from "@mantine/core";
-import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
-import DocsSubtitle from "../../common/DocsSubtitle";
-import DocsLink from "../../common/DocsLink";
+import { Blockquote, Code, Paper } from '@mantine/core';
+import DocsCodeHighlight from '../../common/DocsCodeHighlight/DocsCodeHighlight';
+import DocsSubtitle from '../../common/DocsSubtitle';
+import DocsLink from '../../common/DocsLink';
 
-import DocsText from "../../common/DocsText";
-import { usePrimaryColor } from "@hooks/use-primary-color";
+import DocsText from '../../common/DocsText';
+import { usePrimaryColor } from '@hooks/use-primary-color';
 
 const CODE_WORKER = `
 const corsHeaders = {
@@ -74,16 +74,16 @@ const SectionLyricsWorker = () => {
 
   return (
     <>
-      <Blockquote color="yellow" mt="xl" radius="sm">
+      <Blockquote color='yellow' mt='xl' radius='sm'>
         This applies only if you want to self-host Khofly API.
       </Blockquote>
 
       <DocsText>
-        1. Go to <DocsLink href="cloudflare.com" label="cloudflare.com" /> and log in.
+        1. Go to <DocsLink href='cloudflare.com' label='cloudflare.com' /> and log in.
       </DocsText>
 
       <DocsText>
-        2. In your dashboard go to <strong>Workers & Pages</strong> and then{" "}
+        2. In your dashboard go to <strong>Workers & Pages</strong> and then{' '}
         <strong>Workers & Pages</strong>.
       </DocsText>
 
@@ -118,8 +118,8 @@ const SectionLyricsWorker = () => {
 
       <DocsSubtitle>Lyrics Worker Code</DocsSubtitle>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_WORKER} language="javascript" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_WORKER} language='javascript' />
       </Paper>
     </>
   );

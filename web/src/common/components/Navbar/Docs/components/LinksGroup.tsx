@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   Group,
   Box,
@@ -8,14 +8,14 @@ import {
   rem,
   useMantineTheme,
   Flex,
-} from "@mantine/core";
-import { IconBarrierBlock, IconChevronRight } from "@tabler/icons-react";
-import classes from "./styles.module.scss";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import RemixLink from "@components/RemixLink";
-import clsx from "clsx";
-import { useLocation } from "react-router";
-import { useResponsive } from "@hooks/use-responsive";
+} from '@mantine/core';
+import { IconBarrierBlock, IconChevronRight } from '@tabler/icons-react';
+import classes from './styles.module.scss';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import RemixLink from '@components/RemixLink';
+import clsx from 'clsx';
+import { useLocation } from 'react-router';
+import { useResponsive } from '@hooks/use-responsive';
 
 export interface LinksGroupProps {
   icon: React.FC<any>;
@@ -24,7 +24,7 @@ export interface LinksGroupProps {
 }
 
 const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => {
-  const isXs = useResponsive("max", "xs");
+  const isXs = useResponsive('max', 'xs');
 
   const theme = useMantineTheme();
   const hasLinks = Array.isArray(links);
@@ -46,11 +46,11 @@ const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => 
       to={link.link}
       key={link.label}
     >
-      <Flex align="center" gap="xs">
+      <Flex align='center' gap='xs'>
         {link.label}
 
         {link.isWip && (
-          <IconBarrierBlock style={getIconStyle(18)} color={theme.colors.orange["5"]} />
+          <IconBarrierBlock style={getIconStyle(18)} color={theme.colors.orange['5']} />
         )}
       </Flex>
     </RemixLink>
@@ -59,13 +59,13 @@ const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => 
   return (
     <>
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
-        <Group justify="space-between" gap={0}>
-          <Box style={{ display: "flex", alignItems: "center" }}>
-            <ThemeIcon className={classes.control_icon} variant="light">
+        <Group justify='space-between' gap={0}>
+          <Box style={{ display: 'flex', alignItems: 'center' }}>
+            <ThemeIcon className={classes.control_icon} variant='light'>
               <Icon className={classes.control_svg} />
             </ThemeIcon>
 
-            <Box ml="md">{label}</Box>
+            <Box ml='md'>{label}</Box>
           </Box>
           {hasLinks && (
             <IconChevronRight
@@ -74,7 +74,7 @@ const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => 
               style={{
                 width: rem(16),
                 height: rem(16),
-                transform: opened ? "rotate(-90deg)" : "none",
+                transform: opened ? 'rotate(-90deg)' : 'none',
               }}
             />
           )}

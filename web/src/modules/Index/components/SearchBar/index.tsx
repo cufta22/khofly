@@ -1,20 +1,20 @@
-import { ActionIcon, Autocomplete, Flex, Loader, rem, useMantineTheme } from "@mantine/core";
-import { IconArrowRight, IconSearch, IconSparkles } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
+import { ActionIcon, Autocomplete, Flex, Loader, rem, useMantineTheme } from '@mantine/core';
+import { IconArrowRight, IconSearch, IconSparkles } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
 
-import classes from "./styles.module.scss";
-import { useDebouncedValue } from "@mantine/hooks";
+import classes from './styles.module.scss';
+import { useDebouncedValue } from '@mantine/hooks';
 // import VirtualKeyboard from "../VirtualKeyboard";
 
-import { useResponsive } from "@hooks/use-responsive";
-import useAutocompleteSWR from "src/api/autocomplete/use-autocomplete-query";
-import { nprogress } from "@mantine/nprogress";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { useSettingsStore } from "@store/settings";
-import { useSearchStore } from "@store/search";
-import { useNavigate } from "react-router";
-import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
-import clsx from "clsx";
+import { useResponsive } from '@hooks/use-responsive';
+import useAutocompleteSWR from 'src/api/autocomplete/use-autocomplete-query';
+import { nprogress } from '@mantine/nprogress';
+import { useTranslate } from '@hooks/translate/use-translate';
+import { useSettingsStore } from '@store/settings';
+import { useSearchStore } from '@store/search';
+import { useNavigate } from 'react-router';
+import { getTabFromQuery } from '@utils/functions/getTabFromQuery';
+import clsx from 'clsx';
 
 const SearchBar = () => {
   const t = useTranslate();
@@ -31,11 +31,11 @@ const SearchBar = () => {
 
   // const [openKeyboard, { toggle: toggleKeyboard }] = useDisclosure();
 
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState('');
   const [debouncedQ] = useDebouncedValue(q, 300);
 
-  const isXs = useResponsive("max", "xs");
-  const isXl = useResponsive("min", 1921);
+  const isXs = useResponsive('max', 'xs');
+  const isXl = useResponsive('min', 1921);
 
   // Sizes
   const rsNoOfIconsBase = 1;
@@ -51,7 +51,7 @@ const SearchBar = () => {
 
   const handleSearch = (query: string, withAI: boolean) => {
     // Prevent empty search
-    if (!query.length) return;
+    if (query.length === 0) return;
 
     nprogress.start();
 
@@ -59,8 +59,8 @@ const SearchBar = () => {
     const { tab: tabFromSyntax } = getTabFromQuery(query);
 
     const qParam = `q=${encodeURIComponent(query)}`;
-    const tabParam = `tab=${tabFromSyntax || "general"}`;
-    const aiParam = withAI ? "&ai=1" : "";
+    const tabParam = `tab=${tabFromSyntax || 'general'}`;
+    const aiParam = withAI ? '&ai=1' : '';
 
     // Handle Private Search
     if (privateSearch) {
@@ -90,27 +90,27 @@ const SearchBar = () => {
         rightSectionProps={{
           className: classes[`rigth_section_w_${rsNoOfIconsAll}`],
         }}
-        placeholder={t("pages.index.search_placeholder")}
-        radius="xl"
+        placeholder={t('pages.index.search_placeholder')}
+        radius='xl'
         value={q}
         onChange={(val) => {
           setQ(val);
-          if (!val.length) reset();
+          if (val.length === 0) reset();
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") handleSearch(q, false);
+          if (e.key === 'Enter') handleSearch(q, false);
         }}
         leftSection={
           isMutating ? (
             <Loader
               classNames={{
-                root: clsx("desktop_only"),
+                root: clsx('desktop_only'),
               }}
               size={rem(24)}
             />
           ) : (
             <IconSearch
-              className={clsx("desktop_only", classes.search_normal_icon)}
+              className={clsx('desktop_only', classes.search_normal_icon)}
               // style={getIconStyle(24)}
               // stroke={1.5}
             />
@@ -118,7 +118,7 @@ const SearchBar = () => {
         }
         // leftSectionWidth="auto"
         rightSection={
-          <Flex align="flex-end" justify="flex-end" w="100%" gap={6} pr={6}>
+          <Flex align='flex-end' justify='flex-end' w='100%' gap={6} pr={6}>
             {/* <ActionIcon
               className={clsx("desktop_only", classes.search_action_icon)}
               // size={isXs ? 32 : 38}
@@ -133,9 +133,9 @@ const SearchBar = () => {
             <ActionIcon
               className={classes.search_action_icon}
               // size={isXs ? 32 : 38}
-              radius="xl"
+              radius='xl'
               color={theme.colors[theme.primaryColor][6]}
-              variant="subtle"
+              variant='subtle'
               onClick={() => handleSearch(q, false)}
               disabled={!q}
             >
@@ -146,9 +146,9 @@ const SearchBar = () => {
               <ActionIcon
                 className={classes.search_action_icon}
                 // size={isXs ? 32 : 38}
-                radius="xl"
+                radius='xl'
                 color={theme.colors.pink[6]}
-                variant="subtle"
+                variant='subtle'
                 onClick={() => handleSearch(q, true)}
                 disabled={!q}
               >
@@ -164,16 +164,16 @@ const SearchBar = () => {
         data={autocompleteData ? autocompleteData?.map((str) => ({ label: str, value: str })) : []}
         comboboxProps={{
           onOptionSubmit: (val) => handleSearch(val, false),
-          size: "md",
+          size: 'md',
         }}
-        pr="xs"
+        pr='xs'
         // Disable password manager stuff
-        autoComplete="off"
+        autoComplete='off'
         data-1p-ignore
         data-bwignore
-        data-lpignore="true"
-        data-form-type="other"
-        data-protonpass-form="false"
+        data-lpignore='true'
+        data-form-type='other'
+        data-protonpass-form='false'
       />
 
       {/* {openKeyboard && <VirtualKeyboard value={q} onChange={setQ} toggle={toggleKeyboard} />} */}

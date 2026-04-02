@@ -1,12 +1,12 @@
-import { cookieStorage } from "@store/cookieStorage";
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { cookieStorage } from '@store/cookieStorage';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-export type ISearchLang = "all" | "auto" | string;
+export type ISearchLang = 'all' | 'auto' | string;
 
 export type ISafeSearch = 0 | 1 | 2;
 
-export type IDateRange = "all" | "day" | "month" | "year";
+export type IDateRange = 'all' | 'day' | 'month' | 'year';
 
 interface SearchState {
   hydrated: boolean;
@@ -50,15 +50,15 @@ export const useSearchStore = create<SearchState>()(
       // Search options
       isSearchOptionsOpen: false,
       setIsSearchOptionsOpen: (next) => set({ isSearchOptionsOpen: next }),
-      searchLanguage: "all",
+      searchLanguage: 'all',
       setSearchLanguage: (next) => set({ searchLanguage: next }),
       safeSearch: 0,
       setSafeSearch: (next) => set({ safeSearch: next }),
-      dateRange: "all",
+      dateRange: 'all',
       setDateRange: (next) => set({ dateRange: next }),
 
       // For Private Search
-      searchQuery: "",
+      searchQuery: '',
       setSearchQuery: (next) => set({ searchQuery: next }),
 
       visitedLinks: [],
@@ -75,11 +75,11 @@ export const useSearchStore = create<SearchState>()(
       setDomainsPriority: (next) => set({ domainsPriority: next }),
 
       // Drawers
-      aiSummaryURL: "",
+      aiSummaryURL: '',
       setAISummaryURL: (next) => set({ aiSummaryURL: next }),
     }),
     {
-      name: "search-store", // name of the item in the storage (must be unique)
+      name: 'search-store', // name of the item in the storage (must be unique)
       storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {

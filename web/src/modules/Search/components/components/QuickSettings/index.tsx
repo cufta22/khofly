@@ -1,14 +1,14 @@
-import { Accordion, Button, Center, Drawer, Flex, ScrollArea, Text } from "@mantine/core";
-import { IconChevronRight } from "@tabler/icons-react";
-import classes from "./styles.module.scss";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import RemixLink from "@components/RemixLink";
+import { Accordion, Button, Center, Drawer, Flex, ScrollArea, Text } from '@mantine/core';
+import { IconChevronRight } from '@tabler/icons-react';
+import classes from './styles.module.scss';
+import { useTranslate } from '@hooks/translate/use-translate';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import RemixLink from '@components/RemixLink';
 
-import QSInterface from "./components/QSInterface";
-import QSGeneral from "./components/QSGeneral";
-import QSEngines from "./components/QSEngines";
-import QSAI from "./components/QSAI";
+import QSInterface from './components/QSInterface';
+import QSGeneral from './components/QSGeneral';
+import QSEngines from './components/QSEngines';
+import QSAI from './components/QSAI';
 
 interface Props {
   isOpen: boolean;
@@ -21,19 +21,19 @@ const QuickSettings: React.FC<Props> = ({ isOpen, onClose }) => {
   return (
     <Drawer
       offset={8}
-      size="lg"
-      radius="md"
+      size='lg'
+      radius='md'
       opened={isOpen}
       onClose={onClose}
       title={
-        <Flex align="center" gap="sm">
-          <Text size="xl">Quick settings</Text>
+        <Flex align='center' gap='sm'>
+          <Text size='xl'>Quick settings</Text>
         </Flex>
       }
-      position="right"
-      padding="xl"
+      position='right'
+      padding='xl'
       closeButtonProps={{
-        size: "lg",
+        size: 'lg',
       }}
       classNames={{
         header: classes.drawer_header,
@@ -41,7 +41,7 @@ const QuickSettings: React.FC<Props> = ({ isOpen, onClose }) => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
-      <Accordion defaultValue="general">
+      <Accordion defaultValue='general'>
         <QSGeneral />
 
         {/* <QSAI /> */}
@@ -51,9 +51,9 @@ const QuickSettings: React.FC<Props> = ({ isOpen, onClose }) => {
         <QSEngines />
       </Accordion>
 
-      <Center my="xl">
-        <RemixLink to="/settings">
-          <Button variant="outline" rightSection={<IconChevronRight style={getIconStyle(18)} />}>
+      <Center my='xl'>
+        <RemixLink to='/settings'>
+          <Button variant='outline' rightSection={<IconChevronRight style={getIconStyle(18)} />}>
             Show more
           </Button>
         </RemixLink>

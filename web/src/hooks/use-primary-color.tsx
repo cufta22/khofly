@@ -1,4 +1,4 @@
-import { useMantineTheme, type MantineColorShade } from "@mantine/core";
+import { useMantineTheme, type MantineColorShade } from '@mantine/core';
 
 export const usePrimaryColor = (shade?: MantineColorShade) => {
   const theme = useMantineTheme();

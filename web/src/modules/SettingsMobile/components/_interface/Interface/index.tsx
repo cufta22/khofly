@@ -1,19 +1,19 @@
-import { ColorSchemeScript, Divider, Paper, Stack } from "@mantine/core";
+import { ColorSchemeScript, Divider, Paper, Stack } from '@mantine/core';
 
-import SettingsMTitle from "../../common/SettingsTitle";
-import SettingsMRow from "../../common/SettingsMRow";
-import NewTabSwitch from "@module/Settings/components/_general/General/NewTabSwitch";
-import FaviconSwitch from "@module/Settings/components/_general/General/FaviconSwitch";
-import AutocompleteSwitch from "@module/Settings/components/_general/General/AutocompleteSwitch";
-import ShowEnginesSwitch from "@module/Settings/components/_general/General/ShowEnginesSwitch";
-import MediaSwitch from "@module/Settings/components/_general/General/MediaSwitch";
-import IASwitch from "@module/Settings/components/_general/General/IASwitch";
-import PrivateSearchSwitch from "@module/Settings/components/_general/General/PrivateSearchSwitch";
-import { IOpenSection } from "@module/SettingsMobile";
-import LanguageSelect from "@module/Settings/components/_interface/Interface/LanguageSelect/LanguageSelect";
-import ThemeSelect from "@module/Settings/components/_interface/Interface/ThemeSelect/ThemeSelect";
-import PrimaryColorSelect from "@module/Settings/components/_interface/Interface/PrimaryColorSelect/PrimaryColorSelect";
-import ColorSchemeSwitch from "@module/Settings/components/_interface/Interface/ColorThemeSwitch/ColorThemeSwitch";
+import SettingsMTitle from '../../common/SettingsTitle';
+import SettingsMRow from '../../common/SettingsMRow';
+import NewTabSwitch from '@module/Settings/components/_general/General/NewTabSwitch';
+import FaviconSwitch from '@module/Settings/components/_general/General/FaviconSwitch';
+import AutocompleteSwitch from '@module/Settings/components/_general/General/AutocompleteSwitch';
+import ShowEnginesSwitch from '@module/Settings/components/_general/General/ShowEnginesSwitch';
+import MediaSwitch from '@module/Settings/components/_general/General/MediaSwitch';
+import IASwitch from '@module/Settings/components/_general/General/IASwitch';
+import PrivateSearchSwitch from '@module/Settings/components/_general/General/PrivateSearchSwitch';
+import type { IOpenSection } from '@module/SettingsMobile';
+import LanguageSelect from '@module/Settings/components/_interface/Interface/LanguageSelect/LanguageSelect';
+import ThemeSelect from '@module/Settings/components/_interface/Interface/ThemeSelect/ThemeSelect';
+import PrimaryColorSelect from '@module/Settings/components/_interface/Interface/PrimaryColorSelect/PrimaryColorSelect';
+import ColorSchemeSwitch from '@module/Settings/components/_interface/Interface/ColorThemeSwitch/ColorThemeSwitch';
 
 interface Props {
   handleChangeSection: (next: IOpenSection) => void;
@@ -23,39 +23,39 @@ const SettingsMInterface: React.FC<Props> = ({ handleChangeSection }) => {
   return (
     <>
       <SettingsMTitle
-        title="pages.settings.interface.title"
+        title='pages.settings.interface.title'
         handleChangeSection={handleChangeSection}
       />
-      <Paper radius="md" withBorder>
+      <Paper radius='md' withBorder>
         {/* Settings content */}
-        <Stack w="100%" align="start" px="lg" my="xl">
+        <Stack w='100%' align='start' px='lg' my='xl'>
           <SettingsMRow
             // icon={<IconExternalLink color={theme.colors.gray["5"]} />}
-            desc="pages.settings.interface.select_lang"
+            desc='pages.settings.interface.select_lang'
             control={<LanguageSelect />}
           />
 
-          <Divider my="xs" w="100%" />
+          <Divider my='xs' w='100%' />
 
           <SettingsMRow
             // icon={<IconFavicon color={theme.colors.gray["5"]} />}
-            desc="pages.settings.interface.select_theme"
+            desc='pages.settings.interface.select_theme'
             control={<ThemeSelect />}
           />
 
-          <Divider my="xs" w="100%" />
+          <Divider my='xs' w='100%' />
 
           <SettingsMRow
             // icon={<IconFavicon color={theme.colors.gray["5"]} />}
-            desc="pages.settings.interface.select_primary_color"
+            desc='pages.settings.interface.select_primary_color'
             control={<PrimaryColorSelect />}
           />
 
-          <Divider my="xs" w="100%" />
+          <Divider my='xs' w='100%' />
 
           <SettingsMRow
             // icon={<IconRadar color={theme.colors.gray["5"]} />}
-            desc="pages.settings.interface.select_color"
+            desc='pages.settings.interface.select_color'
             control={<ColorSchemeSwitch />}
           />
         </Stack>

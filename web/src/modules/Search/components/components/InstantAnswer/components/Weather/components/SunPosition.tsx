@@ -1,11 +1,11 @@
-import { AreaChart } from "@mantine/charts";
-import { Flex, Text } from "@mantine/core";
-import classes from "../styles.module.scss";
-import type { OpenWeatherCurrent } from "src/api/weather/types";
+import { AreaChart } from '@mantine/charts';
+import { Flex, Text } from '@mantine/core';
+import classes from '../styles.module.scss';
+import type { OpenWeatherCurrent } from 'src/api/weather/types';
 
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import clsx from "clsx";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import clsx from 'clsx';
 // import { IconSun } from "@tabler/icons-react";
 // import { getIconStyle } from "@utils/functions/iconStyle";
 dayjs.extend(utc);
@@ -20,7 +20,7 @@ const mapRange = (
   oldMin: number,
   oldMax: number,
   newMin: number,
-  newMax: number
+  newMax: number,
 ) => {
   return Math.round(((value - oldMin) / (oldMax - oldMin)) * (newMax - newMin) + newMin);
 };
@@ -31,22 +31,22 @@ interface Porps {
 
 // Unused for now
 const SunPosition: React.FC<Porps> = ({ data }) => {
-  const sunriseHr = Number.parseInt(dayjs.unix(data.sunrise).format("HH"));
-  const sunsetHr = Number.parseInt(dayjs.unix(data.sunset).format("HH"));
-  const currentHr = Number.parseInt(dayjs.unix(data.dt).format("HH"));
+  const sunriseHr = Number.parseInt(dayjs.unix(data.sunrise).format('HH'));
+  const sunsetHr = Number.parseInt(dayjs.unix(data.sunset).format('HH'));
+  const currentHr = Number.parseInt(dayjs.unix(data.dt).format('HH'));
 
   const sun_pos =
     currentHr < sunriseHr
       ? 2
       : currentHr > sunsetHr
-      ? 23
-      : mapRange(currentHr, 4, 20, sunriseHr, sunsetHr);
+        ? 23
+        : mapRange(currentHr, 4, 20, sunriseHr, sunsetHr);
 
   return (
-    <Flex direction="column" w={130}>
+    <Flex direction='column' w={130}>
       <AreaChart
         h={80}
-        w="100%"
+        w='100%'
         data={SUN_POS_VALUES.map((val) => ({
           value: val,
         }))}
@@ -54,33 +54,33 @@ const SunPosition: React.FC<Porps> = ({ data }) => {
         withTooltip={false}
         withXAxis={false}
         withYAxis={false}
-        gridAxis="none"
+        gridAxis='none'
         fillOpacity={0.6}
         dotProps={{
           r: 10,
           className: clsx(
             classes.sun_icon_pos,
-            classes[`sun_icon_pos--${sun_pos}`]
+            classes[`sun_icon_pos--${sun_pos}`],
             // classes[`sun_icon_pos--2`]
           ),
         }}
-        referenceLines={[{ y: 0, label: "" }]}
-        curveType="natural"
-        dataKey="value"
-        type="split"
+        referenceLines={[{ y: 0, label: '' }]}
+        curveType='natural'
+        dataKey='value'
+        type='split'
         strokeWidth={3}
         // withDots={false}
-        series={[{ name: "value", color: "yellow.5" }]}
-        splitColors={["transparent", "violet.8"]}
+        series={[{ name: 'value', color: 'yellow.5' }]}
+        splitColors={['transparent', 'violet.8']}
       />
 
-      <Flex align="center" justify="space-between" mt="xs">
-        <Text c="dimmed" size="xs">
-          {dayjs.unix(data.sunrise).format("HH:MM")}
+      <Flex align='center' justify='space-between' mt='xs'>
+        <Text c='dimmed' size='xs'>
+          {dayjs.unix(data.sunrise).format('HH:MM')}
         </Text>
 
-        <Text c="dimmed" size="xs">
-          {dayjs.unix(data.sunset).format("HH:MM")}
+        <Text c='dimmed' size='xs'>
+          {dayjs.unix(data.sunset).format('HH:MM')}
         </Text>
       </Flex>
     </Flex>

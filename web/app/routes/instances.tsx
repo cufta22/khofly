@@ -1,6 +1,6 @@
-import PageInstances from "@module/Instances";
-import type { Route } from "./+types/instances";
-import { INSTANCES_META_FUNCTION } from "app/meta/instances";
+import PageInstances from '@module/Instances';
+import type { Route } from './+types/instances';
+import { INSTANCES_META_FUNCTION } from 'app/meta/instances';
 
 export interface ILoaderData_Instances {
   data: {
@@ -19,7 +19,7 @@ export interface ILoaderData_Instances {
 export async function loader() {
   try {
     const apiUrl =
-      process.env.IS_SELF_HOST === "1" ? process.env.API_URL_SELF_HOST : process.env.API_URL_EU1;
+      process.env.IS_SELF_HOST === '1' ? process.env.API_URL_SELF_HOST : process.env.API_URL_EU1;
 
     const data = await fetch(`${apiUrl}/instances`);
 

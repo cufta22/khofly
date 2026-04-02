@@ -14,16 +14,16 @@ import {
   Text,
   Textarea,
   useMantineTheme,
-} from "@mantine/core";
-import classes from "./styles.module.scss";
-import { useEffect } from "react";
-import { useInstanceStore } from "@store/instance";
-import { type IAIProvider, useAIChatStore } from "@store/aichat";
-import { getAIChatModelIcon, getAIChatModelSource } from "@module/Chat/utils";
-import { getAIChatModels, getAIChatProviders } from "@module/Chat/data";
-import { IconCurrencyDollar, IconRefresh, IconTrash } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import useAIConfigSWR from "src/api/ai/use-ai-config-query";
+} from '@mantine/core';
+import classes from './styles.module.scss';
+import { useEffect } from 'react';
+import { useInstanceStore } from '@store/instance';
+import { type IAIProvider, useAIChatStore } from '@store/aichat';
+import { getAIChatModelIcon, getAIChatModelSource } from '@module/Chat/utils';
+import { getAIChatModels, getAIChatProviders } from '@module/Chat/data';
+import { IconCurrencyDollar, IconRefresh, IconTrash } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import useAIConfigSWR from 'src/api/ai/use-ai-config-query';
 
 interface Props {
   isOpen: boolean;
@@ -68,29 +68,29 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
   };
 
   const getIconProvider = (value: string) => {
-    if (value.includes("cf")) {
-      return <Image src="/assets/engines/cloudflare-icon.svg" w={16} h={16} />;
+    if (value.includes('cf')) {
+      return <Image src='/assets/engines/cloudflare-icon.svg' w={16} h={16} />;
     }
-    if (value.includes("google")) {
-      return <Image src="/assets/engines/google-icon.svg" w={16} h={16} />;
+    if (value.includes('google')) {
+      return <Image src='/assets/engines/google-icon.svg' w={16} h={16} />;
     }
   };
 
-  const renderSelectOptionProvider: SelectProps["renderOption"] = ({ option }) => (
-    <Group flex="1" gap="xs">
+  const renderSelectOptionProvider: SelectProps['renderOption'] = ({ option }) => (
+    <Group flex='1' gap='xs'>
       {getIconProvider(option.value)}
       {option.label}
     </Group>
   );
-  const renderSelectOptionModel: SelectProps["renderOption"] = ({ option }) => (
-    <Group flex="1" gap="xs">
+  const renderSelectOptionModel: SelectProps['renderOption'] = ({ option }) => (
+    <Group flex='1' gap='xs'>
       {getAIChatModelIcon(option.value, 16)}
       {option.label}
 
       {[
-        "imagen-3.0-generate-002",
-        "imagen-4.0-generate-preview-06-06",
-        "gemini-2.5-pro-preview",
+        'imagen-3.0-generate-002',
+        'imagen-4.0-generate-preview-06-06',
+        'gemini-2.5-pro-preview',
       ].includes(option.value) && (
         <>
           <div style={{ flex: 1 }} />
@@ -105,17 +105,17 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
     if (!hydrated) return;
     if (provider) return;
 
-    if (workerDomain.length && modelData) {
-      setProvider("cf");
+    if (workerDomain.length > 0 && modelData) {
+      setProvider('cf');
       setModel({
-        label: "Llama 3.1 8b ( instruct, fast )",
-        value: "@cf/meta/llama-3.1-8b-instruct-fast",
+        label: 'Llama 3.1 8b ( instruct, fast )',
+        value: '@cf/meta/llama-3.1-8b-instruct-fast',
       });
     } else if (config.hasGeminiKey) {
-      setProvider("google");
+      setProvider('google');
       setModel({
-        label: "Gemini 2.0 Flash",
-        value: "gemini-2.0-flash",
+        label: 'Gemini 2.0 Flash',
+        value: 'gemini-2.0-flash',
       });
     }
   }, [config, hydrated]);
@@ -123,19 +123,19 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
   return (
     <Drawer
       offset={8}
-      size="md"
-      radius="md"
+      size='md'
+      radius='md'
       opened={isOpen}
       onClose={onClose}
       title={
-        <Flex align="center" gap="sm">
-          <Text size="xl">AI Settings</Text>
+        <Flex align='center' gap='sm'>
+          <Text size='xl'>AI Settings</Text>
         </Flex>
       }
-      position="right"
-      padding="xl"
+      position='right'
+      padding='xl'
       closeButtonProps={{
-        size: "lg",
+        size: 'lg',
       }}
       classNames={{
         header: classes.drawer_header,
@@ -146,9 +146,9 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
       <LoadingOverlay visible={isLoadingConfig} />
 
       <Select
-        mt="md"
-        label="Select provider"
-        variant="default"
+        mt='md'
+        label='Select provider'
+        variant='default'
         renderOption={renderSelectOptionProvider}
         leftSection={getIconProvider(provider)}
         data={providerData}
@@ -162,31 +162,31 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
             setTemperature(0.5);
             setMaxTokens(2048);
 
-            if (val === "cf") {
+            if (val === 'cf') {
               setModel({
-                label: "Llama 3.1 8b ( instruct, fast )",
-                value: "@cf/meta/llama-3.1-8b-instruct-fast",
+                label: 'Llama 3.1 8b ( instruct, fast )',
+                value: '@cf/meta/llama-3.1-8b-instruct-fast',
               });
             }
-            if (val === "google") {
+            if (val === 'google') {
               setModel({
-                label: "Gemini 2.0 Flash",
-                value: "gemini-2.0-flash",
+                label: 'Gemini 2.0 Flash',
+                value: 'gemini-2.0-flash',
               });
             }
           }
         }}
       />
       <Select
-        label="Model"
+        label='Model'
         renderOption={renderSelectOptionModel}
         leftSection={getAIChatModelIcon(model.value, 16)}
-        mt="sm"
+        mt='sm'
         data={modelData}
         value={model.value}
         onChange={(val) => {
           if (val && modelData) {
-            let found = undefined;
+            let found;
 
             for (const group of modelData) {
               const foundItem = group.items.find((item) => item.value === val);
@@ -206,26 +206,26 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
         }}
       />
 
-      {["cf", "google"].includes(aiSource) && <Divider mt="lg" />}
+      {['cf', 'google'].includes(aiSource) && <Divider mt='lg' />}
 
-      {["cf", "google"].includes(aiSource) && (
+      {['cf', 'google'].includes(aiSource) && (
         <NumberInput
-          mt="md"
-          label="max_tokens"
+          mt='md'
+          label='max_tokens'
           value={maxTokens}
-          onChange={(val) => setMaxTokens(typeof val === "string" ? Number.parseInt(val) : val)}
+          onChange={(val) => setMaxTokens(typeof val === 'string' ? Number.parseInt(val) : val)}
           min={256}
           max={4096}
           step={256}
         />
       )}
 
-      {["cf", "google"].includes(aiSource) && (
+      {['cf', 'google'].includes(aiSource) && (
         <NumberInput
-          mt="lg"
-          label="temperature"
+          mt='lg'
+          label='temperature'
           value={temperature}
-          onChange={(val) => setTemperature(typeof val === "string" ? Number.parseInt(val) : val)}
+          onChange={(val) => setTemperature(typeof val === 'string' ? Number.parseInt(val) : val)}
           min={0.1}
           max={
             {
@@ -237,32 +237,32 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
         />
       )}
 
-      {["google"].includes(aiSource) && (
+      {['google'].includes(aiSource) && (
         <Textarea
-          mt="lg"
-          label="system_instruction"
+          mt='lg'
+          label='system_instruction'
           value={systemInstruction}
           onChange={(e) => setSystemInstruction(e.currentTarget.value)}
         />
       )}
 
       <Center>
-        <Flex align="center" gap="sm">
+        <Flex align='center' gap='sm'>
           <Button
-            mt="lg"
-            variant="light"
+            mt='lg'
+            variant='light'
             leftSection={<IconTrash style={getIconStyle(22)} />}
-            color="red"
+            color='red'
             onClick={clearChat}
           >
             Clear chat
           </Button>
 
           <Button
-            mt="lg"
-            variant="light"
+            mt='lg'
+            variant='light'
             leftSection={<IconRefresh style={getIconStyle(22)} />}
-            color="blue"
+            color='blue'
             onClick={resetConfig}
           >
             Reset config

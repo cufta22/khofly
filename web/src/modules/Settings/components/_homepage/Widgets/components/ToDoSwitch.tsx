@@ -1,5 +1,5 @@
-import { Switch } from "@mantine/core";
-import { useHomepageStore } from "@store/homepage";
+import { Switch } from '@mantine/core';
+import { useHomepageStore } from '@store/homepage';
 
 const ToDoSwitch = () => {
   const displayTodos = useHomepageStore((state) => state.displayTodos);

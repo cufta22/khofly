@@ -1,4 +1,4 @@
 {
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"biome.lspBin": ""
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true
 }

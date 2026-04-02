@@ -1,11 +1,11 @@
-import { useInstanceStore } from "@store/instance";
+import { useInstanceStore } from '@store/instance';
 import {
   getDefaultApi,
   getDefaultSearXNG,
   getDefaultWorker,
   getDefaultPv,
-} from "@store/instance/utils";
-import { useEffect } from "react";
+} from '@store/instance/utils';
+import { useEffect } from 'react';
 
 // Initialize instance domains
 const useInstanceInit = () => {
@@ -30,7 +30,7 @@ const useInstanceInit = () => {
     if (!hydrated) return;
 
     // Set instance URL initially
-    if (!nominatimDomain) setNominatimDomain(process.env.NOMINATIM_URL || "");
+    if (!nominatimDomain) setNominatimDomain(process.env.NOMINATIM_URL || '');
     if (!searXNGDomain) setSearXNGDomain(getDefaultSearXNG());
     if (!apiDomain) setApiDomain(getDefaultApi());
     if (!workerDomain) setWorkerDomain(getDefaultWorker());

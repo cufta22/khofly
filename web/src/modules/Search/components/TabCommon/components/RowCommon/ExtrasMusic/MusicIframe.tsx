@@ -1,5 +1,5 @@
-import { Transition } from "@mantine/core";
-import React from "react";
+import { Transition } from '@mantine/core';
+import React from 'react';
 
 interface Props {
   iframeOpen: boolean;
@@ -11,15 +11,15 @@ const MusicIframe: React.FC<Props> = ({ iframeOpen, iframe_src, title }) => {
   return (
     <Transition
       mounted={iframeOpen}
-      transition={"scale-y"}
+      transition={'scale-y'}
       duration={200}
-      timingFunction="ease"
+      timingFunction='ease'
       keepMounted={false}
     >
       {(transitionStyle) => (
         <iframe
           style={{ ...transitionStyle, zIndex: 1 }}
-          width="100%"
+          width='100%'
           src={iframe_src}
           title={title}
         />

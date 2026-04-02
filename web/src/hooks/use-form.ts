@@ -1,5 +1,5 @@
-import { FormEventHandler, useState } from "react";
-import { useNonInitialEffect } from "./use-non-initial-effect";
+import { FormEventHandler, useState } from 'react';
+import { useNonInitialEffect } from './use-non-initial-effect';
 
 interface Args<T extends Record<string, string>> {
   initialValues: T;
@@ -8,18 +8,15 @@ interface Args<T extends Record<string, string>> {
 
 // Lightweight version of @mantine/form useForm()
 
-const useForm = <T extends Record<string, string>>({
-  initialValues,
-  validate,
-}: Args<T>) => {
+const useForm = <T extends Record<string, string>>({ initialValues, validate }: Args<T>) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<{
     [key in keyof T]: string | null;
   }>(
     Object.keys(initialValues).reduce(
       (acc, key) => ({ ...acc, [key]: null }),
-      {} as { [key in keyof T]: string | null }
-    )
+      {} as { [key in keyof T]: string | null },
+    ),
   );
 
   const setFieldValue = <K extends keyof T>(field: K, val: string) => {
@@ -27,8 +24,8 @@ const useForm = <T extends Record<string, string>>({
     setErrors((prev) =>
       Object.keys(prev).reduce(
         (acc, key) => ({ ...acc, [key]: null }),
-        {} as { [key in keyof T]: string | null }
-      )
+        {} as { [key in keyof T]: string | null },
+      ),
     );
 
     setValues((prev) => ({ ...prev, [field]: val }));
@@ -42,38 +39,37 @@ const useForm = <T extends Record<string, string>>({
     setErrors((prev) =>
       Object.keys(prev).reduce(
         (acc, key) => ({ ...acc, [key]: null }),
-        {} as { [key in keyof T]: string | null }
-      )
+        {} as { [key in keyof T]: string | null },
+      ),
     );
   };
 
-  const onSubmit =
-    (submitFn: (values: T) => void) =>
-    (event: React.FormEvent<HTMLFormElement>) => {
-      event?.preventDefault();
+  const onSubmit = (submitFn: (values: T) => void) => (event: React.FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
 
-      // Validate all fields
-      let newErrors = {} as { [key in keyof T]: string | null };
+    // Validate all fields
+    let newErrors = {} as { [key in keyof T]: string | null };
 
-      for (const field in initialValues) {
-        if (validate && validate[field]) {
-          const error = validate?.[field]?.(values[field]);
-          newErrors = { ...newErrors, ...{ [field]: error } };
-        }
+    for (const field in initialValues) {
+      if (validate && validate[field]) {
+        const error = validate?.[field]?.(values[field]);
+        newErrors = ({
+	...newErrors,
+	[field]: error
+});
       }
+    }
 
-      // Check if there are any errors
-      const hasErrors = Object.values(newErrors).some(
-        (error) => error !== null
-      );
+    // Check if there are any errors
+    const hasErrors = Object.values(newErrors).some((error) => error !== null);
 
-      if (hasErrors) {
-        // Update the errors state
-        setErrors(newErrors);
-      } else {
-        submitFn(values);
-      }
-    };
+    if (hasErrors) {
+      // Update the errors state
+      setErrors(newErrors);
+    } else {
+      submitFn(values);
+    }
+  };
 
   return {
     values,

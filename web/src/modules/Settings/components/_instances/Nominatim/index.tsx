@@ -7,20 +7,20 @@ import {
   Text,
   TextInput,
   useMantineTheme,
-} from "@mantine/core";
-import { IconWorld } from "@tabler/icons-react";
+} from '@mantine/core';
+import { IconWorld } from '@tabler/icons-react';
 
-import classes from "../../../styles.module.scss";
-import useToast from "@hooks/use-toast";
-import { useInstanceStore } from "@store/instance";
-import useForm from "@hooks/use-form";
-import React, { useEffect } from "react";
-import ExternalLink from "@components/Links/ExternalLink";
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import SettingsTitle from "../../common/SettingsTitle";
-import { IOpenSection } from "@module/SettingsMobile";
-import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
-import { useTranslate } from "@hooks/translate/use-translate";
+import classes from '../../../styles.module.scss';
+import useToast from '@hooks/use-toast';
+import { useInstanceStore } from '@store/instance';
+import useForm from '@hooks/use-form';
+import React, { useEffect } from 'react';
+import ExternalLink from '@components/Links/ExternalLink';
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import SettingsTitle from '../../common/SettingsTitle';
+import type { IOpenSection } from '@module/SettingsMobile';
+import SettingsMTitle from '@module/SettingsMobile/components/common/SettingsTitle';
+import { useTranslate } from '@hooks/translate/use-translate';
 
 interface Props {
   isM?: boolean;
@@ -40,7 +40,7 @@ const SettingsNominatim: React.FC<Props> = ({ isM, handleChangeSection }) => {
       domain: domain,
     },
     validate: {
-      domain: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : "Invalid URL"),
+      domain: (value) => (/^(ftp|http|https):\/\/[^ "]+$/.test(value) ? null : 'Invalid URL'),
     },
   });
 
@@ -50,12 +50,12 @@ const SettingsNominatim: React.FC<Props> = ({ isM, handleChangeSection }) => {
 
   const handleSubmit = (values: typeof form.values) => {
     setDomain(values.domain);
-    toast.show({ message: "URL changed", color: "green" });
+    toast.show({ message: 'URL changed', color: 'green' });
   };
 
   useEffect(() => {
     if (hydrated && !form.values.domain) {
-      form.setFieldValue("domain", domain);
+      form.setFieldValue('domain', domain);
     }
   }, [hydrated]);
 
@@ -63,52 +63,52 @@ const SettingsNominatim: React.FC<Props> = ({ isM, handleChangeSection }) => {
     <>
       {isM && handleChangeSection && (
         <SettingsMTitle
-          title="pages.settings.instances.title_nominatim"
+          title='pages.settings.instances.title_nominatim'
           handleChangeSection={handleChangeSection}
         />
       )}
 
-      <Paper radius="md" withBorder>
+      <Paper radius='md' withBorder>
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {!isM && (
             <SettingsTitle
               icon={<IconWorld color={theme.colors[theme.primaryColor][5]} />}
-              title="pages.settings.instances.title_nominatim"
+              title='pages.settings.instances.title_nominatim'
             />
           )}
 
           {/* Settings content */}
-          <Stack px="lg" mb="xl" mt={isM ? "lg" : 0}>
+          <Stack px='lg' mb='xl' mt={isM ? 'lg' : 0}>
             <TextInput
-              placeholder="https://example.com"
-              size="md"
+              placeholder='https://example.com'
+              size='md'
               className={classes.settings_input}
-              {...form.getInputProps("domain")}
+              {...form.getInputProps('domain')}
             />
 
-            <Text size="sm">
-              <ExternalLink href="https://nominatim.org/">Nominatim</ExternalLink>{" "}
-              {t("pages.settings.instances.nominatim_explained")}
+            <Text size='sm'>
+              <ExternalLink href='https://nominatim.org/'>Nominatim</ExternalLink>{' '}
+              {t('pages.settings.instances.nominatim_explained')}
             </Text>
           </Stack>
 
           <Flex
-            align="center"
-            justify="space-between"
-            py="sm"
-            px="lg"
+            align='center'
+            justify='space-between'
+            py='sm'
+            px='lg'
             className={classes.settings_footer}
           >
-            <Text size="sm" c="dimmed">
-              {t("pages.settings.instances.change_url")}{" "}
-              <Text component="span" c={linkTextColor}>
-                <Anchor href="https://nominatim.org/" target="_blank" rel="noreferrer noopener">
-                  {t("_common.read_more")}
+            <Text size='sm' c='dimmed'>
+              {t('pages.settings.instances.change_url')}{' '}
+              <Text component='span' c={linkTextColor}>
+                <Anchor href='https://nominatim.org/' target='_blank' rel='noreferrer noopener'>
+                  {t('_common.read_more')}
                 </Anchor>
               </Text>
             </Text>
 
-            <Button type="submit">{t("pages.settings._common.save")}</Button>
+            <Button type='submit'>{t('pages.settings._common.save')}</Button>
           </Flex>
         </form>
       </Paper>

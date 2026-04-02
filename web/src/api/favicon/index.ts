@@ -1,5 +1,5 @@
-import { useInstanceStore } from "@store/instance";
-import { type IFaviconAPI, useSettingsStore } from "@store/settings";
+import { useInstanceStore } from '@store/instance';
+import { type IFaviconAPI, useSettingsStore } from '@store/settings';
 
 export const useFaviconAPI = () => {
   const apiDomain = useInstanceStore((state) => state.apiDomain);

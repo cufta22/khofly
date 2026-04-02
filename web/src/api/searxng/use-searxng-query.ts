@@ -1,14 +1,14 @@
-import useFetch from "../use-fetch";
-import { useSearchStore, type IDateRange, type ISafeSearch, type ISearchLang } from "@store/search";
-import useSWRInfinite from "swr/infinite";
-import { getEngineBangs } from "./utils";
-import { useSearchParams } from "react-router";
+import useFetch from '../use-fetch';
+import { useSearchStore, type IDateRange, type ISafeSearch, type ISearchLang } from '@store/search';
+import useSWRInfinite from 'swr/infinite';
+import { getEngineBangs } from './utils';
+import { useSearchParams } from 'react-router';
 
-import { useInstanceStore } from "@store/instance";
-import { type IOtherEngines, useEnginesStore } from "@store/engines";
-import type { ICategories } from "@store/settings";
-import useToast from "@hooks/use-toast";
-import { ISearXNGResultsShared } from "@ts/searxng.types";
+import { useInstanceStore } from '@store/instance';
+import { type IOtherEngines, useEnginesStore } from '@store/engines';
+import type { ICategories } from '@store/settings';
+import useToast from '@hooks/use-toast';
+import type { ISearXNGResultsShared } from '@ts/searxng.types';
 
 const getKey = (
   pageIndex: number,
@@ -25,15 +25,15 @@ const getKey = (
   if (!q) return null; // prevent empty search
 
   // Query starts with ! for search with specific engine
-  const hasSpecificEngine = q.startsWith("!");
+  const hasSpecificEngine = q.startsWith('!');
 
-  const engineBangs = hasSpecificEngine ? "" : getEngineBangs(tab, enginesSelected, enginesOther);
+  const engineBangs = hasSpecificEngine ? '' : getEngineBangs(tab, enginesSelected, enginesOther);
   const query = encodeURIComponent(q);
   const catgParam = `&categories=${tab}`;
   const pageParam = `&pageno=${pageIndex + 1}`;
   const safeParam = `&safesearch=${safeSearch}`;
-  const dateParam = dateRange === "all" ? "" : `&time_range=${dateRange}`;
-  const langParam = searchLanguage === "all" ? "" : `&language=${searchLanguage}`;
+  const dateParam = dateRange === 'all' ? '' : `&time_range=${dateRange}`;
+  const langParam = searchLanguage === 'all' ? '' : `&language=${searchLanguage}`;
 
   // SWR key
   return `/search?q=${engineBangs}${query}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}&format=json`;
@@ -69,8 +69,8 @@ const useSearXNGSWR = (args: Args) => {
   const searchQuery = useSearchStore((state) => state.searchQuery);
 
   const [searchParams] = useSearchParams();
-  const q = searchQuery || (searchParams.get("q") as string) || "";
-  const tab = initialTab || (searchParams.get("tab") as ICategories) || "general";
+  const q = searchQuery || (searchParams.get('q') as string) || '';
+  const tab = initialTab || (searchParams.get('tab') as ICategories) || 'general';
 
   const fetcher = (key: string) => {
     return fetchData(`${searXNGDomain}${key}`) as Promise<ISearXNGResultsShared>;
@@ -116,9 +116,9 @@ const useSearXNGSWR = (args: Args) => {
       // Error handling
       onError() {
         toast.show({
-          title: "Something went wrong",
-          message: "Unable to fetch results",
-          color: "red",
+          title: 'Something went wrong',
+          message: 'Unable to fetch results',
+          color: 'red',
         });
       },
     },

@@ -1,19 +1,19 @@
-import { Container, Flex, Title } from "@mantine/core";
-import SearchBar from "./components/SearchBar";
+import { Container, Flex, Title } from '@mantine/core';
+import SearchBar from './components/SearchBar';
 
-import classes from "./styles.module.scss";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { useHomepageStore } from "@store/homepage";
-import DevInterface from "./components/DevInterface";
-import useSettingsParams from "./hooks/use-set-params";
+import classes from './styles.module.scss';
+import { useTranslate } from '@hooks/translate/use-translate';
+import { useHomepageStore } from '@store/homepage';
+import DevInterface from './components/DevInterface';
+import useSettingsParams from './hooks/use-set-params';
 
-import Shortcuts from "./components/Shortcuts";
-import WidgetWeather from "./components/_widgets/WidgetWeather";
-import WidgetTodo from "./components/_widgets/WidgetToDo";
-import WidgetClock from "./components/_widgets/WidgetClock";
-import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
-import WidgetNotes from "./components/_widgets/WidgetNotes";
-import ButtonRandomSite from "./components/ButtonRandomSite";
+import Shortcuts from './components/Shortcuts';
+import WidgetWeather from './components/_widgets/WidgetWeather';
+import WidgetTodo from './components/_widgets/WidgetToDo';
+import WidgetClock from './components/_widgets/WidgetClock';
+import { IS_SELF_HOST } from '@utils/resources/isSelfHost';
+import WidgetNotes from './components/_widgets/WidgetNotes';
+import ButtonRandomSite from './components/ButtonRandomSite';
 
 const PageIndex = () => {
   const t = useTranslate();
@@ -54,11 +54,11 @@ const PageIndex = () => {
   useSettingsParams();
 
   return (
-    <Container className={classes.index_page} size="lg">
+    <Container className={classes.index_page} size='lg'>
       {/* <Center className={classes.center}> */}
-      <Flex className={classes.flex} align="center" direction="column">
-        <Title className={classes.app_name} mb="sm">
-          {!IS_SELF_HOST ? t("_common.app_name") : process.env.APP_NAME}
+      <Flex className={classes.flex} align='center' direction='column'>
+        <Title className={classes.app_name} mb='sm'>
+          {!IS_SELF_HOST ? t('_common.app_name') : process.env.APP_NAME}
         </Title>
 
         <SearchBar />
@@ -66,13 +66,13 @@ const PageIndex = () => {
         {/* Stuff below search bar */}
         {displayShortcuts && <Shortcuts />}
         {displaySurpriseButton && (
-          <Flex mt="xl">
+          <Flex mt='xl'>
             <ButtonRandomSite />
           </Flex>
         )}
 
         {/* Startpage widgets */}
-        <Flex direction="column" gap={24} className={classes.widgets_left}>
+        <Flex direction='column' gap={24} className={classes.widgets_left}>
           {widgets.map((widget, i) => {
             if (
               !widget.display

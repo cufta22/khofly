@@ -1,9 +1,9 @@
-import { IOpenSection } from "@module/SettingsMobile";
-import React, { useState } from "react";
-import SettingsMTitle from "../../common/SettingsTitle";
-import { Paper, Select, Stack } from "@mantine/core";
-import { ICategories } from "@store/settings";
-import SettingsMEnginesWrapper from "./Wrapper";
+import type { IOpenSection } from '@module/SettingsMobile';
+import React, { useState } from 'react';
+import SettingsMTitle from '../../common/SettingsTitle';
+import { Paper, Select, Stack } from '@mantine/core';
+import type { ICategories } from '@store/settings';
+import SettingsMEnginesWrapper from './Wrapper';
 import {
   DATA_ENGINES_FILES,
   DATA_ENGINES_GENERAL,
@@ -15,14 +15,14 @@ import {
   DATA_ENGINES_SCIENCE,
   DATA_ENGINES_SOCIAL_MEDIA,
   DATA_ENGINES_VIDEOS,
-} from "@module/Settings/components/_engines/Engines/components/data";
+} from '@module/Settings/components/_engines/Engines/components/data';
 
 interface Props {
   handleChangeSection: (next: IOpenSection) => void;
 }
 
 const SettingsMEngines: React.FC<Props> = ({ handleChangeSection }) => {
-  const [tab, setTab] = useState<ICategories>("general");
+  const [tab, setTab] = useState<ICategories>('general');
 
   const enginesData = {
     general: DATA_ENGINES_GENERAL,
@@ -43,27 +43,27 @@ const SettingsMEngines: React.FC<Props> = ({ handleChangeSection }) => {
   return (
     <>
       <SettingsMTitle
-        title="pages.settings._common.engines"
+        title='pages.settings._common.engines'
         handleChangeSection={handleChangeSection}
       />
 
-      <Paper radius="md" withBorder>
+      <Paper radius='md' withBorder>
         {/* Settings content */}
-        <Stack w="100%" align="start" px="lg" my="xl">
+        <Stack w='100%' align='start' px='lg' my='xl'>
           <Select
             value={tab}
             onChange={(val) => val && setTab(val as ICategories)}
             data={[
-              { label: "General", value: "general" },
-              { label: "Images", value: "images" },
-              { label: "Videos", value: "videos" },
-              { label: "News", value: "news" },
-              { label: "Music", value: "music" },
-              { label: "IT", value: "it" },
-              { label: "Science", value: "science" },
-              { label: "Files", value: "files" },
-              { label: "Social Media", value: "social_media" },
-              { label: "Other", value: "other" },
+              { label: 'General', value: 'general' },
+              { label: 'Images', value: 'images' },
+              { label: 'Videos', value: 'videos' },
+              { label: 'News', value: 'news' },
+              { label: 'Music', value: 'music' },
+              { label: 'IT', value: 'it' },
+              { label: 'Science', value: 'science' },
+              { label: 'Files', value: 'files' },
+              { label: 'Social Media', value: 'social_media' },
+              { label: 'Other', value: 'other' },
             ]}
           />
 

@@ -10,4 +10,4 @@ export interface IKeyboard {
   row_5_normal: Array<string>;
 }
 
-export { KEYBOARD_EN_US } from "./en-US";
+export { KEYBOARD_EN_US } from './en-US';

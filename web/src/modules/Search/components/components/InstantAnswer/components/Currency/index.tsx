@@ -1,4 +1,4 @@
-import { IAWrapper } from "../../wrapper";
+import { IAWrapper } from '../../wrapper';
 import {
   ActionIcon,
   Anchor,
@@ -9,18 +9,18 @@ import {
   Paper,
   Select,
   Text,
-} from "@mantine/core";
+} from '@mantine/core';
 
-import classes from "./styles.module.scss";
-import { IconSwitchHorizontal } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-import { KEYWORDS_CURRENCY } from "../../_utils/keywords_currency";
-import useCurrencySWR from "src/api/currency/use-currency-query";
-import { convertCurrency } from "./utils";
+import classes from './styles.module.scss';
+import { IconSwitchHorizontal } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { KEYWORDS_CURRENCY } from '../../_utils/keywords_currency';
+import useCurrencySWR from 'src/api/currency/use-currency-query';
+import { convertCurrency } from './utils';
 
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import { usePrimaryColor } from "@hooks/use-primary-color";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import { usePrimaryColor } from '@hooks/use-primary-color';
 dayjs.extend(utc);
 
 interface Props {
@@ -44,20 +44,20 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
   const handleChangeInput = (val: string | number) => {
     if (!dataRates?.data) return;
 
-    const numVal = typeof val === "number" ? val : Number.parseFloat(val);
+    const numVal = typeof val === 'number' ? val : Number.parseFloat(val);
     const res = convertCurrency(numVal, state.from, state.to, dataRates?.data?.rates);
 
     setState((s) => ({ ...s, input: numVal, result: res }));
   };
 
-  const handleChangeCurrency = (val: string, field: "from" | "to") => {
+  const handleChangeCurrency = (val: string, field: 'from' | 'to') => {
     if (!dataRates?.data) return;
 
     const res = convertCurrency(
       state.input,
-      field === "from" ? val : state.from,
-      field === "to" ? val : state.to,
-      dataRates?.data?.rates
+      field === 'from' ? val : state.from,
+      field === 'to' ? val : state.to,
+      dataRates?.data?.rates,
     );
 
     setState((s) => ({ ...s, [field]: val, result: res }));
@@ -85,9 +85,9 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
 
   const currencyComponent = (
     <Center>
-      <Paper className={classes.paper_base} p="md" radius="sm" withBorder>
-        <Flex align="flex-end" justify="space-between" gap="md">
-          <Flex gap="md" direction="column">
+      <Paper className={classes.paper_base} p='md' radius='sm' withBorder>
+        <Flex align='flex-end' justify='space-between' gap='md'>
+          <Flex gap='md' direction='column'>
             <NumberInput
               value={state.input}
               onChange={handleChangeInput}
@@ -99,7 +99,7 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
               withCheckIcon={false}
               searchable={true}
               value={state.from}
-              onChange={(val) => val && handleChangeCurrency(val, "from")}
+              onChange={(val) => val && handleChangeCurrency(val, 'from')}
               data={Object.keys(KEYWORDS_CURRENCY).map((key) => ({
                 label: KEYWORDS_CURRENCY[key as keyof typeof KEYWORDS_CURRENCY],
                 value: key,
@@ -107,11 +107,11 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
             />
           </Flex>
 
-          <ActionIcon size="lg" variant="subtle" onClick={handleSwapCurrencies}>
+          <ActionIcon size='lg' variant='subtle' onClick={handleSwapCurrencies}>
             <IconSwitchHorizontal />
           </ActionIcon>
 
-          <Flex gap="md" direction="column">
+          <Flex gap='md' direction='column'>
             <NumberInput
               value={state.result}
               // rightSection={<></>}
@@ -123,7 +123,7 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
               withCheckIcon={false}
               searchable={true}
               value={state.to}
-              onChange={(val) => val && handleChangeCurrency(val, "to")}
+              onChange={(val) => val && handleChangeCurrency(val, 'to')}
               data={Object.keys(KEYWORDS_CURRENCY).map((key) => ({
                 label: KEYWORDS_CURRENCY[key as keyof typeof KEYWORDS_CURRENCY],
                 value: key,
@@ -133,15 +133,15 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
         </Flex>
 
         {dataRates?.data?.timestamp && (
-          <Text size="sm" c="dimmed" mt="lg">
+          <Text size='sm' c='dimmed' mt='lg'>
             {`1 ${state.from} ≈ ${convertCurrency(
               1,
               state.from,
               state.to,
-              dataRates?.data.rates
+              dataRates?.data.rates,
             )} ${state.to} • ${dayjs
               .unix(dataRates?.data.timestamp)
-              .format("MMM DD, hh:mm A [UTC]Z")}`}
+              .format('MMM DD, hh:mm A [UTC]Z')}`}
           </Text>
         )}
 
@@ -154,10 +154,10 @@ const IACurrency: React.FC<Props> = ({ withIAWrapper, currency1, currency2 }) =>
     return (
       <IAWrapper
         label={
-          <Text size="sm" c="dimmed">
-            Data provided by{" "}
-            <Anchor href="https://openexchangerates.com/" rel="noreferrer noopener">
-              <Text component="span" c={linkTextColor}>
+          <Text size='sm' c='dimmed'>
+            Data provided by{' '}
+            <Anchor href='https://openexchangerates.com/' rel='noreferrer noopener'>
+              <Text component='span' c={linkTextColor}>
                 Open Exchange Rates
               </Text>
             </Anchor>

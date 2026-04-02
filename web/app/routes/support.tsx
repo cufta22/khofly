@@ -1,4 +1,4 @@
-import PageSupport from "@module/Support";
+import PageSupport from '@module/Support';
 
 const Support = () => {
   return <PageSupport />;

@@ -1,10 +1,10 @@
-import { Divider, Paper, Stack, Tooltip, useMantineTheme } from "@mantine/core";
+import { Divider, Paper, Stack, Tooltip, useMantineTheme } from '@mantine/core';
 
-import SettingsMTitle from "../../common/SettingsTitle";
-import SettingsMRow from "../../common/SettingsMRow";
-import { IOpenSection } from "@module/SettingsMobile";
-import AIAnswerSwitch from "@module/Settings/components/_general/AI/AIAnswerSwitch";
-import AIChatSwitch from "@module/Settings/components/_general/AI/AIChatSwitch";
+import SettingsMTitle from '../../common/SettingsTitle';
+import SettingsMRow from '../../common/SettingsMRow';
+import type { IOpenSection } from '@module/SettingsMobile';
+import AIAnswerSwitch from '@module/Settings/components/_general/AI/AIAnswerSwitch';
+import AIChatSwitch from '@module/Settings/components/_general/AI/AIChatSwitch';
 
 interface Props {
   handleChangeSection: (next: IOpenSection) => void;
@@ -15,21 +15,21 @@ const SettingsMAI: React.FC<Props> = ({ handleChangeSection }) => {
 
   return (
     <>
-      <SettingsMTitle title="pages.settings.ai.title" handleChangeSection={handleChangeSection} />
-      <Paper radius="md" withBorder>
+      <SettingsMTitle title='pages.settings.ai.title' handleChangeSection={handleChangeSection} />
+      <Paper radius='md' withBorder>
         {/* Settings content */}
-        <Stack w="100%" align="start" px="lg" my="xl">
+        <Stack w='100%' align='start' px='lg' my='xl'>
           <SettingsMRow
             // icon={<IconExternalLink color={theme.colors.gray["5"]} />}
-            desc="pages.settings.ai.toggle_ai_answers"
+            desc='pages.settings.ai.toggle_ai_answers'
             control={<AIAnswerSwitch isM={true} />}
           />
 
-          <Divider my="xs" w="100%" />
+          <Divider my='xs' w='100%' />
 
           <SettingsMRow
             // icon={<IconFavicon color={theme.colors.gray["5"]} />}
-            desc="pages.settings.ai.toggle_ai_chat"
+            desc='pages.settings.ai.toggle_ai_chat'
             control={<AIChatSwitch isM={true} />}
           />
 

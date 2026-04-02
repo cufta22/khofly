@@ -1,9 +1,9 @@
-import { useInstanceStore } from "@store/instance";
-import type { IWorkerTranslateResponse } from "../ai/types";
-import useFetch from "../use-fetch";
-import useSWRMutation from "swr/mutation";
-import useToast from "@hooks/use-toast";
-import { profanityFilter } from "@utils/functions/profanityFilter";
+import { useInstanceStore } from '@store/instance';
+import type { IWorkerTranslateResponse } from '../ai/types';
+import useFetch from '../use-fetch';
+import useSWRMutation from 'swr/mutation';
+import useToast from '@hooks/use-toast';
+import { profanityFilter } from '@utils/functions/profanityFilter';
 
 interface Args {
   data: string;
@@ -21,10 +21,10 @@ const useTranslateSWR = () => {
     const { data, from, to } = arg;
 
     return fetchData(`${workerDomain}`, {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         prompt: profanityFilter(data),
-        model: "@cf/meta/m2m100-1.2b",
+        model: '@cf/meta/m2m100-1.2b',
         source_lang: from,
         target_lang: to,
         messages: [],
@@ -36,9 +36,9 @@ const useTranslateSWR = () => {
     // Error handling
     onError() {
       toast.show({
-        title: "Something went wrong",
-        message: "Unable to fetch translations",
-        color: "red",
+        title: 'Something went wrong',
+        message: 'Unable to fetch translations',
+        color: 'red',
       });
     },
   });

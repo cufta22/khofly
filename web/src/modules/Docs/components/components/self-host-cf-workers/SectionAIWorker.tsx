@@ -1,10 +1,10 @@
-import { Paper, Text } from "@mantine/core";
-import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
-import DocsSubtitle from "../../common/DocsSubtitle";
-import DocsLink from "../../common/DocsLink";
-import RemixLink from "@components/RemixLink";
-import DocsText from "../../common/DocsText";
-import { usePrimaryColor } from "@hooks/use-primary-color";
+import { Paper, Text } from '@mantine/core';
+import DocsCodeHighlight from '../../common/DocsCodeHighlight/DocsCodeHighlight';
+import DocsSubtitle from '../../common/DocsSubtitle';
+import DocsLink from '../../common/DocsLink';
+import RemixLink from '@components/RemixLink';
+import DocsText from '../../common/DocsText';
+import { usePrimaryColor } from '@hooks/use-primary-color';
 
 const CODE_WORKER = `
 const corsHeaders = {
@@ -95,11 +95,11 @@ const SectionAIWorker = () => {
   return (
     <>
       <DocsText>
-        1. Go to <DocsLink href="cloudflare.com" label="cloudflare.com" /> and log in.
+        1. Go to <DocsLink href='cloudflare.com' label='cloudflare.com' /> and log in.
       </DocsText>
 
       <DocsText>
-        2. In your dashboard go to <strong>Workers & Pages</strong> and then{" "}
+        2. In your dashboard go to <strong>Workers & Pages</strong> and then{' '}
         <strong>Workers & Pages</strong>.
       </DocsText>
 
@@ -129,12 +129,12 @@ const SectionAIWorker = () => {
       <DocsText>
         9. In the <strong>Settings</strong> tab under <strong>Domains & Routes</strong> copy the
         active worker domain ( should be smth like <strong>name.email.workers.dev</strong> ) and
-        paste it under{" "}
-        <RemixLink to="/settings?tab=instances">
-          <Text component="span" c={linkTextColor}>
+        paste it under{' '}
+        <RemixLink to='/settings?tab=instances'>
+          <Text component='span' c={linkTextColor}>
             /settings
           </Text>
-        </RemixLink>{" "}
+        </RemixLink>{' '}
         into AI Worker.
       </DocsText>
 
@@ -144,21 +144,21 @@ const SectionAIWorker = () => {
       </DocsText>
 
       <DocsText>
-        The model can be selected in{" "}
-        <RemixLink to="/settings?tab=instances">
-          <Text component="span" c={linkTextColor}>
+        The model can be selected in{' '}
+        <RemixLink to='/settings?tab=instances'>
+          <Text component='span' c={linkTextColor}>
             /settings
           </Text>
-        </RemixLink>{" "}
+        </RemixLink>{' '}
         , speed and results will depend on the size of the model, you can find the full list of
-        models <DocsLink href="https://developers.cloudflare.com/workers-ai/models/" label="here" />
+        models <DocsLink href='https://developers.cloudflare.com/workers-ai/models/' label='here' />
         .
       </DocsText>
 
       <DocsSubtitle>AI Worker Code</DocsSubtitle>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_WORKER} language="javascript" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_WORKER} language='javascript' />
       </Paper>
       <DocsText>Last updated: 06.04.2025</DocsText>
     </>

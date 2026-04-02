@@ -1,8 +1,8 @@
-import { Text, UnstyledButton } from "@mantine/core";
-import classes from "./styles.module.scss";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { DotNestedKeys, ITranslations } from "@ts/global.types";
+import { Text, UnstyledButton } from '@mantine/core';
+import classes from './styles.module.scss';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useTranslate } from '@hooks/translate/use-translate';
+import type { DotNestedKeys, ITranslations } from '@ts/global.types';
 
 interface CategoryCheckboxProps {
   checked: boolean;
@@ -23,7 +23,7 @@ export function CategoryCheckbox({
   icon,
   ...others
 }: CategoryCheckboxProps &
-  Omit<React.ComponentPropsWithoutRef<"button">, keyof CategoryCheckboxProps>) {
+  Omit<React.ComponentPropsWithoutRef<'button'>, keyof CategoryCheckboxProps>) {
   const t = useTranslate();
   const Icon = icon;
 
@@ -39,7 +39,7 @@ export function CategoryCheckbox({
       <Icon style={getIconStyle(20)} />
 
       <div className={classes.body}>
-        <Text className={classes.text} fw={500} size="sm" lh={1}>
+        <Text className={classes.text} fw={500} size='sm' lh={1}>
           {t(title)}
         </Text>
       </div>

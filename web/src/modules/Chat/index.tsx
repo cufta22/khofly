@@ -1,13 +1,13 @@
-import { Container, Flex, LoadingOverlay } from "@mantine/core";
-import ChatInput from "./components/ChatInput";
-import classes from "./styles.module.scss";
-import ChatMessages from "./components/ChatMessages";
-import useAIConfigSWR from "src/api/ai/use-ai-config-query";
-import { useAIChatStore } from "@store/aichat";
-import { getAIChatModelSource } from "./utils";
-import { profanityFilter } from "@utils/functions/profanityFilter";
-import type { IAIChatMessage } from "@ts/chat.types";
-import useAICommonAPI from "src/api/ai/use-ai-common-api";
+import { Container, Flex, LoadingOverlay } from '@mantine/core';
+import ChatInput from './components/ChatInput';
+import classes from './styles.module.scss';
+import ChatMessages from './components/ChatMessages';
+import useAIConfigSWR from 'src/api/ai/use-ai-config-query';
+import { useAIChatStore } from '@store/aichat';
+import { getAIChatModelSource } from './utils';
+import { profanityFilter } from '@utils/functions/profanityFilter';
+import type { IAIChatMessage } from '@ts/chat.types';
+import useAICommonAPI from 'src/api/ai/use-ai-common-api';
 
 const PageChat = () => {
   const { isLoading: isLoadingConfig } = useAIConfigSWR();
@@ -24,7 +24,7 @@ const PageChat = () => {
     isLoading: isLoadingChat,
     stopStreaming,
   } = useAICommonAPI({
-    variant: "ai-chat",
+    variant: 'ai-chat',
     temperature,
     maxTokens,
     systemInstruction,
@@ -40,12 +40,12 @@ const PageChat = () => {
 
     const messages: IAIChatMessage[] = [
       ...chat,
-      { role: "user", content: profanityFilter(input), isGenerating: false },
+      { role: 'user', content: profanityFilter(input), isGenerating: false },
     ];
 
     addToChat([
-      { role: "user", content: profanityFilter(input), isGenerating: false },
-      { role: "assistant", content: "", isGenerating: true },
+      { role: 'user', content: profanityFilter(input), isGenerating: false },
+      { role: 'assistant', content: '', isGenerating: true },
     ]);
 
     triggerChat({
@@ -56,8 +56,8 @@ const PageChat = () => {
   };
 
   return (
-    <Container className={classes.chat_page} size="lg">
-      <Flex className={classes.inner} direction="column" justify="space-between">
+    <Container className={classes.chat_page} size='lg'>
+      <Flex className={classes.inner} direction='column' justify='space-between'>
         <LoadingOverlay visible={isLoadingConfig} />
 
         <ChatMessages />

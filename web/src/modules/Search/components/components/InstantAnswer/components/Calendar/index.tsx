@@ -1,11 +1,11 @@
-import { Center } from "@mantine/core";
-import { IAWrapper } from "../../wrapper";
-import { Calendar as MantineCalendar } from "@mantine/dates";
+import { Center } from '@mantine/core';
+import { IAWrapper } from '../../wrapper';
+import { Calendar as MantineCalendar } from '@mantine/dates';
 
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
 const IACalendar = () => {
-  const todayDate = dayjs().toISOString().substring(0, 10);
+  const todayDate = dayjs().toISOString().slice(0, 10);
 
   return (
     <IAWrapper>

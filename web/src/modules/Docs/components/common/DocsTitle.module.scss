@@ -1,5 +1,5 @@
-@use "variables" as vars;
-@use "functions" as func;
+@use 'variables' as vars;
+@use 'functions' as func;
 
 .docs_title {
   flex-direction: row;

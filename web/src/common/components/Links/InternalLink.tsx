@@ -1,8 +1,8 @@
-import { nprogress } from "@mantine/nprogress";
-import { type IFC } from "@ts/global.types";
+import { nprogress } from '@mantine/nprogress';
+import { type IFC } from '@ts/global.types';
 
-import React from "react";
-import { Link, useLocation, type LinkProps } from "react-router";
+import React from 'react';
+import { Link, useLocation, type LinkProps } from 'react-router';
 
 interface Props extends LinkProps, IFC {
   className?: string | undefined;
@@ -21,7 +21,7 @@ const InternalLink: React.FC<Props> = ({ children, ...linkProps }) => {
   };
 
   return (
-    <Link {...linkProps} onClick={handleClick} target={linkProps?.target || "_self"}>
+    <Link {...linkProps} onClick={handleClick} target={linkProps?.target || '_self'}>
       {children}
     </Link>
   );

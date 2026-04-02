@@ -1,20 +1,20 @@
-import { Center, Drawer, Flex, Loader, ScrollArea, Text } from "@mantine/core";
-import classes from "./styles.module.scss";
-import { useTranslate } from "@hooks/translate/use-translate";
-import ReactMarkdown from "react-markdown";
-import { useSearchStore } from "@store/search";
-import { useEffect, useState } from "react";
-import useAICommonAPI from "src/api/ai/use-ai-common-api";
-import { useSettingsStore } from "@store/settings";
+import { Center, Drawer, Flex, Loader, ScrollArea, Text } from '@mantine/core';
+import classes from './styles.module.scss';
+import { useTranslate } from '@hooks/translate/use-translate';
+import ReactMarkdown from 'react-markdown';
+import { useSearchStore } from '@store/search';
+import { useEffect, useState } from 'react';
+import useAICommonAPI from 'src/api/ai/use-ai-common-api';
+import { useSettingsStore } from '@store/settings';
 
 const AISummary = () => {
-  const [data, setData] = useState("");
+  const [data, setData] = useState('');
 
   const { trigger, isLoading, reset } = useAICommonAPI({
-    variant: "ai-answer",
+    variant: 'ai-answer',
     temperature: 0.4,
     maxTokens: 2048,
-    systemInstruction: "",
+    systemInstruction: '',
     handleUpdateStream: (val) => setData((prev) => `${prev}${val}`),
     handleDONE: () => {},
   });
@@ -26,7 +26,7 @@ const AISummary = () => {
   const t = useTranslate();
 
   useEffect(() => {
-    if (!isLoading && aiSummaryURL.length && !data.length) {
+    if (!isLoading && aiSummaryURL.length > 0 && data.length === 0) {
       const msgContent = {
         short: `Can you give me a summary of this website: ${aiSummaryURL}`,
         long: `Can you give me an in depth summary of this website: ${aiSummaryURL}`,
@@ -35,13 +35,13 @@ const AISummary = () => {
       trigger({
         messages: [
           {
-            role: "user",
+            role: 'user',
             content: msgContent,
             isGenerating: false,
           },
         ],
-        model: "gemini-2.0-flash",
-        source: "google",
+        model: 'gemini-2.0-flash',
+        source: 'google',
       });
     }
   }, [aiSummaryURL]);
@@ -49,23 +49,23 @@ const AISummary = () => {
   return (
     <Drawer
       offset={8}
-      size="lg"
-      radius="md"
+      size='lg'
+      radius='md'
       opened={!!aiSummaryURL}
       onClose={() => {
         reset();
-        setData("");
-        setAISummaryURL("");
+        setData('');
+        setAISummaryURL('');
       }}
       title={
-        <Flex align="center" gap="sm">
-          <Text size="xl">AI Summary</Text>
+        <Flex align='center' gap='sm'>
+          <Text size='xl'>AI Summary</Text>
         </Flex>
       }
-      position="right"
-      padding="xl"
+      position='right'
+      padding='xl'
       closeButtonProps={{
-        size: "lg",
+        size: 'lg',
       }}
       classNames={{
         header: classes.drawer_header,
@@ -73,9 +73,9 @@ const AISummary = () => {
       }}
       scrollAreaComponent={ScrollArea.Autosize}
     >
-      {!data.length && isLoading ? (
-        <Center mt="xl" pt="xl">
-          <Loader size="xl" />
+      {data.length === 0 && isLoading ? (
+        <Center mt='xl' pt='xl'>
+          <Loader size='xl' />
         </Center>
       ) : (
         <ReactMarkdown>{data}</ReactMarkdown>

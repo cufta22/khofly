@@ -17,14 +17,14 @@
       var(--mantine-color-aeroBlue-4)
     ) !important;
   }
-  &:where([data-disabled="true"]) {
+  &:where([data-disabled='true']) {
     background-image: linear-gradient(
       to bottom,
       var(--mantine-color-gray-4),
       var(--mantine-color-gray-5)
     ) !important;
   }
-  &:where([data-disabled="true"]):hover {
+  &:where([data-disabled='true']):hover {
     background-image: linear-gradient(
       to bottom,
       var(--mantine-color-gray-4),
@@ -52,14 +52,14 @@
       var(--mantine-color-aeroBlue-4)
     ) !important;
   }
-  &:where([data-disabled="true"]) {
+  &:where([data-disabled='true']) {
     background-image: linear-gradient(
       to bottom,
       var(--mantine-color-gray-4),
       var(--mantine-color-gray-5)
     ) !important;
   }
-  &:where([data-disabled="true"]):hover {
+  &:where([data-disabled='true']):hover {
     background-image: linear-gradient(
       to bottom,
       var(--mantine-color-gray-4),

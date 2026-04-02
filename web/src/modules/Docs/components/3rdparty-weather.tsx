@@ -1,20 +1,20 @@
-import { Blockquote, Code, Container, useMantineTheme } from "@mantine/core";
-import DocsTitle from "./common/DocsTitle";
-import { IconHaze } from "@tabler/icons-react";
-import DocsText from "./common/DocsText";
-import DocsLink from "./common/DocsLink";
-import DocsSubtitle from "./common/DocsSubtitle";
+import { Blockquote, Code, Container, useMantineTheme } from '@mantine/core';
+import DocsTitle from './common/DocsTitle';
+import { IconHaze } from '@tabler/icons-react';
+import DocsText from './common/DocsText';
+import DocsLink from './common/DocsLink';
+import DocsSubtitle from './common/DocsSubtitle';
 
 const Docs3rdPartyWeather = () => {
   const theme = useMantineTheme();
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle leftSection={<IconHaze color={theme.colors.orange[5]} />}>
         Current weather data
       </DocsTitle>
 
-      <Blockquote color="yellow" mt="xl" radius="sm">
+      <Blockquote color='yellow' mt='xl' radius='sm'>
         This applies only if you want to self-host Khofly API.
       </Blockquote>
 
@@ -22,11 +22,11 @@ const Docs3rdPartyWeather = () => {
 
       <DocsText>
         OpenWeatherMap One Call API is used to fetch data server side. One Call API requires an API
-        key to be used so if you want to self host the Khofly API you'll need to go to{" "}
+        key to be used so if you want to self host the Khofly API you'll need to go to{' '}
         <DocsLink
-          href="https://home.openweathermap.org/subscriptions/unauth_subscribe/onecall_30/base"
-          label="this link"
-        />{" "}
+          href='https://home.openweathermap.org/subscriptions/unauth_subscribe/onecall_30/base'
+          label='this link'
+        />{' '}
         and subscribe to get your key, then just add it to the API .env file.
       </DocsText>
 

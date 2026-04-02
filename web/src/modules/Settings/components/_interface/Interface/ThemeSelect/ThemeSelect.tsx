@@ -1,12 +1,12 @@
-import { Combobox, Flex, Image, InputBase, useCombobox } from "@mantine/core";
-import classes from "./styles.module.scss";
-import commonClasses from "../../../common/styles.module.scss";
+import { Combobox, Flex, Image, InputBase, useCombobox } from '@mantine/core';
+import classes from './styles.module.scss';
+import commonClasses from '../../../common/styles.module.scss';
 
-import type { DotNestedKeys, IAppTheme, ITranslations } from "@ts/global.types";
+import type { DotNestedKeys, IAppTheme, ITranslations } from '@ts/global.types';
 
-import { useTranslate } from "@hooks/translate/use-translate";
-import { setCookie } from "@utils/functions/cookies";
-import { useClientServerState } from "@store/client-server";
+import { useTranslate } from '@hooks/translate/use-translate';
+import { setCookie } from '@utils/functions/cookies';
+import { useClientServerState } from '@store/client-server';
 
 interface IThemeData {
   label: DotNestedKeys<ITranslations>;
@@ -16,14 +16,14 @@ interface IThemeData {
 
 const THEME_DATA: IThemeData[] = [
   {
-    label: "pages.settings.interface.select_theme_options.mantine_old",
-    value: "Mantine-Old",
-    image: "/assets/themes/mantine.png",
+    label: 'pages.settings.interface.select_theme_options.mantine_old',
+    value: 'Mantine-Old',
+    image: '/assets/themes/mantine.png',
   },
   {
-    label: "pages.settings.interface.select_theme_options.mantine_new",
-    value: "Mantine-New",
-    image: "/assets/themes/mantine.png",
+    label: 'pages.settings.interface.select_theme_options.mantine_new',
+    value: 'Mantine-New',
+    image: '/assets/themes/mantine.png',
   },
   // {
   //   label: "pages.settings.interface.select_theme_options.frutiger_aero",
@@ -31,19 +31,19 @@ const THEME_DATA: IThemeData[] = [
   //   image: "/assets/themes/frutiger-aero.png",
   // },
   {
-    label: "pages.settings.interface.select_theme_options.catppuccin",
-    value: "Catppuccin",
-    image: "/assets/themes/catppuccin.png",
+    label: 'pages.settings.interface.select_theme_options.catppuccin',
+    value: 'Catppuccin',
+    image: '/assets/themes/catppuccin.png',
   },
   {
-    label: "pages.settings.interface.select_theme_options.tokyo_night",
-    value: "Tokyo-Night",
-    image: "/assets/themes/tokyonight.png",
+    label: 'pages.settings.interface.select_theme_options.tokyo_night',
+    value: 'Tokyo-Night',
+    image: '/assets/themes/tokyonight.png',
   },
   {
-    label: "pages.settings.interface.select_theme_options.rosepine",
-    value: "Rose-Pine",
-    image: "/assets/themes/rosepine.png",
+    label: 'pages.settings.interface.select_theme_options.rosepine',
+    value: 'Rose-Pine',
+    image: '/assets/themes/rosepine.png',
   },
   // {
   //   label: "pages.settings.interface.select_theme_options.nord",
@@ -62,12 +62,12 @@ const ThemeSelect = () => {
   });
 
   const MOD_THEME_DATA: IThemeData[] =
-    theme === "Custom"
+    theme === 'Custom'
       ? [
           {
-            label: "pages.settings.interface.select_theme_options.custom",
-            value: "Custom",
-            image: "",
+            label: 'pages.settings.interface.select_theme_options.custom',
+            value: 'Custom',
+            image: '',
           },
           ...THEME_DATA,
         ]
@@ -86,12 +86,12 @@ const ThemeSelect = () => {
     setTheme(next);
 
     // Set theme in cookie ( for persistance )
-    setCookie("khofly-app-theme", next, {
+    setCookie('khofly-app-theme', next, {
       expires: 60 * 60 * 24 * 90, // ~ 90 days
-      path: "/",
-      domain: process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
-      secure: process.env.HOST?.includes("https"),
-      sameSite: "Strict",
+      path: '/',
+      domain: process.env.NODE_ENV === 'development' ? 'localhost' : 'khofly.com',
+      secure: process.env.HOST?.includes('https'),
+      sameSite: 'Strict',
     });
 
     combobox.closeDropdown();
@@ -99,7 +99,7 @@ const ThemeSelect = () => {
 
   const items = MOD_THEME_DATA.map((item) => (
     <Combobox.Option value={item.value} key={item.value}>
-      <Flex align="center" gap="sm">
+      <Flex align='center' gap='sm'>
         {item.image && <Image src={item.image} w={20} h={20} alt={`${item.label} logo`} />}
 
         {t(item.label)}
@@ -132,7 +132,7 @@ const ThemeSelect = () => {
             className: classes.combobox_cursor,
           }}
           onClick={() => combobox.openDropdown()}
-          placeholder="Language"
+          placeholder='Language'
           value={t(selected.label)}
           classNames={{
             input: classes.combobox_cursor,

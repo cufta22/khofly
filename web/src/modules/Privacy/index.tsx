@@ -1,7 +1,7 @@
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import { Anchor, Card, Container, Flex, Text, Title, useMantineTheme } from "@mantine/core";
-import { IconCookie, IconLock, IconPhone, IconUsers } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import { Anchor, Card, Container, Flex, Text, Title, useMantineTheme } from '@mantine/core';
+import { IconCookie, IconLock, IconPhone, IconUsers } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
 
 const PagePrivacy = () => {
   const theme = useMantineTheme();
@@ -9,13 +9,13 @@ const PagePrivacy = () => {
   const linkTextColor = usePrimaryColor();
 
   return (
-    <Container size="lg" py={80}>
-      <Card p="xl">
-        <Title ta="center" mb="xl">
+    <Container size='lg' py={80}>
+      <Card p='xl'>
+        <Title ta='center' mb='xl'>
           Privacy Policy
         </Title>
 
-        <Flex mt="xl" mb="sm" align="center">
+        <Flex mt='xl' mb='sm' align='center'>
           <Text fz={26} fw={600}>
             Overview
           </Text>
@@ -26,10 +26,10 @@ const PagePrivacy = () => {
           browsing history.
         </Text>
 
-        <Flex mt="xl" mb="sm" align="center">
-          <IconCookie style={getIconStyle(32)} color={theme.colors.yellow["5"]} />
+        <Flex mt='xl' mb='sm' align='center'>
+          <IconCookie style={getIconStyle(32)} color={theme.colors.yellow['5']} />
 
-          <Text fz={26} fw={600} ml="xs">
+          <Text fz={26} fw={600} ml='xs'>
             Cookies
           </Text>
         </Flex>
@@ -41,10 +41,10 @@ const PagePrivacy = () => {
           or Storage ( for Firefox ) tab and find Cookies.
         </Text>
 
-        <Flex mt="xl" mb="sm" align="center">
-          <IconUsers style={getIconStyle(32)} color={theme.colors.grape["5"]} />
+        <Flex mt='xl' mb='sm' align='center'>
+          <IconUsers style={getIconStyle(32)} color={theme.colors.grape['5']} />
 
-          <Text fz={26} fw={600} ml="xs">
+          <Text fz={26} fw={600} ml='xs'>
             3rd parties
           </Text>
         </Flex>
@@ -52,67 +52,67 @@ const PagePrivacy = () => {
         <Text>
           <strong>Cloudflare:</strong> All Khofly requests are proxied through Cloudflare DNS, this
           means that Cloudflare has access to all incoming requests, their privacy policy can be
-          found{" "}
+          found{' '}
           <Anchor
-            href="https://www.cloudflare.com/privacypolicy/"
-            target="_blank"
-            rel="noreferrer noopener"
+            href='https://www.cloudflare.com/privacypolicy/'
+            target='_blank'
+            rel='noreferrer noopener'
           >
-            <Text component="span" c={linkTextColor}>
+            <Text component='span' c={linkTextColor}>
               here
             </Text>
           </Anchor>
         </Text>
 
-        <Text component="span">
+        <Text component='span'>
           <strong>OpenStreetMaps:</strong> Public Nominatim API by OpenStreetMaps is used for
-          Geocoding data in maps, their privacy policy can be found{" "}
+          Geocoding data in maps, their privacy policy can be found{' '}
           <Anchor
-            href="https://osmfoundation.org/wiki/Privacy_Policy"
-            target="_blank"
-            rel="noreferrer noopener"
+            href='https://osmfoundation.org/wiki/Privacy_Policy'
+            target='_blank'
+            rel='noreferrer noopener'
           >
-            <Text component="span" c={linkTextColor}>
+            <Text component='span' c={linkTextColor}>
               here
             </Text>
           </Anchor>
         </Text>
 
-        <Text component="span">
+        <Text component='span'>
           <strong>Hetzner:</strong> Web UI and SearXNG instance that Khofly uses are hosted on
-          Hetzner servers, their privacy policy can be found{" "}
+          Hetzner servers, their privacy policy can be found{' '}
           <Anchor
-            href="https://www.hetzner.com/legal/privacy-policy/"
-            target="_blank"
-            rel="noreferrer noopener"
+            href='https://www.hetzner.com/legal/privacy-policy/'
+            target='_blank'
+            rel='noreferrer noopener'
           >
-            <Text component="span" c={linkTextColor}>
+            <Text component='span' c={linkTextColor}>
               here
             </Text>
           </Anchor>
         </Text>
 
-        <Flex mt="xl" mb="sm" align="center">
-          <IconLock style={getIconStyle(32)} color={theme.colors.green["5"]} />
+        <Flex mt='xl' mb='sm' align='center'>
+          <IconLock style={getIconStyle(32)} color={theme.colors.green['5']} />
 
-          <Text fz={26} fw={600} ml="xs">
+          <Text fz={26} fw={600} ml='xs'>
             For improved privacy
           </Text>
         </Flex>
 
-        <Text component="span" fw={700}>
+        <Text component='span' fw={700}>
           self-host Khofly
         </Text>
 
-        <Text component="span" fw={700}>
+        <Text component='span' fw={700}>
           change/self-host SearXNG instance
         </Text>
 
-        <Text component="span" fw={700}>
+        <Text component='span' fw={700}>
           change/self-host Nominatim instance
         </Text>
 
-        <Text mt="md">
+        <Text mt='md'>
           While you can generally trust public instances the only way to truly own your data is to
           host it yourself. Khofly also provides you with the ability to change default instances (
           SearXNG, Nominatim, etc. ) to your own for extra flexibility but if you want to go a step
@@ -120,26 +120,26 @@ const PagePrivacy = () => {
           in the Khofly docs or the official website for each service.
         </Text>
 
-        <Flex mt="xl" mb="sm" align="center">
-          <IconPhone style={getIconStyle(32)} color={theme.colors.blue["5"]} />
+        <Flex mt='xl' mb='sm' align='center'>
+          <IconPhone style={getIconStyle(32)} color={theme.colors.blue['5']} />
 
-          <Text fz={26} fw={600} ml="xs">
+          <Text fz={26} fw={600} ml='xs'>
             Contact
           </Text>
         </Flex>
 
         <Text>
-          <strong>Email:</strong>{" "}
-          <Anchor href="mailto:contact@khofly.com" target="_blank" rel="noreferrer noopener">
-            <Text component="span" c={linkTextColor}>
+          <strong>Email:</strong>{' '}
+          <Anchor href='mailto:contact@khofly.com' target='_blank' rel='noreferrer noopener'>
+            <Text component='span' c={linkTextColor}>
               contact@khofly.com
             </Text>
           </Anchor>
         </Text>
         <Text>
-          <strong>Discord:</strong>{" "}
-          <Anchor href="https://discord.gg/mQ68HppVbt" target="_blank" rel="noreferrer noopener">
-            <Text component="span" c={linkTextColor}>
+          <strong>Discord:</strong>{' '}
+          <Anchor href='https://discord.gg/mQ68HppVbt' target='_blank' rel='noreferrer noopener'>
+            <Text component='span' c={linkTextColor}>
               https://discord.gg/mQ68HppVbt
             </Text>
           </Anchor>

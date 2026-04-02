@@ -1,15 +1,15 @@
-import { Anchor, Flex, Image, Modal, SimpleGrid, Text, UnstyledButton } from "@mantine/core";
+import { Anchor, Flex, Image, Modal, SimpleGrid, Text, UnstyledButton } from '@mantine/core';
 
-import classes from "../styles.module.scss";
+import classes from '../styles.module.scss';
 
-import { useClickOutside, useDisclosure, useHover } from "@mantine/hooks";
-import { useHomepageStore, type IShortcut } from "@store/homepage";
-import ShortcutEdit from "./ShortcutEdit";
-import ShortcutMenu from "./ShortcutMenu";
-import { useFaviconAPI } from "src/api/favicon";
-import clsx from "clsx";
-import ShortcutGroupMenu from "./ShortcutGroupMenu";
-import React, { useState } from "react";
+import { useClickOutside, useDisclosure, useHover } from '@mantine/hooks';
+import { useHomepageStore, type IShortcut } from '@store/homepage';
+import ShortcutEdit from './ShortcutEdit';
+import ShortcutMenu from './ShortcutMenu';
+import { useFaviconAPI } from 'src/api/favicon';
+import clsx from 'clsx';
+import ShortcutGroupMenu from './ShortcutGroupMenu';
+import React, { useState } from 'react';
 
 interface Props extends IShortcut {
   idx: number;
@@ -32,11 +32,11 @@ const ShortcutGroup: React.FC<Props> = ({ title, items, idx }) => {
 
   const openInNewTab = useHomepageStore((state) => state.openInNewTab);
 
-  const anchorTarget: React.HTMLAttributeAnchorTarget = openInNewTab ? "_blank" : "_self";
+  const anchorTarget: React.HTMLAttributeAnchorTarget = openInNewTab ? '_blank' : '_self';
 
   return (
     <>
-      <Flex ref={hoverRef} className={classes.group_container} direction="column">
+      <Flex ref={hoverRef} className={classes.group_container} direction='column'>
         {!isExpanded && (
           <ShortcutGroupMenu
             hovered={hovered}
@@ -57,38 +57,38 @@ const ShortcutGroup: React.FC<Props> = ({ title, items, idx }) => {
           <SimpleGrid cols={items.length === 1 ? 1 : 2}>
             {items?.map((shotrcut, i) => {
               const { href, imgUrl } = shotrcut;
-              const fullUrl = href?.includes("https") ? href : `https://${href}`;
-              const stripUrl = href?.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, "$1");
+              const fullUrl = href?.includes('https') ? href : `https://${href}`;
+              const stripUrl = href?.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, '$1');
 
               return isExpanded ? (
                 <Anchor
                   key={i}
                   href={fullUrl}
                   target={anchorTarget}
-                  rel="noreferrer noopener"
-                  pos="relative"
+                  rel='noreferrer noopener'
+                  pos='relative'
                 >
                   <Image
                     className={classes.group_image}
-                    src={imgUrl ? imgUrl : getFaviconUrl(stripUrl || "", "favicone")}
-                    alt="Shortcut icon"
-                    radius="sm"
+                    src={imgUrl ? imgUrl : getFaviconUrl(stripUrl || '', 'favicone')}
+                    alt='Shortcut icon'
+                    radius='sm'
                   />
                 </Anchor>
               ) : (
                 <Image
                   key={i}
                   className={classes.group_image}
-                  src={imgUrl ? imgUrl : getFaviconUrl(stripUrl || "", "favicone")}
-                  alt="Shortcut icon"
-                  radius="sm"
+                  src={imgUrl ? imgUrl : getFaviconUrl(stripUrl || '', 'favicone')}
+                  alt='Shortcut icon'
+                  radius='sm'
                 />
               );
             })}
           </SimpleGrid>
         </UnstyledButton>
 
-        <Text size="sm" fw="bold" mt={8} ta="center" truncate="end">
+        <Text size='sm' fw='bold' mt={8} ta='center' truncate='end'>
           {title}
         </Text>
       </Flex>
@@ -99,10 +99,10 @@ const ShortcutGroup: React.FC<Props> = ({ title, items, idx }) => {
           onClose={toggleModal}
           title={
             editItem.items.length > 0 && editItem.title
-              ? "Edit group"
-              : editItem.type === "item"
-              ? "Edit shortcut"
-              : "Add shortcut"
+              ? 'Edit group'
+              : editItem.type === 'item'
+                ? 'Edit shortcut'
+                : 'Add shortcut'
           }
         >
           <ShortcutEdit
@@ -111,10 +111,10 @@ const ShortcutGroup: React.FC<Props> = ({ title, items, idx }) => {
             idx={idx}
             type={
               editItem.items.length > 0 && editItem.title
-                ? "edit"
-                : editItem.type === "item"
-                ? "edit"
-                : "add"
+                ? 'edit'
+                : editItem.type === 'item'
+                  ? 'edit'
+                  : 'add'
             }
           />
         </Modal>

@@ -1,9 +1,9 @@
-import { Flex, ScrollArea, Space } from "@mantine/core";
-import MessageUser from "./components/MessageUser";
-import MessageBot from "./components/MessageBot";
+import { Flex, ScrollArea, Space } from '@mantine/core';
+import MessageUser from './components/MessageUser';
+import MessageBot from './components/MessageBot';
 
-import classes from "./styles.module.scss";
-import { useAIChatStore } from "@store/aichat";
+import classes from './styles.module.scss';
+import { useAIChatStore } from '@store/aichat';
 
 // interface Props {}
 
@@ -11,13 +11,13 @@ const ChatMessages = () => {
   const messages = useAIChatStore((state) => state.chat);
 
   return (
-    <ScrollArea className={classes.scroll_area} type="never">
-      <Flex className={classes.messages} direction="column">
+    <ScrollArea className={classes.scroll_area} type='never'>
+      <Flex className={classes.messages} direction='column'>
         <Space h={20} />
         <Space h={70} />
 
         {messages.map((item, i) => {
-          if (item.role === "user") {
+          if (item.role === 'user') {
             return <MessageUser key={i} content={item.content} />;
           } else {
             return <MessageBot key={i} content={item.content} />;

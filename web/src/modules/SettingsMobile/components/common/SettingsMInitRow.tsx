@@ -1,9 +1,9 @@
-import { Flex, Text } from "@mantine/core";
-import type { DotNestedKeys, ITranslations } from "@ts/global.types";
+import { Flex, Text } from '@mantine/core';
+import type { DotNestedKeys, ITranslations } from '@ts/global.types';
 
-import classes from "./styles.module.scss";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { IconChevronRight } from "@tabler/icons-react";
+import classes from './styles.module.scss';
+import { useTranslate } from '@hooks/translate/use-translate';
+import { IconChevronRight } from '@tabler/icons-react';
 
 interface Props {
   icon?: React.ReactNode;
@@ -17,15 +17,15 @@ const SettingsMInitRow: React.FC<Props> = ({ icon, desc, onClick }) => {
   return (
     <Flex
       onClick={onClick}
-      w="100%"
+      w='100%'
       className={classes.settings_m_init_row}
-      px="lg"
-      justify="space-between"
+      px='lg'
+      justify='space-between'
     >
-      <Flex align="center" gap="sm">
+      <Flex align='center' gap='sm'>
         {icon && icon}
 
-        <Text size="md" fw={400}>
+        <Text size='md' fw={400}>
           {t(desc)}
         </Text>
       </Flex>

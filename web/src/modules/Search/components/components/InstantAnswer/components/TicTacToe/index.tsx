@@ -1,26 +1,26 @@
-import { useState } from "react";
-import { IAWrapper } from "../../wrapper";
-import { ActionIcon, Center, Flex, Overlay, Paper, SimpleGrid } from "@mantine/core";
-import classes from "./styles.module.scss";
-import { IconCircle, IconReload, IconX } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+import { useState } from 'react';
+import { IAWrapper } from '../../wrapper';
+import { ActionIcon, Center, Flex, Overlay, Paper, SimpleGrid } from '@mantine/core';
+import classes from './styles.module.scss';
+import { IconCircle, IconReload, IconX } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
 
 interface Props {
   withIAWrapper: boolean;
 }
 
-type Player = "X" | "O";
+type Player = 'X' | 'O';
 type BoardState = (Player | null)[];
 
 const IATicTacToe: React.FC<Props> = ({ withIAWrapper }) => {
   const [board, setBoard] = useState<BoardState>(Array(9).fill(null));
-  const [winner, setWinner] = useState<Player | "Draw" | null>(null);
-  const [nextMove, setNextMove] = useState<Player | null>("X");
+  const [winner, setWinner] = useState<Player | 'Draw' | null>(null);
+  const [nextMove, setNextMove] = useState<Player | null>('X');
 
-  const PLAYER_1: Player = "X";
-  const PLAYER_2: Player = "O";
+  const PLAYER_1: Player = 'X';
+  const PLAYER_2: Player = 'O';
 
-  const checkWinner = (squares: BoardState): Player | "Draw" | null => {
+  const checkWinner = (squares: BoardState): Player | 'Draw' | null => {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -39,7 +39,7 @@ const IATicTacToe: React.FC<Props> = ({ withIAWrapper }) => {
     }
 
     if (squares.every((square) => square !== null)) {
-      return "Draw";
+      return 'Draw';
     }
 
     return null;
@@ -82,18 +82,18 @@ const IATicTacToe: React.FC<Props> = ({ withIAWrapper }) => {
     if (gameWinner) {
       setWinner(gameWinner);
     } else {
-      setNextMove(nextMove === "X" ? "O" : "X");
+      setNextMove(nextMove === 'X' ? 'O' : 'X');
     }
   };
 
   const resetGame = () => {
     setBoard(Array(9).fill(null));
-    setNextMove("X");
+    setNextMove('X');
     setWinner(null);
   };
 
   const getStatus = () => {
-    if (winner === "Draw") return "It's a draw!";
+    if (winner === 'Draw') return "It's a draw!";
     if (winner) return `${winner} wins!`;
     return `Your turn ${nextMove}`;
   };
@@ -106,24 +106,24 @@ const IATicTacToe: React.FC<Props> = ({ withIAWrapper }) => {
             key={index}
             onClick={() => handleClick(index)}
             className={classes.field}
-            radius="md"
+            radius='md'
             withBorder
             // disabled={!!value || !!winner || !isHumanTurn}
           >
-            {value === "X" ? (
+            {value === 'X' ? (
               <IconX style={getIconStyle(40)} />
-            ) : value === "O" ? (
+            ) : value === 'O' ? (
               <IconCircle style={getIconStyle(40)} />
             ) : (
-              ""
+              ''
             )}
           </Paper>
         ))}
         {winner ? (
-          <Overlay radius="md">
-            <Center h="100%">
-              <Flex direction="column" align="center">
-                <ActionIcon size="xl" onClick={resetGame}>
+          <Overlay radius='md'>
+            <Center h='100%'>
+              <Flex direction='column' align='center'>
+                <ActionIcon size='xl' onClick={resetGame}>
                   <IconReload />
                 </ActionIcon>
               </Flex>

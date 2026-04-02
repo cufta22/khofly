@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { IAWrapper } from "../../wrapper";
+import { useEffect, useState } from 'react';
+import { IAWrapper } from '../../wrapper';
 import {
   ActionIcon,
   Button,
@@ -9,28 +9,20 @@ import {
   Paper,
   RingProgress,
   Text,
-} from "@mantine/core";
-import {
-  IconCheck,
-  IconPlayerPauseFilled,
-  IconPlayerPlayFilled,
-} from "@tabler/icons-react";
+} from '@mantine/core';
+import { IconCheck, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 
-import classes from "./styles.module.scss";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import clsx from "clsx";
-import { useInterval } from "@mantine/hooks";
+import classes from './styles.module.scss';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import clsx from 'clsx';
+import { useInterval } from '@mantine/hooks';
 
-const getTotalSeconds = (time: {
-  hour: number;
-  minute: number;
-  second: number;
-}) => {
+const getTotalSeconds = (time: { hour: number; minute: number; second: number }) => {
   return time.second + time.minute * 60 + time.hour * 60 * 60;
 };
 
 const formatOutput = (no: number) => {
-  return no.toLocaleString("en-US", {
+  return no.toLocaleString('en-US', {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
@@ -80,10 +72,7 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
     // return () => stop();
   }, [time]);
 
-  const handleChangeSeconds = (
-    val: number,
-    key: "hour" | "minute" | "second"
-  ) => {
+  const handleChangeSeconds = (val: number, key: 'hour' | 'minute' | 'second') => {
     setInitialTime({ ...initialTime, [key]: val || 0 });
     setTime({ ...time, [key]: val || 0 });
   };
@@ -111,11 +100,11 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
         className={clsx(classes.paper_base, {
           [classes.paper_finished]: isFinished,
         })}
-        p="md"
-        radius="sm"
+        p='md'
+        radius='sm'
         withBorder
       >
-        <Flex align="center" justify="flex-start" direction="row">
+        <Flex align='center' justify='flex-start' direction='row'>
           <RingProgress
             size={120}
             thickness={8}
@@ -125,30 +114,25 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
             }}
             sections={[
               {
-                value: remainingPercentage(
-                  getTotalSeconds(time),
-                  getTotalSeconds(initialTime)
-                ),
+                value: remainingPercentage(getTotalSeconds(time), getTotalSeconds(initialTime)),
                 color: !isStarted
-                  ? "transparent"
+                  ? 'transparent'
                   : isFinished
-                  ? "green"
-                  : !active
-                  ? "dark.3"
-                  : "green",
+                    ? 'green'
+                    : !active
+                      ? 'dark.3'
+                      : 'green',
               },
             ]}
             label={
               <Center
                 className={classes.action_button}
-                onClick={
-                  isFinished ? handleReset : active ? handlePause : handlePlay
-                }
+                onClick={isFinished ? handleReset : active ? handlePause : handlePlay}
               >
                 <ActionIcon
-                  color={isFinished ? "teal" : active ? "gray" : "teal"}
-                  variant="light"
-                  radius="50%"
+                  color={isFinished ? 'teal' : active ? 'gray' : 'teal'}
+                  variant='light'
+                  radius='50%'
                   size={70}
                 >
                   {isFinished ? (
@@ -164,60 +148,49 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
           />
 
           {active || isFinished || isStarted ? (
-            <Flex align="flex-end">
+            <Flex align='flex-end'>
               <Text fz={42}>{formatOutput(time.hour)}:</Text>
               <Text fz={42}>{formatOutput(time.minute)}</Text>
-              <Text fz={24} c="dimmed" ml={2} mb={6}>
+              <Text fz={24} c='dimmed' ml={2} mb={6}>
                 {formatOutput(time.second)}
               </Text>
             </Flex>
           ) : (
-            <Flex gap="sm">
+            <Flex gap='sm'>
               <NumberInput
                 value={time.hour}
-                onChange={(val) =>
-                  handleChangeSeconds(parseInt(`${val}`), "hour")
-                }
+                onChange={(val) => handleChangeSeconds(parseInt(`${val}`), 'hour')}
                 w={50}
                 max={59}
-                placeholder="HH"
+                placeholder='HH'
                 hideControls
-                label="HH"
+                label='HH'
               />
 
               <NumberInput
                 value={time.minute}
-                onChange={(val) =>
-                  handleChangeSeconds(parseInt(`${val}`), "minute")
-                }
+                onChange={(val) => handleChangeSeconds(parseInt(`${val}`), 'minute')}
                 w={50}
                 max={59}
-                placeholder="MM"
+                placeholder='MM'
                 hideControls
-                label="MM"
+                label='MM'
               />
 
               <NumberInput
                 value={time.second}
-                onChange={(val) =>
-                  handleChangeSeconds(parseInt(`${val}`), "second")
-                }
+                onChange={(val) => handleChangeSeconds(parseInt(`${val}`), 'second')}
                 w={50}
                 max={59}
-                placeholder="SS"
+                placeholder='SS'
                 hideControls
-                label="SS"
+                label='SS'
               />
             </Flex>
           )}
 
           {!active && isStarted && (
-            <Button
-              className={classes.reset_btn}
-              size="xs"
-              variant="default"
-              onClick={handleReset}
-            >
+            <Button className={classes.reset_btn} size='xs' variant='default' onClick={handleReset}>
               Reset
             </Button>
           )}

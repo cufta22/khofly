@@ -3,10 +3,7 @@
 }
 
 .drawer_header {
-  background-color: light-dark(
-    var(--mantine-color-gray-2),
-    var(--mantine-color-dark-9)
-  );
+  background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-9));
 
   padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
 }

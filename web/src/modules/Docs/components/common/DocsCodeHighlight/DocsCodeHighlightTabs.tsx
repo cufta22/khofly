@@ -1,4 +1,4 @@
-import "highlight.js/styles/tokyo-night-dark.css";
+import 'highlight.js/styles/tokyo-night-dark.css';
 // import "highlight.js/styles/github.css";
 
 import {
@@ -15,32 +15,32 @@ import {
   createVarsResolver,
   rem,
   useProps,
-} from "@mantine/core";
-import { useUncontrolled } from "@mantine/hooks";
-import { FileIcon } from "./FileIcon";
-import { ExpandIcon } from "./ExpandIcon";
-import { CopyIcon } from "./CopyIcon";
+} from '@mantine/core';
+import { useUncontrolled } from '@mantine/hooks';
+import { FileIcon } from './FileIcon';
+import { ExpandIcon } from './ExpandIcon';
+import { CopyIcon } from './CopyIcon';
 
-import clsx from "clsx";
-import classes from "./styles.module.scss";
-import themeClasses from "./theme.module.scss";
-import hljs from "./hljs";
+import clsx from 'clsx';
+import classes from './styles.module.scss';
+import themeClasses from './theme.module.scss';
+import hljs from './hljs';
 
 export type CodeHighlightTabsStylesNames =
-  | "root"
-  | "code"
-  | "codeWrapper"
-  | "showCodeButton"
-  | "pre"
-  | "controls"
-  | "control"
-  | "header"
-  | "file"
-  | "files"
-  | "fileIcon";
+  | 'root'
+  | 'code'
+  | 'codeWrapper'
+  | 'showCodeButton'
+  | 'pre'
+  | 'controls'
+  | 'control'
+  | 'header'
+  | 'file'
+  | 'files'
+  | 'fileIcon';
 
 export type CodeHighlightTabsCssVariables = {
-  root: "--ch-max-collapsed-height";
+  root: '--ch-max-collapsed-height';
 };
 
 export interface CodeHighlightTabsCode {
@@ -51,9 +51,7 @@ export interface CodeHighlightTabsCode {
 }
 
 export interface CodeHighlightTabsProps
-  extends BoxProps,
-    StylesApiProps<CodeHighlightTabsFactory>,
-    ElementProps<"div"> {
+  extends BoxProps, StylesApiProps<CodeHighlightTabsFactory>, ElementProps<'div'> {
   code: CodeHighlightTabsCode | CodeHighlightTabsCode[];
   defaultActiveTab?: number;
   activeTab?: number;
@@ -62,7 +60,7 @@ export interface CodeHighlightTabsProps
   copyLabel?: string;
   copiedLabel?: string;
   getFileIcon?: (fileName: string) => React.ReactNode;
-  maxCollapsedHeight?: React.CSSProperties["maxHeight"];
+  maxCollapsedHeight?: React.CSSProperties['maxHeight'];
   expanded?: boolean;
   defaultExpanded?: boolean;
   onExpandedChange?: (expanded: boolean) => void;
@@ -80,20 +78,20 @@ export type CodeHighlightTabsFactory = Factory<{
 
 const defaultProps: Partial<CodeHighlightTabsProps> = {
   withHeader: true,
-  copyLabel: "Copy code",
-  copiedLabel: "Copied",
-  maxCollapsedHeight: rem("8rem"),
-  expandCodeLabel: "Expand code",
-  collapseCodeLabel: "Collapse code",
+  copyLabel: 'Copy code',
+  copiedLabel: 'Copied',
+  maxCollapsedHeight: rem('8rem'),
+  expandCodeLabel: 'Expand code',
+  collapseCodeLabel: 'Collapse code',
   withCopyButton: true,
 };
 
 const varsResolver = createVarsResolver<CodeHighlightTabsFactory>((_, { maxCollapsedHeight }) => ({
-  root: { "--ch-max-collapsed-height": rem(maxCollapsedHeight) },
+  root: { '--ch-max-collapsed-height': rem(maxCollapsedHeight) },
 }));
 
 const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
-  const props = useProps("CodeHighlightTabs", defaultProps, _props);
+  const props = useProps('CodeHighlightTabs', defaultProps, _props);
   const {
     classNames,
     className,
@@ -140,7 +138,7 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
   const currentCode = nodes[value];
 
   const highlighted = hljs.highlight(currentCode.code.trim(), {
-    language: currentCode.language || "bash",
+    language: currentCode.language || 'bash',
   }).value;
 
   const files = nodes.map((node, index) => (
@@ -164,24 +162,24 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
     <Box
       mod={[{ collapsed: !_expanded }, mod]}
       {...others}
-      dir="ltr"
+      dir='ltr'
       className={clsx(classes.root, themeClasses.theme)}
     >
       {withHeader && (
         <div className={classes.docs_header}>
-          <ScrollArea type="never" dir="ltr" offsetScrollbars={false}>
+          <ScrollArea type='never' dir='ltr' offsetScrollbars={false}>
             <div className={classes.files}>{files}</div>
           </ScrollArea>
           <div className={classes.controls}>
             {withExpandButton && (
               <Tooltip
                 label={_expanded ? collapseCodeLabel : expandCodeLabel}
-                fz="sm"
-                position="left"
+                fz='sm'
+                position='left'
               >
                 <ActionIcon
                   onClick={() => setExpanded(!_expanded)}
-                  variant="none"
+                  variant='none'
                   aria-label={_expanded ? collapseCodeLabel : expandCodeLabel}
                   className={classes.control}
                 >
@@ -193,10 +191,10 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
             {withCopyButton && (
               <CopyButton value={currentCode.code.trim()}>
                 {({ copied, copy }) => (
-                  <Tooltip label={copied ? copiedLabel : copyLabel} fz="sm" position="left">
+                  <Tooltip label={copied ? copiedLabel : copyLabel} fz='sm' position='left'>
                     <ActionIcon
                       onClick={copy}
-                      variant="transparent"
+                      variant='transparent'
                       className={classes.control}
                       aria-label={copied ? copiedLabel : copyLabel}
                     >
@@ -210,7 +208,7 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
         </div>
       )}
 
-      <ScrollArea type="auto" dir="ltr" offsetScrollbars={false}>
+      <ScrollArea type='auto' dir='ltr' offsetScrollbars={false}>
         <Box className={classes.codeWrapper} mod={{ expanded: _expanded }}>
           <pre className={classes.pre}>
             <code className={classes.code} dangerouslySetInnerHTML={{ __html: highlighted }} />

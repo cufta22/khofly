@@ -2,7 +2,7 @@ export const convertCurrency = (
   amount: number,
   from: string,
   to: string,
-  rates: { [key in string]: number }
+  rates: { [key in string]: number },
 ) => {
   // Check if converting from the same currency
   if (from === to) {

@@ -1,35 +1,35 @@
-import { useEffect } from "react";
-import { Center, Flex, Stack, Text } from "@mantine/core";
+import { useEffect } from 'react';
+import { Center, Flex, Stack, Text } from '@mantine/core';
 
-import classes from "./styles.module.scss";
-import ScrollToTop from "../../../../common/components/ScrollToTop";
-import useSearXNGSWR from "src/api/searxng/use-searxng-query";
-import Suggestions from "../components/Suggestions";
-import Infobox from "../components/Infobox";
-import SearchOptions from "../components/SearchOptions";
-import { useEnginesStore } from "@store/engines";
-import UnresponsiveInfobox from "../components/UnresponsiveInfobox";
-import { ICategories } from "@store/settings";
+import classes from './styles.module.scss';
+import ScrollToTop from '../../../../common/components/ScrollToTop';
+import useSearXNGSWR from 'src/api/searxng/use-searxng-query';
+import Suggestions from '../components/Suggestions';
+import Infobox from '../components/Infobox';
+import SearchOptions from '../components/SearchOptions';
+import { useEnginesStore } from '@store/engines';
+import UnresponsiveInfobox from '../components/UnresponsiveInfobox';
+import type { ICategories } from '@store/settings';
 import type {
   ISearXNGResultsGeneral,
   ISearXNGResultsImages,
   ISearXNGResultsShared,
   ISearXNGResultsVideos,
-} from "@ts/searxng.types";
-import Lyricsbox from "../components/Lyricsbox";
+} from '@ts/searxng.types';
+import Lyricsbox from '../components/Lyricsbox';
 
-import AISummary from "../components/AISummary";
-import { useCurrentDomains } from "./hooks/use-current-domains";
-import LayoutGeneral from "./layouts/LayoutGeneral";
-import AIAnswer from "../components/AIAnswer";
-import InstantAnswer from "../components/InstantAnswer";
-import LayoutImages from "./layouts/LayoutImages";
-import clsx from "clsx";
-import LayoutVideos from "./layouts/LayoutVideos";
-import ButtonLoadMore from "./components/ButtonLoadMore";
-import LayoutCommon from "./layouts/LayoutCommon";
-import { type ILoaderData_Search } from "app/routes/search";
-import { useSWRConfig } from "swr";
+import AISummary from '../components/AISummary';
+import { useCurrentDomains } from './hooks/use-current-domains';
+import LayoutGeneral from './layouts/LayoutGeneral';
+import AIAnswer from '../components/AIAnswer';
+import InstantAnswer from '../components/InstantAnswer';
+import LayoutImages from './layouts/LayoutImages';
+import clsx from 'clsx';
+import LayoutVideos from './layouts/LayoutVideos';
+import ButtonLoadMore from './components/ButtonLoadMore';
+import LayoutCommon from './layouts/LayoutCommon';
+import { type ILoaderData_Search } from 'app/routes/search';
+import { useSWRConfig } from 'swr';
 
 interface Props {
   tab: ICategories;
@@ -46,13 +46,13 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
 
   const { cache } = useSWRConfig();
 
-  console.log("Current SWR Keys:", Array.from(cache.keys()));
+  console.log('Current SWR Keys:', Array.from(cache.keys()));
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
     // Run mutate if loaderData ends up empty
     if (!data?.length && hydratedEngines && !loaderData) {
-      console.log("mutate(); called");
+      console.log('mutate(); called');
 
       mutate();
     }
@@ -66,7 +66,7 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
   // -----------------------------------------------------------------------------
   const renderLayout = () => {
     switch (tab) {
-      case "general":
+      case 'general':
         return (
           <LayoutGeneral
             tab={tab}
@@ -74,7 +74,7 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
             showSkeleton={isLoading || isValidating}
           />
         );
-      case "images":
+      case 'images':
         return (
           <LayoutImages
             tab={tab}
@@ -82,7 +82,7 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
             showSkeleton={isLoading || isValidating}
           />
         );
-      case "videos":
+      case 'videos':
         return (
           <LayoutVideos
             tab={tab}
@@ -106,7 +106,7 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
   const isProcessing = isLoading || isValidating;
   const firstPage = data?.[0];
   const hasResults = !!((firstPage?.results?.length ?? 0) > 0);
-  const isRateLimit = data?.includes("Too Many Requests" as any);
+  const isRateLimit = data?.includes('Too Many Requests' as any);
 
   const showSuggestions =
     !isProcessing && !isRateLimit && firstPage && !!firstPage?.suggestions?.length;
@@ -118,79 +118,79 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
   const showLoadMoreButton = !isProcessing && !isRateLimit && firstPage && hasResults;
 
   // Everything but images and videos because of the layout
-  const hasInfoboxes = !["images", "videos"].includes(tab);
+  const hasInfoboxes = !['images', 'videos'].includes(tab);
 
   return (
     <Flex
       className={clsx(
         {
           [classes.tab_common]: [
-            "general",
-            "news",
-            "music",
-            "it",
-            "science",
-            "files",
-            "social_media",
+            'general',
+            'news',
+            'music',
+            'it',
+            'science',
+            'files',
+            'social_media',
           ].includes(tab),
         },
-        { [classes.tab_images]: tab === "images" },
-        { [classes.tab_videos]: tab === "videos" },
+        { [classes.tab_images]: tab === 'images' },
+        { [classes.tab_videos]: tab === 'videos' },
       )}
-      align="flex-start"
+      align='flex-start'
     >
       {/* Search results */}
       <Stack
         className={classes.stack}
-        py={["images", "videos"].includes(tab) ? 0 : "xl"}
-        gap={["images", "videos"].includes(tab) ? 0 : "md"}
+        py={['images', 'videos'].includes(tab) ? 0 : 'xl'}
+        gap={['images', 'videos'].includes(tab) ? 0 : 'md'}
       >
         {/* Search Options */}
         <SearchOptions
           className={clsx(
             {
               [classes.search_options_common]: [
-                "general",
-                "news",
-                "music",
-                "it",
-                "science",
-                "files",
-                "social_media",
+                'general',
+                'news',
+                'music',
+                'it',
+                'science',
+                'files',
+                'social_media',
               ].includes(tab),
             },
-            { [classes.search_options_images]: tab === "images" },
-            { [classes.search_options_videos]: tab === "videos" },
+            { [classes.search_options_images]: tab === 'images' },
+            { [classes.search_options_videos]: tab === 'videos' },
           )}
         />
 
         {/* AI Answer, optional */}
-        {["general"].includes(tab) && <AIAnswer />}
+        {['general'].includes(tab) && <AIAnswer />}
 
         {/* Instant Answer, optional */}
-        {["general"].includes(tab) && <InstantAnswer />}
+        {['general'].includes(tab) && <InstantAnswer />}
 
         {/* Layout based on current tab */}
         {renderLayout()}
 
         {showSuggestions ? (
-          <Suggestions suggestions={data?.[0]?.suggestions} type="search" />
+          <Suggestions suggestions={data?.[0]?.suggestions} type='search' />
         ) : null}
 
         {error && (
-          <Text ta="center" py="xs">
+          <Text ta='center' py='xs'>
             An error has occurred
           </Text>
         )}
 
         {isRateLimit && (
-          <Text ta="center" py="xs">
+          <Text ta='center' py='xs'>
             Too Many Requests
           </Text>
         )}
 
         {showNoResults && (
-          <Text ta="center" py="xs">
+          <Text ta='center' py='xs'>
             No results, try with different query
           </Text>
         )}
@@ -202,7 +202,7 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
 
       {/* Infoboxes */}
       {hasInfoboxes && (
-        <Flex direction="column" gap="xl" pt="xl">
+        <Flex direction='column' gap='xl' pt='xl'>
           {showInfoboxes && <Infobox {...data[0].infoboxes[0]} />}
 
           {<Lyricsbox />}
@@ -214,7 +214,7 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
       )}
 
       {/* AI Summary */}
-      {["general"].includes(tab) && <AISummary />}
+      {['general'].includes(tab) && <AISummary />}
     </Flex>
   );
 };

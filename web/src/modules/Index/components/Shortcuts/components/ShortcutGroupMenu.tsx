@@ -1,6 +1,6 @@
-import { ActionIcon, Menu } from "@mantine/core";
-import React from "react";
-import classes from "../styles.module.scss";
+import { ActionIcon, Menu } from '@mantine/core';
+import React from 'react';
+import classes from '../styles.module.scss';
 import {
   IconDots,
   IconEdit,
@@ -9,17 +9,18 @@ import {
   IconSquare,
   IconSquareOff,
   IconTrash,
-} from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { IShortcut, useHomepageStore } from "@store/homepage";
-import { GroupEditItem } from "./ShortcutGroup";
+} from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import type { IShortcut} from '@store/homepage';
+import { useHomepageStore } from '@store/homepage';
+import type { GroupEditItem } from './ShortcutGroup';
 
 interface Props {
   openMenu: boolean;
   toggleMenu: () => void;
   toggleModal: () => void;
   hovered: boolean;
-  items: IShortcut["items"];
+  items: IShortcut['items'];
   setEditItem: (item: GroupEditItem) => void;
   idx: number;
 }
@@ -59,7 +60,7 @@ const ShortcutGroupMenu: React.FC<Props> = ({
       if (i === idx) {
         const groupItem = sc?.items?.[0];
         return {
-          type: "item",
+          type: 'item',
           title: groupItem.title,
           href: groupItem.href,
           imgUrl: groupItem.imgUrl,
@@ -79,10 +80,10 @@ const ShortcutGroupMenu: React.FC<Props> = ({
     if (!items) return;
 
     setEditItem({
-      type: "group",
-      title: "",
-      href: "",
-      imgUrl: "",
+      type: 'group',
+      title: '',
+      href: '',
+      imgUrl: '',
       items: items,
     });
     toggleModal();
@@ -123,7 +124,7 @@ const ShortcutGroupMenu: React.FC<Props> = ({
   };
 
   return (
-    <Menu opened={openMenu} onChange={toggleMenu} shadow="md" width={200} position="bottom-start">
+    <Menu opened={openMenu} onChange={toggleMenu} shadow='md' width={200} position='bottom-start'>
       <Menu.Target>
         {hovered || openMenu ? (
           <ActionIcon
@@ -133,8 +134,8 @@ const ShortcutGroupMenu: React.FC<Props> = ({
               toggleMenu();
             }}
             className={classes.group_actions}
-            size="sm"
-            variant="transparent"
+            size='sm'
+            variant='transparent'
           >
             <IconDots />
           </ActionIcon>
@@ -146,7 +147,7 @@ const ShortcutGroupMenu: React.FC<Props> = ({
       <Menu.Dropdown>
         {items.length < 4 && (
           <Menu.Item
-            fz="xs"
+            fz='xs'
             leftSection={<IconPlus style={getIconStyle(14)} />}
             onClick={handleAddItem}
           >
@@ -154,16 +155,16 @@ const ShortcutGroupMenu: React.FC<Props> = ({
           </Menu.Item>
         )}
         <Menu.Item
-          fz="xs"
+          fz='xs'
           leftSection={<IconEdit style={getIconStyle(14)} />}
           onClick={handleEditGroup}
         >
           Edit Group
         </Menu.Item>
         <Menu.Item
-          fz="xs"
+          fz='xs'
           leftSection={<IconTrash style={getIconStyle(14)} />}
-          color="red"
+          color='red'
           onClick={handleDeleteGroup}
         >
           Delete Group
@@ -171,7 +172,7 @@ const ShortcutGroupMenu: React.FC<Props> = ({
 
         {items.length === 1 && (
           <Menu.Item
-            fz="xs"
+            fz='xs'
             leftSection={<IconSquareOff style={getIconStyle(14)} />}
             onClick={handleUngroup}
           >
@@ -189,16 +190,16 @@ const ShortcutGroupMenu: React.FC<Props> = ({
 
             <Menu.Sub.Dropdown>
               <Menu.Item
-                fz="xs"
+                fz='xs'
                 leftSection={<IconEdit style={getIconStyle(14)} />}
                 onClick={() => handleEditItem(i)}
               >
                 Edit
               </Menu.Item>
               <Menu.Item
-                fz="xs"
+                fz='xs'
                 leftSection={<IconTrash style={getIconStyle(14)} />}
-                color="red"
+                color='red'
                 onClick={() => handleDeleteItem(i)}
               >
                 Delete

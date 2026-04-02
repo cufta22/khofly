@@ -1,7 +1,7 @@
-import { Button } from "@mantine/core";
-import { COOL_WEBSITES } from "./data";
-import { cryptoRandomNumber } from "@utils/functions/cryptoRandomNumber";
-import { useTranslate } from "@hooks/translate/use-translate";
+import { Button } from '@mantine/core';
+import { COOL_WEBSITES } from './data';
+import { cryptoRandomNumber } from '@utils/functions/cryptoRandomNumber';
+import { useTranslate } from '@hooks/translate/use-translate';
 
 const ButtonRandomSite = () => {
   const t = useTranslate();
@@ -16,11 +16,11 @@ const ButtonRandomSite = () => {
 
   return (
     <Button
-      variant="gradient"
-      gradient={{ from: "grape", to: "violet", deg: 90 }}
+      variant='gradient'
+      gradient={{ from: 'grape', to: 'violet', deg: 90 }}
       onClick={handleOpenCoolWebiste}
     >
-      {t("pages.index.surprise_me")}
+      {t('pages.index.surprise_me')}
     </Button>
   );
 };

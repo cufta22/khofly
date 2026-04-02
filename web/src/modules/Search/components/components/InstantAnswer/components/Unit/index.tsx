@@ -1,4 +1,4 @@
-import { IAWrapper } from "../../wrapper";
+import { IAWrapper } from '../../wrapper';
 import {
   ActionIcon,
   Center,
@@ -8,12 +8,12 @@ import {
   ScrollArea,
   SegmentedControl,
   Select,
-} from "@mantine/core";
+} from '@mantine/core';
 
-import classes from "./styles.module.scss";
-import { IconSwitchHorizontal } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-import { convertUnit } from "./utils";
+import classes from './styles.module.scss';
+import { IconSwitchHorizontal } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { convertUnit } from './utils';
 import {
   KEYWORDS_UNITS_ALL_MAP,
   KEYWORDS_UNITS_ANGLE,
@@ -23,7 +23,7 @@ import {
   KEYWORDS_UNITS_TEMPERATURE,
   KEYWORDS_UNITS_TIME,
   KEYWORDS_UNITS_VOLUME,
-} from "../../_utils/keywords_units";
+} from '../../_utils/keywords_units';
 
 const TYPE_TO_UNITS = {
   length: KEYWORDS_UNITS_LENGTH,
@@ -35,14 +35,7 @@ const TYPE_TO_UNITS = {
   temperature: KEYWORDS_UNITS_TEMPERATURE,
 };
 
-export type UnitsType =
-  | "length"
-  | "area"
-  | "volume"
-  | "angle"
-  | "time"
-  | "mass"
-  | "temperature";
+export type UnitsType = 'length' | 'area' | 'volume' | 'angle' | 'time' | 'mass' | 'temperature';
 
 interface Props {
   withIAWrapper: boolean;
@@ -61,18 +54,18 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
   });
 
   const handleChangeInput = (val: string | number) => {
-    const numVal = typeof val === "number" ? val : parseFloat(val);
+    const numVal = typeof val === 'number' ? val : parseFloat(val);
     const res = convertUnit(numVal, state.from, state.to, state.type);
 
     setState((s) => ({ ...s, input: numVal, result: res }));
   };
 
-  const handleChangeUnit = (val: string, field: "from" | "to") => {
+  const handleChangeUnit = (val: string, field: 'from' | 'to') => {
     const res = convertUnit(
       state.input,
-      field === "from" ? val : state.from,
-      field === "to" ? val : state.to,
-      state.type
+      field === 'from' ? val : state.from,
+      field === 'to' ? val : state.to,
+      state.type,
     );
 
     setState((s) => ({ ...s, [field]: val, result: res }));
@@ -106,11 +99,11 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
 
   const unitComponent = (
     <Center>
-      <Paper className={classes.paper_base} p="md" radius="sm" withBorder>
-        <ScrollArea type="never">
+      <Paper className={classes.paper_base} p='md' radius='sm' withBorder>
+        <ScrollArea type='never'>
           <SegmentedControl
             fullWidth
-            mb="md"
+            mb='md'
             value={state.type}
             onChange={(val) => val && handleChangeType(val as UnitsType)}
             data={Object.keys(KEYWORDS_UNITS_ALL_MAP).map((val) => ({
@@ -120,8 +113,8 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
           />
         </ScrollArea>
 
-        <Flex align="flex-end" justify="space-between" gap="md">
-          <Flex gap="md" direction="column">
+        <Flex align='flex-end' justify='space-between' gap='md'>
+          <Flex gap='md' direction='column'>
             <NumberInput
               value={state.input}
               onChange={handleChangeInput}
@@ -132,7 +125,7 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
             <Select
               withCheckIcon={false}
               value={state.from}
-              onChange={(val) => val && handleChangeUnit(val, "from")}
+              onChange={(val) => val && handleChangeUnit(val, 'from')}
               data={TYPE_TO_UNITS[state.type].map((val) => ({
                 value: val,
                 label: val,
@@ -140,22 +133,17 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
             />
           </Flex>
 
-          <ActionIcon size="lg" variant="subtle" onClick={handleSwapUnits}>
+          <ActionIcon size='lg' variant='subtle' onClick={handleSwapUnits}>
             <IconSwitchHorizontal />
           </ActionIcon>
 
-          <Flex gap="md" direction="column">
-            <NumberInput
-              value={state.result}
-              rightSection={<></>}
-              rightSectionWidth={0}
-              readOnly
-            />
+          <Flex gap='md' direction='column'>
+            <NumberInput value={state.result} rightSection={<></>} rightSectionWidth={0} readOnly />
 
             <Select
               withCheckIcon={false}
               value={state.to}
-              onChange={(val) => val && handleChangeUnit(val, "to")}
+              onChange={(val) => val && handleChangeUnit(val, 'to')}
               data={TYPE_TO_UNITS[state.type].map((val) => ({
                 value: val,
                 label: val,

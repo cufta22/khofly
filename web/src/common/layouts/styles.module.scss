@@ -1,5 +1,5 @@
-@use "variables" as vars;
-@use "functions" as func;
+@use 'variables' as vars;
+@use 'functions' as func;
 
 .app_root {
   // height: 100%;
@@ -50,7 +50,7 @@
 
   &.app_footer_opacity {
     // background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7));
-    background-color: color-mix(in srgb, var(--mantine-color-dark-7), transparent 50%);
+    background-color: color-mix(in srgb, var(--mantine-color-dark-7), transparent 20%);
   }
 
   // Scale on small devices

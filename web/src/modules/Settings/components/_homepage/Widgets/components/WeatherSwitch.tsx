@@ -1,5 +1,5 @@
-import { Switch } from "@mantine/core";
-import { useHomepageStore } from "@store/homepage";
+import { Switch } from '@mantine/core';
+import { useHomepageStore } from '@store/homepage';
 
 const WeatherSwitch = () => {
   const displayWeather = useHomepageStore((state) => state.displayWeather);

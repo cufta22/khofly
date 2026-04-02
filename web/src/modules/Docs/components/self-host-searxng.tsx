@@ -1,14 +1,14 @@
-import { Blockquote, Code, Container, List, Paper, Text, useMantineTheme } from "@mantine/core";
-import { IconFile } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import DocsLink from "./common/DocsLink";
-import DocsTitle from "./common/DocsTitle";
-import DocsText from "./common/DocsText";
-import DocsSubtitle from "./common/DocsSubtitle";
-import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
-import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
-import DocsNextPrev from "./common/DocsNextPrev";
-import { DOCS_CARD_DATA } from "./common/docsCardData";
+import { Blockquote, Code, Container, List, Paper, Text, useMantineTheme } from '@mantine/core';
+import { IconFile } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import DocsLink from './common/DocsLink';
+import DocsTitle from './common/DocsTitle';
+import DocsText from './common/DocsText';
+import DocsSubtitle from './common/DocsSubtitle';
+import DocsCodeHighlightTabs from './common/DocsCodeHighlight/DocsCodeHighlightTabs';
+import DocsCodeHighlight from './common/DocsCodeHighlight/DocsCodeHighlight';
+import DocsNextPrev from './common/DocsNextPrev';
+import { DOCS_CARD_DATA } from './common/docsCardData';
 
 const CODE_SYS_UPDATE = `
 apt update && apt upgrade
@@ -158,10 +158,10 @@ const DocsSelfHostSearxng = () => {
   const theme = useMantineTheme();
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle>Installation guide</DocsTitle>
 
-      <Blockquote color="blue" cite="- https://docs.searxng.org/" mt="xl" radius="sm">
+      <Blockquote color='blue' cite='- https://docs.searxng.org/' mt='xl' radius='sm'>
         SearXNG is a free internet metasearch engine which aggregates results from more than 70
         search services. Users are neither tracked nor profiled. Additionally, SearXNG can be used
         over Tor for online anonymity.
@@ -177,7 +177,10 @@ const DocsSelfHostSearxng = () => {
         <List.Item>
           <Text>
             Khofly utilizes SearXNG
-            <DocsLink href="https://docs.searxng.org/dev/search_api.html" label="/search API" /> to
+            <DocsLink
+              href='https://docs.searxng.org/dev/search_api.html'
+              label='/search API'
+            /> to
             get the results as JSON so we will need to enable - json as output format in
             settings.yml.
           </Text>
@@ -201,20 +204,20 @@ const DocsSelfHostSearxng = () => {
         </List.Item>
       </List>
 
-      <Text mt="md">
+      <Text mt='md'>
         If you&apos;re the only person using your SearXNG instance a basic 5$ VPS will do just fine
       </Text>
 
       <DocsSubtitle>Make sure everything is up to date</DocsSubtitle>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_SYS_UPDATE} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_SYS_UPDATE} language='bash' />
       </Paper>
 
       <DocsSubtitle>Create a new user</DocsSubtitle>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_CREATE_USER} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_CREATE_USER} language='bash' />
       </Paper>
 
       <DocsText>
@@ -225,8 +228,8 @@ const DocsSelfHostSearxng = () => {
 
       <DocsSubtitle>Install dependencies</DocsSubtitle>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_INSTALL_DEPS} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_INSTALL_DEPS} language='bash' />
       </Paper>
 
       <DocsSubtitle>Clone and install SearXNG</DocsSubtitle>
@@ -234,15 +237,15 @@ const DocsSelfHostSearxng = () => {
       <DocsText>
         There are three different methods for installing SearXNG ( manual, installation script,
         docker ), all explained at the
-        <DocsLink href="https://docs.searxng.org/admin/installation.html" label="official wiki" />.
+        <DocsLink href='https://docs.searxng.org/admin/installation.html' label='official wiki' />.
         Here we will use the installation script which automates the manual process. First we need
-        to clone the{" "}
-        <DocsLink href="https://github.com/searxng/searxng" label="SearXNG repository" />. After
+        to clone the{' '}
+        <DocsLink href='https://github.com/searxng/searxng' label='SearXNG repository' />. After
         that is finished, run the installation script.
       </DocsText>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_CLONE_REPO} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_CLONE_REPO} language='bash' />
       </Paper>
 
       <DocsText>
@@ -253,23 +256,23 @@ const DocsSelfHostSearxng = () => {
       <DocsSubtitle>Nginx configuration</DocsSubtitle>
 
       <Blockquote
-        color="yellow"
+        color='yellow'
         // cite="- https://docs.searxng.org/"
-        mt="lg"
-        radius="sm"
+        mt='lg'
+        radius='sm'
       >
-        On Arch check if sites-available and sites-enable directories exist, if not create them ({" "}
+        On Arch check if sites-available and sites-enable directories exist, if not create them ({' '}
         <Code>mkdir sites-available sites-enabled</Code> ) and create the default file inside of
         /sites-available ( <Code>touch default</Code> )
       </Blockquote>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/nginx/sites-available/default",
+              fileName: '/etc/nginx/sites-available/default',
               code: CODE_NGINX_SA_DEFAULT,
-              language: "nginx",
+              language: 'nginx',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -277,22 +280,22 @@ const DocsSelfHostSearxng = () => {
       </Paper>
 
       <Blockquote
-        color="yellow"
+        color='yellow'
         // cite="- https://docs.searxng.org/"
-        mt="lg"
-        radius="sm"
+        mt='lg'
+        radius='sm'
       >
         If your server is behind a Cloudflare proxy you need to adjust X-Real-IP and X-Forwarded-For
         like this
       </Blockquote>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/nginx/sites-available/default",
+              fileName: '/etc/nginx/sites-available/default',
               code: CODE_NGINX_SA_CLOUDFLARE,
-              language: "nginx",
+              language: 'nginx',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -301,13 +304,13 @@ const DocsSelfHostSearxng = () => {
 
       <DocsSubtitle>SearXNG configuration</DocsSubtitle>
 
-      <Blockquote color="green" mt="lg" radius="sm">
+      <Blockquote color='green' mt='lg' radius='sm'>
         Default configuration file for SearXNG is located at /etc/searxng/settings.yml ( read more
         about the different options at the
         <DocsLink
-          href="https://docs.searxng.org/admin/settings/settings.html"
-          label="official wiki"
-        />{" "}
+          href='https://docs.searxng.org/admin/settings/settings.html'
+          label='official wiki'
+        />{' '}
         ), this is an example config and you will want to change the following values:
         <List>
           <List.Item>general.instance_name - to whatever you want ( optional )</List.Item>
@@ -321,19 +324,19 @@ const DocsSelfHostSearxng = () => {
             your instacne as a front-end as well
           </List.Item>
           <List.Item>
-            server.secret - make sure to change to a random key ( ex. run{" "}
+            server.secret - make sure to change to a random key ( ex. run{' '}
             <Code>openssl rand -hex 32</Code> )
           </List.Item>
         </List>
       </Blockquote>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/searxng/settings.yml",
+              fileName: '/etc/searxng/settings.yml',
               code: CODE_SEARXNG_CONFIG,
-              language: "yaml",
+              language: 'yaml',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -342,21 +345,21 @@ const DocsSelfHostSearxng = () => {
 
       <DocsSubtitle>Finalize installation</DocsSubtitle>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_CERTBOT} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_CERTBOT} language='bash' />
       </Paper>
 
       <DocsSubtitle>Maintenance</DocsSubtitle>
 
       <DocsText>How to update</DocsText>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_SEARXNG_UPDATE} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_SEARXNG_UPDATE} language='bash' />
       </Paper>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["siteData"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["selfHostCFWorker"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)['siteData'] }}
+        next={{ ...DOCS_CARD_DATA(theme)['selfHostCFWorker'] }}
       />
     </Container>
   );

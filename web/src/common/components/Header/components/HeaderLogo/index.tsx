@@ -1,8 +1,8 @@
-import RemixLink from "@components/RemixLink";
-import { Burger, Flex, Image, useMantineTheme } from "@mantine/core";
-import classes from "./styles.module.scss";
-import { IconHeart, IconMessage } from "@tabler/icons-react";
-import { useGeneralStore } from "@store/general";
+import RemixLink from '@components/RemixLink';
+import { Burger, Flex, Image, useMantineTheme } from '@mantine/core';
+import classes from './styles.module.scss';
+import { IconHeart, IconMessage } from '@tabler/icons-react';
+import { useGeneralStore } from '@store/general';
 
 interface Props {
   isChat: boolean;
@@ -17,17 +17,17 @@ const HeaderLogo: React.FC<Props> = ({ isChat, isSupport, hasBurger }) => {
   const toggleOpenNavbar = useGeneralStore((state) => state.toggleOpenNavbar);
 
   return (
-    <Flex align="center" gap="md">
+    <Flex align='center' gap='md'>
       {hasBurger && (
         <Burger
           opened={openNavbar}
           onClick={toggleOpenNavbar}
           // hiddenFrom={isChat ? "" : "sm"}
-          size="md"
+          size='md'
         />
       )}
 
-      <RemixLink className={classes.link} to="/">
+      <RemixLink className={classes.link} to='/'>
         {/* <IconTriangleFilled style={getIconStyle(32)} /> */}
 
         {isChat ? (
@@ -35,7 +35,7 @@ const HeaderLogo: React.FC<Props> = ({ isChat, isSupport, hasBurger }) => {
         ) : isSupport ? (
           <IconHeart className={classes.header_logo} color={theme.colors.red[5]} />
         ) : (
-          <Image className={classes.header_logo} src="/assets/logo.svg" />
+          <Image className={classes.header_logo} src='/assets/logo.svg' />
         )}
       </RemixLink>
     </Flex>

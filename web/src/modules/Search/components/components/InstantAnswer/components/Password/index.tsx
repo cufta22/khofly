@@ -1,16 +1,16 @@
-import { useMounted } from "@mantine/hooks";
-import { IAWrapper } from "../../wrapper";
-import { ActionIcon, Flex, Text } from "@mantine/core";
-import { useEffect, useState } from "react";
-import { IconReload } from "@tabler/icons-react";
+import { useMounted } from '@mantine/hooks';
+import { IAWrapper } from '../../wrapper';
+import { ActionIcon, Flex, Text } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { IconReload } from '@tabler/icons-react';
 
 const generatePassword = () => {
-  const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
-  const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const numbers = "0123456789";
-  const symbols = "!@#$%^&*()_+-=[]{};':\"\\|,.<>/?";
+  const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+  const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789';
+  const symbols = '!@#$%^&*()_+-=[]{};\':"\\|,.<>/?';
 
-  let password = "";
+  let password = '';
   const charSets = [lowercaseChars, uppercaseChars, numbers, symbols];
 
   // Guarantee at least one character from each set
@@ -26,15 +26,15 @@ const generatePassword = () => {
 
   // Shuffle the characters for better randomness (optional)
   password = password
-    .split("")
-    .sort(() => Math.random() - 0.5)
-    .join("");
+    .split('')
+    .toSorted(() => Math.random() - 0.5)
+    .join('');
 
   return password;
 };
 
 const IAPassword = () => {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
 
   const updatePassword = () => {
     setPassword(generatePassword());
@@ -47,17 +47,17 @@ const IAPassword = () => {
   return (
     <IAWrapper
       label={
-        <Text size="sm" c="dimmed">
+        <Text size='sm' c='dimmed'>
           Random strong password
         </Text>
       }
     >
-      <Flex align="center" justify="space-between">
-        <Text size="lg" fw={500}>
+      <Flex align='center' justify='space-between'>
+        <Text size='lg' fw={500}>
           {password}
         </Text>
 
-        <ActionIcon size="lg" variant="subtle" onClick={updatePassword}>
+        <ActionIcon size='lg' variant='subtle' onClick={updatePassword}>
           <IconReload />
         </ActionIcon>
       </Flex>

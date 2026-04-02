@@ -1,5 +1,5 @@
-@use "functions" as func;
-@use "variables" as vars;
+@use 'functions' as func;
+@use 'variables' as vars;
 
 .shortcuts_container {
   height: func.to-rem(110px);
@@ -20,7 +20,9 @@
   width: func.to-rem(80px);
   height: func.to-rem(80px);
   background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
-  transition: box-shadow 150ms ease, transform 100ms ease;
+  transition:
+    box-shadow 150ms ease,
+    transform 100ms ease;
   padding: var(--mantine-spacing-xs);
   position: relative;
 

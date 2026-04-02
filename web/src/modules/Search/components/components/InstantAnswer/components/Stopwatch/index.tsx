@@ -1,23 +1,15 @@
-import {
-  ActionIcon,
-  Button,
-  Center,
-  Flex,
-  Paper,
-  RingProgress,
-  Text,
-} from "@mantine/core";
-import { IAWrapper } from "../../wrapper";
-import classes from "./styles.module.scss";
+import { ActionIcon, Button, Center, Flex, Paper, RingProgress, Text } from '@mantine/core';
+import { IAWrapper } from '../../wrapper';
+import classes from './styles.module.scss';
 import {
   IconPlayerPauseFilled,
   IconPlayerPlay,
   IconPlayerPlayFilled,
   IconVideo,
-} from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useState } from "react";
-import { useInterval } from "@mantine/hooks";
+} from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useState } from 'react';
+import { useInterval } from '@mantine/hooks';
 
 const INITIAL_TIME = {
   minute: 0,
@@ -26,7 +18,7 @@ const INITIAL_TIME = {
 };
 
 const formatOutput = (no: number): string => {
-  return no.toLocaleString("en-US", {
+  return no.toLocaleString('en-US', {
     minimumIntegerDigits: 2,
     useGrouping: false,
   });
@@ -34,15 +26,12 @@ const formatOutput = (no: number): string => {
 
 const calculateTimeDifference = (
   currentTime: typeof INITIAL_TIME,
-  lastLap: typeof INITIAL_TIME
+  lastLap: typeof INITIAL_TIME,
 ) => {
   // Convert time objects to milliseconds
   const currentMs =
-    currentTime.minute * 60 * 100 +
-    currentTime.second * 100 +
-    currentTime.milisecond;
-  const lastLapMs =
-    lastLap.minute * 60 * 100 + lastLap.second * 100 + lastLap.milisecond;
+    currentTime.minute * 60 * 100 + currentTime.second * 100 + currentTime.milisecond;
+  const lastLapMs = lastLap.minute * 60 * 100 + lastLap.second * 100 + lastLap.milisecond;
 
   // Calculate the difference in milliseconds
   const timeDifferenceMs = currentMs - lastLapMs;
@@ -113,18 +102,16 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
       ...prev,
       {
         current: time,
-        diff: !prev.length
-          ? time
-          : calculateTimeDifference(time, prev[prev.length - 1].current),
+        diff: prev.length === 0 ? time : calculateTimeDifference(time, prev.at(-1).current),
       },
     ]);
   };
 
   const stopwatchComponent = (
     <Center>
-      <Paper className={classes.paper_base} p="md" radius="sm" withBorder>
-        <Flex align="flex-start" justify="space-between" direction="row">
-          <Flex align="center" justify="space-between" direction="row">
+      <Paper className={classes.paper_base} p='md' radius='sm' withBorder>
+        <Flex align='flex-start' justify='space-between' direction='row'>
+          <Flex align='center' justify='space-between' direction='row'>
             <RingProgress
               size={120}
               thickness={8}
@@ -133,74 +120,51 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
               label={
                 <Center className={classes.action_button}>
                   <ActionIcon
-                    color={active ? "red" : "teal"}
-                    variant="light"
-                    radius="50%"
+                    color={active ? 'red' : 'teal'}
+                    variant='light'
+                    radius='50%'
                     size={70}
                     onClick={active ? stop : start}
                   >
                     {active ? (
-                      <IconPlayerPauseFilled
-                        style={getIconStyle(32)}
-                        stroke={5}
-                      />
+                      <IconPlayerPauseFilled style={getIconStyle(32)} stroke={5} />
                     ) : (
-                      <IconPlayerPlayFilled
-                        style={getIconStyle(32)}
-                        stroke={5}
-                      />
+                      <IconPlayerPlayFilled style={getIconStyle(32)} stroke={5} />
                     )}
                   </ActionIcon>
                 </Center>
               }
             />
 
-            <Flex align="flex-end">
+            <Flex align='flex-end'>
               <Text fz={42}>{formatOutput(time.minute)}</Text>
-              <Text fz={24} c="dimmed" ml={2} mb={6}>
+              <Text fz={24} c='dimmed' ml={2} mb={6}>
                 :{formatOutput(time.second)}.
               </Text>
-              <Text fz={24} c="dimmed" ml={2} mb={6}>
+              <Text fz={24} c='dimmed' ml={2} mb={6}>
                 {formatOutput(time.milisecond)}
               </Text>
             </Flex>
           </Flex>
 
-          <Flex
-            align="flex-end"
-            justify="space-between"
-            direction="column"
-            gap="md"
-            mt={48}
-          >
-            <Flex
-              align="flex-start"
-              justify="space-between"
-              direction="column"
-              gap="xs"
-            >
-              {[...loops].reverse().map((loop, i) => (
-                <Flex
-                  key={i}
-                  w="100%"
-                  align="center"
-                  justify="space-between"
-                  gap="md"
-                >
-                  <Text size="sm" c="dimmed">
+          <Flex align='flex-end' justify='space-between' direction='column' gap='md' mt={48}>
+            <Flex align='flex-start' justify='space-between' direction='column' gap='xs'>
+              {[...loops].toReversed().map((loop, i) => (
+                <Flex key={i} w='100%' align='center' justify='space-between' gap='md'>
+                  <Text size='sm' c='dimmed'>
                     {loops.length - i}.
                   </Text>
 
-                  <Text size="xs" c="dimmed">{`+ ${formatOutput(
-                    loop.diff.minute
+                  <Text size='xs' c='dimmed'>{`+ ${formatOutput(
+                    loop.diff.minute,
                   )}:${formatOutput(loop.diff.second)}.${formatOutput(
-                    loop.diff.milisecond
+                    loop.diff.milisecond,
                   )}`}</Text>
 
-                  <Text size="md">{`${formatOutput(
-                    loop.current.minute
+                  <Text size='md'>{`${formatOutput(
+                    loop.current.minute,
                   )}:${formatOutput(loop.current.second)}.${formatOutput(
-                    loop.current.milisecond
+                    loop.current.milisecond,
                   )}`}</Text>
                 </Flex>
               ))}
@@ -209,19 +173,14 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
         </Flex>
 
         {/* Action buttons */}
-        <Button
-          className={classes.reset_btn}
-          size="xs"
-          variant="default"
-          onClick={handleReset}
-        >
+        <Button className={classes.reset_btn} size='xs' variant='default' onClick={handleReset}>
           Reset
         </Button>
 
         <Button
           className={classes.lap_btn}
-          size="xs"
-          variant="default"
+          size='xs'
+          variant='default'
           onClick={handleLoop}
           disabled={!active}
         >

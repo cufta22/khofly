@@ -1,21 +1,21 @@
-import { Kbd, Modal, Table, Text } from "@mantine/core";
-import { useHotkeys } from "@mantine/hooks";
-import { useGeneralStore } from "@store/general";
+import { Kbd, Modal, Table, Text } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
+import { useGeneralStore } from '@store/general';
 
 const ModalHotkeys = () => {
   const openHotkeyModal = useGeneralStore((state) => state.openHotkeyModal);
   const toggleOpenHotkeyModal = useGeneralStore((state) => state.toggleOpenHotkeyModal);
 
   // HOTKEYS: Global
-  useHotkeys([["h", () => toggleOpenHotkeyModal()]]);
+  useHotkeys([['h', () => toggleOpenHotkeyModal()]]);
 
   return (
     <Modal
       opened={openHotkeyModal}
       onClose={toggleOpenHotkeyModal}
-      title={<Text size="lg">How to navigate Khofly with hotkeys</Text>}
+      title={<Text size='lg'>How to navigate Khofly with hotkeys</Text>}
       withCloseButton={false}
-      size="lg"
+      size='lg'
       centered
     >
       <Table>
@@ -30,7 +30,7 @@ const ModalHotkeys = () => {
         <Table.Tbody>
           <Table.Tr>
             <Table.Th>
-              <Kbd size="md">h</Kbd>
+              <Kbd size='md'>h</Kbd>
             </Table.Th>
             <Table.Th>Global</Table.Th>
             <Table.Th>Open help modal</Table.Th>
@@ -38,7 +38,7 @@ const ModalHotkeys = () => {
 
           <Table.Tr>
             <Table.Th>
-              <Kbd size="md">◄</Kbd>
+              <Kbd size='md'>◄</Kbd>
             </Table.Th>
             <Table.Th>Search</Table.Th>
             <Table.Th>Previous category</Table.Th>
@@ -46,7 +46,7 @@ const ModalHotkeys = () => {
 
           <Table.Tr>
             <Table.Th>
-              <Kbd size="md">►</Kbd>
+              <Kbd size='md'>►</Kbd>
             </Table.Th>
             <Table.Th>Search</Table.Th>
             <Table.Th>Next category</Table.Th>

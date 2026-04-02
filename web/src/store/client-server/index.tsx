@@ -1,6 +1,6 @@
-import type { MantineColor } from "@mantine/core";
-import type { IAppTheme, IFC, ILanguage, ITranslations } from "@ts/global.types";
-import { createContext, useContext, useState } from "react";
+import type { MantineColor } from '@mantine/core';
+import type { IAppTheme, IFC, ILanguage, ITranslations } from '@ts/global.types';
+import { createContext, useContext, useState } from 'react';
 
 interface ClientServerState {
   content: ITranslations | null;
@@ -17,9 +17,9 @@ interface ClientServerStateFull extends ClientServerState {
 
 const initialState: ClientServerStateFull = {
   content: null,
-  language: "en",
-  theme: "Mantine-Old",
-  primaryColor: "blue",
+  language: 'en',
+  theme: 'Mantine-Old',
+  primaryColor: 'blue',
 
   setLanguage: () => {},
   setTheme: () => {},

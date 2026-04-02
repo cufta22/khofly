@@ -1,6 +1,6 @@
-import { useGeneralStore } from "@store/general";
-import { useEffect, useState } from "react";
-import useToast from "./use-toast";
+import { useGeneralStore } from '@store/general';
+import { useEffect, useState } from 'react';
+import useToast from './use-toast';
 
 const useGeolocation = (shouldSubmit: boolean) => {
   const [userLocation, setUserLocation] = useState<{
@@ -24,19 +24,19 @@ const useGeolocation = (shouldSubmit: boolean) => {
 
         (error) => {
           toast.show({
-            title: "Error while getting user location",
+            title: 'Error while getting user location',
             message: error.message,
           });
         },
 
         {
           // enableHighAccuracy: true, // Fine since it'll be cached in localStorage
-        }
+        },
       );
     } else {
       toast.show({
-        title: "Error while getting user location",
-        message: "Geolocation is not supported by this browser",
+        title: 'Error while getting user location',
+        message: 'Geolocation is not supported by this browser',
       });
     }
   };

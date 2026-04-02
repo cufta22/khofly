@@ -1,14 +1,14 @@
-import { Code, Container, List, Text, useMantineTheme } from "@mantine/core";
-import DocsTitle from "./common/DocsTitle";
-import { IconBracketsAngle } from "@tabler/icons-react";
-import DocsSubtitle from "./common/DocsSubtitle";
-import DocsText from "./common/DocsText";
-import DocsNextPrev from "./common/DocsNextPrev";
+import { Code, Container, List, Text, useMantineTheme } from '@mantine/core';
+import DocsTitle from './common/DocsTitle';
+import { IconBracketsAngle } from '@tabler/icons-react';
+import DocsSubtitle from './common/DocsSubtitle';
+import DocsText from './common/DocsText';
+import DocsNextPrev from './common/DocsNextPrev';
 
-import { DOCS_CARD_DATA } from "./common/docsCardData";
-import RemixLink from "@components/RemixLink";
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import DocsLink from "./common/DocsLink";
+import { DOCS_CARD_DATA } from './common/docsCardData';
+import RemixLink from '@components/RemixLink';
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import DocsLink from './common/DocsLink';
 
 const DocsSearchPrivatePlayer = () => {
   const linkTextColor = usePrimaryColor(4);
@@ -16,7 +16,7 @@ const DocsSearchPrivatePlayer = () => {
   const theme = useMantineTheme();
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle leftSection={<IconBracketsAngle color={theme.colors.blue[5]} />}>
         Search Syntax
       </DocsTitle>
@@ -36,7 +36,7 @@ const DocsSearchPrivatePlayer = () => {
         To set category and/or engine names use a <Code>!</Code> prefix. To give a few examples:
       </DocsText>
 
-      <List mt="sm">
+      <List mt='sm'>
         <List.Item>
           search in Wikipedia for <strong>paris</strong>
           <List>
@@ -78,12 +78,12 @@ const DocsSearchPrivatePlayer = () => {
 
       <DocsText>
         Abbreviations of the engines and languages are also accepted. Engine/category modifiers are
-        chain able and inclusive. E.g. with{" "}
+        chain able and inclusive. E.g. with{' '}
         <RemixLink to={`/search?q=!maps !ddg !wp paris&tab=maps`}>
-          <Text c={linkTextColor} component="span">
+          <Text c={linkTextColor} component='span'>
             !maps !ddg !wp paris
           </Text>
-        </RemixLink>{" "}
+        </RemixLink>{' '}
         search in map category and DuckDuckGo and Wikipedia for <strong>paris</strong>.
       </DocsText>
 
@@ -95,7 +95,7 @@ const DocsSearchPrivatePlayer = () => {
         To select language filter use a <Code>:</Code> prefix. To give an example:
       </DocsText>
 
-      <List mt="sm">
+      <List mt='sm'>
         <List.Item>
           search Wikipedia with a custom language:
           <List>
@@ -113,12 +113,12 @@ const DocsSearchPrivatePlayer = () => {
       </DocsSubtitle>
 
       <DocsText>
-        SearXNG supports the external bangs from{" "}
-        <DocsLink href={`https://duckduckgo.com/bang`} label="DuckDuckGo"></DocsLink>. To directly
+        SearXNG supports the external bangs from{' '}
+        <DocsLink href={`https://duckduckgo.com/bang`} label='DuckDuckGo'></DocsLink>. To directly
         jump to a external search page use the <Code>!!</Code> prefix. To give an example:
       </DocsText>
 
-      <List mt="sm">
+      <List mt='sm'>
         <List.Item>
           search Wikipedia with a custom language:
           <List>
@@ -134,18 +134,18 @@ const DocsSearchPrivatePlayer = () => {
       <DocsSubtitle>Special Queries</DocsSubtitle>
 
       <DocsText>
-        In the{" "}
+        In the{' '}
         <RemixLink to={`/docs/instant-answers`}>
-          <Text c={linkTextColor} component="span">
+          <Text c={linkTextColor} component='span'>
             Instant Answers
           </Text>
-        </RemixLink>{" "}
+        </RemixLink>{' '}
         section you can find full list of special queries that will give you automatic results.
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["IA"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["AI"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)['IA'] }}
+        next={{ ...DOCS_CARD_DATA(theme)['AI'] }}
       />
     </Container>
   );

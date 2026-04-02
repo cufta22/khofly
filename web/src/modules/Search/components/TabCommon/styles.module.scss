@@ -1,5 +1,5 @@
-@use "functions" as func;
-@use "variables" as vars;
+@use 'functions' as func;
+@use 'variables' as vars;
 
 .search_options_common {
   margin-top: calc(-1 * var(--mantine-spacing-xl));

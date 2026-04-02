@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from 'react';
 
 interface Args {
   decoder: TextDecoder;
@@ -15,9 +15,9 @@ export const processSSE = async ({
   handleUpdateStream,
   handleDONE,
 }: Args) => {
-  let chunk = ""; // Buffer for partial SSE messages
+  let chunk = ''; // Buffer for partial SSE messages
 
-  console.log("Processing SSE");
+  console.log('Processing SSE');
 
   console.log(chunk);
 
@@ -35,18 +35,18 @@ export const processSSE = async ({
 
     // Process complete SSE messages in the buffer
     // SSE messages are separated by double newlines "\n\n"
-    let boundary = chunk.indexOf("\n\n");
+    let boundary = chunk.indexOf('\n\n');
     while (boundary !== -1) {
       const message = chunk.substring(0, boundary); // Get one complete message block
       chunk = chunk.substring(boundary + 2); // Remove message block from buffer
 
       // Find the start of the JSON data after "data: "
-      const dataPrefix = "data: ";
+      const dataPrefix = 'data: ';
       if (message.startsWith(dataPrefix)) {
         const jsonString = message.substring(dataPrefix.length).trim();
 
         // Handle the special [DONE] message if the API sends it
-        if (jsonString === "[DONE]") {
+        if (jsonString === '[DONE]') {
           handleDONE();
           continue; // Skip to next message or loop iteration
         }
@@ -73,7 +73,7 @@ export const processSSE = async ({
       }
 
       // Check for the next message boundary in the updated buffer
-      boundary = chunk.indexOf("\n\n");
+      boundary = chunk.indexOf('\n\n');
     }
   }
 };

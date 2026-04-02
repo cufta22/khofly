@@ -1,13 +1,13 @@
-import { Flex } from "@mantine/core";
-import { ICategories } from "@store/settings";
-import { ISearXNGResultsImages } from "@ts/searxng.types";
-import classes from "./styles.module.scss";
-import { useDisclosure } from "@mantine/hooks";
-import { useEffect, useState } from "react";
-import CellImage from "../components/CellImage";
-import SkeletonImage from "../components/SkeletonImage";
-import ImageView from "../../components/ImageView";
-import { useSearchParams } from "react-router";
+import { Flex } from '@mantine/core';
+import type { ICategories } from '@store/settings';
+import type { ISearXNGResultsImages } from '@ts/searxng.types';
+import classes from './styles.module.scss';
+import { useDisclosure } from '@mantine/hooks';
+import { useEffect, useState } from 'react';
+import CellImage from '../components/CellImage';
+import SkeletonImage from '../components/SkeletonImage';
+import ImageView from '../../components/ImageView';
+import { useSearchParams } from 'react-router';
 
 interface Props {
   tab: ICategories;
@@ -19,16 +19,16 @@ const LayoutImages: React.FC<Props> = ({ tab, data, showSkeleton }) => {
   const [searchParams] = useSearchParams();
 
   const [isOpenImageView, { open: openImageView, close: closeImageView }] = useDisclosure(false);
-  const [viewImage, setViewImage] = useState<ISearXNGResultsImages["results"][0] | null>(null);
+  const [viewImage, setViewImage] = useState<ISearXNGResultsImages['results'][0] | null>(null);
 
-  const openImageInView = (img: ISearXNGResultsImages["results"][0]) => {
+  const openImageInView = (img: ISearXNGResultsImages['results'][0]) => {
     setViewImage(img);
     openImageView();
   };
 
-  const paramsMediaSrc = searchParams.get("media_src");
+  const paramsMediaSrc = searchParams.get('media_src');
   useEffect(() => {
-    if (!data.length) return;
+    if (data.length === 0) return;
 
     const foundImg = data?.[0].results.find((res) => res.img_src === paramsMediaSrc);
 
@@ -39,7 +39,7 @@ const LayoutImages: React.FC<Props> = ({ tab, data, showSkeleton }) => {
   }, [paramsMediaSrc, data]);
 
   return (
-    <Flex className={classes.image_gallery} wrap="wrap" p="lg" gap="md" justify="center">
+    <Flex className={classes.image_gallery} wrap='wrap' p='lg' gap='md' justify='center'>
       {data?.map((res) => {
         if (!res) return;
         return res?.results.map((img, i) => (

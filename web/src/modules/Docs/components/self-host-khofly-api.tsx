@@ -1,16 +1,16 @@
-import { Code, Container, List, Paper, Text, useMantineTheme } from "@mantine/core";
-import DocsTitle from "./common/DocsTitle";
-import DocsText from "./common/DocsText";
-import DocsSubtitle from "./common/DocsSubtitle";
-import RemixLink from "@components/RemixLink";
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import DocsCodeHighlight from "./common/DocsCodeHighlight/DocsCodeHighlight";
-import DocsCodeHighlightTabs from "./common/DocsCodeHighlight/DocsCodeHighlightTabs";
-import { IconFile } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import DocsNextPrev from "./common/DocsNextPrev";
-import { DOCS_CARD_DATA } from "./common/docsCardData";
-import DocsLink from "./common/DocsLink";
+import { Code, Container, List, Paper, Text, useMantineTheme } from '@mantine/core';
+import DocsTitle from './common/DocsTitle';
+import DocsText from './common/DocsText';
+import DocsSubtitle from './common/DocsSubtitle';
+import RemixLink from '@components/RemixLink';
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import DocsCodeHighlight from './common/DocsCodeHighlight/DocsCodeHighlight';
+import DocsCodeHighlightTabs from './common/DocsCodeHighlight/DocsCodeHighlightTabs';
+import { IconFile } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import DocsNextPrev from './common/DocsNextPrev';
+import { DOCS_CARD_DATA } from './common/docsCardData';
+import DocsLink from './common/DocsLink';
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -115,7 +115,7 @@ const DocsSelfHostKhoflyAPI = () => {
   const linkTextColor = usePrimaryColor(4);
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle>Installation guide</DocsTitle>
 
       <DocsText>Requirements:</DocsText>
@@ -127,12 +127,12 @@ const DocsSelfHostKhoflyAPI = () => {
       <DocsSubtitle>OPTION 1. Install script ( Recommended )</DocsSubtitle>
 
       <DocsText>
-        This part is covered in{" "}
-        <RemixLink to="/docs/self-host-khofly">
-          <Text c={linkTextColor} component="span">
+        This part is covered in{' '}
+        <RemixLink to='/docs/self-host-khofly'>
+          <Text c={linkTextColor} component='span'>
             docs/self-host-khofly
           </Text>
-        </RemixLink>{" "}
+        </RemixLink>{' '}
         <Code>VPS</Code> section, the <Code>./scripts/install.sh</Code> script installs and runs
         both the web client and the API. If you've already run that script you probably don't need
         this page.
@@ -143,28 +143,28 @@ const DocsSelfHostKhoflyAPI = () => {
       <DocsText>Follow these steps only if you've manually installed Khofly web client.</DocsText>
 
       <DocsText>1. Install dependencies</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_DEPENDENCIES} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_DEPENDENCIES} language='bash' />
       </Paper>
 
       <DocsText>2. Install yt-dlp</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_YT_DLP} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_YT_DLP} language='bash' />
       </Paper>
 
       <DocsText>3. Install gallery-dl</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_GALLERY_DL} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_GALLERY_DL} language='bash' />
       </Paper>
 
       <DocsText>4. Install pm2</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_PM2} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_PM2} language='bash' />
       </Paper>
 
       <DocsText>5. Install Bun</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_BUN} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_BUN} language='bash' />
       </Paper>
 
       <DocsText>
@@ -172,32 +172,32 @@ const DocsSelfHostKhoflyAPI = () => {
       </DocsText>
 
       <DocsText>
-        7. <Code>cd khofly</Code> and type{" "}
+        7. <Code>cd khofly</Code> and type{' '}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
       <DocsText>
         7.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
-        frequent updates <Code>git fetch origin staging</Code> and{" "}
+        frequent updates <Code>git fetch origin staging</Code> and{' '}
         <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
       <DocsText>8. Build and run API</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_BUILD_API} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_BUILD_API} language='bash' />
       </Paper>
 
       <DocsText>9. Create the ecosystem.config file for pm2</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_ECOSYSTEM} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_ECOSYSTEM} language='bash' />
       </Paper>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/api/ecosystem.config.js",
+              fileName: '/api/ecosystem.config.js',
               code: CODE_ECOSYSTEM_FILE,
-              language: "javascript",
+              language: 'javascript',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -207,16 +207,16 @@ const DocsSelfHostKhoflyAPI = () => {
       <DocsText>
         10. Create Nginx config for api, don't forget to update the server_name to your domain name.
       </DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_NGINX} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_NGINX} language='bash' />
       </Paper>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/nginx/sites-available/api",
+              fileName: '/etc/nginx/sites-available/api',
               code: CODE_NGINX_FILE,
-              language: "nginx",
+              language: 'nginx',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -256,26 +256,26 @@ const DocsSelfHostKhoflyAPI = () => {
       <DocsText>1. Cookies</DocsText>
 
       <DocsText>
-        Read more about providing cookies on yt-dlp{" "}
+        Read more about providing cookies on yt-dlp{' '}
         <DocsLink
-          href="https://github.com/yt-dlp/yt-dlp/wiki/Extractors#youtube"
-          label="official wiki"
+          href='https://github.com/yt-dlp/yt-dlp/wiki/Extractors#youtube'
+          label='official wiki'
         />
         .
       </DocsText>
 
       <DocsText>
-        TL;DR With a browser extension like{" "}
+        TL;DR With a browser extension like{' '}
         <DocsLink
-          href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"
-          label="cookies.txt"
-        />{" "}
-        on Firefox or{" "}
+          href='https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/'
+          label='cookies.txt'
+        />{' '}
+        on Firefox or{' '}
         <DocsLink
-          href="https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc"
-          label="Get cookies.txt LOCALLY"
-        />{" "}
-        on Chormium you can extract your YouTube cookies and add it to a <Code>cookies-yt.txt</Code>{" "}
+          href='https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc'
+          label='Get cookies.txt LOCALLY'
+        />{' '}
+        on Chormium you can extract your YouTube cookies and add it to a <Code>cookies-yt.txt</Code>{' '}
         file in the root of <Code>/api</Code> folder. So the path to your extracted cookies file
         should be <Code>/api/cookies-yt.txt</Code>. Also make sure to use a burner google account
         instead of your main one.
@@ -284,10 +284,10 @@ const DocsSelfHostKhoflyAPI = () => {
       <DocsText>2. PO Token</DocsText>
 
       <DocsText>
-        Read more about providing PO Token on yt-dlp{" "}
+        Read more about providing PO Token on yt-dlp{' '}
         <DocsLink
-          href="https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide"
-          label="official wiki"
+          href='https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide'
+          label='official wiki'
         />
         .
       </DocsText>
@@ -296,7 +296,7 @@ const DocsSelfHostKhoflyAPI = () => {
 
       <List withPadding>
         <List.Item>
-          Go to <DocsLink href="https://music.youtube.com" label="YouTube Music" /> in an incognito
+          Go to <DocsLink href='https://music.youtube.com' label='YouTube Music' /> in an incognito
           tab
         </List.Item>
         <List.Item>Click on a video</List.Item>
@@ -305,7 +305,7 @@ const DocsSelfHostKhoflyAPI = () => {
           Filter requests by <Code>googlevideo.com</Code>
         </List.Item>
         <List.Item>
-          From the most recent <Code>googlevideo.com</Code> request, extract the <Code>pot</Code>{" "}
+          From the most recent <Code>googlevideo.com</Code> request, extract the <Code>pot</Code>{' '}
           query parameter value from the URL
         </List.Item>
       </List>
@@ -325,34 +325,34 @@ const DocsSelfHostKhoflyAPI = () => {
       <DocsText>1. Instagram Cookies</DocsText>
 
       <DocsText>
-        Read more about providing cookies on yt-dlp{" "}
+        Read more about providing cookies on yt-dlp{' '}
         <DocsLink
-          href="https://github.com/mikf/gallery-dl?tab=readme-ov-file#cookies"
-          label="official wiki"
+          href='https://github.com/mikf/gallery-dl?tab=readme-ov-file#cookies'
+          label='official wiki'
         />
         .
       </DocsText>
 
       <DocsText>
-        TL;DR With a browser extension like{" "}
+        TL;DR With a browser extension like{' '}
         <DocsLink
-          href="https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/"
-          label="cookies.txt"
-        />{" "}
-        on Firefox or{" "}
+          href='https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/'
+          label='cookies.txt'
+        />{' '}
+        on Firefox or{' '}
         <DocsLink
-          href="https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc"
-          label="Get cookies.txt LOCALLY"
-        />{" "}
-        on Chormium you can extract your Instagram cookies and add it to a{" "}
+          href='https://chromewebstore.google.com/detail/cclelndahbckbenkjhflpdbgdldlbecc'
+          label='Get cookies.txt LOCALLY'
+        />{' '}
+        on Chormium you can extract your Instagram cookies and add it to a{' '}
         <Code>cookies-ig.txt</Code> file in the root of <Code>/api</Code> folder. So the path to
         your extracted cookies file should be <Code>/api/cookies-ig.txt</Code>. Also make sure to
         use a burner IG account instead of your main one.
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["selfHostCFWorker"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["selfHostKhofly"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)['selfHostCFWorker'] }}
+        next={{ ...DOCS_CARD_DATA(theme)['selfHostKhofly'] }}
       />
     </Container>
   );

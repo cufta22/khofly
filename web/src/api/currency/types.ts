@@ -1,5 +1,5 @@
 export interface OXRResponse {
   timestamp: number;
-  base: "USD";
+  base: 'USD';
   rates: { [key in string]: number };
 }

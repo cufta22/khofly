@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs } from "react-router";
+import type { LoaderFunctionArgs } from 'react-router';
 
 export const loader = ({ context }: LoaderFunctionArgs) => {
   // handle "GET" request
@@ -21,7 +21,7 @@ export const loader = ({ context }: LoaderFunctionArgs) => {
   return new Response(openSearchText, {
     status: 200,
     headers: {
-      "Content-Type": "application/xml",
+      'Content-Type': 'application/xml',
     },
   });
 };

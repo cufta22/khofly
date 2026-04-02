@@ -1,18 +1,18 @@
-import { Button, Flex, Paper, Stack, Text, TextInput, useMantineTheme } from "@mantine/core";
+import { Button, Flex, Paper, Stack, Text, TextInput, useMantineTheme } from '@mantine/core';
 
-import { IconDevices, IconPhoto } from "@tabler/icons-react";
+import { IconDevices, IconPhoto } from '@tabler/icons-react';
 
-import classes from "../../../styles.module.scss";
+import classes from '../../../styles.module.scss';
 
-import { useHomepageStore } from "@store/homepage";
-import SettingsTitle from "../../common/SettingsTitle";
-import useForm from "@hooks/use-form";
-import useToast from "@hooks/use-toast";
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import { useEffect } from "react";
-import { IOpenSection } from "@module/SettingsMobile";
-import SettingsMTitle from "@module/SettingsMobile/components/common/SettingsTitle";
-import { useTranslate } from "@hooks/translate/use-translate";
+import { useHomepageStore } from '@store/homepage';
+import SettingsTitle from '../../common/SettingsTitle';
+import useForm from '@hooks/use-form';
+import useToast from '@hooks/use-toast';
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import { useEffect } from 'react';
+import type { IOpenSection } from '@module/SettingsMobile';
+import SettingsMTitle from '@module/SettingsMobile/components/common/SettingsTitle';
+import { useTranslate } from '@hooks/translate/use-translate';
 
 interface Props {
   isM?: boolean;
@@ -28,11 +28,11 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
 
   const form = useForm({
     initialValues: {
-      background: "",
+      background: '',
     },
     validate: {
       background: (value) =>
-        /^(ftp|http|https):\/\/[^ "]+$/.test(value) || value.length === 0 ? null : "Invalid URL",
+        /^(ftp|http|https):\/\/[^ "]+$/.test(value) || value.length === 0 ? null : 'Invalid URL',
     },
   });
 
@@ -42,40 +42,40 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
 
   const handleSubmit = (values: typeof form.values) => {
     setBackground(values.background);
-    toast.show({ message: "URL changed", color: "green" });
+    toast.show({ message: 'URL changed', color: 'green' });
   };
 
   useEffect(() => {
-    form.setFieldValue("background", background);
+    form.setFieldValue('background', background);
   }, [background]);
 
   return (
     <>
       {isM && handleChangeSection && (
         <SettingsMTitle
-          title="pages.settings.homepage.title_background"
+          title='pages.settings.homepage.title_background'
           handleChangeSection={handleChangeSection}
         />
       )}
 
-      <Paper radius="md" withBorder>
+      <Paper radius='md' withBorder>
         <form onSubmit={form.onSubmit(handleSubmit)}>
           {!isM && (
             <SettingsTitle
               icon={<IconPhoto color={theme.colors[theme.primaryColor][5]} />}
-              title="pages.settings.homepage.title_background"
+              title='pages.settings.homepage.title_background'
               rightSection={
-                <Flex className="desktop_only" align="center">
+                <Flex className='desktop_only' align='center'>
                   <IconDevices />
 
-                  <Text ml="sm">{t("pages.settings._common.desktop_mobile")}</Text>
+                  <Text ml='sm'>{t('pages.settings._common.desktop_mobile')}</Text>
                 </Flex>
               }
             />
           )}
 
           {/* Settings content */}
-          <Stack w="100%" align="start" px="lg" mb="xl" mt={isM ? "xl" : 0}>
+          <Stack w='100%' align='start' px='lg' mb='xl' mt={isM ? 'xl' : 0}>
             {/* <SettingsRow
           // icon={null}
           desc="pages.settings.homepage.toggle_shortcuts"
@@ -85,24 +85,24 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
         <Divider my="sm" w="100%" /> */}
 
             <TextInput
-              label={t("pages.settings.homepage.wallpaper_url")}
-              placeholder="https://example.com"
-              size="md"
+              label={t('pages.settings.homepage.wallpaper_url')}
+              placeholder='https://example.com'
+              size='md'
               className={classes.settings_input}
-              {...form.getInputProps("background")}
+              {...form.getInputProps('background')}
             />
           </Stack>
 
           <Flex
-            align="center"
-            justify="space-between"
-            py="sm"
-            px="lg"
+            align='center'
+            justify='space-between'
+            py='sm'
+            px='lg'
             className={classes.settings_footer}
           >
             <div />
 
-            <Button type="submit">{t("pages.settings._common.save")}</Button>
+            <Button type='submit'>{t('pages.settings._common.save')}</Button>
           </Flex>
         </form>
       </Paper>

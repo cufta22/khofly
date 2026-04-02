@@ -1,17 +1,17 @@
-import { useInstanceStore } from "@store/instance";
-import useToast from "@hooks/use-toast";
+import { useInstanceStore } from '@store/instance';
+import useToast from '@hooks/use-toast';
 
-import { useEffect, useRef, useState } from "react";
-import { processSSE } from "./utils";
-import { IAIChatMessage } from "@ts/chat.types";
+import { useEffect, useRef, useState } from 'react';
+import { processSSE } from './utils';
+import type { IAIChatMessage } from '@ts/chat.types';
 
 interface TriggerArgs {
-  source: "cf" | "google";
+  source: 'cf' | 'google';
   model: string;
   messages: IAIChatMessage[];
 }
 interface Args {
-  variant: "ai-answer" | "ai-chat" | "ai-summary";
+  variant: 'ai-answer' | 'ai-chat' | 'ai-summary';
   temperature: number;
   maxTokens: number;
   systemInstruction: string;
@@ -31,7 +31,7 @@ const useAICommonAPI = ({
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
 
   // Ref to keep track of the response being streamed
   const abortControllerRef = useRef<AbortController>(null);
@@ -40,7 +40,7 @@ const useAICommonAPI = ({
   const apiDomain = useInstanceStore((state) => state.apiDomain);
 
   const trigger = async ({ model, source, messages }: TriggerArgs) => {
-    setError("");
+    setError('');
     setIsLoading(true);
 
     // Create a new abort controller
@@ -50,24 +50,24 @@ const useAICommonAPI = ({
       // ------------------------------------------------------
       // Handle Cloudflare AI Worker
       // ------------------------------------------------------
-      if (source === "cf") {
+      if (source === 'cf') {
         // Check CF config
         if (temperature > 5 || maxTokens > 4096) {
           toast.show({
-            title: "Something went wrong",
-            message: "Invalid params",
-            color: "yellow",
+            title: 'Something went wrong',
+            message: 'Invalid params',
+            color: 'yellow',
           });
           return;
         }
 
         const workerRes = await fetch(workerDomain, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            prompt: "",
+            prompt: '',
             model: model,
             messages: messages,
             max_tokens: maxTokens,
@@ -77,7 +77,7 @@ const useAICommonAPI = ({
         });
 
         if (!workerRes.body) {
-          return "";
+          return '';
         }
 
         const reader = workerRes?.body?.getReader();
@@ -95,21 +95,21 @@ const useAICommonAPI = ({
       // ------------------------------------------------------
       // Handle Google AI
       // ------------------------------------------------------
-      if (source === "google") {
+      if (source === 'google') {
         // Check Google config
         if (temperature > 2 || maxTokens > 4096) {
           toast.show({
-            title: "Something went wrong",
-            message: "Invalid params",
-            color: "yellow",
+            title: 'Something went wrong',
+            message: 'Invalid params',
+            color: 'yellow',
           });
           return;
         }
 
         const googleRes = await fetch(`${apiDomain}/ai/chat`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             model: model,
@@ -122,7 +122,7 @@ const useAICommonAPI = ({
         });
 
         if (!googleRes.body) {
-          return "";
+          return '';
         }
 
         const reader = googleRes?.body?.getReader();
@@ -137,26 +137,26 @@ const useAICommonAPI = ({
         });
       }
     } catch (err: any) {
-      if (err?.name !== "AbortError") {
-        setError(err?.message || "An error occurred while streaming");
+      if (err?.name !== 'AbortError') {
+        setError(err?.message || 'An error occurred while streaming');
       }
       setIsLoading(false);
 
       const errMsg = {
-        cf: "Cloudflare Worker API Error",
-        google: "Gemini API Error",
+        cf: 'Cloudflare Worker API Error',
+        google: 'Gemini API Error',
       }[source];
 
-      toast.show({ title: errMsg, message: err?.message, color: "red" });
+      toast.show({ title: errMsg, message: err?.message, color: 'red' });
     }
 
-    return "";
+    return '';
   };
 
   const reset = () => {
     // Reset state
     handleDONE();
-    setError("");
+    setError('');
     setIsLoading(false);
     abortControllerRef.current = null;
   };

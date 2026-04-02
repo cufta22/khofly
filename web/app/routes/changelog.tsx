@@ -1,6 +1,6 @@
-import PageChangelog from "@module/Changelog";
-import type { Route } from "./+types/changelog";
-import { CHANGELOG_META_FUNCTION } from "app/meta/changelog";
+import PageChangelog from '@module/Changelog';
+import type { Route } from './+types/changelog';
+import { CHANGELOG_META_FUNCTION } from 'app/meta/changelog';
 
 export interface ILoaderData_Changelog {
   data: string | null;
@@ -11,9 +11,9 @@ export interface ILoaderData_Changelog {
 export async function loader() {
   try {
     const envUrl =
-      process.env.HOST === "https://khofly.com"
-        ? "https://raw.githubusercontent.com/cufta22/khofly/refs/heads/master/CHANGELOG.md"
-        : "https://raw.githubusercontent.com/cufta22/khofly/refs/heads/staging/CHANGELOG.md";
+      process.env.HOST === 'https://khofly.com'
+        ? 'https://raw.githubusercontent.com/cufta22/khofly/refs/heads/master/CHANGELOG.md'
+        : 'https://raw.githubusercontent.com/cufta22/khofly/refs/heads/staging/CHANGELOG.md';
 
     const data = await fetch(envUrl);
 

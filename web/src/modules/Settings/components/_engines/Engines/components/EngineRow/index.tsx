@@ -11,18 +11,18 @@ import {
   Table,
   Text,
   useMantineTheme,
-} from "@mantine/core";
-import type { DotNestedKeys, ITranslations } from "@ts/global.types";
-import classes from "./styles.module.scss";
-import type { IHoverData } from "../../hover-data";
-import { useTranslate } from "@hooks/translate/use-translate";
-import { IconCheck } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import type { ICategories } from "@store/settings";
+} from '@mantine/core';
+import type { DotNestedKeys, ITranslations } from '@ts/global.types';
+import classes from './styles.module.scss';
+import type { IHoverData } from '../../hover-data';
+import { useTranslate } from '@hooks/translate/use-translate';
+import { IconCheck } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import type { ICategories } from '@store/settings';
 
 interface Props {
-  type: "divider" | "engine";
+  type: 'divider' | 'engine';
   iconSrc: string;
   iconAlt: string;
   label: DotNestedKeys<ITranslations>;
@@ -31,7 +31,7 @@ interface Props {
   hoverData?: IHoverData;
   safeSearch: boolean;
   timeRange: boolean;
-  variant?: "settings" | "quick_settings";
+  variant?: 'settings' | 'quick_settings';
   bang: string;
   category: ICategories;
 }
@@ -46,7 +46,7 @@ const EngineComponent: React.FC<Props> = ({
   hoverData,
   safeSearch,
   timeRange,
-  variant = "settings",
+  variant = 'settings',
   bang,
   category,
 }) => {
@@ -56,16 +56,16 @@ const EngineComponent: React.FC<Props> = ({
   const linkTextColor = usePrimaryColor(4);
 
   // If type = divider
-  if (type === "divider") {
+  if (type === 'divider') {
     return (
-      <Table.Tr bg="dark.8">
+      <Table.Tr bg='dark.8'>
         <Table.Td>
-          <Text fw={500} c="teal">
+          <Text fw={500} c='teal'>
             {t(label)}
           </Text>
         </Table.Td>
 
-        {variant === "settings" && (
+        {variant === 'settings' && (
           <>
             <Table.Td className={classes.table_responsive}>{bang && <Code>{bang}</Code>}</Table.Td>
             <Table.Td className={classes.table_responsive} />
@@ -82,14 +82,14 @@ const EngineComponent: React.FC<Props> = ({
   return (
     <Table.Tr>
       {/* Engine */}
-      <Table.Td style={{ whiteSpace: "nowrap" }}>
-        <HoverCard width={600} shadow="md" position="right" disabled={!hoverData}>
+      <Table.Td style={{ whiteSpace: 'nowrap' }}>
+        <HoverCard width={600} shadow='md' position='right' disabled={!hoverData}>
           <HoverCard.Target>
             <Flex
-              align="center"
-              gap="sm"
+              align='center'
+              gap='sm'
               onClick={() => {
-                if (category !== "other") onChange(!checked);
+                if (category !== 'other') onChange(!checked);
               }}
               className={classes.engine_component}
             >
@@ -99,66 +99,66 @@ const EngineComponent: React.FC<Props> = ({
                   w={20}
                   h={20}
                   alt={iconAlt}
-                  fit="contain"
-                  fallbackSrc="/assets/placeholder.svg"
+                  fit='contain'
+                  fallbackSrc='/assets/placeholder.svg'
                 />
               </Box>
 
-              <Text size="md" fw={400}>
+              <Text size='md' fw={400}>
                 {t(label)}
               </Text>
             </Flex>
           </HoverCard.Target>
           <HoverCard.Dropdown>
             <Stack gap={0}>
-              <Text size="sm">{hoverData?.description}</Text>
+              <Text size='sm'>{hoverData?.description}</Text>
 
               <Anchor
-                size="sm"
+                size='sm'
                 href={hoverData?.linkUrl}
-                target="_blank"
-                rel="noreferrer noopener"
+                target='_blank'
+                rel='noreferrer noopener'
                 mt={4}
               >
-                <Text component="span" c={linkTextColor}>
+                <Text component='span' c={linkTextColor}>
                   {hoverData?.linkUrl}
                 </Text>
               </Anchor>
 
               {hoverData?.wikiUrl && (
                 <Anchor
-                  size="sm"
+                  size='sm'
                   href={`https://www.${hoverData?.wikiUrl}`}
-                  target="_blank"
-                  rel="noreferrer noopener"
+                  target='_blank'
+                  rel='noreferrer noopener'
                   mt={4}
                 >
-                  <Text component="span" c={linkTextColor}>
+                  <Text component='span' c={linkTextColor}>
                     {hoverData?.wikiUrl}
                   </Text>
                 </Anchor>
               )}
 
-              <Flex my="xs" align="center" justify="space-between">
-                <Flex align="center" justify="space-between" gap="xs">
+              <Flex my='xs' align='center' justify='space-between'>
+                <Flex align='center' justify='space-between' gap='xs'>
                   {Array.isArray(hoverData?.bangsEngine)
                     ? hoverData?.bangsEngine.map((bang, i) => (
-                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                        <Badge key={i} size='lg' color='gray' tt='lowercase'>
                           {bang}
                         </Badge>
                       ))
                     : hoverData?.bangsEngine[category].map((bang, i) => (
-                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                        <Badge key={i} size='lg' color='gray' tt='lowercase'>
                           {bang}
                         </Badge>
                       ))}
                 </Flex>
 
-                <Text size="sm">!bang for this engine</Text>
+                <Text size='sm'>!bang for this engine</Text>
               </Flex>
 
-              <Flex align="center" justify="space-between">
-                <Flex align="center" justify="space-between" gap="xs">
+              <Flex align='center' justify='space-between'>
+                <Flex align='center' justify='space-between' gap='xs'>
                   {/* {hoverData?.bangsCategory.map((bang, i) => (
                     <Badge key={i} size="lg" color="gray" tt="lowercase">
                       {bang}
@@ -167,25 +167,25 @@ const EngineComponent: React.FC<Props> = ({
 
                   {Array.isArray(hoverData?.bangsCategory)
                     ? hoverData?.bangsCategory.map((bang, i) => (
-                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                        <Badge key={i} size='lg' color='gray' tt='lowercase'>
                           {bang}
                         </Badge>
                       ))
                     : hoverData?.bangsCategory[category].map((bang, i) => (
-                        <Badge key={i} size="lg" color="gray" tt="lowercase">
+                        <Badge key={i} size='lg' color='gray' tt='lowercase'>
                           {bang}
                         </Badge>
                       ))}
                 </Flex>
 
-                <Text size="sm">!bang for its category</Text>
+                <Text size='sm'>!bang for its category</Text>
               </Flex>
             </Stack>
           </HoverCard.Dropdown>
         </HoverCard>
       </Table.Td>
 
-      {variant === "settings" && (
+      {variant === 'settings' && (
         <>
           {/* Safe search */}
           <Table.Td className={classes.table_responsive}>{bang && <Code>{bang}</Code>}</Table.Td>
@@ -207,14 +207,14 @@ const EngineComponent: React.FC<Props> = ({
       )}
 
       {/* Active */}
-      <Table.Td ta="right">
+      <Table.Td ta='right'>
         <Switch
-          ml="auto"
+          ml='auto'
           w={42}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           checked={checked}
           onChange={(e) => onChange(e.currentTarget.checked)}
-          color="teal"
+          color='teal'
           // thumbIcon={
           //   checked ? (
           //     <IconCheck style={getIconStyle(12)} color={theme.colors.teal[6]} stroke={3} />

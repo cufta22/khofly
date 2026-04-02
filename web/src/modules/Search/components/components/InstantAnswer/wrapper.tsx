@@ -1,8 +1,8 @@
-import { Collapse, Divider, Flex, Stack, Text } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { IconSelector } from "@tabler/icons-react";
-import type { IFC } from "@ts/global.types";
-import { getIconStyle } from "@utils/functions/iconStyle";
+import { Collapse, Divider, Flex, Stack, Text } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconSelector } from '@tabler/icons-react';
+import type { IFC } from '@ts/global.types';
+import { getIconStyle } from '@utils/functions/iconStyle';
 
 interface Props extends IFC {
   label?: React.ReactElement;
@@ -17,7 +17,7 @@ export const IAWrapper: React.FC<Props> = ({ children, label, className, keepMou
   const [visible, { toggle }] = useDisclosure(true);
 
   return (
-    <Stack gap={0} className={className && className} pos="relative">
+    <Stack gap={0} className={className && className} pos='relative'>
       {/* <Transition transition="fade" duration={100} mounted={visible} keepMounted={true}>
         {(transitionStyles) => <div style={transitionStyles}>{children}</div>}
       </Transition> */}
@@ -26,23 +26,23 @@ export const IAWrapper: React.FC<Props> = ({ children, label, className, keepMou
         {children}
       </Collapse>
 
-      <Flex mt="lg" align="center" justify="space-between">
+      <Flex mt='lg' align='center' justify='space-between'>
         {label || (
-          <Text c="dimmed" size="sm">
+          <Text c='dimmed' size='sm'>
             This is an instant answer
           </Text>
         )}
 
-        <Flex align="center" onClick={() => toggle()} style={{ cursor: "pointer" }}>
+        <Flex align='center' onClick={() => toggle()} style={{ cursor: 'pointer' }}>
           <IconSelector style={getIconStyle(20)} stroke={1.5} />
 
-          <Text c="dimmed" size="sm" ml={4}>
+          <Text c='dimmed' size='sm' ml={4}>
             Toggle
           </Text>
         </Flex>
       </Flex>
 
-      <Divider mt="xs" />
+      <Divider mt='xs' />
     </Stack>
   );
 };

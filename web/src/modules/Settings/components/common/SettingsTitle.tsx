@@ -1,7 +1,7 @@
-import { useTranslate } from "@hooks/translate/use-translate";
-import { Flex, Text } from "@mantine/core";
-import type { DotNestedKeys, ITranslations } from "@ts/global.types";
-import classes from "./styles.module.scss";
+import { useTranslate } from '@hooks/translate/use-translate';
+import { Flex, Text } from '@mantine/core';
+import type { DotNestedKeys, ITranslations } from '@ts/global.types';
+import classes from './styles.module.scss';
 
 interface Props {
   icon?: React.ReactNode;
@@ -15,12 +15,12 @@ const SettingsTitle: React.FC<Props> = ({ icon, title, rightSection }) => {
   return (
     <Flex
       className={classes.settings_title_wrapper}
-      align="center"
-      justify="space-between"
-      p="lg"
+      align='center'
+      justify='space-between'
+      p='lg'
       mb={16}
     >
-      <Flex className={classes.settings_title_content} align="center" gap="sm">
+      <Flex className={classes.settings_title_content} align='center' gap='sm'>
         {icon && icon}
 
         <Text className={classes.settings_title_text}>{t(title)}</Text>

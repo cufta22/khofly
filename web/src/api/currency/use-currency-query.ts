@@ -1,9 +1,9 @@
-import { useInstanceStore } from "@store/instance";
-import useFetch from "../use-fetch";
-import type { OXRResponse } from "./types";
-import useSWR from "swr";
-import useToast from "@hooks/use-toast";
-import type { IAPIResponse } from "@ts/global.types";
+import { useInstanceStore } from '@store/instance';
+import useFetch from '../use-fetch';
+import type { OXRResponse } from './types';
+import useSWR from 'swr';
+import useToast from '@hooks/use-toast';
+import type { IAPIResponse } from '@ts/global.types';
 
 const getKey = (apiDomain: string) => {
   if (!apiDomain) return null;
@@ -19,7 +19,7 @@ const useCurrencySWR = () => {
 
   const fetcher = (_key: string) => {
     return fetchData(`${apiDomain}/rates`, {
-      method: "GET",
+      method: 'GET',
     }) as Promise<IAPIResponse<OXRResponse>>;
   };
 
@@ -33,14 +33,14 @@ const useCurrencySWR = () => {
     // Error handling
     onSuccess(res) {
       if (res?.error) {
-        toast.show({ title: "Something went wrong", message: res?.message, color: "red" });
+        toast.show({ title: 'Something went wrong', message: res?.message, color: 'red' });
       }
     },
     onError() {
       toast.show({
-        title: "Something went wrong",
-        message: "Unable to fetch exchange rates",
-        color: "red",
+        title: 'Something went wrong',
+        message: 'Unable to fetch exchange rates',
+        color: 'red',
       });
     },
   });

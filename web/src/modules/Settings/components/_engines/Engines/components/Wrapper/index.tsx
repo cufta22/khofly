@@ -1,23 +1,23 @@
-import EngineComponent from "../EngineRow";
-import { HOVER_DATA } from "../../hover-data";
-import { type IGeneralEngines, useEnginesStore } from "@store/engines";
-import type { ICategories } from "@store/settings";
-import { Table } from "@mantine/core";
+import EngineComponent from '../EngineRow';
+import { HOVER_DATA } from '../../hover-data';
+import { type IGeneralEngines, useEnginesStore } from '@store/engines';
+import type { ICategories } from '@store/settings';
+import { Table } from '@mantine/core';
 
-import classes from "./styles.module.scss";
-import { CATEGORY_TO_STORE } from "./utils";
-import type { IDataEngine } from "../data";
+import classes from './styles.module.scss';
+import { CATEGORY_TO_STORE } from './utils';
+import type { IDataEngine } from '../data';
 
 interface Props {
   category: ICategories;
   data: IDataEngine[];
-  variant?: "settings" | "quick_settings";
+  variant?: 'settings' | 'quick_settings';
 }
 
-const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = "settings" }) => {
+const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = 'settings' }) => {
   const engines = useEnginesStore((state) => state[CATEGORY_TO_STORE[category].data] as string[]);
   const setEngines = useEnginesStore(
-    (state) => state[CATEGORY_TO_STORE[category].set] as (next: string[]) => void
+    (state) => state[CATEGORY_TO_STORE[category].set] as (next: string[]) => void,
   );
 
   const handleChangeEngines = (e: IGeneralEngines, next: boolean) => {
@@ -36,7 +36,7 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = "se
     <EngineComponent
       key={i}
       type={item.type}
-      checked={!!engines.find((e) => e === item.value)}
+      checked={!!engines.some((e) => e === item.value)}
       iconAlt={item.alt}
       iconSrc={item.icon}
       label={item.label}
@@ -45,35 +45,35 @@ const SettingsEnginesWrapper: React.FC<Props> = ({ category, data, variant = "se
       safeSearch={item.safeSearch}
       timeRange={item.timeRange}
       bang={item.bang}
-      variant={variant || "settings"}
+      variant={variant || 'settings'}
       category={category}
     />
   ));
 
   return (
     <Table.ScrollContainer minWidth={350}>
-      <Table verticalSpacing="sm" px="md" w="100%">
+      <Table verticalSpacing='sm' px='md' w='100%'>
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Engine</Table.Th>
 
-            {variant === "settings" && (
+            {variant === 'settings' && (
               <>
-                <Table.Th w="100%" className={classes.table_responsive} pr="xl">
+                <Table.Th w='100%' className={classes.table_responsive} pr='xl'>
                   !bang
                 </Table.Th>
-                <Table.Th className={classes.table_responsive} pr="xl">
+                <Table.Th className={classes.table_responsive} pr='xl'>
                   Safe search
                 </Table.Th>
-                <Table.Th className={classes.table_responsive} pr="xl">
+                <Table.Th className={classes.table_responsive} pr='xl'>
                   Time range
                 </Table.Th>
-                <Table.Th className={classes.table_responsive} pr="xl">
+                <Table.Th className={classes.table_responsive} pr='xl'>
                   Status
                 </Table.Th>
               </>
             )}
-            <Table.Th ta="right">Active</Table.Th>
+            <Table.Th ta='right'>Active</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>

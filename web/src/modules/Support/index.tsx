@@ -1,14 +1,14 @@
-import { Container, Title, useMantineTheme } from "@mantine/core";
-import classes from "./styles.module.scss";
-import CryptoInput from "./components/CryptoInput";
+import { Container, Title, useMantineTheme } from '@mantine/core';
+import classes from './styles.module.scss';
+import CryptoInput from './components/CryptoInput';
 import {
   IconCurrencyBitcoin,
   IconCurrencyMonero,
   IconCurrencyEthereum,
   IconCurrencyLitecoin,
   IconCurrencySolana,
-} from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
+} from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
 
 const PageSupport = () => {
   const theme = useMantineTheme();
@@ -27,12 +27,12 @@ const PageSupport = () => {
     btcAddress || bchAddress || ethAddress || xmrAddress || ltcAddress || solAddress;
 
   return (
-    <Container className={classes.support_page} size="lg" pt={40} pb={80}>
-      {hasCrypto && <Title mb="md">Crypto</Title>}
+    <Container className={classes.support_page} size='lg' pt={40} pb={80}>
+      {hasCrypto && <Title mb='md'>Crypto</Title>}
 
       {!!btcAddress && (
         <CryptoInput
-          label="Bitcoin"
+          label='Bitcoin'
           icon={
             <IconCurrencyBitcoin
               className={classes.curr_btc}
@@ -46,7 +46,7 @@ const PageSupport = () => {
 
       {!!bchAddress && (
         <CryptoInput
-          label="Bitcoin Cash"
+          label='Bitcoin Cash'
           icon={
             <IconCurrencyBitcoin
               className={classes.curr_bch}
@@ -60,7 +60,7 @@ const PageSupport = () => {
 
       {!!ethAddress && (
         <CryptoInput
-          label="Ethereum"
+          label='Ethereum'
           icon={<IconCurrencyEthereum style={getIconStyle(28)} />}
           address={ethAddress}
         />
@@ -68,7 +68,7 @@ const PageSupport = () => {
 
       {!!xmrAddress && (
         <CryptoInput
-          label="Monero"
+          label='Monero'
           icon={<IconCurrencyMonero color={theme.colors.orange[7]} style={getIconStyle(28)} />}
           address={xmrAddress}
         />
@@ -76,7 +76,7 @@ const PageSupport = () => {
 
       {!!ltcAddress && (
         <CryptoInput
-          label="Litecoin"
+          label='Litecoin'
           icon={<IconCurrencyLitecoin style={getIconStyle(28)} />}
           address={ltcAddress}
         />
@@ -84,7 +84,7 @@ const PageSupport = () => {
 
       {!!solAddress && (
         <CryptoInput
-          label="Solana"
+          label='Solana'
           icon={<IconCurrencySolana color={theme.colors.blue[6]} style={getIconStyle(28)} />}
           address={solAddress}
         />

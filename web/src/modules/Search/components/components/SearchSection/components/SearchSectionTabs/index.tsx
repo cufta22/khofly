@@ -1,17 +1,17 @@
-import { ActionIcon, Flex, Tabs } from "@mantine/core";
-import classes from "./styles.module.scss";
-import { IconAdjustmentsHorizontal } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useSearchStore } from "@store/search";
-import { type ICategories, useSettingsStore } from "@store/settings";
-import { useEffect, useState } from "react";
-import { nprogress } from "@mantine/nprogress";
-import { CATEGORIES_DATA, sortCategories } from "./data";
-import { useHotkeys, useMounted } from "@mantine/hooks";
-import { useNavigate, useSearchParams } from "react-router";
-import { getTabFromQuery } from "@utils/functions/getTabFromQuery";
-import useSearchQuery from "@hooks/use-search-query";
-import { useTranslate } from "@hooks/translate/use-translate";
+import { ActionIcon, Flex, Tabs } from '@mantine/core';
+import classes from './styles.module.scss';
+import { IconAdjustmentsHorizontal } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useSearchStore } from '@store/search';
+import { type ICategories, useSettingsStore } from '@store/settings';
+import { useEffect, useState } from 'react';
+import { nprogress } from '@mantine/nprogress';
+import { CATEGORIES_DATA, sortCategories } from './data';
+import { useHotkeys, useMounted } from '@mantine/hooks';
+import { useNavigate, useSearchParams } from 'react-router';
+import { getTabFromQuery } from '@utils/functions/getTabFromQuery';
+import useSearchQuery from '@hooks/use-search-query';
+import { useTranslate } from '@hooks/translate/use-translate';
 
 const SearchSectionTabs = () => {
   const t = useTranslate();
@@ -33,7 +33,7 @@ const SearchSectionTabs = () => {
   const { tab: tabFromSyntax } = getTabFromQuery(q);
 
   const [selectedTab, setSelectedTab] = useState(
-    tabFromSyntax || searchParams.get("tab") || "general",
+    tabFromSyntax || searchParams.get('tab') || 'general',
   );
 
   const iconSize = 16;
@@ -45,7 +45,7 @@ const SearchSectionTabs = () => {
 
     setSelectedTab(tab);
 
-    const query = searchParams.get("q") || "";
+    const query = searchParams.get('q') || '';
 
     // Handle Private Search
     if (privateSearch) {
@@ -55,7 +55,7 @@ const SearchSectionTabs = () => {
   };
 
   // Sync params tab with local state
-  const paramsTab = searchParams.get("tab") || "general";
+  const paramsTab = searchParams.get('tab') || 'general';
   useEffect(() => {
     if (paramsTab !== selectedTab) setSelectedTab(paramsTab);
   }, [paramsTab]);
@@ -63,14 +63,14 @@ const SearchSectionTabs = () => {
   // HOTKEYS: Tabs
   useHotkeys([
     [
-      "ArrowLeft",
+      'ArrowLeft',
       () => {
         const currentIdx = categories.findIndex((val) => val === selectedTab);
         if (currentIdx !== 0) handleChangeTab(categories[currentIdx - 1]);
       },
     ],
     [
-      "ArrowRight",
+      'ArrowRight',
       () => {
         const currentIdx = categories.findIndex((val) => val === selectedTab);
         if (currentIdx !== categories.length - 1) handleChangeTab(categories[currentIdx + 1]);
@@ -79,7 +79,7 @@ const SearchSectionTabs = () => {
   ]);
 
   return (
-    <Flex align="center" justify="space-between">
+    <Flex align='center' justify='space-between'>
       {hydrated && (
         <Tabs
           classNames={{
@@ -89,8 +89,8 @@ const SearchSectionTabs = () => {
           // value={selectedTab || "general"}
           value={selectedTab}
           onChange={(tab) => handleChangeTab(tab as ICategories)}
-          variant="default"
-          w="fit-content"
+          variant='default'
+          w='fit-content'
         >
           <Tabs.List className={classes.tabs_scroll}>
             {sortCategories(categories).map((cat, i) => {
@@ -108,9 +108,9 @@ const SearchSectionTabs = () => {
 
       <ActionIcon
         className={classes.search_options}
-        size="md"
-        variant="subtle"
-        color="gray"
+        size='md'
+        variant='subtle'
+        color='gray'
         onClick={() => setIsSearchOptionsOpen(!isSearchOptionsOpen)}
       >
         <IconAdjustmentsHorizontal style={getIconStyle(20)} stroke={1.5} />

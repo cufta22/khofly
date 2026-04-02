@@ -1,4 +1,4 @@
-@use "variables" as vars;
+@use 'variables' as vars;
 
 .image_container {
   cursor: pointer;
@@ -8,10 +8,7 @@
 
   .image_cell {
     position: relative;
-    background-color: light-dark(
-      var(--mantine-color-white),
-      var(--mantine-color-dark-7)
-    );
+    background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
     border-radius: var(--mantine-radius-sm);
     transition: all 0.2s ease-in-out;
     height: 240px;
@@ -27,10 +24,7 @@
     }
 
     &:hover {
-      background-color: light-dark(
-        var(--mantine-color-white),
-        var(--mantine-color-dark-6)
-      );
+      background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
     }
 
     @media (max-width: vars.$mantine-breakpoint-sm) {

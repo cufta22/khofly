@@ -1,18 +1,18 @@
-import { Code, Container, useMantineTheme } from "@mantine/core";
-import DocsTitle from "./common/DocsTitle";
-import { IconCookie } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import DocsSubtitle from "./common/DocsSubtitle";
-import DocsText from "./common/DocsText";
-import DocsNextPrev from "./common/DocsNextPrev";
+import { Code, Container, useMantineTheme } from '@mantine/core';
+import DocsTitle from './common/DocsTitle';
+import { IconCookie } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import DocsSubtitle from './common/DocsSubtitle';
+import DocsText from './common/DocsText';
+import DocsNextPrev from './common/DocsNextPrev';
 
-import { DOCS_CARD_DATA } from "./common/docsCardData";
+import { DOCS_CARD_DATA } from './common/docsCardData';
 
 const DocsResourcesSiteData = () => {
   const theme = useMantineTheme();
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle>Important data for functionality</DocsTitle>
 
       <DocsText>
@@ -93,8 +93,8 @@ const DocsResourcesSiteData = () => {
       </DocsText>
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["i18n"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["selfHostSearXNG"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)['i18n'] }}
+        next={{ ...DOCS_CARD_DATA(theme)['selfHostSearXNG'] }}
       />
     </Container>
   );

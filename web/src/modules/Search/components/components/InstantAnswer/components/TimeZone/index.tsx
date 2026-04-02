@@ -1,17 +1,17 @@
-import { IAWrapper } from "../../wrapper";
-import { Anchor, Button, Center, Flex, LoadingOverlay, Paper, Select, Text } from "@mantine/core";
+import { IAWrapper } from '../../wrapper';
+import { Anchor, Button, Center, Flex, LoadingOverlay, Paper, Select, Text } from '@mantine/core';
 
-import classes from "./styles.module.scss";
-import { useState } from "react";
-import { useTimeApiSWR } from "src/api/timeapi/use-timeapi-query";
+import classes from './styles.module.scss';
+import { useState } from 'react';
+import { useTimeApiSWR } from 'src/api/timeapi/use-timeapi-query';
 
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import { TIME_ZONES } from "../TimeIn/utils";
-import { DateTimePicker } from "@mantine/dates";
-import type { ITimeAPITimeZoneResponse } from "src/api/timeapi/types";
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import { TIME_ZONES } from '../TimeIn/utils';
+import { DateTimePicker } from '@mantine/dates';
+import type { ITimeAPITimeZoneResponse } from 'src/api/timeapi/types';
 
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 dayjs.extend(utc);
 
 interface Props {
@@ -22,8 +22,8 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
   const { data, isMutating, trigger } = useTimeApiSWR();
   const apiData = data as ITimeAPITimeZoneResponse;
 
-  const [timezone1, setTimezone1] = useState("Europe/London");
-  const [timezone2, setTimezone2] = useState("America/Chicago");
+  const [timezone1, setTimezone1] = useState('Europe/London');
+  const [timezone2, setTimezone2] = useState('America/Chicago');
   const [dateTime, setDateTime] = useState<string | null>(null);
 
   const linkTextColor = usePrimaryColor(4);
@@ -43,19 +43,19 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
       trigger({
         timezone1,
         timezone2,
-        dateTime: dateTime ? dayjs(dateTime).format("YYYY-MM-DD HH:mm:ss") : "",
-        type: "time_zone",
+        dateTime: dateTime ? dayjs(dateTime).format('YYYY-MM-DD HH:mm:ss') : '',
+        type: 'time_zone',
       });
     }
   };
 
   const timeInComponent = (
     <Center>
-      <Paper className={classes.paper_base} p="md" radius="sm" withBorder>
-        <Flex direction="column" align="flex-start">
-          <Flex direction="row" w="100%" justify="space-between" gap="sm" mb="md">
+      <Paper className={classes.paper_base} p='md' radius='sm' withBorder>
+        <Flex direction='column' align='flex-start'>
+          <Flex direction='row' w='100%' justify='space-between' gap='sm' mb='md'>
             <Select
-              label="Time zone from"
+              label='Time zone from'
               withCheckIcon={false}
               searchable={true}
               value={timezone1}
@@ -71,7 +71,7 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
             />
 
             <Select
-              label="Time zone to"
+              label='Time zone to'
               withCheckIcon={false}
               searchable={true}
               value={timezone2}
@@ -87,16 +87,16 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
             />
           </Flex>
 
-          <Flex direction="row" w="100%" align="flex-end" justify="space-between" gap="sm">
+          <Flex direction='row' w='100%' align='flex-end' justify='space-between' gap='sm'>
             <DateTimePicker
               value={dateTime}
               onChange={(value) => setDateTime(value)}
-              label="Pick date and time"
-              placeholder="Pick date and time"
+              label='Pick date and time'
+              placeholder='Pick date and time'
               timePickerProps={{
                 withDropdown: true,
                 popoverProps: { withinPortal: false },
-                format: "12h",
+                format: '12h',
               }}
             />
 
@@ -104,13 +104,13 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
           </Flex>
 
           {apiData?.conversionResult?.dateTime && (
-            <Text fz={36} fw="bold">
-              {dayjs(apiData?.conversionResult?.dateTime).format("h:mm A")}
+            <Text fz={36} fw='bold'>
+              {dayjs(apiData?.conversionResult?.dateTime).format('h:mm A')}
             </Text>
           )}
           {apiData?.conversionResult?.dateTime && (
-            <Text size="xl">
-              {dayjs(apiData?.conversionResult?.dateTime).format("dddd, MMMM DD, YYYY")}
+            <Text size='xl'>
+              {dayjs(apiData?.conversionResult?.dateTime).format('dddd, MMMM DD, YYYY')}
             </Text>
           )}
         </Flex>
@@ -124,10 +124,10 @@ const IATimeZone: React.FC<Props> = ({ withIAWrapper }) => {
     return (
       <IAWrapper
         label={
-          <Text size="sm" c="dimmed">
-            Data provided by{" "}
-            <Anchor href="https://timeapi.io/" rel="noreferrer noopener">
-              <Text component="span" c={linkTextColor}>
+          <Text size='sm' c='dimmed'>
+            Data provided by{' '}
+            <Anchor href='https://timeapi.io/' rel='noreferrer noopener'>
+              <Text component='span' c={linkTextColor}>
                 TimeAPI
               </Text>
             </Anchor>

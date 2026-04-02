@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface FileIconProps {
   fileName: string | undefined;
@@ -8,13 +8,7 @@ interface FileIconProps {
   style?: React.CSSProperties;
 }
 
-export function FileIcon({
-  fileIcon,
-  fileName,
-  getFileIcon,
-  className,
-  style,
-}: FileIconProps) {
+export function FileIcon({ fileIcon, fileName, getFileIcon, className, style }: FileIconProps) {
   if (fileIcon) {
     return (
       <span className={className} style={style}>

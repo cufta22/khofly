@@ -1,15 +1,7 @@
-import {
-  Button,
-  Center,
-  Flex,
-  NumberInput,
-  Paper,
-  Text,
-  Transition,
-} from "@mantine/core";
-import { IAWrapper } from "../../wrapper";
-import classes from "./styles.module.scss";
-import { useState } from "react";
+import { Button, Center, Flex, NumberInput, Paper, Text, Transition } from '@mantine/core';
+import { IAWrapper } from '../../wrapper';
+import classes from './styles.module.scss';
+import { useState } from 'react';
 
 const IARNG = () => {
   const [rn, setRn] = useState<number>(0);
@@ -29,27 +21,19 @@ const IARNG = () => {
   return (
     <IAWrapper>
       <Center>
-        <Paper className={classes.paper_base} p="md" radius="sm" withBorder>
-          <Flex align="flex-start" justify="space-between" direction="column">
+        <Paper className={classes.paper_base} p='md' radius='sm' withBorder>
+          <Flex align='flex-start' justify='space-between' direction='column'>
             <Text fz={30} fw={600}>
               {rn}
             </Text>
 
-            <Flex gap="md" mt="md">
-              <NumberInput
-                label="Min"
-                value={min}
-                onChange={(val) => setMin(Number(val))}
-              />
+            <Flex gap='md' mt='md'>
+              <NumberInput label='Min' value={min} onChange={(val) => setMin(Number(val))} />
 
-              <NumberInput
-                label="Max"
-                value={max}
-                onChange={(val) => setMax(Number(val))}
-              />
+              <NumberInput label='Max' value={max} onChange={(val) => setMax(Number(val))} />
             </Flex>
 
-            <Button mt="md" onClick={handleGenerate}>
+            <Button mt='md' onClick={handleGenerate}>
               Generate
             </Button>
           </Flex>

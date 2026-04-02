@@ -1,5 +1,5 @@
-import { NAVBAR_DATA } from "@utils/resources/navbarData";
-import type { LoaderFunctionArgs } from "react-router";
+import { NAVBAR_DATA } from '@utils/resources/navbarData';
+import type { LoaderFunctionArgs } from 'react-router';
 
 const docsLinks = NAVBAR_DATA.flatMap((group) => group.links);
 
@@ -58,7 +58,7 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
-    `
+    `,
     )}
 </urlset>
 `;
@@ -67,9 +67,9 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
   return new Response(sitemapXml, {
     status: 200,
     headers: {
-      "Content-Type": "application/xml",
-      "X-Content-Type-Options": "nosniff",
-      "Cache-Control": "public, max-age=3600",
+      'Content-Type': 'application/xml',
+      'X-Content-Type-Options': 'nosniff',
+      'Cache-Control': 'public, max-age=3600',
     },
   });
 };

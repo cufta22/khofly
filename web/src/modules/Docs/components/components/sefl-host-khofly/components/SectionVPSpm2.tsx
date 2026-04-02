@@ -1,12 +1,12 @@
-import { Badge, Blockquote, Code, Flex, List, Paper, Select, Text } from "@mantine/core";
-import DocsTitle from "../../../common/DocsTitle";
-import DocsText from "../../../common/DocsText";
-import DocsSubtitle from "../../../common/DocsSubtitle";
-import { IconBrandDebian, IconFile } from "@tabler/icons-react";
-import DocsCodeHighlight from "../../../common/DocsCodeHighlight/DocsCodeHighlight";
-import DocsCodeHighlightTabs from "../../../common/DocsCodeHighlight/DocsCodeHighlightTabs";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import classes from "./styles.module.scss";
+import { Badge, Blockquote, Code, Flex, List, Paper, Select, Text } from '@mantine/core';
+import DocsTitle from '../../../common/DocsTitle';
+import DocsText from '../../../common/DocsText';
+import DocsSubtitle from '../../../common/DocsSubtitle';
+import { IconBrandDebian, IconFile } from '@tabler/icons-react';
+import DocsCodeHighlight from '../../../common/DocsCodeHighlight/DocsCodeHighlight';
+import DocsCodeHighlightTabs from '../../../common/DocsCodeHighlight/DocsCodeHighlightTabs';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import classes from './styles.module.scss';
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -113,28 +113,28 @@ const SectionVPSpm2 = () => {
       <DocsSubtitle>OPTION 1. Install script ( Recommended )</DocsSubtitle>
 
       <DocsText>
-        1. SSH into your VPS and create an empty folder in your home directory, ex.{" "}
+        1. SSH into your VPS and create an empty folder in your home directory, ex.{' '}
         <Code>mkdir khofly</Code>
       </DocsText>
 
       <DocsText>
-        2. <Code>cd khofly</Code> and type{" "}
+        2. <Code>cd khofly</Code> and type{' '}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
       <DocsText>
         2.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
-        frequent updates <Code>git fetch origin staging</Code> and{" "}
+        frequent updates <Code>git fetch origin staging</Code> and{' '}
         <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
       <DocsText>
-        3. Once the code is fetched, make sure that you can execute the install script{" "}
+        3. Once the code is fetched, make sure that you can execute the install script{' '}
         <Code>chmod +x ./scripts/install.sh</Code>
       </DocsText>
 
       <DocsText>
-        3.1. Don't blindly trust any script you pull from the internet, you can inspect it with{" "}
+        3.1. Don't blindly trust any script you pull from the internet, you can inspect it with{' '}
         <Code>cat ./scripts/install.sh</Code>
       </DocsText>
 
@@ -174,7 +174,7 @@ const SectionVPSpm2 = () => {
       </DocsText>
 
       <DocsText>
-        9. <Code>cd /etc/nginx/sites-available/</Code> and edit the domain names for{" "}
+        9. <Code>cd /etc/nginx/sites-available/</Code> and edit the domain names for{' '}
         <Code>web</Code> and <Code>api</Code> files, and whatever other Nginx config you want to
         add.
       </DocsText>
@@ -190,28 +190,28 @@ const SectionVPSpm2 = () => {
       <DocsSubtitle>OPTION 2. Manual installation</DocsSubtitle>
 
       <DocsText>1. Install dependencies</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_DEPENDENCIES} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_DEPENDENCIES} language='bash' />
       </Paper>
 
       <DocsText>2. Install NVM</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_NVM} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_NVM} language='bash' />
       </Paper>
 
       <DocsText>3. Install pnpm</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_PNPM} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_PNPM} language='bash' />
       </Paper>
 
       <DocsText>4. Install pm2</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_PM2} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_PM2} language='bash' />
       </Paper>
 
       <DocsText>5. Install Bun</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_BUN} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_BUN} language='bash' />
       </Paper>
 
       <DocsText>
@@ -219,32 +219,32 @@ const SectionVPSpm2 = () => {
       </DocsText>
 
       <DocsText>
-        7. <Code>cd khofly</Code> and type{" "}
+        7. <Code>cd khofly</Code> and type{' '}
         <Code>git clone https://github.com/cufta22/khofly.git .</Code>
       </DocsText>
 
       <DocsText>
         7.1. Pick a branch, by default it will be on <Code>master</Code> but if you want more
-        frequent updates <Code>git fetch origin staging</Code> and{" "}
+        frequent updates <Code>git fetch origin staging</Code> and{' '}
         <Code>git checkout -b staging origin/staging</Code>
       </DocsText>
 
       <DocsText>8. Build and run web client</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_BUILD_WEB} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_BUILD_WEB} language='bash' />
       </Paper>
 
       <DocsText>9. Create the ecosystem.config file for pm2</DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_ECOSYSTEM} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_ECOSYSTEM} language='bash' />
       </Paper>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/web/ecosystem.config.cjs",
+              fileName: '/web/ecosystem.config.cjs',
               code: CODE_ECOSYSTEM_FILE,
-              language: "javascript",
+              language: 'javascript',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}
@@ -254,16 +254,16 @@ const SectionVPSpm2 = () => {
       <DocsText>
         10. Create Nginx config for web, don't forget to update the server_name to your domain name.
       </DocsText>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
-        <DocsCodeHighlight code={CODE_NGINX} language="bash" />
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
+        <DocsCodeHighlight code={CODE_NGINX} language='bash' />
       </Paper>
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlightTabs
           code={[
             {
-              fileName: "/etc/nginx/sites-available/web",
+              fileName: '/etc/nginx/sites-available/web',
               code: CODE_NGINX_FILE,
-              language: "nginx",
+              language: 'nginx',
               icon: <IconFile style={getIconStyle(20)} />,
             },
           ]}

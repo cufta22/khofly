@@ -1,11 +1,11 @@
-import { Alert, Badge, Code, Flex, Paper } from "@mantine/core";
-import DocsSubtitle from "../../common/DocsSubtitle";
-import DocsText from "../../common/DocsText";
-import DocsTitle from "../../common/DocsTitle";
-import DocsLink from "../../common/DocsLink";
-import { IconInfoCircle } from "@tabler/icons-react";
-import DocsCodeHighlight from "../../common/DocsCodeHighlight/DocsCodeHighlight";
-import classes from "./styles.module.scss";
+import { Alert, Badge, Code, Flex, Paper } from '@mantine/core';
+import DocsSubtitle from '../../common/DocsSubtitle';
+import DocsText from '../../common/DocsText';
+import DocsTitle from '../../common/DocsTitle';
+import DocsLink from '../../common/DocsLink';
+import { IconInfoCircle } from '@tabler/icons-react';
+import DocsCodeHighlight from '../../common/DocsCodeHighlight/DocsCodeHighlight';
+import classes from './styles.module.scss';
 
 const flyDockerfile = `
 # syntax = docker/dockerfile:1
@@ -56,10 +56,10 @@ CMD [ "npm", "run", "start" ]
 const SectionFly = () => {
   return (
     <>
-      <Flex className={classes.self_host_title_wrapper} align="center" justify="space-between">
+      <Flex className={classes.self_host_title_wrapper} align='center' justify='space-between'>
         <DocsTitle>Deploying to Fly.io</DocsTitle>
 
-        <Badge size="lg" color="pink" variant="light">
+        <Badge size='lg' color='pink' variant='light'>
           Has 5$ free credit
         </Badge>
       </Flex>
@@ -81,8 +81,8 @@ const SectionFly = () => {
       <DocsSubtitle>3. flyctl magic</DocsSubtitle>
 
       <DocsText>
-        Install flyctl, instructions{" "}
-        <DocsLink href="https://fly.io/docs/hands-on/install-flyctl/" label="here" />, cross your
+        Install flyctl, instructions{' '}
+        <DocsLink href='https://fly.io/docs/hands-on/install-flyctl/' label='here' />, cross your
         fingers and run <Code>fly launch</Code>
       </DocsText>
 
@@ -97,11 +97,11 @@ const SectionFly = () => {
         ( maybe pnpm related ), so if it does for you as well try the one below
       </DocsText>
 
-      <Paper mt="md" withBorder radius="sm" style={{ overflow: "hidden" }}>
+      <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlight
           code={flyDockerfile}
-          language="docker"
-          style={{ whiteSpace: "balance" }}
+          language='docker'
+          style={{ whiteSpace: 'balance' }}
         />
       </Paper>
 
@@ -110,14 +110,14 @@ const SectionFly = () => {
       <DocsSubtitle>1. Get the latest code</DocsSubtitle>
 
       <DocsText>
-        Open the folder where you originally cloned Khofly and run{" "}
+        Open the folder where you originally cloned Khofly and run{' '}
         <Code>git pull origin master</Code>, after this run <Code>fly deploy</Code> and it "should"
         redeploy the latest changes
       </DocsText>
 
-      <Alert mt="xl" variant="light" color="blue" title="Learn more" icon={<IconInfoCircle />}>
-        You can read more about deploying a React Router site to Fly.io at{" "}
-        <DocsLink href="https://fly.io/docs/js/frameworks/remix/" label="official docs" />.
+      <Alert mt='xl' variant='light' color='blue' title='Learn more' icon={<IconInfoCircle />}>
+        You can read more about deploying a React Router site to Fly.io at{' '}
+        <DocsLink href='https://fly.io/docs/js/frameworks/remix/' label='official docs' />.
       </Alert>
     </>
   );

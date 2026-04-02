@@ -1,10 +1,10 @@
-import { useResponsive } from "@hooks/use-responsive";
-import { Anchor } from "@mantine/core";
-import { useSearchStore } from "@store/search";
-import { useSettingsStore } from "@store/settings";
-import { IFC } from "@ts/global.types";
-import React from "react";
-import classes from "./styles.module.scss";
+import { useResponsive } from '@hooks/use-responsive';
+import { Anchor } from '@mantine/core';
+import { useSearchStore } from '@store/search';
+import { useSettingsStore } from '@store/settings';
+import type { IFC } from '@ts/global.types';
+import React from 'react';
+import classes from './styles.module.scss';
 
 interface Props extends IFC {
   url: string;
@@ -21,13 +21,13 @@ const SearchAnchor: React.FC<Props> = ({
   const updateVisitedLinks = useSearchStore((state) => state.updateVisitedLinks);
   const openInNewTab = useSettingsStore((state) => state.openInNewTab);
 
-  const isXs = useResponsive("max", "xs");
+  const isXs = useResponsive('max', 'xs');
 
   const anchorTarget: React.HTMLAttributeAnchorTarget = isXs
-    ? "_blank"
+    ? '_blank'
     : openInNewTab
-      ? "_blank"
-      : "_self";
+      ? '_blank'
+      : '_self';
 
   return (
     <Anchor
@@ -45,7 +45,7 @@ const SearchAnchor: React.FC<Props> = ({
           updateVisitedLinks(url);
         }
       }}
-      rel="noreferrer noopener"
+      rel='noreferrer noopener'
     >
       {children}
     </Anchor>

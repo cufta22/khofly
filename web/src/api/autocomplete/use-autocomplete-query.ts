@@ -1,6 +1,6 @@
-import useFetch from "../use-fetch";
-import useSWRMutation from "swr/mutation";
-import { useSettingsStore } from "@store/settings";
+import useFetch from '../use-fetch';
+import useSWRMutation from 'swr/mutation';
+import { useSettingsStore } from '@store/settings';
 
 // Restart SearXNG
 // sudo systemctl reload nginx
@@ -21,7 +21,7 @@ const useAutocompleteSWR = () => {
     return res as string[];
   };
 
-  return useSWRMutation("autocomplete-results", fetcher);
+  return useSWRMutation('autocomplete-results', fetcher);
 };
 
 export default useAutocompleteSWR;

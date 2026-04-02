@@ -1,10 +1,10 @@
-import { Flex, Select, Switch } from "@mantine/core";
-import { useSettingsStore } from "@store/settings";
-import commonClasses from "../../../common/styles.module.scss";
+import { Flex, Select, Switch } from '@mantine/core';
+import { useSettingsStore } from '@store/settings';
+import commonClasses from '../../../common/styles.module.scss';
 
 interface Props {
   isM?: boolean;
-  mDisplay?: "switch" | "dropdown";
+  mDisplay?: 'switch' | 'dropdown';
 }
 
 const AISummarySwitch: React.FC<Props> = ({ isM, mDisplay }) => {
@@ -18,39 +18,39 @@ const AISummarySwitch: React.FC<Props> = ({ isM, mDisplay }) => {
   const { enabled, length } = AISummary;
 
   return (
-    <Flex className={commonClasses.settings_control} align="center" gap="sm">
+    <Flex className={commonClasses.settings_control} align='center' gap='sm'>
       {/* <RemixLink to="/docs/ai-answers" target="_blank">
         <Text component="span" c={linkTextColor}>
           {t("pages.settings.general.learn_more")}
         </Text>
       </RemixLink> */}
 
-      {((!isM && enabled) || (isM && mDisplay === "dropdown")) && (
+      {((!isM && enabled) || (isM && mDisplay === 'dropdown')) && (
         <Select
           disabled={isM && !enabled}
           allowDeselect={false}
           data={[
             {
-              label: "Short",
-              value: "short",
+              label: 'Short',
+              value: 'short',
             },
             {
-              label: "Long",
-              value: "long",
+              label: 'Long',
+              value: 'long',
             },
           ]}
           value={length}
-          onChange={(val) => setAISummary({ length: val as "short" | "long" })}
+          onChange={(val) => setAISummary({ length: val as 'short' | 'long' })}
           w={150}
         />
       )}
 
-      {(!isM || (isM && mDisplay === "switch")) && (
+      {(!isM || (isM && mDisplay === 'switch')) && (
         <Switch
           checked={enabled}
           onChange={(e) => setAISummary({ enabled: e.currentTarget.checked })}
           withThumbIndicator={isM ? false : true}
-          size={isM ? "md" : "sm"}
+          size={isM ? 'md' : 'sm'}
         />
       )}
     </Flex>

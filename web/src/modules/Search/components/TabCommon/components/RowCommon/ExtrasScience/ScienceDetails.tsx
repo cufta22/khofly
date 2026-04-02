@@ -1,8 +1,8 @@
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import { Button, Flex, Table, Text } from "@mantine/core";
-import SearchAnchor from "@module/Search/components/components/SearchAnchor";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import { Button, Flex, Table, Text } from '@mantine/core';
+import SearchAnchor from '@module/Search/components/components/SearchAnchor';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 interface Props {
@@ -35,16 +35,16 @@ const ScienceDetails: React.FC<Props> = ({
 
   return (
     <>
-      <Table withRowBorders={false} verticalSpacing={2} mt="sm">
+      <Table withRowBorders={false} verticalSpacing={2} mt='sm'>
         {/* <Table.Thead></Table.Thead> */}
         <Table.Tbody>
           {publishedDate && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">Published date:</Text>
+                <Text size='xs'>Published date:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{dayjs(publishedDate).format("MMM D, YYYY")}</Text>
+                <Text size='xs'>{dayjs(publishedDate).format('MMM D, YYYY')}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -52,10 +52,10 @@ const ScienceDetails: React.FC<Props> = ({
           {authors && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">Author:</Text>
+                <Text size='xs'>Author:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{authors.filter((a) => a !== "…").join(", ")}</Text>
+                <Text size='xs'>{authors.filter((a) => a !== '…').join(', ')}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -63,10 +63,10 @@ const ScienceDetails: React.FC<Props> = ({
           {journal && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">Journal:</Text>
+                <Text size='xs'>Journal:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{journal}</Text>
+                <Text size='xs'>{journal}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -74,10 +74,10 @@ const ScienceDetails: React.FC<Props> = ({
           {publisher && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">Publisher:</Text>
+                <Text size='xs'>Publisher:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{publisher}</Text>
+                <Text size='xs'>{publisher}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -85,10 +85,10 @@ const ScienceDetails: React.FC<Props> = ({
           {type && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">Type:</Text>
+                <Text size='xs'>Type:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{type}</Text>
+                <Text size='xs'>{type}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -96,10 +96,10 @@ const ScienceDetails: React.FC<Props> = ({
           {tags && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">Tags:</Text>
+                <Text size='xs'>Tags:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{tags.join(", ")}</Text>
+                <Text size='xs'>{tags.join(', ')}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -107,11 +107,11 @@ const ScienceDetails: React.FC<Props> = ({
           {doi && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">DOI:</Text>
+                <Text size='xs'>DOI:</Text>
               </Table.Td>
               <Table.Td>
                 <SearchAnchor url={`https://oadoi.org/${doi}`}>
-                  <Text c={linkTextColor} size="xs">
+                  <Text c={linkTextColor} size='xs'>
                     {doi}
                   </Text>
                 </SearchAnchor>
@@ -122,10 +122,10 @@ const ScienceDetails: React.FC<Props> = ({
           {isbn && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">ISBN:</Text>
+                <Text size='xs'>ISBN:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{isbn.join(", ")}</Text>
+                <Text size='xs'>{isbn.join(', ')}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -133,10 +133,10 @@ const ScienceDetails: React.FC<Props> = ({
           {issn && (
             <Table.Tr>
               <Table.Td w={120}>
-                <Text size="xs">ISSN:</Text>
+                <Text size='xs'>ISSN:</Text>
               </Table.Td>
               <Table.Td>
-                <Text size="xs">{issn.join(", ")}</Text>
+                <Text size='xs'>{issn.join(', ')}</Text>
               </Table.Td>
             </Table.Tr>
           )}
@@ -144,10 +144,10 @@ const ScienceDetails: React.FC<Props> = ({
       </Table>
 
       {/* Links */}
-      <Flex mt="xs" gap="sm">
+      <Flex mt='xs' gap='sm'>
         {pdf_url && (
           <SearchAnchor url={pdf_url} updateVisited={false}>
-            <Button variant="default" size="xs">
+            <Button variant='default' size='xs'>
               PDF
             </Button>
           </SearchAnchor>
@@ -155,7 +155,7 @@ const ScienceDetails: React.FC<Props> = ({
 
         {doi && (
           <SearchAnchor url={`https://www.altmetric.com/details/doi/${doi}`} updateVisited={false}>
-            <Button variant="default" size="xs">
+            <Button variant='default' size='xs'>
               Altmetric
             </Button>
           </SearchAnchor>

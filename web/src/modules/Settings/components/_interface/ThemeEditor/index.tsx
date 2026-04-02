@@ -8,19 +8,19 @@ import {
   Stack,
   Text,
   useMantineTheme,
-} from "@mantine/core";
+} from '@mantine/core';
 
-import { IconCheck, IconMinus, IconPalette, IconPlus } from "@tabler/icons-react";
+import { IconCheck, IconMinus, IconPalette, IconPlus } from '@tabler/icons-react';
 
-import { useTranslate } from "@hooks/translate/use-translate";
-import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { THEME_CATPPUCCIN } from "@utils/resources/themes/catppuccin";
-import { useClientServerState } from "@store/client-server";
-import useToast from "@hooks/use-toast";
-import { setCookie } from "@utils/functions/cookies";
-import { useMounted } from "@mantine/hooks";
-import ExternalLink from "@components/Links/ExternalLink";
+import { useTranslate } from '@hooks/translate/use-translate';
+import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { THEME_CATPPUCCIN } from '@utils/resources/themes/catppuccin';
+import { useClientServerState } from '@store/client-server';
+import useToast from '@hooks/use-toast';
+import { setCookie } from '@utils/functions/cookies';
+import { useMounted } from '@mantine/hooks';
+import ExternalLink from '@components/Links/ExternalLink';
 
 interface Props {
   setDisplayThemeEdit: Dispatch<SetStateAction<boolean>>;
@@ -32,7 +32,7 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   const t = useTranslate();
   const mounted = useMounted();
 
-  const [themeJson, setThemeJson] = useState("");
+  const [themeJson, setThemeJson] = useState('');
 
   const { toast } = useToast();
 
@@ -44,28 +44,28 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
       JSON.parse(themeJson);
 
       // Set theme in LS
-      localStorage.setItem("custom-theme-json", themeJson);
+      localStorage.setItem('custom-theme-json', themeJson);
 
       // Set theme in context
-      setTheme("Custom");
+      setTheme('Custom');
 
       // Set theme in cookie ( for persistance )
-      setCookie("khofly-app-theme", "Custom", {
+      setCookie('khofly-app-theme', 'Custom', {
         expires: 60 * 60 * 24 * 90, // ~ 90 days
-        path: "/",
-        domain: process.env.NODE_ENV === "development" ? "localhost" : "khofly.com",
-        secure: process.env.HOST?.includes("https"),
-        sameSite: "Strict",
+        path: '/',
+        domain: process.env.NODE_ENV === 'development' ? 'localhost' : 'khofly.com',
+        secure: process.env.HOST?.includes('https'),
+        sameSite: 'Strict',
       });
     } catch (error) {
-      toast.show({ message: "Invalid JSON string", color: "red" });
+      toast.show({ message: 'Invalid JSON string', color: 'red' });
     }
   };
 
   // Set value initially
   useEffect(() => {
     if (mounted) {
-      const lsThemeJson = localStorage.getItem("custom-theme-json");
+      const lsThemeJson = localStorage.getItem('custom-theme-json');
 
       if (lsThemeJson) {
         setThemeJson(lsThemeJson);
@@ -74,18 +74,18 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
   }, [mounted]);
 
   return (
-    <Paper radius="md" withBorder>
-      <Flex align="center" p="lg" mb={16} justify="space-between" gap="sm">
+    <Paper radius='md' withBorder>
+      <Flex align='center' p='lg' mb={16} justify='space-between' gap='sm'>
         {/* <IconPalette size={32} color={theme.colors.blue["5"]} /> */}
 
         <Text fz={26} fw={600}>
-          {t("pages.settings.theme.title")}
+          {t('pages.settings.theme.title')}
         </Text>
 
         <div style={{ flex: 1 }} />
 
         <CloseButton
-          size="lg"
+          size='lg'
           onClick={() => {
             setDisplayThemeEdit(false);
           }}
@@ -93,14 +93,14 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
       </Flex>
 
       {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" mb="xl">
-        <Flex w="100%" align="center">
+      <Stack w='100%' align='start' px='lg' mb='xl'>
+        <Flex w='100%' align='center'>
           <Button
             leftSection={<IconPlus style={getIconStyle(16)} />}
             onClick={() => setThemeJson(JSON.stringify(DEFAULT_THEME, null, 4))}
-            size="xs"
-            variant="light"
-            mr="md"
+            size='xs'
+            variant='light'
+            mr='md'
           >
             Full theme
           </Button>
@@ -108,19 +108,19 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
           <Button
             leftSection={<IconPlus style={getIconStyle(16)} />}
             onClick={() => setThemeJson(JSON.stringify(THEME_CATPPUCCIN, null, 4))}
-            size="xs"
-            variant="light"
-            mr="md"
+            size='xs'
+            variant='light'
+            mr='md'
           >
             Basic theme
           </Button>
 
           <Button
             leftSection={<IconMinus style={getIconStyle(16)} />}
-            onClick={() => setThemeJson("")}
-            size="xs"
-            variant="light"
-            mr="md"
+            onClick={() => setThemeJson('')}
+            size='xs'
+            variant='light'
+            mr='md'
           >
             Clear
           </Button>
@@ -130,18 +130,18 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
           <Button
             leftSection={<IconCheck style={getIconStyle(16)} />}
             onClick={() => handleApply()}
-            size="xs"
-            variant="filled"
+            size='xs'
+            variant='filled'
           >
             Apply theme
           </Button>
         </Flex>
 
         <JsonInput
-          placeholder="{ ..."
-          validationError="Invalid JSON"
+          placeholder='{ ...'
+          validationError='Invalid JSON'
           formatOnBlur
-          w="100%"
+          w='100%'
           minRows={10}
           rows={20}
           value={themeJson}
@@ -149,8 +149,8 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
         />
 
         <Text>
-          Edit this only if you know what you're doing,{" "}
-          <ExternalLink href="https://mantine.dev/theming/theme-object/">
+          Edit this only if you know what you're doing,{' '}
+          <ExternalLink href='https://mantine.dev/theming/theme-object/'>
             link to theme docs.
           </ExternalLink>
         </Text>

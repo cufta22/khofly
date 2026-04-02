@@ -1,9 +1,9 @@
-import { type IOtherEngines } from "@store/engines";
-import { type IDateRange, type ISafeSearch, type ISearchLang } from "@store/search";
-import { type ICategories } from "@store/settings";
-import { ISearXNGResultsShared } from "@ts/searxng.types";
-import { getCookie } from "@utils/functions/cookies";
-import { getEngineBangs } from "src/api/searxng/utils";
+import { type IOtherEngines } from '@store/engines';
+import { type IDateRange, type ISafeSearch, type ISearchLang } from '@store/search';
+import { type ICategories } from '@store/settings';
+import type { ISearXNGResultsShared } from '@ts/searxng.types';
+import { getCookie } from '@utils/functions/cookies';
+import { getEngineBangs } from 'src/api/searxng/utils';
 
 const getApiPath = (
   tab: ICategories,
@@ -17,15 +17,15 @@ const getApiPath = (
   if (!q) return null; // prevent empty search
 
   // Query starts with ! for search with specific engine
-  const hasSpecificEngine = q.startsWith("!");
+  const hasSpecificEngine = q.startsWith('!');
 
-  const engineBangs = hasSpecificEngine ? "" : getEngineBangs(tab, enginesSelected, enginesOther);
+  const engineBangs = hasSpecificEngine ? '' : getEngineBangs(tab, enginesSelected, enginesOther);
   const query = encodeURIComponent(q);
   const catgParam = `&categories=${tab}`;
   const pageParam = `&pageno=1`;
   const safeParam = `&safesearch=${safeSearch}`;
-  const dateParam = dateRange === "all" ? "" : `&time_range=${dateRange}`;
-  const langParam = searchLanguage === "all" ? "" : `&language=${searchLanguage}`;
+  const dateParam = dateRange === 'all' ? '' : `&time_range=${dateRange}`;
+  const langParam = searchLanguage === 'all' ? '' : `&language=${searchLanguage}`;
 
   // Loader path
   return `/search?q=${engineBangs}${query}${catgParam}${pageParam}${safeParam}${dateParam}${langParam}`;
@@ -37,7 +37,7 @@ const getSearXNGData = async (
 ): Promise<ISearXNGResultsShared> => {
   const searXNGDomain = process.env.SEARXNG_URL_LOCAL;
 
-  const enginesStoreCookie = getCookie("app-engines-store", request);
+  const enginesStoreCookie = getCookie('app-engines-store', request);
   const enginesStoreData = enginesStoreCookie ? JSON.parse(enginesStoreCookie) : undefined;
 
   const enginesGeneral = enginesStoreData?.state?.enginesGeneral || [];
@@ -51,17 +51,17 @@ const getSearXNGData = async (
   const enginesSocialMedia = enginesStoreData?.state?.enginesSocialMedia || [];
   const enginesOther = enginesStoreData?.state?.enginesOther || [];
 
-  const searchStoreCookie = getCookie("app-search-store", request);
+  const searchStoreCookie = getCookie('app-search-store', request);
   const searchStoreData = searchStoreCookie ? JSON.parse(searchStoreCookie) : undefined;
 
-  const safeSearch = searchStoreData?.state?.safeSearch || "0";
-  const dateRange = searchStoreData?.state?.dateRange || "all";
-  const searchLanguage = searchStoreData?.state?.searchLanguage || "all";
-  const searchQuery = searchStoreData?.state?.searchQuery || "";
+  const safeSearch = searchStoreData?.state?.safeSearch || '0';
+  const dateRange = searchStoreData?.state?.dateRange || 'all';
+  const searchLanguage = searchStoreData?.state?.searchLanguage || 'all';
+  const searchQuery = searchStoreData?.state?.searchQuery || '';
 
   const url = new URL(request.url);
-  const q = searchQuery || (url.searchParams.get("q") as string) || "";
-  const tab = initialTab || (url.searchParams.get("tab") as ICategories) || "general";
+  const q = searchQuery || (url.searchParams.get('q') as string) || '';
+  const tab = initialTab || (url.searchParams.get('tab') as ICategories) || 'general';
 
   const enginesSelected = {
     general: enginesGeneral,

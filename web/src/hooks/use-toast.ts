@@ -1,4 +1,4 @@
-import { notifications, cleanNotifications } from "@mantine/notifications";
+import { notifications, cleanNotifications } from '@mantine/notifications';
 
 const useToast = () => {
   const clear = () => cleanNotifications();

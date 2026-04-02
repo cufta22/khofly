@@ -1,6 +1,6 @@
-import { Button, Center } from "@mantine/core";
-import { ICategories } from "@store/settings";
-import React from "react";
+import { Button, Center } from '@mantine/core';
+import type { ICategories } from '@store/settings';
+import React from 'react';
 
 interface Props {
   tab: ICategories;
@@ -8,14 +8,14 @@ interface Props {
 }
 
 const ButtonLoadMore: React.FC<Props> = ({ tab, onClick }) => {
-  return ["images", "videos"].includes(tab) ? (
-    <Center py="xl">
-      <Button variant="filled" onClick={onClick} size="lg" color="dark.5">
+  return ['images', 'videos'].includes(tab) ? (
+    <Center py='xl'>
+      <Button variant='filled' onClick={onClick} size='lg' color='dark.5'>
         Load more
       </Button>
     </Center>
   ) : (
-    <Button variant="filled" onClick={onClick} size="md" color="dark.5">
+    <Button variant='filled' onClick={onClick} size='md' color='dark.5'>
       Load more
     </Button>
   );

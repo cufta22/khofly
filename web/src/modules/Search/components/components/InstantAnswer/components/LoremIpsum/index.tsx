@@ -1,9 +1,9 @@
-import { useMounted } from "@mantine/hooks";
-import { IAWrapper } from "../../wrapper";
-import { ActionIcon, Flex, NumberInput, Select, Text } from "@mantine/core";
-import { useEffect, useState } from "react";
-import { IconReload } from "@tabler/icons-react";
-import { generateLoremIpsumParagraph } from "./utils";
+import { useMounted } from '@mantine/hooks';
+import { IAWrapper } from '../../wrapper';
+import { ActionIcon, Flex, NumberInput, Select, Text } from '@mantine/core';
+import { useEffect, useState } from 'react';
+import { IconReload } from '@tabler/icons-react';
+import { generateLoremIpsumParagraph } from './utils';
 
 const IALoremIpsum = () => {
   const [pCount, setPCount] = useState(1);
@@ -14,7 +14,7 @@ const IALoremIpsum = () => {
   const handleGenerate = (count: number, start: boolean) => {
     const loremArray: string[] = [];
 
-    const filledArray = Array.from({ length: count }, () => "lorem_ipsum");
+    const filledArray = Array.from({ length: count }, () => 'lorem_ipsum');
 
     filledArray.forEach((_a, i) => {
       const lorem = generateLoremIpsumParagraph(4, 6, start && i === 0);
@@ -27,19 +27,19 @@ const IALoremIpsum = () => {
   return (
     <IAWrapper
       label={
-        <Text size="sm" c="dimmed">
+        <Text size='sm' c='dimmed'>
           Lorem Ipsum generator
         </Text>
       }
     >
-      <Flex direction="column" gap="md">
-        <Flex align="flex-end" mb="md" gap="md">
+      <Flex direction='column' gap='md'>
+        <Flex align='flex-end' mb='md' gap='md'>
           <NumberInput
-            size="xs"
-            label="No. of paragraphs"
+            size='xs'
+            label='No. of paragraphs'
             value={pCount}
             onChange={(e) => {
-              const newVal = typeof e === "number" ? e : parseInt(e);
+              const newVal = typeof e === 'number' ? e : parseInt(e);
 
               setPCount(newVal);
               handleGenerate(newVal, startWithLorem);
@@ -49,11 +49,11 @@ const IALoremIpsum = () => {
           />
 
           <Select
-            size="xs"
+            size='xs'
             label="Start with 'Lorem ...'"
-            value={startWithLorem ? "Yes" : "No"}
+            value={startWithLorem ? 'Yes' : 'No'}
             onChange={(val) => {
-              const newVal = val === "Yes";
+              const newVal = val === 'Yes';
 
               setStartWithLorem(newVal);
               handleGenerate(pCount, newVal);
@@ -61,19 +61,19 @@ const IALoremIpsum = () => {
             allowDeselect={false}
             data={[
               {
-                label: "Yes",
-                value: "Yes",
+                label: 'Yes',
+                value: 'Yes',
               },
               {
-                label: "No",
-                value: "No",
+                label: 'No',
+                value: 'No',
               },
             ]}
           />
 
           <ActionIcon
-            size="lg"
-            variant="subtle"
+            size='lg'
+            variant='subtle'
             onClick={() => handleGenerate(pCount, startWithLorem)}
           >
             <IconReload />
@@ -81,7 +81,7 @@ const IALoremIpsum = () => {
         </Flex>
 
         {loremIpsum.map((val, i) => (
-          <Text size="md" key={i}>
+          <Text size='md' key={i}>
             {val}
           </Text>
         ))}

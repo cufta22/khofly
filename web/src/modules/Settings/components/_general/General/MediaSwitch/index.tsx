@@ -1,12 +1,12 @@
-import { useTranslate } from "@hooks/translate/use-translate";
-import { Flex, Select, Switch } from "@mantine/core";
-import { useSettingsStore } from "@store/settings";
-import commonClasses from "../../../common/styles.module.scss";
-import React from "react";
+import { useTranslate } from '@hooks/translate/use-translate';
+import { Flex, Select, Switch } from '@mantine/core';
+import { useSettingsStore } from '@store/settings';
+import commonClasses from '../../../common/styles.module.scss';
+import React from 'react';
 
 interface Props {
   isM?: boolean;
-  mDisplay?: "switch" | "dropdown";
+  mDisplay?: 'switch' | 'dropdown';
 }
 
 const MediaSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
@@ -18,33 +18,33 @@ const MediaSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
   const { enabled, type } = generalMedia;
 
   return (
-    <Flex className={commonClasses.settings_control} align="center" gap="sm">
-      {((!isM && enabled) || (isM && mDisplay === "dropdown")) && (
+    <Flex className={commonClasses.settings_control} align='center' gap='sm'>
+      {((!isM && enabled) || (isM && mDisplay === 'dropdown')) && (
         <Select
           disabled={isM && !enabled}
           allowDeselect={false}
           data={[
             {
-              label: t("pages.settings.general.display_media_options.images"),
-              value: "images",
+              label: t('pages.settings.general.display_media_options.images'),
+              value: 'images',
             },
             {
-              label: t("pages.settings.general.display_media_options.videos"),
-              value: "videos",
+              label: t('pages.settings.general.display_media_options.videos'),
+              value: 'videos',
             },
           ]}
           value={type}
-          onChange={(val) => setGeneralMedia({ type: val as "images" | "videos" })}
+          onChange={(val) => setGeneralMedia({ type: val as 'images' | 'videos' })}
           w={150}
         />
       )}
 
-      {(!isM || (isM && mDisplay === "switch")) && (
+      {(!isM || (isM && mDisplay === 'switch')) && (
         <Switch
           checked={enabled}
           onChange={(e) => setGeneralMedia({ enabled: e.currentTarget.checked })}
           withThumbIndicator={isM ? false : true}
-          size={isM ? "md" : "sm"}
+          size={isM ? 'md' : 'sm'}
         />
       )}
     </Flex>

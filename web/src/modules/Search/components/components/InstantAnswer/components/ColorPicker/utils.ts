@@ -25,8 +25,8 @@ export const cp_rgbToHex = (rgb: { r: number; g: number; b: number }) => {
   // Convert each component to a two-digit hexadecimal string
   const toHex = (c: number) => {
     const hex = c.toString(16);
-    return hex.length === 1 ? "0" + hex : hex;
+    return hex.length === 1 ? '0' + hex : hex;
   };
 
-  return "#" + toHex(newR) + toHex(newG) + toHex(newB);
+  return '#' + toHex(newR) + toHex(newG) + toHex(newB);
 };

@@ -1,9 +1,9 @@
-import { SimpleGrid } from "@mantine/core";
-import { ICategories } from "@store/settings";
-import { ISearXNGResultsVideos } from "@ts/searxng.types";
-import SkeletonVideo from "../components/SkeletonVideo";
-import CellVideo from "../components/CellVideo";
-import PrivateVideoPlayer from "../../components/PrivatePlayer/videos";
+import { SimpleGrid } from '@mantine/core';
+import type { ICategories } from '@store/settings';
+import type { ISearXNGResultsVideos } from '@ts/searxng.types';
+import SkeletonVideo from '../components/SkeletonVideo';
+import CellVideo from '../components/CellVideo';
+import PrivateVideoPlayer from '../../components/PrivatePlayer/videos';
 
 interface Props {
   tab: ICategories;
@@ -16,9 +16,9 @@ const LayoutVideos: React.FC<Props> = ({ tab, data, showSkeleton }) => {
     <>
       <SimpleGrid
         cols={{ base: 2, sm: 3, md: 4, lg: 5 }}
-        spacing={{ base: 10, sm: "xl" }}
-        verticalSpacing={{ base: "md", sm: "xl" }}
-        p="lg"
+        spacing={{ base: 10, sm: 'xl' }}
+        verticalSpacing={{ base: 'md', sm: 'xl' }}
+        p='lg'
       >
         {data?.map((res) => {
           if (!res) return;

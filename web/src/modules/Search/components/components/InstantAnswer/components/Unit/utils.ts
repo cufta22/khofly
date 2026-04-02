@@ -1,4 +1,4 @@
-import { UnitsType } from ".";
+import type { UnitsType } from '.';
 
 const conversionFactors: { [key in UnitsType]: any } = {
   length: {
@@ -32,9 +32,9 @@ const conversionFactors: { [key in UnitsType]: any } = {
     in3: 0.000016387,
     ft3: 0.0283168,
     yd3: 0.7645548,
-    "acre ft": 1233.48,
+    'acre ft': 1233.48,
     tsp: 0.00492892,
-    "fl oz": 0.0295735,
+    'fl oz': 0.0295735,
     cup: 0.24,
     gill: 0.118255,
     pt: 0.473176,
@@ -76,14 +76,9 @@ const conversionFactors: { [key in UnitsType]: any } = {
   },
 };
 
-export const convertUnit = (
-  value: number,
-  fromUnit: string,
-  toUnit: string,
-  type: UnitsType
-) => {
+export const convertUnit = (value: number, fromUnit: string, toUnit: string, type: UnitsType) => {
   // Handle temperature because formulas
-  if (type === "temperature") {
+  if (type === 'temperature') {
     const formula =
       conversionFactors.temperature[
         `${fromUnit.toLocaleLowerCase()}_to_${toUnit.toLocaleLowerCase()}`
@@ -95,11 +90,9 @@ export const convertUnit = (
   }
 
   // Handle angle because formulas
-  if (type === "angle") {
+  if (type === 'angle') {
     const formula =
-      conversionFactors.angle[
-        `${fromUnit.toLocaleLowerCase()}_to_${toUnit.toLocaleLowerCase()}`
-      ];
+      conversionFactors.angle[`${fromUnit.toLocaleLowerCase()}_to_${toUnit.toLocaleLowerCase()}`];
 
     if (!formula) return 0;
 

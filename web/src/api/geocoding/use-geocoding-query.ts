@@ -1,9 +1,9 @@
-import { useInstanceStore } from "@store/instance";
-import useFetch from "../use-fetch";
-import useSWRMutation from "swr/mutation";
-import type { IAPIResponse } from "@ts/global.types";
-import type { OpenWeatherGeoResponse } from "./types";
-import useToast from "@hooks/use-toast";
+import { useInstanceStore } from '@store/instance';
+import useFetch from '../use-fetch';
+import useSWRMutation from 'swr/mutation';
+import type { IAPIResponse } from '@ts/global.types';
+import type { OpenWeatherGeoResponse } from './types';
+import useToast from '@hooks/use-toast';
 
 interface Args {
   location: string;
@@ -19,7 +19,7 @@ const useGeocodingSWR = () => {
     const { location } = arg;
 
     return fetchData(`${apiDomain}/geocoding?location=${location}`, {
-      method: "GET",
+      method: 'GET',
     }) as Promise<IAPIResponse<OpenWeatherGeoResponse>>;
   };
 
@@ -31,24 +31,24 @@ const useGeocodingSWR = () => {
       onSuccess(res) {
         if (!res?.data) {
           toast.show({
-            title: "Something went wrong",
-            message: "Location not found",
-            color: "red",
+            title: 'Something went wrong',
+            message: 'Location not found',
+            color: 'red',
           });
           return;
         }
         if (res?.error) {
-          toast.show({ title: "Something went wrong", message: res?.message, color: "red" });
+          toast.show({ title: 'Something went wrong', message: res?.message, color: 'red' });
         }
       },
       onError() {
         toast.show({
-          title: "Something went wrong",
-          message: "Unable to fetch location",
-          color: "red",
+          title: 'Something went wrong',
+          message: 'Unable to fetch location',
+          color: 'red',
         });
       },
-    }
+    },
   );
 };
 

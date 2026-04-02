@@ -8,13 +8,13 @@ export const formatChangelog = (data: string): { title: string; content: string 
     const found = array[objCounter];
     if (!found) array.push({ title: '', content: '' });
 
-    if (str.substring(0, 3) === '## ') {
-      array[objCounter].title = 'v' + str.substring(4, 9) + ' - ' + str.substring(13);
+    if (str.slice(0, 3) === '## ') {
+      array[objCounter].title = 'v' + str.slice(4, 9) + ' - ' + str.slice(13);
     } else {
       array[objCounter].content = array[objCounter].content + '\n' + str;
     }
 
-    if (splicedData[i + 1] && splicedData[i + 1].substring(0, 3) === '## ') {
+    if (splicedData[i + 1] && splicedData[i + 1].slice(0, 3) === '## ') {
       objCounter++;
     }
   });

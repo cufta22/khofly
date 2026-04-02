@@ -1,4 +1,4 @@
-@use "functions" as func;
+@use 'functions' as func;
 
 .weather_daily {
   display: flex;
@@ -8,11 +8,10 @@
   text-align: center;
   border-radius: var(--mantine-radius-md);
   height: func.to-rem(90px);
-  background-color: light-dark(
-    var(--mantine-color-white),
-    var(--mantine-color-dark-7)
-  );
-  transition: box-shadow 150ms ease, transform 100ms ease;
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
+  transition:
+    box-shadow 150ms ease,
+    transform 100ms ease;
   padding: var(--mantine-spacing-xs);
 
   &:hover {
@@ -38,8 +37,7 @@
 .sun_icon_pos {
   fill: transparent;
 
-  $day_icon_numbers: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-    20;
+  $day_icon_numbers: 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20;
 
   // Night, 3 at the beginning
   &--1,
@@ -48,10 +46,7 @@
     &:nth-child(3) {
       fill: var(--mantine-color-gray-6);
       stroke-width: 4px;
-      stroke: light-dark(
-        var(--mantine-color-gray-0),
-        var(--mantine-color-dark-8)
-      );
+      stroke: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
     }
   }
 
@@ -61,10 +56,7 @@
       &:nth-child(#{$i}) {
         fill: var(--mantine-color-yellow-8);
         stroke-width: 4px;
-        stroke: light-dark(
-          var(--mantine-color-gray-0),
-          var(--mantine-color-dark-8)
-        );
+        stroke: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
       }
     }
   }
@@ -76,10 +68,7 @@
     &:nth-child(21) {
       fill: var(--mantine-color-gray-6);
       stroke-width: 4px;
-      stroke: light-dark(
-        var(--mantine-color-gray-0),
-        var(--mantine-color-dark-8)
-      );
+      stroke: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
     }
   }
 }

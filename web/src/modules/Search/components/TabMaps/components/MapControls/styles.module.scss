@@ -1,4 +1,4 @@
-@use "variables" as vars;
+@use 'variables' as vars;
 
 .map_controls {
   position: absolute;
@@ -16,10 +16,7 @@
   flex-direction: column;
 
   .map_controls_head {
-    background-color: light-dark(
-      var(--mantine-color-gray-0),
-      var(--mantine-color-dark-8)
-    );
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
   }
 
   &.map_controls_closed {
@@ -61,10 +58,7 @@
   .controls_slide {
     width: 100%;
     cursor: grab;
-    background-color: light-dark(
-      var(--mantine-color-gray-0),
-      var(--mantine-color-dark-8)
-    );
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-8));
 
     display: none;
 

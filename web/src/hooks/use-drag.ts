@@ -1,14 +1,11 @@
-import { useState, useEffect, RefObject, useRef } from "react";
+import type { RefObject} from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function guard(value: number, min: number, max: number) {
   return value < min ? min : value > max ? max : value;
 }
 
-export const useDrag = (
-  divRef: RefObject<HTMLDivElement>,
-  divW: number,
-  divH: number
-) => {
+export const useDrag = (divRef: RefObject<HTMLDivElement>, divW: number, divH: number) => {
   const [pos, setPos] = useState({
     x: (window.innerWidth - divW) / 2,
     y: (window.innerHeight - divH) / 2,
@@ -23,14 +20,8 @@ export const useDrag = (
   }, []);
 
   useEffect(() => {
-    const vw = Math.max(
-      document.documentElement.clientWidth || 0,
-      window.innerWidth || 0
-    );
-    const vh = Math.max(
-      document.documentElement.clientHeight || 0,
-      window.innerHeight || 0
-    );
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
     const handleDrag = (e: MouseEvent) => {
       cancelAnimationFrame(frame.current);
@@ -66,7 +57,7 @@ export const useDrag = (
 
     const handleMouseDown = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target?.id !== "drag-handle") return;
+      if (target?.id !== 'drag-handle') return;
 
       startDragging();
       // e.preventDefault();
@@ -81,14 +72,14 @@ export const useDrag = (
     };
 
     if (mounted.current) {
-      document.addEventListener("mousedown", handleMouseDown);
-      document.addEventListener("mouseup", stopDragging);
-      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener('mousedown', handleMouseDown);
+      document.addEventListener('mouseup', stopDragging);
+      document.addEventListener('mousemove', handleMouseMove);
 
       return () => {
-        document.removeEventListener("mousedown", handleMouseDown);
-        document.removeEventListener("mouseup", stopDragging);
-        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener('mousedown', handleMouseDown);
+        document.removeEventListener('mouseup', stopDragging);
+        document.removeEventListener('mousemove', handleMouseMove);
       };
     }
 

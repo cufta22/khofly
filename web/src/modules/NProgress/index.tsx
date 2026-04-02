@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { NavigationProgress, nprogress } from "@mantine/nprogress";
-import { useLocation, useSearchParams } from "react-router";
+import { useEffect } from 'react';
+import { NavigationProgress, nprogress } from '@mantine/nprogress';
+import { useLocation, useSearchParams } from 'react-router';
 
 const NProgress = () => {
   const { pathname } = useLocation();

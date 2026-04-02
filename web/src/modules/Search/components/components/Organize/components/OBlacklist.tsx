@@ -1,20 +1,20 @@
-import classes from "../styles.module.scss";
-import { Accordion, Center, SimpleGrid, Text } from "@mantine/core";
-import { useSearchStore } from "@store/search";
-import { IconForbid } from "@tabler/icons-react";
-import DomainItem from "./DomainItem";
+import classes from '../styles.module.scss';
+import { Accordion, Center, SimpleGrid, Text } from '@mantine/core';
+import { useSearchStore } from '@store/search';
+import { IconForbid } from '@tabler/icons-react';
+import DomainItem from './DomainItem';
 
 const OBlacklist = () => {
   const domainsBlacklist = useSearchStore((state) => state.domainsBlacklist);
 
   return (
-    <Accordion.Item className={classes.acc_item} value="blacklist">
+    <Accordion.Item className={classes.acc_item} value='blacklist'>
       <Accordion.Control className={classes.acc_control} icon={<IconForbid />}>
-        <Text size="lg">Blacklist</Text>
+        <Text size='lg'>Blacklist</Text>
       </Accordion.Control>
       <Accordion.Panel>
-        {domainsBlacklist.length ? (
-          <SimpleGrid mt="lg" cols={1} spacing="md">
+        {domainsBlacklist.length > 0 ? (
+          <SimpleGrid mt='lg' cols={1} spacing='md'>
             {domainsBlacklist.map((item, i) => (
               <DomainItem key={i} domain={item} isCurrent={false} />
             ))}

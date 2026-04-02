@@ -1,7 +1,7 @@
-import { useTranslate } from "@hooks/translate/use-translate";
-import { usePrimaryColor } from "@hooks/use-primary-color";
-import { Anchor, Badge, Center, Container, Loader, Table, Text, Title } from "@mantine/core";
-import type { ILoaderData_Instances } from "app/routes/instances";
+import { useTranslate } from '@hooks/translate/use-translate';
+import { usePrimaryColor } from '@hooks/use-primary-color';
+import { Anchor, Badge, Center, Container, Loader, Table, Text, Title } from '@mantine/core';
+import type { ILoaderData_Instances } from 'app/routes/instances';
 
 interface Props {
   loaderData: ILoaderData_Instances;
@@ -9,31 +9,31 @@ interface Props {
 
 const getCspColor = (val: string) => {
   switch (val) {
-    case "A+":
-    case "A":
-    case "A-":
-      return "green.6";
+    case 'A+':
+    case 'A':
+    case 'A-':
+      return 'green.6';
 
-    case "B+":
-    case "B":
-    case "B-":
-      return "green.4";
+    case 'B+':
+    case 'B':
+    case 'B-':
+      return 'green.4';
 
-    case "C+":
-    case "C":
-    case "C-":
-      return "yellow.6";
+    case 'C+':
+    case 'C':
+    case 'C-':
+      return 'yellow.6';
 
-    case "D+":
-    case "D":
-    case "D-":
-      return "red.4";
+    case 'D+':
+    case 'D':
+    case 'D-':
+      return 'red.4';
 
-    case "F":
-      return "red.6";
+    case 'F':
+      return 'red.6';
 
     default:
-      return "red.6";
+      return 'red.6';
   }
 };
 
@@ -48,7 +48,7 @@ const PageInstances: React.FC<Props> = ({ loaderData }) => {
   if (loaderData.error)
     return (
       <Center mt={100}>
-        <Text size="xl">Rip API :(</Text>
+        <Text size='xl'>Rip API :(</Text>
       </Center>
     );
 
@@ -56,14 +56,14 @@ const PageInstances: React.FC<Props> = ({ loaderData }) => {
   if (!loaderData?.data)
     return (
       <Center mt={100}>
-        <Loader size="xl" />
+        <Loader size='xl' />
       </Center>
     );
 
   return (
-    <Container size="lg" py="xl" pt={40} pb={40}>
-      <Title ta="center" mt="md" mb="xl">
-        {t("pages.instances.title")}
+    <Container size='lg' py='xl' pt={40} pb={40}>
+      <Title ta='center' mt='md' mb='xl'>
+        {t('pages.instances.title')}
       </Title>
 
       <Table>
@@ -85,7 +85,7 @@ const PageInstances: React.FC<Props> = ({ loaderData }) => {
               </Table.Td>
               <Table.Td>
                 <Text c={linkTextColor}>
-                  <Anchor href={item.url} target="_blank" rel="noreferrer noopener">
+                  <Anchor href={item.url} target='_blank' rel='noreferrer noopener'>
                     {item.url}
                   </Anchor>
                 </Text>
@@ -94,8 +94,8 @@ const PageInstances: React.FC<Props> = ({ loaderData }) => {
                 <Text>{item.version}</Text>
               </Table.Td>
               <Table.Td>
-                <Badge size="lg" radius="xs" color={getCspColor(item.csp)}>
-                  <Text fw="bolder">{item.csp}</Text>
+                <Badge size='lg' radius='xs' color={getCspColor(item.csp)}>
+                  <Text fw='bolder'>{item.csp}</Text>
                 </Badge>
               </Table.Td>
               <Table.Td>

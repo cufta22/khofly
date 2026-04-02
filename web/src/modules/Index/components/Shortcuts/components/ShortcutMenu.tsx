@@ -1,9 +1,10 @@
-import { ActionIcon, Menu } from "@mantine/core";
-import React from "react";
-import classes from "../styles.module.scss";
-import { IconDots, IconEdit, IconExternalLink, IconSquare, IconTrash } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { IShortcut, useHomepageStore } from "@store/homepage";
+import { ActionIcon, Menu } from '@mantine/core';
+import React from 'react';
+import classes from '../styles.module.scss';
+import { IconDots, IconEdit, IconExternalLink, IconSquare, IconTrash } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import type { IShortcut} from '@store/homepage';
+import { useHomepageStore } from '@store/homepage';
 
 interface Props {
   openMenu: boolean;
@@ -36,13 +37,13 @@ const ShortcutMenu: React.FC<Props> = ({
     const newShortcuts: IShortcut[] = [...shortcuts].map((sc, i) => {
       if (i === idx) {
         return {
-          type: "group",
+          type: 'group',
           title: sc.title,
-          href: "",
-          imgUrl: "",
+          href: '',
+          imgUrl: '',
           items: [
             {
-              type: "item",
+              type: 'item',
               title: sc.title,
               href: sc.href,
               imgUrl: sc.imgUrl,
@@ -60,7 +61,7 @@ const ShortcutMenu: React.FC<Props> = ({
   };
 
   return (
-    <Menu opened={openMenu} onChange={toggleMenu} shadow="md" width={200} position="bottom-start">
+    <Menu opened={openMenu} onChange={toggleMenu} shadow='md' width={200} position='bottom-start'>
       <Menu.Target>
         <ActionIcon
           onClick={(e) => {
@@ -69,8 +70,8 @@ const ShortcutMenu: React.FC<Props> = ({
             toggleMenu();
           }}
           className={classes.item_actions}
-          size="sm"
-          variant="transparent"
+          size='sm'
+          variant='transparent'
         >
           {(hovered || openMenu) && <IconDots />}
         </ActionIcon>
@@ -78,7 +79,7 @@ const ShortcutMenu: React.FC<Props> = ({
 
       <Menu.Dropdown>
         <Menu.Item
-          fz="xs"
+          fz='xs'
           leftSection={<IconEdit style={getIconStyle(14)} />}
           onClick={toggleModal}
         >
@@ -86,16 +87,16 @@ const ShortcutMenu: React.FC<Props> = ({
         </Menu.Item>
 
         <Menu.Item
-          fz="xs"
+          fz='xs'
           leftSection={<IconTrash style={getIconStyle(14)} />}
-          color="red"
+          color='red'
           onClick={handleDelete}
         >
           Delete
         </Menu.Item>
 
         <Menu.Item
-          fz="xs"
+          fz='xs'
           leftSection={<IconSquare style={getIconStyle(14)} />}
           onClick={handleGroup}
         >
@@ -105,13 +106,13 @@ const ShortcutMenu: React.FC<Props> = ({
         <Menu.Divider />
 
         <Menu.Item
-          fz="xs"
+          fz='xs'
           leftSection={<IconExternalLink style={getIconStyle(14)} />}
           onClick={() => {
             window.open(
               fullUrl,
-              "_blank",
-              "height=600,width=800,toolbar=1,Location=0,Directories=0,Status=0,menubar=1,Scrollbars=1,Resizable=1"
+              '_blank',
+              'height=600,width=800,toolbar=1,Location=0,Directories=0,Status=0,menubar=1,Scrollbars=1,Resizable=1',
             );
           }}
         >

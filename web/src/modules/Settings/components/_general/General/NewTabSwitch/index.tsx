@@ -1,7 +1,7 @@
-import { Switch } from "@mantine/core";
-import { useSettingsStore } from "@store/settings";
-import commonClasses from "../../../common/styles.module.scss";
-import React from "react";
+import { Switch } from '@mantine/core';
+import { useSettingsStore } from '@store/settings';
+import commonClasses from '../../../common/styles.module.scss';
+import React from 'react';
 
 interface Props {
   isM?: boolean;
@@ -17,7 +17,7 @@ const NewTabSwitch: React.FC<Props> = ({ isM }) => {
       checked={openInNewTab}
       onChange={(e) => setOpenInNewTab(e.currentTarget.checked)}
       withThumbIndicator={isM ? false : true}
-      size={isM ? "md" : "sm"}
+      size={isM ? 'md' : 'sm'}
     />
   );
 };

@@ -1,8 +1,8 @@
-import { useTranslate } from "@hooks/translate/use-translate";
-import useSearchQuery from "@hooks/use-search-query";
-import { useIsomorphicEffect } from "@mantine/hooks";
-import { useSettingsStore } from "@store/settings";
-import { IS_SELF_HOST } from "@utils/resources/isSelfHost";
+import { useTranslate } from '@hooks/translate/use-translate';
+import useSearchQuery from '@hooks/use-search-query';
+import { useIsomorphicEffect } from '@mantine/hooks';
+import { useSettingsStore } from '@store/settings';
+import { IS_SELF_HOST } from '@utils/resources/isSelfHost';
 
 interface Args {
   isSearch: boolean;
@@ -19,7 +19,7 @@ const useTitleQuery = (args: Args) => {
 
   const q = useSearchQuery();
 
-  const appName = (IS_SELF_HOST ? process.env.APP_NAME : t("_common.app_name")) || "Khofly";
+  const appName = (IS_SELF_HOST ? process.env.APP_NAME : t('_common.app_name')) || 'Khofly';
 
   useIsomorphicEffect(() => {
     // Reset for index

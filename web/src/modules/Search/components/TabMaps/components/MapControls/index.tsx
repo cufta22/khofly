@@ -7,21 +7,22 @@ import {
   Paper,
   ScrollArea,
   TextInput,
-} from "@mantine/core";
-import React, { Dispatch, useEffect, useState } from "react";
+} from '@mantine/core';
+import type { Dispatch} from 'react';
+import React, { useEffect, useState } from 'react';
 
-import classes from "./styles.module.scss";
-import { IconArrowLeft, IconChevronLeft, IconSearch } from "@tabler/icons-react";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import { useDisclosure } from "@mantine/hooks";
-import clsx from "clsx";
-import useNominatimSWR from "src/api/nominatim/use-nominatim-query";
-import { useResponsive } from "@hooks/use-responsive";
+import classes from './styles.module.scss';
+import { IconArrowLeft, IconChevronLeft, IconSearch } from '@tabler/icons-react';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import { useDisclosure } from '@mantine/hooks';
+import clsx from 'clsx';
+import useNominatimSWR from 'src/api/nominatim/use-nominatim-query';
+import { useResponsive } from '@hooks/use-responsive';
 
-import { useSettingsStore } from "@store/settings";
-import { useNavigate, useSearchParams } from "react-router";
-import useSearchQuery from "@hooks/use-search-query";
-import { removeBangsFromQ } from "../../utils/removeBangsFromQ";
+import { useSettingsStore } from '@store/settings';
+import { useNavigate, useSearchParams } from 'react-router';
+import useSearchQuery from '@hooks/use-search-query';
+import { removeBangsFromQ } from '../../utils/removeBangsFromQ';
 
 interface Props {
   coords: { latitude: number; longitude: number };
@@ -37,15 +38,15 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   const [isOpen, { toggle }] = useDisclosure(true);
 
   const currentQ = useSearchQuery();
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState('');
 
   const privateSearch = useSettingsStore((state) => state.privateSearch);
 
-  const isXs = useResponsive("max", "xs");
+  const isXs = useResponsive('max', 'xs');
 
   const handleSearch = () => {
     // Prevent empty search
-    if (!q.length) return;
+    if (q.length === 0) return;
 
     trigger(q);
   };
@@ -55,7 +56,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
 
     // Handle Private Search
     if (privateSearch) {
-      return navigate("/search?tab=general");
+      return navigate('/search?tab=general');
     }
 
     navigate(`/search?q=${encodeURIComponent(query)}&tab=general`);
@@ -69,7 +70,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
   useEffect(() => {
     // Don't search on render in dev to prevent API spam
     // Maybe fix if self-host nominatim API
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === 'production') {
       if (!data?.length && currentQ?.length) trigger(removeBangsFromQ(currentQ));
     }
 
@@ -96,15 +97,15 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
       <Flex
         className={classes.controls_slide}
         onClick={toggle}
-        align="center"
-        justify="center"
-        p="xs"
+        align='center'
+        justify='center'
+        p='xs'
       >
         <IconChevronLeft style={getIconStyle(22)} />
       </Flex>
 
-      <Flex className={classes.map_controls_head} p="xs" gap="xs">
-        <ActionIcon className={classes.action_icon} variant="light" onClick={handleGoBack}>
+      <Flex className={classes.map_controls_head} p='xs' gap='xs'>
+        <ActionIcon className={classes.action_icon} variant='light' onClick={handleGoBack}>
           <IconArrowLeft />
         </ActionIcon>
 
@@ -112,13 +113,13 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
           className={classes.map_input}
           value={q}
           onChange={(e) => setQ(e.currentTarget.value)}
-          size="md"
+          size='md'
           onKeyDown={(e) => {
-            if (e.key === "Enter") handleSearch();
+            if (e.key === 'Enter') handleSearch();
           }}
           rightSection={
-            <ActionIcon w={40} h={40} radius="sm" variant="blue" onClick={() => handleSearch()}>
-              <IconSearch style={getIconStyle(22)} stroke={1.5} color="white" />
+            <ActionIcon w={40} h={40} radius='sm' variant='blue' onClick={() => handleSearch()}>
+              <IconSearch style={getIconStyle(22)} stroke={1.5} color='white' />
             </ActionIcon>
           }
         />
@@ -127,12 +128,12 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
       <ScrollArea className={classes.osm_results}>
         {isMutating && (
           <Center>
-            <Loader mt="lg" />
+            <Loader mt='lg' />
           </Center>
         )}
 
         {!isMutating && data && data?.length < 1 && (
-          <Center py="xs">No results, try with different query</Center>
+          <Center py='xs'>No results, try with different query</Center>
         )}
 
         {data?.length && !error && !isMutating
@@ -140,7 +141,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
               <NavLink
                 key={i}
                 label={row.display_name}
-                leftSection={<IconSearch size="1rem" stroke={1.5} />}
+                leftSection={<IconSearch size='1rem' stroke={1.5} />}
                 onClick={(e) => handleUpdateMap(row.lat, row.lon)}
               />
             ))
@@ -149,7 +150,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
 
       {/* Toggle icon */}
       <ActionIcon
-        variant="default"
+        variant='default'
         className={clsx(classes.controls_toggle, {
           [classes.controls_toggle_closed]: !isOpen,
         })}

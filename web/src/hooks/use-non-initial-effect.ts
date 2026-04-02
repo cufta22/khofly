@@ -1,4 +1,4 @@
-import { useEffect, useRef, type DependencyList, type EffectCallback } from "react";
+import { useEffect, useRef, type DependencyList, type EffectCallback } from 'react';
 
 // It's same as useEffect but doesn't run on initial render
 // https://www.thearmchaircritic.org/tech-journals/prevent-useeffects-callback-firing-during-initial-render
@@ -15,7 +15,7 @@ export const useNonInitialEffect = (effect: EffectCallback, deps?: DependencyLis
       effectReturns = effect();
     }
 
-    if (effectReturns && typeof effectReturns === "function") {
+    if (effectReturns && typeof effectReturns === 'function') {
       return effectReturns;
     }
   }, deps);

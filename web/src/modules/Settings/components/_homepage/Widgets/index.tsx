@@ -1,4 +1,4 @@
-import { Divider, Flex, Paper, Stack, Text, useMantineTheme } from "@mantine/core";
+import { Divider, Flex, Paper, Stack, Text, useMantineTheme } from '@mantine/core';
 
 import {
   IconApps,
@@ -7,47 +7,47 @@ import {
   IconHaze,
   IconListCheck,
   IconNote,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react';
 
-import WeatherSwitch from "./components/WeatherSwitch";
-import { getIconStyle } from "@utils/functions/iconStyle";
-import ToDoSwitch from "./components/ToDoSwitch";
-import ClockSwitch from "./components/ClockSwitch";
+import WeatherSwitch from './components/WeatherSwitch';
+import { getIconStyle } from '@utils/functions/iconStyle';
+import ToDoSwitch from './components/ToDoSwitch';
+import ClockSwitch from './components/ClockSwitch';
 // import PositionSelect from "./components/PositionSelect";
-import SettingsTitle from "../../common/SettingsTitle";
-import SettingsRow from "../../common/SettingsRow";
+import SettingsTitle from '../../common/SettingsTitle';
+import SettingsRow from '../../common/SettingsRow';
 
-import commonClasses from "../../common/styles.module.scss";
-import NotesSwitch from "./components/NotesSwitch";
-import { T } from "build/client/assets/iconStyle-kU3X2BP3";
-import { useTranslate } from "@hooks/translate/use-translate";
+import commonClasses from '../../common/styles.module.scss';
+import NotesSwitch from './components/NotesSwitch';
+import { T } from 'build/client/assets/iconStyle-kU3X2BP3';
+import { useTranslate } from '@hooks/translate/use-translate';
 
 const SettingsWidgets = () => {
   const t = useTranslate();
   const theme = useMantineTheme();
 
   return (
-    <Paper className="desktop_only" radius="md" withBorder>
+    <Paper className='desktop_only' radius='md' withBorder>
       <SettingsTitle
         icon={<IconApps color={theme.colors[theme.primaryColor][5]} />}
-        title="pages.settings.homepage.title_widgets"
+        title='pages.settings.homepage.title_widgets'
         rightSection={
-          <Flex className="desktop_only" align="center">
+          <Flex className='desktop_only' align='center'>
             <IconDeviceDesktop />
 
-            <Text ml="sm">{t("pages.settings._common.desktop_only")}</Text>
+            <Text ml='sm'>{t('pages.settings._common.desktop_only')}</Text>
           </Flex>
         }
       />
 
       {/* Settings content */}
-      <Stack w="100%" align="start" px="lg" mb="xl">
+      <Stack w='100%' align='start' px='lg' mb='xl'>
         {/* Weather widget */}
         <SettingsRow
-          icon={<IconHaze style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.homepage.toggle_weather"
+          icon={<IconHaze style={getIconStyle(24)} color={theme.colors.gray['5']} />}
+          desc='pages.settings.homepage.toggle_weather'
           control={
-            <Flex className={commonClasses.settings_control} align="center" gap="sm">
+            <Flex className={commonClasses.settings_control} align='center' gap='sm'>
               {/* <PositionSelect type="weather" /> */}
 
               <WeatherSwitch />
@@ -55,14 +55,14 @@ const SettingsWidgets = () => {
           }
         />
 
-        <Divider my="xs" w="100%" />
+        <Divider my='xs' w='100%' />
 
         {/* To-Do widget */}
         <SettingsRow
-          icon={<IconListCheck style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.homepage.toggle_todos"
+          icon={<IconListCheck style={getIconStyle(24)} color={theme.colors.gray['5']} />}
+          desc='pages.settings.homepage.toggle_todos'
           control={
-            <Flex className={commonClasses.settings_control} align="center" gap="sm">
+            <Flex className={commonClasses.settings_control} align='center' gap='sm'>
               {/* <PositionSelect type="todos" /> */}
 
               <ToDoSwitch />
@@ -70,14 +70,14 @@ const SettingsWidgets = () => {
           }
         />
 
-        <Divider my="xs" w="100%" />
+        <Divider my='xs' w='100%' />
 
         {/* Notes widget */}
         <SettingsRow
-          icon={<IconNote style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.homepage.toggle_notes"
+          icon={<IconNote style={getIconStyle(24)} color={theme.colors.gray['5']} />}
+          desc='pages.settings.homepage.toggle_notes'
           control={
-            <Flex className={commonClasses.settings_control} align="center" gap="sm">
+            <Flex className={commonClasses.settings_control} align='center' gap='sm'>
               {/* <PositionSelect type="notes" /> */}
 
               <NotesSwitch />
@@ -85,14 +85,14 @@ const SettingsWidgets = () => {
           }
         />
 
-        <Divider my="xs" w="100%" />
+        <Divider my='xs' w='100%' />
 
         {/* Analog clock widget */}
         <SettingsRow
-          icon={<IconClock style={getIconStyle(24)} color={theme.colors.gray["5"]} />}
-          desc="pages.settings.homepage.toggle_clock"
+          icon={<IconClock style={getIconStyle(24)} color={theme.colors.gray['5']} />}
+          desc='pages.settings.homepage.toggle_clock'
           control={
-            <Flex className={commonClasses.settings_control} align="center" gap="sm">
+            <Flex className={commonClasses.settings_control} align='center' gap='sm'>
               {/* <PositionSelect type="clock" /> */}
 
               <ClockSwitch />

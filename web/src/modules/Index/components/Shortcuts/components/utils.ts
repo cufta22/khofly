@@ -1,4 +1,4 @@
-import { IShortcut } from "@store/homepage";
+import type { IShortcut } from '@store/homepage';
 
 // Helper function to update an item within a list
 export const updateItemInList = (list: IShortcut[], targetIdx: number, newValues: any) =>
@@ -6,7 +6,7 @@ export const updateItemInList = (list: IShortcut[], targetIdx: number, newValues
 
 // Helper function to add a new item
 export const createNewItem = (itemValues: any) => ({
-  type: "item", // Assuming new items are always 'item' type
+  type: 'item', // Assuming new items are always 'item' type
   ...itemValues,
   items: [], // New items generally don't have sub-items initially
 });

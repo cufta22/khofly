@@ -1,11 +1,11 @@
-import { useTranslate } from "@hooks/translate/use-translate";
-import { Accordion, Stack, Text, useMantineTheme } from "@mantine/core";
-import { IconRadar } from "@tabler/icons-react";
-import classes from "../styles.module.scss";
-import { TAB_DATA } from "@module/Settings/components/_engines/Engines";
-import type { ICategories } from "@store/settings";
-import SettingsEnginesWrapper from "@module/Settings/components/_engines/Engines/components/Wrapper";
-import { useSearchParams } from "react-router";
+import { useTranslate } from '@hooks/translate/use-translate';
+import { Accordion, Stack, Text, useMantineTheme } from '@mantine/core';
+import { IconRadar } from '@tabler/icons-react';
+import classes from '../styles.module.scss';
+import { TAB_DATA } from '@module/Settings/components/_engines/Engines';
+import type { ICategories } from '@store/settings';
+import SettingsEnginesWrapper from '@module/Settings/components/_engines/Engines/components/Wrapper';
+import { useSearchParams } from 'react-router';
 
 const QSEngines = () => {
   const theme = useMantineTheme();
@@ -13,21 +13,21 @@ const QSEngines = () => {
   const t = useTranslate();
   const [params] = useSearchParams();
 
-  const tab = (params.get("tab") as ICategories) || "general";
+  const tab = (params.get('tab') as ICategories) || 'general';
 
   const DATA = TAB_DATA[tab];
 
   return (
-    <Accordion.Item className={classes.acc_item} value="engines">
+    <Accordion.Item className={classes.acc_item} value='engines'>
       <Accordion.Control
         className={classes.acc_control}
-        icon={<IconRadar color={theme.colors.blue["5"]} />}
+        icon={<IconRadar color={theme.colors.blue['5']} />}
       >
-        <Text size="lg">{t(DATA.label)}</Text>
+        <Text size='lg'>{t(DATA.label)}</Text>
       </Accordion.Control>
       <Accordion.Panel>
-        <Stack mt="lg">
-          <SettingsEnginesWrapper data={DATA.data} category={tab} variant="quick_settings" />
+        <Stack mt='lg'>
+          <SettingsEnginesWrapper data={DATA.data} category={tab} variant='quick_settings' />
         </Stack>
       </Accordion.Panel>
     </Accordion.Item>

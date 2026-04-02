@@ -1,20 +1,20 @@
-import { Accordion, Center, SimpleGrid, Text } from "@mantine/core";
-import classes from "../styles.module.scss";
-import { IconLabelImportant } from "@tabler/icons-react";
-import { useSearchStore } from "@store/search";
-import DomainItem from "./DomainItem";
+import { Accordion, Center, SimpleGrid, Text } from '@mantine/core';
+import classes from '../styles.module.scss';
+import { IconLabelImportant } from '@tabler/icons-react';
+import { useSearchStore } from '@store/search';
+import DomainItem from './DomainItem';
 
 const OPriority = () => {
   const domainsPriority = useSearchStore((state) => state.domainsPriority);
 
   return (
-    <Accordion.Item className={classes.acc_item} value="priority">
+    <Accordion.Item className={classes.acc_item} value='priority'>
       <Accordion.Control className={classes.acc_control} icon={<IconLabelImportant />}>
-        <Text size="lg">Priority</Text>
+        <Text size='lg'>Priority</Text>
       </Accordion.Control>
       <Accordion.Panel>
-        {domainsPriority.length ? (
-          <SimpleGrid mt="lg" cols={1} spacing="md">
+        {domainsPriority.length > 0 ? (
+          <SimpleGrid mt='lg' cols={1} spacing='md'>
             {domainsPriority.map((item, i) => (
               <DomainItem key={i} domain={item} isCurrent={false} />
             ))}

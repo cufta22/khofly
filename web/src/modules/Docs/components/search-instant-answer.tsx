@@ -1,23 +1,23 @@
-import { Code, Container, useMantineTheme } from "@mantine/core";
+import { Code, Container, useMantineTheme } from '@mantine/core';
 
-import DocsTitle from "./common/DocsTitle";
-import DocsSubtitle from "./common/DocsSubtitle";
+import DocsTitle from './common/DocsTitle';
+import DocsSubtitle from './common/DocsSubtitle';
 
-import { IconMessageCode } from "@tabler/icons-react";
-import DocsText from "./common/DocsText";
-import DocsNextPrev from "./common/DocsNextPrev";
+import { IconMessageCode } from '@tabler/icons-react';
+import DocsText from './common/DocsText';
+import DocsNextPrev from './common/DocsNextPrev';
 
-import { DOCS_CARD_DATA } from "./common/docsCardData";
+import { DOCS_CARD_DATA } from './common/docsCardData';
 
-import IAGallery from "./components/search-instant-answer/IAGallery";
+import IAGallery from './components/search-instant-answer/IAGallery';
 
 const DocsSearchInstantAnswer = () => {
   const theme = useMantineTheme();
 
-  const IAWrapperString = "<IAWrapper />";
+  const IAWrapperString = '<IAWrapper />';
 
   return (
-    <Container size="lg" p="xl" pb={100}>
+    <Container size='lg' p='xl' pb={100}>
       <DocsTitle leftSection={<IconMessageCode color={theme.colors.grape[5]} />}>
         Instant Answers
       </DocsTitle>
@@ -31,13 +31,13 @@ const DocsSearchInstantAnswer = () => {
       <DocsSubtitle>Adding instant answer</DocsSubtitle>
 
       <DocsText>
-        All instant answers code is located in{" "}
+        All instant answers code is located in{' '}
         <Code>/src/modules/Search/components/components/InstantAnswer</Code>
       </DocsText>
 
       <DocsText>
-        Create a folder with a descriptive name and make sure that everything is wrapped with{" "}
-        <Code>{IAWrapperString}</Code>, then add your logic for displaying Instant Answer in{" "}
+        Create a folder with a descriptive name and make sure that everything is wrapped with{' '}
+        <Code>{IAWrapperString}</Code>, then add your logic for displaying Instant Answer in{' '}
         <Code>index.tsx</Code> similar to how others are displayed conditionally.
       </DocsText>
 
@@ -53,8 +53,8 @@ const DocsSearchInstantAnswer = () => {
       <IAGallery />
 
       <DocsNextPrev
-        prev={{ ...DOCS_CARD_DATA(theme)["syntax"] }}
-        next={{ ...DOCS_CARD_DATA(theme)["AI"] }}
+        prev={{ ...DOCS_CARD_DATA(theme)['syntax'] }}
+        next={{ ...DOCS_CARD_DATA(theme)['AI'] }}
       />
     </Container>
   );

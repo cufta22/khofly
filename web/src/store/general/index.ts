@@ -1,6 +1,6 @@
-import { cookieStorage } from "@store/cookieStorage";
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { cookieStorage } from '@store/cookieStorage';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface GeneralState {
   hydrated: boolean;
@@ -37,7 +37,7 @@ export const useGeneralStore = create<GeneralState>()(
       toggleOpenHotkeyModal: () => set({ openHotkeyModal: !get().openHotkeyModal }),
     }),
     {
-      name: "general-store", // name of the item in the storage (must be unique)
+      name: 'general-store', // name of the item in the storage (must be unique)
       storage: createJSONStorage(() => cookieStorage),
       onRehydrateStorage: () => (state) => {
         if (state) {

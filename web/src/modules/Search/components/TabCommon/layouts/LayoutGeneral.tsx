@@ -1,11 +1,12 @@
-import { Divider, Stack } from "@mantine/core";
-import { useSearchStore } from "@store/search";
-import { ICategories, useSettingsStore } from "@store/settings";
-import { ISearXNGResultsGeneral } from "@ts/searxng.types";
-import React from "react";
-import RowCommon from "../components/RowCommon";
-import GeneralMedia from "../../components/GeneralMedia";
-import SkeletonCommon from "../components/SkeletonCommon";
+import { Divider, Stack } from '@mantine/core';
+import { useSearchStore } from '@store/search';
+import type { ICategories} from '@store/settings';
+import { useSettingsStore } from '@store/settings';
+import type { ISearXNGResultsGeneral } from '@ts/searxng.types';
+import React from 'react';
+import RowCommon from '../components/RowCommon';
+import GeneralMedia from '../../components/GeneralMedia';
+import SkeletonCommon from '../components/SkeletonCommon';
 
 interface Props {
   tab: ICategories;
@@ -25,7 +26,7 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
       {data?.map((res, i) => {
         console.log(`res?.results?.length: ${res?.results?.length}`);
 
-        if (typeof res === "string") return;
+        if (typeof res === 'string') return;
 
         if (!res?.results) return;
 
@@ -35,7 +36,7 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
             return !domainsBlacklist.some((domain) => item.parsed_url?.[1]?.includes(domain));
           })
           // Priority
-          .sort((a, b) => {
+          .toSorted((a, b) => {
             // Check if URL a is in priority domains
             const aIsPriority = domainsPriority.some((domain) =>
               a.parsed_url?.[1]?.includes(domain),
@@ -54,8 +55,8 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
           });
 
         return (
-          <Stack gap="lg" key={i}>
-            {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition="left" />}
+          <Stack gap='lg' key={i}>
+            {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition='left' />}
 
             {generalMedia.enabled && i === 0 && hydratedSettings ? (
               // Display images/videos in between results

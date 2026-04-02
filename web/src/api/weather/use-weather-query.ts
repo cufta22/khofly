@@ -1,15 +1,15 @@
-import { useInstanceStore } from "@store/instance";
-import useFetch from "../use-fetch";
-import type { OpenWeatherResponse } from "./types";
-import useSWR from "swr";
-import type { IAPIResponse } from "@ts/global.types";
-import useToast from "@hooks/use-toast";
+import { useInstanceStore } from '@store/instance';
+import useFetch from '../use-fetch';
+import type { OpenWeatherResponse } from './types';
+import useSWR from 'swr';
+import type { IAPIResponse } from '@ts/global.types';
+import useToast from '@hooks/use-toast';
 
 interface Args {
   lat: any;
   lon: any;
-  units: "standard" | "metric" | "imperial";
-  src: "owm" | "om";
+  units: 'standard' | 'metric' | 'imperial';
+  src: 'owm' | 'om';
 }
 
 const getKey = (apiDomain: string, args: Args) => {
@@ -28,7 +28,7 @@ const useWeatherSWR = (args: Args) => {
 
   const fetcher = (_key: string) => {
     return fetchData(`${apiDomain}/weather?lat=${lat}&lon=${lon}&units=${units}&src=${src}`, {
-      method: "GET",
+      method: 'GET',
     }) as Promise<IAPIResponse<OpenWeatherResponse>>;
   };
 
@@ -42,14 +42,14 @@ const useWeatherSWR = (args: Args) => {
     // Error handling
     onSuccess(res) {
       if (res?.error) {
-        toast.show({ title: "Something went wrong", message: res?.message, color: "red" });
+        toast.show({ title: 'Something went wrong', message: res?.message, color: 'red' });
       }
     },
     onError() {
       toast.show({
-        title: "Something went wrong",
-        message: "Unable to fetch weather data",
-        color: "red",
+        title: 'Something went wrong',
+        message: 'Unable to fetch weather data',
+        color: 'red',
       });
     },
   });
