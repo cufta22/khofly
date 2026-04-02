@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Anchor, Tabs, Text } from '@mantine/core';
-import { IconClock, IconMapPin, IconTimezone } from '@tabler/icons-react';
+import { IconMapPin, IconTimezone } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 
 import { IAWrapper } from '../../wrapper';

@@ -1,14 +1,14 @@
-import type { Context } from "elysia";
-import * as ratesSvc from "./services/rates.service";
-import * as lyricsSvc from "./services/lyrics.service";
-import * as weatherSvc from "./services/weather.service";
-import * as downlaodSvc from "./services/download.service";
-import * as ipSvc from "./services/ip.service";
-import * as geocodingSvc from "./services/geocoding.service";
-import * as faviconSvc from "./services/favicon.service";
-import * as aiChatSvc from "./services/aiChat.service";
-import * as aiConfigSvc from "./services/aiConfig.service";
-import * as instancesSvc from "./services/instances.service";
+import type { Context } from 'elysia';
+import * as ratesSvc from './services/rates.service';
+import * as lyricsSvc from './services/lyrics.service';
+import * as weatherSvc from './services/weather.service';
+import * as downlaodSvc from './services/download.service';
+import * as ipSvc from './services/ip.service';
+import * as geocodingSvc from './services/geocoding.service';
+import * as faviconSvc from './services/favicon.service';
+import * as aiChatSvc from './services/aiChat.service';
+import * as aiConfigSvc from './services/aiConfig.service';
+import * as instancesSvc from './services/instances.service';
 
 // GET - /rates
 export const handleRates = async (ctx: Context) => {

@@ -1,18 +1,9 @@
-import type {
-  SelectProps} from '@mantine/core';
-import {
-  Flex,
-  Group,
-  Image,
-  Select,
-  Switch,
-  Text,
-  useMantineTheme,
-} from '@mantine/core';
+import type { SelectProps } from '@mantine/core';
+import { Flex, Group, Image, Select, Switch, Text, useMantineTheme } from '@mantine/core';
 import { getAIChatModels, getAIChatProviders } from '@module/Chat/data';
 import { getAIChatModelIcon, getAIChatModelSource } from '@module/Chat/utils';
 import { WORKER_MODELS_DATA } from '@module/Settings/components/_instances/AIWorker/data';
-import type { IAIProvider} from '@store/aichat';
+import type { IAIProvider } from '@store/aichat';
 import { useAIChatStore } from '@store/aichat';
 import { IWeatherSource, IWorkerModels, useInstanceStore } from '@store/instance';
 import { useSettingsStore } from '@store/settings';
@@ -22,18 +13,18 @@ import { getIconStyle } from '@utils/functions/iconStyle';
 const MoreAIAnswerOptions = () => {
   const theme = useMantineTheme();
 
-  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
+  const aiAnswer = useSettingsStore((state) => state.AIAnswer);
   const setAIAnswer = useSettingsStore((state) => state.setAIAnswer);
 
   const workerDomain = useInstanceStore((state) => state.workerDomain);
   const config = useAIChatStore((state) => state.config);
 
-  const aiSource = getAIChatModelSource(AIAnswer.model.value);
+  const aiSource = getAIChatModelSource(aiAnswer.model.value);
   const providerData = getAIChatProviders({
     cfWorkerURL: workerDomain,
     hasGeminiKey: config.hasGeminiKey,
   });
-  const modelData = getAIChatModels(AIAnswer.provider);
+  const modelData = getAIChatModels(aiAnswer.provider);
 
   const getIconProvider = (value: string) => {
     if (value.includes('cf')) {
@@ -64,7 +55,7 @@ const MoreAIAnswerOptions = () => {
     </Group>
   );
 
-  if (!AIAnswer.enabled) return;
+  if (!aiAnswer.enabled) return;
 
   return (
     <Flex direction='column'>
@@ -73,9 +64,9 @@ const MoreAIAnswerOptions = () => {
           // label="Select provider"
           w={280}
           renderOption={renderSelectOptionProvider}
-          leftSection={getIconProvider(AIAnswer.provider)}
+          leftSection={getIconProvider(aiAnswer.provider)}
           data={providerData}
-          value={AIAnswer.provider}
+          value={aiAnswer.provider}
           onChange={(val) => {
             if (val) {
               setAIAnswer({ provider: val as IAIProvider });
@@ -107,9 +98,9 @@ const MoreAIAnswerOptions = () => {
           // label="Model"
           w={280}
           renderOption={renderSelectOptionModel}
-          leftSection={getAIChatModelIcon(AIAnswer.model.value, 16)}
+          leftSection={getAIChatModelIcon(aiAnswer.model.value, 16)}
           data={modelData}
-          value={AIAnswer.model.value}
+          value={aiAnswer.model.value}
           onChange={(val) => {
             if (val && modelData) {
               let found;

@@ -42,7 +42,7 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   const hydrated = useInstanceStore((state) => state.hydrated);
   const workerDomain = useInstanceStore((state) => state.workerDomain);
 
-  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
+  const aiAnswer = useSettingsStore((state) => state.AIAnswer);
 
   const setChat = useAIChatStore((state) => state.setChat);
   const setChatProvider = useAIChatStore((state) => state.setProvider);
@@ -54,8 +54,8 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
 
   const handleOpenInChat = () => {
     // Update AIChat model and provider to be the same as AIAnswer
-    setChatProvider(AIAnswer.provider);
-    setChatModel(AIAnswer.model);
+    setChatProvider(aiAnswer.provider);
+    setChatModel(aiAnswer.model);
 
     // Init conversation
     setChat([
@@ -67,9 +67,9 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
   };
 
   useEffect(() => {
-    if (!hydrated || !AIAnswer.enabled || !workerDomain || !queryToUse) return;
+    if (!hydrated || !aiAnswer.enabled || !workerDomain || !queryToUse) return;
 
-    if (!isLoading && shouldTrigger && AIAnswer.provider) {
+    if (!isLoading && shouldTrigger && aiAnswer.provider) {
       trigger({
         messages: [
           {
@@ -78,13 +78,13 @@ const AIAnswer: React.FC<Props> = ({ propsQuery }) => {
             isGenerating: false,
           },
         ],
-        model: AIAnswer.model.value,
-        source: AIAnswer.provider,
+        model: aiAnswer.model.value,
+        source: aiAnswer.provider,
       });
     }
   }, [hydrated, queryToUse]);
 
-  if (!shouldTrigger || !AIAnswer.enabled) return null;
+  if (!shouldTrigger || !aiAnswer.enabled) return null;
 
   return (
     <Paper className={classes.ai_answer} withBorder radius='md' p='md'>

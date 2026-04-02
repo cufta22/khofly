@@ -1,14 +1,14 @@
-import type { Context } from "elysia";
+import type { Context } from 'elysia';
 import type {
   IGeniusSearchResponse,
   ILyricsOvhResponse,
   ILyricsResponse,
-} from "../../../types/lyrics.types";
+} from '../../../types/lyrics.types';
 
 // Get lyrics from Lyrics.ovh
 export const getLyricsFromLyricsOvh = async (
   ctx: Context,
-  firstRes: IGeniusSearchResponse["response"]["hits"][0],
+  firstRes: IGeniusSearchResponse['response']['hits'][0],
 ): Promise<ILyricsResponse> => {
   const artist = firstRes.result?.primary_artist?.name || firstRes.result?.artist_names;
   const title = firstRes.result.title;
@@ -18,14 +18,14 @@ export const getLyricsFromLyricsOvh = async (
   const lyrics: ILyricsOvhResponse = await lyricsOvhRes.json();
 
   if (!lyrics?.lyrics) {
-    throw new Error("Lyrics not found, try another song");
+    throw new Error('Lyrics not found, try another song');
   }
 
-  const fixedLyrics = lyrics.lyrics.replaceAll("\n\n", "\n");
+  const fixedLyrics = lyrics.lyrics.replaceAll('\n\n', '\n');
 
   return {
     error: false,
-    message: "Data from lyrics.ovh",
+    message: 'Data from lyrics.ovh',
     data: {
       lyrics: fixedLyrics,
       title: title,

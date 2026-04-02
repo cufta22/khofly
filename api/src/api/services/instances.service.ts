@@ -1,6 +1,6 @@
-import type { Context } from "elysia";
-import path from "node:path";
-import { __dirname } from "../../config";
+import type { Context } from 'elysia';
+import path from 'node:path';
+import { __dirname } from '../../config';
 
 // GET - /instances
 export const handleGetInstances = async (ctx: Context) => {
@@ -11,7 +11,7 @@ export const handleGetInstances = async (ctx: Context) => {
   if (!instancesFile.size) {
     return {
       error: false,
-      message: "Empty instances data",
+      message: 'Empty instances data',
       data: {
         instances: [],
       },
@@ -22,7 +22,7 @@ export const handleGetInstances = async (ctx: Context) => {
 
   return {
     error: false,
-    message: "Instances data",
+    message: 'Instances data',
     data: instancesJson,
   };
 };

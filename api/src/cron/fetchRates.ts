@@ -1,35 +1,35 @@
-import path from "node:path";
-import fs from "node:fs/promises";
+import path from 'node:path';
+import fs from 'node:fs/promises';
 
-import { __dirname } from "../config";
+import { __dirname } from '../config';
 
 export const cron_fetchRates = async () => {
   const tempDir = path.join(__dirname, `/../temp`);
 
   // Don't run in dev
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     return;
   }
 
   // Remove old rates
   for (const file of await fs.readdir(tempDir)) {
-    if (file === ".gitkeep") continue; // Keep on git
-    if (file === "media") continue; // For media files
+    if (file === '.gitkeep') continue; // Keep on git
+    if (file === 'media') continue; // For media files
 
-    if (file === "exchange_rates.json") {
+    if (file === 'exchange_rates.json') {
       await fs.unlink(path.join(tempDir, file));
     }
   }
 
   // Make sure that API key exists
   if (!process.env.OPEN_EXCHANGE_RATES_API_KEY) {
-    console.log("cron_fetchRates failed: Missing OXR API key");
+    console.log('cron_fetchRates failed: Missing OXR API key');
     return;
   }
 
   // Fetch latest
   const res = await fetch(
-    `${process.env.OPEN_EXCHANGE_RATES_URL}/api/latest.json?base=USD&app_id=${process.env.OPEN_EXCHANGE_RATES_API_KEY}`
+    `${process.env.OPEN_EXCHANGE_RATES_URL}/api/latest.json?base=USD&app_id=${process.env.OPEN_EXCHANGE_RATES_API_KEY}`,
   );
 
   const resData: any = await res.json();

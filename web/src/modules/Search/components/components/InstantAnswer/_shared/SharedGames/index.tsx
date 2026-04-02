@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Space, Tabs } from '@mantine/core';
-import { IconCircle, IconClock, IconDice, IconHourglassLow, IconTicTac } from '@tabler/icons-react';
+import { Tabs } from '@mantine/core';
+import { IconCircle, IconDice, IconTicTac } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 
 import { IAWrapper } from '../../wrapper';

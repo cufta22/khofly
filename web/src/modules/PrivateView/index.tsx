@@ -1,4 +1,4 @@
-import { ActionIcon, Anchor, Center, Flex, Loader, LoadingOverlay, Text } from '@mantine/core';
+import { ActionIcon, Anchor, Flex, LoadingOverlay, Text } from '@mantine/core';
 import { IconChevronLeft, IconExternalLink } from '@tabler/icons-react';
 import classes from './styles.module.scss';
 import { getIconStyle } from '@utils/functions/iconStyle';
@@ -24,7 +24,7 @@ const PagePrivateView = () => {
   const [searchParams] = useSearchParams();
 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const url = searchParams.get('url');
 
   const pvDomain = useInstanceStore((state) => state.pvDomain);

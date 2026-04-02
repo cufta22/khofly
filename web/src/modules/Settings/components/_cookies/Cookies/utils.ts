@@ -1,7 +1,7 @@
 export const decompressSearxngHash = async (
   hash: string,
 ): Promise<{ data: any; isValid: boolean }> => {
-  const base64 = hash.replaceAll(/-/g, '+').replaceAll(/_/g, '/');
+  const base64 = hash.replaceAll('-', '+').replaceAll('_', '/');
 
   const binaryString = atob(base64);
 

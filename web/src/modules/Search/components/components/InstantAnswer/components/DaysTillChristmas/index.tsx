@@ -1,4 +1,4 @@
-import { IconChristmasBall, IconChristmasTree } from '@tabler/icons-react';
+import { IconChristmasTree } from '@tabler/icons-react';
 import { IAWrapper } from '../../wrapper';
 import { Flex, Text, useMantineTheme } from '@mantine/core';
 import ExternalLink from '@components/Links/ExternalLink';

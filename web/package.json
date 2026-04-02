@@ -13,8 +13,8 @@
     "typecheck": "react-router typegen && tsc",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check"
+    "fmt": "oxfmt src",
+    "fmt:check": "oxfmt src --check"
   },
   "dependencies": {
     "@mantine/charts": "^9.0.0",

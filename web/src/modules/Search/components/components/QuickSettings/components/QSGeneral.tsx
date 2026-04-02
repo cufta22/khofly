@@ -9,8 +9,6 @@ import MediaSwitch from '@module/Settings/components/_general/General/MediaSwitc
 import IASwitch from '@module/Settings/components/_general/General/IASwitch';
 import PrivateSearchSwitch from '@module/Settings/components/_general/General/PrivateSearchSwitch';
 import PrivatePlayerSwitch from '@module/Settings/components/_general/General/PrivarePlayerSwitch';
-import AIAnswerSwitch from '@module/Settings/components/_general/AI/AIAnswerSwitch';
-import AISummarySwitch from '@module/Settings/components/_general/AI/AISummarySwitch';
 import NewTabSwitch from '@module/Settings/components/_general/General/NewTabSwitch';
 import PrivateViewSwitch from '@module/Settings/components/_general/General/PrivateViewSwitch';
 

@@ -1,4 +1,4 @@
-import { file } from "bun";
+import { file } from 'bun';
 
 export const checkFileExists = async (filePath: string) => {
   try {

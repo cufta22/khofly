@@ -1,27 +1,27 @@
-import type { Context } from "elysia";
-import { __dirname } from "../../config";
+import type { Context } from 'elysia';
+import { __dirname } from '../../config';
 
-import path from "node:path";
+import path from 'node:path';
 
-import { checkFileExists } from "./utils/fileExists";
-import { getMediaFileName } from "./utils/getMediaFileName";
+import { checkFileExists } from './utils/fileExists';
+import { getMediaFileName } from './utils/getMediaFileName';
 
 // GET - /download
 export const handleDownload = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
-  const url = searchParams.get("url") || "";
-  const from = searchParams.get("from") || "";
-  const format = searchParams.get("format") || "";
+  const url = searchParams.get('url') || '';
+  const from = searchParams.get('from') || '';
+  const format = searchParams.get('format') || '';
 
   // Error handling
   if (!url) {
-    throw new Error("URL is required");
+    throw new Error('URL is required');
   }
-  if (!["youtube", "instagram"].includes(from)) {
-    throw new Error("Invalid platform");
+  if (!['youtube', 'instagram'].includes(from)) {
+    throw new Error('Invalid platform');
   }
-  if (from === "youtube" && !["mp4", "mp3"].includes(format)) {
-    throw new Error("Invalid arguments");
+  if (from === 'youtube' && !['mp4', 'mp3'].includes(format)) {
+    throw new Error('Invalid arguments');
   }
 
   const tempDir = path.join(__dirname, `/../temp/media`);
@@ -30,8 +30,8 @@ export const handleDownload = async (ctx: Context) => {
   const dateNow = getMediaFileName();
 
   const staticUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:4000/media"
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/media'
       : `${process.env.HOST}/media`;
 
   const fileNameYT = `${dateNow}-${randomNumbers}.${format}`;
@@ -44,27 +44,27 @@ export const handleDownload = async (ctx: Context) => {
     // -----------------------------------------------
     // Handle Youtube
     // -----------------------------------------------
-    if (from === "youtube") {
+    if (from === 'youtube') {
       // Validate YouTube URL
       const youtubeRegex =
         /^(https?:\/\/)?(www\.|m\.|music\.)?((youtube\.com\/(watch\?v=|shorts\/|playlist\?list=))|youtu\.be\/)[a-zA-Z0-9_-]{1,}(&.*)?$/;
       if (!youtubeRegex.test(url)) {
-        return { error: true, message: "Invalid YouTube URL", data: null };
+        return { error: true, message: 'Invalid YouTube URL', data: null };
       }
 
       // Build the command
       const ytCommand = [`yt-dlp`];
 
       // If mp3 is selected
-      if (format === "mp3") {
-        ytCommand.push("-x");
-        ytCommand.push("--audio-format");
-        ytCommand.push("mp3");
+      if (format === 'mp3') {
+        ytCommand.push('-x');
+        ytCommand.push('--audio-format');
+        ytCommand.push('mp3');
       }
 
       // If mp4 is selected
-      if (format === "mp4") {
-        ytCommand.push("-f");
+      if (format === 'mp4') {
+        ytCommand.push('-f');
         // Takes forever to download ~2min
         // ytCommand.push(`"bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"`);
         // Should be normal
@@ -77,7 +77,7 @@ export const handleDownload = async (ctx: Context) => {
       const ytCookiesFilePath = path.join(__dirname, `/../cookies-yt.txt`);
       const ytCookiesFileExists = await checkFileExists(ytCookiesFilePath);
       if (ytCookiesFileExists) {
-        ytCommand.push("--cookies");
+        ytCommand.push('--cookies');
         ytCommand.push(ytCookiesFilePath);
       }
 
@@ -88,7 +88,7 @@ export const handleDownload = async (ctx: Context) => {
       }
 
       // Output path
-      ytCommand.push("-o");
+      ytCommand.push('-o');
       ytCommand.push(`${outputPathYT}`);
       ytCommand.push(url);
 
@@ -106,48 +106,48 @@ export const handleDownload = async (ctx: Context) => {
       if (exitCode === 0) {
         return {
           error: false,
-          message: "Download successful",
+          message: 'Download successful',
           data: {
             url: `${staticUrl}/${fileNameYT}`,
             filename: fileNameYT,
           },
         };
       } else {
-        throw new Error("Download failed");
+        throw new Error('Download failed');
       }
     }
 
     // -----------------------------------------------
     // Handle Instagram
     // -----------------------------------------------
-    if (from === "instagram") {
+    if (from === 'instagram') {
       // Validate Instagram URL
       const igRegex =
         /^(https?:\/\/)?(www\.)?instagram\.com\/(p\/[a-zA-Z0-9_-]+\/?|([a-zA-Z0-9_]+\/?))(\?.*)?$/;
       if (!igRegex.test(url)) {
-        return { error: true, message: "Invalid Instagram URL", data: null };
+        return { error: true, message: 'Invalid Instagram URL', data: null };
       }
 
       // Build the command
       const igCommand = [`gallery-dl`];
 
       // Output folder
-      igCommand.push("--dest");
+      igCommand.push('--dest');
       igCommand.push(tempDir);
 
       // File name
-      igCommand.push("--filename");
+      igCommand.push('--filename');
       igCommand.push(`${fileNameIG}.{extension}`);
 
       // Don't make any extractor subdirectories
-      igCommand.push("-o");
+      igCommand.push('-o');
       igCommand.push(`extractor.instagram.directory=`);
 
       // Avoid auth - add cookies
       const igCookiesFilePath = path.join(__dirname, `/../cookies-ig.txt`);
       const igCookiesFileExists = await checkFileExists(igCookiesFilePath);
       if (igCookiesFileExists) {
-        igCommand.push("--cookies");
+        igCommand.push('--cookies');
         igCommand.push(igCookiesFilePath);
       }
 
@@ -170,17 +170,17 @@ export const handleDownload = async (ctx: Context) => {
 
         return {
           error: false,
-          message: "Download successful",
+          message: 'Download successful',
           data: {
-            url: `${staticUrl}/${outputFilename.split("/").pop()}`,
+            url: `${staticUrl}/${outputFilename.split('/').pop()}`,
             filename: fileNameIG,
           },
         };
       } else {
-        throw new Error("Download failed");
+        throw new Error('Download failed');
       }
     }
   } catch (error) {
-    throw new Error("Download failed");
+    throw new Error('Download failed');
   }
 };

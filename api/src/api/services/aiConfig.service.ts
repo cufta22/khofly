@@ -1,4 +1,4 @@
-import type { Context } from "elysia";
+import type { Context } from 'elysia';
 
 // GET - /ai/config
 export const handleAIConfig = async (ctx: Context) => {
@@ -7,7 +7,7 @@ export const handleAIConfig = async (ctx: Context) => {
 
   return {
     error: false,
-    message: "API AI provider keys",
+    message: 'API AI provider keys',
     data: {
       hasGeminiKey,
     },

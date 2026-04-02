@@ -1,17 +1,9 @@
 import { ActionIcon, Menu } from '@mantine/core';
 import React from 'react';
 import classes from '../styles.module.scss';
-import {
-  IconDots,
-  IconEdit,
-  IconExternalLink,
-  IconPlus,
-  IconSquare,
-  IconSquareOff,
-  IconTrash,
-} from '@tabler/icons-react';
+import { IconDots, IconEdit, IconPlus, IconSquareOff, IconTrash } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
-import type { IShortcut} from '@store/homepage';
+import type { IShortcut } from '@store/homepage';
 import { useHomepageStore } from '@store/homepage';
 import type { GroupEditItem } from './ShortcutGroup';
 
@@ -109,11 +101,11 @@ const ShortcutGroupMenu: React.FC<Props> = ({
       return;
     }
 
-    const newShortcuts = [...shortcuts].map((sc, i) => {
-      if (i === idx) {
+    const newShortcuts = [...shortcuts].map((sc, i1) => {
+      if (i1 === idx) {
         return {
           ...sc,
-          items: sc?.items?.filter((_val, i) => i !== editItemIdx),
+          items: sc?.items?.filter((_val, i2) => i2 !== editItemIdx),
         };
       } else {
         return sc;

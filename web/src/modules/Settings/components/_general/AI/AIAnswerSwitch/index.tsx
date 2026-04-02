@@ -13,7 +13,7 @@ interface Props {
 const AIAnswerSwitch: React.FC<Props> = ({ isM }) => {
   const t = useTranslate();
 
-  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
+  const aiAnswer = useSettingsStore((state) => state.AIAnswer);
   const setAIAnswer = useSettingsStore((state) => state.setAIAnswer);
 
   const linkTextColor = usePrimaryColor(4);
@@ -29,7 +29,7 @@ const AIAnswerSwitch: React.FC<Props> = ({ isM }) => {
       )}
 
       <Switch
-        checked={AIAnswer.enabled}
+        checked={aiAnswer.enabled}
         onChange={(e) => setAIAnswer({ enabled: e.currentTarget.checked })}
         withThumbIndicator={isM ? false : true}
         size={isM ? 'md' : 'sm'}

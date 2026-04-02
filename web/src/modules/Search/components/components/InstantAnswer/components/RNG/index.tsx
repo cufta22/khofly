@@ -1,4 +1,4 @@
-import { Button, Center, Flex, NumberInput, Paper, Text, Transition } from '@mantine/core';
+import { Button, Center, Flex, NumberInput, Paper, Text } from '@mantine/core';
 import { IAWrapper } from '../../wrapper';
 import classes from './styles.module.scss';
 import { useState } from 'react';

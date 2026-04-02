@@ -1,6 +1,7 @@
 import { defineConfig } from 'oxlint';
 
 export default defineConfig({
+  plugins: ['react', 'typescript', 'unicorn'],
   categories: {
     correctness: 'error',
     suspicious: 'warn',
@@ -10,6 +11,10 @@ export default defineConfig({
     /** Correctness **/
     'react-hooks/exhaustive-deps': 'off',
     'no-unused-vars': 'warn',
+    'max-lines-per-function': 'off',
+    'no-console': 'warn',
+    'react/jsx-no-undef': 'error',
+    'react/react-in-jsx-scope': 'off',
 
     /** Suspicious **/
     '@typescript-eslint/no-explicit-any': 'off',

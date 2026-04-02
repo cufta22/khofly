@@ -1,16 +1,16 @@
-import type { Context } from "elysia";
-import type { IGeniusSearchResponse } from "../../types/lyrics.types";
-import { getLyricsFromGenius } from "./utils/lyrics-genius";
-import { getLyricsFromLyricsOvh } from "./utils/lyrics-ovh";
-import { getLyricsFromAZ } from "./utils/lyrics-az";
+import type { Context } from 'elysia';
+import type { IGeniusSearchResponse } from '../../types/lyrics.types';
+import { getLyricsFromGenius } from './utils/lyrics-genius';
+import { getLyricsFromLyricsOvh } from './utils/lyrics-ovh';
+import { getLyricsFromAZ } from './utils/lyrics-az';
 
 // GET - /lyrics
 export const handleGetLyrics = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
-  const q = searchParams.get("q") || "";
+  const q = searchParams.get('q') || '';
 
   if (!q) {
-    throw new Error("No query provided");
+    throw new Error('No query provided');
   }
 
   const searchRes = await fetch(`https://api.genius.com/search?q=${q}`, {
@@ -22,31 +22,31 @@ export const handleGetLyrics = async (ctx: Context) => {
   const searchData = (await searchRes.json()) as IGeniusSearchResponse;
 
   if (!searchData) {
-    throw new Error("Song not found, try another one");
+    throw new Error('Song not found, try another one');
   }
 
   // Find one with lyrics
   const firstRes = searchData.response.hits.filter(
-    (song) => song.type === "song" && song.result.lyrics_state === "complete",
+    (song) => song.type === 'song' && song.result.lyrics_state === 'complete',
   )[0];
 
   if (!firstRes) {
-    throw new Error("Song not found, try another one");
+    throw new Error('Song not found, try another one');
   }
 
-  if (process.env.LYRICS_FETCH_METHOD === "genius") {
+  if (process.env.LYRICS_FETCH_METHOD === 'genius') {
     // Gets 403 on VPS :(
     const lyricsData = await getLyricsFromGenius(ctx, firstRes);
     return lyricsData;
-  } else if (process.env.LYRICS_FETCH_METHOD === "lyrics-ovh") {
+  } else if (process.env.LYRICS_FETCH_METHOD === 'lyrics-ovh') {
     // Works on VPS, hopefully
     const lyricsData = await getLyricsFromLyricsOvh(ctx, firstRes);
     return lyricsData;
-  } else if (process.env.LYRICS_FETCH_METHOD === "az") {
+  } else if (process.env.LYRICS_FETCH_METHOD === 'az') {
     // Gets 403 on VPS :(
     const lyricsData = await getLyricsFromAZ(ctx, firstRes);
     return lyricsData;
   } else {
-    throw new Error("LYRICS_FETCH_METHOD not defined in .env.local");
+    throw new Error('LYRICS_FETCH_METHOD not defined in .env.local');
   }
 };

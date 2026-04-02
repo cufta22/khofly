@@ -5,7 +5,6 @@ import classes from '../styles.module.scss';
 import { useClickOutside, useDisclosure, useHover } from '@mantine/hooks';
 import { useHomepageStore, type IShortcut } from '@store/homepage';
 import ShortcutEdit from './ShortcutEdit';
-import ShortcutMenu from './ShortcutMenu';
 import { useFaviconAPI } from 'src/api/favicon';
 import clsx from 'clsx';
 import ShortcutGroupMenu from './ShortcutGroupMenu';

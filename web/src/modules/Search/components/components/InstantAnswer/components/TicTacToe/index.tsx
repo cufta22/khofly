@@ -13,12 +13,9 @@ type Player = 'X' | 'O';
 type BoardState = (Player | null)[];
 
 const IATicTacToe: React.FC<Props> = ({ withIAWrapper }) => {
-  const [board, setBoard] = useState<BoardState>(Array(9).fill(null));
+  const [board, setBoard] = useState<BoardState>(Array.from({ length: 9 }, () => null));
   const [winner, setWinner] = useState<Player | 'Draw' | null>(null);
   const [nextMove, setNextMove] = useState<Player | null>('X');
-
-  const PLAYER_1: Player = 'X';
-  const PLAYER_2: Player = 'O';
 
   const checkWinner = (squares: BoardState): Player | 'Draw' | null => {
     const lines = [
@@ -45,32 +42,6 @@ const IATicTacToe: React.FC<Props> = ({ withIAWrapper }) => {
     return null;
   };
 
-  const findWinningMove = (squares: BoardState, player: Player): number | null => {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-
-    for (const [a, b, c] of lines) {
-      const lineSquares = [squares[a], squares[b], squares[c]];
-      if (
-        lineSquares.filter((square) => square === player).length === 2 &&
-        lineSquares.includes(null)
-      ) {
-        if (squares[a] === null) return a;
-        if (squares[b] === null) return b;
-        if (squares[c] === null) return c;
-      }
-    }
-    return null;
-  };
-
   const handleClick = (index: number) => {
     if (board[index] || winner) return;
 
@@ -87,15 +58,9 @@ const IATicTacToe: React.FC<Props> = ({ withIAWrapper }) => {
   };
 
   const resetGame = () => {
-    setBoard(Array(9).fill(null));
+    setBoard(Array.from({ length: 9 }, () => null));
     setNextMove('X');
     setWinner(null);
-  };
-
-  const getStatus = () => {
-    if (winner === 'Draw') return "It's a draw!";
-    if (winner) return `${winner} wins!`;
-    return `Your turn ${nextMove}`;
   };
 
   const tttComponent = (

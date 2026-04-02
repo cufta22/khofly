@@ -5,7 +5,7 @@ import { getIconStyle } from '@utils/functions/iconStyle';
 import { useAIChatStore } from '@store/aichat';
 
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'; // Plugin for GFM
+import remarkGfm from 'remark-gfm';
 
 // For code highlight
 import ChatCodeHighlight from '../../ChatCodeHighlight/ChatCodeHighlight';
@@ -31,12 +31,12 @@ const MessageBot: React.FC<Props> = ({ content }) => {
     const thinkMatch = content.match(/<think>([\s\S]*?)<\/think>/);
 
     // Extract thinking content if found
-    const thinkContent = thinkMatch ? thinkMatch[1].trim() : null;
+    const tC = thinkMatch ? thinkMatch[1].trim() : null;
 
     // Remove the <thinking> section from the visible content
-    const visibleContent = content.replaceAll(/<think>[\s\S]*?<\/think>/g, '').trim();
+    const vC = content.replaceAll(/<think>[\s\S]*?<\/think>/g, '').trim();
 
-    return { visibleContent, thinkContent };
+    return { visibleContent: vC, thinkContent: tC };
   }, [content]);
 
   return (

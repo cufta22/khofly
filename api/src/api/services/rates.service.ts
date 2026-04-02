@@ -1,6 +1,6 @@
-import type { Context } from "elysia";
-import path from "node:path";
-import { __dirname } from "../../config";
+import type { Context } from 'elysia';
+import path from 'node:path';
+import { __dirname } from '../../config';
 
 // GET - /rates
 export const handleGetRates = async (ctx: Context) => {
@@ -9,14 +9,14 @@ export const handleGetRates = async (ctx: Context) => {
   const resultFile = Bun.file(path.join(tempDir, `/exchange_rates.json`));
 
   if (!resultFile.size) {
-    throw new Error("exchange_rates.json not found");
+    throw new Error('exchange_rates.json not found');
   }
 
   const resultJson = await resultFile.json();
 
   return {
     error: false,
-    message: "Open Exchange Rates data",
+    message: 'Open Exchange Rates data',
     data: resultJson,
   };
 };

@@ -1,14 +1,7 @@
-import { ColorSchemeScript, Divider, Paper, Stack } from '@mantine/core';
+import { Divider, Paper, Stack } from '@mantine/core';
 
 import SettingsMTitle from '../../common/SettingsTitle';
 import SettingsMRow from '../../common/SettingsMRow';
-import NewTabSwitch from '@module/Settings/components/_general/General/NewTabSwitch';
-import FaviconSwitch from '@module/Settings/components/_general/General/FaviconSwitch';
-import AutocompleteSwitch from '@module/Settings/components/_general/General/AutocompleteSwitch';
-import ShowEnginesSwitch from '@module/Settings/components/_general/General/ShowEnginesSwitch';
-import MediaSwitch from '@module/Settings/components/_general/General/MediaSwitch';
-import IASwitch from '@module/Settings/components/_general/General/IASwitch';
-import PrivateSearchSwitch from '@module/Settings/components/_general/General/PrivateSearchSwitch';
 import type { IOpenSection } from '@module/SettingsMobile';
 import LanguageSelect from '@module/Settings/components/_interface/Interface/LanguageSelect/LanguageSelect';
 import ThemeSelect from '@module/Settings/components/_interface/Interface/ThemeSelect/ThemeSelect';

@@ -1,16 +1,16 @@
-import type { Context } from "elysia";
-import { OPEN_METEO_PARAMS, type IOpenMeteoResponse } from "../../types/openmeteo.types";
-import type { IOpenWeatherResponse } from "../../types/openweather.types";
-import { convertOMToOWMFormat } from "./utils/weather";
+import type { Context } from 'elysia';
+import { OPEN_METEO_PARAMS, type IOpenMeteoResponse } from '../../types/openmeteo.types';
+import type { IOpenWeatherResponse } from '../../types/openweather.types';
+import { convertOMToOWMFormat } from './utils/weather';
 
 // GET - /weather
 export const handleGetWeather = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
 
-  const lat = searchParams.get("lat") || "1";
-  const lon = searchParams.get("lon") || "1";
-  const units = searchParams.get("units") || "metric";
-  const src = searchParams.get("src") || "own"; // "owm" | "om"
+  const lat = searchParams.get('lat') || '1';
+  const lon = searchParams.get('lon') || '1';
+  const units = searchParams.get('units') || 'metric';
+  const src = searchParams.get('src') || 'own'; // "owm" | "om"
 
   const OPEN_WEATHER_URL = process.env.OPEN_WEATHER_URL;
   const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
@@ -18,7 +18,7 @@ export const handleGetWeather = async (ctx: Context) => {
   const OPEN_METEO_URL = process.env.OPEN_METEO_URL;
 
   try {
-    if (src === "owm" && OPEN_WEATHER_URL && OPEN_WEATHER_API_KEY) {
+    if (src === 'owm' && OPEN_WEATHER_URL && OPEN_WEATHER_API_KEY) {
       // -----------------------------------------------------------------------
       // Handle OpenWeatherMap
       // -----------------------------------------------------------------------
@@ -31,7 +31,7 @@ export const handleGetWeather = async (ctx: Context) => {
 
       return {
         error: false,
-        message: "Weather data from OpenWeatherMap",
+        message: 'Weather data from OpenWeatherMap',
         data: resData,
       };
     } else if (OPEN_METEO_URL) {
@@ -43,12 +43,12 @@ export const handleGetWeather = async (ctx: Context) => {
       const params = {
         latitude: lat,
         longitude: lon,
-        timezone: "auto",
+        timezone: 'auto',
         forecast_days: 7,
-        current_weather: "true",
-        current: OPEN_METEO_PARAMS.currentParams.join(","),
-        hourly: OPEN_METEO_PARAMS.hourlyParams.join(","),
-        daily: OPEN_METEO_PARAMS.dailyParams.join(","),
+        current_weather: 'true',
+        current: OPEN_METEO_PARAMS.currentParams.join(','),
+        hourly: OPEN_METEO_PARAMS.hourlyParams.join(','),
+        daily: OPEN_METEO_PARAMS.dailyParams.join(','),
       };
 
       const res = await fetch(
@@ -61,7 +61,7 @@ export const handleGetWeather = async (ctx: Context) => {
 &current=${params.current}
 &hourly=${params.hourly}
 &daily=${params.daily}
-&temperature_unit=${units === "imperial" ? "fahrenheit" : "celsius"}`,
+&temperature_unit=${units === 'imperial' ? 'fahrenheit' : 'celsius'}`,
       );
 
       const resData: IOpenMeteoResponse = await res.json();
@@ -75,13 +75,13 @@ export const handleGetWeather = async (ctx: Context) => {
 
       return {
         error: false,
-        message: "Weather data from Open Meteo",
+        message: 'Weather data from Open Meteo',
         data: formattedData,
       };
     } else {
       throw new Error("Weather API url isn't set up");
     }
   } catch (error) {
-    throw new Error("Error getting weather data");
+    throw new Error('Error getting weather data');
   }
 };

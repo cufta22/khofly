@@ -1,10 +1,10 @@
-import type { Context } from "elysia";
+import type { Context } from 'elysia';
 
 // GET - /geocoding
 export const handleGetGeocoding = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
 
-  const location = searchParams.get("location") || "New York";
+  const location = searchParams.get('location') || 'New York';
 
   const OPEN_WEATHER_URL = process.env.OPEN_WEATHER_URL;
   const OPEN_WEATHER_API_KEY = process.env.OPEN_WEATHER_API_KEY;
@@ -21,10 +21,10 @@ export const handleGetGeocoding = async (ctx: Context) => {
 
     return {
       error: false,
-      message: "Geocoding data from OpenWeatherMap",
+      message: 'Geocoding data from OpenWeatherMap',
       data: resData?.[0] || null,
     };
   } catch (error) {
-    throw new Error("Error getting geocoding data");
+    throw new Error('Error getting geocoding data');
   }
 };

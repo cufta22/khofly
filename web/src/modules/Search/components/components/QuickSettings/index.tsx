@@ -8,7 +8,6 @@ import RemixLink from '@components/RemixLink';
 import QSInterface from './components/QSInterface';
 import QSGeneral from './components/QSGeneral';
 import QSEngines from './components/QSEngines';
-import QSAI from './components/QSAI';
 
 interface Props {
   isOpen: boolean;

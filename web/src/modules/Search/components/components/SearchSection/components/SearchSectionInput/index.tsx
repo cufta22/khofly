@@ -29,7 +29,7 @@ const SearchSectionInput = () => {
 
   const autocomplete = useSettingsStore((state) => state.autocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
-  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
+  const aiAnswer = useSettingsStore((state) => state.AIAnswer);
 
   const searchQuery = useSearchStore((state) => state.searchQuery);
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
@@ -97,7 +97,7 @@ const SearchSectionInput = () => {
   }, [debouncedQ]);
 
   // Calculate right section width
-  const rightSectionWidth = 40 + (q.length > 0 ? 43 : 0) + (AIAnswer.enabled ? 40 : 0);
+  const rightSectionWidth = 40 + (q.length > 0 ? 43 : 0) + (aiAnswer.enabled ? 40 : 0);
 
   return (
     <Combobox
@@ -180,7 +180,7 @@ const SearchSectionInput = () => {
                 />
               </ActionIcon>
 
-              {AIAnswer.enabled && (
+              {aiAnswer.enabled && (
                 <ActionIcon
                   size='lg'
                   radius='sm'

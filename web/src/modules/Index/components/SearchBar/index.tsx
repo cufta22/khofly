@@ -23,7 +23,7 @@ const SearchBar = () => {
 
   const autocomplete = useSettingsStore((state) => state.autocomplete);
   const privateSearch = useSettingsStore((state) => state.privateSearch);
-  const AIAnswer = useSettingsStore((state) => state.AIAnswer);
+  const aiAnswer = useSettingsStore((state) => state.AIAnswer);
 
   const setSearchQuery = useSearchStore((state) => state.setSearchQuery);
 
@@ -39,7 +39,7 @@ const SearchBar = () => {
 
   // Sizes
   const rsNoOfIconsBase = 1;
-  const rsNoOfIconsAll = AIAnswer.enabled ? rsNoOfIconsBase + 1 : rsNoOfIconsBase;
+  const rsNoOfIconsAll = aiAnswer.enabled ? rsNoOfIconsBase + 1 : rsNoOfIconsBase;
   const rsWidth = {
     1: isXs ? 38 : isXl ? 54 : 44,
     2: isXs ? 76 : isXl ? 108 : 88,
@@ -142,7 +142,7 @@ const SearchBar = () => {
               <IconArrowRight />
             </ActionIcon>
 
-            {AIAnswer.enabled && (
+            {aiAnswer.enabled && (
               <ActionIcon
                 className={classes.search_action_icon}
                 // size={isXs ? 32 : 38}

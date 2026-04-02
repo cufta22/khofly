@@ -3,13 +3,13 @@ import type {
   IOpenMeteoDaily,
   IOpenMeteoHourly,
   IOpenMeteoResponse,
-} from "../../../types/openmeteo.types";
+} from '../../../types/openmeteo.types';
 import type {
   IOpenWeatherCurrent,
   IOpenWeatherDaily,
   IOpenWeatherHourly,
   IOpenWeatherResponse,
-} from "../../../types/openweather.types";
+} from '../../../types/openweather.types';
 
 /**
  * Convert Open-Meteo response to OpenWeatherMap OneCall format
@@ -22,7 +22,7 @@ import type {
 export const convertOMToOWMFormat = (
   data: IOpenMeteoResponse,
   lat: number,
-  lon: number
+  lon: number,
 ): IOpenWeatherResponse | null => {
   // Handle missing data gracefully
   if (!data || !data.current_weather || !data.hourly || !data.daily) {
@@ -114,8 +114,8 @@ function formatHourlyWeather(hourlyData: IOpenMeteoHourly): IOpenWeatherHourly[]
       pop: hourlyData.precipitation_probability[i]
         ? hourlyData.precipitation_probability[i] / 100
         : 0,
-      rain: hourlyData.rain[i] ? { "1h": hourlyData.rain[i] } : undefined,
-      snow: hourlyData.snowfall[i] ? { "1h": hourlyData.snowfall[i] } : undefined,
+      rain: hourlyData.rain[i] ? { '1h': hourlyData.rain[i] } : undefined,
+      snow: hourlyData.snowfall[i] ? { '1h': hourlyData.snowfall[i] } : undefined,
     });
   }
 
@@ -170,7 +170,7 @@ function formatDailyWeather(dailyData: IOpenMeteoDaily): IOpenWeatherDaily[] {
         : 0,
       rain: dailyData.rain_sum[i] || 0,
       //   snow: dailyData.snowfall_sum ? dailyData.snowfall_sum[i] : 0,
-      summary: "",
+      summary: '',
       weather: [
         {
           id: mapWeatherCodeToOWMId(dailyData.weather_code[i]),
@@ -233,16 +233,16 @@ function mapWeatherCodeToOWMId(wmoCode: number) {
  * @returns {string} - Weather main category
  */
 function getWeatherMain(wmoCode: number) {
-  if (wmoCode === 0) return "Clear";
-  if (wmoCode >= 1 && wmoCode <= 3) return "Clouds";
-  if (wmoCode >= 45 && wmoCode <= 48) return "Fog";
-  if (wmoCode >= 51 && wmoCode <= 57) return "Drizzle";
-  if (wmoCode >= 61 && wmoCode <= 67) return "Rain";
-  if (wmoCode >= 71 && wmoCode <= 77) return "Snow";
-  if (wmoCode >= 80 && wmoCode <= 82) return "Rain";
-  if (wmoCode >= 85 && wmoCode <= 86) return "Snow";
-  if (wmoCode >= 95) return "Thunderstorm";
-  return "Clear"; // Default
+  if (wmoCode === 0) return 'Clear';
+  if (wmoCode >= 1 && wmoCode <= 3) return 'Clouds';
+  if (wmoCode >= 45 && wmoCode <= 48) return 'Fog';
+  if (wmoCode >= 51 && wmoCode <= 57) return 'Drizzle';
+  if (wmoCode >= 61 && wmoCode <= 67) return 'Rain';
+  if (wmoCode >= 71 && wmoCode <= 77) return 'Snow';
+  if (wmoCode >= 80 && wmoCode <= 82) return 'Rain';
+  if (wmoCode >= 85 && wmoCode <= 86) return 'Snow';
+  if (wmoCode >= 95) return 'Thunderstorm';
+  return 'Clear'; // Default
 }
 
 /**
@@ -253,38 +253,38 @@ function getWeatherMain(wmoCode: number) {
  */
 function getWeatherDescription(wmoCode: number) {
   const descriptions = {
-    0: "clear sky",
-    1: "mainly clear",
-    2: "partly cloudy",
-    3: "overcast",
-    45: "fog",
-    48: "depositing rime fog",
-    51: "light drizzle",
-    53: "moderate drizzle",
-    55: "dense drizzle",
-    56: "light freezing drizzle",
-    57: "dense freezing drizzle",
-    61: "slight rain",
-    63: "moderate rain",
-    65: "heavy rain",
-    66: "light freezing rain",
-    67: "heavy freezing rain",
-    71: "slight snow fall",
-    73: "moderate snow fall",
-    75: "heavy snow fall",
-    77: "snow grains",
-    80: "slight rain showers",
-    81: "moderate rain showers",
-    82: "violent rain showers",
-    85: "slight snow showers",
-    86: "heavy snow showers",
-    95: "thunderstorm",
-    96: "thunderstorm with slight hail",
-    99: "thunderstorm with heavy hail",
+    0: 'clear sky',
+    1: 'mainly clear',
+    2: 'partly cloudy',
+    3: 'overcast',
+    45: 'fog',
+    48: 'depositing rime fog',
+    51: 'light drizzle',
+    53: 'moderate drizzle',
+    55: 'dense drizzle',
+    56: 'light freezing drizzle',
+    57: 'dense freezing drizzle',
+    61: 'slight rain',
+    63: 'moderate rain',
+    65: 'heavy rain',
+    66: 'light freezing rain',
+    67: 'heavy freezing rain',
+    71: 'slight snow fall',
+    73: 'moderate snow fall',
+    75: 'heavy snow fall',
+    77: 'snow grains',
+    80: 'slight rain showers',
+    81: 'moderate rain showers',
+    82: 'violent rain showers',
+    85: 'slight snow showers',
+    86: 'heavy snow showers',
+    95: 'thunderstorm',
+    96: 'thunderstorm with slight hail',
+    99: 'thunderstorm with heavy hail',
   };
 
   // @ts-ignore
-  return descriptions?.[wmoCode] || "clear sky";
+  return descriptions?.[wmoCode] || 'clear sky';
 }
 
 /**
@@ -295,7 +295,7 @@ function getWeatherDescription(wmoCode: number) {
  * @returns {string} - OWM icon code
  */
 function getWeatherIcon(wmoCode: number, isDay: boolean) {
-  const dayTime = isDay ? "d" : "n";
+  const dayTime = isDay ? 'd' : 'n';
 
   // Clear
   if (wmoCode === 0) return `01${dayTime}`;

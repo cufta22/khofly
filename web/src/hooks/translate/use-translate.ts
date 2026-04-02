@@ -9,9 +9,9 @@ const getValueByString = (obj: ITranslations, keyString: DotNestedKeys<ITranslat
   let result;
 
   for (const key of keys) {
-    // @ts-expect-error
+    // @ts-expect-error it just is like this
     if (keys.indexOf(key) === keys.length - 1) result = loopObj[key];
-    // @ts-expect-error
+    // @ts-expect-error it just is like this
     loopObj = loopObj[key];
   }
 

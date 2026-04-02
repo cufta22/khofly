@@ -1,6 +1,6 @@
-import type { Context } from "elysia";
+import type { Context } from 'elysia';
 
-export type IFaviconAPI = "duckduckgo" | "google" | "favicone";
+export type IFaviconAPI = 'duckduckgo' | 'google' | 'favicone';
 
 const RESOLVERS = {
   duckduckgo: (url: string) => `https://icons.duckduckgo.com/ip3/${url}.ico`,
@@ -12,17 +12,17 @@ const RESOLVERS = {
 // GET - /favicon
 export const handleFavicon = async (ctx: Context) => {
   const { searchParams } = new URL(ctx.request.url);
-  const url = searchParams.get("url") || "";
-  const resolver = (searchParams.get("resolver") as IFaviconAPI) || "duckduckgo";
+  const url = searchParams.get('url') || '';
+  const resolver = (searchParams.get('resolver') as IFaviconAPI) || 'duckduckgo';
 
   if (!url) {
-    throw new Error("URL is required");
+    throw new Error('URL is required');
   }
 
   // Validate URL format
   const urlRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
   if (!urlRegex.test(url)) {
-    throw new Error("Invalid URL format");
+    throw new Error('Invalid URL format');
   }
 
   // Construct the DuckDuckGo favicon URL
@@ -30,24 +30,24 @@ export const handleFavicon = async (ctx: Context) => {
 
   // Fetch the favicon
   const response = await fetch(faviconUrl, {
-    method: "GET",
+    method: 'GET',
   });
 
   // If we got a successful response
   if (response.ok) {
     // Get the content type
-    const contentType = response.headers.get("content-type") || "image/x-icon";
+    const contentType = response.headers.get('content-type') || 'image/x-icon';
 
     // Get the favicon data as ArrayBuffer
     const faviconData = await response.arrayBuffer();
 
     // Set appropriate headers
-    ctx.set.headers["content-type"] = contentType;
-    ctx.set.headers["cache-control"] = "public, max-age=86400"; // Cache for 24 hours
+    ctx.set.headers['content-type'] = contentType;
+    ctx.set.headers['cache-control'] = 'public, max-age=86400'; // Cache for 24 hours
 
     // Send the favicon data
     return Buffer.from(faviconData);
   } else {
-    throw new Error("Failed to fetch favicon");
+    throw new Error('Failed to fetch favicon');
   }
 };

@@ -22,7 +22,7 @@ const Shortcut: React.FC<Props> = ({ href, title, imgUrl, idx }) => {
 
   const openInNewTab = useHomepageStore((state) => state.openInNewTab);
 
-  const fullUrl = href?.includes('https') ? href : `https://${href}` || '';
+  const fullUrl = href?.includes('https') ? href : `https://${href || 'example.com'}`;
   const stripUrl = href?.replace(/^(?:https?:\/\/)?(.*?)(\/)?$/, '$1') || '';
 
   const anchorTarget: React.HTMLAttributeAnchorTarget = openInNewTab ? '_blank' : '_self';
