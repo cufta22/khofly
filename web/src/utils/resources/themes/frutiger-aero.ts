@@ -12,7 +12,6 @@ import {
   Switch,
   Tabs,
   Text,
-  UnstyledButton,
 } from '@mantine/core';
 
 // Frutiger Aero Theme for Mantine
@@ -280,9 +279,9 @@ export const THEME_FRUTIGER_AERO: MantineThemeOverride = {
 
     // Adjust Button for Aero
     Button: Button.extend({
-      classNames(theme, props, ctx) {
+      classNames(props) {
         return {
-          root: props.color ? '' : 'frutiger-aero-theme-button',
+          root: props?.primaryColor ? '' : 'frutiger-aero-theme-button',
         };
       },
 
@@ -399,7 +398,7 @@ export const THEME_FRUTIGER_AERO: MantineThemeOverride = {
       },
     }),
     Switch: Switch.extend({
-      styles(theme, props, ctx) {
+      styles(theme, props) {
         return {
           track: {
             backgroundColor: props.checked ? theme.colors.green[6] : rgba(theme.white, 0.75),
@@ -418,7 +417,7 @@ export const THEME_FRUTIGER_AERO: MantineThemeOverride = {
     // UnstyledButton: UnstyledButton.extend({
     //   styles(theme, props, ctx) {
     //     if (props?.className?.includes("tab")) {
-    //       // @ts-expect-error
+    //       // @ts-expect-error desc
     //       const isTabSelected = props?.["aria-selected"];
 
     //       // For Tabs
@@ -434,7 +433,7 @@ export const THEME_FRUTIGER_AERO: MantineThemeOverride = {
     //         },
     //       };
     //     } else {
-    //       // @ts-expect-error
+    //       // @ts-expect-error desc
     //       const isTabSelected = props?.["aria-selected"];
 
     //       // For Categories
@@ -458,7 +457,7 @@ export const THEME_FRUTIGER_AERO: MantineThemeOverride = {
       classNames: {
         root: 'frutiger-aero-theme-tabs',
       },
-      styles(theme, props, ctx) {
+      styles() {
         return {
           root: {
             borderBottom: 'none',

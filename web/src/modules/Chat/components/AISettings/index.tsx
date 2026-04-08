@@ -30,6 +30,15 @@ interface Props {
   onClose: () => void;
 }
 
+const getIconProvider = (value: string) => {
+  if (value.includes('cf')) {
+    return <Image src='/assets/engines/cloudflare-icon.svg' w={16} h={16} />;
+  }
+  if (value.includes('google')) {
+    return <Image src='/assets/engines/google-icon.svg' w={16} h={16} />;
+  }
+};
+
 const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
   const { isLoading: isLoadingConfig, mutate } = useAIConfigSWR();
 
@@ -65,15 +74,6 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
   const resetConfig = () => {
     setConfigUpdated(false);
     mutate();
-  };
-
-  const getIconProvider = (value: string) => {
-    if (value.includes('cf')) {
-      return <Image src='/assets/engines/cloudflare-icon.svg' w={16} h={16} />;
-    }
-    if (value.includes('google')) {
-      return <Image src='/assets/engines/google-icon.svg' w={16} h={16} />;
-    }
   };
 
   const renderSelectOptionProvider: SelectProps['renderOption'] = ({ option }) => (
@@ -213,7 +213,7 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
           mt='md'
           label='max_tokens'
           value={maxTokens}
-          onChange={(val) => setMaxTokens(typeof val === 'string' ? Number.parseInt(val) : val)}
+          onChange={(val) => setMaxTokens(typeof val === 'string' ? Number.parseInt(val, 10) : val)}
           min={256}
           max={4096}
           step={256}
@@ -225,7 +225,9 @@ const AISettings: React.FC<Props> = ({ isOpen, onClose }) => {
           mt='lg'
           label='temperature'
           value={temperature}
-          onChange={(val) => setTemperature(typeof val === 'string' ? Number.parseInt(val) : val)}
+          onChange={(val) =>
+            setTemperature(typeof val === 'string' ? Number.parseInt(val, 10) : val)
+          }
           min={0.1}
           max={
             {

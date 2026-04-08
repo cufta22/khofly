@@ -1,4 +1,4 @@
-import { Autocomplete, AutocompleteProps, Text } from '@mantine/core';
+import { Autocomplete } from '@mantine/core';
 import type { IOpenSection } from '@module/SettingsMobile';
 import { IconSearch } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
@@ -12,17 +12,17 @@ interface Props {
 const SettingsMSearchBar: React.FC<Props> = ({ handleChangeSection }) => {
   const [val, setVal] = useState('');
 
-  const onOptionSubmit = (val: string) => {
+  const onOptionSubmit = (next: string) => {
     // General
-    if (SEARCH_OPTIONS[0].items.includes(val)) handleChangeSection('general');
+    if (SEARCH_OPTIONS[0].items.includes(next)) handleChangeSection('general');
     // AI
-    if (SEARCH_OPTIONS[1].items.includes(val)) handleChangeSection('ai');
+    if (SEARCH_OPTIONS[1].items.includes(next)) handleChangeSection('ai');
   };
 
   return (
     <Autocomplete
       value={val}
-      onChange={(val) => setVal(val)}
+      onChange={(next) => setVal(next)}
       placeholder='Search settings'
       radius='xl'
       leftSection={<IconSearch style={getIconStyle(20)} />}

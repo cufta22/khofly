@@ -31,9 +31,9 @@ interface Porps {
 
 // Unused for now
 const SunPosition: React.FC<Porps> = ({ data }) => {
-  const sunriseHr = Number.parseInt(dayjs.unix(data.sunrise).format('HH'));
-  const sunsetHr = Number.parseInt(dayjs.unix(data.sunset).format('HH'));
-  const currentHr = Number.parseInt(dayjs.unix(data.dt).format('HH'));
+  const sunriseHr = Number.parseInt(dayjs.unix(data.sunrise).format('HH'), 10);
+  const sunsetHr = Number.parseInt(dayjs.unix(data.sunset).format('HH'), 10);
+  const currentHr = Number.parseInt(dayjs.unix(data.dt).format('HH'), 10);
 
   const sun_pos =
     currentHr < sunriseHr

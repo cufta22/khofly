@@ -1,11 +1,11 @@
-import type { RefObject} from 'react';
+import type { RefObject } from 'react';
 import { useState, useEffect, useRef } from 'react';
 
 function guard(value: number, min: number, max: number) {
   return value < min ? min : value > max ? max : value;
 }
 
-export const useDrag = (divRef: RefObject<HTMLDivElement>, divW: number, divH: number) => {
+export const useDrag = (divRef: RefObject<HTMLDivElement | null>, divW: number, divH: number) => {
   const [pos, setPos] = useState({
     x: (window.innerWidth - divW) / 2,
     y: (window.innerHeight - divH) / 2,

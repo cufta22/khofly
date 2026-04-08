@@ -38,7 +38,7 @@ const DocsResourcesCustomSearxng = () => {
         radius='sm'
       >
         This page will show you settings that you need if you want to use your own SearXNG instance
-        with Khofly. If you don't have your own SearXNG instance hosted check out{' '}
+        with Khofly. If you don&apos;t have your own SearXNG instance hosted check out{' '}
         <RemixLink to='/docs/self-host-searxng'>
           <Text component='span' c={linkTextColor}>
             the hosting guide

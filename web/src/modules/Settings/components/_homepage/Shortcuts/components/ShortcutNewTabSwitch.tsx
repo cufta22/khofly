@@ -17,7 +17,7 @@ const ShortcutsNewTabSwitch: React.FC<Props> = ({ isM }) => {
       onChange={(e) => {
         setOpenInNewTab(e.currentTarget.checked);
       }}
-      withThumbIndicator={isM ? false : true}
+      withThumbIndicator={!isM}
       size={isM ? 'md' : 'sm'}
     />
   );

@@ -1,14 +1,4 @@
-import {
-  Button,
-  Flex,
-  Group,
-  Paper,
-  Stack,
-  Text,
-  TextInput,
-  useMantineTheme,
-  type SelectProps,
-} from '@mantine/core';
+import { Button, Flex, Paper, Stack, Text, TextInput, useMantineTheme } from '@mantine/core';
 
 import classes from '../../../styles.module.scss';
 import useToast from '@hooks/use-toast';
@@ -55,12 +45,12 @@ const SettingsPV = () => {
   //   // [process.env.SEARXNG_URL_US1]: <USFlag style={getIconStyle(20)} />,
   // };
 
-  const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
-    <Group flex='1' gap='xs'>
-      {/* {icons[option.value]} */}
-      {option.label}
-    </Group>
-  );
+  // const renderSelectOption: SelectProps['renderOption'] = ({ option }) => (
+  //   <Group flex='1' gap='xs'>
+  //     {/* {icons[option.value]} */}
+  //     {option.label}
+  //   </Group>
+  // );
 
   return (
     <Paper radius='md' withBorder>

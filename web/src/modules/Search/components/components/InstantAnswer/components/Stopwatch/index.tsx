@@ -1,12 +1,7 @@
 import { ActionIcon, Button, Center, Flex, Paper, RingProgress, Text } from '@mantine/core';
 import { IAWrapper } from '../../wrapper';
 import classes from './styles.module.scss';
-import {
-  IconPlayerPauseFilled,
-  IconPlayerPlay,
-  IconPlayerPlayFilled,
-  IconVideo,
-} from '@tabler/icons-react';
+import { IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import { useState } from 'react';
 import { useInterval } from '@mantine/hooks';
@@ -98,13 +93,15 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
   };
 
   const handleLoop = () => {
-    setLoops((prev) => [
-      ...prev,
-      {
-        current: time,
-        diff: prev.length === 0 ? time : calculateTimeDifference(time, prev.at(-1).current),
-      },
-    ]);
+    setLoops((prev) => {
+      return [
+        ...prev,
+        {
+          current: time,
+          diff: prev.length === 0 ? time : calculateTimeDifference(time, prev.at(-1)!.current),
+        },
+      ];
+    });
   };
 
   const stopwatchComponent = (
@@ -149,7 +146,7 @@ const IAStopwatch: React.FC<Props> = ({ withIAWrapper }) => {
 
           <Flex align='flex-end' justify='space-between' direction='column' gap='md' mt={48}>
             <Flex align='flex-start' justify='space-between' direction='column' gap='xs'>
-              {[...loops].toReversed().map((loop, i) => (
+              {[...loops].reverse().map((loop, i) => (
                 <Flex key={i} w='100%' align='center' justify='space-between' gap='md'>
                   <Text size='sm' c='dimmed'>
                     {loops.length - i}.

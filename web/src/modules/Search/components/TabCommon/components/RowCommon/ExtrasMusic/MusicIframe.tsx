@@ -22,6 +22,7 @@ const MusicIframe: React.FC<Props> = ({ iframeOpen, iframe_src, title }) => {
           width='100%'
           src={iframe_src}
           title={title}
+          sandbox='' // TODO: Add something
         />
       )}
     </Transition>

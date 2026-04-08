@@ -68,8 +68,8 @@ const DocsResourcesSiteData = () => {
 
       <DocsText>
         <Code>khofly-general-store</Code>: saves geolocation data for Weather Instant Answer so that
-        it doesn't prompt for location access every time it is used. Only gets saved once user gives
-        permission for location access.
+        it doesn&apos;t prompt for location access every time it is used. Only gets saved once user
+        gives permission for location access.
       </DocsText>
 
       <DocsText>

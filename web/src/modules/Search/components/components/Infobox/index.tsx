@@ -4,12 +4,7 @@ import type { ISearXNGResultsGeneral } from '@ts/searxng.types';
 import classes from './styles.module.scss';
 import { usePrimaryColor } from '@hooks/use-primary-color';
 
-const Infobox: React.FC<ISearXNGResultsGeneral['infoboxes'][0]> = ({
-  img_src,
-  infobox,
-  content,
-  urls,
-}) => {
+const Infobox: React.FC<ISearXNGResultsGeneral['infoboxes'][0]> = ({ img_src, content, urls }) => {
   const linkTextColor = usePrimaryColor(4);
 
   return (

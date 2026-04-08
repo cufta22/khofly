@@ -26,7 +26,7 @@ const WidgetWeather = () => {
     src: 'om',
   });
   const data = resData?.data;
-  const message = resData?.message;
+  // const message = resData?.message;
 
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance

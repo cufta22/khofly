@@ -69,7 +69,7 @@ const GeneralMedia = () => {
       </Flex>
 
       {generalMedia.type === 'images' && (
-        <Grid grow gutter='xs' columns={isSm ? 2 : 5}>
+        <Grid grow gap='xs' columns={isSm ? 2 : 5}>
           {data?.map((res) => {
             if (!res) return null;
 
@@ -100,7 +100,7 @@ const GeneralMedia = () => {
       )}
 
       {generalMedia.type === 'videos' && (
-        <Grid grow gutter='xs' columns={isSm ? 2 : 4}>
+        <Grid grow gap='xs' columns={isSm ? 2 : 4}>
           {data?.map((res) => {
             if (!res) return null;
 

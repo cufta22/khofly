@@ -74,8 +74,8 @@ const SectionFly = () => {
       <DocsSubtitle>2. Create an account on Fly.io and add a payment method</DocsSubtitle>
 
       <DocsText>
-        It ain't free unfortunately but it gives you a lot of control, size of virtual machines,
-        location, etc.
+        It ain&apos;t free unfortunately but it gives you a lot of control, size of virtual
+        machines, location, etc.
       </DocsText>
 
       <DocsSubtitle>3. flyctl magic</DocsSubtitle>
@@ -111,8 +111,8 @@ const SectionFly = () => {
 
       <DocsText>
         Open the folder where you originally cloned Khofly and run{' '}
-        <Code>git pull origin master</Code>, after this run <Code>fly deploy</Code> and it "should"
-        redeploy the latest changes
+        <Code>git pull origin master</Code>, after this run <Code>fly deploy</Code> and it
+        &quot;should&quot; redeploy the latest changes
       </DocsText>
 
       <Alert mt='xl' variant='light' color='blue' title='Learn more' icon={<IconInfoCircle />}>

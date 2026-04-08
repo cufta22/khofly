@@ -1,6 +1,6 @@
 import useForm from '@hooks/use-form';
 import { Button, Center, Flex, Image, Paper, TextInput } from '@mantine/core';
-import type { IShortcut} from '@store/homepage';
+import type { IShortcut } from '@store/homepage';
 import { useHomepageStore } from '@store/homepage';
 import React from 'react';
 import { createNewItem, updateItemInList } from './utils';
@@ -39,8 +39,10 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => 
   });
 
   const handleSubmit = (values: typeof form.values) => {
-    let newShortcuts: IShortcut[] = [...shortcuts]; // Start with a copy
+    // Start with a copy
+    let newShortcuts: IShortcut[] = [...shortcuts];
 
+    // TODO: REFACTOR THIS
     if (shortcut.type === 'item' && shortcut.itemIdx === undefined) {
       // Scenario 1: Add/Edit a top-level item
       if (type === 'edit') {
@@ -71,19 +73,17 @@ const ShortcutEdit: React.FC<Props> = ({ toggleModal, shortcut, idx, type }) => 
           return sc;
         });
       }
-    } else if (shortcut.type === 'group') {
-      // Scenario 4: Add an item to an existing group
-      if (type === 'add') {
-        newShortcuts = shortcuts.map((sc, i) => {
-          if (i === idx) {
-            return {
-              ...sc,
-              items: [...(sc.items || []), createNewItem(values)],
-            };
-          }
-          return sc;
-        });
-      }
+    } else if (shortcut.type === 'group' && type === 'add') {
+      // Combined conditions: flattening the logic
+      newShortcuts = shortcuts.map((sc, i) => {
+        if (i === idx) {
+          return {
+            ...sc,
+            items: [...(sc.items || []), createNewItem(values)],
+          };
+        }
+        return sc;
+      });
     }
 
     setShortcuts(newShortcuts);

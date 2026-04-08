@@ -30,7 +30,7 @@ const PrivateSearchSwitch: React.FC<Props> = ({ isM }) => {
       <Switch
         checked={privateSearch}
         onChange={(e) => setPrivateSearch(e.currentTarget.checked)}
-        withThumbIndicator={isM ? false : true}
+        withThumbIndicator={!isM}
         size={isM ? 'md' : 'sm'}
       />
     </Flex>

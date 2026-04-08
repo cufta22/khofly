@@ -25,7 +25,7 @@ const Docs3rdPartyCurrency = () => {
         Khofly API periodically ( 1h ) fetches the latest rates and saves them on the server instead
         of client spamming OXR API every time the currency convert Instant Answer is used. Free plan
         gives you 1000 requests a month and if you do the math ( 1 req * 24h * 31 days = 744 reqs )
-        you won't be paying anything but you still need to subscribe and get your API key{' '}
+        you won&apos;t be paying anything but you still need to subscribe and get your API key{' '}
         <DocsLink href='https://openexchangerates.org/signup/free' label='here' />.
       </DocsText>
     </Container>

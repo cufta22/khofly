@@ -1,6 +1,6 @@
 import { Divider, Stack } from '@mantine/core';
 import { useSearchStore } from '@store/search';
-import type { ICategories} from '@store/settings';
+import type { ICategories } from '@store/settings';
 import { useSettingsStore } from '@store/settings';
 import type { ISearXNGResultsGeneral } from '@ts/searxng.types';
 import React from 'react';
@@ -24,11 +24,9 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
   return (
     <>
       {data?.map((res, i) => {
-        console.log(`res?.results?.length: ${res?.results?.length}`);
+        if (typeof res === 'string') return null;
 
-        if (typeof res === 'string') return;
-
-        if (!res?.results) return;
+        if (!res?.results) return null;
 
         const organizedResults = [...res.results]
           // Blacklist
@@ -36,7 +34,7 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
             return !domainsBlacklist.some((domain) => item.parsed_url?.[1]?.includes(domain));
           })
           // Priority
-          .toSorted((a, b) => {
+          .sort((a, b) => {
             // Check if URL a is in priority domains
             const aIsPriority = domainsPriority.some((domain) =>
               a.parsed_url?.[1]?.includes(domain),
@@ -61,19 +59,19 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
             {generalMedia.enabled && i === 0 && hydratedSettings ? (
               // Display images/videos in between results
               <>
-                {organizedResults.slice(0, 2).map((r, i) => (
-                  <RowCommon key={i} tab={tab} rowData={r} />
+                {organizedResults.slice(0, 2).map((r, i1) => (
+                  <RowCommon key={i1} tab={tab} rowData={r} />
                 ))}
 
                 <GeneralMedia />
 
-                {organizedResults.slice(2).map((r, i) => (
-                  <RowCommon key={i} tab={tab} rowData={r} />
+                {organizedResults.slice(2).map((r, i2) => (
+                  <RowCommon key={i2} tab={tab} rowData={r} />
                 ))}
               </>
             ) : (
               // Display just results
-              organizedResults.map((r, i) => <RowCommon key={i} tab={tab} rowData={r} />)
+              organizedResults.map((r, i3) => <RowCommon key={i3} tab={tab} rowData={r} />)
             )}
           </Stack>
         );
@@ -81,7 +79,7 @@ const LayoutGeneral: React.FC<Props> = ({ tab, data, showSkeleton }) => {
 
       {showSkeleton &&
         // Loading state
-        Array.from(Array(10).keys()).map((e, i) => <SkeletonCommon key={i} tab={tab} />)}
+        Array.from(Array(10).keys()).map((e, i4) => <SkeletonCommon key={i4} tab={tab} />)}
     </>
   );
 };

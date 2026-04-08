@@ -22,7 +22,7 @@ import SettingsInterface from './components/_interface/Interface';
 import SettingsThemeEditor from './components/_interface/ThemeEditor';
 
 import SettingsSearXNG from './components/_instances/SearXNG';
-import SettingsAIWorker from './components/_instances/AIWorker';
+// import SettingsAIWorker from './components/_instances/AIWorker';
 import SettingsNominatim from './components/_instances/Nominatim';
 import SettingsAPI from './components/_instances/API';
 import SettingsPV from './components/_instances/PV';

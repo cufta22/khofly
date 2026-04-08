@@ -239,13 +239,13 @@ export const getEngineBangs = (
   };
 
   // For selected category
-  enginesSelected.map((eng) => {
+  enginesSelected.forEach((eng) => {
     bangs = `${bangs}${BANGS[tab][eng]}%20`;
   });
 
   // For other, only in general
   if (tab === 'general') {
-    enginesOther.map((eng) => {
+    enginesOther.forEach((eng) => {
       bangs = `${bangs}${BANGS[`other`][eng]}%20`;
     });
   }

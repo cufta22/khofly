@@ -61,7 +61,7 @@ const DomainItem: React.FC<Props> = ({ domain, isCurrent }) => {
         )}
 
         {(hovered && isCurrent) || (isCurrent && (isPriority || isBlacklist)) ? (
-          <Grid w='100%' gutter='xs'>
+          <Grid w='100%' gap='xs'>
             <Grid.Col span={6}>
               <Button
                 onClick={isPriority ? removeFromPriority : addToPriority}

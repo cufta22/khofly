@@ -21,7 +21,7 @@ const Docs3rdPartyGemini = () => {
       <DocsSubtitle>Google Gemini</DocsSubtitle>
 
       <DocsText>
-        If you want to use any of Googles models you'll need to get an API key, you can get it
+        If you want to use any of Googles models you&apos;ll need to get an API key, you can get it
         <DocsLink href='https://aistudio.google.com/app/apikey' label='here' />. Copy that key and
         paste it in <Code>GEMINI_API_KEY</Code> in <Code>/api/.env.local</Code>.
       </DocsText>

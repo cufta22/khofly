@@ -48,7 +48,7 @@ const useDownloadSWR = ({ shouldDownload }: { shouldDownload: boolean }) => {
         });
       }
     },
-    onError(err) {
+    onError() {
       toast.show({ title: 'Something went wrong', message: 'Download failed', color: 'red' });
     },
   });

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IAWrapper } from '../../wrapper';
-import { Center, Flex, Grid, Paper, useMantineTheme } from '@mantine/core';
+import { Center, Flex, Paper, useMantineTheme } from '@mantine/core';
 import clsx from 'clsx';
 
 import classes from './styles.module.scss';

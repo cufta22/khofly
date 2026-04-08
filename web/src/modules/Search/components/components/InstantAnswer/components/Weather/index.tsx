@@ -20,7 +20,6 @@ import { AreaChart } from '@mantine/charts';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { usePrimaryColor } from '@hooks/use-primary-color';
-import { useInstanceStore } from '@store/instance';
 import useGeocodingSWR from 'src/api/geocoding/use-geocoding-query';
 import { useSettingsStore } from '@store/settings';
 
@@ -29,7 +28,7 @@ dayjs.extend(utc);
 const formatChartHr = (dt: number) => {
   const hr = dayjs.unix(dt).format('hh');
 
-  return Number.parseInt(hr) >= 12 ? `${hr} PM` : `${hr} AM`;
+  return Number.parseInt(hr, 10) >= 12 ? `${hr} PM` : `${hr} AM`;
 };
 
 interface Props {

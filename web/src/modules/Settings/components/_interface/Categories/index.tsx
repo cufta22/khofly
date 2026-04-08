@@ -18,7 +18,7 @@ import SettingsTitle from '../../common/SettingsTitle';
 import type { DotNestedKeys, ITranslations } from '@ts/global.types';
 import type { ElementType } from 'react';
 
-const CATEGORIES_DATA: {
+export const CATEGORIES_DATA: {
   id: ICategories;
   title: DotNestedKeys<ITranslations>;
   icon: ElementType;

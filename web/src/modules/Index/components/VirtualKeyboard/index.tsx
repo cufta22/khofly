@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import classes from './styles.module.scss';
 import { useDrag } from '@hooks/use-drag';
 import { IconArrowBadgeUp, IconBackspace, IconChevronsUp, IconSun } from '@tabler/icons-react';
-import type { IKeyboard} from '@utils/resources/keyboards';
+import type { IKeyboard } from '@utils/resources/keyboards';
 import { KEYBOARD_EN_US } from '@utils/resources/keyboards';
 import clsx from 'clsx';
 
@@ -93,7 +93,7 @@ const VirtualKeyboard: React.FC<Props> = ({ value, onChange, toggle }) => {
 
       {/* Row 1 */}
       <Flex align='center' justify='flex-start' gap={keyGap} mb={keyGap}>
-        {currentKeyboard[`row_1_${shiftExt}`].map((item, i) => (
+        {currentKeyboard[`row_1_${shiftExt}`].map((item) => (
           <ActionIcon
             key={item}
             size={keySize}
@@ -114,7 +114,7 @@ const VirtualKeyboard: React.FC<Props> = ({ value, onChange, toggle }) => {
 
       {/* Row 2 */}
       <Flex align='center' justify='flex-start' pl={keySize + keyGap + 6} gap={keyGap} mb={keyGap}>
-        {currentKeyboard[`row_2_${shiftExt}`].map((item, i) => (
+        {currentKeyboard[`row_2_${shiftExt}`].map((item) => (
           <ActionIcon
             key={item}
             size={keySize}
@@ -134,7 +134,7 @@ const VirtualKeyboard: React.FC<Props> = ({ value, onChange, toggle }) => {
 
       {/* Row 3 */}
       <Flex align='center' justify='flex-start' gap={keyGap} mb={keyGap}>
-        {currentKeyboard[`row_3_${shiftExt}`].map((item, i) => (
+        {currentKeyboard[`row_3_${shiftExt}`].map((item) => (
           <ActionIcon
             key={item}
             size={keySize}

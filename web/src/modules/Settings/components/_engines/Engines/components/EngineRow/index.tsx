@@ -142,14 +142,14 @@ const EngineComponent: React.FC<Props> = ({
               <Flex my='xs' align='center' justify='space-between'>
                 <Flex align='center' justify='space-between' gap='xs'>
                   {Array.isArray(hoverData?.bangsEngine)
-                    ? hoverData?.bangsEngine.map((bang, i) => (
+                    ? hoverData?.bangsEngine.map((bangE1, i) => (
                         <Badge key={i} size='lg' color='gray' tt='lowercase'>
-                          {bang}
+                          {bangE1}
                         </Badge>
                       ))
-                    : hoverData?.bangsEngine[category].map((bang, i) => (
+                    : hoverData?.bangsEngine[category].map((bangE2, i) => (
                         <Badge key={i} size='lg' color='gray' tt='lowercase'>
-                          {bang}
+                          {bangE2}
                         </Badge>
                       ))}
                 </Flex>
@@ -166,14 +166,14 @@ const EngineComponent: React.FC<Props> = ({
                   ))} */}
 
                   {Array.isArray(hoverData?.bangsCategory)
-                    ? hoverData?.bangsCategory.map((bang, i) => (
+                    ? hoverData?.bangsCategory.map((bangC1, i) => (
                         <Badge key={i} size='lg' color='gray' tt='lowercase'>
-                          {bang}
+                          {bangC1}
                         </Badge>
                       ))
-                    : hoverData?.bangsCategory[category].map((bang, i) => (
+                    : hoverData?.bangsCategory[category].map((bangC2, i) => (
                         <Badge key={i} size='lg' color='gray' tt='lowercase'>
-                          {bang}
+                          {bangC2}
                         </Badge>
                       ))}
                 </Flex>

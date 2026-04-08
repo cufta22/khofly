@@ -16,13 +16,14 @@ const LayoutCommon: React.FC<Props> = ({ tab, data, showSkeleton }) => {
   return (
     <>
       {data?.map((res, i) => {
-        if (!res?.results) return;
+        if (!res?.results) return null;
+
         return (
           <Stack gap='lg' key={i}>
             {i !== 0 && <Divider label={`Page ${i + 1}`} labelPosition='left' />}
 
-            {res?.results.map((r, i) => (
-              <RowCommon key={i} rowData={r} tab={tab} />
+            {res?.results.map((r, i2) => (
+              <RowCommon key={i2} rowData={r} tab={tab} />
             ))}
           </Stack>
         );

@@ -22,7 +22,7 @@ export const IAWrapper: React.FC<Props> = ({ children, label, className, keepMou
         {(transitionStyles) => <div style={transitionStyles}>{children}</div>}
       </Transition> */}
 
-      <Collapse in={visible} keepMounted={keepMounted}>
+      <Collapse expanded={visible} keepMounted={keepMounted}>
         {children}
       </Collapse>
 

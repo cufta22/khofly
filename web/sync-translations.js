@@ -18,7 +18,7 @@ function syncObjects(base, target) {
     if (typeof base[key] === 'object' && base[key] !== null && !Array.isArray(base[key])) {
       synced[key] = syncObjects(base[key], target[key] || {});
     } else {
-      synced[key] = target.hasOwnProperty(key) ? target[key] : `*${base[key]}`;
+      synced[key] = Object.hasOwn(target, key) ? target[key] : `*${base[key]}`;
     }
   });
 
@@ -29,6 +29,7 @@ function runSync() {
   const basePath = path.join(LOCALES_DIR, BASE_LANG_FILE);
 
   if (!fs.existsSync(basePath)) {
+    /* eslint-disable no-console */
     console.error(`❌ Error: Base file not found at ${basePath}`);
     process.exit(1);
   }
@@ -48,7 +49,7 @@ function runSync() {
 
     try {
       targetData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    } catch (e) {
+    } catch {
       console.warn(`⚠️  Could not parse ${file}, starting from scratch.`);
     }
 

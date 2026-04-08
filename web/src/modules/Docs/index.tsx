@@ -60,7 +60,7 @@ const PageDocs = () => {
     '3rd-party-ai': <Docs3rdPartyAI />,
   }[page];
 
-  return <>{docsPage || <DocsIndex />}</>;
+  return docsPage || <DocsIndex />;
 };
 
 export default PageDocs;

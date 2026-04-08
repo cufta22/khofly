@@ -75,9 +75,9 @@ const PagePrivateView = () => {
           <iframe
             src={`${pvDomain}/proxy/page?url=${encodeURIComponent(url || '')}`}
             title='Anonymous Content'
-            // sandbox={SANDBOX_CONFIG.join(" ")}
+            sandbox={SANDBOX_CONFIG.join(' ')}
             className={classes.private_iframe}
-            onLoad={(e) => {
+            onLoad={() => {
               setLoading(false);
             }}
           />

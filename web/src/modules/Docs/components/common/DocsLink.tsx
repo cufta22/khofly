@@ -1,5 +1,5 @@
 import { usePrimaryColor } from '@hooks/use-primary-color';
-import { Anchor, Text, useMantineTheme } from '@mantine/core';
+import { Anchor, Text } from '@mantine/core';
 
 interface Props {
   href: string;

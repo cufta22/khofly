@@ -45,22 +45,7 @@ const defaultProps: Partial<CodeHighlightProps> = {
 
 const ChatCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   const props = useProps('CodeHighlight', defaultProps, _props);
-  const {
-    classNames,
-    className,
-    style,
-    styles,
-    unstyled,
-    vars,
-    children,
-    code,
-    copiedLabel,
-    copyLabel,
-    language,
-    withCopyButton,
-    highlightOnClient,
-    ...others
-  } = props;
+  const { code, language } = props;
 
   const highlighted = hljs.highlight(code.trim(), {
     language: getChatSupportedLang(language),
@@ -70,7 +55,7 @@ const ChatCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   const LangIcon = langIcon;
 
   return (
-    <Box className={clsx(classes.root, themeClasses.theme)} {...others} dir='ltr'>
+    <Box className={clsx(classes.root, themeClasses.theme)} dir='ltr'>
       <Flex className={classes.chat_header} p='sm' justify='space-between'>
         <Flex gap='xs'>
           {LangIcon && <LangIcon />}

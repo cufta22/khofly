@@ -30,7 +30,7 @@ const IASwitch: React.FC<Props> = ({ isM }) => {
       <Switch
         checked={instantAnswers.enabled}
         onChange={(e) => setInstantAnswers({ enabled: e.currentTarget.checked })}
-        withThumbIndicator={isM ? false : true}
+        withThumbIndicator={!isM}
         size={isM ? 'md' : 'sm'}
       />
     </Flex>

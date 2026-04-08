@@ -1,28 +1,24 @@
-export const cryptoRandomNumber = (min: number, max: number) => {
-  const cryptoRandom = () => {
+export const cryptoRandomNumber = (min: number, max: number): number => {
+  // Ensure min is less than max
+  if (min > max) [min, max] = [max, min];
+
+  // Floor the inputs
+  const start = Math.floor(min);
+  const end = Math.floor(max);
+
+  const getCryptoRandomFloat = (): number => {
     try {
-      let cryptoRandoms,
-        cryptoRandomSlices = [],
-        cryptoRandom;
-      while ((cryptoRandom = '.' + cryptoRandomSlices.join('')).length < 30) {
-        // @ts-expect-error
-        cryptoRandoms = (window.crypto || window.msCrypto).getRandomValues(new Uint32Array(5));
-        for (let i = 0; i < cryptoRandoms.length; i++) {
-          const cryptoRandomSlice = cryptoRandoms[i].toString().slice(1, -1);
-          if (cryptoRandomSlice.length > 0)
-            cryptoRandomSlices[cryptoRandomSlices.length] = cryptoRandomSlice;
-        }
-      }
-      return Number(cryptoRandom);
-    } catch (e) {
+      // Get a random 32-bit unsigned integer (0 to 4,294,967,295)
+      const array = new Uint32Array(1);
+      window.crypto.getRandomValues(array);
+
+      // Divide by (max uint32 + 1) to get a float between [0, 1)
+      return array[0] / (0xffffffff + 1);
+    } catch {
+      // Fallback if crypto is unavailable (e.g., non-secure context)
       return Math.random();
     }
   };
 
-  if (min > max)
-    var temp = max,
-      max = min,
-      min = temp;
-  ((min = Math.floor(min)), (max = Math.floor(max)));
-  return Math.floor(cryptoRandom() * (max - min + 1) + min);
+  return Math.floor(getCryptoRandomFloat() * (end - start + 1) + start);
 };

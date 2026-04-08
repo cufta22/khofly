@@ -6,7 +6,7 @@ import type { Route } from './+types/settings';
 import { isMobileUserAgent } from '@utils/functions/isMobileUA';
 
 // Loader
-export async function loader({ request }: Route.LoaderArgs) {
+export function loader({ request }: Route.LoaderArgs) {
   const ua = request.headers.get('user-agent');
 
   const isMobile = isMobileUserAgent(ua || '');

@@ -1,12 +1,10 @@
-import { Badge, Blockquote, Code, Flex, List, Paper, Text } from '@mantine/core';
-import DocsTitle from '../../../common/DocsTitle';
+import { Code, List, Paper } from '@mantine/core';
 import DocsText from '../../../common/DocsText';
 import DocsSubtitle from '../../../common/DocsSubtitle';
-import { IconBrandDebian, IconFile } from '@tabler/icons-react';
+import { IconFile } from '@tabler/icons-react';
 import DocsCodeHighlight from '../../../common/DocsCodeHighlight/DocsCodeHighlight';
 import DocsCodeHighlightTabs from '../../../common/DocsCodeHighlight/DocsCodeHighlightTabs';
 import { getIconStyle } from '@utils/functions/iconStyle';
-import classes from './styles.module.scss';
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -175,7 +173,8 @@ const SectionVPScont = () => {
       </Paper>
 
       <DocsText>
-        10. Create Nginx config for web, don't forget to update the server_name to your domain name.
+        10. Create Nginx config for web, don&apos;t forget to update the server_name to your domain
+        name.
       </DocsText>
       <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlight code={CODE_NGINX} language='bash' />

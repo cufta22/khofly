@@ -45,9 +45,9 @@ const ClientServerProvider: React.FC<Props> = ({
     // Set content in context
     // Dynamically fetch content JSON
     const contentFetch = await fetch(`/locales/${next}.json`);
-    const content: ITranslations = await contentFetch.json();
+    const contentJson: ITranslations = await contentFetch.json();
 
-    setState((prev) => ({ ...prev, language: next, content }));
+    setState((prev) => ({ ...prev, language: next, content: contentJson }));
   };
 
   const setTheme = (next: IAppTheme) => {

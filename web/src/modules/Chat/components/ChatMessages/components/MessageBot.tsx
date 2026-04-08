@@ -86,22 +86,22 @@ const MessageBot: React.FC<Props> = ({ content }) => {
                 </code>
               );
             },
-            table({ node, ...props }) {
+            table({ node: _, ...props }) {
               return <Table {...props} />;
             },
-            thead({ node, ...props }) {
+            thead({ node: _, ...props }) {
               return <Table.Thead {...props} />;
             },
-            th({ node, ...props }) {
+            th({ node: _, ...props }) {
               return <Table.Th {...props} />;
             },
-            tbody({ node, ...props }) {
+            tbody({ node: _, ...props }) {
               return <Table.Tbody {...props} />;
             },
-            tr({ node, ...props }) {
+            tr({ node: _, ...props }) {
               return <Table.Tr {...props} />;
             },
-            td({ node, ...props }) {
+            td({ node: _, ...props }) {
               return <Table.Td {...props} />;
             },
           }}

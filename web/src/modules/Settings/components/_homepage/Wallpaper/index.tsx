@@ -8,7 +8,6 @@ import { useHomepageStore } from '@store/homepage';
 import SettingsTitle from '../../common/SettingsTitle';
 import useForm from '@hooks/use-form';
 import useToast from '@hooks/use-toast';
-import { usePrimaryColor } from '@hooks/use-primary-color';
 import { useEffect } from 'react';
 import type { IOpenSection } from '@module/SettingsMobile';
 import SettingsMTitle from '@module/SettingsMobile/components/common/SettingsTitle';
@@ -37,8 +36,6 @@ const SettingsWallpaper: React.FC<Props> = ({ isM, handleChangeSection }) => {
   });
 
   const { toast } = useToast();
-
-  const linkTextColor = usePrimaryColor(4);
 
   const handleSubmit = (values: typeof form.values) => {
     setBackground(values.background);

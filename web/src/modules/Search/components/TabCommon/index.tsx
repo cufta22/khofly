@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Center, Flex, Stack, Text } from '@mantine/core';
+import { Flex, Stack, Text } from '@mantine/core';
 
 import classes from './styles.module.scss';
 import ScrollToTop from '../../../../common/components/ScrollToTop';
@@ -29,7 +29,6 @@ import LayoutVideos from './layouts/LayoutVideos';
 import ButtonLoadMore from './components/ButtonLoadMore';
 import LayoutCommon from './layouts/LayoutCommon';
 import { type ILoaderData_Search } from 'app/routes/search';
-import { useSWRConfig } from 'swr';
 
 interface Props {
   tab: ICategories;
@@ -44,16 +43,10 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
     initialTab: tab,
   });
 
-  const { cache } = useSWRConfig();
-
-  console.log('Current SWR Keys:', Array.from(cache.keys()));
-
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
     // Run mutate if loaderData ends up empty
     if (!data?.length && hydratedEngines && !loaderData) {
-      console.log('mutate(); called');
-
       mutate();
     }
   }, [hydratedEngines]);

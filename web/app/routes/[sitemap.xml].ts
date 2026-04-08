@@ -1,9 +1,8 @@
 import { NAVBAR_DATA } from '@utils/resources/navbarData';
-import type { LoaderFunctionArgs } from 'react-router';
 
 const docsLinks = NAVBAR_DATA.flatMap((group) => group.links);
 
-export const loader = async ({ context }: LoaderFunctionArgs) => {
+export const loader = () => {
   // handle "GET" request
   // set up our text content that will be returned in the response
   const loc = process.env.HOST;

@@ -4,15 +4,12 @@ import React from 'react';
 import SettingsMInitRow from '../common/SettingsMInitRow';
 import {
   IconApiApp,
-  IconBrandCloudflare,
   IconBrush,
   IconCategory,
-  IconExternalLink,
   IconPhoto,
   IconRadar,
   IconSearch,
   IconSettings2,
-  IconSparkles,
   IconWorld,
 } from '@tabler/icons-react';
 

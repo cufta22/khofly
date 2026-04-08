@@ -15,7 +15,7 @@ const ShowEnginesSwitch: React.FC<Props> = ({ isM }) => {
       className={commonClasses.settings_control}
       checked={showEngines}
       onChange={(e) => setShowEngines(e.currentTarget.checked)}
-      withThumbIndicator={isM ? false : true}
+      withThumbIndicator={!isM}
       size={isM ? 'md' : 'sm'}
     />
   );

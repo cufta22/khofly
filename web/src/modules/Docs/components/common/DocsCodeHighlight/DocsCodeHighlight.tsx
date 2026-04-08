@@ -43,27 +43,12 @@ const defaultProps: Partial<CodeHighlightProps> = {
 
 const DocsCodeHighlight: React.FC<CodeHighlightProps> = (_props) => {
   const props = useProps('CodeHighlight', defaultProps, _props);
-  const {
-    classNames,
-    className,
-    style,
-    styles,
-    unstyled,
-    vars,
-    children,
-    code,
-    copiedLabel,
-    copyLabel,
-    language,
-    withCopyButton,
-    highlightOnClient,
-    ...others
-  } = props;
+  const { className, code, copiedLabel, copyLabel, language, withCopyButton } = props;
 
   const highlighted = hljs.highlight(code.trim(), { language }).value;
 
   return (
-    <Box className={clsx(classes.root, themeClasses.theme, className)} {...others} dir='ltr'>
+    <Box className={clsx(classes.root, themeClasses.theme, className)} dir='ltr'>
       {withCopyButton && (
         <CopyButton value={code.trim()}>
           {({ copied, copy }) => (

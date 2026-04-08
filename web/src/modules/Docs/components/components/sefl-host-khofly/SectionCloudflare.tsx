@@ -14,7 +14,7 @@ const SectionCloudflare = () => {
         </Badge>
       </Flex>
 
-      <DocsText>Can't get it to work :(</DocsText>
+      <DocsText>{"Can't get it to work :("}</DocsText>
     </>
   );
 };

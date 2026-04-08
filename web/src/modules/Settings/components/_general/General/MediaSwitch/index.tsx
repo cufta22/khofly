@@ -43,7 +43,7 @@ const MediaSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
         <Switch
           checked={enabled}
           onChange={(e) => setGeneralMedia({ enabled: e.currentTarget.checked })}
-          withThumbIndicator={isM ? false : true}
+          withThumbIndicator={!isM}
           size={isM ? 'md' : 'sm'}
         />
       )}

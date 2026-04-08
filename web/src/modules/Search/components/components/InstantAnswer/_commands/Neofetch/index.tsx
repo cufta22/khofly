@@ -1,10 +1,10 @@
 import { ColorSwatch, Flex, Text, useMantineTheme } from '@mantine/core';
 import { IAWrapper } from '../../wrapper';
-import { type OS, useMounted, useOs } from '@mantine/hooks';
+import { useMounted, useOs, type UseOSReturnValue } from '@mantine/hooks';
 import { SYSTEM_ART, getBrowserLabel, getOsLabel } from './utils';
 import classes from './styles.module.scss';
 
-const OS_ART_COLORED: { [key in OS]: string } = {
+const OS_ART_COLORED: { [key in UseOSReturnValue]: string } = {
   linux: SYSTEM_ART.linux
     .replaceAll(/(#)/g, '<span style="color: #495057;">$1</span>')
     .replaceAll(/(\.)/g, '<span style="color: #f8f9fa;">$1</span>')
@@ -12,6 +12,7 @@ const OS_ART_COLORED: { [key in OS]: string } = {
   android: 'Android',
   ios: 'iOS',
   macos: SYSTEM_ART.macos,
+  chromeos: 'ChromeOS',
 
   undetermined: 'Undetermined :(',
   windows: SYSTEM_ART.windows.replaceAll(/(#)/g, '<span style="color: #4dabf7;">$1</span>'),

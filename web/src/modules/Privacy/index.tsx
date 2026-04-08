@@ -22,8 +22,8 @@ const PagePrivacy = () => {
         </Flex>
 
         <Text>
-          TL;DR Khofly doesn't track you, it doesn't save or share any of your data, search or
-          browsing history.
+          TL;DR Khofly doesn&apos;t track you, it doesn&apos;t save or share any of your data,
+          search or browsing history.
         </Text>
 
         <Flex mt='xl' mb='sm' align='center'>

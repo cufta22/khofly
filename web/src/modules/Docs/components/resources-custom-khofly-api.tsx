@@ -27,7 +27,7 @@ const DocsResourcesCustomKhoflyAPI = () => {
         radius='sm'
       >
         This page will show you settings that you need if you want to use your own API instance with
-        Khofly. If you don't have your own API instance hosted check out{' '}
+        Khofly. If you don&apos;t have your own API instance hosted check out{' '}
         <RemixLink to='/docs/self-host-khofly-api'>
           <Text component='span' c={linkTextColor}>
             the hosting guide

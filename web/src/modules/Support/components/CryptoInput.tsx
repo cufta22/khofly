@@ -1,7 +1,7 @@
 import useToast from '@hooks/use-toast';
-import { ActionIcon, CopyButton, TextInput } from '@mantine/core';
+import { ActionIcon, TextInput } from '@mantine/core';
 import { useClipboard } from '@mantine/hooks';
-import { IconCheck, IconCopy, IconCopyCheck } from '@tabler/icons-react';
+import { IconCheck, IconCopy } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import React from 'react';
 

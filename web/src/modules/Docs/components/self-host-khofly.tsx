@@ -3,7 +3,6 @@ import {
   IconAirBalloon,
   IconBrandCloudflare,
   IconBrandVercel,
-  IconPackage,
   IconServer,
 } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';

@@ -14,12 +14,12 @@ export const getCookie = (name: string, req?: Request, defaultValue?: any) => {
     if (!cookieHeader) return defaultValue;
 
     const cookies = cookieHeader.split(';').map((cookie) => cookie.trim().split('='));
-    const cookie = cookies.find((cookie) => cookie[0] === name);
+    const cookie = cookies.find((c) => c[0] === name);
     return cookie ? decodeURIComponent(cookie[1]) : defaultValue;
   } else {
     // Client-side rendering
     const cookies = document.cookie.split(';').map((cookie) => cookie.trim().split('='));
-    const cookie = cookies.find((cookie) => cookie[0] === name);
+    const cookie = cookies.find((c) => c[0] === name);
     return cookie ? decodeURIComponent(cookie[1]) : defaultValue;
   }
 };

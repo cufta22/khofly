@@ -4,7 +4,6 @@ import DocsSubtitle from '../../common/DocsSubtitle';
 import DocsLink from '../../common/DocsLink';
 
 import DocsText from '../../common/DocsText';
-import { usePrimaryColor } from '@hooks/use-primary-color';
 
 const CODE_WORKER = `
 const corsHeaders = {
@@ -70,8 +69,6 @@ export default {
 `;
 
 const SectionLyricsWorker = () => {
-  const linkTextColor = usePrimaryColor(4);
-
   return (
     <>
       <Blockquote color='yellow' mt='xl' radius='sm'>

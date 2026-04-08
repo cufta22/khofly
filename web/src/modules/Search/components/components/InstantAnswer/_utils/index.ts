@@ -9,7 +9,7 @@ import { KEYWORDS_UNITS_GENERAL, KEYWORDS_UNITS_ALL_MAP } from './keywords_units
 export const shouldDisplayIA = (query: string, keywords: string[]) => {
   let shouldDisplay = false;
 
-  keywords.map((val) => {
+  keywords.forEach((val) => {
     if (query?.toLowerCase().includes(val)) shouldDisplay = true;
   });
 
@@ -19,7 +19,7 @@ export const shouldDisplayIA = (query: string, keywords: string[]) => {
 export const shouldDisplayIAExact = (query: string, keywords: string[]) => {
   let shouldDisplay = false;
 
-  keywords.map((val) => {
+  keywords.forEach((val) => {
     if (query?.toLowerCase() === val.toLocaleLowerCase()) shouldDisplay = true;
   });
 
@@ -58,7 +58,7 @@ export const shouldDisplayUnits = (
     };
 
   if (query?.includes('to')) {
-    Object.keys(KEYWORDS_UNITS_ALL_MAP).map((val) => {
+    Object.keys(KEYWORDS_UNITS_ALL_MAP).forEach((val) => {
       // Handle {val} convertor
       const array = KEYWORDS_UNITS_ALL_MAP[val as UnitsType].array;
       if (array.includes(unit1.toLocaleLowerCase()) && array.includes(unit2.toLocaleLowerCase())) {

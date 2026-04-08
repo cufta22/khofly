@@ -22,7 +22,7 @@ const formatCookiesToText = (cookieString: string): string => {
         const formattedJson = JSON.stringify(parsedObject?.state, null, 2);
 
         return `Cookie: ${name} \n${formattedJson}`;
-      } catch (e) {
+      } catch {
         // Fallback if a cookie isn't valid JSON
         return `Cookie: ${name} \n"${value}"`;
       }

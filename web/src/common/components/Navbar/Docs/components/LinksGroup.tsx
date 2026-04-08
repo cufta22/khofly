@@ -15,7 +15,6 @@ import { getIconStyle } from '@utils/functions/iconStyle';
 import RemixLink from '@components/RemixLink';
 import clsx from 'clsx';
 import { useLocation } from 'react-router';
-import { useResponsive } from '@hooks/use-responsive';
 
 export interface LinksGroupProps {
   icon: React.FC<any>;
@@ -24,8 +23,6 @@ export interface LinksGroupProps {
 }
 
 const LinksGroup: React.FC<LinksGroupProps> = ({ icon: Icon, label, links }) => {
-  const isXs = useResponsive('max', 'xs');
-
   const theme = useMantineTheme();
   const hasLinks = Array.isArray(links);
   const [opened, setOpened] = useState(false);

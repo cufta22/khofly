@@ -38,8 +38,7 @@ import IAUnit from '@module/Search/components/components/InstantAnswer/component
 import IAUUID from '@module/Search/components/components/InstantAnswer/components/UUID';
 import IAWeather from '@module/Search/components/components/InstantAnswer/components/Weather';
 import { IconArrowsShuffle, IconClock, IconDeviceGamepad3, IconWorld } from '@tabler/icons-react';
-import clsx from 'clsx';
-import { getIconStyle } from '@utils/functions/iconStyle';
+
 import IADaysTillChristmas from '@module/Search/components/components/InstantAnswer/components/DaysTillChristmas';
 import IALoremIpsum from '@module/Search/components/components/InstantAnswer/components/LoremIpsum';
 
@@ -53,7 +52,7 @@ const IAGallery = () => {
 
     const colorParts = ia.color.split('.');
     const colorName = colorParts[0];
-    const shade = parseInt(colorParts?.[1] || '6');
+    const shade = parseInt(colorParts?.[1] || '6', 10);
 
     return (
       <UnstyledButton
@@ -200,8 +199,7 @@ const IAGallery = () => {
       ) : selected === 'equation' ? (
         <>
           <DocsText>
-            Condition:{' '}
-            <Code>{`/(?:(?:^|[-+_*/])(?:s*-?d+(.d+)?(?:[eE][+-]?d+)?s*))+$/`}</Code>, the
+            Condition: <Code>{`/(?:(?:^|[-+_*/])(?:s*-?d+(.d+)?(?:[eE][+-]?d+)?s*))+$/`}</Code>, the
             search query needs to be an equation
           </DocsText>
           <Box mt='xl' className={classes.ia_box}>

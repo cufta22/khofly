@@ -10,7 +10,7 @@ import { useTranslate } from '@hooks/translate/use-translate';
 import { setCookie } from '@utils/functions/cookies';
 
 import { useClientServerState } from '@store/client-server';
-import { IconBarrierBlock, IconBottle } from '@tabler/icons-react';
+import { IconBarrierBlock } from '@tabler/icons-react';
 import { LANG_DATA } from './data';
 
 const LanguageSelect = () => {
@@ -24,7 +24,7 @@ const LanguageSelect = () => {
     onDropdownClose: () => combobox.resetSelectedOption(),
   });
 
-  const handleChange = async (next: ILanguage) => {
+  const handleChange = (next: ILanguage) => {
     // Don't fetch/update context for no reason
     if (language === next) {
       combobox.closeDropdown();

@@ -4,7 +4,6 @@ import { IconAffiliate, IconBrandDebian, IconPackage } from '@tabler/icons-react
 import classes from './styles.module.scss';
 import { useState } from 'react';
 import SectionVPSpm2 from './components/SectionVPSpm2';
-import SectionVPScont from './components/SectionVPScont';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import DocsWIP from '../../wip';
 
@@ -84,8 +83,8 @@ const SectionVPS = () => {
           to manual installation steps.
         </Text>
         <Text mt='xs'>
-          install.sh works on debian based distros only, for now. If you're running any other system
-          move to manual installation steps and find replacements for the used packages.
+          install.sh works on debian based distros only, for now. If you&apos;re running any other
+          system move to manual installation steps and find replacements for the used packages.
         </Text>
       </Blockquote>
 

@@ -25,24 +25,26 @@ const IAColorPicker: React.FC<Props> = ({ withIAWrapper }) => {
   const handleBlur = (type: 'hex' | 'rgb') => {
     switch (type) {
       // Update RGB when HEX changes
-      case 'hex':
+      case 'hex': {
         const rgbVal = cp_hexToRgb(hexValue);
         if (rgbVal) setRgbValue(`${rgbVal.r}, ${rgbVal.g}, ${rgbVal.b}`);
         break;
+      }
 
       // Update HEX when RGB changes
-      case 'rgb':
+      case 'rgb': {
         const rgb = rgbValue.split(', ');
         if (rgb.length !== 3) return;
 
         const hexVal = cp_rgbToHex({
-          r: parseInt(rgb[0]),
-          g: parseInt(rgb[1]),
-          b: parseInt(rgb[2]),
+          r: parseInt(rgb[0], 10),
+          g: parseInt(rgb[1], 10),
+          b: parseInt(rgb[2], 10),
         });
 
         if (hexVal) setHexValue(hexVal);
         break;
+      }
 
       default:
         break;

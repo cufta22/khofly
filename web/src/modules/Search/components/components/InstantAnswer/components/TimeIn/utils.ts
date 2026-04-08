@@ -1,9 +1,9 @@
 export const findTimeZone = (input: string): string => {
-  const zone = TIME_ZONES.find((zone) =>
+  const found = TIME_ZONES.find((zone) =>
     zone.toLocaleLowerCase().includes(input.toLocaleLowerCase()),
   );
 
-  return zone || '';
+  return found || '';
 };
 
 // Available time zones

@@ -1,6 +1,6 @@
 import { Anchor, Flex, Image, Text } from '@mantine/core';
 import type { ISearXNGResultsVideos } from '@ts/searxng.types';
-import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from './styles.module.scss';
 import { useResponsive } from '@hooks/use-responsive';
 import { useSettingsStore } from '@store/settings';

@@ -1,7 +1,6 @@
 import { ActionIcon, Flex, Loader, Text, useMantineTheme } from '@mantine/core';
 
 import classes from './styles.module.scss';
-import type { ISearXNGResultsMusic } from '@ts/searxng.types';
 import { IconPlayerPlay, IconX } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import { useEffect, useRef } from 'react';

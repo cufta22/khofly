@@ -15,7 +15,7 @@ interface Props {
   showSkeleton: boolean;
 }
 
-const LayoutImages: React.FC<Props> = ({ tab, data, showSkeleton }) => {
+const LayoutImages: React.FC<Props> = ({ data, showSkeleton }) => {
   const [searchParams] = useSearchParams();
 
   const [isOpenImageView, { open: openImageView, close: closeImageView }] = useDisclosure(false);
@@ -41,7 +41,8 @@ const LayoutImages: React.FC<Props> = ({ tab, data, showSkeleton }) => {
   return (
     <Flex className={classes.image_gallery} wrap='wrap' p='lg' gap='md' justify='center'>
       {data?.map((res) => {
-        if (!res) return;
+        if (!res) return null;
+
         return res?.results.map((img, i) => (
           <CellImage key={i} rowData={img} openImageInView={openImageInView} />
         ));

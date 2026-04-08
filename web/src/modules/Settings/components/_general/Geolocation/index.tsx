@@ -1,6 +1,5 @@
 import {
   Button,
-  Dialog,
   Flex,
   Group,
   Modal,

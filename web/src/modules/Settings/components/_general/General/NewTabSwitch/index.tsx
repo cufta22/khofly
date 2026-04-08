@@ -16,7 +16,7 @@ const NewTabSwitch: React.FC<Props> = ({ isM }) => {
       className={commonClasses.settings_control}
       checked={openInNewTab}
       onChange={(e) => setOpenInNewTab(e.currentTarget.checked)}
-      withThumbIndicator={isM ? false : true}
+      withThumbIndicator={!isM}
       size={isM ? 'md' : 'sm'}
     />
   );

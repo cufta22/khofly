@@ -10,7 +10,6 @@ import { IconFile } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import DocsNextPrev from './common/DocsNextPrev';
 import { DOCS_CARD_DATA } from './common/docsCardData';
-import DocsLink from './common/DocsLink';
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -118,13 +117,15 @@ const DocsSelfHostKhoflyPV = () => {
           </Text>
         </RemixLink>{' '}
         <Code>VPS</Code> section, the <Code>./scripts/install.sh</Code> script installs and runs
-        both the web client and the API. If you've already run that script you probably don't need
-        this page.
+        both the web client and the API. If you&apos;ve already run that script you probably
+        don&apos;t need this page.
       </DocsText>
 
       <DocsSubtitle>OPTION 2. Manual installation</DocsSubtitle>
 
-      <DocsText>Follow these steps only if you've manually installed Khofly web client.</DocsText>
+      <DocsText>
+        Follow these steps only if you&apos;ve manually installed Khofly web client.
+      </DocsText>
 
       <DocsText>1. Install dependencies</DocsText>
       <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
@@ -179,7 +180,8 @@ const DocsSelfHostKhoflyPV = () => {
       </Paper>
 
       <DocsText>
-        8. Create Nginx config for PV, don't forget to update the server_name to your domain name.
+        8. Create Nginx config for PV, don&apos;t forget to update the server_name to your domain
+        name.
       </DocsText>
       <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlight code={CODE_NGINX} language='bash' />
@@ -208,8 +210,8 @@ const DocsSelfHostKhoflyPV = () => {
       <DocsSubtitle>Updating</DocsSubtitle>
 
       <DocsText>
-        To update the PV run <Code>./scripts/redeploy-pv.sh pv</Code>, make sure to replace "pv"
-        with pm2 instance name for your PV.
+        To update the PV run <Code>./scripts/redeploy-pv.sh pv</Code>, make sure to replace
+        &quot;pv&quot; with pm2 instance name for your PV.
       </DocsText>
 
       <DocsText>

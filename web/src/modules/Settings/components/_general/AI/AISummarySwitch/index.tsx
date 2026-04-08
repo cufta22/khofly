@@ -49,7 +49,7 @@ const AISummarySwitch: React.FC<Props> = ({ isM, mDisplay }) => {
         <Switch
           checked={enabled}
           onChange={(e) => setAISummary({ enabled: e.currentTarget.checked })}
-          withThumbIndicator={isM ? false : true}
+          withThumbIndicator={!isM}
           size={isM ? 'md' : 'sm'}
         />
       )}

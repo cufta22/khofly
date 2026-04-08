@@ -10,8 +10,9 @@ const SectionVivaldi = () => {
       <DocsSubtitle>1. The easy way</DocsSubtitle>
 
       <DocsText>
-        Simply right-click in a search ﬁeld on any web page and choose 'Add as search engine' from
-        the context menu. Then, type in the keyword you want to use and select 'Add' to save it.
+        Simply right-click in a search ﬁeld on any web page and choose &apos;Add as search
+        engine&apos; from the context menu. Then, type in the keyword you want to use and select
+        &apos;Add&apos; to save it.
       </DocsText>
 
       <Image

@@ -1,5 +1,5 @@
-import { ActionIcon, Anchor, rem, useMantineTheme } from '@mantine/core';
-import { IconBrandGithub, IconHeart } from '@tabler/icons-react';
+import { ActionIcon, rem, useMantineTheme } from '@mantine/core';
+import { IconHeart } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import classes from '../styles.module.scss';
 import RemixLink from '@components/RemixLink';

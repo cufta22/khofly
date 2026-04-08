@@ -3,9 +3,8 @@ import { IAWrapper } from '../../wrapper';
 import { ActionIcon, Button, Flex, Grid, Paper, Popover, Text, Transition } from '@mantine/core';
 
 import { BTN_VALUES } from './data';
-import { calculate } from './utils';
 import { useWindowEvent } from '@mantine/hooks';
-import { IconCalculator, IconEqual, IconHistory } from '@tabler/icons-react';
+import { IconEqual, IconHistory } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import { handlePress } from './handlePress';
 
@@ -124,7 +123,7 @@ const IACalculator = () => {
       </Paper>
       {/* Calculator keyboard */}
       {BTN_VALUES(variant).map((gridBtnRow, i) => (
-        <Grid key={i} grow gutter='xs' mt='xs' styles={{ inner: { flexWrap: 'nowrap' } }}>
+        <Grid key={i} grow gap='xs' mt='xs' styles={{ inner: { flexWrap: 'nowrap' } }}>
           {gridBtnRow.map((gridBtn) => {
             if (gridBtn.variant === 'scientific' && variant === 'basic') return null;
             else

@@ -1,6 +1,4 @@
-import type { LoaderFunctionArgs } from 'react-router';
-
-export const loader = ({ context }: LoaderFunctionArgs) => {
+export const loader = () => {
   // handle "GET" request
   // set up our text content that will be returned in the response
   const robotText = `User-agent: *

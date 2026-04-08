@@ -4,7 +4,7 @@ export const formatChangelog = (data: string): { title: string; content: string 
 
   const splicedData = data.split('\n').slice(7);
 
-  splicedData.map((str, i) => {
+  splicedData.forEach((str, i) => {
     const found = array[objCounter];
     if (!found) array.push({ title: '', content: '' });
 

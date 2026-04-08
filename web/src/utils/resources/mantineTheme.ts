@@ -19,7 +19,7 @@ export const getMantineTheme = (
         const customTheme =
           JSON.parse(localStorage.getItem('custom-theme-json') || '') || DEFAULT_THEME;
         return customTheme;
-      } catch (error) {
+      } catch {
         return DEFAULT_THEME;
       }
     }

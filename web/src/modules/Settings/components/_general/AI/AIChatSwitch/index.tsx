@@ -25,7 +25,7 @@ const AIChatSwitch: React.FC<Props> = ({ isM }) => {
       <Switch
         checked={AIChat.enabled}
         onChange={(e) => setAIChat({ enabled: e.currentTarget.checked })}
-        withThumbIndicator={isM ? false : true}
+        withThumbIndicator={!isM}
         size={isM ? 'md' : 'sm'}
       />
     </Flex>

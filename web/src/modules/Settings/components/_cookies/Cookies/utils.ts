@@ -5,10 +5,9 @@ export const decompressSearxngHash = async (
 
   const binaryString = atob(base64);
 
-  const bytes = Uint8Array.from(binaryString, (m) => m.codePointAt(0));
+  const bytes = Uint8Array.from(binaryString, (m) => m.codePointAt(0) ?? 0);
 
   const ds = new DecompressionStream('deflate');
-  console.log(`ds: ${ds}`);
 
   const writer = ds.writable.getWriter();
   writer.write(bytes);

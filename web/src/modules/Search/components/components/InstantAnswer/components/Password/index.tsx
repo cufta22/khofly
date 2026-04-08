@@ -1,4 +1,3 @@
-import { useMounted } from '@mantine/hooks';
 import { IAWrapper } from '../../wrapper';
 import { ActionIcon, Flex, Text } from '@mantine/core';
 import { useEffect, useState } from 'react';
@@ -27,7 +26,7 @@ const generatePassword = () => {
   // Shuffle the characters for better randomness (optional)
   password = password
     .split('')
-    .toSorted(() => Math.random() - 0.5)
+    .sort(() => Math.random() - 0.5)
     .join('');
 
   return password;

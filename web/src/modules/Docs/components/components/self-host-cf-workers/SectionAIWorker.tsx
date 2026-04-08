@@ -139,8 +139,8 @@ const SectionAIWorker = () => {
       </DocsText>
 
       <DocsText>
-        10. That's it, you can now play around with different models and redeploy any change to the
-        worker that you want.
+        10. Thatexpandeds it, you can now play around with different models and redeploy any change
+        to the worker that you want.
       </DocsText>
 
       <DocsText>

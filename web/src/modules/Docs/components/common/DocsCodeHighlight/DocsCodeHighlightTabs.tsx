@@ -12,7 +12,6 @@ import {
   type StylesApiProps,
   Tooltip,
   UnstyledButton,
-  createVarsResolver,
   rem,
   useProps,
 } from '@mantine/core';
@@ -86,20 +85,13 @@ const defaultProps: Partial<CodeHighlightTabsProps> = {
   withCopyButton: true,
 };
 
-const varsResolver = createVarsResolver<CodeHighlightTabsFactory>((_, { maxCollapsedHeight }) => ({
-  root: { '--ch-max-collapsed-height': rem(maxCollapsedHeight) },
-}));
+// const varsResolver = createVarsResolver<CodeHighlightTabsFactory>((_, { maxCollapsedHeight }) => ({
+//   root: { '--ch-max-collapsed-height': rem(maxCollapsedHeight) },
+// }));
 
 const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
   const props = useProps('CodeHighlightTabs', defaultProps, _props);
   const {
-    classNames,
-    className,
-    style,
-    styles,
-    unstyled,
-    vars,
-    children,
     code,
     defaultActiveTab,
     activeTab,
@@ -108,7 +100,6 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
     copiedLabel,
     copyLabel,
     getFileIcon,
-    maxCollapsedHeight,
     expanded,
     defaultExpanded,
     onExpandedChange,
@@ -117,7 +108,6 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
     withExpandButton,
     withCopyButton,
     mod,
-    ...others
   } = props;
 
   const [value, setValue] = useUncontrolled({
@@ -161,7 +151,6 @@ const DocsCodeHighlightTabs: React.FC<CodeHighlightTabsProps> = (_props) => {
   return (
     <Box
       mod={[{ collapsed: !_expanded }, mod]}
-      {...others}
       dir='ltr'
       className={clsx(classes.root, themeClasses.theme)}
     >

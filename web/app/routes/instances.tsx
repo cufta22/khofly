@@ -26,7 +26,7 @@ export async function loader() {
     const instances = await data.json();
 
     return { data: instances?.data || [], error: false };
-  } catch (error) {
+  } catch {
     return { data: null, error: true };
   }
 }

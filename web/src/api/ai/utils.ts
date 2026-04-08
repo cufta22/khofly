@@ -17,10 +17,6 @@ export const processSSE = async ({
 }: Args) => {
   let chunk = ''; // Buffer for partial SSE messages
 
-  console.log('Processing SSE');
-
-  console.log(chunk);
-
   while (true) {
     const { done, value } = await reader.read();
 
@@ -31,7 +27,6 @@ export const processSSE = async ({
 
     // Decode and process the chunk
     chunk += decoder.decode(value, { stream: true });
-    console.log(chunk);
 
     // Process complete SSE messages in the buffer
     // SSE messages are separated by double newlines "\n\n"
@@ -53,7 +48,6 @@ export const processSSE = async ({
 
         try {
           const parsed = JSON.parse(jsonString);
-          console.log(parsed);
 
           if (parsed?.response) {
             // Handle CF stream
@@ -64,7 +58,7 @@ export const processSSE = async ({
           } else {
             // Handle cases where JSON is valid but doesn't have 'response'
           }
-        } catch (parseError) {
+        } catch {
           // Handle JSON parsing errors - maybe log them, maybe show an error
         }
       } else if (message.trim()) {

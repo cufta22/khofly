@@ -7,10 +7,9 @@ import {
   Paper,
   Stack,
   Text,
-  useMantineTheme,
 } from '@mantine/core';
 
-import { IconCheck, IconMinus, IconPalette, IconPlus } from '@tabler/icons-react';
+import { IconCheck, IconMinus, IconPlus } from '@tabler/icons-react';
 
 import { useTranslate } from '@hooks/translate/use-translate';
 import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
@@ -27,8 +26,6 @@ interface Props {
 }
 
 const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
-  const theme = useMantineTheme();
-
   const t = useTranslate();
   const mounted = useMounted();
 
@@ -57,7 +54,7 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
         secure: process.env.HOST?.includes('https'),
         sameSite: 'Strict',
       });
-    } catch (error) {
+    } catch {
       toast.show({ message: 'Invalid JSON string', color: 'red' });
     }
   };
@@ -149,7 +146,7 @@ const SettingsThemeEditor: React.FC<Props> = ({ setDisplayThemeEdit }) => {
         />
 
         <Text>
-          Edit this only if you know what you're doing,{' '}
+          Edit this only if you know what you&apos;re doing,{' '}
           <ExternalLink href='https://mantine.dev/theming/theme-object/'>
             link to theme docs.
           </ExternalLink>

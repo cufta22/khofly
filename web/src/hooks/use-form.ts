@@ -1,5 +1,4 @@
-import { FormEventHandler, useState } from 'react';
-import { useNonInitialEffect } from './use-non-initial-effect';
+import { useState } from 'react';
 
 interface Args<T extends Record<string, string>> {
   initialValues: T;
@@ -53,10 +52,10 @@ const useForm = <T extends Record<string, string>>({ initialValues, validate }: 
     for (const field in initialValues) {
       if (validate && validate[field]) {
         const error = validate?.[field]?.(values[field]);
-        newErrors = ({
-	...newErrors,
-	[field]: error
-});
+        newErrors = {
+          ...newErrors,
+          [field]: error,
+        };
       }
     }
 

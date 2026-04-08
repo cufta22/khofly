@@ -21,7 +21,7 @@ const IAIP = () => {
     <IAWrapper
       label={
         <Text size='sm' c='dimmed'>
-          What's my IP
+          What&apos;s my IP
         </Text>
       }
     >

@@ -21,7 +21,6 @@ interface Args {
 
 // Not an swr this time
 const useAICommonAPI = ({
-  variant,
   maxTokens,
   temperature,
   systemInstruction,

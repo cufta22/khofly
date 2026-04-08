@@ -47,7 +47,7 @@ const FaviconSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
         <Switch
           checked={enabled}
           onChange={(e) => setFavicon({ enabled: e.currentTarget.checked })}
-          withThumbIndicator={isM ? false : true}
+          withThumbIndicator={!isM}
           size={isM ? 'md' : 'sm'}
         />
       )}

@@ -1,4 +1,4 @@
-import type { MantineThemeComponents, MantineThemeOverride } from '@mantine/core';
+import type { MantineThemeOverride } from '@mantine/core';
 
 // Catppuccin - Mocha theme
 export const THEME_NORD: MantineThemeOverride = {

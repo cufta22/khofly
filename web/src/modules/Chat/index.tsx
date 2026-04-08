@@ -35,7 +35,7 @@ const PageChat = () => {
   const chat = useAIChatStore((state) => state.chat);
   const addToChat = useAIChatStore((state) => state.addToChat);
 
-  const handleAskQuestion = async (input: string) => {
+  const handleAskQuestion = (input: string) => {
     if (!model.value) return;
 
     const messages: IAIChatMessage[] = [

@@ -11,7 +11,7 @@ interface Props {
   showSkeleton: boolean;
 }
 
-const LayoutVideos: React.FC<Props> = ({ tab, data, showSkeleton }) => {
+const LayoutVideos: React.FC<Props> = ({ data, showSkeleton }) => {
   return (
     <>
       <SimpleGrid
@@ -21,7 +21,8 @@ const LayoutVideos: React.FC<Props> = ({ tab, data, showSkeleton }) => {
         p='lg'
       >
         {data?.map((res) => {
-          if (!res) return;
+          if (!res) return null;
+
           return res?.results.map((vid, i) => <CellVideo key={i} rowData={vid} />);
         })}
 

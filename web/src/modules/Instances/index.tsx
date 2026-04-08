@@ -40,15 +40,13 @@ const getCspColor = (val: string) => {
 const PageInstances: React.FC<Props> = ({ loaderData }) => {
   const t = useTranslate();
 
-  console.log(loaderData);
-
   const linkTextColor = usePrimaryColor(4);
 
   // Rip API
   if (loaderData.error)
     return (
       <Center mt={100}>
-        <Text size='xl'>Rip API :(</Text>
+        <Text size='xl'>{'Rip API :('}</Text>
       </Center>
     );
 

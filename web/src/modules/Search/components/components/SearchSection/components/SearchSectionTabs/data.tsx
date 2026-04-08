@@ -82,7 +82,7 @@ const desiredOrder = [
 ];
 
 export const sortCategories = (categories: ICategories[]) => {
-  return categories.toSorted((a, b) => {
+  return categories.sort((a, b) => {
     return desiredOrder.indexOf(a) - desiredOrder.indexOf(b);
   });
 };

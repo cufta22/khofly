@@ -1,4 +1,4 @@
-import { Divider, Paper, Stack, Tooltip, useMantineTheme } from '@mantine/core';
+import { Divider, Paper, Stack } from '@mantine/core';
 
 import SettingsMTitle from '../../common/SettingsTitle';
 import SettingsMRow from '../../common/SettingsMRow';
@@ -11,8 +11,6 @@ interface Props {
 }
 
 const SettingsMAI: React.FC<Props> = ({ handleChangeSection }) => {
-  const theme = useMantineTheme();
-
   return (
     <>
       <SettingsMTitle title='pages.settings.ai.title' handleChangeSection={handleChangeSection} />

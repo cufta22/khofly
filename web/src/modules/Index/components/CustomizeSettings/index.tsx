@@ -1,14 +1,4 @@
-import {
-  Accordion,
-  Button,
-  Center,
-  Drawer,
-  Flex,
-  Image,
-  ScrollArea,
-  SimpleGrid,
-  Text,
-} from '@mantine/core';
+import { Button, Center, Drawer, Flex, ScrollArea, Text } from '@mantine/core';
 import { IconChevronRight } from '@tabler/icons-react';
 import classes from './styles.module.scss';
 import { useTranslate } from '@hooks/translate/use-translate';

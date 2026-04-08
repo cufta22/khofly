@@ -51,13 +51,13 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
 
   // Timer logic
   const { active, start, stop } = useInterval(() => {
-    setTime((time) => {
-      if (time.second > 0) {
-        return { ...time, second: time.second - 1 };
-      } else if (time.minute > 0) {
-        return { ...time, minute: time.minute - 1, second: 59 };
-      } else if (time.hour > 0) {
-        return { hour: time.hour - 1, minute: 59, second: 59 };
+    setTime((prev) => {
+      if (prev.second > 0) {
+        return { ...prev, second: prev.second - 1 };
+      } else if (prev.minute > 0) {
+        return { ...prev, minute: prev.minute - 1, second: 59 };
+      } else if (prev.hour > 0) {
+        return { hour: prev.hour - 1, minute: 59, second: 59 };
       }
       return INITIAL_TIME;
     });
@@ -159,7 +159,7 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
             <Flex gap='sm'>
               <NumberInput
                 value={time.hour}
-                onChange={(val) => handleChangeSeconds(parseInt(`${val}`), 'hour')}
+                onChange={(val) => handleChangeSeconds(parseInt(`${val}`, 10), 'hour')}
                 w={50}
                 max={59}
                 placeholder='HH'
@@ -169,7 +169,7 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
 
               <NumberInput
                 value={time.minute}
-                onChange={(val) => handleChangeSeconds(parseInt(`${val}`), 'minute')}
+                onChange={(val) => handleChangeSeconds(parseInt(`${val}`, 10), 'minute')}
                 w={50}
                 max={59}
                 placeholder='MM'
@@ -179,7 +179,7 @@ const IATimer: React.FC<Props> = ({ withIAWrapper }) => {
 
               <NumberInput
                 value={time.second}
-                onChange={(val) => handleChangeSeconds(parseInt(`${val}`), 'second')}
+                onChange={(val) => handleChangeSeconds(parseInt(`${val}`, 10), 'second')}
                 w={50}
                 max={59}
                 placeholder='SS'

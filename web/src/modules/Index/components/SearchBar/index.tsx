@@ -159,7 +159,7 @@ const SearchBar = () => {
         }
         rightSectionWidth={rsWidth}
         maxLength={250}
-        autoFocus
+        // autoFocus
         // Autocomplete props
         data={autocompleteData ? autocompleteData?.map((str) => ({ label: str, value: str })) : []}
         comboboxProps={{

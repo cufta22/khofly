@@ -12,7 +12,7 @@
     "typegen": "react-router typegen",
     "typecheck": "react-router typegen && tsc",
     "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
+    "lint:fix_DONT_RUN": "oxlint --fix",
     "fmt": "oxfmt src",
     "fmt:check": "oxfmt src --check"
   },

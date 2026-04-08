@@ -1,34 +1,10 @@
-import { Flex, Paper, SimpleGrid, Text, useMantineTheme } from '@mantine/core';
-import {
-  IconCpu,
-  IconFiles,
-  IconMapPin,
-  IconMusic,
-  IconNews,
-  IconPhoto,
-  IconPlayerPlay,
-  IconSchool,
-  IconSearch,
-  IconUsers,
-} from '@tabler/icons-react';
+import { Paper, SimpleGrid } from '@mantine/core';
 import { type ICategories, useSettingsStore } from '@store/settings';
 import SettingsMTitle from '../../common/SettingsTitle';
 import type { IOpenSection } from '@module/SettingsMobile';
 import React from 'react';
 import { CategoryCheckbox } from '@module/Settings/components/_interface/Categories/components/CategoryCheckbox';
-
-const CATEGORIES_DATA = [
-  { id: 'general', title: 'General', icon: IconSearch },
-  { id: 'images', title: 'Images', icon: IconPhoto },
-  { id: 'videos', title: 'Videos', icon: IconPlayerPlay },
-  { id: 'news', title: 'News', icon: IconNews },
-  { id: 'maps', title: 'Maps', icon: IconMapPin },
-  { id: 'music', title: 'Music', icon: IconMusic },
-  { id: 'it', title: 'IT', icon: IconCpu },
-  { id: 'science', title: 'Science', icon: IconSchool },
-  { id: 'files', title: 'Files', icon: IconFiles },
-  { id: 'social_media', title: 'Social Media', icon: IconUsers },
-];
+import { CATEGORIES_DATA } from '@module/Settings/components/_interface/Categories';
 
 interface Props {
   handleChangeSection: (next: IOpenSection) => void;

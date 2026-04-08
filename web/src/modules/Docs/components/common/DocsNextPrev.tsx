@@ -14,7 +14,7 @@ const DocsNextPrev: React.FC<Props> = ({ prev, next }) => {
       <Space h={40} />
       <DocsSubtitle>Read more</DocsSubtitle>
 
-      <Grid gutter='lg' mt={30}>
+      <Grid gap='lg' mt={30}>
         <Grid.Col span={{ base: 12, md: 6 }}>
           <DocsCard
             href={prev.href}

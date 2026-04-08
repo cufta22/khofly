@@ -43,7 +43,7 @@ const getDownloadOptions = (theme: MantineTheme) => ({
 });
 
 const IADownloader = () => {
-  const { data, trigger, isMutating } = useDownloadSWR({ shouldDownload: true });
+  const { trigger, isMutating } = useDownloadSWR({ shouldDownload: true });
   const theme = useMantineTheme();
 
   const [url, setUrl] = useState('');

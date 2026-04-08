@@ -1,4 +1,4 @@
-import { Center, Flex, Title } from '@mantine/core';
+import { Center, Flex } from '@mantine/core';
 import { IconBulldozer, IconCrane } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import DocsTitle from './common/DocsTitle';

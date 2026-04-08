@@ -15,11 +15,9 @@ interface CategoryCheckboxProps {
 
 export function CategoryCheckbox({
   checked,
-  defaultChecked,
   onChange,
   id,
   title,
-  className,
   icon,
   ...others
 }: CategoryCheckboxProps &

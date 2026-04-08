@@ -1,11 +1,10 @@
 import type { SelectProps } from '@mantine/core';
-import { Flex, Group, Image, Select, Switch, Text, useMantineTheme } from '@mantine/core';
+import { Flex, Group, Image, Select, Text, useMantineTheme } from '@mantine/core';
 import { getAIChatModels, getAIChatProviders } from '@module/Chat/data';
-import { getAIChatModelIcon, getAIChatModelSource } from '@module/Chat/utils';
-import { WORKER_MODELS_DATA } from '@module/Settings/components/_instances/AIWorker/data';
+import { getAIChatModelIcon } from '@module/Chat/utils';
 import type { IAIProvider } from '@store/aichat';
 import { useAIChatStore } from '@store/aichat';
-import { IWeatherSource, IWorkerModels, useInstanceStore } from '@store/instance';
+import { useInstanceStore } from '@store/instance';
 import { useSettingsStore } from '@store/settings';
 import { IconCurrencyDollar } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
@@ -19,7 +18,6 @@ const MoreAIAnswerOptions = () => {
   const workerDomain = useInstanceStore((state) => state.workerDomain);
   const config = useAIChatStore((state) => state.config);
 
-  const aiSource = getAIChatModelSource(aiAnswer.model.value);
   const providerData = getAIChatProviders({
     cfWorkerURL: workerDomain,
     hasGeminiKey: config.hasGeminiKey,

@@ -11,7 +11,7 @@ interface Props {
   control: React.ReactNode;
 }
 
-const SettingsMRow: React.FC<Props> = ({ icon, desc, tooltip, control }) => {
+const SettingsMRow: React.FC<Props> = ({ desc, tooltip, control }) => {
   const t = useTranslate();
 
   return (

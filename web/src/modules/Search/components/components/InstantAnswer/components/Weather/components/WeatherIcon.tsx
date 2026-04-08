@@ -26,7 +26,7 @@ interface Props {
 const WeatherIcon: React.FC<Props> = ({ code, size, date, isWidget }) => {
   const theme = useMantineTheme();
 
-  const hours = Number.parseInt(dayjs.unix(date).format('HH'));
+  const hours = Number.parseInt(dayjs.unix(date).format('HH'), 10);
   const isDay = getIsDay(hours);
 
   const IconMain = isDay ? IconSunLow : IconMoon;

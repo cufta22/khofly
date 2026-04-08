@@ -12,7 +12,7 @@ import {
 
 import classes from './styles.module.scss';
 import { IconSwitchHorizontal } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { convertUnit } from './utils';
 import {
   KEYWORDS_UNITS_ALL_MAP,
@@ -118,7 +118,7 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
             <NumberInput
               value={state.input}
               onChange={handleChangeInput}
-              rightSection={<></>}
+              rightSection={<div></div>}
               rightSectionWidth={0}
             />
 
@@ -138,7 +138,12 @@ const IAUnit: React.FC<Props> = ({ withIAWrapper, type, unit1, unit2 }) => {
           </ActionIcon>
 
           <Flex gap='md' direction='column'>
-            <NumberInput value={state.result} rightSection={<></>} rightSectionWidth={0} readOnly />
+            <NumberInput
+              value={state.result}
+              rightSection={<div></div>}
+              rightSectionWidth={0}
+              readOnly
+            />
 
             <Select
               withCheckIcon={false}

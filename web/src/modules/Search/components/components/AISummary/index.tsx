@@ -1,6 +1,5 @@
 import { Center, Drawer, Flex, Loader, ScrollArea, Text } from '@mantine/core';
 import classes from './styles.module.scss';
-import { useTranslate } from '@hooks/translate/use-translate';
 import ReactMarkdown from 'react-markdown';
 import { useSearchStore } from '@store/search';
 import { useEffect, useState } from 'react';
@@ -19,18 +18,16 @@ const AISummary = () => {
     handleDONE: () => {},
   });
 
-  const AISummary = useSettingsStore((state) => state.AISummary);
+  const aiSummary = useSettingsStore((state) => state.AISummary);
   const aiSummaryURL = useSearchStore((state) => state.aiSummaryURL);
   const setAISummaryURL = useSearchStore((state) => state.setAISummaryURL);
-
-  const t = useTranslate();
 
   useEffect(() => {
     if (!isLoading && aiSummaryURL.length > 0 && data.length === 0) {
       const msgContent = {
         short: `Can you give me a summary of this website: ${aiSummaryURL}`,
         long: `Can you give me an in depth summary of this website: ${aiSummaryURL}`,
-      }[AISummary.length];
+      }[aiSummary.length];
 
       trigger({
         messages: [

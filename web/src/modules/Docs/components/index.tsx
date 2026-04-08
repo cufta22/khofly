@@ -14,16 +14,16 @@ const DocsIndex = () => {
       <DocsTitle>Khofly documentation</DocsTitle>
 
       <DocsText>
-        Here you'll find all the important technical information regarding Khofly. Documentation is
-        always being updated so if you notice any missing/wrong information make sure to report it
-        either on GitHub or Discord.
+        Here you&apos;ll find all the important technical information regarding Khofly.
+        Documentation is always being updated so if you notice any missing/wrong information make
+        sure to report it either on GitHub or Discord.
       </DocsText>
 
       <DocsSubtitle>Getting started</DocsSubtitle>
 
       <DocsText>You can start by following any of the links below:</DocsText>
 
-      <Grid gutter='lg' mt={50}>
+      <Grid gap='lg' mt={50}>
         <Grid.Col span={{ base: 12, md: 6 }}>
           <DocsCard {...DOCS_CARD_DATA(theme)['IA']} />
         </Grid.Col>

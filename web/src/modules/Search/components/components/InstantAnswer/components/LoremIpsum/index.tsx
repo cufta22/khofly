@@ -1,7 +1,6 @@
-import { useMounted } from '@mantine/hooks';
 import { IAWrapper } from '../../wrapper';
 import { ActionIcon, Flex, NumberInput, Select, Text } from '@mantine/core';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IconReload } from '@tabler/icons-react';
 import { generateLoremIpsumParagraph } from './utils';
 
@@ -39,7 +38,7 @@ const IALoremIpsum = () => {
             label='No. of paragraphs'
             value={pCount}
             onChange={(e) => {
-              const newVal = typeof e === 'number' ? e : parseInt(e);
+              const newVal = typeof e === 'number' ? e : parseInt(e, 10);
 
               setPCount(newVal);
               handleGenerate(newVal, startWithLorem);

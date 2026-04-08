@@ -8,7 +8,7 @@ import {
   ScrollArea,
   TextInput,
 } from '@mantine/core';
-import type { Dispatch} from 'react';
+import type { Dispatch } from 'react';
 import React, { useEffect, useState } from 'react';
 
 import classes from './styles.module.scss';
@@ -20,7 +20,7 @@ import useNominatimSWR from 'src/api/nominatim/use-nominatim-query';
 import { useResponsive } from '@hooks/use-responsive';
 
 import { useSettingsStore } from '@store/settings';
-import { useNavigate, useSearchParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import useSearchQuery from '@hooks/use-search-query';
 import { removeBangsFromQ } from '../../utils/removeBangsFromQ';
 
@@ -30,7 +30,6 @@ interface Props {
 }
 
 const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
-  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const { data, isMutating, trigger, error } = useNominatimSWR();
@@ -142,7 +141,7 @@ const MapControls: React.FC<Props> = ({ coords, setCoords }) => {
                 key={i}
                 label={row.display_name}
                 leftSection={<IconSearch size='1rem' stroke={1.5} />}
-                onClick={(e) => handleUpdateMap(row.lat, row.lon)}
+                onClick={() => handleUpdateMap(row.lat, row.lon)}
               />
             ))
           : null}

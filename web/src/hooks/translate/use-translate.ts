@@ -27,9 +27,10 @@ export const useTranslate = () => {
     const label = getValueByString(content, keysString);
 
     if (args.length > 0) {
-      const formattedContent = label?.replaceAll(/{(\d+)}/g, (match) => {
-        return args[parseInt(match.slice(1, 2))];
-      });
+      const formattedContent = label?.replaceAll(
+        /{(\d+)}/g,
+        (match) => args[parseInt(match.slice(1, 2), 10)],
+      );
 
       return formattedContent || '<-- untranslated -->';
     }

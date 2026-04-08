@@ -134,13 +134,15 @@ const DocsSelfHostKhoflyAPI = () => {
           </Text>
         </RemixLink>{' '}
         <Code>VPS</Code> section, the <Code>./scripts/install.sh</Code> script installs and runs
-        both the web client and the API. If you've already run that script you probably don't need
-        this page.
+        both the web client and the API. If you&apos;ve already run that script you probably
+        don&apos;t need this page.
       </DocsText>
 
       <DocsSubtitle>OPTION 2. Manual installation</DocsSubtitle>
 
-      <DocsText>Follow these steps only if you've manually installed Khofly web client.</DocsText>
+      <DocsText>
+        Follow these steps only if you&apos;ve manually installed Khofly web client.
+      </DocsText>
 
       <DocsText>1. Install dependencies</DocsText>
       <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
@@ -205,7 +207,8 @@ const DocsSelfHostKhoflyAPI = () => {
       </Paper>
 
       <DocsText>
-        10. Create Nginx config for api, don't forget to update the server_name to your domain name.
+        10. Create Nginx config for api, don&apos;t forget to update the server_name to your domain
+        name.
       </DocsText>
       <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlight code={CODE_NGINX} language='bash' />
@@ -234,8 +237,8 @@ const DocsSelfHostKhoflyAPI = () => {
       <DocsSubtitle>Updating</DocsSubtitle>
 
       <DocsText>
-        To update the API run <Code>./scripts/redeploy-api.sh api</Code>, make sure to replace "api"
-        with pm2 instance name for your API.
+        To update the API run <Code>./scripts/redeploy-api.sh api</Code>, make sure to replace
+        &quot;api&quot; with pm2 instance name for your API.
       </DocsText>
 
       <DocsText>
@@ -300,7 +303,7 @@ const DocsSelfHostKhoflyAPI = () => {
           tab
         </List.Item>
         <List.Item>Click on a video</List.Item>
-        <List.Item>Open DevTools (F12) - "Network" tab</List.Item>
+        <List.Item>Open DevTools (F12) - &quot;Network&quot; tab</List.Item>
         <List.Item>
           Filter requests by <Code>googlevideo.com</Code>
         </List.Item>

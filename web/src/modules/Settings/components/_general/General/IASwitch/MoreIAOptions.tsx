@@ -1,4 +1,4 @@
-import { Flex, Select, Switch, Text } from '@mantine/core';
+import { Flex, Select, Text } from '@mantine/core';
 import type { IWeatherSource } from '@store/instance';
 import { useSettingsStore } from '@store/settings';
 

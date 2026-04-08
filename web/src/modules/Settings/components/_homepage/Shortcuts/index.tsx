@@ -26,13 +26,13 @@ const SettingsShortcuts: React.FC<Props> = ({ isM, handleChangeSection }) => {
   const hydrated = useHomepageStore((state) => state.hydrated);
   const shortcuts = useHomepageStore((state) => state.shortcuts);
 
-  const items = shortcuts.map((sc, i) => {
-    return sc.type === 'item' ? (
+  const items = shortcuts.map((sc, i) =>
+    sc.type === 'item' ? (
       <Shortcut key={i} idx={i} {...sc} />
     ) : (
       <ShortcutGroup key={i} idx={i} {...sc} />
-    );
-  });
+    ),
+  );
 
   return (
     <>

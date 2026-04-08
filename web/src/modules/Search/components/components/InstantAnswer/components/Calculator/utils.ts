@@ -184,7 +184,7 @@ export function evalReversePolishNotation(tokens: string[] | string) {
       for (let i = 0; i < op.arity; i++) {
         parameters.push(stack.pop()!);
       }
-      stack.push(op.func(...parameters.toReversed()));
+      stack.push(op.func(...parameters.reverse()));
     } else {
       stack.push(token);
     }

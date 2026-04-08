@@ -28,12 +28,12 @@ const DocsSearchAIAnswers = () => {
           <IconSearch />
         </ActionIcon>{' '}
         in any search bar. These answers can help when simple answer is needed so that the user
-        doesn't have to click through links.
+        doesn&apos;t have to click through links.
       </DocsText>
 
       <DocsText>
         Although most of the time the information will be accurate, it is still AI and can give out
-        wrong answers so don't take these answers as facts.
+        wrong answers so don&apos;t take these answers as facts.
       </DocsText>
 
       <DocsSubtitle>Cloudflare AI Workers</DocsSubtitle>

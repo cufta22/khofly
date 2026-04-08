@@ -20,7 +20,7 @@ export async function loader() {
     const changelog = await data.text();
 
     return { data: changelog, error: false };
-  } catch (error) {
+  } catch {
     return { data: null, error: true };
   }
 }

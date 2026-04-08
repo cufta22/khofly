@@ -1,5 +1,5 @@
 import { useTranslate } from '@hooks/translate/use-translate';
-import { Flex, MenuDivider, Select, Switch } from '@mantine/core';
+import { Flex, Select, Switch } from '@mantine/core';
 import { type IAutocompleteEngines, useSettingsStore } from '@store/settings';
 import commonClasses from '../../../common/styles.module.scss';
 
@@ -53,7 +53,7 @@ const AutocompleteSwitch: React.FC<Props> = ({ isM, mDisplay }) => {
         <Switch
           checked={enabled}
           onChange={(e) => setAutocomplete({ enabled: e.currentTarget.checked })}
-          withThumbIndicator={isM ? false : true}
+          withThumbIndicator={!isM}
           size={isM ? 'md' : 'sm'}
         />
       )}

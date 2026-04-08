@@ -1,4 +1,4 @@
-import { Container, Transition } from '@mantine/core';
+import { Container } from '@mantine/core';
 import classes from './styles.module.scss';
 import { useState } from 'react';
 
@@ -11,12 +11,10 @@ import SettingsMCategories from './components/_interface/Categories';
 import SettingsMInterface from './components/_interface/Interface';
 import SettingsSearXNG from '@module/Settings/components/_instances/SearXNG';
 import SettingsAPI from '@module/Settings/components/_instances/API';
-import SettingsAI from '@module/Settings/components/_general/AI';
 import SettingsAIWorker from '@module/Settings/components/_instances/AIWorker';
 import SettingsNominatim from '@module/Settings/components/_instances/Nominatim';
 import SettingsMEngines from './components/_engines/Engines';
 import SettingsWallpaper from '@module/Settings/components/_homepage/Wallpaper';
-import SettingsShortcuts from '@module/Settings/components/_homepage/Shortcuts';
 import SettingsMTitle from './components/common/SettingsTitle';
 
 export type IOpenSection =

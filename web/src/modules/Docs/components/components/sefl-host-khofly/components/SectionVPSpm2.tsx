@@ -1,12 +1,10 @@
-import { Badge, Blockquote, Code, Flex, List, Paper, Select, Text } from '@mantine/core';
-import DocsTitle from '../../../common/DocsTitle';
+import { Code, List, Paper } from '@mantine/core';
 import DocsText from '../../../common/DocsText';
 import DocsSubtitle from '../../../common/DocsSubtitle';
-import { IconBrandDebian, IconFile } from '@tabler/icons-react';
+import { IconFile } from '@tabler/icons-react';
 import DocsCodeHighlight from '../../../common/DocsCodeHighlight/DocsCodeHighlight';
 import DocsCodeHighlightTabs from '../../../common/DocsCodeHighlight/DocsCodeHighlightTabs';
 import { getIconStyle } from '@utils/functions/iconStyle';
-import classes from './styles.module.scss';
 
 const CODE_DEPENDENCIES = `
 apt update && apt upgrade
@@ -134,13 +132,13 @@ const SectionVPSpm2 = () => {
       </DocsText>
 
       <DocsText>
-        3.1. Don't blindly trust any script you pull from the internet, you can inspect it with{' '}
+        3.1. Don&apos;t blindly trust any script you pull from the internet, you can inspect it with{' '}
         <Code>cat ./scripts/install.sh</Code>
       </DocsText>
 
       <DocsText>
-        4. Now you can run the script with <Code>sudo ./scripts/install.sh</Code>, if you didn't get
-        any errors the installation was successful.
+        4. Now you can run the script with <Code>sudo ./scripts/install.sh</Code>, if you
+        didn&apos;t get any errors the installation was successful.
       </DocsText>
 
       <DocsText>
@@ -252,7 +250,8 @@ const SectionVPSpm2 = () => {
       </Paper>
 
       <DocsText>
-        10. Create Nginx config for web, don't forget to update the server_name to your domain name.
+        10. Create Nginx config for web, don&apos;t forget to update the server_name to your domain
+        name.
       </DocsText>
       <Paper mt='md' withBorder radius='sm' style={{ overflow: 'hidden' }}>
         <DocsCodeHighlight code={CODE_NGINX} language='bash' />

@@ -7,7 +7,7 @@ import { type ICategories, useSettingsStore } from '@store/settings';
 import { useEffect, useState } from 'react';
 import { nprogress } from '@mantine/nprogress';
 import { CATEGORIES_DATA, sortCategories } from './data';
-import { useHotkeys, useMounted } from '@mantine/hooks';
+import { useHotkeys } from '@mantine/hooks';
 import { useNavigate, useSearchParams } from 'react-router';
 import { getTabFromQuery } from '@utils/functions/getTabFromQuery';
 import useSearchQuery from '@hooks/use-search-query';
@@ -18,7 +18,6 @@ const SearchSectionTabs = () => {
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const mounted = useMounted();
 
   const isSearchOptionsOpen = useSearchStore((state) => state.isSearchOptionsOpen);
   const setIsSearchOptionsOpen = useSearchStore((state) => state.setIsSearchOptionsOpen);

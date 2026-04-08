@@ -30,7 +30,7 @@ const DocsSearchPrivateView = () => {
       <DocsTitle leftSection={<IconSpy color={theme.colors.indigo[5]} />}>Private View</DocsTitle>
 
       <Blockquote color='cyan' mt='xl' radius='sm' icon={<IconFlaskFilled />}>
-        This feature is still WIP and probably doesn't fully proxy all of the assets on more
+        This feature is still WIP and probably doesn&apos;t fully proxy all of the assets on more
         complicated websites.
       </Blockquote>
 
@@ -76,7 +76,7 @@ const DocsSearchPrivateView = () => {
         API url: <Code>{`${pvDomain}/proxy/page?url=*`}</Code>
       </DocsText>
 
-      <DocsText>There's a lot of work that needs to be done here:</DocsText>
+      <DocsText>There&apos;s a lot of work that needs to be done here:</DocsText>
 
       <List mt='md' withPadding>
         <List.Item>

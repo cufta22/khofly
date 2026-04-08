@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import classes from './styles.module.scss';
 import clsx from 'clsx';
-import { useDisclosure, useHeadroom, useHotkeys } from '@mantine/hooks';
+import { useHeadroom } from '@mantine/hooks';
 import { Notifications } from '@mantine/notifications';
 import { getMantineTheme } from '@utils/resources/mantineTheme';
 import NProgress from '@module/NProgress';

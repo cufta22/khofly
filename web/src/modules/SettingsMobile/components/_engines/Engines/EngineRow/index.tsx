@@ -1,23 +1,8 @@
-import {
-  Anchor,
-  Badge,
-  Box,
-  Code,
-  Flex,
-  HoverCard,
-  Image,
-  Stack,
-  Switch,
-  Table,
-  Text,
-  useMantineTheme,
-} from '@mantine/core';
+import { Box, Code, Flex, Image, Switch, Table, Text } from '@mantine/core';
 import type { DotNestedKeys, ITranslations } from '@ts/global.types';
 import classes from './styles.module.scss';
 import { useTranslate } from '@hooks/translate/use-translate';
-import { IconCheck } from '@tabler/icons-react';
-import { getIconStyle } from '@utils/functions/iconStyle';
-import { usePrimaryColor } from '@hooks/use-primary-color';
+
 import type { ICategories } from '@store/settings';
 
 interface Props {
@@ -43,7 +28,6 @@ const EngineMComponent: React.FC<Props> = ({
   bang,
   category,
 }) => {
-  const theme = useMantineTheme();
   const t = useTranslate();
 
   // If type = divider

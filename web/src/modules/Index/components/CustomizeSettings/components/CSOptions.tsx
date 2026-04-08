@@ -3,7 +3,7 @@ import { Flex, Space, Text, useMantineTheme } from '@mantine/core';
 import ShortcutsSwitch from '@module/Settings/components/_homepage/Shortcuts/components/ShortcutsSwitch';
 import SurpriseMeSwitch from '@module/Settings/components/_homepage/SurpriseMe!/components/SurpriseMeSwitch';
 import SettingsRow from '@module/Settings/components/common/SettingsRow';
-import { IconConfetti, IconExternalLink, IconSnowflake } from '@tabler/icons-react';
+import { IconConfetti, IconExternalLink } from '@tabler/icons-react';
 
 const CSOptions = () => {
   const t = useTranslate();

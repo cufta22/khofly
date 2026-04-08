@@ -1,5 +1,5 @@
 import { Collapse, Flex, Select } from '@mantine/core';
-import type { IDateRange, ISearchLang} from '@store/search';
+import type { IDateRange, ISearchLang } from '@store/search';
 import { useSearchStore } from '@store/search';
 import React from 'react';
 
@@ -20,7 +20,7 @@ const SearchOptions: React.FC<Props> = ({ className }) => {
   const setDateRange = useSearchStore((state) => state.setDateRange);
 
   return (
-    <Collapse className={className ?? className} in={isSearchOptionsOpen}>
+    <Collapse className={className ?? className} expanded={isSearchOptionsOpen}>
       <Flex pt='xs' align='center' gap='xs'>
         <Select
           size='xs'
@@ -131,7 +131,7 @@ const SearchOptions: React.FC<Props> = ({ className }) => {
           size='xs'
           label='Safe search'
           value={`${safeSearch}`}
-          onChange={(val) => setSafeSearch(parseInt(val || '0') as any)}
+          onChange={(val) => setSafeSearch(parseInt(val || '0', 10) as any)}
           data={[
             { label: 'None', value: '0' },
             { label: 'Moderate', value: '1' },

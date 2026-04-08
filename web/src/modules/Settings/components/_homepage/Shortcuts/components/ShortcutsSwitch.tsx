@@ -22,7 +22,7 @@ const ShortcutsSwitch: React.FC<Props> = ({ isM }) => {
         // Uncheck Surprise Me! if enabled
         if (e.currentTarget.checked) setDisplaySurpriseButton(false);
       }}
-      withThumbIndicator={isM ? false : true}
+      withThumbIndicator={!isM}
       size={isM ? 'md' : 'sm'}
     />
   );

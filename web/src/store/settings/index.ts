@@ -53,7 +53,7 @@ interface SettingsState {
     enabled: boolean;
     weatherDataSource: IWeatherSource;
   };
-  setInstantAnswers: (next: { enabled?: boolean; weatherDataSource: IWeatherSource }) => void;
+  setInstantAnswers: (next: { enabled?: boolean; weatherDataSource?: IWeatherSource }) => void;
 
   openInNewTab: boolean;
   setOpenInNewTab: (next: boolean) => void;

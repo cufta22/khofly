@@ -1,5 +1,5 @@
 import { Center, Image, Paper } from '@mantine/core';
-import { IconFile, IconVinyl } from '@tabler/icons-react';
+import { IconFile } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import React from 'react';
 
