@@ -20,6 +20,11 @@ make instances page better
 
 Currency IA add error state if fetching rates fails
 
+Privacy score for websites
+
+Replace RemixLink with InternalLink
+Replace SCSS with PostCSS
+
 Responsive: index search bar with css
 Responsive: search page bigger text & spacing
 Responsive: add scroll to Docs sidebar

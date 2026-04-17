@@ -1,0 +1,12 @@
+.tool_row {
+  width: 100%;
+  border-radius: var(--mantine-radius-sm);
+  padding: var(--mantine-spacing-xs);
+  cursor: pointer;
+}
+
+.tool_privacy_scan {
+  &:hover {
+    background-color: var(--mantine-color-grape-light);
+  }
+}

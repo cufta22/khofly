@@ -35,6 +35,7 @@ const app = new Elysia({ serve: { idleTimeout: 100 } })
   .get('/ip', router.handleIP) // Get IP from headers
   .get('/favicon', router.handleFavicon) // Fetch website favicon
   .get('/instances', router.handleInstances) // Fetch public instances
+  .get('/privacy-scan', router.handlePrivacyScan) // Get privacy scan score
   .get('/ai/config', router.handleAIConfig) // Fetch available models
   .post('/ai/chat', router.handleAIChat) // Chat with selected model
   .listen(process.env.PORT || 4000);

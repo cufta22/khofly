@@ -7,40 +7,9 @@ export default defineConfig(({ mode }) => {
 
   const nodeVersion = process.version;
 
-  // Build CSP header
-  const apiUrl = env.API_URL_EU1;
-  const searXngUrl = env.SEARXNG_URL_EU1;
-
-  const cspHeader = [
-    "default-src 'self'",
-    `connect-src 'self' ${apiUrl} ${searXngUrl}`,
-    "script-src 'self' 'unsafe-inline'", // Add 'nonce-...' or hashes in prod if possible
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob:",
-    "font-src 'self' data:",
-    "frame-ancestors 'none'",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-  ].join('; ');
-
   return {
     server: {
       port: Number.parseInt(env.PORT, 10),
-      // Example security headers, set in nginx for prod
-      headers: {
-        // 'strict-transport-security': 'max-age=31536000; includeSubDomains', // 1 year
-        'content-security-policy': cspHeader,
-        // 'x-content-type-options': 'nosniff',
-        // 'x-frame-options': 'SAMEORIGIN',
-        // 'x-xss-protection': '0',
-        // 'referrer-policy': 'strict-origin-when-cross-origin',
-        // 'permissions-policy':
-        //   'geolocation=(self), camera=(), microphone=(), fullscreen=(self), interest-cohort=()',
-        // 'cross-origin-opener-policy': 'same-origin',
-        // 'cross-origin-resource-policy': 'same-origin',
-        // 'cache-control': 'no-cache, no-store, must-revalidate',
-      },
     },
 
     preview: {

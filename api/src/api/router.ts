@@ -9,6 +9,7 @@ import * as faviconSvc from './services/favicon.service';
 import * as aiChatSvc from './services/aiChat.service';
 import * as aiConfigSvc from './services/aiConfig.service';
 import * as instancesSvc from './services/instances.service';
+import * as privacyScanSvc from './services/privacyScan.service';
 
 // GET - /rates
 export const handleRates = async (ctx: Context) => {
@@ -47,6 +48,11 @@ export const handleFavicon = async (ctx: Context) => {
 // GET - /instances
 export const handleInstances = async (ctx: Context) => {
   return await instancesSvc.handleGetInstances(ctx);
+};
+
+// GET - /privacy-scan
+export const handlePrivacyScan = async (ctx: Context) => {
+  return await privacyScanSvc.handlePrivacyScan(ctx);
 };
 
 // GET - /ai/config

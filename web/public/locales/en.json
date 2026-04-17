@@ -27,6 +27,8 @@
     "settings": "Settings",
     "support": "Support",
     "privacy": "Privacy",
+    "privacy_scan": "Privacy Scan",
+    "privacy_scan_desc": "Rate website privacy",
     "search": "Search",
     "docs": "Docs",
     "chat": "AI Chat"

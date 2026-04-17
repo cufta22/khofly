@@ -1,4 +1,16 @@
 {
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  // Let postcss handle css files
+  // "css.validate": false,
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "emmet.includeLanguages": {
+    "postcss": "css",
+    "css": "css"
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
 }

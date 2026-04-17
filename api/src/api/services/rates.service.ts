@@ -3,7 +3,7 @@ import path from 'node:path';
 import { __dirname } from '../../config';
 
 // GET - /rates
-export const handleGetRates = async (ctx: Context) => {
+export const handleGetRates = async (_ctx: Context) => {
   const tempDir = path.join(__dirname, `/../temp`);
 
   const resultFile = Bun.file(path.join(tempDir, `/exchange_rates.json`));

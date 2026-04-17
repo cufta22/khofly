@@ -84,6 +84,23 @@ export default async function handleRequest(
         const body = new PassThrough();
         const stream = createReadableStreamFromReadable(body);
 
+        // Build CSP header
+        const apiUrl = process.env.API_URL_EU1;
+        const searXngUrl = process.env.SEARXNG_URL_EU1;
+
+        const cspHeader = [
+          "default-src 'self'",
+          `connect-src 'self' ${apiUrl} ${searXngUrl}`,
+          "script-src 'self' 'unsafe-inline'", // Add 'nonce-...' or hashes in prod if possible
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' data: blob:",
+          "font-src 'self' data:",
+          "frame-ancestors 'none'",
+          "object-src 'none'",
+          "base-uri 'self'",
+          "form-action 'self'",
+        ].join('; ');
+
         responseHeaders.set('Content-Type', 'text/html');
 
         resolve(
