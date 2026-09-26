@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => {
   return {
     server: {
       port: Number.parseInt(env.PORT, 10),
+      allowedHosts: ['staging.khofly.com'],
     },
 
     preview: {
