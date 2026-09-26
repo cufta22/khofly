@@ -2,6 +2,7 @@ import PageSearch from '@module/Search';
 import type { Route } from './+types/search';
 import getSearXNGData from '../api/searxng/get-searxng-data';
 import { type ISearXNGResultsShared } from '@ts/searxng.types';
+import fs from 'node:fs';
 
 export interface ILoaderData_Search {
   data: ISearXNGResultsShared | null;
@@ -21,7 +22,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
     return { data: data, error: false };
   } catch (err) {
-    console.error('CRITICAL SEARXNG FETCH ERROR:', err);
+    fs.appendFileSync('./search-error.log', `${new Date().toISOString()} - ${err}\n`);
 
     return { data: null, error: true };
   }
