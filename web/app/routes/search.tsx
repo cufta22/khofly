@@ -20,7 +20,9 @@ export async function loader({ request }: Route.LoaderArgs) {
     const data = await getSearXNGData(request);
 
     return { data: data, error: false };
-  } catch {
+  } catch (err) {
+    console.error('CRITICAL SEARXNG FETCH ERROR:', err);
+
     return { data: null, error: true };
   }
 }
