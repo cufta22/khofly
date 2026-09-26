@@ -34,8 +34,9 @@ const getApiPath = (
 const getSearXNGData = async (
   request: Request,
   initialTab?: ICategories,
-): Promise<ISearXNGResultsShared> => {
-  const searXNGDomain = process.env.VITE_SEARXNG_URL_LOCAL;
+): Promise<ISearXNGResultsShared | null> => {
+  const searXNGDomain = process.env.SEARXNG_URL_LOCAL;
+  if (!searXNGDomain) return null;
 
   const enginesStoreCookie = getCookie('app-engines-store', request);
   const enginesStoreData = enginesStoreCookie ? JSON.parse(enginesStoreCookie) : undefined;
