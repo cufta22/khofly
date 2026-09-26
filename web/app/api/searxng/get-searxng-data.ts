@@ -35,7 +35,7 @@ const getSearXNGData = async (
   request: Request,
   initialTab?: ICategories,
 ): Promise<ISearXNGResultsShared> => {
-  const searXNGDomain = process.env.SEARXNG_URL_LOCAL;
+  const searXNGDomain = process.env.VITE_SEARXNG_URL_LOCAL;
 
   const enginesStoreCookie = getCookie('app-engines-store', request);
   const enginesStoreData = enginesStoreCookie ? JSON.parse(enginesStoreCookie) : undefined;
