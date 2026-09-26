@@ -24,8 +24,6 @@ export async function loader({ request }: Route.LoaderArgs) {
 
     if (!data) return { data: null, error: true };
 
-    console.log(data);
-
     return { data: data, error: false };
   } catch (err) {
     console.log('Catch error:');
