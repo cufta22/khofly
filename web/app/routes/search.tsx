@@ -25,10 +25,14 @@ export async function loader({ request }: Route.LoaderArgs) {
 
     const data = await getSearXNGData(request);
 
+    console.log(data);
     fs.appendFileSync('./SEARCH_LOADER_DATA.log', `${new Date().toISOString()} - ${data}\n`);
 
     return { data: data, error: false };
   } catch (err) {
+    console.log('Catch error:');
+    console.error(err);
+
     fs.appendFileSync('./SEARCH_LOADER_CATCH.log', `${new Date().toISOString()} - ${err}\n`);
 
     return { data: null, error: true };
