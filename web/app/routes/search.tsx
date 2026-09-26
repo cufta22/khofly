@@ -15,14 +15,21 @@ export async function loader({ request }: Route.LoaderArgs) {
     if (request.headers.get('Referer')?.includes('/search')) {
       console.log('Returned from SSR loader');
 
+      fs.appendFileSync(
+        './SEARCH_LOADER_RETURNED.log',
+        `${new Date().toISOString()} - Returned from SSR loader\n`,
+      );
+
       return { data: null, error: false };
     }
 
     const data = await getSearXNGData(request);
 
+    fs.appendFileSync('./SEARCH_LOADER_DATA.log', `${new Date().toISOString()} - ${data}\n`);
+
     return { data: data, error: false };
   } catch (err) {
-    fs.appendFileSync('/tmp/search-error.log', `${new Date().toISOString()} - ${err}\n`);
+    fs.appendFileSync('./SEARCH_LOADER_CATCH.log', `${new Date().toISOString()} - ${err}\n`);
 
     return { data: null, error: true };
   }
