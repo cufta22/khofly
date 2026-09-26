@@ -89,7 +89,10 @@ const getSearXNGData = async (
   );
 
   const res = await fetch(`${searXNGDomain}${apiPath}&format=json`);
-  
+
+  console.log('SSR results:');
+  console.log(res);
+
   const data = await res.json();
 
   return data;

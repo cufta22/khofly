@@ -1,5 +1,5 @@
 {
-  "editor.defaultFormatter": "oxc.oxc-vscode",
+  // "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
   // Let postcss handle css files
   // "css.validate": false,
