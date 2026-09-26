@@ -1,7 +1,7 @@
 import { Accordion, Center, Container, Loader, Space, Title } from '@mantine/core';
 import { formatChangelog } from './formatChangelog';
 import { useTranslate } from '@hooks/translate/use-translate';
-import type { ILoaderData_Changelog } from 'app/routes/changelog';
+import type { ILoaderData_Changelog } from '@app/routes/changelog';
 
 interface Props {
   loaderData: ILoaderData_Changelog;

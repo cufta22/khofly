@@ -15,7 +15,7 @@ import classes from './styles.module.scss';
 import { IconSwitchHorizontal } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { KEYWORDS_CURRENCY } from '../../_utils/keywords_currency';
-import useCurrencySWR from 'src/api/currency/use-currency-query';
+import useCurrencySWR from '@api/currency/use-currency-query';
 import { convertCurrency } from './utils';
 
 import dayjs from 'dayjs';

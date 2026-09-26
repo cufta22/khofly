@@ -1,7 +1,7 @@
 import { Flex, Text, UnstyledButton } from '@mantine/core';
 
 import classes from '../styles.module.scss';
-import type { OpenWeatherCode } from 'src/api/weather/types';
+import type { OpenWeatherCode } from '@api/weather/types';
 import WeatherIcon from './WeatherIcon';
 
 import dayjs from 'dayjs';

@@ -3,7 +3,7 @@ import classes from './styles.module.scss';
 import ReactMarkdown from 'react-markdown';
 import { useSearchStore } from '@store/search';
 import { useEffect, useState } from 'react';
-import useAICommonAPI from 'src/api/ai/use-ai-common-api';
+import useAICommonAPI from '@api/ai/use-ai-common-api';
 import { useSettingsStore } from '@store/settings';
 
 const AISummary = () => {

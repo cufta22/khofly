@@ -2,12 +2,12 @@ import { Container, Flex, LoadingOverlay } from '@mantine/core';
 import ChatInput from './components/ChatInput';
 import classes from './styles.module.scss';
 import ChatMessages from './components/ChatMessages';
-import useAIConfigSWR from 'src/api/ai/use-ai-config-query';
+import useAIConfigSWR from '@api/ai/use-ai-config-query';
 import { useAIChatStore } from '@store/aichat';
 import { getAIChatModelSource } from './utils';
 import { profanityFilter } from '@utils/functions/profanityFilter';
 import type { IAIChatMessage } from '@ts/chat.types';
-import useAICommonAPI from 'src/api/ai/use-ai-common-api';
+import useAICommonAPI from '@api/ai/use-ai-common-api';
 
 const PageChat = () => {
   const { isLoading: isLoadingConfig } = useAIConfigSWR();

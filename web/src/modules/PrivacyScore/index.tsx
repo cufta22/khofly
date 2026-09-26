@@ -1,6 +1,6 @@
 import { Container } from '@mantine/core';
 import SearchBox from './components/SearchBox';
-import usePrivacyScanSWR from 'src/api/privacyScan/use-privacy-scan-query';
+import usePrivacyScanSWR from '@api/privacyScan/use-privacy-scan-query';
 
 const PagePrivacyScore = () => {
   const { data, trigger, isMutating } = usePrivacyScanSWR();

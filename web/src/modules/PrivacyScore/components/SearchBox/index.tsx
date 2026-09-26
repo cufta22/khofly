@@ -5,7 +5,7 @@ import { IconWorld } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import type { TriggerWithArgs } from 'swr/mutation';
 import type { IAPIResponse } from '@ts/global.types';
-import type { PrivacyScanResponse } from 'src/api/privacyScan/types';
+import type { PrivacyScanResponse } from '@api/privacyScan/types';
 
 interface Props {
   isLoading: boolean;

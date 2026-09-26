@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { useSearchParams } from 'react-router';
 import TabCommon from './components/TabCommon';
 import { type ICategories } from '@store/settings';
-import { type ILoaderData_Search } from 'app/routes/search';
+import { type ILoaderData_Search } from '@app/routes/search';
 import { notifications } from '@mantine/notifications';
 
 const TabMapsWithoutSSR = lazy(() => import('./components/TabMaps'));

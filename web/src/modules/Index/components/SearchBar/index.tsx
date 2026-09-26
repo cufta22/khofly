@@ -6,7 +6,7 @@ import classes from './styles.module.scss';
 import { useDebouncedValue } from '@mantine/hooks';
 
 import { useResponsive } from '@hooks/use-responsive';
-import useAutocompleteSWR from 'src/api/autocomplete/use-autocomplete-query';
+import useAutocompleteSWR from '@api/autocomplete/use-autocomplete-query';
 import { nprogress } from '@mantine/nprogress';
 import { useTranslate } from '@hooks/translate/use-translate';
 import { useSettingsStore } from '@store/settings';

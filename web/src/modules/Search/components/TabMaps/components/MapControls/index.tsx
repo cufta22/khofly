@@ -16,7 +16,7 @@ import { IconArrowLeft, IconChevronLeft, IconSearch } from '@tabler/icons-react'
 import { getIconStyle } from '@utils/functions/iconStyle';
 import { useDisclosure } from '@mantine/hooks';
 import clsx from 'clsx';
-import useNominatimSWR from 'src/api/nominatim/use-nominatim-query';
+import useNominatimSWR from '@api/nominatim/use-nominatim-query';
 import { useResponsive } from '@hooks/use-responsive';
 
 import { useSettingsStore } from '@store/settings';

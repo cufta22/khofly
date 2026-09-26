@@ -1,6 +1,6 @@
 import PageSearch from '@module/Search';
 import type { Route } from './+types/search';
-import getSearXNGData from 'app/api/searxng/get-searxng-data';
+import getSearXNGData from '../api/searxng/get-searxng-data';
 import { type ISearXNGResultsShared } from '@ts/searxng.types';
 
 export interface ILoaderData_Search {

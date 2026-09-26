@@ -1,7 +1,7 @@
 import PageSettings from '@module/Settings';
 import PageSettingsMobile from '@module/SettingsMobile';
 
-import { SETTINGS_META_FUNCTION } from 'app/meta/settings';
+import { SETTINGS_META_FUNCTION } from '../meta/settings';
 import type { Route } from './+types/settings';
 import { isMobileUserAgent } from '@utils/functions/isMobileUA';
 

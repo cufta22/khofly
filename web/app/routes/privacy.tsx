@@ -1,5 +1,5 @@
-import PagePrivacy from 'src/modules/Privacy';
-import { PRIVACY_META_FUNCTION } from 'app/meta/privacy';
+import PagePrivacy from '@module/Privacy';
+import { PRIVACY_META_FUNCTION } from '../meta/privacy';
 
 // Meta tags
 export const meta = PRIVACY_META_FUNCTION;

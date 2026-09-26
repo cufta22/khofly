@@ -1,6 +1,6 @@
 import PageInstances from '@module/Instances';
 import type { Route } from './+types/instances';
-import { INSTANCES_META_FUNCTION } from 'app/meta/instances';
+import { INSTANCES_META_FUNCTION } from '../meta/instances';
 
 export interface ILoaderData_Instances {
   data: {

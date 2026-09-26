@@ -3,7 +3,7 @@ import { Flex, Stack, Text } from '@mantine/core';
 
 import classes from './styles.module.scss';
 import ScrollToTop from '../../../../common/components/ScrollToTop';
-import useSearXNGSWR from 'src/api/searxng/use-searxng-query';
+import useSearXNGSWR from '@api/searxng/use-searxng-query';
 import Suggestions from '../components/Suggestions';
 import Infobox from '../components/Infobox';
 import SearchOptions from '../components/SearchOptions';
@@ -28,7 +28,7 @@ import clsx from 'clsx';
 import LayoutVideos from './layouts/LayoutVideos';
 import ButtonLoadMore from './components/ButtonLoadMore';
 import LayoutCommon from './layouts/LayoutCommon';
-import { type ILoaderData_Search } from 'app/routes/search';
+import { type ILoaderData_Search } from '@app/routes/search';
 
 interface Props {
   tab: ICategories;
@@ -46,7 +46,7 @@ const TabCommon: React.FC<Props> = ({ tab, loaderData }) => {
   useEffect(() => {
     // Don't fetch if previous data already exists to not spam the instance
     // Run mutate if loaderData ends up empty
-    if (!data?.length && hydratedEngines && !loaderData) {
+    if (!data?.length && hydratedEngines && !loaderData.data) {
       mutate();
     }
   }, [hydratedEngines]);

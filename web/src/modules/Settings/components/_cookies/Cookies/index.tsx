@@ -1,4 +1,4 @@
-import { Button, Flex, Paper, Stack, Text, TextInput, useMantineTheme } from '@mantine/core';
+import { Paper, Stack, Text, useMantineTheme } from '@mantine/core';
 import SettingsTitle from '../../common/SettingsTitle';
 import DocsCodeHighlight from '@module/Docs/components/common/DocsCodeHighlight/DocsCodeHighlight';
 import classes from './styles.module.scss';
@@ -72,7 +72,7 @@ const Cookies = () => {
           language='json'
         />
 
-        <Flex className={classes.load_wrapper} align='flex-end' gap='md'>
+        {/* <Flex className={classes.load_wrapper} align='flex-end' gap='md'>
           <TextInput
             className={classes.load_input}
             label={t('pages.settings.cookies.searxng_pref_hash')}
@@ -83,10 +83,10 @@ const Cookies = () => {
           <Button onClick={handleSearXNGHash} disabled={!searXNGHash}>
             {t('pages.settings.cookies.load_preferences')}
           </Button>
-        </Flex>
+        </Flex> */}
 
-        <Text mt='md'>{t('pages.settings.cookies.load_hash_desc')}</Text>
-        <Text>{t('pages.settings.cookies.load_hash_desc_note')}</Text>
+        {/* <Text mt='md'>{t('pages.settings.cookies.load_hash_desc')}</Text>
+        <Text>{t('pages.settings.cookies.load_hash_desc_note')}</Text> */}
       </Stack>
     </Paper>
   );

@@ -1,7 +1,7 @@
 import { Anchor, Divider, Flex, Image, LoadingOverlay, Paper, Spoiler, Text } from '@mantine/core';
 
 import classes from './styles.module.scss';
-import useLyricsSWR from 'src/api/lyrics/use-lyrics-query';
+import useLyricsSWR from '@api/lyrics/use-lyrics-query';
 import { usePrimaryColor } from '@hooks/use-primary-color';
 import { useInstanceStore } from '@store/instance';
 import { useEffect } from 'react';

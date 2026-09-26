@@ -4,7 +4,7 @@ import classes from './styles.module.scss';
 import { IconPlayerPlay, IconX } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import { useEffect, useRef } from 'react';
-import useDownloadSWR from 'src/api/download/use-download-query';
+import useDownloadSWR from '@api/download/use-download-query';
 import { useSettingsStore } from '@store/settings';
 
 const PrivateMusicPlayer = () => {

@@ -23,7 +23,7 @@ import { getAIChatModelIcon, getAIChatModelSource } from '@module/Chat/utils';
 import { getAIChatModels, getAIChatProviders } from '@module/Chat/data';
 import { IconCurrencyDollar, IconRefresh, IconTrash } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
-import useAIConfigSWR from 'src/api/ai/use-ai-config-query';
+import useAIConfigSWR from '@api/ai/use-ai-config-query';
 
 interface Props {
   isOpen: boolean;

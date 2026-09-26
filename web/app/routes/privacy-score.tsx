@@ -1,5 +1,5 @@
-import PagePrivacyScore from 'src/modules/PrivacyScore';
-import { PRIVACY_SCORE_META_FUNCTION } from 'app/meta/privacy-score';
+import PagePrivacyScore from '@module/PrivacyScore/';
+import { PRIVACY_SCORE_META_FUNCTION } from '../meta/privacy-score';
 
 // Meta tags
 export const meta = PRIVACY_SCORE_META_FUNCTION;

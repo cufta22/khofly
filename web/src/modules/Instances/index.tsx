@@ -1,7 +1,7 @@
 import { useTranslate } from '@hooks/translate/use-translate';
 import { usePrimaryColor } from '@hooks/use-primary-color';
 import { Anchor, Badge, Center, Container, Loader, Table, Text, Title } from '@mantine/core';
-import type { ILoaderData_Instances } from 'app/routes/instances';
+import type { ILoaderData_Instances } from '@app/routes/instances';
 
 interface Props {
   loaderData: ILoaderData_Instances;

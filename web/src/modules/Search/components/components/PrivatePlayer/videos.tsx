@@ -2,7 +2,7 @@ import { Center, Flex, Loader, Modal, Text, useMantineTheme } from '@mantine/cor
 import { IconPlayerPlay } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import classes from './styles.module.scss';
-import useDownloadSWR from 'src/api/download/use-download-query';
+import useDownloadSWR from '@api/download/use-download-query';
 import { useEffect } from 'react';
 import { useSettingsStore } from '@store/settings';
 import { useResponsive } from '@hooks/use-responsive';

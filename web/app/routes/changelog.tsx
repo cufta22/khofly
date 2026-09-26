@@ -1,6 +1,6 @@
 import PageChangelog from '@module/Changelog';
 import type { Route } from './+types/changelog';
-import { CHANGELOG_META_FUNCTION } from 'app/meta/changelog';
+import { CHANGELOG_META_FUNCTION } from '../meta/changelog';
 
 export interface ILoaderData_Changelog {
   data: string | null;

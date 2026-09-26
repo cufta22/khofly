@@ -7,12 +7,12 @@ import {
   IconTemperatureFahrenheit,
 } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
-import useWeatherSWR from 'src/api/weather/use-weather-query';
+import useWeatherSWR from '@api/weather/use-weather-query';
 import useGeolocation from '@hooks/use-geolocation';
 import WeatherIcon from './components/WeatherIcon';
 import WeatherDaily from './components/WeatherDaily';
 import { useGeneralStore } from '@store/general';
-import type { OpenWeatherCode, OpenWeatherDaily } from 'src/api/weather/types';
+import type { OpenWeatherCode, OpenWeatherDaily } from '@api/weather/types';
 import { AreaChart } from '@mantine/charts';
 
 // import SunPosition from "./components/SunPosition";
@@ -20,7 +20,7 @@ import { AreaChart } from '@mantine/charts';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { usePrimaryColor } from '@hooks/use-primary-color';
-import useGeocodingSWR from 'src/api/geocoding/use-geocoding-query';
+import useGeocodingSWR from '@api/geocoding/use-geocoding-query';
 import { useSettingsStore } from '@store/settings';
 
 dayjs.extend(utc);

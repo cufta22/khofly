@@ -15,7 +15,7 @@ import { useSettingsStore } from '@store/settings';
 import { IconPhoto, IconPlayerPlay, IconPlayerPlayFilled } from '@tabler/icons-react';
 import type { ISearXNGResultsShared } from '@ts/searxng.types';
 import { useEffect } from 'react';
-import useSearXNGSWR from 'src/api/searxng/use-searxng-query';
+import useSearXNGSWR from '@api/searxng/use-searxng-query';
 
 import classes from './styles.module.scss';
 import { nprogress } from '@mantine/nprogress';

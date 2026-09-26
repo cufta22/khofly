@@ -1,5 +1,5 @@
 import { Anchor, LoadingOverlay, Spoiler, Text } from '@mantine/core';
-import useLyricsSWR from 'src/api/lyrics/use-lyrics-query';
+import useLyricsSWR from '@api/lyrics/use-lyrics-query';
 
 import classes from './styles.module.scss';
 import { IAWrapper } from '../../wrapper';

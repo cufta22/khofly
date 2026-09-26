@@ -2,7 +2,7 @@ import { Text, Container, Group, Anchor, Flex } from '@mantine/core';
 
 import classes from './styles.module.scss';
 
-import packageJson from 'package.json';
+import packageJson from '../../../../package.json';
 import RemixLink from '@components/RemixLink';
 import { useGeneralStore } from '@store/general';
 import { useEffect, useState } from 'react';

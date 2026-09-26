@@ -18,7 +18,7 @@ import { IconBrandInstagram, IconBrandYoutube } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import { isValidURL } from '@utils/functions/isValidURL';
 import useToast from '@hooks/use-toast';
-import useDownloadSWR from 'src/api/download/use-download-query';
+import useDownloadSWR from '@api/download/use-download-query';
 
 type DownloadFrom = 'youtube' | 'instagram'; // | "tiktok";
 

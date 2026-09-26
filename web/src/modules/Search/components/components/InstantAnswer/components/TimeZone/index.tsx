@@ -3,12 +3,12 @@ import { Anchor, Button, Center, Flex, LoadingOverlay, Paper, Select, Text } fro
 
 import classes from './styles.module.scss';
 import { useState } from 'react';
-import { useTimeApiSWR } from 'src/api/timeapi/use-timeapi-query';
+import { useTimeApiSWR } from '@api/timeapi/use-timeapi-query';
 
 import { usePrimaryColor } from '@hooks/use-primary-color';
 import { TIME_ZONES } from '../TimeIn/utils';
 import { DateTimePicker } from '@mantine/dates';
-import type { ITimeAPITimeZoneResponse } from 'src/api/timeapi/types';
+import type { ITimeAPITimeZoneResponse } from '@api/timeapi/types';
 
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';

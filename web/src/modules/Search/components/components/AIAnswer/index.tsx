@@ -11,7 +11,7 @@ import { usePrimaryColor } from '@hooks/use-primary-color';
 import { useNavigate, useSearchParams } from 'react-router';
 import { useSettingsStore } from '@store/settings';
 import { useAIChatStore } from '@store/aichat';
-import useAICommonAPI from 'src/api/ai/use-ai-common-api';
+import useAICommonAPI from '@api/ai/use-ai-common-api';
 import ReactMarkdown from 'react-markdown';
 
 interface Props {

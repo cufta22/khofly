@@ -12,7 +12,7 @@ import {
 import { getIconStyle } from '@utils/functions/iconStyle';
 
 import classes from '../styles.module.scss';
-import type { OpenWeatherCode } from 'src/api/weather/types';
+import type { OpenWeatherCode } from '@api/weather/types';
 import { getIsDay } from '@utils/resources/isDay';
 import dayjs from 'dayjs';
 

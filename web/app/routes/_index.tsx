@@ -1,4 +1,4 @@
-import PageIndex from 'src/modules/Index';
+import PageIndex from '@module/Index';
 
 const Index = () => {
   return <PageIndex />;

@@ -13,7 +13,7 @@ import SettingsTitle from '../../common/SettingsTitle';
 import classes from '../../../styles.module.scss';
 import useForm from '@hooks/use-form';
 import { useDisclosure } from '@mantine/hooks';
-import useNominatimSWR from 'src/api/nominatim/use-nominatim-query';
+import useNominatimSWR from '@api/nominatim/use-nominatim-query';
 import { useEffect, useState } from 'react';
 import useToast from '@hooks/use-toast';
 import { useGeneralStore } from '@store/general';

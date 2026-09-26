@@ -3,7 +3,7 @@ import { type IDateRange, type ISafeSearch, type ISearchLang } from '@store/sear
 import { type ICategories } from '@store/settings';
 import type { ISearXNGResultsShared } from '@ts/searxng.types';
 import { getCookie } from '@utils/functions/cookies';
-import { getEngineBangs } from 'src/api/searxng/utils';
+import { getEngineBangs } from '@api/searxng/utils';
 
 const getApiPath = (
   tab: ICategories,
@@ -89,6 +89,7 @@ const getSearXNGData = async (
   );
 
   const res = await fetch(`${searXNGDomain}${apiPath}&format=json`);
+  
   const data = await res.json();
 
   return data;

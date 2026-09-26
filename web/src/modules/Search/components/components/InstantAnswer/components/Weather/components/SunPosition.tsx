@@ -1,7 +1,7 @@
 import { AreaChart } from '@mantine/charts';
 import { Flex, Text } from '@mantine/core';
 import classes from '../styles.module.scss';
-import type { OpenWeatherCurrent } from 'src/api/weather/types';
+import type { OpenWeatherCurrent } from '@api/weather/types';
 
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';

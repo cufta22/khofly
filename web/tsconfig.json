@@ -16,17 +16,18 @@
     "skipLibCheck": true,
     "strict": true,
     "allowJs": true,
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/common/components/*"],
-      "@layout/*": ["src/common/layouts/*"],
-      "@module/*": ["src/modules/*"],
-      "@styles/*": ["src/styles/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"],
-      "@icons/*": ["src/icons/*"],
-      "@store/*": ["src/store/*"],
-      "@ts/*": ["src/types/*"]
+      "@components/*": ["./src/common/components/*"],
+      "@layout/*": ["./src/common/layouts/*"],
+      "@module/*": ["./src/modules/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@icons/*": ["./src/icons/*"],
+      "@store/*": ["./src/store/*"],
+      "@ts/*": ["./src/types/*"],
+      "@api/*": ["./src/api/*"],
+      "@app/*": ["./app/*"]
     },
     // Vite takes care of building everything, not tsc.
     "noEmit": true

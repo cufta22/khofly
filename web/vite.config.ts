@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
         scss: {
           api: 'modern-compiler',
           quietDeps: true,
-          loadPaths: [path.join(__dirname, 'src/styles')],
+          loadPaths: [path.join(import.meta.dirname, 'src/styles')],
         },
       },
     },

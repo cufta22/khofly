@@ -9,7 +9,7 @@ import SearchAnchor from '@module/Search/components/components/SearchAnchor';
 import { IconLabelImportant } from '@tabler/icons-react';
 import { getIconStyle } from '@utils/functions/iconStyle';
 import { removeSubdomain } from '@module/Search/components/components/Organize/components/utils';
-import { useFaviconAPI } from 'src/api/favicon';
+import { useFaviconAPI } from '@api/favicon';
 import ResultMenu from './ResultMenu';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';

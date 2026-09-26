@@ -3,7 +3,7 @@ import { popularDomainNameMap } from './utils';
 import { useHover } from '@mantine/hooks';
 import { IconForbid, IconLabelImportant, IconTrash } from '@tabler/icons-react';
 import { useSearchStore } from '@store/search';
-import { useFaviconAPI } from 'src/api/favicon';
+import { useFaviconAPI } from '@api/favicon';
 
 interface Props {
   domain: string;

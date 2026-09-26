@@ -3,11 +3,11 @@ import { Anchor, Center, Flex, LoadingOverlay, Paper, Select, Text } from '@mant
 
 import classes from './styles.module.scss';
 import { useEffect, useState } from 'react';
-import { useTimeApiSWR } from 'src/api/timeapi/use-timeapi-query';
+import { useTimeApiSWR } from '@api/timeapi/use-timeapi-query';
 
 import { findTimeZone, TIME_ZONES } from './utils';
 import { usePrimaryColor } from '@hooks/use-primary-color';
-import type { ITimeAPITimeInResponse } from 'src/api/timeapi/types';
+import type { ITimeAPITimeInResponse } from '@api/timeapi/types';
 
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';

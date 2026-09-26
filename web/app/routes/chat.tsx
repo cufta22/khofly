@@ -1,5 +1,5 @@
 import PageChat from '@module/Chat';
-import { CHAT_META_FUNCTION } from 'app/meta/chat';
+import { CHAT_META_FUNCTION } from '../meta/chat';
 
 // Meta tags
 export const meta = CHAT_META_FUNCTION;

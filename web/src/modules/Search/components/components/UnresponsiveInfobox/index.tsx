@@ -11,7 +11,7 @@ const UnresponsiveInfobox: React.FC<Props> = ({ unresponsive_engines }) => {
   return (
     <Alert
       variant='light'
-      color='red'
+      color='pink'
       title='Messages from the search engines'
       icon={<IconInfoCircle />}
       className={classes.engines_message}

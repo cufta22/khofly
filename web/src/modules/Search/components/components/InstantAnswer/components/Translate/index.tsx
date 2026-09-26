@@ -15,7 +15,7 @@ import { IconLanguage, IconSwitchHorizontal } from '@tabler/icons-react';
 
 import classes from './styles.module.scss';
 import { getIconStyle } from '@utils/functions/iconStyle';
-import useTranslateSWR from 'src/api/translate/use-translate-query';
+import useTranslateSWR from '@api/translate/use-translate-query';
 import useToast from '@hooks/use-toast';
 
 const IATranslate = () => {
