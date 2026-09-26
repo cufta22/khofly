@@ -23,6 +23,8 @@ export async function loader({ request }: Route.LoaderArgs) {
       return { data: null, error: false };
     }
 
+    console.log('Getting data:');
+
     const data = await getSearXNGData(request);
 
     console.log(data);
