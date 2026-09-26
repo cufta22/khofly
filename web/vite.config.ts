@@ -13,6 +13,10 @@ export default defineConfig(({ mode }) => {
       allowedHosts: ['staging.khofly.com'],
     },
 
+    build: {
+      sourcemap: true, // Enables production source mapping
+    },
+
     preview: {
       port: Number.parseInt(env.PORT, 10),
     },

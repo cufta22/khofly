@@ -22,7 +22,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
     return { data: data, error: false };
   } catch (err) {
-    fs.appendFileSync('./search-error.log', `${new Date().toISOString()} - ${err}\n`);
+    fs.appendFileSync('/tmp/search-error.log', `${new Date().toISOString()} - ${err}\n`);
 
     return { data: null, error: true };
   }
