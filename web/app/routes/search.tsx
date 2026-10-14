@@ -13,12 +13,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   try {
     // Only SSR when not already on search pages
     if (request.headers.get('Referer')?.includes('/search')) {
-      console.log('Returned from SSR loader');
-
       return { data: null, error: false };
     }
-
-    console.log('Getting data:');
 
     const data = await getSearXNGData(request);
 
@@ -26,9 +22,6 @@ export async function loader({ request }: Route.LoaderArgs) {
 
     return { data: data, error: false };
   } catch (err) {
-    console.log('Catch error:');
-    console.error(err);
-
     return { data: null, error: true };
   }
 }
